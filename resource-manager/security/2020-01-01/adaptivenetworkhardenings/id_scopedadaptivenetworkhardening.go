@@ -34,15 +34,9 @@ func ParseScopedAdaptiveNetworkHardeningID(input string) (*ScopedAdaptiveNetwork
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAdaptiveNetworkHardeningId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AdaptiveNetworkHardeningName, ok = parsed.Parsed["adaptiveNetworkHardeningName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "adaptiveNetworkHardeningName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedAdaptiveNetworkHardeningIDInsensitively(input string) (*ScopedAd
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAdaptiveNetworkHardeningId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AdaptiveNetworkHardeningName, ok = parsed.Parsed["adaptiveNetworkHardeningName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "adaptiveNetworkHardeningName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedAdaptiveNetworkHardeningId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.AdaptiveNetworkHardeningName, ok = input.Parsed["adaptiveNetworkHardeningName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "adaptiveNetworkHardeningName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedAdaptiveNetworkHardeningID checks that 'input' can be parsed as a Scoped Adaptive Network Hardening ID

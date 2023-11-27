@@ -36,19 +36,9 @@ func ParseUsageID(input string) (*UsageId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UsageId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.UsageName, ok = parsed.Parsed["usageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "usageName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseUsageIDInsensitively(input string) (*UsageId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UsageId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.UsageName, ok = parsed.Parsed["usageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "usageName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *UsageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.UsageName, ok = input.Parsed["usageName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "usageName", input)
+	}
+
+	return nil
 }
 
 // ValidateUsageID checks that 'input' can be parsed as a Usage ID

@@ -38,23 +38,9 @@ func ParseTypeID(input string) (*TypeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := TypeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
-	}
-
-	if id.TypeName, ok = parsed.Parsed["typeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "typeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseTypeIDInsensitively(input string) (*TypeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := TypeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
-	}
-
-	if id.TypeName, ok = parsed.Parsed["typeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "typeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *TypeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.PublisherName, ok = input.Parsed["publisherName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publisherName", input)
+	}
+
+	if id.TypeName, ok = input.Parsed["typeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "typeName", input)
+	}
+
+	return nil
 }
 
 // ValidateTypeID checks that 'input' can be parsed as a Type ID

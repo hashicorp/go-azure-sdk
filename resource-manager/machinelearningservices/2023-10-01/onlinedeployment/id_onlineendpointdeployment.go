@@ -40,27 +40,9 @@ func ParseOnlineEndpointDeploymentID(input string) (*OnlineEndpointDeploymentId,
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OnlineEndpointDeploymentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
-	}
-
-	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "onlineEndpointName", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseOnlineEndpointDeploymentIDInsensitively(input string) (*OnlineEndpoint
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OnlineEndpointDeploymentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
-	}
-
-	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "onlineEndpointName", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *OnlineEndpointDeploymentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.WorkspaceName, ok = input.Parsed["workspaceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", input)
+	}
+
+	if id.OnlineEndpointName, ok = input.Parsed["onlineEndpointName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "onlineEndpointName", input)
+	}
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	return nil
 }
 
 // ValidateOnlineEndpointDeploymentID checks that 'input' can be parsed as a Online Endpoint Deployment ID

@@ -32,11 +32,9 @@ func ParsePolicySetDefinitionID(input string) (*PolicySetDefinitionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicySetDefinitionId{}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParsePolicySetDefinitionIDInsensitively(input string) (*PolicySetDefinition
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicySetDefinitionId{}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PolicySetDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.PolicySetDefinitionName, ok = input.Parsed["policySetDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", input)
+	}
+
+	return nil
 }
 
 // ValidatePolicySetDefinitionID checks that 'input' can be parsed as a Policy Set Definition ID

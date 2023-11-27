@@ -38,23 +38,9 @@ func ParseStatusID(input string) (*StatusId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MetricAlertName, ok = parsed.Parsed["metricAlertName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metricAlertName", *parsed)
-	}
-
-	if id.StatusName, ok = parsed.Parsed["statusName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "statusName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseStatusIDInsensitively(input string) (*StatusId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MetricAlertName, ok = parsed.Parsed["metricAlertName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metricAlertName", *parsed)
-	}
-
-	if id.StatusName, ok = parsed.Parsed["statusName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "statusName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *StatusId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.MetricAlertName, ok = input.Parsed["metricAlertName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "metricAlertName", input)
+	}
+
+	if id.StatusName, ok = input.Parsed["statusName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "statusName", input)
+	}
+
+	return nil
 }
 
 // ValidateStatusID checks that 'input' can be parsed as a Status ID

@@ -34,15 +34,9 @@ func ParseAttestationID(input string) (*AttestationId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AttestationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AttestationName, ok = parsed.Parsed["attestationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attestationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseAttestationIDInsensitively(input string) (*AttestationId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AttestationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AttestationName, ok = parsed.Parsed["attestationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attestationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AttestationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.AttestationName, ok = input.Parsed["attestationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "attestationName", input)
+	}
+
+	return nil
 }
 
 // ValidateAttestationID checks that 'input' can be parsed as a Attestation ID

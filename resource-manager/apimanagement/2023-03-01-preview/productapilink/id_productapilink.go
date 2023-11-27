@@ -40,27 +40,9 @@ func ParseProductApiLinkID(input string) (*ProductApiLinkId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProductApiLinkId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.ProductId, ok = parsed.Parsed["productId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "productId", *parsed)
-	}
-
-	if id.ApiLinkId, ok = parsed.Parsed["apiLinkId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiLinkId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseProductApiLinkIDInsensitively(input string) (*ProductApiLinkId, error)
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProductApiLinkId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.ProductId, ok = parsed.Parsed["productId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "productId", *parsed)
-	}
-
-	if id.ApiLinkId, ok = parsed.Parsed["apiLinkId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiLinkId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ProductApiLinkId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServiceName, ok = input.Parsed["serviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceName", input)
+	}
+
+	if id.ProductId, ok = input.Parsed["productId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "productId", input)
+	}
+
+	if id.ApiLinkId, ok = input.Parsed["apiLinkId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "apiLinkId", input)
+	}
+
+	return nil
 }
 
 // ValidateProductApiLinkID checks that 'input' can be parsed as a Product Api Link ID

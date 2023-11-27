@@ -42,31 +42,9 @@ func ParseSlotInstanceProcessID(input string) (*SlotInstanceProcessId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SlotInstanceProcessId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.SlotName, ok = parsed.Parsed["slotName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "slotName", *parsed)
-	}
-
-	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
-	}
-
-	if id.ProcessId, ok = parsed.Parsed["processId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "processId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseSlotInstanceProcessIDInsensitively(input string) (*SlotInstanceProcess
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SlotInstanceProcessId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.SlotName, ok = parsed.Parsed["slotName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "slotName", *parsed)
-	}
-
-	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
-	}
-
-	if id.ProcessId, ok = parsed.Parsed["processId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "processId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SlotInstanceProcessId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.SiteName, ok = input.Parsed["siteName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "siteName", input)
+	}
+
+	if id.SlotName, ok = input.Parsed["slotName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "slotName", input)
+	}
+
+	if id.InstanceId, ok = input.Parsed["instanceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "instanceId", input)
+	}
+
+	if id.ProcessId, ok = input.Parsed["processId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "processId", input)
+	}
+
+	return nil
 }
 
 // ValidateSlotInstanceProcessID checks that 'input' can be parsed as a Slot Instance Process ID

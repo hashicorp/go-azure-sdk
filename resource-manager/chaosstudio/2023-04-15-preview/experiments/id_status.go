@@ -38,23 +38,9 @@ func ParseStatusID(input string) (*StatusId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ExperimentName, ok = parsed.Parsed["experimentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "experimentName", *parsed)
-	}
-
-	if id.StatusId, ok = parsed.Parsed["statusId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "statusId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseStatusIDInsensitively(input string) (*StatusId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ExperimentName, ok = parsed.Parsed["experimentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "experimentName", *parsed)
-	}
-
-	if id.StatusId, ok = parsed.Parsed["statusId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "statusId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *StatusId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ExperimentName, ok = input.Parsed["experimentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "experimentName", input)
+	}
+
+	if id.StatusId, ok = input.Parsed["statusId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "statusId", input)
+	}
+
+	return nil
 }
 
 // ValidateStatusID checks that 'input' can be parsed as a Status ID

@@ -42,31 +42,9 @@ func ParseSchemaTableID(input string) (*SchemaTableId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SchemaTableId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.SchemaName, ok = parsed.Parsed["schemaName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaName", *parsed)
-	}
-
-	if id.TableName, ok = parsed.Parsed["tableName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tableName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseSchemaTableIDInsensitively(input string) (*SchemaTableId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SchemaTableId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.SchemaName, ok = parsed.Parsed["schemaName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaName", *parsed)
-	}
-
-	if id.TableName, ok = parsed.Parsed["tableName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tableName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SchemaTableId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ManagedInstanceName, ok = input.Parsed["managedInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", input)
+	}
+
+	if id.DatabaseName, ok = input.Parsed["databaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseName", input)
+	}
+
+	if id.SchemaName, ok = input.Parsed["schemaName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "schemaName", input)
+	}
+
+	if id.TableName, ok = input.Parsed["tableName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "tableName", input)
+	}
+
+	return nil
 }
 
 // ValidateSchemaTableID checks that 'input' can be parsed as a Schema Table ID

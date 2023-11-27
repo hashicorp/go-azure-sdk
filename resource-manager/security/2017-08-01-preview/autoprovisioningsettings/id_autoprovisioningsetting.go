@@ -34,15 +34,9 @@ func ParseAutoProvisioningSettingID(input string) (*AutoProvisioningSettingId, e
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AutoProvisioningSettingId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AutoProvisioningSettingName, ok = parsed.Parsed["autoProvisioningSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "autoProvisioningSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseAutoProvisioningSettingIDInsensitively(input string) (*AutoProvisionin
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AutoProvisioningSettingId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AutoProvisioningSettingName, ok = parsed.Parsed["autoProvisioningSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "autoProvisioningSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AutoProvisioningSettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.AutoProvisioningSettingName, ok = input.Parsed["autoProvisioningSettingName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "autoProvisioningSettingName", input)
+	}
+
+	return nil
 }
 
 // ValidateAutoProvisioningSettingID checks that 'input' can be parsed as a Auto Provisioning Setting ID

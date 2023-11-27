@@ -40,27 +40,9 @@ func ParseCommunityGalleryImageVersionID(input string) (*CommunityGalleryImageVe
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CommunityGalleryImageVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.CommunityGalleryName, ok = parsed.Parsed["communityGalleryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "communityGalleryName", *parsed)
-	}
-
-	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseCommunityGalleryImageVersionIDInsensitively(input string) (*CommunityG
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CommunityGalleryImageVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.CommunityGalleryName, ok = parsed.Parsed["communityGalleryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "communityGalleryName", *parsed)
-	}
-
-	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *CommunityGalleryImageVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.CommunityGalleryName, ok = input.Parsed["communityGalleryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "communityGalleryName", input)
+	}
+
+	if id.ImageName, ok = input.Parsed["imageName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "imageName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
 }
 
 // ValidateCommunityGalleryImageVersionID checks that 'input' can be parsed as a Community Gallery Image Version ID

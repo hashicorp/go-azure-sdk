@@ -34,15 +34,9 @@ func ParseSecureScoreID(input string) (*SecureScoreId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SecureScoreId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.SecureScoreName, ok = parsed.Parsed["secureScoreName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "secureScoreName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseSecureScoreIDInsensitively(input string) (*SecureScoreId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SecureScoreId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.SecureScoreName, ok = parsed.Parsed["secureScoreName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "secureScoreName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SecureScoreId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.SecureScoreName, ok = input.Parsed["secureScoreName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "secureScoreName", input)
+	}
+
+	return nil
 }
 
 // ValidateSecureScoreID checks that 'input' can be parsed as a Secure Score ID

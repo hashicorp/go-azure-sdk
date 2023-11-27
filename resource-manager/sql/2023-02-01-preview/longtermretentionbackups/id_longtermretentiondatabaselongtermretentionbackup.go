@@ -42,31 +42,9 @@ func ParseLongTermRetentionDatabaseLongTermRetentionBackupID(input string) (*Lon
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := LongTermRetentionDatabaseLongTermRetentionBackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.LongTermRetentionServerName, ok = parsed.Parsed["longTermRetentionServerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionServerName", *parsed)
-	}
-
-	if id.LongTermRetentionDatabaseName, ok = parsed.Parsed["longTermRetentionDatabaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionDatabaseName", *parsed)
-	}
-
-	if id.LongTermRetentionBackupName, ok = parsed.Parsed["longTermRetentionBackupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionBackupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseLongTermRetentionDatabaseLongTermRetentionBackupIDInsensitively(input 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := LongTermRetentionDatabaseLongTermRetentionBackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.LongTermRetentionServerName, ok = parsed.Parsed["longTermRetentionServerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionServerName", *parsed)
-	}
-
-	if id.LongTermRetentionDatabaseName, ok = parsed.Parsed["longTermRetentionDatabaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionDatabaseName", *parsed)
-	}
-
-	if id.LongTermRetentionBackupName, ok = parsed.Parsed["longTermRetentionBackupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionBackupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *LongTermRetentionDatabaseLongTermRetentionBackupId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.LongTermRetentionServerName, ok = input.Parsed["longTermRetentionServerName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionServerName", input)
+	}
+
+	if id.LongTermRetentionDatabaseName, ok = input.Parsed["longTermRetentionDatabaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionDatabaseName", input)
+	}
+
+	if id.LongTermRetentionBackupName, ok = input.Parsed["longTermRetentionBackupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "longTermRetentionBackupName", input)
+	}
+
+	return nil
 }
 
 // ValidateLongTermRetentionDatabaseLongTermRetentionBackupID checks that 'input' can be parsed as a Long Term Retention Database Long Term Retention Backup ID

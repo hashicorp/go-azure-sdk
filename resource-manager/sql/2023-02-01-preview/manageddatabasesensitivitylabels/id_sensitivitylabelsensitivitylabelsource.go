@@ -46,47 +46,9 @@ func ParseSensitivityLabelSensitivityLabelSourceID(input string) (*SensitivityLa
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SensitivityLabelSensitivityLabelSourceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.SchemaName, ok = parsed.Parsed["schemaName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaName", *parsed)
-	}
-
-	if id.TableName, ok = parsed.Parsed["tableName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tableName", *parsed)
-	}
-
-	if id.ColumnName, ok = parsed.Parsed["columnName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "columnName", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["sensitivityLabelSource"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "sensitivityLabelSource", *parsed)
-		}
-
-		sensitivityLabelSource, err := parseSensitivityLabelSource(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.SensitivityLabelSource = *sensitivityLabelSource
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -101,50 +63,58 @@ func ParseSensitivityLabelSensitivityLabelSourceIDInsensitively(input string) (*
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SensitivityLabelSensitivityLabelSourceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	return &id, nil
+}
+
+func (id *SensitivityLabelSensitivityLabelSourceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
 	}
 
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
 	}
 
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
+	if id.ManagedInstanceName, ok = input.Parsed["managedInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", input)
 	}
 
-	if id.SchemaName, ok = parsed.Parsed["schemaName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaName", *parsed)
+	if id.DatabaseName, ok = input.Parsed["databaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseName", input)
 	}
 
-	if id.TableName, ok = parsed.Parsed["tableName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tableName", *parsed)
+	if id.SchemaName, ok = input.Parsed["schemaName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "schemaName", input)
 	}
 
-	if id.ColumnName, ok = parsed.Parsed["columnName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "columnName", *parsed)
+	if id.TableName, ok = input.Parsed["tableName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "tableName", input)
 	}
 
-	if v, ok := parsed.Parsed["sensitivityLabelSource"]; true {
+	if id.ColumnName, ok = input.Parsed["columnName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "columnName", input)
+	}
+
+	if v, ok := input.Parsed["sensitivityLabelSource"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "sensitivityLabelSource", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "sensitivityLabelSource", input)
 		}
 
 		sensitivityLabelSource, err := parseSensitivityLabelSource(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.SensitivityLabelSource = *sensitivityLabelSource
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateSensitivityLabelSensitivityLabelSourceID checks that 'input' can be parsed as a Sensitivity Label Sensitivity Label Source ID

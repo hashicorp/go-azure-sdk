@@ -42,39 +42,9 @@ func ParseNotificationRecipientUserID(input string) (*NotificationRecipientUserI
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationRecipientUserId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["notificationName"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationName", *parsed)
-		}
-
-		notificationName, err := parseNotificationName(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.NotificationName = *notificationName
-	}
-
-	if id.UserId, ok = parsed.Parsed["userId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -89,42 +59,50 @@ func ParseNotificationRecipientUserIDInsensitively(input string) (*NotificationR
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationRecipientUserId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	return &id, nil
+}
+
+func (id *NotificationRecipientUserId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
 	}
 
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
+	if id.ServiceName, ok = input.Parsed["serviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceName", input)
 	}
 
-	if v, ok := parsed.Parsed["notificationName"]; true {
+	if id.WorkspaceId, ok = input.Parsed["workspaceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", input)
+	}
+
+	if v, ok := input.Parsed["notificationName"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationName", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "notificationName", input)
 		}
 
 		notificationName, err := parseNotificationName(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.NotificationName = *notificationName
 	}
 
-	if id.UserId, ok = parsed.Parsed["userId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userId", *parsed)
+	if id.UserId, ok = input.Parsed["userId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userId", input)
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateNotificationRecipientUserID checks that 'input' can be parsed as a Notification Recipient User ID

@@ -32,11 +32,9 @@ func ParsePacketCoreControlPlaneVersionID(input string) (*PacketCoreControlPlane
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PacketCoreControlPlaneVersionId{}
-
-	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParsePacketCoreControlPlaneVersionIDInsensitively(input string) (*PacketCor
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PacketCoreControlPlaneVersionId{}
-
-	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PacketCoreControlPlaneVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.PacketCoreControlPlaneVersionName, ok = input.Parsed["packetCoreControlPlaneVersionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", input)
+	}
+
+	return nil
 }
 
 // ValidatePacketCoreControlPlaneVersionID checks that 'input' can be parsed as a Packet Core Control Plane Version ID

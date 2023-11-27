@@ -38,23 +38,9 @@ func ParseVideoID(input string) (*VideoId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VideoId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoAnalyzerName", *parsed)
-	}
-
-	if id.VideoName, ok = parsed.Parsed["videoName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseVideoIDInsensitively(input string) (*VideoId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VideoId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoAnalyzerName", *parsed)
-	}
-
-	if id.VideoName, ok = parsed.Parsed["videoName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *VideoId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.VideoAnalyzerName, ok = input.Parsed["videoAnalyzerName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "videoAnalyzerName", input)
+	}
+
+	if id.VideoName, ok = input.Parsed["videoName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "videoName", input)
+	}
+
+	return nil
 }
 
 // ValidateVideoID checks that 'input' can be parsed as a Video ID

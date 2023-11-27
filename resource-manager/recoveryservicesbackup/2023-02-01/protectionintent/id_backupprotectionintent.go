@@ -40,27 +40,9 @@ func ParseBackupProtectionIntentID(input string) (*BackupProtectionIntentId, err
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BackupProtectionIntentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
-	}
-
-	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupFabricName", *parsed)
-	}
-
-	if id.BackupProtectionIntentName, ok = parsed.Parsed["backupProtectionIntentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupProtectionIntentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseBackupProtectionIntentIDInsensitively(input string) (*BackupProtection
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BackupProtectionIntentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
-	}
-
-	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupFabricName", *parsed)
-	}
-
-	if id.BackupProtectionIntentName, ok = parsed.Parsed["backupProtectionIntentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupProtectionIntentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *BackupProtectionIntentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.VaultName, ok = input.Parsed["vaultName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "vaultName", input)
+	}
+
+	if id.BackupFabricName, ok = input.Parsed["backupFabricName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "backupFabricName", input)
+	}
+
+	if id.BackupProtectionIntentName, ok = input.Parsed["backupProtectionIntentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "backupProtectionIntentName", input)
+	}
+
+	return nil
 }
 
 // ValidateBackupProtectionIntentID checks that 'input' can be parsed as a Backup Protection Intent ID

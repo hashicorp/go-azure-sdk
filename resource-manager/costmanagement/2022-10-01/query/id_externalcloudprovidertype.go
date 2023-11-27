@@ -34,23 +34,9 @@ func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeI
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ExternalCloudProviderTypeId{}
-
-	if v, ok := parsed.Parsed["externalCloudProviderType"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderType", *parsed)
-		}
-
-		externalCloudProviderType, err := parseExternalCloudProviderType(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.ExternalCloudProviderType = *externalCloudProviderType
-	}
-
-	if id.ExternalCloudProviderId, ok = parsed.Parsed["externalCloudProviderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -65,26 +51,34 @@ func ParseExternalCloudProviderTypeIDInsensitively(input string) (*ExternalCloud
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ExternalCloudProviderTypeId{}
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
 
-	if v, ok := parsed.Parsed["externalCloudProviderType"]; true {
+	return &id, nil
+}
+
+func (id *ExternalCloudProviderTypeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if v, ok := input.Parsed["externalCloudProviderType"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderType", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderType", input)
 		}
 
 		externalCloudProviderType, err := parseExternalCloudProviderType(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.ExternalCloudProviderType = *externalCloudProviderType
 	}
 
-	if id.ExternalCloudProviderId, ok = parsed.Parsed["externalCloudProviderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderId", *parsed)
+	if id.ExternalCloudProviderId, ok = input.Parsed["externalCloudProviderId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderId", input)
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateExternalCloudProviderTypeID checks that 'input' can be parsed as a External Cloud Provider Type ID

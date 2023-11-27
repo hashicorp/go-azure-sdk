@@ -34,15 +34,9 @@ func ParseSavingsPlanID(input string) (*SavingsPlanId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SavingsPlanId{}
-
-	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
-	}
-
-	if id.SavingsPlanId, ok = parsed.Parsed["savingsPlanId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseSavingsPlanIDInsensitively(input string) (*SavingsPlanId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SavingsPlanId{}
-
-	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
-	}
-
-	if id.SavingsPlanId, ok = parsed.Parsed["savingsPlanId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SavingsPlanId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SavingsPlanOrderId, ok = input.Parsed["savingsPlanOrderId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", input)
+	}
+
+	if id.SavingsPlanId, ok = input.Parsed["savingsPlanId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanId", input)
+	}
+
+	return nil
 }
 
 // ValidateSavingsPlanID checks that 'input' can be parsed as a Savings Plan ID

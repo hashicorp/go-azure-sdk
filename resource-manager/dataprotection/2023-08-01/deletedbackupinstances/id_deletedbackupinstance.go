@@ -38,23 +38,9 @@ func ParseDeletedBackupInstanceID(input string) (*DeletedBackupInstanceId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeletedBackupInstanceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupVaultName", *parsed)
-	}
-
-	if id.DeletedBackupInstanceName, ok = parsed.Parsed["deletedBackupInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deletedBackupInstanceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseDeletedBackupInstanceIDInsensitively(input string) (*DeletedBackupInst
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeletedBackupInstanceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupVaultName", *parsed)
-	}
-
-	if id.DeletedBackupInstanceName, ok = parsed.Parsed["deletedBackupInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deletedBackupInstanceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *DeletedBackupInstanceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.BackupVaultName, ok = input.Parsed["backupVaultName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "backupVaultName", input)
+	}
+
+	if id.DeletedBackupInstanceName, ok = input.Parsed["deletedBackupInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deletedBackupInstanceName", input)
+	}
+
+	return nil
 }
 
 // ValidateDeletedBackupInstanceID checks that 'input' can be parsed as a Deleted Backup Instance ID

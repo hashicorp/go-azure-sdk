@@ -38,23 +38,9 @@ func ParseReplicationProtectionIntentID(input string) (*ReplicationProtectionInt
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ReplicationProtectionIntentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
-	}
-
-	if id.ReplicationProtectionIntentName, ok = parsed.Parsed["replicationProtectionIntentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "replicationProtectionIntentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseReplicationProtectionIntentIDInsensitively(input string) (*Replication
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ReplicationProtectionIntentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
-	}
-
-	if id.ReplicationProtectionIntentName, ok = parsed.Parsed["replicationProtectionIntentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "replicationProtectionIntentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ReplicationProtectionIntentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.VaultName, ok = input.Parsed["vaultName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "vaultName", input)
+	}
+
+	if id.ReplicationProtectionIntentName, ok = input.Parsed["replicationProtectionIntentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "replicationProtectionIntentName", input)
+	}
+
+	return nil
 }
 
 // ValidateReplicationProtectionIntentID checks that 'input' can be parsed as a Replication Protection Intent ID

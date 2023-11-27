@@ -38,23 +38,9 @@ func ParseConfigurationProfileVersionID(input string) (*ConfigurationProfileVers
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationProfileVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ConfigurationProfileName, ok = parsed.Parsed["configurationProfileName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseConfigurationProfileVersionIDInsensitively(input string) (*Configurati
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationProfileVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ConfigurationProfileName, ok = parsed.Parsed["configurationProfileName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConfigurationProfileVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ConfigurationProfileName, ok = input.Parsed["configurationProfileName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
 }
 
 // ValidateConfigurationProfileVersionID checks that 'input' can be parsed as a Configuration Profile Version ID

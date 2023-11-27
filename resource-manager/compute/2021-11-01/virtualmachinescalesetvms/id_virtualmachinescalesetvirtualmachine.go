@@ -38,23 +38,9 @@ func ParseVirtualMachineScaleSetVirtualMachineID(input string) (*VirtualMachineS
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VirtualMachineScaleSetVirtualMachineId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VirtualMachineScaleSetName, ok = parsed.Parsed["virtualMachineScaleSetName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineScaleSetName", *parsed)
-	}
-
-	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseVirtualMachineScaleSetVirtualMachineIDInsensitively(input string) (*Vi
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VirtualMachineScaleSetVirtualMachineId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VirtualMachineScaleSetName, ok = parsed.Parsed["virtualMachineScaleSetName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineScaleSetName", *parsed)
-	}
-
-	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *VirtualMachineScaleSetVirtualMachineId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.VirtualMachineScaleSetName, ok = input.Parsed["virtualMachineScaleSetName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineScaleSetName", input)
+	}
+
+	if id.InstanceId, ok = input.Parsed["instanceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "instanceId", input)
+	}
+
+	return nil
 }
 
 // ValidateVirtualMachineScaleSetVirtualMachineID checks that 'input' can be parsed as a Virtual Machine Scale Set Virtual Machine ID

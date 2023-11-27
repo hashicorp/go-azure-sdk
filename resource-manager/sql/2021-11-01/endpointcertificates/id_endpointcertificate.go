@@ -38,23 +38,9 @@ func ParseEndpointCertificateID(input string) (*EndpointCertificateId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EndpointCertificateId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.EndpointCertificateName, ok = parsed.Parsed["endpointCertificateName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "endpointCertificateName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseEndpointCertificateIDInsensitively(input string) (*EndpointCertificate
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EndpointCertificateId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.EndpointCertificateName, ok = parsed.Parsed["endpointCertificateName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "endpointCertificateName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *EndpointCertificateId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ManagedInstanceName, ok = input.Parsed["managedInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", input)
+	}
+
+	if id.EndpointCertificateName, ok = input.Parsed["endpointCertificateName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "endpointCertificateName", input)
+	}
+
+	return nil
 }
 
 // ValidateEndpointCertificateID checks that 'input' can be parsed as a Endpoint Certificate ID

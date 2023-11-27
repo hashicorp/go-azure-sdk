@@ -38,23 +38,9 @@ func ParseVersionArtifactScopedID(input string) (*VersionArtifactScopedId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VersionArtifactScopedId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
-	}
-
-	if id.VersionId, ok = parsed.Parsed["versionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionId", *parsed)
-	}
-
-	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseVersionArtifactScopedIDInsensitively(input string) (*VersionArtifactSc
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VersionArtifactScopedId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
-	}
-
-	if id.VersionId, ok = parsed.Parsed["versionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionId", *parsed)
-	}
-
-	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *VersionArtifactScopedId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceScope, ok = input.Parsed["resourceScope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", input)
+	}
+
+	if id.BlueprintName, ok = input.Parsed["blueprintName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", input)
+	}
+
+	if id.VersionId, ok = input.Parsed["versionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionId", input)
+	}
+
+	if id.ArtifactName, ok = input.Parsed["artifactName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "artifactName", input)
+	}
+
+	return nil
 }
 
 // ValidateVersionArtifactScopedID checks that 'input' can be parsed as a Version Artifact Scoped ID

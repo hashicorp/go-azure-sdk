@@ -34,15 +34,9 @@ func ParseScopedSourceControlConfigurationID(input string) (*ScopedSourceControl
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSourceControlConfigurationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.SourceControlConfigurationName, ok = parsed.Parsed["sourceControlConfigurationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlConfigurationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedSourceControlConfigurationIDInsensitively(input string) (*Scoped
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSourceControlConfigurationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.SourceControlConfigurationName, ok = parsed.Parsed["sourceControlConfigurationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlConfigurationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedSourceControlConfigurationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.SourceControlConfigurationName, ok = input.Parsed["sourceControlConfigurationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sourceControlConfigurationName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedSourceControlConfigurationID checks that 'input' can be parsed as a Scoped Source Control Configuration ID

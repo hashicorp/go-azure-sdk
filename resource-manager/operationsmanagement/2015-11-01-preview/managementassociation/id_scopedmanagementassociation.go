@@ -34,15 +34,9 @@ func ParseScopedManagementAssociationID(input string) (*ScopedManagementAssociat
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedManagementAssociationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.ManagementAssociationName, ok = parsed.Parsed["managementAssociationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementAssociationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedManagementAssociationIDInsensitively(input string) (*ScopedManag
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedManagementAssociationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.ManagementAssociationName, ok = parsed.Parsed["managementAssociationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementAssociationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedManagementAssociationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.ManagementAssociationName, ok = input.Parsed["managementAssociationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementAssociationName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedManagementAssociationID checks that 'input' can be parsed as a Scoped Management Association ID

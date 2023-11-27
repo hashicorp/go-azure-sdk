@@ -42,31 +42,9 @@ func ParseBackupID(input string) (*BackupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
-	}
-
-	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capacityPoolName", *parsed)
-	}
-
-	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
-	}
-
-	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseBackupIDInsensitively(input string) (*BackupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
-	}
-
-	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capacityPoolName", *parsed)
-	}
-
-	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
-	}
-
-	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *BackupId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.NetAppAccountName, ok = input.Parsed["netAppAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", input)
+	}
+
+	if id.CapacityPoolName, ok = input.Parsed["capacityPoolName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "capacityPoolName", input)
+	}
+
+	if id.VolumeName, ok = input.Parsed["volumeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "volumeName", input)
+	}
+
+	if id.BackupName, ok = input.Parsed["backupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "backupName", input)
+	}
+
+	return nil
 }
 
 // ValidateBackupID checks that 'input' can be parsed as a Backup ID

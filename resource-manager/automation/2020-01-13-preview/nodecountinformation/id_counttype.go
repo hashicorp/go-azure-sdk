@@ -38,31 +38,9 @@ func ParseCountTypeID(input string) (*CountTypeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CountTypeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["countType"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "countType", *parsed)
-		}
-
-		countType, err := parseCountType(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.CountType = *countType
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -77,34 +55,42 @@ func ParseCountTypeIDInsensitively(input string) (*CountTypeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CountTypeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	return &id, nil
+}
+
+func (id *CountTypeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
 	}
 
-	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
 	}
 
-	if v, ok := parsed.Parsed["countType"]; true {
+	if id.AutomationAccountName, ok = input.Parsed["automationAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", input)
+	}
+
+	if v, ok := input.Parsed["countType"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "countType", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "countType", input)
 		}
 
 		countType, err := parseCountType(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.CountType = *countType
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateCountTypeID checks that 'input' can be parsed as a Count Type ID

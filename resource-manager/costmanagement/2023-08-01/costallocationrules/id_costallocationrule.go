@@ -34,15 +34,9 @@ func ParseCostAllocationRuleID(input string) (*CostAllocationRuleId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CostAllocationRuleId{}
-
-	if id.BillingAccountId, ok = parsed.Parsed["billingAccountId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountId", *parsed)
-	}
-
-	if id.CostAllocationRuleName, ok = parsed.Parsed["costAllocationRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "costAllocationRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseCostAllocationRuleIDInsensitively(input string) (*CostAllocationRuleId
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := CostAllocationRuleId{}
-
-	if id.BillingAccountId, ok = parsed.Parsed["billingAccountId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountId", *parsed)
-	}
-
-	if id.CostAllocationRuleName, ok = parsed.Parsed["costAllocationRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "costAllocationRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *CostAllocationRuleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BillingAccountId, ok = input.Parsed["billingAccountId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingAccountId", input)
+	}
+
+	if id.CostAllocationRuleName, ok = input.Parsed["costAllocationRuleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "costAllocationRuleName", input)
+	}
+
+	return nil
 }
 
 // ValidateCostAllocationRuleID checks that 'input' can be parsed as a Cost Allocation Rule ID

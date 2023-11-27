@@ -40,27 +40,9 @@ func ParseSenderUsernameID(input string) (*SenderUsernameId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SenderUsernameId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
-	}
-
-	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
-	}
-
-	if id.SenderUsernameName, ok = parsed.Parsed["senderUsernameName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "senderUsernameName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseSenderUsernameIDInsensitively(input string) (*SenderUsernameId, error)
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SenderUsernameId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
-	}
-
-	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
-	}
-
-	if id.SenderUsernameName, ok = parsed.Parsed["senderUsernameName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "senderUsernameName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SenderUsernameId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.EmailServiceName, ok = input.Parsed["emailServiceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", input)
+	}
+
+	if id.DomainName, ok = input.Parsed["domainName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "domainName", input)
+	}
+
+	if id.SenderUsernameName, ok = input.Parsed["senderUsernameName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "senderUsernameName", input)
+	}
+
+	return nil
 }
 
 // ValidateSenderUsernameID checks that 'input' can be parsed as a Sender Username ID

@@ -38,23 +38,9 @@ func ParseOutboundFirewallRuleID(input string) (*OutboundFirewallRuleId, error) 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OutboundFirewallRuleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.OutboundFirewallRuleName, ok = parsed.Parsed["outboundFirewallRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "outboundFirewallRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseOutboundFirewallRuleIDInsensitively(input string) (*OutboundFirewallRu
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OutboundFirewallRuleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.OutboundFirewallRuleName, ok = parsed.Parsed["outboundFirewallRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "outboundFirewallRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *OutboundFirewallRuleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerName, ok = input.Parsed["serverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverName", input)
+	}
+
+	if id.OutboundFirewallRuleName, ok = input.Parsed["outboundFirewallRuleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "outboundFirewallRuleName", input)
+	}
+
+	return nil
 }
 
 // ValidateOutboundFirewallRuleID checks that 'input' can be parsed as a Outbound Firewall Rule ID

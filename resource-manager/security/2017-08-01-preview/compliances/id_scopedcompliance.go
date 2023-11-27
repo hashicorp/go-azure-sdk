@@ -34,15 +34,9 @@ func ParseScopedComplianceID(input string) (*ScopedComplianceId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedComplianceId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.ComplianceName, ok = parsed.Parsed["complianceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "complianceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedComplianceIDInsensitively(input string) (*ScopedComplianceId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedComplianceId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.ComplianceName, ok = parsed.Parsed["complianceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "complianceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedComplianceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.ComplianceName, ok = input.Parsed["complianceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "complianceName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedComplianceID checks that 'input' can be parsed as a Scoped Compliance ID

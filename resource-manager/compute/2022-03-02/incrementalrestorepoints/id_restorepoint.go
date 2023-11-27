@@ -38,23 +38,9 @@ func ParseRestorePointID(input string) (*RestorePointId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RestorePointId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.RestorePointCollectionName, ok = parsed.Parsed["restorePointCollectionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "restorePointCollectionName", *parsed)
-	}
-
-	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "restorePointName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseRestorePointIDInsensitively(input string) (*RestorePointId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RestorePointId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.RestorePointCollectionName, ok = parsed.Parsed["restorePointCollectionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "restorePointCollectionName", *parsed)
-	}
-
-	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "restorePointName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RestorePointId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.RestorePointCollectionName, ok = input.Parsed["restorePointCollectionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "restorePointCollectionName", input)
+	}
+
+	if id.RestorePointName, ok = input.Parsed["restorePointName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "restorePointName", input)
+	}
+
+	return nil
 }
 
 // ValidateRestorePointID checks that 'input' can be parsed as a Restore Point ID

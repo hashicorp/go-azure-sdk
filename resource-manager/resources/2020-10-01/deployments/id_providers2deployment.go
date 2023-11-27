@@ -34,15 +34,9 @@ func ParseProviders2DeploymentID(input string) (*Providers2DeploymentId, error) 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2DeploymentId{}
-
-	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "groupId", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseProviders2DeploymentIDInsensitively(input string) (*Providers2Deployme
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2DeploymentId{}
-
-	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "groupId", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *Providers2DeploymentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.GroupId, ok = input.Parsed["groupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "groupId", input)
+	}
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	return nil
 }
 
 // ValidateProviders2DeploymentID checks that 'input' can be parsed as a Providers 2 Deployment ID

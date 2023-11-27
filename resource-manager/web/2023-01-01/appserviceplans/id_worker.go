@@ -38,23 +38,9 @@ func ParseWorkerID(input string) (*WorkerId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkerId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerFarmName, ok = parsed.Parsed["serverFarmName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", *parsed)
-	}
-
-	if id.WorkerName, ok = parsed.Parsed["workerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workerName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseWorkerIDInsensitively(input string) (*WorkerId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkerId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerFarmName, ok = parsed.Parsed["serverFarmName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", *parsed)
-	}
-
-	if id.WorkerName, ok = parsed.Parsed["workerName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workerName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *WorkerId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerFarmName, ok = input.Parsed["serverFarmName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", input)
+	}
+
+	if id.WorkerName, ok = input.Parsed["workerName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workerName", input)
+	}
+
+	return nil
 }
 
 // ValidateWorkerID checks that 'input' can be parsed as a Worker ID

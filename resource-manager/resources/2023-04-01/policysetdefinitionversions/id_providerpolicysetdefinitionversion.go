@@ -36,19 +36,9 @@ func ParseProviderPolicySetDefinitionVersionID(input string) (*ProviderPolicySet
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProviderPolicySetDefinitionVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseProviderPolicySetDefinitionVersionIDInsensitively(input string) (*Prov
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProviderPolicySetDefinitionVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ProviderPolicySetDefinitionVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.PolicySetDefinitionName, ok = input.Parsed["policySetDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
 }
 
 // ValidateProviderPolicySetDefinitionVersionID checks that 'input' can be parsed as a Provider Policy Set Definition Version ID

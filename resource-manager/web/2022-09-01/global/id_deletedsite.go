@@ -34,15 +34,9 @@ func ParseDeletedSiteID(input string) (*DeletedSiteId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeletedSiteId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.DeletedSiteId, ok = parsed.Parsed["deletedSiteId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deletedSiteId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseDeletedSiteIDInsensitively(input string) (*DeletedSiteId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeletedSiteId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.DeletedSiteId, ok = parsed.Parsed["deletedSiteId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deletedSiteId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *DeletedSiteId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.DeletedSiteId, ok = input.Parsed["deletedSiteId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deletedSiteId", input)
+	}
+
+	return nil
 }
 
 // ValidateDeletedSiteID checks that 'input' can be parsed as a Deleted Site ID

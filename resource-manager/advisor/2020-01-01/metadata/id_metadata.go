@@ -32,11 +32,9 @@ func ParseMetadataID(input string) (*MetadataId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MetadataId{}
-
-	if id.MetadataName, ok = parsed.Parsed["metadataName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metadataName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseMetadataIDInsensitively(input string) (*MetadataId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MetadataId{}
-
-	if id.MetadataName, ok = parsed.Parsed["metadataName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metadataName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *MetadataId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.MetadataName, ok = input.Parsed["metadataName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "metadataName", input)
+	}
+
+	return nil
 }
 
 // ValidateMetadataID checks that 'input' can be parsed as a Metadata ID

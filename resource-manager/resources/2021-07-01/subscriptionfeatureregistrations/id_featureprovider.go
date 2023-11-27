@@ -34,15 +34,9 @@ func ParseFeatureProviderID(input string) (*FeatureProviderId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := FeatureProviderId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.FeatureProviderName, ok = parsed.Parsed["featureProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseFeatureProviderIDInsensitively(input string) (*FeatureProviderId, erro
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := FeatureProviderId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.FeatureProviderName, ok = parsed.Parsed["featureProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *FeatureProviderId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.FeatureProviderName, ok = input.Parsed["featureProviderName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", input)
+	}
+
+	return nil
 }
 
 // ValidateFeatureProviderID checks that 'input' can be parsed as a Feature Provider ID

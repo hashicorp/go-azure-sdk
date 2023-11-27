@@ -42,39 +42,9 @@ func ParseNotificationRecipientEmailID(input string) (*NotificationRecipientEmai
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationRecipientEmailId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["notificationName"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationName", *parsed)
-		}
-
-		notificationName, err := parseNotificationName(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.NotificationName = *notificationName
-	}
-
-	if id.RecipientEmailName, ok = parsed.Parsed["recipientEmailName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recipientEmailName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -89,42 +59,50 @@ func ParseNotificationRecipientEmailIDInsensitively(input string) (*Notification
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationRecipientEmailId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	return &id, nil
+}
+
+func (id *NotificationRecipientEmailId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
 	}
 
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
+	if id.ServiceName, ok = input.Parsed["serviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceName", input)
 	}
 
-	if v, ok := parsed.Parsed["notificationName"]; true {
+	if id.WorkspaceId, ok = input.Parsed["workspaceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", input)
+	}
+
+	if v, ok := input.Parsed["notificationName"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationName", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "notificationName", input)
 		}
 
 		notificationName, err := parseNotificationName(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.NotificationName = *notificationName
 	}
 
-	if id.RecipientEmailName, ok = parsed.Parsed["recipientEmailName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recipientEmailName", *parsed)
+	if id.RecipientEmailName, ok = input.Parsed["recipientEmailName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "recipientEmailName", input)
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateNotificationRecipientEmailID checks that 'input' can be parsed as a Notification Recipient Email ID

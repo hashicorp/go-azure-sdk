@@ -32,11 +32,9 @@ func ParseDeploymentID(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeploymentId{}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseDeploymentIDInsensitively(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeploymentId{}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *DeploymentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	return nil
 }
 
 // ValidateDeploymentID checks that 'input' can be parsed as a Deployment ID

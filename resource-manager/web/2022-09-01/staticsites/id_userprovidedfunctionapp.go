@@ -38,23 +38,9 @@ func ParseUserProvidedFunctionAppID(input string) (*UserProvidedFunctionAppId, e
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UserProvidedFunctionAppId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.StaticSiteName, ok = parsed.Parsed["staticSiteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "staticSiteName", *parsed)
-	}
-
-	if id.UserProvidedFunctionAppName, ok = parsed.Parsed["userProvidedFunctionAppName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userProvidedFunctionAppName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseUserProvidedFunctionAppIDInsensitively(input string) (*UserProvidedFun
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UserProvidedFunctionAppId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.StaticSiteName, ok = parsed.Parsed["staticSiteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "staticSiteName", *parsed)
-	}
-
-	if id.UserProvidedFunctionAppName, ok = parsed.Parsed["userProvidedFunctionAppName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userProvidedFunctionAppName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *UserProvidedFunctionAppId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.StaticSiteName, ok = input.Parsed["staticSiteName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "staticSiteName", input)
+	}
+
+	if id.UserProvidedFunctionAppName, ok = input.Parsed["userProvidedFunctionAppName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userProvidedFunctionAppName", input)
+	}
+
+	return nil
 }
 
 // ValidateUserProvidedFunctionAppID checks that 'input' can be parsed as a User Provided Function App ID

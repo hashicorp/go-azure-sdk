@@ -38,23 +38,9 @@ func ParseMachinePoolID(input string) (*MachinePoolId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MachinePoolId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
-	}
-
-	if id.MachinePoolName, ok = parsed.Parsed["machinePoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "machinePoolName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseMachinePoolIDInsensitively(input string) (*MachinePoolId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MachinePoolId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
-	}
-
-	if id.MachinePoolName, ok = parsed.Parsed["machinePoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "machinePoolName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *MachinePoolId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.OpenShiftClusterName, ok = input.Parsed["openShiftClusterName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", input)
+	}
+
+	if id.MachinePoolName, ok = input.Parsed["machinePoolName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "machinePoolName", input)
+	}
+
+	return nil
 }
 
 // ValidateMachinePoolID checks that 'input' can be parsed as a Machine Pool ID

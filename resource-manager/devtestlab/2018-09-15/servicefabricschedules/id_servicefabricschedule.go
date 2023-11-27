@@ -42,31 +42,9 @@ func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ServiceFabricScheduleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
-	}
-
-	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceFabricName", *parsed)
-	}
-
-	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scheduleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseServiceFabricScheduleIDInsensitively(input string) (*ServiceFabricSche
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ServiceFabricScheduleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
-	}
-
-	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceFabricName", *parsed)
-	}
-
-	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scheduleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ServiceFabricScheduleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LabName, ok = input.Parsed["labName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "labName", input)
+	}
+
+	if id.UserName, ok = input.Parsed["userName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userName", input)
+	}
+
+	if id.ServiceFabricName, ok = input.Parsed["serviceFabricName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceFabricName", input)
+	}
+
+	if id.ScheduleName, ok = input.Parsed["scheduleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scheduleName", input)
+	}
+
+	return nil
 }
 
 // ValidateServiceFabricScheduleID checks that 'input' can be parsed as a Service Fabric Schedule ID

@@ -38,23 +38,9 @@ func ParseNotificationChannelID(input string) (*NotificationChannelId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationChannelId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationChannelName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseNotificationChannelIDInsensitively(input string) (*NotificationChannel
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NotificationChannelId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationChannelName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *NotificationChannelId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LabName, ok = input.Parsed["labName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "labName", input)
+	}
+
+	if id.NotificationChannelName, ok = input.Parsed["notificationChannelName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "notificationChannelName", input)
+	}
+
+	return nil
 }
 
 // ValidateNotificationChannelID checks that 'input' can be parsed as a Notification Channel ID
