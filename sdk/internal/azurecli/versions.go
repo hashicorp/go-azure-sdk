@@ -3,8 +3,5 @@
 
 package azurecli
 
-const (
-	MinimumVersion   = "2.0.81"
-	MsalVersion      = "2.30.0"
-	NextMajorVersion = "3.0.0"
-)
+// MsalVersion is the first known version of Azure CLI to support MSAL / v2 tokens
+const MsalVersion = "2.30.0"

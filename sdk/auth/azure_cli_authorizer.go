@@ -17,6 +17,14 @@ import (
 	"golang.org/x/oauth2"
 )
 
+type cachedCliData struct {
+	AzVersion             *string
+	DefaultSubscriptionId *string
+	DefaultTenantId       *string
+}
+
+var cliCache cachedCliData
+
 type AzureCliAuthorizerOptions struct {
 	// Api describes the Azure API being used
 	Api environments.Api
@@ -28,11 +36,15 @@ type AzureCliAuthorizerOptions struct {
 	// used for Resource Manager when auxiliary tenants are needed.
 	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 	AuxTenantIds []string
+
+	// EnableCaching permits module-scoped caching of the parsed results of `az` command invocations, and can be set to improve
+	// performance when instantiating multiple authorizers, at the cost of detectability during long-running applications.
+	EnableCaching bool
 }
 
 // NewAzureCliAuthorizer returns an Authorizer which authenticates using the Azure CLI.
 func NewAzureCliAuthorizer(ctx context.Context, options AzureCliAuthorizerOptions) (Authorizer, error) {
-	conf, err := newAzureCliConfig(options.Api, options.TenantId, options.AuxTenantIds)
+	conf, err := newAzureCliConfig(options.Api, options.TenantId, options.AuxTenantIds, options.EnableCaching)
 	if err != nil {
 		return nil, err
 	}
@@ -58,13 +70,23 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
 
-	azArgs := []string{"account", "get-access-token"}
+	var err error
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(azurecli.MsalVersion, nil)
-	if err != nil {
+	var azVersion *string
+	if a.conf.CacheEnabled && cliCache.AzVersion != nil {
+		azVersion = cliCache.AzVersion
+	} else {
+		if azVersion, err = azurecli.GetAzVersion(); err != nil {
+			return nil, fmt.Errorf("%s. Please ensure you have installed Azure CLI version %s or newer", err, AzureCliMinimumVersion)
+		}
+	}
+	if err = azurecli.CheckAzVersion(*azVersion, azurecli.MsalVersion, nil); err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
+
+	azArgs := []string{"account", "get-access-token"}
+
 	scope, err := environments.Scope(a.conf.Api)
 	if err != nil {
 		return nil, fmt.Errorf("determining scope for %q: %+v", a.conf.Api.Name(), err)
@@ -113,12 +135,21 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 	}
 
 	azArgs := []string{"account", "get-access-token"}
+	var err error
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(AzureCliMsalVersion, nil)
-	if err != nil {
+	var azVersion *string
+	if a.conf.CacheEnabled && cliCache.AzVersion != nil {
+		azVersion = cliCache.AzVersion
+	} else {
+		if azVersion, err = azurecli.GetAzVersion(); err != nil {
+			return nil, fmt.Errorf("%s. Please ensure you have installed Azure CLI version %s or newer", err, AzureCliMinimumVersion)
+		}
+	}
+	if err = azurecli.CheckAzVersion(*azVersion, azurecli.MsalVersion, nil); err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
+
 	scope, err := environments.Scope(a.conf.Api)
 	if err != nil {
 		return nil, fmt.Errorf("determining scope for %q: %+v", a.conf.Api.Name(), err)
@@ -145,7 +176,6 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 
 const (
 	AzureCliMinimumVersion   = "2.0.81"
-	AzureCliMsalVersion      = "2.30.0"
 	AzureCliNextMajorVersion = "3.0.0"
 )
 
@@ -161,31 +191,67 @@ type azureCliConfig struct {
 
 	// DefaultSubscriptionID is the optional default subscription ID
 	DefaultSubscriptionID string
+
+	// CacheEnabled specifies whether to use module-level caching to speed up idempotent az-cli operations.
+	CacheEnabled bool
 }
 
 // newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
-func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string) (*azureCliConfig, error) {
+func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string, cacheEnabled bool) (*azureCliConfig, error) {
 	var err error
 
 	// check az-cli version
-	nextMajor := azurecli.NextMajorVersion
-	if err = azurecli.CheckAzVersion(azurecli.MinimumVersion, &nextMajor); err != nil {
+	var azVersion *string
+	if cacheEnabled && cliCache.AzVersion != nil {
+		azVersion = cliCache.AzVersion
+	} else {
+		azVersion, err = azurecli.GetAzVersion()
+		if err != nil {
+			return nil, fmt.Errorf("%s. Please ensure you have installed Azure CLI version %s or newer", err, AzureCliMinimumVersion)
+		}
+
+		if cacheEnabled {
+			cliCache.AzVersion = azVersion
+		}
+	}
+	nextMajor := AzureCliNextMajorVersion
+	if err = azurecli.CheckAzVersion(*azVersion, azurecli.MsalVersion, &nextMajor); err != nil {
 		return nil, err
 	}
 
 	// check tenant ID
-	tenantId, err = azurecli.CheckTenantID(tenantId)
-	if err != nil {
-		return nil, err
+	var defaultTenantId *string
+	if cacheEnabled && cliCache.DefaultTenantId != nil {
+		defaultTenantId = cliCache.DefaultTenantId
+	} else {
+		if defaultTenantId, err = azurecli.CheckTenantID(tenantId); err != nil {
+			return nil, err
+		}
+		if cacheEnabled {
+			cliCache.DefaultTenantId = defaultTenantId
+		}
 	}
-	if tenantId == "" {
+	if defaultTenantId == nil {
 		return nil, errors.New("invalid tenantId or unable to determine tenantId")
 	}
+	tenantId = *defaultTenantId
 
 	// get the default subscription ID
-	subscriptionId, err := azurecli.GetDefaultSubscriptionID()
-	if err != nil {
-		return nil, err
+	var defaultSubscriptionId *string
+	if cacheEnabled && cliCache.DefaultSubscriptionId != nil {
+		defaultSubscriptionId = cliCache.DefaultSubscriptionId
+	} else {
+		if defaultSubscriptionId, err = azurecli.GetDefaultSubscriptionID(); err != nil {
+			return nil, err
+		}
+		if cacheEnabled {
+			cliCache.DefaultSubscriptionId = defaultSubscriptionId
+		}
+	}
+
+	var subscriptionId string
+	if defaultSubscriptionId != nil {
+		subscriptionId = *defaultSubscriptionId
 	}
 
 	return &azureCliConfig{
@@ -193,6 +259,7 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 		TenantID:              tenantId,
 		AuxiliaryTenantIDs:    auxiliaryTenantIds,
 		DefaultSubscriptionID: subscriptionId,
+		CacheEnabled:          cacheEnabled,
 	}, nil
 }
 
