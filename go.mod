@@ -6,7 +6,8 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.29
 	github.com/Azure/go-autorest/autorest/adal v0.9.23
 	github.com/davecgh/go-spew v1.1.1
-	github.com/hashicorp/go-azure-helpers v0.63.0
+	github.com/golang-jwt/jwt/v4 v4.5.0
+	github.com/hashicorp/go-azure-helpers v0.64.0
 	github.com/hashicorp/go-retryablehttp v0.7.4
 	github.com/hashicorp/go-uuid v1.0.3
 	github.com/hashicorp/go-version v1.6.0
@@ -22,7 +23,6 @@ require (
 	github.com/agext/levenshtein v1.2.2 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
