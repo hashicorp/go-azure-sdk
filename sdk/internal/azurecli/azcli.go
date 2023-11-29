@@ -102,7 +102,8 @@ func getAzVersion() (*string, error) {
 	return cliVersion.AzureCli, nil
 }
 
-// JSONUnmarshalAzCmd executes an Azure CLI command and unmarshalls the JSON output.
+// JSONUnmarshalAzCmd executes an Azure CLI command and unmarshalls the JSON output, optionally retrieving from and
+// populating the command result cache, to avoid unnecessary repeated invocations of Azure CLI.
 func JSONUnmarshalAzCmd(cacheable bool, i interface{}, arg ...string) error {
 	var stderr bytes.Buffer
 	var stdout bytes.Buffer
@@ -141,14 +142,14 @@ func JSONUnmarshalAzCmd(cacheable bool, i interface{}, arg ...string) error {
 		}
 
 		result = stdout.Bytes()
+
+		if cacheable {
+			cache.Set(argstring, result)
+		}
 	}
 
 	if err := json.Unmarshal(result, &i); err != nil {
 		return fmt.Errorf("unmarshaling the output of Azure CLI: %v", err)
-	}
-
-	if cacheable {
-		cache.Set(argstring, result)
 	}
 
 	return nil
