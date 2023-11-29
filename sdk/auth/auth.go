@@ -126,10 +126,9 @@ func NewAuthorizerFromCredentials(ctx context.Context, c Credentials, api enviro
 
 	if c.EnableAuthenticatingUsingAzureCLI {
 		opts := AzureCliAuthorizerOptions{
-			Api:           api,
-			TenantId:      c.TenantID,
-			AuxTenantIds:  c.AuxiliaryTenantIDs,
-			EnableCaching: c.AzureCLIUseCache,
+			Api:          api,
+			TenantId:     c.TenantID,
+			AuxTenantIds: c.AuxiliaryTenantIDs,
 		}
 		a, err := NewAzureCliAuthorizer(ctx, opts)
 		if err != nil {

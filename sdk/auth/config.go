@@ -21,8 +21,6 @@ type Credentials struct {
 
 	// EnableAuthenticatingUsingAzureCLI specifies whether Azure CLI authentication should be checked.
 	EnableAuthenticatingUsingAzureCLI bool
-	// AzureCLIUseCache specifies whether caching should be enabled for idempotent operation results
-	AzureCLIUseCache bool
 
 	// EnableAuthenticatingUsingClientCertificate specifies whether Client Certificate authentication should be checked.
 	EnableAuthenticatingUsingClientCertificate bool

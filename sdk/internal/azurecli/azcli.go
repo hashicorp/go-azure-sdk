@@ -16,26 +16,29 @@ import (
 )
 
 // CheckAzVersion tries to determine the version of Azure CLI in the path and checks for a compatible version
-func CheckAzVersion(currentVersion string, minVersion string, nextMajorVersion *string) error {
-	actual, err := version.NewVersion(currentVersion)
+func CheckAzVersion() error {
+	currentVersion, err := getAzVersion()
 	if err != nil {
-		return fmt.Errorf("could not parse detected Azure CLI version %q: %+v", currentVersion, err)
+		return err
 	}
 
-	supported, err := version.NewVersion(minVersion)
+	actual, err := version.NewVersion(*currentVersion)
+	if err != nil {
+		return fmt.Errorf("could not parse detected Azure CLI version %q: %+v", *currentVersion, err)
+	}
+
+	supported, err := version.NewVersion(MinimumVersion)
 	if err != nil {
 		return fmt.Errorf("could not parse supported Azure CLI version: %+v", err)
 	}
 
-	if nextMajorVersion != nil {
-		nextMajor, err := version.NewVersion(*nextMajorVersion)
-		if err != nil {
-			return fmt.Errorf("could not parse next major Azure CLI version: %+v", err)
-		}
+	nextMajor, err := version.NewVersion(NextMajorVersion)
+	if err != nil {
+		return fmt.Errorf("could not parse next major Azure CLI version: %+v", err)
+	}
 
-		if nextMajor.LessThanOrEqual(actual) {
-			return fmt.Errorf("unsupported Azure CLI version %q detected, please install a version newer than %s but older than %s", actual, supported, nextMajor)
-		}
+	if nextMajor.LessThanOrEqual(actual) {
+		return fmt.Errorf("unsupported Azure CLI version %q detected, please install a version newer than %s but older than %s", actual, supported, nextMajor)
 	}
 
 	if actual.LessThan(supported) {
@@ -43,39 +46,6 @@ func CheckAzVersion(currentVersion string, minVersion string, nextMajorVersion *
 	}
 
 	return nil
-}
-
-// GetAzVersion tries to determine the version of Azure CLI in the path.
-func GetAzVersion() (*string, error) {
-	var cliVersion *struct {
-		AzureCli          *string      `json:"azure-cli,omitempty"`
-		AzureCliCore      *string      `json:"azure-cli-core,omitempty"`
-		AzureCliTelemetry *string      `json:"azure-cli-telemetry,omitempty"`
-		Extensions        *interface{} `json:"extensions,omitempty"`
-	}
-	err := JSONUnmarshalAzCmd(&cliVersion, "version")
-	if err != nil {
-		return nil, fmt.Errorf("could not parse Azure CLI version: %v", err)
-	}
-
-	if cliVersion.AzureCli == nil {
-		return nil, fmt.Errorf("could not detect Azure CLI version")
-	}
-
-	return cliVersion.AzureCli, nil
-}
-
-// GetDefaultSubscriptionID tries to determine the default subscription
-func GetDefaultSubscriptionID() (*string, error) {
-	var account struct {
-		SubscriptionID string `json:"id"`
-	}
-	err := JSONUnmarshalAzCmd(&account, "account", "show")
-	if err != nil {
-		return nil, fmt.Errorf("obtaining subscription ID: %s", err)
-	}
-
-	return &account.SubscriptionID, nil
 }
 
 // CheckTenantID validates the supplied tenant ID, and tries to determine the default tenant if a valid one is not supplied.
@@ -90,7 +60,7 @@ func CheckTenantID(tenantId string) (*string, error) {
 			ID       string `json:"id"`
 			TenantID string `json:"tenantId"`
 		}
-		if err = JSONUnmarshalAzCmd(&account, "account", "show"); err != nil {
+		if err = JSONUnmarshalAzCmd(true, &account, "account", "show"); err != nil {
 			return nil, fmt.Errorf("obtaining tenant ID: %s", err)
 		}
 		tenantId = account.TenantID
@@ -99,37 +69,86 @@ func CheckTenantID(tenantId string) (*string, error) {
 	return &tenantId, nil
 }
 
+// GetDefaultSubscriptionID tries to determine the default subscription
+func GetDefaultSubscriptionID() (*string, error) {
+	var account struct {
+		SubscriptionID string `json:"id"`
+	}
+	err := JSONUnmarshalAzCmd(true, &account, "account", "show")
+	if err != nil {
+		return nil, fmt.Errorf("obtaining subscription ID: %s", err)
+	}
+
+	return &account.SubscriptionID, nil
+}
+
+// getAzVersion tries to determine the version of Azure CLI in the path.
+func getAzVersion() (*string, error) {
+	var cliVersion *struct {
+		AzureCli          *string      `json:"azure-cli,omitempty"`
+		AzureCliCore      *string      `json:"azure-cli-core,omitempty"`
+		AzureCliTelemetry *string      `json:"azure-cli-telemetry,omitempty"`
+		Extensions        *interface{} `json:"extensions,omitempty"`
+	}
+	err := JSONUnmarshalAzCmd(true, &cliVersion, "version")
+	if err != nil {
+		return nil, fmt.Errorf("could not parse Azure CLI version: %v", err)
+	}
+
+	if cliVersion.AzureCli == nil {
+		return nil, fmt.Errorf("could not detect Azure CLI version")
+	}
+
+	return cliVersion.AzureCli, nil
+}
+
 // JSONUnmarshalAzCmd executes an Azure CLI command and unmarshalls the JSON output.
-func JSONUnmarshalAzCmd(i interface{}, arg ...string) error {
+func JSONUnmarshalAzCmd(cacheable bool, i interface{}, arg ...string) error {
 	var stderr bytes.Buffer
 	var stdout bytes.Buffer
 
 	arg = append(arg, "-o=json")
+	argstring := strings.Join(arg, " ")
 
-	log.Printf("[DEBUG] az-cli invocation: az %s", strings.Join(arg, " "))
-
-	cmd := exec.Command("az", arg...)
-	cmd.Stderr = &stderr
-	cmd.Stdout = &stdout
-
-	if err := cmd.Start(); err != nil {
-		err := fmt.Errorf("launching Azure CLI: %+v", err)
-		if stdErrStr := stderr.String(); stdErrStr != "" {
-			err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+	var result []byte
+	if cacheable {
+		if cachedResult, ok := cache.Get(argstring); ok {
+			result = cachedResult
 		}
-		return err
 	}
 
-	if err := cmd.Wait(); err != nil {
-		err := fmt.Errorf("running Azure CLI: %+v", err)
-		if stdErrStr := stderr.String(); stdErrStr != "" {
-			err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+	if result == nil {
+		log.Printf("[DEBUG] az-cli invocation: az %s", argstring)
+
+		cmd := exec.Command("az", arg...)
+		cmd.Stderr = &stderr
+		cmd.Stdout = &stdout
+
+		if err := cmd.Start(); err != nil {
+			err := fmt.Errorf("launching Azure CLI: %+v", err)
+			if stdErrStr := stderr.String(); stdErrStr != "" {
+				err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+			}
+			return err
 		}
-		return err
+
+		if err := cmd.Wait(); err != nil {
+			err := fmt.Errorf("running Azure CLI: %+v", err)
+			if stdErrStr := stderr.String(); stdErrStr != "" {
+				err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+			}
+			return err
+		}
+
+		result = stdout.Bytes()
 	}
 
-	if err := json.Unmarshal(stdout.Bytes(), &i); err != nil {
+	if err := json.Unmarshal(result, &i); err != nil {
 		return fmt.Errorf("unmarshaling the output of Azure CLI: %v", err)
+	}
+
+	if cacheable {
+		cache.Set(argstring, result)
 	}
 
 	return nil
