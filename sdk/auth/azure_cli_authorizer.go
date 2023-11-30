@@ -57,8 +57,6 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
 
-	var err error
-
 	azArgs := []string{"account", "get-access-token"}
 
 	scope, err := environments.Scope(a.conf.Api)
@@ -109,7 +107,6 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 	}
 
 	azArgs := []string{"account", "get-access-token"}
-	var err error
 
 	scope, err := environments.Scope(a.conf.Api)
 	if err != nil {
@@ -159,10 +156,8 @@ type azureCliConfig struct {
 
 // newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
 func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string) (*azureCliConfig, error) {
-	var err error
-
 	// check az-cli version, ensure that MSAL is supported
-	if err = azurecli.CheckAzVersion(); err != nil {
+	if err := azurecli.CheckAzVersion(); err != nil {
 		return nil, err
 	}
 
