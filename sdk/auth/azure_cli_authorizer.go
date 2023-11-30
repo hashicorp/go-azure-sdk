@@ -132,11 +132,6 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 	return tokens, nil
 }
 
-const (
-	AzureCliMinimumVersion   = "2.0.81"
-	AzureCliNextMajorVersion = "3.0.0"
-)
-
 // azureCliConfig configures an AzureCliAuthorizer.
 type azureCliConfig struct {
 	Api environments.Api
