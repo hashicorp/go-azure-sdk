@@ -144,9 +144,6 @@ type azureCliConfig struct {
 
 	// DefaultSubscriptionID is the optional default subscription ID
 	DefaultSubscriptionID string
-
-	// CacheEnabled specifies whether to use module-level caching to speed up idempotent az-cli operations.
-	CacheEnabled bool
 }
 
 // newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
