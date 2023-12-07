@@ -1,4 +1,4 @@
-package advancedthreatprotectionsettings
+package batchaccount
 
 import (
 	"context"
@@ -14,23 +14,22 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ServerThreatProtectionSettingsCreateOrUpdateOperationResponse struct {
+type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-// ServerThreatProtectionSettingsCreateOrUpdate ...
-func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCreateOrUpdate(ctx context.Context, id FlexibleServerId, input ServerThreatProtectionSettingsModel) (result ServerThreatProtectionSettingsCreateOrUpdateOperationResponse, err error) {
+// Create ...
+func (c BatchAccountClient) Create(ctx context.Context, id BatchAccountId, input BatchAccountCreateParameters) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
-			http.StatusCreated,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
+		Path:       id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -60,15 +59,15 @@ func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCr
 	return
 }
 
-// ServerThreatProtectionSettingsCreateOrUpdateThenPoll performs ServerThreatProtectionSettingsCreateOrUpdate then polls until it's completed
-func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCreateOrUpdateThenPoll(ctx context.Context, id FlexibleServerId, input ServerThreatProtectionSettingsModel) error {
-	result, err := c.ServerThreatProtectionSettingsCreateOrUpdate(ctx, id, input)
+// CreateThenPoll performs Create then polls until it's completed
+func (c BatchAccountClient) CreateThenPoll(ctx context.Context, id BatchAccountId, input BatchAccountCreateParameters) error {
+	result, err := c.Create(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+		return fmt.Errorf("performing Create: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+		return fmt.Errorf("polling after Create: %+v", err)
 	}
 
 	return nil
