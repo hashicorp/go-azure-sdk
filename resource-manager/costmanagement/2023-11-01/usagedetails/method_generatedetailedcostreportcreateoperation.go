@@ -1,10 +1,11 @@
-package advancedthreatprotectionsettings
+package usagedetails
 
 import (
 	"context"
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -14,23 +15,22 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ServerThreatProtectionSettingsCreateOrUpdateOperationResponse struct {
+type GenerateDetailedCostReportCreateOperationOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-// ServerThreatProtectionSettingsCreateOrUpdate ...
-func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCreateOrUpdate(ctx context.Context, id FlexibleServerId, input ServerThreatProtectionSettingsModel) (result ServerThreatProtectionSettingsCreateOrUpdateOperationResponse, err error) {
+// GenerateDetailedCostReportCreateOperation ...
+func (c UsageDetailsClient) GenerateDetailedCostReportCreateOperation(ctx context.Context, id commonids.ScopeId, input GenerateDetailedCostReportDefinition) (result GenerateDetailedCostReportCreateOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
-			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
+		HttpMethod: http.MethodPost,
+		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateDetailedCostReport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -60,15 +60,15 @@ func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCr
 	return
 }
 
-// ServerThreatProtectionSettingsCreateOrUpdateThenPoll performs ServerThreatProtectionSettingsCreateOrUpdate then polls until it's completed
-func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCreateOrUpdateThenPoll(ctx context.Context, id FlexibleServerId, input ServerThreatProtectionSettingsModel) error {
-	result, err := c.ServerThreatProtectionSettingsCreateOrUpdate(ctx, id, input)
+// GenerateDetailedCostReportCreateOperationThenPoll performs GenerateDetailedCostReportCreateOperation then polls until it's completed
+func (c UsageDetailsClient) GenerateDetailedCostReportCreateOperationThenPoll(ctx context.Context, id commonids.ScopeId, input GenerateDetailedCostReportDefinition) error {
+	result, err := c.GenerateDetailedCostReportCreateOperation(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+		return fmt.Errorf("performing GenerateDetailedCostReportCreateOperation: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+		return fmt.Errorf("polling after GenerateDetailedCostReportCreateOperation: %+v", err)
 	}
 
 	return nil
