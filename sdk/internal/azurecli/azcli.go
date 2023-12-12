@@ -48,25 +48,26 @@ func CheckAzVersion() error {
 	return nil
 }
 
-// CheckTenantID validates the supplied tenant ID, and tries to determine the default tenant if a valid one is not supplied.
-func CheckTenantID(tenantId string) (*string, error) {
+// ValidateTenantID validates the supplied tenant ID, and tries to determine the default tenant if a valid one is not supplied.
+func ValidateTenantID(tenantId string) (bool, error) {
 	validTenantId, err := regexp.MatchString("^[a-zA-Z0-9._-]+$", tenantId)
 	if err != nil {
-		return nil, fmt.Errorf("could not parse tenant ID %q: %s", tenantId, err)
+		return false, fmt.Errorf("could not parse tenant ID %q: %s", tenantId, err)
 	}
 
-	if !validTenantId {
-		var account struct {
-			ID       string `json:"id"`
-			TenantID string `json:"tenantId"`
-		}
-		if err = JSONUnmarshalAzCmd(true, &account, "account", "show"); err != nil {
-			return nil, fmt.Errorf("obtaining tenant ID: %s", err)
-		}
-		tenantId = account.TenantID
+	return validTenantId, nil
+}
+
+// GetDefaultTenantID tries to determine the default tenant
+func GetDefaultTenantID() (*string, error) {
+	var account struct {
+		TenantID string `json:"tenantId"`
+	}
+	if err := JSONUnmarshalAzCmd(true, &account, "account", "show"); err != nil {
+		return nil, fmt.Errorf("obtaining tenant ID: %s", err)
 	}
 
-	return &tenantId, nil
+	return &account.TenantID, nil
 }
 
 // GetDefaultSubscriptionID tries to determine the default subscription

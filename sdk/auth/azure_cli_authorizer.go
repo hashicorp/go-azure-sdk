@@ -153,11 +153,22 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 		return nil, err
 	}
 
-	// check tenant ID
-	if defaultTenantId, err := azurecli.CheckTenantID(tenantId); err != nil {
+	// obtain default tenant ID if no tenant ID was provided
+	if strings.TrimSpace(tenantId) == "" {
+		if defaultTenantId, err := azurecli.GetDefaultTenantID(); err != nil {
+			return nil, fmt.Errorf("tenant ID was not specified and the default tenant ID could not be determined: %v", err)
+		} else if defaultTenantId == nil {
+			return nil, fmt.Errorf("tenant ID was not specified and the default tenant ID could not be determined")
+		} else {
+			tenantId = *defaultTenantId
+		}
+	}
+
+	// validate tenant ID
+	if valid, err := azurecli.ValidateTenantID(tenantId); err != nil {
 		return nil, err
-	} else if defaultTenantId != nil {
-		tenantId = *defaultTenantId
+	} else if !valid {
+		return nil, fmt.Errorf("invalid tenant ID was provided")
 	}
 
 	// get the default subscription ID
