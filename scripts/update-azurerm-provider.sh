@@ -44,11 +44,20 @@ function runUpdaterTool {
   echo "Running the updater tool.."
   ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../../ --go-sdk-repo-path=../../../../../ --output-file="../../../../pr-description.txt"
 
-  echo "Pushing the branch"
-  git push origin "$branch" -f
+  hasChangesToPush="no"
+  if [[ $(git diff main --name-only | wc -l) -gt 0 ]]; then
+    echo "Pushing the branch"
+    git push origin "$branch" -f
+    hasChangesToPush="yes"
+  else
+    echo "No changes to push - skipping"
+  fi
 
   echo "Returning to the original directory"
   popd
+
+  echo "Writing has changes to push to file"
+  echo "has_changes_to_push${hasChangesToPush}" > "${workingDirectory}/has-changes-to-push.txt"
 }
 
 function main {
