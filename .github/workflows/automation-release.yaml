@@ -113,20 +113,18 @@ jobs:
             echo "Determining if has changes to push.."
             has_changes_to_push="${{ steps.update-azurerm-provider.outputs.has_changes_to_push }}"
             echo "Has Changes to Push: ${has_changes_to_push}"
-            if [[ "${has_changes_to_push}" -ne "yes" ]]; then
-              echo "There were no changes to push, so there's nothing to do"
-              exit 0
+            if [[ "${has_changes_to_push}" == "yes" ]]; then
+              echo "Finding the PR number.."
+              pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
+              if [[ "${pr_number}" == "" ]]; then
+                # not ready yet
+                echo "PR Number not found, not available yet?"
+                exit 1
+              fi
+            
+              echo "PR Number was ${pr_number}"
+              gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file ./tmp/pr-description.txt
             fi
             
-            echo "Finding the PR number.."
-            pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
-            if [[ "${pr_number}" == "" ]]; then
-              # not ready yet
-              echo "PR Number not found, not available yet?"
-              exit 1
-            fi
-            
-            echo "PR Number was ${pr_number}"
-            gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file ./tmp/pr-description.txt
         env:
           GH_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
