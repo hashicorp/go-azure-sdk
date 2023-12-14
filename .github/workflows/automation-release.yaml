@@ -100,7 +100,6 @@ jobs:
 
       - id: comment-on-the-pr
         name: Comment on the PR
-        if: ${{ steps.update-azurerm-provider.outputs.has_changes_to_push == 'yes' }}
         uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # v2.9.0
         with:
           max_attempts: 20
@@ -109,6 +108,13 @@ jobs:
           shell: bash
           timeout_seconds: 30
           command: |
+            echo "Determining if has changes to push.."
+            has_changes_to_push="${{ steps.update-azurerm-provider.outputs.has_changes_to_push }}"
+            if [[ "${has_changes_to_push}" == "no" ]]; then
+              echo "There were no changes to push, so there's nothing to do"
+              exit 0
+            fi
+            
             echo "Finding the PR number.."
             pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
             if [[ "${pr_number}" == "" ]]; then
