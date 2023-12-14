@@ -80,6 +80,42 @@ func TestAccAzureCliAuthorizerWithTenant(t *testing.T) {
 	}
 }
 
+func TestAccAzureCliAuthorizerWithSubscriptions(t *testing.T) {
+	test.AccTest(t)
+
+	ctx := context.Background()
+
+	env, err := environments.FromName(test.Environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	for _, subscriptionId := range test.SubscriptionIds {
+		opts := auth.AzureCliAuthorizerOptions{
+			Api:            env.MicrosoftGraph,
+			SubscriptionId: subscriptionId,
+		}
+
+		authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
+		if err != nil {
+			t.Fatalf("NewAzureCliAuthorizer(): %v", err)
+		}
+
+		cliAuth, err := testCheckAzureCliAuthorizer(authorizer)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if cliAuth.SubscriptionId != subscriptionId {
+			t.Fatalf("cliAuth.SubscriptionId has unexpected value %q", cliAuth.SubscriptionId)
+		}
+
+		if _, err := testObtainAccessToken(ctx, authorizer); err != nil {
+			t.Fatal(err)
+		}
+	}
+}
+
 func testCheckAzureCliAuthorizer(authorizer auth.Authorizer) (*auth.AzureCliAuthorizer, error) {
 	if authorizer == nil {
 		return nil, fmt.Errorf("authorizer is nil, expected Authorizer")

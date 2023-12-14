@@ -27,11 +27,16 @@ type AzureCliAuthorizerOptions struct {
 	// used for Resource Manager when auxiliary tenants are needed.
 	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 	AuxTenantIds []string
+
+	// SubscriptionId is the subscription to authenticate against
+	// If not provided, Azure CLI will default to the current subscription
+	// This will be the subscription from the last az login call, or the one assigned with az account set
+	SubscriptionId string
 }
 
 // NewAzureCliAuthorizer returns an Authorizer which authenticates using the Azure CLI.
 func NewAzureCliAuthorizer(ctx context.Context, options AzureCliAuthorizerOptions) (Authorizer, error) {
-	conf, err := newAzureCliConfig(options.Api, options.TenantId, options.AuxTenantIds)
+	conf, err := newAzureCliConfig(options.Api, options.TenantId, options.AuxTenantIds, options.SubscriptionId)
 	if err != nil {
 		return nil, err
 	}
@@ -47,6 +52,9 @@ type AzureCliAuthorizer struct {
 
 	// DefaultSubscriptionID is the default subscription, when detected
 	DefaultSubscriptionID string
+
+	// SubscriptionId is the specified subscription ID, or empty value if none was specified
+	SubscriptionId string
 
 	conf *azureCliConfig
 }
@@ -65,10 +73,16 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 	}
 	azArgs = append(azArgs, "--scope", *scope)
 
-	// Try to detect if we're running in Cloud Shell
-	if cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT"); !strings.HasPrefix(cloudShell, "cloud-shell/") {
-		// Seemingly not, so we'll append the tenant ID to the az args
-		azArgs = append(azArgs, "--tenant", a.conf.TenantID)
+	// If user provided an explicit subscription ID, add it to the command arguments
+	// This overrides tenant setting, since those two are not compatible
+	if a.conf.SubscriptionId != "" {
+		azArgs = append(azArgs, "--subscription", a.conf.SubscriptionId)
+	} else {
+		// Try to detect if we're running in Cloud Shell
+		if cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT"); !strings.HasPrefix(cloudShell, "cloud-shell/") {
+			// Seemingly not, so we'll append the tenant ID to the az args
+			azArgs = append(azArgs, "--tenant", a.conf.TenantID)
+		}
 	}
 
 	var token azureCliToken
@@ -142,15 +156,24 @@ type azureCliConfig struct {
 	// AuxiliaryTenantIDs is an optional list of tenant IDs for which to obtain additional tokens
 	AuxiliaryTenantIDs []string
 
+	// SubscriptionId is the optional explicit subscription ID
+	SubscriptionId string
+
 	// DefaultSubscriptionID is the optional default subscription ID
 	DefaultSubscriptionID string
 }
 
 // newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
-func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string) (*azureCliConfig, error) {
+func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string, subscriptionId string) (*azureCliConfig, error) {
 	// check az-cli version, ensure that MSAL is supported
 	if err := azurecli.CheckAzVersion(); err != nil {
 		return nil, err
+	}
+
+	if strings.TrimSpace(subscriptionId) != "" {
+		if strings.TrimSpace(tenantId) != "" || auxiliaryTenantIds != nil || len(auxiliaryTenantIds) != 0 {
+			return nil, fmt.Errorf("only one of subscription ID and tenant ID can be specified, not both")
+		}
 	}
 
 	// obtain default tenant ID if no tenant ID was provided
@@ -172,18 +195,19 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 	}
 
 	// get the default subscription ID
-	var subscriptionId string
-	if defaultSubscriptionId, err := azurecli.GetDefaultSubscriptionID(); err != nil {
+	var defaultSubscriptionId string
+	if azureCliDefaultSubscriptionId, err := azurecli.GetDefaultSubscriptionID(); err != nil {
 		return nil, err
-	} else if defaultSubscriptionId != nil {
-		subscriptionId = *defaultSubscriptionId
+	} else if azureCliDefaultSubscriptionId != nil {
+		defaultSubscriptionId = *azureCliDefaultSubscriptionId
 	}
 
 	return &azureCliConfig{
 		Api:                   api,
 		TenantID:              tenantId,
 		AuxiliaryTenantIDs:    auxiliaryTenantIds,
-		DefaultSubscriptionID: subscriptionId,
+		DefaultSubscriptionID: defaultSubscriptionId,
+		SubscriptionId:        subscriptionId,
 	}, nil
 }
 
@@ -193,6 +217,7 @@ func (c *azureCliConfig) TokenSource(ctx context.Context) (Authorizer, error) {
 	return NewCachedAuthorizer(&AzureCliAuthorizer{
 		TenantID:              c.TenantID,
 		DefaultSubscriptionID: c.DefaultSubscriptionID,
+		SubscriptionId:        c.SubscriptionId,
 		conf:                  c,
 	})
 }

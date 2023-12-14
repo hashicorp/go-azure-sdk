@@ -11,6 +11,7 @@ import (
 var (
 	TenantId                      = os.Getenv("ARM_TENANT_ID")
 	AuxiliaryTenantIds            = strings.Split(os.Getenv("ARM_AUXILIARY_TENANT_IDS"), ";")
+	SubscriptionIds               = strings.Split(os.Getenv("ARM_SUBSCRIPTION_IDS"), ";")
 	ClientId                      = os.Getenv("ARM_CLIENT_ID")
 	ClientCertificate             = os.Getenv("ARM_CLIENT_CERTIFICATE")
 	ClientCertificatePath         = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
