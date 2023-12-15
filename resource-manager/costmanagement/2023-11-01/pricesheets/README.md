@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PriceSheetsClient.PriceSheetDownload`
+### Example Usage: `PriceSheetsClient.PriceSheetDownloadByBillingAccount`
 
 ```go
 ctx := context.TODO()
-id := pricesheets.NewInvoiceID("billingAccountValue", "billingProfileValue", "invoiceValue")
+id := pricesheets.NewBillingPeriodID("billingAccountIdValue", "billingPeriodValue")
 
-if err := client.PriceSheetDownloadThenPoll(ctx, id); err != nil {
+if err := client.PriceSheetDownloadByBillingAccountThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -39,6 +39,18 @@ ctx := context.TODO()
 id := pricesheets.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
 
 if err := client.PriceSheetDownloadByBillingProfileThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `PriceSheetsClient.PriceSheetDownloadByInvoice`
+
+```go
+ctx := context.TODO()
+id := pricesheets.NewInvoiceID("billingAccountValue", "billingProfileValue", "invoiceValue")
+
+if err := client.PriceSheetDownloadByInvoiceThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
