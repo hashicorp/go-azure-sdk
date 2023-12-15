@@ -57,7 +57,7 @@ function runUpdaterTool {
   popd
 
   echo "Writing has changes to push to file"
-  echo "has_changes_to_push=${hasChangesToPush}" > "${workingDirectory}/has-changes-to-push.txt"
+  echo "${hasChangesToPush}" > "${workingDirectory}/has-changes-to-push.txt"
 }
 
 function main {
