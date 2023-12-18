@@ -5,7 +5,6 @@ package v2023_04_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdate"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/configurationassignments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/maintenanceconfigurations"
@@ -14,7 +13,6 @@ import (
 )
 
 type Client struct {
-	ApplyUpdate                     *applyupdate.ApplyUpdateClient
 	ApplyUpdates                    *applyupdates.ApplyUpdatesClient
 	ConfigurationAssignments        *configurationassignments.ConfigurationAssignmentsClient
 	MaintenanceConfigurations       *maintenanceconfigurations.MaintenanceConfigurationsClient
@@ -23,9 +21,6 @@ type Client struct {
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	applyUpdateClient := applyupdate.NewApplyUpdateClientWithBaseURI(endpoint)
-	configureAuthFunc(&applyUpdateClient.Client)
 
 	applyUpdatesClient := applyupdates.NewApplyUpdatesClientWithBaseURI(endpoint)
 	configureAuthFunc(&applyUpdatesClient.Client)
@@ -43,7 +38,6 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	configureAuthFunc(&updatesClient.Client)
 
 	return Client{
-		ApplyUpdate:                     &applyUpdateClient,
 		ApplyUpdates:                    &applyUpdatesClient,
 		ConfigurationAssignments:        &configurationAssignmentsClient,
 		MaintenanceConfigurations:       &maintenanceConfigurationsClient,
