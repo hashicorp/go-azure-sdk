@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := appserviceenvironments.NewHostingEnvironmentPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue", "privateEndpointConnectionValue")
 
-payload := appserviceenvironments.PrivateLinkConnectionApprovalRequestResource{
+payload := appserviceenvironments.RemotePrivateEndpointConnectionARMResource{
 	// ...
 }
 
