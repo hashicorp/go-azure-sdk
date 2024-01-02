@@ -65,8 +65,22 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 	}
 	azArgs = append(azArgs, "--scope", *scope)
 
+	defaultSubscriptionId, err := azurecli.GetDefaultSubscriptionID()
+	if err != nil {
+		return nil, fmt.Errorf("determining default subscriptionId for %q: %+v", a.conf.Api.Name(), err)
+	}
+
+	defaultTenantId, err := azurecli.GetDefaultTenantID()
+	if err != nil {
+		return nil, fmt.Errorf("determining default tenantId for %q: %+v", a.conf.Api.Name(), err)
+	}
+
+	cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT")
+
 	// Try to detect if we're running in Cloud Shell
-	if cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT"); !strings.HasPrefix(cloudShell, "cloud-shell/") {
+	// and whether it's a managed identity (subscriptionId and tenantId are same for MIs. Different for SPs & users)
+	// alternatively `az account show` could also be run to identify a user/SP/MI
+	if strings.HasPrefix(cloudShell, "cloud-shell/") && defaultSubscriptionId != defaultTenantId {
 		// Seemingly not, so we'll append the tenant ID to the az args
 		azArgs = append(azArgs, "--tenant", a.conf.TenantID)
 	}
