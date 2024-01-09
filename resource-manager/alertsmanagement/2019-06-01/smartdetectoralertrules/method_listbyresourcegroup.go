@@ -20,7 +20,8 @@ type ListByResourceGroupOperationResponse struct {
 }
 
 type ListByResourceGroupCompleteResult struct {
-	Items []AlertRule
+	LatestHttpResponse *http.Response
+	Items              []AlertRule
 }
 
 type ListByResourceGroupOperationOptions struct {
@@ -112,7 +113,8 @@ func (c SmartDetectorAlertRulesClient) ListByResourceGroupCompleteMatchingPredic
 	}
 
 	result = ListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

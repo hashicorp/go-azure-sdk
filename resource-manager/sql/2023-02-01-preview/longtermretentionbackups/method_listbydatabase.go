@@ -19,7 +19,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []LongTermRetentionBackup
+	LatestHttpResponse *http.Response
+	Items              []LongTermRetentionBackup
 }
 
 type ListByDatabaseOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LongTermRetentionBackupsClient) ListByDatabaseCompleteMatchingPredicate(
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

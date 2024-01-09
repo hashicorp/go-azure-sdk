@@ -19,7 +19,8 @@ type ListBySchemaOperationResponse struct {
 }
 
 type ListBySchemaCompleteResult struct {
-	Items []DatabaseTable
+	LatestHttpResponse *http.Response
+	Items              []DatabaseTable
 }
 
 type ListBySchemaOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ManagedDatabaseTablesClient) ListBySchemaCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListBySchemaCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

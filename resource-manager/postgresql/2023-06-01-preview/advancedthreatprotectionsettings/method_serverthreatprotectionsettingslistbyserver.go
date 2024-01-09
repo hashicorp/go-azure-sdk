@@ -19,7 +19,8 @@ type ServerThreatProtectionSettingsListByServerOperationResponse struct {
 }
 
 type ServerThreatProtectionSettingsListByServerCompleteResult struct {
-	Items []ServerThreatProtectionSettingsModel
+	LatestHttpResponse *http.Response
+	Items              []ServerThreatProtectionSettingsModel
 }
 
 // ServerThreatProtectionSettingsListByServer ...
@@ -83,7 +84,8 @@ func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsLi
 	}
 
 	result = ServerThreatProtectionSettingsListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

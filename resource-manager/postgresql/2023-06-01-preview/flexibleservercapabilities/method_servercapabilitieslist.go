@@ -19,7 +19,8 @@ type ServerCapabilitiesListOperationResponse struct {
 }
 
 type ServerCapabilitiesListCompleteResult struct {
-	Items []FlexibleServerCapability
+	LatestHttpResponse *http.Response
+	Items              []FlexibleServerCapability
 }
 
 // ServerCapabilitiesList ...
@@ -83,7 +84,8 @@ func (c FlexibleServerCapabilitiesClient) ServerCapabilitiesListCompleteMatching
 	}
 
 	result = ServerCapabilitiesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

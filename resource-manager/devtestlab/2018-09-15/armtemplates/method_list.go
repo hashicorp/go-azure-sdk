@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []ArmTemplate
+	LatestHttpResponse *http.Response
+	Items              []ArmTemplate
 }
 
 type ListOperationOptions struct {
@@ -123,7 +124,8 @@ func (c ArmTemplatesClient) ListCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

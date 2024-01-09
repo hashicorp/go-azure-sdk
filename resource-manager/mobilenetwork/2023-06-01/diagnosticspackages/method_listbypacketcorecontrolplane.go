@@ -19,7 +19,8 @@ type ListByPacketCoreControlPlaneOperationResponse struct {
 }
 
 type ListByPacketCoreControlPlaneCompleteResult struct {
-	Items []DiagnosticsPackage
+	LatestHttpResponse *http.Response
+	Items              []DiagnosticsPackage
 }
 
 // ListByPacketCoreControlPlane ...
@@ -83,7 +84,8 @@ func (c DiagnosticsPackagesClient) ListByPacketCoreControlPlaneCompleteMatchingP
 	}
 
 	result = ListByPacketCoreControlPlaneCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

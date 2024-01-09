@@ -19,7 +19,8 @@ type ScriptPackagesListOperationResponse struct {
 }
 
 type ScriptPackagesListCompleteResult struct {
-	Items []ScriptPackage
+	LatestHttpResponse *http.Response
+	Items              []ScriptPackage
 }
 
 // ScriptPackagesList ...
@@ -83,7 +84,8 @@ func (c ScriptsClient) ScriptPackagesListCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ScriptPackagesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

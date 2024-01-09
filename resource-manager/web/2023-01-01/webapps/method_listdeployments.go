@@ -20,7 +20,8 @@ type ListDeploymentsOperationResponse struct {
 }
 
 type ListDeploymentsCompleteResult struct {
-	Items []Deployment
+	LatestHttpResponse *http.Response
+	Items              []Deployment
 }
 
 // ListDeployments ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListDeploymentsCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListDeploymentsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

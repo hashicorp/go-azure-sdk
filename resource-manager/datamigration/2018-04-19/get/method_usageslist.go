@@ -19,7 +19,8 @@ type UsagesListOperationResponse struct {
 }
 
 type UsagesListCompleteResult struct {
-	Items []Quota
+	LatestHttpResponse *http.Response
+	Items              []Quota
 }
 
 // UsagesList ...
@@ -83,7 +84,8 @@ func (c GETClient) UsagesListCompleteMatchingPredicate(ctx context.Context, id L
 	}
 
 	result = UsagesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

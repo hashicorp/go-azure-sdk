@@ -20,7 +20,8 @@ type SettingsListByServerOperationResponse struct {
 }
 
 type SettingsListByServerCompleteResult struct {
-	Items []ServerDevOpsAuditingSettings
+	LatestHttpResponse *http.Response
+	Items              []ServerDevOpsAuditingSettings
 }
 
 // SettingsListByServer ...
@@ -84,7 +85,8 @@ func (c ServerDevOpsAuditClient) SettingsListByServerCompleteMatchingPredicate(c
 	}
 
 	result = SettingsListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

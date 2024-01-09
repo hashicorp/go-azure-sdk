@@ -19,7 +19,8 @@ type ListDomainOwnershipIdentifiersSlotOperationResponse struct {
 }
 
 type ListDomainOwnershipIdentifiersSlotCompleteResult struct {
-	Items []Identifier
+	LatestHttpResponse *http.Response
+	Items              []Identifier
 }
 
 // ListDomainOwnershipIdentifiersSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListDomainOwnershipIdentifiersSlotCompleteMatchingPredica
 	}
 
 	result = ListDomainOwnershipIdentifiersSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

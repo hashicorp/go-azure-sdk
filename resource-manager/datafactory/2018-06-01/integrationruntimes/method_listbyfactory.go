@@ -19,7 +19,8 @@ type ListByFactoryOperationResponse struct {
 }
 
 type ListByFactoryCompleteResult struct {
-	Items []IntegrationRuntimeResource
+	LatestHttpResponse *http.Response
+	Items              []IntegrationRuntimeResource
 }
 
 // ListByFactory ...
@@ -83,7 +84,8 @@ func (c IntegrationRuntimesClient) ListByFactoryCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListByFactoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

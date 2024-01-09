@@ -19,7 +19,8 @@ type ListHostNameBindingsSlotOperationResponse struct {
 }
 
 type ListHostNameBindingsSlotCompleteResult struct {
-	Items []HostNameBinding
+	LatestHttpResponse *http.Response
+	Items              []HostNameBinding
 }
 
 // ListHostNameBindingsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListHostNameBindingsSlotCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListHostNameBindingsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

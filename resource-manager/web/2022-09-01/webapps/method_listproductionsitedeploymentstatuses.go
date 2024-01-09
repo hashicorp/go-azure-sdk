@@ -20,7 +20,8 @@ type ListProductionSiteDeploymentStatusesOperationResponse struct {
 }
 
 type ListProductionSiteDeploymentStatusesCompleteResult struct {
-	Items []CsmDeploymentStatus
+	LatestHttpResponse *http.Response
+	Items              []CsmDeploymentStatus
 }
 
 // ListProductionSiteDeploymentStatuses ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListProductionSiteDeploymentStatusesCompleteMatchingPredi
 	}
 
 	result = ListProductionSiteDeploymentStatusesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

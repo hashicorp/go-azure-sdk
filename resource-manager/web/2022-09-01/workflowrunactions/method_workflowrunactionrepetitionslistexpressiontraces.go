@@ -19,7 +19,8 @@ type WorkflowRunActionRepetitionsListExpressionTracesOperationResponse struct {
 }
 
 type WorkflowRunActionRepetitionsListExpressionTracesCompleteResult struct {
-	Items []interface{}
+	LatestHttpResponse *http.Response
+	Items              []interface{}
 }
 
 // WorkflowRunActionRepetitionsListExpressionTraces ...
@@ -76,7 +77,8 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 	}
 
 	result = WorkflowRunActionRepetitionsListExpressionTracesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.Response,
+		Items:              items,
 	}
 	return
 }

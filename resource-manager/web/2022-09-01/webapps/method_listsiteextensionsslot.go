@@ -19,7 +19,8 @@ type ListSiteExtensionsSlotOperationResponse struct {
 }
 
 type ListSiteExtensionsSlotCompleteResult struct {
-	Items []SiteExtensionInfo
+	LatestHttpResponse *http.Response
+	Items              []SiteExtensionInfo
 }
 
 // ListSiteExtensionsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListSiteExtensionsSlotCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListSiteExtensionsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

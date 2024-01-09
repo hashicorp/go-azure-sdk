@@ -19,7 +19,8 @@ type ListAtTenantScopeOperationResponse struct {
 }
 
 type ListAtTenantScopeCompleteResult struct {
-	Items []DeploymentExtended
+	LatestHttpResponse *http.Response
+	Items              []DeploymentExtended
 }
 
 type ListAtTenantScopeOperationOptions struct {
@@ -115,7 +116,8 @@ func (c DeploymentsClient) ListAtTenantScopeCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListAtTenantScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

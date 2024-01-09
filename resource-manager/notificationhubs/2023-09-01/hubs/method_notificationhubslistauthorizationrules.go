@@ -19,7 +19,8 @@ type NotificationHubsListAuthorizationRulesOperationResponse struct {
 }
 
 type NotificationHubsListAuthorizationRulesCompleteResult struct {
-	Items []SharedAccessAuthorizationRuleResource
+	LatestHttpResponse *http.Response
+	Items              []SharedAccessAuthorizationRuleResource
 }
 
 // NotificationHubsListAuthorizationRules ...
@@ -83,7 +84,8 @@ func (c HubsClient) NotificationHubsListAuthorizationRulesCompleteMatchingPredic
 	}
 
 	result = NotificationHubsListAuthorizationRulesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

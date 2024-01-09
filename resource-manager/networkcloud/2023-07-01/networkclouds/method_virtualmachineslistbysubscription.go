@@ -20,7 +20,8 @@ type VirtualMachinesListBySubscriptionOperationResponse struct {
 }
 
 type VirtualMachinesListBySubscriptionCompleteResult struct {
-	Items []VirtualMachine
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachine
 }
 
 // VirtualMachinesListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) VirtualMachinesListBySubscriptionCompleteMatchingPr
 	}
 
 	result = VirtualMachinesListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

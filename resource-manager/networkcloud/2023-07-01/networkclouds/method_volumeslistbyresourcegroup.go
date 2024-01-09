@@ -20,7 +20,8 @@ type VolumesListByResourceGroupOperationResponse struct {
 }
 
 type VolumesListByResourceGroupCompleteResult struct {
-	Items []Volume
+	LatestHttpResponse *http.Response
+	Items              []Volume
 }
 
 // VolumesListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) VolumesListByResourceGroupCompleteMatchingPredicate
 	}
 
 	result = VolumesListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

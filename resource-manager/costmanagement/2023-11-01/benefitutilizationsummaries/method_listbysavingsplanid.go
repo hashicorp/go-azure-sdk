@@ -19,7 +19,8 @@ type ListBySavingsPlanIdOperationResponse struct {
 }
 
 type ListBySavingsPlanIdCompleteResult struct {
-	Items []BenefitUtilizationSummary
+	LatestHttpResponse *http.Response
+	Items              []BenefitUtilizationSummary
 }
 
 type ListBySavingsPlanIdOperationOptions struct {
@@ -115,7 +116,8 @@ func (c BenefitUtilizationSummariesClient) ListBySavingsPlanIdCompleteMatchingPr
 	}
 
 	result = ListBySavingsPlanIdCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

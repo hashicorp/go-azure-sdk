@@ -20,7 +20,8 @@ type ListRecommendedRulesForWebAppOperationResponse struct {
 }
 
 type ListRecommendedRulesForWebAppCompleteResult struct {
-	Items []Recommendation
+	LatestHttpResponse *http.Response
+	Items              []Recommendation
 }
 
 type ListRecommendedRulesForWebAppOperationOptions struct {
@@ -116,7 +117,8 @@ func (c RecommendationsClient) ListRecommendedRulesForWebAppCompleteMatchingPred
 	}
 
 	result = ListRecommendedRulesForWebAppCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

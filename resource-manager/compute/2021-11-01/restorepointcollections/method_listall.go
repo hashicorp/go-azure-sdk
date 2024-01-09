@@ -20,7 +20,8 @@ type ListAllOperationResponse struct {
 }
 
 type ListAllCompleteResult struct {
-	Items []RestorePointCollection
+	LatestHttpResponse *http.Response
+	Items              []RestorePointCollection
 }
 
 // ListAll ...
@@ -84,7 +85,8 @@ func (c RestorePointCollectionsClient) ListAllCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListAllCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

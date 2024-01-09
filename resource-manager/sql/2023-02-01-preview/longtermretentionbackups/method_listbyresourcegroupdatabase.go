@@ -19,7 +19,8 @@ type ListByResourceGroupDatabaseOperationResponse struct {
 }
 
 type ListByResourceGroupDatabaseCompleteResult struct {
-	Items []LongTermRetentionBackup
+	LatestHttpResponse *http.Response
+	Items              []LongTermRetentionBackup
 }
 
 type ListByResourceGroupDatabaseOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LongTermRetentionBackupsClient) ListByResourceGroupDatabaseCompleteMatch
 	}
 
 	result = ListByResourceGroupDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

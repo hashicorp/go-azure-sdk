@@ -19,7 +19,8 @@ type ListMaterializationJobsOperationResponse struct {
 }
 
 type ListMaterializationJobsCompleteResult struct {
-	Items []FeaturesetJob
+	LatestHttpResponse *http.Response
+	Items              []FeaturesetJob
 }
 
 type ListMaterializationJobsOperationOptions struct {
@@ -123,7 +124,8 @@ func (c FeaturesetVersionClient) ListMaterializationJobsCompleteMatchingPredicat
 	}
 
 	result = ListMaterializationJobsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

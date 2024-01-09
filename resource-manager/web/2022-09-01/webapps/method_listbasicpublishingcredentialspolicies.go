@@ -20,7 +20,8 @@ type ListBasicPublishingCredentialsPoliciesOperationResponse struct {
 }
 
 type ListBasicPublishingCredentialsPoliciesCompleteResult struct {
-	Items []CsmPublishingCredentialsPoliciesEntity
+	LatestHttpResponse *http.Response
+	Items              []CsmPublishingCredentialsPoliciesEntity
 }
 
 // ListBasicPublishingCredentialsPolicies ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesCompleteMatchingPre
 	}
 
 	result = ListBasicPublishingCredentialsPoliciesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

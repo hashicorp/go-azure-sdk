@@ -20,7 +20,8 @@ type ListPerfMonCountersOperationResponse struct {
 }
 
 type ListPerfMonCountersCompleteResult struct {
-	Items []PerfMonResponse
+	LatestHttpResponse *http.Response
+	Items              []PerfMonResponse
 }
 
 type ListPerfMonCountersOperationOptions struct {
@@ -112,7 +113,8 @@ func (c WebAppsClient) ListPerfMonCountersCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListPerfMonCountersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListByNamespaceOperationResponse struct {
 }
 
 type ListByNamespaceCompleteResult struct {
-	Items []ApplicationGroup
+	LatestHttpResponse *http.Response
+	Items              []ApplicationGroup
 }
 
 // ListByNamespace ...
@@ -83,7 +84,8 @@ func (c ApplicationGroupClient) ListByNamespaceCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByNamespaceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

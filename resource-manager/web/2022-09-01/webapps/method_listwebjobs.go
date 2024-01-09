@@ -20,7 +20,8 @@ type ListWebJobsOperationResponse struct {
 }
 
 type ListWebJobsCompleteResult struct {
-	Items []WebJob
+	LatestHttpResponse *http.Response
+	Items              []WebJob
 }
 
 // ListWebJobs ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListWebJobsCompleteMatchingPredicate(ctx context.Context,
 	}
 
 	result = ListWebJobsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

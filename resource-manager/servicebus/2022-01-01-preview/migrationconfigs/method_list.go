@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []MigrationConfigProperties
+	LatestHttpResponse *http.Response
+	Items              []MigrationConfigProperties
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c MigrationConfigsClient) ListCompleteMatchingPredicate(ctx context.Contex
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

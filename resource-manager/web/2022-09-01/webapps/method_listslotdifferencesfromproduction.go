@@ -20,7 +20,8 @@ type ListSlotDifferencesFromProductionOperationResponse struct {
 }
 
 type ListSlotDifferencesFromProductionCompleteResult struct {
-	Items []SlotDifference
+	LatestHttpResponse *http.Response
+	Items              []SlotDifference
 }
 
 // ListSlotDifferencesFromProduction ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListSlotDifferencesFromProductionCompleteMatchingPredicat
 	}
 
 	result = ListSlotDifferencesFromProductionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

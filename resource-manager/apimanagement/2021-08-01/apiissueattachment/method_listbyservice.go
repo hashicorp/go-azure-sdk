@@ -19,7 +19,8 @@ type ListByServiceOperationResponse struct {
 }
 
 type ListByServiceCompleteResult struct {
-	Items []IssueAttachmentContract
+	LatestHttpResponse *http.Response
+	Items              []IssueAttachmentContract
 }
 
 type ListByServiceOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiIssueAttachmentClient) ListByServiceCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type WorkspacePolicyFragmentListByServiceOperationResponse struct {
 }
 
 type WorkspacePolicyFragmentListByServiceCompleteResult struct {
-	Items []PolicyFragmentContract
+	LatestHttpResponse *http.Response
+	Items              []PolicyFragmentContract
 }
 
 type WorkspacePolicyFragmentListByServiceOperationOptions struct {
@@ -123,7 +124,8 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentListByServiceCompleteMatchi
 	}
 
 	result = WorkspacePolicyFragmentListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

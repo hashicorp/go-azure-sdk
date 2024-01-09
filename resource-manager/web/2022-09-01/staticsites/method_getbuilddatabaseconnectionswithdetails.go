@@ -19,7 +19,8 @@ type GetBuildDatabaseConnectionsWithDetailsOperationResponse struct {
 }
 
 type GetBuildDatabaseConnectionsWithDetailsCompleteResult struct {
-	Items []DatabaseConnection
+	LatestHttpResponse *http.Response
+	Items              []DatabaseConnection
 }
 
 // GetBuildDatabaseConnectionsWithDetails ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetailsCompleteMatchin
 	}
 
 	result = GetBuildDatabaseConnectionsWithDetailsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

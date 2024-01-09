@@ -19,7 +19,8 @@ type GetAppSettingsKeyVaultReferencesSlotOperationResponse struct {
 }
 
 type GetAppSettingsKeyVaultReferencesSlotCompleteResult struct {
-	Items []ApiKVReference
+	LatestHttpResponse *http.Response
+	Items              []ApiKVReference
 }
 
 // GetAppSettingsKeyVaultReferencesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) GetAppSettingsKeyVaultReferencesSlotCompleteMatchingPredi
 	}
 
 	result = GetAppSettingsKeyVaultReferencesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListSiteBackupsOperationResponse struct {
 }
 
 type ListSiteBackupsCompleteResult struct {
-	Items []BackupItem
+	LatestHttpResponse *http.Response
+	Items              []BackupItem
 }
 
 // ListSiteBackups ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListSiteBackupsCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListSiteBackupsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

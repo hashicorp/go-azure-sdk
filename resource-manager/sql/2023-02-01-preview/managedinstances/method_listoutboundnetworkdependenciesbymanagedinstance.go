@@ -20,7 +20,8 @@ type ListOutboundNetworkDependenciesByManagedInstanceOperationResponse struct {
 }
 
 type ListOutboundNetworkDependenciesByManagedInstanceCompleteResult struct {
-	Items []OutboundEnvironmentEndpoint
+	LatestHttpResponse *http.Response
+	Items              []OutboundEnvironmentEndpoint
 }
 
 // ListOutboundNetworkDependenciesByManagedInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance
 	}
 
 	result = ListOutboundNetworkDependenciesByManagedInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

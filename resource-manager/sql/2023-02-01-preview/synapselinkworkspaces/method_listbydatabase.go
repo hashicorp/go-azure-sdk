@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []SynapseLinkWorkspace
+	LatestHttpResponse *http.Response
+	Items              []SynapseLinkWorkspace
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c SynapseLinkWorkspacesClient) ListByDatabaseCompleteMatchingPredicate(ctx
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

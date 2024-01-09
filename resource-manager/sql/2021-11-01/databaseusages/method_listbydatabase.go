@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []DatabaseUsage
+	LatestHttpResponse *http.Response
+	Items              []DatabaseUsage
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c DatabaseUsagesClient) ListByDatabaseCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

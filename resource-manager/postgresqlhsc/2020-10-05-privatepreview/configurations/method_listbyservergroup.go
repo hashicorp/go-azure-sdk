@@ -19,7 +19,8 @@ type ListByServerGroupOperationResponse struct {
 }
 
 type ListByServerGroupCompleteResult struct {
-	Items []ServerGroupConfiguration
+	LatestHttpResponse *http.Response
+	Items              []ServerGroupConfiguration
 }
 
 // ListByServerGroup ...
@@ -83,7 +84,8 @@ func (c ConfigurationsClient) ListByServerGroupCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByServerGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

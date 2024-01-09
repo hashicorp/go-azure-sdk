@@ -20,7 +20,8 @@ type StorageAppliancesListBySubscriptionOperationResponse struct {
 }
 
 type StorageAppliancesListBySubscriptionCompleteResult struct {
-	Items []StorageAppliance
+	LatestHttpResponse *http.Response
+	Items              []StorageAppliance
 }
 
 // StorageAppliancesListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) StorageAppliancesListBySubscriptionCompleteMatching
 	}
 
 	result = StorageAppliancesListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

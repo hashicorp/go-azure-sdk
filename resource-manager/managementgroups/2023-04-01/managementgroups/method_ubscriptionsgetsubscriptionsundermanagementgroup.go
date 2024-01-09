@@ -20,7 +20,8 @@ type UbscriptionsGetSubscriptionsUnderManagementGroupOperationResponse struct {
 }
 
 type UbscriptionsGetSubscriptionsUnderManagementGroupCompleteResult struct {
-	Items []SubscriptionUnderManagementGroup
+	LatestHttpResponse *http.Response
+	Items              []SubscriptionUnderManagementGroup
 }
 
 // UbscriptionsGetSubscriptionsUnderManagementGroup ...
@@ -84,7 +85,8 @@ func (c ManagementGroupsClient) UbscriptionsGetSubscriptionsUnderManagementGroup
 	}
 
 	result = UbscriptionsGetSubscriptionsUnderManagementGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

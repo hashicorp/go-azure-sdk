@@ -19,7 +19,8 @@ type ListProcessThreadsSlotOperationResponse struct {
 }
 
 type ListProcessThreadsSlotCompleteResult struct {
-	Items []ProcessThreadInfo
+	LatestHttpResponse *http.Response
+	Items              []ProcessThreadInfo
 }
 
 // ListProcessThreadsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListProcessThreadsSlotCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListProcessThreadsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

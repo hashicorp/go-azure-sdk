@@ -19,7 +19,8 @@ type ListInstanceWorkflowsSlotOperationResponse struct {
 }
 
 type ListInstanceWorkflowsSlotCompleteResult struct {
-	Items []WorkflowEnvelope
+	LatestHttpResponse *http.Response
+	Items              []WorkflowEnvelope
 }
 
 // ListInstanceWorkflowsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListInstanceWorkflowsSlotCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListInstanceWorkflowsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

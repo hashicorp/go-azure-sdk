@@ -19,7 +19,8 @@ type RegistryEnvironmentVersionsListOperationResponse struct {
 }
 
 type RegistryEnvironmentVersionsListCompleteResult struct {
-	Items []EnvironmentVersionResource
+	LatestHttpResponse *http.Response
+	Items              []EnvironmentVersionResource
 }
 
 type RegistryEnvironmentVersionsListOperationOptions struct {
@@ -123,7 +124,8 @@ func (c EnvironmentVersionClient) RegistryEnvironmentVersionsListCompleteMatchin
 	}
 
 	result = RegistryEnvironmentVersionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

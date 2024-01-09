@@ -19,7 +19,8 @@ type ListByHostPoolOperationResponse struct {
 }
 
 type ListByHostPoolCompleteResult struct {
-	Items []ScalingPlan
+	LatestHttpResponse *http.Response
+	Items              []ScalingPlan
 }
 
 type ListByHostPoolOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ScalingPlanClient) ListByHostPoolCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ListByHostPoolCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

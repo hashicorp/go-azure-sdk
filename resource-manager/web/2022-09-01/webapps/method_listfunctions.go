@@ -20,7 +20,8 @@ type ListFunctionsOperationResponse struct {
 }
 
 type ListFunctionsCompleteResult struct {
-	Items []FunctionEnvelope
+	LatestHttpResponse *http.Response
+	Items              []FunctionEnvelope
 }
 
 // ListFunctions ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListFunctionsCompleteMatchingPredicate(ctx context.Contex
 	}
 
 	result = ListFunctionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

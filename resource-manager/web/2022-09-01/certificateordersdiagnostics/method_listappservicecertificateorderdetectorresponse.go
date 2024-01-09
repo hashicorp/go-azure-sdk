@@ -19,7 +19,8 @@ type ListAppServiceCertificateOrderDetectorResponseOperationResponse struct {
 }
 
 type ListAppServiceCertificateOrderDetectorResponseCompleteResult struct {
-	Items []DetectorResponse
+	LatestHttpResponse *http.Response
+	Items              []DetectorResponse
 }
 
 // ListAppServiceCertificateOrderDetectorResponse ...
@@ -83,7 +84,8 @@ func (c CertificateOrdersDiagnosticsClient) ListAppServiceCertificateOrderDetect
 	}
 
 	result = ListAppServiceCertificateOrderDetectorResponseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

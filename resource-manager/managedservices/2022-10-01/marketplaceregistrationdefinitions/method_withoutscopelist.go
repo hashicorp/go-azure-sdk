@@ -19,7 +19,8 @@ type WithoutScopeListOperationResponse struct {
 }
 
 type WithoutScopeListCompleteResult struct {
-	Items []MarketplaceRegistrationDefinition
+	LatestHttpResponse *http.Response
+	Items              []MarketplaceRegistrationDefinition
 }
 
 type WithoutScopeListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c MarketplaceRegistrationDefinitionsClient) WithoutScopeListCompleteMatchi
 	}
 
 	result = WithoutScopeListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

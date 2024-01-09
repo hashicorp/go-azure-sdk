@@ -20,7 +20,8 @@ type ListByManagedInstanceOperationResponse struct {
 }
 
 type ListByManagedInstanceCompleteResult struct {
-	Items []ServerConfigurationOption
+	LatestHttpResponse *http.Response
+	Items              []ServerConfigurationOption
 }
 
 // ListByManagedInstance ...
@@ -84,7 +85,8 @@ func (c ServerConfigurationOptionsClient) ListByManagedInstanceCompleteMatchingP
 	}
 
 	result = ListByManagedInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

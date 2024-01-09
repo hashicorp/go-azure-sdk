@@ -19,7 +19,8 @@ type ListByServiceOperationResponse struct {
 }
 
 type ListByServiceCompleteResult struct {
-	Items []PortalConfigContract
+	LatestHttpResponse *http.Response
+	Items              []PortalConfigContract
 }
 
 // ListByService ...
@@ -83,7 +84,8 @@ func (c PortalConfigClient) ListByServiceCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

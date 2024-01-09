@@ -19,7 +19,8 @@ type GetOSUpgradeHistoryOperationResponse struct {
 }
 
 type GetOSUpgradeHistoryCompleteResult struct {
-	Items []UpgradeOperationHistoricalStatusInfo
+	LatestHttpResponse *http.Response
+	Items              []UpgradeOperationHistoricalStatusInfo
 }
 
 // GetOSUpgradeHistory ...
@@ -83,7 +84,8 @@ func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistoryCompleteMatchingPredic
 	}
 
 	result = GetOSUpgradeHistoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

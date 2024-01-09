@@ -20,7 +20,8 @@ type ListByElasticPoolOperationResponse struct {
 }
 
 type ListByElasticPoolCompleteResult struct {
-	Items []ElasticPoolOperation
+	LatestHttpResponse *http.Response
+	Items              []ElasticPoolOperation
 }
 
 // ListByElasticPool ...
@@ -84,7 +85,8 @@ func (c ElasticPoolOperationsClient) ListByElasticPoolCompleteMatchingPredicate(
 	}
 
 	result = ListByElasticPoolCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListByReplicationProtectedItemsOperationResponse struct {
 }
 
 type ListByReplicationProtectedItemsCompleteResult struct {
-	Items []TargetComputeSize
+	LatestHttpResponse *http.Response
+	Items              []TargetComputeSize
 }
 
 // ListByReplicationProtectedItems ...
@@ -83,7 +84,8 @@ func (c TargetComputeSizesClient) ListByReplicationProtectedItemsCompleteMatchin
 	}
 
 	result = ListByReplicationProtectedItemsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

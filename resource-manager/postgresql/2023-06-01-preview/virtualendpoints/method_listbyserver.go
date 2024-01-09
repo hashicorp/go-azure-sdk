@@ -19,7 +19,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []VirtualEndpointResource
+	LatestHttpResponse *http.Response
+	Items              []VirtualEndpointResource
 }
 
 // ListByServer ...
@@ -83,7 +84,8 @@ func (c VirtualEndpointsClient) ListByServerCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

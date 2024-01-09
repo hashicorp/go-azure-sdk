@@ -19,7 +19,8 @@ type VideosListOperationResponse struct {
 }
 
 type VideosListCompleteResult struct {
-	Items []VideoEntity
+	LatestHttpResponse *http.Response
+	Items              []VideoEntity
 }
 
 type VideosListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c VideosClient) VideosListCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = VideosListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

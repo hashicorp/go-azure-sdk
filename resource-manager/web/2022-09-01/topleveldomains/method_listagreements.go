@@ -19,7 +19,8 @@ type ListAgreementsOperationResponse struct {
 }
 
 type ListAgreementsCompleteResult struct {
-	Items []TldLegalAgreement
+	LatestHttpResponse *http.Response
+	Items              []TldLegalAgreement
 }
 
 // ListAgreements ...
@@ -83,7 +84,8 @@ func (c TopLevelDomainsClient) ListAgreementsCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListAgreementsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

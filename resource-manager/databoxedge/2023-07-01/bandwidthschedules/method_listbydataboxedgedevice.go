@@ -19,7 +19,8 @@ type ListByDataBoxEdgeDeviceOperationResponse struct {
 }
 
 type ListByDataBoxEdgeDeviceCompleteResult struct {
-	Items []BandwidthSchedule
+	LatestHttpResponse *http.Response
+	Items              []BandwidthSchedule
 }
 
 // ListByDataBoxEdgeDevice ...
@@ -83,7 +84,8 @@ func (c BandwidthSchedulesClient) ListByDataBoxEdgeDeviceCompleteMatchingPredica
 	}
 
 	result = ListByDataBoxEdgeDeviceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

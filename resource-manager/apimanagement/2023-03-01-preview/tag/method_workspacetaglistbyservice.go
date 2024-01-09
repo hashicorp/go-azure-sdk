@@ -19,7 +19,8 @@ type WorkspaceTagListByServiceOperationResponse struct {
 }
 
 type WorkspaceTagListByServiceCompleteResult struct {
-	Items []TagContract
+	LatestHttpResponse *http.Response
+	Items              []TagContract
 }
 
 type WorkspaceTagListByServiceOperationOptions struct {
@@ -123,7 +124,8 @@ func (c TagClient) WorkspaceTagListByServiceCompleteMatchingPredicate(ctx contex
 	}
 
 	result = WorkspaceTagListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

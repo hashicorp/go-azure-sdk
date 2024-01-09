@@ -20,7 +20,8 @@ type DatabaseBlobAuditingPoliciesListByDatabaseOperationResponse struct {
 }
 
 type DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult struct {
-	Items []DatabaseBlobAuditingPolicy
+	LatestHttpResponse *http.Response
+	Items              []DatabaseBlobAuditingPolicy
 }
 
 // DatabaseBlobAuditingPoliciesListByDatabase ...
@@ -84,7 +85,8 @@ func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabaseCompleteMa
 	}
 
 	result = DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

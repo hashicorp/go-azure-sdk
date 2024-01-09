@@ -19,7 +19,8 @@ type DiskRestorePointListByRestorePointOperationResponse struct {
 }
 
 type DiskRestorePointListByRestorePointCompleteResult struct {
-	Items []DiskRestorePoint
+	LatestHttpResponse *http.Response
+	Items              []DiskRestorePoint
 }
 
 // DiskRestorePointListByRestorePoint ...
@@ -83,7 +84,8 @@ func (c IncrementalRestorePointsClient) DiskRestorePointListByRestorePointComple
 	}
 
 	result = DiskRestorePointListByRestorePointCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListExpressionTracesOperationResponse struct {
 }
 
 type ListExpressionTracesCompleteResult struct {
-	Items []interface{}
+	LatestHttpResponse *http.Response
+	Items              []interface{}
 }
 
 // ListExpressionTraces ...
@@ -76,7 +77,8 @@ func (c WorkflowRunActionsClient) ListExpressionTracesComplete(ctx context.Conte
 	}
 
 	result = ListExpressionTracesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.Response,
+		Items:              items,
 	}
 	return
 }

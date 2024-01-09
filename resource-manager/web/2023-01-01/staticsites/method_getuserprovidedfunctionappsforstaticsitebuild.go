@@ -19,7 +19,8 @@ type GetUserProvidedFunctionAppsForStaticSiteBuildOperationResponse struct {
 }
 
 type GetUserProvidedFunctionAppsForStaticSiteBuildCompleteResult struct {
-	Items []StaticSiteUserProvidedFunctionAppARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteUserProvidedFunctionAppARMResource
 }
 
 // GetUserProvidedFunctionAppsForStaticSiteBuild ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetUserProvidedFunctionAppsForStaticSiteBuildComplete
 	}
 
 	result = GetUserProvidedFunctionAppsForStaticSiteBuildCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

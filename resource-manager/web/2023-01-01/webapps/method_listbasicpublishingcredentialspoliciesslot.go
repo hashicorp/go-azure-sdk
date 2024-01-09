@@ -19,7 +19,8 @@ type ListBasicPublishingCredentialsPoliciesSlotOperationResponse struct {
 }
 
 type ListBasicPublishingCredentialsPoliciesSlotCompleteResult struct {
-	Items []CsmPublishingCredentialsPoliciesEntity
+	LatestHttpResponse *http.Response
+	Items              []CsmPublishingCredentialsPoliciesEntity
 }
 
 // ListBasicPublishingCredentialsPoliciesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesSlotCompleteMatchin
 	}
 
 	result = ListBasicPublishingCredentialsPoliciesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

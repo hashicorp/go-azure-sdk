@@ -19,7 +19,8 @@ type ListByNamespaceOperationResponse struct {
 }
 
 type ListByNamespaceCompleteResult struct {
-	Items []WcfRelay
+	LatestHttpResponse *http.Response
+	Items              []WcfRelay
 }
 
 // ListByNamespace ...
@@ -83,7 +84,8 @@ func (c WCFRelaysClient) ListByNamespaceCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListByNamespaceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

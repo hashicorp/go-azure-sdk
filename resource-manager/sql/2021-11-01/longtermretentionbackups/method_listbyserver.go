@@ -19,7 +19,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []LongTermRetentionBackup
+	LatestHttpResponse *http.Response
+	Items              []LongTermRetentionBackup
 }
 
 type ListByServerOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LongTermRetentionBackupsClient) ListByServerCompleteMatchingPredicate(ct
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

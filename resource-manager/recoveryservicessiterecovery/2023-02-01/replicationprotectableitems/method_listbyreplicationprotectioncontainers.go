@@ -19,7 +19,8 @@ type ListByReplicationProtectionContainersOperationResponse struct {
 }
 
 type ListByReplicationProtectionContainersCompleteResult struct {
-	Items []ProtectableItem
+	LatestHttpResponse *http.Response
+	Items              []ProtectableItem
 }
 
 type ListByReplicationProtectionContainersOperationOptions struct {
@@ -115,7 +116,8 @@ func (c ReplicationProtectableItemsClient) ListByReplicationProtectionContainers
 	}
 
 	result = ListByReplicationProtectionContainersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

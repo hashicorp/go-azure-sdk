@@ -19,7 +19,8 @@ type ListStaticSiteCustomDomainsOperationResponse struct {
 }
 
 type ListStaticSiteCustomDomainsCompleteResult struct {
-	Items []StaticSiteCustomDomainOverviewARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteCustomDomainOverviewARMResource
 }
 
 // ListStaticSiteCustomDomains ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) ListStaticSiteCustomDomainsCompleteMatchingPredicate(
 	}
 
 	result = ListStaticSiteCustomDomainsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

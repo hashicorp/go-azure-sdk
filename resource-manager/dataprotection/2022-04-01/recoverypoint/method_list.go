@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []AzureBackupRecoveryPointResource
+	LatestHttpResponse *http.Response
+	Items              []AzureBackupRecoveryPointResource
 }
 
 type ListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c RecoveryPointClient) ListCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

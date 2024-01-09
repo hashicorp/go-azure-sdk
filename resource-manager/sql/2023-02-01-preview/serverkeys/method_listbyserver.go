@@ -20,7 +20,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []ServerKey
+	LatestHttpResponse *http.Response
+	Items              []ServerKey
 }
 
 // ListByServer ...
@@ -84,7 +85,8 @@ func (c ServerKeysClient) ListByServerCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListByServiceOperationResponse struct {
 }
 
 type ListByServiceCompleteResult struct {
-	Items []PrivateEndpointConnection
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnection
 }
 
 type ListByServiceOperationOptions struct {
@@ -111,7 +112,8 @@ func (c PrivateEndpointConnectionsClient) ListByServiceCompleteMatchingPredicate
 	}
 
 	result = ListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

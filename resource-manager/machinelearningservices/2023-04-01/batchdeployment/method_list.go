@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []BatchDeploymentTrackedResource
+	LatestHttpResponse *http.Response
+	Items              []BatchDeploymentTrackedResource
 }
 
 type ListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c BatchDeploymentClient) ListCompleteMatchingPredicate(ctx context.Context
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

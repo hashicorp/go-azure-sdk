@@ -20,7 +20,8 @@ type GetAllOperationResponse struct {
 }
 
 type GetAllCompleteResult struct {
-	Items []SmartGroup
+	LatestHttpResponse *http.Response
+	Items              []SmartGroup
 }
 
 type GetAllOperationOptions struct {
@@ -152,7 +153,8 @@ func (c SmartGroupsClient) GetAllCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = GetAllCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

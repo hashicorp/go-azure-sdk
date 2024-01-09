@@ -19,7 +19,8 @@ type ListByHostPoolOperationResponse struct {
 }
 
 type ListByHostPoolCompleteResult struct {
-	Items []UserSession
+	LatestHttpResponse *http.Response
+	Items              []UserSession
 }
 
 type ListByHostPoolOperationOptions struct {
@@ -123,7 +124,8 @@ func (c UserSessionClient) ListByHostPoolCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ListByHostPoolCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

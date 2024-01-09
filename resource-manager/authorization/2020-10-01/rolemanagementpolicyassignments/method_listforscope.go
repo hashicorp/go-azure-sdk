@@ -20,7 +20,8 @@ type ListForScopeOperationResponse struct {
 }
 
 type ListForScopeCompleteResult struct {
-	Items []RoleManagementPolicyAssignment
+	LatestHttpResponse *http.Response
+	Items              []RoleManagementPolicyAssignment
 }
 
 // ListForScope ...
@@ -84,7 +85,8 @@ func (c RoleManagementPolicyAssignmentsClient) ListForScopeCompleteMatchingPredi
 	}
 
 	result = ListForScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

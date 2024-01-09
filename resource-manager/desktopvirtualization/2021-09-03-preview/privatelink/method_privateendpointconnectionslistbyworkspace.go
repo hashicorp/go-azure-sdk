@@ -19,7 +19,8 @@ type PrivateEndpointConnectionsListByWorkspaceOperationResponse struct {
 }
 
 type PrivateEndpointConnectionsListByWorkspaceCompleteResult struct {
-	Items []PrivateEndpointConnectionWithSystemData
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnectionWithSystemData
 }
 
 // PrivateEndpointConnectionsListByWorkspace ...
@@ -83,7 +84,8 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspaceCompleteMatc
 	}
 
 	result = PrivateEndpointConnectionsListByWorkspaceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListAtSubscriptionScopeOperationResponse struct {
 }
 
 type ListAtSubscriptionScopeCompleteResult struct {
-	Items []DeploymentExtended
+	LatestHttpResponse *http.Response
+	Items              []DeploymentExtended
 }
 
 type ListAtSubscriptionScopeOperationOptions struct {
@@ -116,7 +117,8 @@ func (c DeploymentsClient) ListAtSubscriptionScopeCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListAtSubscriptionScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

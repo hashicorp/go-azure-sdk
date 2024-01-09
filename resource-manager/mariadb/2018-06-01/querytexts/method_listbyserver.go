@@ -19,7 +19,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []QueryText
+	LatestHttpResponse *http.Response
+	Items              []QueryText
 }
 
 type ListByServerOperationOptions struct {
@@ -111,7 +112,8 @@ func (c QueryTextsClient) ListByServerCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

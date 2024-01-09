@@ -20,7 +20,8 @@ type ListRecommendedRulesForHostingEnvironmentOperationResponse struct {
 }
 
 type ListRecommendedRulesForHostingEnvironmentCompleteResult struct {
-	Items []Recommendation
+	LatestHttpResponse *http.Response
+	Items              []Recommendation
 }
 
 type ListRecommendedRulesForHostingEnvironmentOperationOptions struct {
@@ -116,7 +117,8 @@ func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironmentComplete
 	}
 
 	result = ListRecommendedRulesForHostingEnvironmentCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

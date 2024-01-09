@@ -19,7 +19,8 @@ type ListByApiOperationResponse struct {
 }
 
 type ListByApiCompleteResult struct {
-	Items []ResolverContract
+	LatestHttpResponse *http.Response
+	Items              []ResolverContract
 }
 
 type ListByApiOperationOptions struct {
@@ -119,7 +120,8 @@ func (c GraphQLApiResolverClient) ListByApiCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListByApiCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

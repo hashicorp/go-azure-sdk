@@ -23,7 +23,8 @@ type SuspendOperationResponse struct {
 }
 
 type SuspendCompleteResult struct {
-	Items []Site
+	LatestHttpResponse *http.Response
+	Items              []Site
 }
 
 // Suspend ...

@@ -19,7 +19,8 @@ type ListWorkerPoolSkusOperationResponse struct {
 }
 
 type ListWorkerPoolSkusCompleteResult struct {
-	Items []SkuInfo
+	LatestHttpResponse *http.Response
+	Items              []SkuInfo
 }
 
 // ListWorkerPoolSkus ...
@@ -83,7 +84,8 @@ func (c AppServiceEnvironmentsClient) ListWorkerPoolSkusCompleteMatchingPredicat
 	}
 
 	result = ListWorkerPoolSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

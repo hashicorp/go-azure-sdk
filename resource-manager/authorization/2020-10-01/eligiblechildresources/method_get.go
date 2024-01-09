@@ -20,7 +20,8 @@ type GetOperationResponse struct {
 }
 
 type GetCompleteResult struct {
-	Items []EligibleChildResource
+	LatestHttpResponse *http.Response
+	Items              []EligibleChildResource
 }
 
 type GetOperationOptions struct {
@@ -112,7 +113,8 @@ func (c EligibleChildResourcesClient) GetCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = GetCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

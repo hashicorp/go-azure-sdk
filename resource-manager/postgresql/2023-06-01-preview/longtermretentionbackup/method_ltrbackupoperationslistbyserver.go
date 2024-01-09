@@ -19,7 +19,8 @@ type LtrBackupOperationsListByServerOperationResponse struct {
 }
 
 type LtrBackupOperationsListByServerCompleteResult struct {
-	Items []LtrServerBackupOperation
+	LatestHttpResponse *http.Response
+	Items              []LtrServerBackupOperation
 }
 
 // LtrBackupOperationsListByServer ...
@@ -83,7 +84,8 @@ func (c LongTermRetentionBackupClient) LtrBackupOperationsListByServerCompleteMa
 	}
 
 	result = LtrBackupOperationsListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

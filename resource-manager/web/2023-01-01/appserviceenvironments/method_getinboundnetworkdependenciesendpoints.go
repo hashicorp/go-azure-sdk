@@ -20,7 +20,8 @@ type GetInboundNetworkDependenciesEndpointsOperationResponse struct {
 }
 
 type GetInboundNetworkDependenciesEndpointsCompleteResult struct {
-	Items []InboundEnvironmentEndpoint
+	LatestHttpResponse *http.Response
+	Items              []InboundEnvironmentEndpoint
 }
 
 // GetInboundNetworkDependenciesEndpoints ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) GetInboundNetworkDependenciesEndpointsComp
 	}
 
 	result = GetInboundNetworkDependenciesEndpointsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

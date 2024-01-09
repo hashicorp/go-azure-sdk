@@ -20,7 +20,8 @@ type ListSlotsOperationResponse struct {
 }
 
 type ListSlotsCompleteResult struct {
-	Items []Site
+	LatestHttpResponse *http.Response
+	Items              []Site
 }
 
 // ListSlots ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListSlotsCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = ListSlotsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

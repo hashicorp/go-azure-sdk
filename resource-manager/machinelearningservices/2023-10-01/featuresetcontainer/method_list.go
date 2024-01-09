@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []FeaturesetContainerResource
+	LatestHttpResponse *http.Response
+	Items              []FeaturesetContainerResource
 }
 
 type ListOperationOptions struct {
@@ -135,7 +136,8 @@ func (c FeaturesetContainerClient) ListCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

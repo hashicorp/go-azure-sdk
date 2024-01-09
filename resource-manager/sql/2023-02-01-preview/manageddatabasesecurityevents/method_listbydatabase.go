@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []SecurityEvent
+	LatestHttpResponse *http.Response
+	Items              []SecurityEvent
 }
 
 type ListByDatabaseOperationOptions struct {
@@ -120,7 +121,8 @@ func (c ManagedDatabaseSecurityEventsClient) ListByDatabaseCompleteMatchingPredi
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

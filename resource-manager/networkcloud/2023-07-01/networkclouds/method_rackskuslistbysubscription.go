@@ -20,7 +20,8 @@ type RackSkusListBySubscriptionOperationResponse struct {
 }
 
 type RackSkusListBySubscriptionCompleteResult struct {
-	Items []RackSku
+	LatestHttpResponse *http.Response
+	Items              []RackSku
 }
 
 // RackSkusListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) RackSkusListBySubscriptionCompleteMatchingPredicate
 	}
 
 	result = RackSkusListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

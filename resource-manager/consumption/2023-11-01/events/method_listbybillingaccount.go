@@ -19,7 +19,8 @@ type ListByBillingAccountOperationResponse struct {
 }
 
 type ListByBillingAccountCompleteResult struct {
-	Items []EventSummary
+	LatestHttpResponse *http.Response
+	Items              []EventSummary
 }
 
 type ListByBillingAccountOperationOptions struct {
@@ -111,7 +112,8 @@ func (c EventsClient) ListByBillingAccountCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListByBillingAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

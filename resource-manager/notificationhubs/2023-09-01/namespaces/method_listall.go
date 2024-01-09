@@ -20,7 +20,8 @@ type ListAllOperationResponse struct {
 }
 
 type ListAllCompleteResult struct {
-	Items []NamespaceResource
+	LatestHttpResponse *http.Response
+	Items              []NamespaceResource
 }
 
 type ListAllOperationOptions struct {
@@ -112,7 +113,8 @@ func (c NamespacesClient) ListAllCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = ListAllCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

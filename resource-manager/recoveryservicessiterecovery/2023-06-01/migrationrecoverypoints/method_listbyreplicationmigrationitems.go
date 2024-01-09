@@ -19,7 +19,8 @@ type ListByReplicationMigrationItemsOperationResponse struct {
 }
 
 type ListByReplicationMigrationItemsCompleteResult struct {
-	Items []MigrationRecoveryPoint
+	LatestHttpResponse *http.Response
+	Items              []MigrationRecoveryPoint
 }
 
 // ListByReplicationMigrationItems ...
@@ -83,7 +84,8 @@ func (c MigrationRecoveryPointsClient) ListByReplicationMigrationItemsCompleteMa
 	}
 
 	result = ListByReplicationMigrationItemsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

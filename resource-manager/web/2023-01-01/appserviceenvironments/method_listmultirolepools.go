@@ -20,7 +20,8 @@ type ListMultiRolePoolsOperationResponse struct {
 }
 
 type ListMultiRolePoolsCompleteResult struct {
-	Items []WorkerPoolResource
+	LatestHttpResponse *http.Response
+	Items              []WorkerPoolResource
 }
 
 // ListMultiRolePools ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListMultiRolePoolsCompleteMatchingPredicat
 	}
 
 	result = ListMultiRolePoolsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

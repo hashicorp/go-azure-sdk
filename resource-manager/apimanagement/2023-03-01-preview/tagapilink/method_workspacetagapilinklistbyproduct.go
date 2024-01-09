@@ -19,7 +19,8 @@ type WorkspaceTagApiLinkListByProductOperationResponse struct {
 }
 
 type WorkspaceTagApiLinkListByProductCompleteResult struct {
-	Items []TagApiLinkContract
+	LatestHttpResponse *http.Response
+	Items              []TagApiLinkContract
 }
 
 type WorkspaceTagApiLinkListByProductOperationOptions struct {
@@ -119,7 +120,8 @@ func (c TagApiLinkClient) WorkspaceTagApiLinkListByProductCompleteMatchingPredic
 	}
 
 	result = WorkspaceTagApiLinkListByProductCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

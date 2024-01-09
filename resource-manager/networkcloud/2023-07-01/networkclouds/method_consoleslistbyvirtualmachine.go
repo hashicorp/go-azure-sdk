@@ -19,7 +19,8 @@ type ConsolesListByVirtualMachineOperationResponse struct {
 }
 
 type ConsolesListByVirtualMachineCompleteResult struct {
-	Items []Console
+	LatestHttpResponse *http.Response
+	Items              []Console
 }
 
 // ConsolesListByVirtualMachine ...
@@ -83,7 +84,8 @@ func (c NetworkcloudsClient) ConsolesListByVirtualMachineCompleteMatchingPredica
 	}
 
 	result = ConsolesListByVirtualMachineCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

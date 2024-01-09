@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []ScalingPlanPooledSchedule
+	LatestHttpResponse *http.Response
+	Items              []ScalingPlanPooledSchedule
 }
 
 type ListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ScalingPlanPooledScheduleClient) ListCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

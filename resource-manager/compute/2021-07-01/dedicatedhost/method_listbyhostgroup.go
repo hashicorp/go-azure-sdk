@@ -19,7 +19,8 @@ type ListByHostGroupOperationResponse struct {
 }
 
 type ListByHostGroupCompleteResult struct {
-	Items []DedicatedHost
+	LatestHttpResponse *http.Response
+	Items              []DedicatedHost
 }
 
 // ListByHostGroup ...
@@ -83,7 +84,8 @@ func (c DedicatedHostClient) ListByHostGroupCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByHostGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

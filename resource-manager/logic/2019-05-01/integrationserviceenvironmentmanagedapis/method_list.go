@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []IntegrationServiceEnvironmentManagedApi
+	LatestHttpResponse *http.Response
+	Items              []IntegrationServiceEnvironmentManagedApi
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c IntegrationServiceEnvironmentManagedApisClient) ListCompleteMatchingPred
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

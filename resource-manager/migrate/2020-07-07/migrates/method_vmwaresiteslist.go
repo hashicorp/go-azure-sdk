@@ -20,7 +20,8 @@ type VMwareSitesListOperationResponse struct {
 }
 
 type VMwareSitesListCompleteResult struct {
-	Items []VMwareSite
+	LatestHttpResponse *http.Response
+	Items              []VMwareSite
 }
 
 // VMwareSitesList ...
@@ -84,7 +85,8 @@ func (c MigratesClient) VMwareSitesListCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = VMwareSitesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

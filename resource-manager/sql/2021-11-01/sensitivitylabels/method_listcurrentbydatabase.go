@@ -20,7 +20,8 @@ type ListCurrentByDatabaseOperationResponse struct {
 }
 
 type ListCurrentByDatabaseCompleteResult struct {
-	Items []SensitivityLabel
+	LatestHttpResponse *http.Response
+	Items              []SensitivityLabel
 }
 
 type ListCurrentByDatabaseOperationOptions struct {
@@ -116,7 +117,8 @@ func (c SensitivityLabelsClient) ListCurrentByDatabaseCompleteMatchingPredicate(
 	}
 
 	result = ListCurrentByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

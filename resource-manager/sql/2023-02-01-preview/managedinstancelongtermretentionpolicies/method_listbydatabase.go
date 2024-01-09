@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []ManagedInstanceLongTermRetentionPolicy
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceLongTermRetentionPolicy
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c ManagedInstanceLongTermRetentionPoliciesClient) ListByDatabaseCompleteMa
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

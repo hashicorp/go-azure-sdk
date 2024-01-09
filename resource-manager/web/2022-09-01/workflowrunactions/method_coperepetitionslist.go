@@ -19,7 +19,8 @@ type CopeRepetitionsListOperationResponse struct {
 }
 
 type CopeRepetitionsListCompleteResult struct {
-	Items []WorkflowRunActionRepetitionDefinition
+	LatestHttpResponse *http.Response
+	Items              []WorkflowRunActionRepetitionDefinition
 }
 
 // CopeRepetitionsList ...
@@ -83,7 +84,8 @@ func (c WorkflowRunActionsClient) CopeRepetitionsListCompleteMatchingPredicate(c
 	}
 
 	result = CopeRepetitionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

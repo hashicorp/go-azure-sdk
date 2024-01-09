@@ -19,7 +19,8 @@ type ListSiteDetectorsSlotOperationResponse struct {
 }
 
 type ListSiteDetectorsSlotCompleteResult struct {
-	Items []DetectorDefinitionResource
+	LatestHttpResponse *http.Response
+	Items              []DetectorDefinitionResource
 }
 
 // ListSiteDetectorsSlot ...
@@ -83,7 +84,8 @@ func (c DiagnosticsClient) ListSiteDetectorsSlotCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListSiteDetectorsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

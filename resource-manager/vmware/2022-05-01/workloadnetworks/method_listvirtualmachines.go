@@ -19,7 +19,8 @@ type ListVirtualMachinesOperationResponse struct {
 }
 
 type ListVirtualMachinesCompleteResult struct {
-	Items []WorkloadNetworkVirtualMachine
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkVirtualMachine
 }
 
 // ListVirtualMachines ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListVirtualMachinesCompleteMatchingPredicate(ctx
 	}
 
 	result = ListVirtualMachinesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

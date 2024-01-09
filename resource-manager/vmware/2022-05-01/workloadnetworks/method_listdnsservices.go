@@ -19,7 +19,8 @@ type ListDnsServicesOperationResponse struct {
 }
 
 type ListDnsServicesCompleteResult struct {
-	Items []WorkloadNetworkDnsService
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkDnsService
 }
 
 // ListDnsServices ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListDnsServicesCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListDnsServicesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

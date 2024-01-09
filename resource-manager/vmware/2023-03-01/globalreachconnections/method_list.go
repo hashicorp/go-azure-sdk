@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []GlobalReachConnection
+	LatestHttpResponse *http.Response
+	Items              []GlobalReachConnection
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c GlobalReachConnectionsClient) ListCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

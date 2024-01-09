@@ -19,7 +19,8 @@ type ListByManagementGroupOperationResponse struct {
 }
 
 type ListByManagementGroupCompleteResult struct {
-	Items []PolicyDefinitionVersion
+	LatestHttpResponse *http.Response
+	Items              []PolicyDefinitionVersion
 }
 
 type ListByManagementGroupOperationOptions struct {
@@ -111,7 +112,8 @@ func (c PolicyDefinitionVersionsClient) ListByManagementGroupCompleteMatchingPre
 	}
 
 	result = ListByManagementGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

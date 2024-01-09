@@ -19,7 +19,8 @@ type ListWebWorkerUsagesOperationResponse struct {
 }
 
 type ListWebWorkerUsagesCompleteResult struct {
-	Items []Usage
+	LatestHttpResponse *http.Response
+	Items              []Usage
 }
 
 // ListWebWorkerUsages ...
@@ -83,7 +84,8 @@ func (c AppServiceEnvironmentsClient) ListWebWorkerUsagesCompleteMatchingPredica
 	}
 
 	result = ListWebWorkerUsagesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

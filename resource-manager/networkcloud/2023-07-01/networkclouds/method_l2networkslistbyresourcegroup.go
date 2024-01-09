@@ -20,7 +20,8 @@ type L2NetworksListByResourceGroupOperationResponse struct {
 }
 
 type L2NetworksListByResourceGroupCompleteResult struct {
-	Items []L2Network
+	LatestHttpResponse *http.Response
+	Items              []L2Network
 }
 
 // L2NetworksListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) L2NetworksListByResourceGroupCompleteMatchingPredic
 	}
 
 	result = L2NetworksListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

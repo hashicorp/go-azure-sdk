@@ -20,7 +20,8 @@ type OperationStatusListOperationResponse struct {
 }
 
 type OperationStatusListCompleteResult struct {
-	Items []OperationStatusResult
+	LatestHttpResponse *http.Response
+	Items              []OperationStatusResult
 }
 
 // OperationStatusList ...
@@ -84,7 +85,8 @@ func (c OperationsInAClusterClient) OperationStatusListCompleteMatchingPredicate
 	}
 
 	result = OperationStatusListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

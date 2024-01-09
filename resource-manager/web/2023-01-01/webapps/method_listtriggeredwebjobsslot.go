@@ -19,7 +19,8 @@ type ListTriggeredWebJobsSlotOperationResponse struct {
 }
 
 type ListTriggeredWebJobsSlotCompleteResult struct {
-	Items []TriggeredWebJob
+	LatestHttpResponse *http.Response
+	Items              []TriggeredWebJob
 }
 
 // ListTriggeredWebJobsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListTriggeredWebJobsSlotCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListTriggeredWebJobsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []AlertRule
+	LatestHttpResponse *http.Response
+	Items              []AlertRule
 }
 
 type ListOperationOptions struct {
@@ -112,7 +113,8 @@ func (c SmartDetectorAlertRulesClient) ListCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

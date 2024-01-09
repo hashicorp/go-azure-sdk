@@ -20,7 +20,8 @@ type ComponentsListByResourceGroupOperationResponse struct {
 }
 
 type ComponentsListByResourceGroupCompleteResult struct {
-	Items []ApplicationInsightsComponent
+	LatestHttpResponse *http.Response
+	Items              []ApplicationInsightsComponent
 }
 
 // ComponentsListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c ComponentsAPIsClient) ComponentsListByResourceGroupCompleteMatchingPredi
 	}
 
 	result = ComponentsListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListHistoryForHostingEnvironmentOperationResponse struct {
 }
 
 type ListHistoryForHostingEnvironmentCompleteResult struct {
-	Items []Recommendation
+	LatestHttpResponse *http.Response
+	Items              []Recommendation
 }
 
 type ListHistoryForHostingEnvironmentOperationOptions struct {
@@ -116,7 +117,8 @@ func (c RecommendationsClient) ListHistoryForHostingEnvironmentCompleteMatchingP
 	}
 
 	result = ListHistoryForHostingEnvironmentCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

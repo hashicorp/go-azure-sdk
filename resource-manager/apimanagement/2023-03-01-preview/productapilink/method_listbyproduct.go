@@ -19,7 +19,8 @@ type ListByProductOperationResponse struct {
 }
 
 type ListByProductCompleteResult struct {
-	Items []ProductApiLinkContract
+	LatestHttpResponse *http.Response
+	Items              []ProductApiLinkContract
 }
 
 type ListByProductOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ProductApiLinkClient) ListByProductCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListByProductCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

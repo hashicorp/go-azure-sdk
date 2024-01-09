@@ -20,7 +20,8 @@ type ListPremierAddOnOffersOperationResponse struct {
 }
 
 type ListPremierAddOnOffersCompleteResult struct {
-	Items []PremierAddOnOffer
+	LatestHttpResponse *http.Response
+	Items              []PremierAddOnOffer
 }
 
 // ListPremierAddOnOffers ...
@@ -84,7 +85,8 @@ func (c ResourceProvidersClient) ListPremierAddOnOffersCompleteMatchingPredicate
 	}
 
 	result = ListPremierAddOnOffersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

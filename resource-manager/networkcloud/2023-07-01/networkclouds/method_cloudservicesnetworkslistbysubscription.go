@@ -20,7 +20,8 @@ type CloudServicesNetworksListBySubscriptionOperationResponse struct {
 }
 
 type CloudServicesNetworksListBySubscriptionCompleteResult struct {
-	Items []CloudServicesNetwork
+	LatestHttpResponse *http.Response
+	Items              []CloudServicesNetwork
 }
 
 // CloudServicesNetworksListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) CloudServicesNetworksListBySubscriptionCompleteMatc
 	}
 
 	result = CloudServicesNetworksListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

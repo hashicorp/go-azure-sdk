@@ -19,7 +19,8 @@ type ExpandOperationResponse struct {
 }
 
 type ExpandCompleteResult struct {
-	Items []ExpandMsixImage
+	LatestHttpResponse *http.Response
+	Items              []ExpandMsixImage
 }
 
 // Expand ...
@@ -83,7 +84,8 @@ func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id
 	}
 
 	result = ExpandCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

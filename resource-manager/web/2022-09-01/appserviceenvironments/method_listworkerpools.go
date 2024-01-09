@@ -20,7 +20,8 @@ type ListWorkerPoolsOperationResponse struct {
 }
 
 type ListWorkerPoolsCompleteResult struct {
-	Items []WorkerPoolResource
+	LatestHttpResponse *http.Response
+	Items              []WorkerPoolResource
 }
 
 // ListWorkerPools ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListWorkerPoolsCompleteMatchingPredicate(c
 	}
 
 	result = ListWorkerPoolsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

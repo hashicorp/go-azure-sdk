@@ -20,7 +20,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []EncryptionProtector
+	LatestHttpResponse *http.Response
+	Items              []EncryptionProtector
 }
 
 // ListByServer ...
@@ -84,7 +85,8 @@ func (c EncryptionProtectorsClient) ListByServerCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

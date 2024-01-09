@@ -19,7 +19,8 @@ type GetWebAppStacksOperationResponse struct {
 }
 
 type GetWebAppStacksCompleteResult struct {
-	Items []WebAppStack
+	LatestHttpResponse *http.Response
+	Items              []WebAppStack
 }
 
 type GetWebAppStacksOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ProviderClient) GetWebAppStacksCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = GetWebAppStacksCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

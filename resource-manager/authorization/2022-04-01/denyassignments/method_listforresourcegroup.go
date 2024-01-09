@@ -20,7 +20,8 @@ type ListForResourceGroupOperationResponse struct {
 }
 
 type ListForResourceGroupCompleteResult struct {
-	Items []DenyAssignment
+	LatestHttpResponse *http.Response
+	Items              []DenyAssignment
 }
 
 type ListForResourceGroupOperationOptions struct {
@@ -112,7 +113,8 @@ func (c DenyAssignmentsClient) ListForResourceGroupCompleteMatchingPredicate(ctx
 	}
 
 	result = ListForResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

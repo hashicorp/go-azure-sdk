@@ -19,7 +19,8 @@ type ListPerfMonCountersSlotOperationResponse struct {
 }
 
 type ListPerfMonCountersSlotCompleteResult struct {
-	Items []PerfMonResponse
+	LatestHttpResponse *http.Response
+	Items              []PerfMonResponse
 }
 
 type ListPerfMonCountersSlotOperationOptions struct {
@@ -111,7 +112,8 @@ func (c WebAppsClient) ListPerfMonCountersSlotCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListPerfMonCountersSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

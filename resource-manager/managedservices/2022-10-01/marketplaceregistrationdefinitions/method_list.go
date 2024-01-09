@@ -20,7 +20,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []MarketplaceRegistrationDefinition
+	LatestHttpResponse *http.Response
+	Items              []MarketplaceRegistrationDefinition
 }
 
 type ListOperationOptions struct {
@@ -112,7 +113,8 @@ func (c MarketplaceRegistrationDefinitionsClient) ListCompleteMatchingPredicate(
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

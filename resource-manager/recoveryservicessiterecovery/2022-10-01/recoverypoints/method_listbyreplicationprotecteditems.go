@@ -19,7 +19,8 @@ type ListByReplicationProtectedItemsOperationResponse struct {
 }
 
 type ListByReplicationProtectedItemsCompleteResult struct {
-	Items []RecoveryPoint
+	LatestHttpResponse *http.Response
+	Items              []RecoveryPoint
 }
 
 // ListByReplicationProtectedItems ...
@@ -83,7 +84,8 @@ func (c RecoveryPointsClient) ListByReplicationProtectedItemsCompleteMatchingPre
 	}
 
 	result = ListByReplicationProtectedItemsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

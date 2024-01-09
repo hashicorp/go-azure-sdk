@@ -20,7 +20,8 @@ type ListForScopeOperationResponse struct {
 }
 
 type ListForScopeCompleteResult struct {
-	Items []DenyAssignment
+	LatestHttpResponse *http.Response
+	Items              []DenyAssignment
 }
 
 type ListForScopeOperationOptions struct {
@@ -112,7 +113,8 @@ func (c DenyAssignmentsClient) ListForScopeCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListForScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

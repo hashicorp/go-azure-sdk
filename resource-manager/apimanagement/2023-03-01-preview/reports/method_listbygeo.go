@@ -19,7 +19,8 @@ type ListByGeoOperationResponse struct {
 }
 
 type ListByGeoCompleteResult struct {
-	Items []ReportRecordContract
+	LatestHttpResponse *http.Response
+	Items              []ReportRecordContract
 }
 
 type ListByGeoOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ReportsClient) ListByGeoCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = ListByGeoCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }
