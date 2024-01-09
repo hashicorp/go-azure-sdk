@@ -175,11 +175,15 @@ func parseKnownPerfCounterDataSourceStreams(input string) (*KnownPerfCounterData
 type KnownSyslogDataSourceFacilityNames string
 
 const (
+	KnownSyslogDataSourceFacilityNamesAlert      KnownSyslogDataSourceFacilityNames = "alert"
 	KnownSyslogDataSourceFacilityNamesAny        KnownSyslogDataSourceFacilityNames = "*"
+	KnownSyslogDataSourceFacilityNamesAudit      KnownSyslogDataSourceFacilityNames = "audit"
 	KnownSyslogDataSourceFacilityNamesAuth       KnownSyslogDataSourceFacilityNames = "auth"
 	KnownSyslogDataSourceFacilityNamesAuthpriv   KnownSyslogDataSourceFacilityNames = "authpriv"
+	KnownSyslogDataSourceFacilityNamesClock      KnownSyslogDataSourceFacilityNames = "clock"
 	KnownSyslogDataSourceFacilityNamesCron       KnownSyslogDataSourceFacilityNames = "cron"
 	KnownSyslogDataSourceFacilityNamesDaemon     KnownSyslogDataSourceFacilityNames = "daemon"
+	KnownSyslogDataSourceFacilityNamesFtp        KnownSyslogDataSourceFacilityNames = "ftp"
 	KnownSyslogDataSourceFacilityNamesKern       KnownSyslogDataSourceFacilityNames = "kern"
 	KnownSyslogDataSourceFacilityNamesLocalFive  KnownSyslogDataSourceFacilityNames = "local5"
 	KnownSyslogDataSourceFacilityNamesLocalFour  KnownSyslogDataSourceFacilityNames = "local4"
@@ -193,6 +197,8 @@ const (
 	KnownSyslogDataSourceFacilityNamesMail       KnownSyslogDataSourceFacilityNames = "mail"
 	KnownSyslogDataSourceFacilityNamesMark       KnownSyslogDataSourceFacilityNames = "mark"
 	KnownSyslogDataSourceFacilityNamesNews       KnownSyslogDataSourceFacilityNames = "news"
+	KnownSyslogDataSourceFacilityNamesNopri      KnownSyslogDataSourceFacilityNames = "nopri"
+	KnownSyslogDataSourceFacilityNamesNtp        KnownSyslogDataSourceFacilityNames = "ntp"
 	KnownSyslogDataSourceFacilityNamesSyslog     KnownSyslogDataSourceFacilityNames = "syslog"
 	KnownSyslogDataSourceFacilityNamesUser       KnownSyslogDataSourceFacilityNames = "user"
 	KnownSyslogDataSourceFacilityNamesUucp       KnownSyslogDataSourceFacilityNames = "uucp"
@@ -200,11 +206,15 @@ const (
 
 func PossibleValuesForKnownSyslogDataSourceFacilityNames() []string {
 	return []string{
+		string(KnownSyslogDataSourceFacilityNamesAlert),
 		string(KnownSyslogDataSourceFacilityNamesAny),
+		string(KnownSyslogDataSourceFacilityNamesAudit),
 		string(KnownSyslogDataSourceFacilityNamesAuth),
 		string(KnownSyslogDataSourceFacilityNamesAuthpriv),
+		string(KnownSyslogDataSourceFacilityNamesClock),
 		string(KnownSyslogDataSourceFacilityNamesCron),
 		string(KnownSyslogDataSourceFacilityNamesDaemon),
+		string(KnownSyslogDataSourceFacilityNamesFtp),
 		string(KnownSyslogDataSourceFacilityNamesKern),
 		string(KnownSyslogDataSourceFacilityNamesLocalFive),
 		string(KnownSyslogDataSourceFacilityNamesLocalFour),
@@ -218,6 +228,8 @@ func PossibleValuesForKnownSyslogDataSourceFacilityNames() []string {
 		string(KnownSyslogDataSourceFacilityNamesMail),
 		string(KnownSyslogDataSourceFacilityNamesMark),
 		string(KnownSyslogDataSourceFacilityNamesNews),
+		string(KnownSyslogDataSourceFacilityNamesNopri),
+		string(KnownSyslogDataSourceFacilityNamesNtp),
 		string(KnownSyslogDataSourceFacilityNamesSyslog),
 		string(KnownSyslogDataSourceFacilityNamesUser),
 		string(KnownSyslogDataSourceFacilityNamesUucp),
@@ -226,11 +238,15 @@ func PossibleValuesForKnownSyslogDataSourceFacilityNames() []string {
 
 func parseKnownSyslogDataSourceFacilityNames(input string) (*KnownSyslogDataSourceFacilityNames, error) {
 	vals := map[string]KnownSyslogDataSourceFacilityNames{
+		"alert":    KnownSyslogDataSourceFacilityNamesAlert,
 		"*":        KnownSyslogDataSourceFacilityNamesAny,
+		"audit":    KnownSyslogDataSourceFacilityNamesAudit,
 		"auth":     KnownSyslogDataSourceFacilityNamesAuth,
 		"authpriv": KnownSyslogDataSourceFacilityNamesAuthpriv,
+		"clock":    KnownSyslogDataSourceFacilityNamesClock,
 		"cron":     KnownSyslogDataSourceFacilityNamesCron,
 		"daemon":   KnownSyslogDataSourceFacilityNamesDaemon,
+		"ftp":      KnownSyslogDataSourceFacilityNamesFtp,
 		"kern":     KnownSyslogDataSourceFacilityNamesKern,
 		"local5":   KnownSyslogDataSourceFacilityNamesLocalFive,
 		"local4":   KnownSyslogDataSourceFacilityNamesLocalFour,
@@ -244,6 +260,8 @@ func parseKnownSyslogDataSourceFacilityNames(input string) (*KnownSyslogDataSour
 		"mail":     KnownSyslogDataSourceFacilityNamesMail,
 		"mark":     KnownSyslogDataSourceFacilityNamesMark,
 		"news":     KnownSyslogDataSourceFacilityNamesNews,
+		"nopri":    KnownSyslogDataSourceFacilityNamesNopri,
+		"ntp":      KnownSyslogDataSourceFacilityNamesNtp,
 		"syslog":   KnownSyslogDataSourceFacilityNamesSyslog,
 		"user":     KnownSyslogDataSourceFacilityNamesUser,
 		"uucp":     KnownSyslogDataSourceFacilityNamesUucp,
