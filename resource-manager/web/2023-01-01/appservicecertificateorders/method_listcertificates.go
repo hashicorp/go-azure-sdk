@@ -19,7 +19,8 @@ type ListCertificatesOperationResponse struct {
 }
 
 type ListCertificatesCompleteResult struct {
-	Items []AppServiceCertificateResource
+	LatestHttpResponse *http.Response
+	Items              []AppServiceCertificateResource
 }
 
 // ListCertificates ...
@@ -83,7 +84,8 @@ func (c AppServiceCertificateOrdersClient) ListCertificatesCompleteMatchingPredi
 	}
 
 	result = ListCertificatesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

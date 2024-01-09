@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []Resource
+	LatestHttpResponse *http.Response
+	Items              []Resource
 }
 
 type ListByDatabaseOperationOptions struct {
@@ -112,7 +113,8 @@ func (c DatabaseSchemasClient) ListByDatabaseCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

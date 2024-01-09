@@ -19,7 +19,8 @@ type GetAllRunAsAccountsInSiteOperationResponse struct {
 }
 
 type GetAllRunAsAccountsInSiteCompleteResult struct {
-	Items []HyperVRunAsAccount
+	LatestHttpResponse *http.Response
+	Items              []HyperVRunAsAccount
 }
 
 // GetAllRunAsAccountsInSite ...
@@ -83,7 +84,8 @@ func (c HyperVRunAsAccountsClient) GetAllRunAsAccountsInSiteCompleteMatchingPred
 	}
 
 	result = GetAllRunAsAccountsInSiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type WorkspaceNamedValueListByServiceOperationResponse struct {
 }
 
 type WorkspaceNamedValueListByServiceCompleteResult struct {
-	Items []NamedValueContract
+	LatestHttpResponse *http.Response
+	Items              []NamedValueContract
 }
 
 type WorkspaceNamedValueListByServiceOperationOptions struct {
@@ -123,7 +124,8 @@ func (c NamedValueClient) WorkspaceNamedValueListByServiceCompleteMatchingPredic
 	}
 
 	result = WorkspaceNamedValueListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

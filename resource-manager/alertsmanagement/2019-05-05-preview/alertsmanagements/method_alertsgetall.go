@@ -20,7 +20,8 @@ type AlertsGetAllOperationResponse struct {
 }
 
 type AlertsGetAllCompleteResult struct {
-	Items []Alert
+	LatestHttpResponse *http.Response
+	Items              []Alert
 }
 
 type AlertsGetAllOperationOptions struct {
@@ -176,7 +177,8 @@ func (c AlertsManagementsClient) AlertsGetAllCompleteMatchingPredicate(ctx conte
 	}
 
 	result = AlertsGetAllCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

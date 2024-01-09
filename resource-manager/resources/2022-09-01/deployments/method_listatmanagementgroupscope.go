@@ -20,7 +20,8 @@ type ListAtManagementGroupScopeOperationResponse struct {
 }
 
 type ListAtManagementGroupScopeCompleteResult struct {
-	Items []DeploymentExtended
+	LatestHttpResponse *http.Response
+	Items              []DeploymentExtended
 }
 
 type ListAtManagementGroupScopeOperationOptions struct {
@@ -116,7 +117,8 @@ func (c DeploymentsClient) ListAtManagementGroupScopeCompleteMatchingPredicate(c
 	}
 
 	result = ListAtManagementGroupScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

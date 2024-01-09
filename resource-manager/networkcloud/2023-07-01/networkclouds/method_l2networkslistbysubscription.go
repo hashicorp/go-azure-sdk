@@ -20,7 +20,8 @@ type L2NetworksListBySubscriptionOperationResponse struct {
 }
 
 type L2NetworksListBySubscriptionCompleteResult struct {
-	Items []L2Network
+	LatestHttpResponse *http.Response
+	Items              []L2Network
 }
 
 // L2NetworksListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) L2NetworksListBySubscriptionCompleteMatchingPredica
 	}
 
 	result = L2NetworksListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

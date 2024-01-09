@@ -19,7 +19,8 @@ type GetAllVCentersInSiteOperationResponse struct {
 }
 
 type GetAllVCentersInSiteCompleteResult struct {
-	Items []VCenter
+	LatestHttpResponse *http.Response
+	Items              []VCenter
 }
 
 type GetAllVCentersInSiteOperationOptions struct {
@@ -111,7 +112,8 @@ func (c VCenterClient) GetAllVCentersInSiteCompleteMatchingPredicate(ctx context
 	}
 
 	result = GetAllVCentersInSiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

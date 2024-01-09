@@ -20,7 +20,8 @@ type ListCapacitiesOperationResponse struct {
 }
 
 type ListCapacitiesCompleteResult struct {
-	Items []StampCapacity
+	LatestHttpResponse *http.Response
+	Items              []StampCapacity
 }
 
 // ListCapacities ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListCapacitiesCompleteMatchingPredicate(ct
 	}
 
 	result = ListCapacitiesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

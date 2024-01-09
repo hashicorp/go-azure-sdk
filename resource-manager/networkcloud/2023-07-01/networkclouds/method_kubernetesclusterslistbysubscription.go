@@ -20,7 +20,8 @@ type KubernetesClustersListBySubscriptionOperationResponse struct {
 }
 
 type KubernetesClustersListBySubscriptionCompleteResult struct {
-	Items []KubernetesCluster
+	LatestHttpResponse *http.Response
+	Items              []KubernetesCluster
 }
 
 // KubernetesClustersListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) KubernetesClustersListBySubscriptionCompleteMatchin
 	}
 
 	result = KubernetesClustersListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

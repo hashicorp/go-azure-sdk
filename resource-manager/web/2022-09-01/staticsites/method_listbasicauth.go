@@ -19,7 +19,8 @@ type ListBasicAuthOperationResponse struct {
 }
 
 type ListBasicAuthCompleteResult struct {
-	Items []StaticSiteBasicAuthPropertiesARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteBasicAuthPropertiesARMResource
 }
 
 // ListBasicAuth ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) ListBasicAuthCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListBasicAuthCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

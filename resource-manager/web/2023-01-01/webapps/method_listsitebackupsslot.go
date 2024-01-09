@@ -19,7 +19,8 @@ type ListSiteBackupsSlotOperationResponse struct {
 }
 
 type ListSiteBackupsSlotCompleteResult struct {
-	Items []BackupItem
+	LatestHttpResponse *http.Response
+	Items              []BackupItem
 }
 
 // ListSiteBackupsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListSiteBackupsSlotCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListSiteBackupsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

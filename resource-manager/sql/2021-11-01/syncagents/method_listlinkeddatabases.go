@@ -19,7 +19,8 @@ type ListLinkedDatabasesOperationResponse struct {
 }
 
 type ListLinkedDatabasesCompleteResult struct {
-	Items []SyncAgentLinkedDatabase
+	LatestHttpResponse *http.Response
+	Items              []SyncAgentLinkedDatabase
 }
 
 // ListLinkedDatabases ...
@@ -83,7 +84,8 @@ func (c SyncAgentsClient) ListLinkedDatabasesCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListLinkedDatabasesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

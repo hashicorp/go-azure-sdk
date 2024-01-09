@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []InstanceFailoverGroup
+	LatestHttpResponse *http.Response
+	Items              []InstanceFailoverGroup
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c InstanceFailoverGroupsClient) ListByLocationCompleteMatchingPredicate(ct
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

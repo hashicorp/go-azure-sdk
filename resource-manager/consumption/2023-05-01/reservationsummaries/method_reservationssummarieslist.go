@@ -20,7 +20,8 @@ type ReservationsSummariesListOperationResponse struct {
 }
 
 type ReservationsSummariesListCompleteResult struct {
-	Items []ReservationSummary
+	LatestHttpResponse *http.Response
+	Items              []ReservationSummary
 }
 
 type ReservationsSummariesListOperationOptions struct {
@@ -132,7 +133,8 @@ func (c ReservationSummariesClient) ReservationsSummariesListCompleteMatchingPre
 	}
 
 	result = ReservationsSummariesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

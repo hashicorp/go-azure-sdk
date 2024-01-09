@@ -19,7 +19,8 @@ type BareMetalMachineKeySetsListByClusterOperationResponse struct {
 }
 
 type BareMetalMachineKeySetsListByClusterCompleteResult struct {
-	Items []BareMetalMachineKeySet
+	LatestHttpResponse *http.Response
+	Items              []BareMetalMachineKeySet
 }
 
 // BareMetalMachineKeySetsListByCluster ...
@@ -83,7 +84,8 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsListByClusterCompleteMatchin
 	}
 
 	result = BareMetalMachineKeySetsListByClusterCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

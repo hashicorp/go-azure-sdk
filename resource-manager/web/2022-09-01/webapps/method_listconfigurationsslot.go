@@ -19,7 +19,8 @@ type ListConfigurationsSlotOperationResponse struct {
 }
 
 type ListConfigurationsSlotCompleteResult struct {
-	Items []SiteConfigResource
+	LatestHttpResponse *http.Response
+	Items              []SiteConfigResource
 }
 
 // ListConfigurationsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListConfigurationsSlotCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListConfigurationsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

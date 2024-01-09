@@ -23,7 +23,8 @@ type ResumeOperationResponse struct {
 }
 
 type ResumeCompleteResult struct {
-	Items []Site
+	LatestHttpResponse *http.Response
+	Items              []Site
 }
 
 // Resume ...

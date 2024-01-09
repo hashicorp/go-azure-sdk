@@ -19,7 +19,8 @@ type ProjectsListByResourceGroupOperationResponse struct {
 }
 
 type ProjectsListByResourceGroupCompleteResult struct {
-	Items []Project
+	LatestHttpResponse *http.Response
+	Items              []Project
 }
 
 // ProjectsListByResourceGroup ...
@@ -83,7 +84,8 @@ func (c StandardOperationClient) ProjectsListByResourceGroupCompleteMatchingPred
 	}
 
 	result = ProjectsListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

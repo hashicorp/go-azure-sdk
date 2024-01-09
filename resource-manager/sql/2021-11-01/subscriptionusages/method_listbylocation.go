@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []SubscriptionUsage
+	LatestHttpResponse *http.Response
+	Items              []SubscriptionUsage
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c SubscriptionUsagesClient) ListByLocationCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

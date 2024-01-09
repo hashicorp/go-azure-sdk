@@ -19,7 +19,8 @@ type ListSiteDetectorResponsesSlotOperationResponse struct {
 }
 
 type ListSiteDetectorResponsesSlotCompleteResult struct {
-	Items []DetectorResponse
+	LatestHttpResponse *http.Response
+	Items              []DetectorResponse
 }
 
 // ListSiteDetectorResponsesSlot ...
@@ -83,7 +84,8 @@ func (c DiagnosticsClient) ListSiteDetectorResponsesSlotCompleteMatchingPredicat
 	}
 
 	result = ListSiteDetectorResponsesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

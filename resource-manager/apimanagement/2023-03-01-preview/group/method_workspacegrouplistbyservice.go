@@ -19,7 +19,8 @@ type WorkspaceGroupListByServiceOperationResponse struct {
 }
 
 type WorkspaceGroupListByServiceCompleteResult struct {
-	Items []GroupContract
+	LatestHttpResponse *http.Response
+	Items              []GroupContract
 }
 
 type WorkspaceGroupListByServiceOperationOptions struct {
@@ -119,7 +120,8 @@ func (c GroupClient) WorkspaceGroupListByServiceCompleteMatchingPredicate(ctx co
 	}
 
 	result = WorkspaceGroupListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

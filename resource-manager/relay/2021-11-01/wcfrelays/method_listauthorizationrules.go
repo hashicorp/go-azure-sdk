@@ -19,7 +19,8 @@ type ListAuthorizationRulesOperationResponse struct {
 }
 
 type ListAuthorizationRulesCompleteResult struct {
-	Items []AuthorizationRule
+	LatestHttpResponse *http.Response
+	Items              []AuthorizationRule
 }
 
 // ListAuthorizationRules ...
@@ -83,7 +84,8 @@ func (c WCFRelaysClient) ListAuthorizationRulesCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListAuthorizationRulesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

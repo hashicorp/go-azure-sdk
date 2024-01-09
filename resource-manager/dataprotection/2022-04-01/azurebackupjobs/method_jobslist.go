@@ -19,7 +19,8 @@ type JobsListOperationResponse struct {
 }
 
 type JobsListCompleteResult struct {
-	Items []AzureBackupJobResource
+	LatestHttpResponse *http.Response
+	Items              []AzureBackupJobResource
 }
 
 // JobsList ...
@@ -83,7 +84,8 @@ func (c AzureBackupJobsClient) JobsListCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = JobsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

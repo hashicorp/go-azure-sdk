@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []WikiContract
+	LatestHttpResponse *http.Response
+	Items              []WikiContract
 }
 
 type ListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiWikiClient) ListCompleteMatchingPredicate(ctx context.Context, id Api
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

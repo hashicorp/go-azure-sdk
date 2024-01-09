@@ -20,7 +20,8 @@ type ListConfigurationsOperationResponse struct {
 }
 
 type ListConfigurationsCompleteResult struct {
-	Items []SiteConfigResource
+	LatestHttpResponse *http.Response
+	Items              []SiteConfigResource
 }
 
 // ListConfigurations ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListConfigurationsCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ListConfigurationsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

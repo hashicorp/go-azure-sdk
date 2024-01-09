@@ -19,7 +19,8 @@ type ListByStepOperationResponse struct {
 }
 
 type ListByStepCompleteResult struct {
-	Items []JobExecution
+	LatestHttpResponse *http.Response
+	Items              []JobExecution
 }
 
 type ListByStepOperationOptions struct {
@@ -135,7 +136,8 @@ func (c JobTargetExecutionsClient) ListByStepCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListByStepCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

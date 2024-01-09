@@ -20,7 +20,8 @@ type ListHistoryForWebAppOperationResponse struct {
 }
 
 type ListHistoryForWebAppCompleteResult struct {
-	Items []Recommendation
+	LatestHttpResponse *http.Response
+	Items              []Recommendation
 }
 
 type ListHistoryForWebAppOperationOptions struct {
@@ -116,7 +117,8 @@ func (c RecommendationsClient) ListHistoryForWebAppCompleteMatchingPredicate(ctx
 	}
 
 	result = ListHistoryForWebAppCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

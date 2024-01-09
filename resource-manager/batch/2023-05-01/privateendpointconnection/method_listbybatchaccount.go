@@ -19,7 +19,8 @@ type ListByBatchAccountOperationResponse struct {
 }
 
 type ListByBatchAccountCompleteResult struct {
-	Items []PrivateEndpointConnection
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnection
 }
 
 type ListByBatchAccountOperationOptions struct {
@@ -111,7 +112,8 @@ func (c PrivateEndpointConnectionClient) ListByBatchAccountCompleteMatchingPredi
 	}
 
 	result = ListByBatchAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

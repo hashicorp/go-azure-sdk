@@ -20,7 +20,8 @@ type CommitmentPlansListPlansByResourceGroupOperationResponse struct {
 }
 
 type CommitmentPlansListPlansByResourceGroupCompleteResult struct {
-	Items []CommitmentPlan
+	LatestHttpResponse *http.Response
+	Items              []CommitmentPlan
 }
 
 // CommitmentPlansListPlansByResourceGroup ...
@@ -84,7 +85,8 @@ func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansListPlansByResour
 	}
 
 	result = CommitmentPlansListPlansByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

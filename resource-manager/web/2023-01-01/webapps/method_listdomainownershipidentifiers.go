@@ -20,7 +20,8 @@ type ListDomainOwnershipIdentifiersOperationResponse struct {
 }
 
 type ListDomainOwnershipIdentifiersCompleteResult struct {
-	Items []Identifier
+	LatestHttpResponse *http.Response
+	Items              []Identifier
 }
 
 // ListDomainOwnershipIdentifiers ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListDomainOwnershipIdentifiersCompleteMatchingPredicate(c
 	}
 
 	result = ListDomainOwnershipIdentifiersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

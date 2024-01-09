@@ -20,7 +20,8 @@ type ExtensionsListOperationResponse struct {
 }
 
 type ExtensionsListCompleteResult struct {
-	Items []Extension
+	LatestHttpResponse *http.Response
+	Items              []Extension
 }
 
 // ExtensionsList ...
@@ -84,7 +85,8 @@ func (c ClusterExtensionsClient) ExtensionsListCompleteMatchingPredicate(ctx con
 	}
 
 	result = ExtensionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

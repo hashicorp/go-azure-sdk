@@ -19,7 +19,8 @@ type ListByPolicyNameOperationResponse struct {
 }
 
 type ListByPolicyNameCompleteResult struct {
-	Items []PrivateEndpointConnection
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnection
 }
 
 // ListByPolicyName ...
@@ -83,7 +84,8 @@ func (c PrivateEndpointConnectionsClient) ListByPolicyNameCompleteMatchingPredic
 	}
 
 	result = ListByPolicyNameCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

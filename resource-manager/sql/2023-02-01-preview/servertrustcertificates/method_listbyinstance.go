@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ServerTrustCertificate
+	LatestHttpResponse *http.Response
+	Items              []ServerTrustCertificate
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ServerTrustCertificatesClient) ListByInstanceCompleteMatchingPredicate(c
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

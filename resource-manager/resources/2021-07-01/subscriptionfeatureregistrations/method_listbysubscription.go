@@ -19,7 +19,8 @@ type ListBySubscriptionOperationResponse struct {
 }
 
 type ListBySubscriptionCompleteResult struct {
-	Items []SubscriptionFeatureRegistration
+	LatestHttpResponse *http.Response
+	Items              []SubscriptionFeatureRegistration
 }
 
 // ListBySubscription ...
@@ -83,7 +84,8 @@ func (c SubscriptionFeatureRegistrationsClient) ListBySubscriptionCompleteMatchi
 	}
 
 	result = ListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

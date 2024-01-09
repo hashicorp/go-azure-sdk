@@ -19,7 +19,8 @@ type AgentPoolsListByKubernetesClusterOperationResponse struct {
 }
 
 type AgentPoolsListByKubernetesClusterCompleteResult struct {
-	Items []AgentPool
+	LatestHttpResponse *http.Response
+	Items              []AgentPool
 }
 
 // AgentPoolsListByKubernetesCluster ...
@@ -83,7 +84,8 @@ func (c NetworkcloudsClient) AgentPoolsListByKubernetesClusterCompleteMatchingPr
 	}
 
 	result = AgentPoolsListByKubernetesClusterCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

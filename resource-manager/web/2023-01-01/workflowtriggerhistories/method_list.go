@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []WorkflowTriggerHistory
+	LatestHttpResponse *http.Response
+	Items              []WorkflowTriggerHistory
 }
 
 type ListOperationOptions struct {
@@ -115,7 +116,8 @@ func (c WorkflowTriggerHistoriesClient) ListCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListAseRegionsOperationResponse struct {
 }
 
 type ListAseRegionsCompleteResult struct {
-	Items []AseRegion
+	LatestHttpResponse *http.Response
+	Items              []AseRegion
 }
 
 // ListAseRegions ...
@@ -84,7 +85,8 @@ func (c ResourceProvidersClient) ListAseRegionsCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListAseRegionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

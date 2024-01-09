@@ -19,7 +19,8 @@ type ListSkusOperationResponse struct {
 }
 
 type ListSkusCompleteResult struct {
-	Items []VirtualMachineScaleSetSku
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachineScaleSetSku
 }
 
 // ListSkus ...
@@ -83,7 +84,8 @@ func (c VirtualMachineScaleSetsClient) ListSkusCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

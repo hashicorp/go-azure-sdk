@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []DynatraceSingleSignOnResource
+	LatestHttpResponse *http.Response
+	Items              []DynatraceSingleSignOnResource
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c SingleSignOnClient) ListCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

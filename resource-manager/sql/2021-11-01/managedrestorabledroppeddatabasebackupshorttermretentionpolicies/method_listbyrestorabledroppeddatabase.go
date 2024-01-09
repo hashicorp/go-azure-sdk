@@ -19,7 +19,8 @@ type ListByRestorableDroppedDatabaseOperationResponse struct {
 }
 
 type ListByRestorableDroppedDatabaseCompleteResult struct {
-	Items []ManagedBackupShortTermRetentionPolicy
+	LatestHttpResponse *http.Response
+	Items              []ManagedBackupShortTermRetentionPolicy
 }
 
 // ListByRestorableDroppedDatabase ...
@@ -83,7 +84,8 @@ func (c ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient) 
 	}
 
 	result = ListByRestorableDroppedDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

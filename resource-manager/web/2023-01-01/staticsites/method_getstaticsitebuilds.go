@@ -19,7 +19,8 @@ type GetStaticSiteBuildsOperationResponse struct {
 }
 
 type GetStaticSiteBuildsCompleteResult struct {
-	Items []StaticSiteBuildARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteBuildARMResource
 }
 
 // GetStaticSiteBuilds ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetStaticSiteBuildsCompleteMatchingPredicate(ctx cont
 	}
 
 	result = GetStaticSiteBuildsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

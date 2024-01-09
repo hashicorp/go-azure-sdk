@@ -19,7 +19,8 @@ type ListGatewaysOperationResponse struct {
 }
 
 type ListGatewaysCompleteResult struct {
-	Items []WorkloadNetworkGateway
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkGateway
 }
 
 // ListGateways ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListGatewaysCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListGatewaysCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

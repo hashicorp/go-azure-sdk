@@ -20,7 +20,8 @@ type ListPublicCertificatesOperationResponse struct {
 }
 
 type ListPublicCertificatesCompleteResult struct {
-	Items []PublicCertificate
+	LatestHttpResponse *http.Response
+	Items              []PublicCertificate
 }
 
 // ListPublicCertificates ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListPublicCertificatesCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListPublicCertificatesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

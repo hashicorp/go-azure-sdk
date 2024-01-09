@@ -19,7 +19,8 @@ type ListDnsZonesOperationResponse struct {
 }
 
 type ListDnsZonesCompleteResult struct {
-	Items []WorkloadNetworkDnsZone
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkDnsZone
 }
 
 // ListDnsZones ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListDnsZonesCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListDnsZonesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

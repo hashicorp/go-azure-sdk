@@ -19,7 +19,8 @@ type WorkspaceSubscriptionListOperationResponse struct {
 }
 
 type WorkspaceSubscriptionListCompleteResult struct {
-	Items []SubscriptionContract
+	LatestHttpResponse *http.Response
+	Items              []SubscriptionContract
 }
 
 type WorkspaceSubscriptionListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c SubscriptionClient) WorkspaceSubscriptionListCompleteMatchingPredicate(c
 	}
 
 	result = WorkspaceSubscriptionListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

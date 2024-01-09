@@ -20,7 +20,8 @@ type MapsListSubscriptionOperationsOperationResponse struct {
 }
 
 type MapsListSubscriptionOperationsCompleteResult struct {
-	Items []OperationDetail
+	LatestHttpResponse *http.Response
+	Items              []OperationDetail
 }
 
 // MapsListSubscriptionOperations ...
@@ -84,7 +85,8 @@ func (c OperationsClient) MapsListSubscriptionOperationsCompleteMatchingPredicat
 	}
 
 	result = MapsListSubscriptionOperationsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []PlanDataResource
+	LatestHttpResponse *http.Response
+	Items              []PlanDataResource
 }
 
 type ListOperationOptions struct {
@@ -116,7 +117,8 @@ func (c PlanClient) ListCompleteMatchingPredicate(ctx context.Context, id common
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

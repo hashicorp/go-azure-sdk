@@ -20,7 +20,8 @@ type ListByResourceGroupOperationResponse struct {
 }
 
 type ListByResourceGroupCompleteResult struct {
-	Items []DataLakeStoreAccountBasic
+	LatestHttpResponse *http.Response
+	Items              []DataLakeStoreAccountBasic
 }
 
 type ListByResourceGroupOperationOptions struct {
@@ -132,7 +133,8 @@ func (c AccountsClient) ListByResourceGroupCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

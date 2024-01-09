@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []DataWarehouseUserActivities
+	LatestHttpResponse *http.Response
+	Items              []DataWarehouseUserActivities
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c DataWarehouseUserActivitiesClient) ListByDatabaseCompleteMatchingPredica
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

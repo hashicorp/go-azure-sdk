@@ -20,7 +20,8 @@ type ComponentsListOperationResponse struct {
 }
 
 type ComponentsListCompleteResult struct {
-	Items []ApplicationInsightsComponent
+	LatestHttpResponse *http.Response
+	Items              []ApplicationInsightsComponent
 }
 
 // ComponentsList ...
@@ -84,7 +85,8 @@ func (c ComponentsAPIsClient) ComponentsListCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ComponentsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

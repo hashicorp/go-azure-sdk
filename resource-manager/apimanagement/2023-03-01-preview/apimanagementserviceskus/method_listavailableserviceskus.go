@@ -19,7 +19,8 @@ type ListAvailableServiceSkusOperationResponse struct {
 }
 
 type ListAvailableServiceSkusCompleteResult struct {
-	Items []ResourceSkuResult
+	LatestHttpResponse *http.Response
+	Items              []ResourceSkuResult
 }
 
 // ListAvailableServiceSkus ...
@@ -83,7 +84,8 @@ func (c ApiManagementServiceSkusClient) ListAvailableServiceSkusCompleteMatching
 	}
 
 	result = ListAvailableServiceSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

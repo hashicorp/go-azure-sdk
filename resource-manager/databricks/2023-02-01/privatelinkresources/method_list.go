@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []GroupIdInformation
+	LatestHttpResponse *http.Response
+	Items              []GroupIdInformation
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c PrivateLinkResourcesClient) ListCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

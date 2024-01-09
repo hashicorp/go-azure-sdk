@@ -20,7 +20,8 @@ type ListMultiRolePoolSkusOperationResponse struct {
 }
 
 type ListMultiRolePoolSkusCompleteResult struct {
-	Items []SkuInfo
+	LatestHttpResponse *http.Response
+	Items              []SkuInfo
 }
 
 // ListMultiRolePoolSkus ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkusCompleteMatchingPredi
 	}
 
 	result = ListMultiRolePoolSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type RacksListByResourceGroupOperationResponse struct {
 }
 
 type RacksListByResourceGroupCompleteResult struct {
-	Items []Rack
+	LatestHttpResponse *http.Response
+	Items              []Rack
 }
 
 // RacksListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) RacksListByResourceGroupCompleteMatchingPredicate(c
 	}
 
 	result = RacksListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

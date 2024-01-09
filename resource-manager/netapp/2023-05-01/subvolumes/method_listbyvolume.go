@@ -19,7 +19,8 @@ type ListByVolumeOperationResponse struct {
 }
 
 type ListByVolumeCompleteResult struct {
-	Items []SubvolumeInfo
+	LatestHttpResponse *http.Response
+	Items              []SubvolumeInfo
 }
 
 // ListByVolume ...
@@ -83,7 +84,8 @@ func (c SubVolumesClient) ListByVolumeCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListByVolumeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

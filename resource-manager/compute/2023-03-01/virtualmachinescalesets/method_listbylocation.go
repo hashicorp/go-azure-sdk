@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []VirtualMachineScaleSet
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachineScaleSet
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c VirtualMachineScaleSetsClient) ListByLocationCompleteMatchingPredicate(c
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type BmcKeySetsListByClusterOperationResponse struct {
 }
 
 type BmcKeySetsListByClusterCompleteResult struct {
-	Items []BmcKeySet
+	LatestHttpResponse *http.Response
+	Items              []BmcKeySet
 }
 
 // BmcKeySetsListByCluster ...
@@ -83,7 +84,8 @@ func (c NetworkcloudsClient) BmcKeySetsListByClusterCompleteMatchingPredicate(ct
 	}
 
 	result = BmcKeySetsListByClusterCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

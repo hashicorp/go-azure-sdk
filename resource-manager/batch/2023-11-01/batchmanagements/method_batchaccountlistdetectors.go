@@ -19,7 +19,8 @@ type BatchAccountListDetectorsOperationResponse struct {
 }
 
 type BatchAccountListDetectorsCompleteResult struct {
-	Items []DetectorResponse
+	LatestHttpResponse *http.Response
+	Items              []DetectorResponse
 }
 
 // BatchAccountListDetectors ...
@@ -83,7 +84,8 @@ func (c BatchManagementsClient) BatchAccountListDetectorsCompleteMatchingPredica
 	}
 
 	result = BatchAccountListDetectorsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

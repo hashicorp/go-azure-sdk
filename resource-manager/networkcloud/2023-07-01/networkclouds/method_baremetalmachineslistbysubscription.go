@@ -20,7 +20,8 @@ type BareMetalMachinesListBySubscriptionOperationResponse struct {
 }
 
 type BareMetalMachinesListBySubscriptionCompleteResult struct {
-	Items []BareMetalMachine
+	LatestHttpResponse *http.Response
+	Items              []BareMetalMachine
 }
 
 // BareMetalMachinesListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) BareMetalMachinesListBySubscriptionCompleteMatching
 	}
 
 	result = BareMetalMachinesListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

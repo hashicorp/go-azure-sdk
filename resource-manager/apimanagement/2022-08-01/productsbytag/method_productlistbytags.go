@@ -19,7 +19,8 @@ type ProductListByTagsOperationResponse struct {
 }
 
 type ProductListByTagsCompleteResult struct {
-	Items []TagResourceContract
+	LatestHttpResponse *http.Response
+	Items              []TagResourceContract
 }
 
 type ProductListByTagsOperationOptions struct {
@@ -123,7 +124,8 @@ func (c ProductsByTagClient) ProductListByTagsCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ProductListByTagsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

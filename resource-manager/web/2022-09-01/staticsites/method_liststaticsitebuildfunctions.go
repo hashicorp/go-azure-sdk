@@ -19,7 +19,8 @@ type ListStaticSiteBuildFunctionsOperationResponse struct {
 }
 
 type ListStaticSiteBuildFunctionsCompleteResult struct {
-	Items []StaticSiteFunctionOverviewARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteFunctionOverviewARMResource
 }
 
 // ListStaticSiteBuildFunctions ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) ListStaticSiteBuildFunctionsCompleteMatchingPredicate
 	}
 
 	result = ListStaticSiteBuildFunctionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

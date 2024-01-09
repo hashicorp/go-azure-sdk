@@ -19,7 +19,8 @@ type ListByBillingProfileOperationResponse struct {
 }
 
 type ListByBillingProfileCompleteResult struct {
-	Items []LotSummary
+	LatestHttpResponse *http.Response
+	Items              []LotSummary
 }
 
 // ListByBillingProfile ...
@@ -83,7 +84,8 @@ func (c LotsClient) ListByBillingProfileCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListByBillingProfileCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

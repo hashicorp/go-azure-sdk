@@ -20,7 +20,8 @@ type ListByManagedInstanceOperationResponse struct {
 }
 
 type ListByManagedInstanceCompleteResult struct {
-	Items []ManagedInstancePrivateLink
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstancePrivateLink
 }
 
 // ListByManagedInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstancePrivateLinkResourcesClient) ListByManagedInstanceComplete
 	}
 
 	result = ListByManagedInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ApiManagementSkusListOperationResponse struct {
 }
 
 type ApiManagementSkusListCompleteResult struct {
-	Items []ApiManagementSku
+	LatestHttpResponse *http.Response
+	Items              []ApiManagementSku
 }
 
 // ApiManagementSkusList ...
@@ -84,7 +85,8 @@ func (c SkusClient) ApiManagementSkusListCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = ApiManagementSkusListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListBySubscriptionOperationResponse struct {
 }
 
 type ListBySubscriptionCompleteResult struct {
-	Items []KubeEnvironment
+	LatestHttpResponse *http.Response
+	Items              []KubeEnvironment
 }
 
 // ListBySubscription ...
@@ -84,7 +85,8 @@ func (c KubeEnvironmentsClient) ListBySubscriptionCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

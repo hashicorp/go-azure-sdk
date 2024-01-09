@@ -19,7 +19,8 @@ type GetLinkedBackendsForBuildOperationResponse struct {
 }
 
 type GetLinkedBackendsForBuildCompleteResult struct {
-	Items []StaticSiteLinkedBackendARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteLinkedBackendARMResource
 }
 
 // GetLinkedBackendsForBuild ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetLinkedBackendsForBuildCompleteMatchingPredicate(ct
 	}
 
 	result = GetLinkedBackendsForBuildCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

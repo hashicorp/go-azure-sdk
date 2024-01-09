@@ -19,7 +19,8 @@ type QuotaUsagesListOperationResponse struct {
 }
 
 type QuotaUsagesListCompleteResult struct {
-	Items []QuotaUsage
+	LatestHttpResponse *http.Response
+	Items              []QuotaUsage
 }
 
 // QuotaUsagesList ...
@@ -83,7 +84,8 @@ func (c QuotaUsagesForFlexibleServersClient) QuotaUsagesListCompleteMatchingPred
 	}
 
 	result = QuotaUsagesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

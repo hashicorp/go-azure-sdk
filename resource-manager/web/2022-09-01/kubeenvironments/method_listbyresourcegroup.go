@@ -20,7 +20,8 @@ type ListByResourceGroupOperationResponse struct {
 }
 
 type ListByResourceGroupCompleteResult struct {
-	Items []KubeEnvironment
+	LatestHttpResponse *http.Response
+	Items              []KubeEnvironment
 }
 
 // ListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c KubeEnvironmentsClient) ListByResourceGroupCompleteMatchingPredicate(ctx
 	}
 
 	result = ListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

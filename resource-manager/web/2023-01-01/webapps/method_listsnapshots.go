@@ -20,7 +20,8 @@ type ListSnapshotsOperationResponse struct {
 }
 
 type ListSnapshotsCompleteResult struct {
-	Items []Snapshot
+	LatestHttpResponse *http.Response
+	Items              []Snapshot
 }
 
 // ListSnapshots ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListSnapshotsCompleteMatchingPredicate(ctx context.Contex
 	}
 
 	result = ListSnapshotsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

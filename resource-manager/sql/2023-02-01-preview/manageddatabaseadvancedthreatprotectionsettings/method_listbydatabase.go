@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []ManagedDatabaseAdvancedThreatProtection
+	LatestHttpResponse *http.Response
+	Items              []ManagedDatabaseAdvancedThreatProtection
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c ManagedDatabaseAdvancedThreatProtectionSettingsClient) ListByDatabaseCom
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

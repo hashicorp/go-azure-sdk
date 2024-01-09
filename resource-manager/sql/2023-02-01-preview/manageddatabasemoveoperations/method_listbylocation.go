@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []ManagedDatabaseMoveOperationResult
+	LatestHttpResponse *http.Response
+	Items              []ManagedDatabaseMoveOperationResult
 }
 
 type ListByLocationOperationOptions struct {
@@ -115,7 +116,8 @@ func (c ManagedDatabaseMoveOperationsClient) ListByLocationCompleteMatchingPredi
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

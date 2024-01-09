@@ -19,7 +19,8 @@ type ReservationsDetailsListByReservationOrderAndReservationOperationResponse st
 }
 
 type ReservationsDetailsListByReservationOrderAndReservationCompleteResult struct {
-	Items []ReservationDetail
+	LatestHttpResponse *http.Response
+	Items              []ReservationDetail
 }
 
 type ReservationsDetailsListByReservationOrderAndReservationOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ReservationDetailsClient) ReservationsDetailsListByReservationOrderAndRe
 	}
 
 	result = ReservationsDetailsListByReservationOrderAndReservationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

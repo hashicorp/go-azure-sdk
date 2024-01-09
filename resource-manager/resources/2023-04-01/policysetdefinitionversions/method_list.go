@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []PolicySetDefinitionVersion
+	LatestHttpResponse *http.Response
+	Items              []PolicySetDefinitionVersion
 }
 
 type ListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c PolicySetDefinitionVersionsClient) ListCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

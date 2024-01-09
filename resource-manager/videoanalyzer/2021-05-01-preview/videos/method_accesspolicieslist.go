@@ -19,7 +19,8 @@ type AccessPoliciesListOperationResponse struct {
 }
 
 type AccessPoliciesListCompleteResult struct {
-	Items []AccessPolicyEntity
+	LatestHttpResponse *http.Response
+	Items              []AccessPolicyEntity
 }
 
 type AccessPoliciesListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c VideosClient) AccessPoliciesListCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = AccessPoliciesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

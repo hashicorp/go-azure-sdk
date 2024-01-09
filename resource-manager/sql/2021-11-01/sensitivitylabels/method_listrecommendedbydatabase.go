@@ -20,7 +20,8 @@ type ListRecommendedByDatabaseOperationResponse struct {
 }
 
 type ListRecommendedByDatabaseCompleteResult struct {
-	Items []SensitivityLabel
+	LatestHttpResponse *http.Response
+	Items              []SensitivityLabel
 }
 
 type ListRecommendedByDatabaseOperationOptions struct {
@@ -116,7 +117,8 @@ func (c SensitivityLabelsClient) ListRecommendedByDatabaseCompleteMatchingPredic
 	}
 
 	result = ListRecommendedByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type BareMetalMachinesListByResourceGroupOperationResponse struct {
 }
 
 type BareMetalMachinesListByResourceGroupCompleteResult struct {
-	Items []BareMetalMachine
+	LatestHttpResponse *http.Response
+	Items              []BareMetalMachine
 }
 
 // BareMetalMachinesListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) BareMetalMachinesListByResourceGroupCompleteMatchin
 	}
 
 	result = BareMetalMachinesListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

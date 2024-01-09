@@ -19,7 +19,8 @@ type ResourcesListByHostPoolOperationResponse struct {
 }
 
 type ResourcesListByHostPoolCompleteResult struct {
-	Items []PrivateLinkResource
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkResource
 }
 
 // ResourcesListByHostPool ...
@@ -83,7 +84,8 @@ func (c PrivateLinkClient) ResourcesListByHostPoolCompleteMatchingPredicate(ctx 
 	}
 
 	result = ResourcesListByHostPoolCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

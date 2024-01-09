@@ -20,7 +20,8 @@ type ListInaccessibleByInstanceOperationResponse struct {
 }
 
 type ListInaccessibleByInstanceCompleteResult struct {
-	Items []ManagedDatabase
+	LatestHttpResponse *http.Response
+	Items              []ManagedDatabase
 }
 
 // ListInaccessibleByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedDatabasesClient) ListInaccessibleByInstanceCompleteMatchingPredic
 	}
 
 	result = ListInaccessibleByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

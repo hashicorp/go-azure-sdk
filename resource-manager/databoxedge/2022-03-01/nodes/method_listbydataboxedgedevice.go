@@ -19,7 +19,8 @@ type ListByDataBoxEdgeDeviceOperationResponse struct {
 }
 
 type ListByDataBoxEdgeDeviceCompleteResult struct {
-	Items []Node
+	LatestHttpResponse *http.Response
+	Items              []Node
 }
 
 // ListByDataBoxEdgeDevice ...
@@ -83,7 +84,8 @@ func (c NodesClient) ListByDataBoxEdgeDeviceCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByDataBoxEdgeDeviceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

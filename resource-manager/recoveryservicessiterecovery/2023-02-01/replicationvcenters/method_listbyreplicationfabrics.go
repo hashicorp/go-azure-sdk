@@ -19,7 +19,8 @@ type ListByReplicationFabricsOperationResponse struct {
 }
 
 type ListByReplicationFabricsCompleteResult struct {
-	Items []VCenter
+	LatestHttpResponse *http.Response
+	Items              []VCenter
 }
 
 // ListByReplicationFabrics ...
@@ -83,7 +84,8 @@ func (c ReplicationvCentersClient) ListByReplicationFabricsCompleteMatchingPredi
 	}
 
 	result = ListByReplicationFabricsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

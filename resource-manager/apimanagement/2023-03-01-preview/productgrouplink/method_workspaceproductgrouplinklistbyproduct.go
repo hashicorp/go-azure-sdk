@@ -19,7 +19,8 @@ type WorkspaceProductGroupLinkListByProductOperationResponse struct {
 }
 
 type WorkspaceProductGroupLinkListByProductCompleteResult struct {
-	Items []ProductGroupLinkContract
+	LatestHttpResponse *http.Response
+	Items              []ProductGroupLinkContract
 }
 
 type WorkspaceProductGroupLinkListByProductOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ProductGroupLinkClient) WorkspaceProductGroupLinkListByProductCompleteMa
 	}
 
 	result = WorkspaceProductGroupLinkListByProductCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

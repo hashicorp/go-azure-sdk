@@ -19,7 +19,8 @@ type ListInstanceFunctionsSlotOperationResponse struct {
 }
 
 type ListInstanceFunctionsSlotCompleteResult struct {
-	Items []FunctionEnvelope
+	LatestHttpResponse *http.Response
+	Items              []FunctionEnvelope
 }
 
 // ListInstanceFunctionsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListInstanceFunctionsSlotCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListInstanceFunctionsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

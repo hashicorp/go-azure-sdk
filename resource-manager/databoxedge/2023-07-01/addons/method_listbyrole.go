@@ -19,7 +19,8 @@ type ListByRoleOperationResponse struct {
 }
 
 type ListByRoleCompleteResult struct {
-	Items []Addon
+	LatestHttpResponse *http.Response
+	Items              []Addon
 }
 
 // ListByRole ...
@@ -83,7 +84,8 @@ func (c AddonsClient) ListByRoleCompleteMatchingPredicate(ctx context.Context, i
 	}
 
 	result = ListByRoleCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

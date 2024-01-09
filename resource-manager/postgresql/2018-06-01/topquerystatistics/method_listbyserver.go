@@ -19,7 +19,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []QueryStatistic
+	LatestHttpResponse *http.Response
+	Items              []QueryStatistic
 }
 
 // ListByServer ...
@@ -83,7 +84,8 @@ func (c TopQueryStatisticsClient) ListByServerCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

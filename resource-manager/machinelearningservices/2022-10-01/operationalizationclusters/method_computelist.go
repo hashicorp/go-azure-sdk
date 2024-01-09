@@ -19,7 +19,8 @@ type ComputeListOperationResponse struct {
 }
 
 type ComputeListCompleteResult struct {
-	Items []ComputeResource
+	LatestHttpResponse *http.Response
+	Items              []ComputeResource
 }
 
 type ComputeListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c OperationalizationClustersClient) ComputeListCompleteMatchingPredicate(c
 	}
 
 	result = ComputeListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

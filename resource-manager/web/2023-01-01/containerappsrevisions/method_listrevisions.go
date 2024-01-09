@@ -19,7 +19,8 @@ type ListRevisionsOperationResponse struct {
 }
 
 type ListRevisionsCompleteResult struct {
-	Items []Revision
+	LatestHttpResponse *http.Response
+	Items              []Revision
 }
 
 // ListRevisions ...
@@ -83,7 +84,8 @@ func (c ContainerAppsRevisionsClient) ListRevisionsCompleteMatchingPredicate(ctx
 	}
 
 	result = ListRevisionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

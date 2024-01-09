@@ -19,7 +19,8 @@ type ListWebWorkerMetricDefinitionsOperationResponse struct {
 }
 
 type ListWebWorkerMetricDefinitionsCompleteResult struct {
-	Items []ResourceMetricDefinition
+	LatestHttpResponse *http.Response
+	Items              []ResourceMetricDefinition
 }
 
 // ListWebWorkerMetricDefinitions ...
@@ -83,7 +84,8 @@ func (c AppServiceEnvironmentsClient) ListWebWorkerMetricDefinitionsCompleteMatc
 	}
 
 	result = ListWebWorkerMetricDefinitionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

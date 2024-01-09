@@ -19,7 +19,8 @@ type ListByTargetServerOperationResponse struct {
 }
 
 type ListByTargetServerCompleteResult struct {
-	Items []MigrationResource
+	LatestHttpResponse *http.Response
+	Items              []MigrationResource
 }
 
 type ListByTargetServerOperationOptions struct {
@@ -111,7 +112,8 @@ func (c MigrationsClient) ListByTargetServerCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByTargetServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

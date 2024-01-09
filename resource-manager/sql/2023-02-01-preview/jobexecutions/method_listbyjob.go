@@ -19,7 +19,8 @@ type ListByJobOperationResponse struct {
 }
 
 type ListByJobCompleteResult struct {
-	Items []JobExecution
+	LatestHttpResponse *http.Response
+	Items              []JobExecution
 }
 
 type ListByJobOperationOptions struct {
@@ -135,7 +136,8 @@ func (c JobExecutionsClient) ListByJobCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListByJobCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListSlotDifferencesSlotOperationResponse struct {
 }
 
 type ListSlotDifferencesSlotCompleteResult struct {
-	Items []SlotDifference
+	LatestHttpResponse *http.Response
+	Items              []SlotDifference
 }
 
 // ListSlotDifferencesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListSlotDifferencesSlotCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListSlotDifferencesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

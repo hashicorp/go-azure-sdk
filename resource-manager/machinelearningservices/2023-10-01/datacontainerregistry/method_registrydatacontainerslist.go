@@ -19,7 +19,8 @@ type RegistryDataContainersListOperationResponse struct {
 }
 
 type RegistryDataContainersListCompleteResult struct {
-	Items []DataContainerResource
+	LatestHttpResponse *http.Response
+	Items              []DataContainerResource
 }
 
 type RegistryDataContainersListOperationOptions struct {
@@ -115,7 +116,8 @@ func (c DataContainerRegistryClient) RegistryDataContainersListCompleteMatchingP
 	}
 
 	result = RegistryDataContainersListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

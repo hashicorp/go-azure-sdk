@@ -19,7 +19,8 @@ type GetAllHostsInSiteOperationResponse struct {
 }
 
 type GetAllHostsInSiteCompleteResult struct {
-	Items []HyperVHost
+	LatestHttpResponse *http.Response
+	Items              []HyperVHost
 }
 
 type GetAllHostsInSiteOperationOptions struct {
@@ -111,7 +112,8 @@ func (c HyperVHostClient) GetAllHostsInSiteCompleteMatchingPredicate(ctx context
 	}
 
 	result = GetAllHostsInSiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

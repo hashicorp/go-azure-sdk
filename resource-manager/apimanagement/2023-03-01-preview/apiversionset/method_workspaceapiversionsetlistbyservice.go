@@ -19,7 +19,8 @@ type WorkspaceApiVersionSetListByServiceOperationResponse struct {
 }
 
 type WorkspaceApiVersionSetListByServiceCompleteResult struct {
-	Items []ApiVersionSetContract
+	LatestHttpResponse *http.Response
+	Items              []ApiVersionSetContract
 }
 
 type WorkspaceApiVersionSetListByServiceOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiVersionSetClient) WorkspaceApiVersionSetListByServiceCompleteMatching
 	}
 
 	result = WorkspaceApiVersionSetListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

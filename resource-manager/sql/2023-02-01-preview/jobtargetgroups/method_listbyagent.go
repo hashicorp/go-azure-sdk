@@ -19,7 +19,8 @@ type ListByAgentOperationResponse struct {
 }
 
 type ListByAgentCompleteResult struct {
-	Items []JobTargetGroup
+	LatestHttpResponse *http.Response
+	Items              []JobTargetGroup
 }
 
 // ListByAgent ...
@@ -83,7 +84,8 @@ func (c JobTargetGroupsClient) ListByAgentCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListByAgentCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

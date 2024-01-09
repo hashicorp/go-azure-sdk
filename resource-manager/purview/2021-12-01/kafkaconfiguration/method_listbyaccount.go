@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []KafkaConfiguration
+	LatestHttpResponse *http.Response
+	Items              []KafkaConfiguration
 }
 
 // ListByAccount ...
@@ -83,7 +84,8 @@ func (c KafkaConfigurationClient) ListByAccountCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

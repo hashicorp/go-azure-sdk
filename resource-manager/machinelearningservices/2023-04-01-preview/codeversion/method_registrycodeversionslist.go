@@ -19,7 +19,8 @@ type RegistryCodeVersionsListOperationResponse struct {
 }
 
 type RegistryCodeVersionsListCompleteResult struct {
-	Items []CodeVersionResource
+	LatestHttpResponse *http.Response
+	Items              []CodeVersionResource
 }
 
 type RegistryCodeVersionsListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c CodeVersionClient) RegistryCodeVersionsListCompleteMatchingPredicate(ctx
 	}
 
 	result = RegistryCodeVersionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

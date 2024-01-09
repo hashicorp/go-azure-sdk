@@ -19,7 +19,8 @@ type WorkspaceNotificationListByServiceOperationResponse struct {
 }
 
 type WorkspaceNotificationListByServiceCompleteResult struct {
-	Items []NotificationContract
+	LatestHttpResponse *http.Response
+	Items              []NotificationContract
 }
 
 type WorkspaceNotificationListByServiceOperationOptions struct {
@@ -115,7 +116,8 @@ func (c NotificationClient) WorkspaceNotificationListByServiceCompleteMatchingPr
 	}
 
 	result = WorkspaceNotificationListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

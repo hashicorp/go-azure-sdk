@@ -20,7 +20,8 @@ type ListBySubscriptionOperationResponse struct {
 }
 
 type ListBySubscriptionCompleteResult struct {
-	Items []PrivateLinkPolicy
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkPolicy
 }
 
 // ListBySubscription ...
@@ -84,7 +85,8 @@ func (c PrivateLinkForAzureAdClient) ListBySubscriptionCompleteMatchingPredicate
 	}
 
 	result = ListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []RecommendationAction
+	LatestHttpResponse *http.Response
+	Items              []RecommendationAction
 }
 
 type ListByServerOperationOptions struct {
@@ -111,7 +112,8 @@ func (c RecommendedActionsClient) ListByServerCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type GetBuildDatabaseConnectionsOperationResponse struct {
 }
 
 type GetBuildDatabaseConnectionsCompleteResult struct {
-	Items []DatabaseConnection
+	LatestHttpResponse *http.Response
+	Items              []DatabaseConnection
 }
 
 // GetBuildDatabaseConnections ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetBuildDatabaseConnectionsCompleteMatchingPredicate(
 	}
 
 	result = GetBuildDatabaseConnectionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

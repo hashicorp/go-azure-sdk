@@ -20,7 +20,8 @@ type ListByResourceGroupOperationResponse struct {
 }
 
 type ListByResourceGroupCompleteResult struct {
-	Items []PacketCoreControlPlane
+	LatestHttpResponse *http.Response
+	Items              []PacketCoreControlPlane
 }
 
 // ListByResourceGroup ...
@@ -84,7 +85,8 @@ func (c PacketCoreControlPlanesClient) ListByResourceGroupCompleteMatchingPredic
 	}
 
 	result = ListByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListAppServicePlansOperationResponse struct {
 }
 
 type ListAppServicePlansCompleteResult struct {
-	Items []AppServicePlan
+	LatestHttpResponse *http.Response
+	Items              []AppServicePlan
 }
 
 // ListAppServicePlans ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListAppServicePlansCompleteMatchingPredica
 	}
 
 	result = ListAppServicePlansCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

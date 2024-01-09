@@ -20,7 +20,8 @@ type ListSnapshotsFromDRSecondaryOperationResponse struct {
 }
 
 type ListSnapshotsFromDRSecondaryCompleteResult struct {
-	Items []Snapshot
+	LatestHttpResponse *http.Response
+	Items              []Snapshot
 }
 
 // ListSnapshotsFromDRSecondary ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListSnapshotsFromDRSecondaryCompleteMatchingPredicate(ctx
 	}
 
 	result = ListSnapshotsFromDRSecondaryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

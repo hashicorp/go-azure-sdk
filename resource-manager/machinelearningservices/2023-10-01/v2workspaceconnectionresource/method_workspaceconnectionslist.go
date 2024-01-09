@@ -19,7 +19,8 @@ type WorkspaceConnectionsListOperationResponse struct {
 }
 
 type WorkspaceConnectionsListCompleteResult struct {
-	Items []WorkspaceConnectionPropertiesV2BasicResource
+	LatestHttpResponse *http.Response
+	Items              []WorkspaceConnectionPropertiesV2BasicResource
 }
 
 type WorkspaceConnectionsListOperationOptions struct {
@@ -115,7 +116,8 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListCompleteMat
 	}
 
 	result = WorkspaceConnectionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListWorkerPoolInstanceMetricDefinitionsOperationResponse struct {
 }
 
 type ListWorkerPoolInstanceMetricDefinitionsCompleteResult struct {
-	Items []ResourceMetricDefinition
+	LatestHttpResponse *http.Response
+	Items              []ResourceMetricDefinition
 }
 
 // ListWorkerPoolInstanceMetricDefinitions ...
@@ -83,7 +84,8 @@ func (c AppServiceEnvironmentsClient) ListWorkerPoolInstanceMetricDefinitionsCom
 	}
 
 	result = ListWorkerPoolInstanceMetricDefinitionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

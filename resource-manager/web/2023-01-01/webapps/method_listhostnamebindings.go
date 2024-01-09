@@ -20,7 +20,8 @@ type ListHostNameBindingsOperationResponse struct {
 }
 
 type ListHostNameBindingsCompleteResult struct {
-	Items []HostNameBinding
+	LatestHttpResponse *http.Response
+	Items              []HostNameBinding
 }
 
 // ListHostNameBindings ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListHostNameBindingsCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListHostNameBindingsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type DppResourceGuardProxyListOperationResponse struct {
 }
 
 type DppResourceGuardProxyListCompleteResult struct {
-	Items []ResourceGuardProxyBaseResource
+	LatestHttpResponse *http.Response
+	Items              []ResourceGuardProxyBaseResource
 }
 
 // DppResourceGuardProxyList ...
@@ -83,7 +84,8 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyListCompleteMatching
 	}
 
 	result = DppResourceGuardProxyListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

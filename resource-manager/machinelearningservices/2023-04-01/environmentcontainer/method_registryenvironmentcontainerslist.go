@@ -19,7 +19,8 @@ type RegistryEnvironmentContainersListOperationResponse struct {
 }
 
 type RegistryEnvironmentContainersListCompleteResult struct {
-	Items []EnvironmentContainerResource
+	LatestHttpResponse *http.Response
+	Items              []EnvironmentContainerResource
 }
 
 type RegistryEnvironmentContainersListOperationOptions struct {
@@ -115,7 +116,8 @@ func (c EnvironmentContainerClient) RegistryEnvironmentContainersListCompleteMat
 	}
 
 	result = RegistryEnvironmentContainersListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

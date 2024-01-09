@@ -19,7 +19,8 @@ type RecommendationMetadataListOperationResponse struct {
 }
 
 type RecommendationMetadataListCompleteResult struct {
-	Items []MetadataEntity
+	LatestHttpResponse *http.Response
+	Items              []MetadataEntity
 }
 
 // RecommendationMetadataList ...
@@ -83,7 +84,8 @@ func (c MetadataClient) RecommendationMetadataListCompleteMatchingPredicate(ctx 
 	}
 
 	result = RecommendationMetadataListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

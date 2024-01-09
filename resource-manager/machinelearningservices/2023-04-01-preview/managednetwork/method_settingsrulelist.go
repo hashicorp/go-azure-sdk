@@ -19,7 +19,8 @@ type SettingsRuleListOperationResponse struct {
 }
 
 type SettingsRuleListCompleteResult struct {
-	Items []OutboundRuleBasicResource
+	LatestHttpResponse *http.Response
+	Items              []OutboundRuleBasicResource
 }
 
 // SettingsRuleList ...
@@ -83,7 +84,8 @@ func (c ManagedNetworkClient) SettingsRuleListCompleteMatchingPredicate(ctx cont
 	}
 
 	result = SettingsRuleListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

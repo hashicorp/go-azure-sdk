@@ -19,7 +19,8 @@ type NotificationHubsListOperationResponse struct {
 }
 
 type NotificationHubsListCompleteResult struct {
-	Items []NotificationHubResource
+	LatestHttpResponse *http.Response
+	Items              []NotificationHubResource
 }
 
 type NotificationHubsListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c HubsClient) NotificationHubsListCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = NotificationHubsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

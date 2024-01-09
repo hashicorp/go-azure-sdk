@@ -19,7 +19,8 @@ type ResourcesListByWorkspaceOperationResponse struct {
 }
 
 type ResourcesListByWorkspaceCompleteResult struct {
-	Items []PrivateLinkResource
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkResource
 }
 
 // ResourcesListByWorkspace ...
@@ -83,7 +84,8 @@ func (c PrivateLinkClient) ResourcesListByWorkspaceCompleteMatchingPredicate(ctx
 	}
 
 	result = ResourcesListByWorkspaceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

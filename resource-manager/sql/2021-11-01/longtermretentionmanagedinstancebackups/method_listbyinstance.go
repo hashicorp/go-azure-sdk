@@ -19,7 +19,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedInstanceLongTermRetentionBackup
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceLongTermRetentionBackup
 }
 
 type ListByInstanceOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LongTermRetentionManagedInstanceBackupsClient) ListByInstanceCompleteMat
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

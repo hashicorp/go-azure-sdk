@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []PrivateLinkResource
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkResource
 }
 
 // ListByAccount ...
@@ -83,7 +84,8 @@ func (c PrivateLinkResourceClient) ListByAccountCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

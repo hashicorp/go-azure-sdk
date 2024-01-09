@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []FeaturestoreEntityVersionResource
+	LatestHttpResponse *http.Response
+	Items              []FeaturestoreEntityVersionResource
 }
 
 type ListOperationOptions struct {
@@ -143,7 +144,8 @@ func (c FeaturestoreEntityVersionClient) ListCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

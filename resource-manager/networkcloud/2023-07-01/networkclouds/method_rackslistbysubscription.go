@@ -20,7 +20,8 @@ type RacksListBySubscriptionOperationResponse struct {
 }
 
 type RacksListBySubscriptionCompleteResult struct {
-	Items []Rack
+	LatestHttpResponse *http.Response
+	Items              []Rack
 }
 
 // RacksListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) RacksListBySubscriptionCompleteMatchingPredicate(ct
 	}
 
 	result = RacksListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

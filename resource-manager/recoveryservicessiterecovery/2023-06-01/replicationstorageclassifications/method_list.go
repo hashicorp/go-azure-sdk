@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []StorageClassification
+	LatestHttpResponse *http.Response
+	Items              []StorageClassification
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c ReplicationStorageClassificationsClient) ListCompleteMatchingPredicate(c
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

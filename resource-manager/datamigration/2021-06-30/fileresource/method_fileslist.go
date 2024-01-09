@@ -19,7 +19,8 @@ type FilesListOperationResponse struct {
 }
 
 type FilesListCompleteResult struct {
-	Items []ProjectFile
+	LatestHttpResponse *http.Response
+	Items              []ProjectFile
 }
 
 // FilesList ...
@@ -83,7 +84,8 @@ func (c FileResourceClient) FilesListCompleteMatchingPredicate(ctx context.Conte
 	}
 
 	result = FilesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []RecoverableManagedDatabase
+	LatestHttpResponse *http.Response
+	Items              []RecoverableManagedDatabase
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c RecoverableManagedDatabasesClient) ListByInstanceCompleteMatchingPredica
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

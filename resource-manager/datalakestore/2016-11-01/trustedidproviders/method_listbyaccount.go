@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []TrustedIdProvider
+	LatestHttpResponse *http.Response
+	Items              []TrustedIdProvider
 }
 
 // ListByAccount ...
@@ -83,7 +84,8 @@ func (c TrustedIdProvidersClient) ListByAccountCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }
