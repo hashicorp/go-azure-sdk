@@ -19,7 +19,8 @@ type ContentItemListByServiceOperationResponse struct {
 }
 
 type ContentItemListByServiceCompleteResult struct {
-	Items []ContentItemContract
+	LatestHttpResponse *http.Response
+	Items              []ContentItemContract
 }
 
 // ContentItemListByService ...
@@ -83,7 +84,8 @@ func (c ContentTypeContentItemClient) ContentItemListByServiceCompleteMatchingPr
 	}
 
 	result = ContentItemListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

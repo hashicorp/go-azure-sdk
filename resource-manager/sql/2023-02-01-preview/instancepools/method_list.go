@@ -20,7 +20,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []InstancePool
+	LatestHttpResponse *http.Response
+	Items              []InstancePool
 }
 
 // List ...
@@ -84,7 +85,8 @@ func (c InstancePoolsClient) ListCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedDatabase
+	LatestHttpResponse *http.Response
+	Items              []ManagedDatabase
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedDatabasesClient) ListByInstanceCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

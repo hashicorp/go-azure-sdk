@@ -19,7 +19,8 @@ type ServiceTasksListOperationResponse struct {
 }
 
 type ServiceTasksListCompleteResult struct {
-	Items []ProjectTask
+	LatestHttpResponse *http.Response
+	Items              []ProjectTask
 }
 
 type ServiceTasksListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c StandardOperationClient) ServiceTasksListCompleteMatchingPredicate(ctx c
 	}
 
 	result = ServiceTasksListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

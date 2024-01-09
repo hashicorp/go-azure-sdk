@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []ServerTrustGroup
+	LatestHttpResponse *http.Response
+	Items              []ServerTrustGroup
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c ServerTrustGroupsClient) ListByLocationCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

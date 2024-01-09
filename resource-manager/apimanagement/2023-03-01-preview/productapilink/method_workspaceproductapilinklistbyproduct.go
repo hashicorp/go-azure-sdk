@@ -19,7 +19,8 @@ type WorkspaceProductApiLinkListByProductOperationResponse struct {
 }
 
 type WorkspaceProductApiLinkListByProductCompleteResult struct {
-	Items []ProductApiLinkContract
+	LatestHttpResponse *http.Response
+	Items              []ProductApiLinkContract
 }
 
 type WorkspaceProductApiLinkListByProductOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ProductApiLinkClient) WorkspaceProductApiLinkListByProductCompleteMatchi
 	}
 
 	result = WorkspaceProductApiLinkListByProductCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

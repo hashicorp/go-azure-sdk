@@ -19,7 +19,8 @@ type WorkspaceApiPolicyListByApiOperationResponse struct {
 }
 
 type WorkspaceApiPolicyListByApiCompleteResult struct {
-	Items []PolicyContract
+	LatestHttpResponse *http.Response
+	Items              []PolicyContract
 }
 
 // WorkspaceApiPolicyListByApi ...
@@ -83,7 +84,8 @@ func (c ApiPolicyClient) WorkspaceApiPolicyListByApiCompleteMatchingPredicate(ct
 	}
 
 	result = WorkspaceApiPolicyListByApiCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

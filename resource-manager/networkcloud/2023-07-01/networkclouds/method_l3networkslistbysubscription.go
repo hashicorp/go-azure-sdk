@@ -20,7 +20,8 @@ type L3NetworksListBySubscriptionOperationResponse struct {
 }
 
 type L3NetworksListBySubscriptionCompleteResult struct {
-	Items []L3Network
+	LatestHttpResponse *http.Response
+	Items              []L3Network
 }
 
 // L3NetworksListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) L3NetworksListBySubscriptionCompleteMatchingPredica
 	}
 
 	result = L3NetworksListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

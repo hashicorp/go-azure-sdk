@@ -19,7 +19,8 @@ type ListSupportedVirtualMachineSkusOperationResponse struct {
 }
 
 type ListSupportedVirtualMachineSkusCompleteResult struct {
-	Items []SupportedSku
+	LatestHttpResponse *http.Response
+	Items              []SupportedSku
 }
 
 type ListSupportedVirtualMachineSkusOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LocationClient) ListSupportedVirtualMachineSkusCompleteMatchingPredicate
 	}
 
 	result = ListSupportedVirtualMachineSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

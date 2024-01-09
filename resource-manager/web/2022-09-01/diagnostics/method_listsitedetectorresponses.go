@@ -20,7 +20,8 @@ type ListSiteDetectorResponsesOperationResponse struct {
 }
 
 type ListSiteDetectorResponsesCompleteResult struct {
-	Items []DetectorResponse
+	LatestHttpResponse *http.Response
+	Items              []DetectorResponse
 }
 
 // ListSiteDetectorResponses ...
@@ -84,7 +85,8 @@ func (c DiagnosticsClient) ListSiteDetectorResponsesCompleteMatchingPredicate(ct
 	}
 
 	result = ListSiteDetectorResponsesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

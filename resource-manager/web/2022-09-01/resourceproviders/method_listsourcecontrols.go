@@ -19,7 +19,8 @@ type ListSourceControlsOperationResponse struct {
 }
 
 type ListSourceControlsCompleteResult struct {
-	Items []SourceControl
+	LatestHttpResponse *http.Response
+	Items              []SourceControl
 }
 
 // ListSourceControls ...
@@ -83,7 +84,8 @@ func (c ResourceProvidersClient) ListSourceControlsCompleteMatchingPredicate(ctx
 	}
 
 	result = ListSourceControlsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

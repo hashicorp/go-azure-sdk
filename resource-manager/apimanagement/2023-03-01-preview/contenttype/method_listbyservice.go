@@ -19,7 +19,8 @@ type ListByServiceOperationResponse struct {
 }
 
 type ListByServiceCompleteResult struct {
-	Items []ContentTypeContract
+	LatestHttpResponse *http.Response
+	Items              []ContentTypeContract
 }
 
 // ListByService ...
@@ -83,7 +84,8 @@ func (c ContentTypeClient) ListByServiceCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

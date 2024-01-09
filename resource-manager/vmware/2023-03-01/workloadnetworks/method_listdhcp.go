@@ -19,7 +19,8 @@ type ListDhcpOperationResponse struct {
 }
 
 type ListDhcpCompleteResult struct {
-	Items []WorkloadNetworkDhcp
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkDhcp
 }
 
 // ListDhcp ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListDhcpCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListDhcpCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

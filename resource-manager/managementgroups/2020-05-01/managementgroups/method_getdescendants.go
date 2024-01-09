@@ -20,7 +20,8 @@ type GetDescendantsOperationResponse struct {
 }
 
 type GetDescendantsCompleteResult struct {
-	Items []DescendantInfo
+	LatestHttpResponse *http.Response
+	Items              []DescendantInfo
 }
 
 type GetDescendantsOperationOptions struct {
@@ -112,7 +113,8 @@ func (c ManagementGroupsClient) GetDescendantsCompleteMatchingPredicate(ctx cont
 	}
 
 	result = GetDescendantsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

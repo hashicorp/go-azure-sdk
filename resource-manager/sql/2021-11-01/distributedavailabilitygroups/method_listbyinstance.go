@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []DistributedAvailabilityGroup
+	LatestHttpResponse *http.Response
+	Items              []DistributedAvailabilityGroup
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c DistributedAvailabilityGroupsClient) ListByInstanceCompleteMatchingPredi
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

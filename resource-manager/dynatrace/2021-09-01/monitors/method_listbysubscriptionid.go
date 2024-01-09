@@ -20,7 +20,8 @@ type ListBySubscriptionIdOperationResponse struct {
 }
 
 type ListBySubscriptionIdCompleteResult struct {
-	Items []MonitorResource
+	LatestHttpResponse *http.Response
+	Items              []MonitorResource
 }
 
 // ListBySubscriptionId ...
@@ -84,7 +85,8 @@ func (c MonitorsClient) ListBySubscriptionIdCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListBySubscriptionIdCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

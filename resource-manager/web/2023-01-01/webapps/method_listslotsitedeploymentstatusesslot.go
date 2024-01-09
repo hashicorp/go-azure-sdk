@@ -19,7 +19,8 @@ type ListSlotSiteDeploymentStatusesSlotOperationResponse struct {
 }
 
 type ListSlotSiteDeploymentStatusesSlotCompleteResult struct {
-	Items []CsmDeploymentStatus
+	LatestHttpResponse *http.Response
+	Items              []CsmDeploymentStatus
 }
 
 // ListSlotSiteDeploymentStatusesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListSlotSiteDeploymentStatusesSlotCompleteMatchingPredica
 	}
 
 	result = ListSlotSiteDeploymentStatusesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

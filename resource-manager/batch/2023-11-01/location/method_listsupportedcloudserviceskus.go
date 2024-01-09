@@ -19,7 +19,8 @@ type ListSupportedCloudServiceSkusOperationResponse struct {
 }
 
 type ListSupportedCloudServiceSkusCompleteResult struct {
-	Items []SupportedSku
+	LatestHttpResponse *http.Response
+	Items              []SupportedSku
 }
 
 type ListSupportedCloudServiceSkusOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LocationClient) ListSupportedCloudServiceSkusCompleteMatchingPredicate(c
 	}
 
 	result = ListSupportedCloudServiceSkusCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

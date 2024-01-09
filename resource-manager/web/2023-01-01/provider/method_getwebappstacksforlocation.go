@@ -19,7 +19,8 @@ type GetWebAppStacksForLocationOperationResponse struct {
 }
 
 type GetWebAppStacksForLocationCompleteResult struct {
-	Items []WebAppStack
+	LatestHttpResponse *http.Response
+	Items              []WebAppStack
 }
 
 type GetWebAppStacksForLocationOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ProviderClient) GetWebAppStacksForLocationCompleteMatchingPredicate(ctx 
 	}
 
 	result = GetWebAppStacksForLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type GetSiteHealthSummaryOperationResponse struct {
 }
 
 type GetSiteHealthSummaryCompleteResult struct {
-	Items []SiteHealthSummary
+	LatestHttpResponse *http.Response
+	Items              []SiteHealthSummary
 }
 
 // GetSiteHealthSummary ...
@@ -83,7 +84,8 @@ func (c SitesClient) GetSiteHealthSummaryCompleteMatchingPredicate(ctx context.C
 	}
 
 	result = GetSiteHealthSummaryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

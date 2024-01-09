@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []VirtualMachineRunCommand
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachineRunCommand
 }
 
 type ListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c VirtualMachineScaleSetVMRunCommandsClient) ListCompleteMatchingPredicate
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

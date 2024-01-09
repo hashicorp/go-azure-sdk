@@ -20,7 +20,8 @@ type ListByManagedInstanceOperationResponse struct {
 }
 
 type ListByManagedInstanceCompleteResult struct {
-	Items []ManagedServerDnsAlias
+	LatestHttpResponse *http.Response
+	Items              []ManagedServerDnsAlias
 }
 
 // ListByManagedInstance ...
@@ -84,7 +85,8 @@ func (c ManagedServerDnsAliasesClient) ListByManagedInstanceCompleteMatchingPred
 	}
 
 	result = ListByManagedInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

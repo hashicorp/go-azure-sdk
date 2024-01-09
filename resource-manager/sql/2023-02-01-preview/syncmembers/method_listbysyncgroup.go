@@ -19,7 +19,8 @@ type ListBySyncGroupOperationResponse struct {
 }
 
 type ListBySyncGroupCompleteResult struct {
-	Items []SyncMember
+	LatestHttpResponse *http.Response
+	Items              []SyncMember
 }
 
 // ListBySyncGroup ...
@@ -83,7 +84,8 @@ func (c SyncMembersClient) ListBySyncGroupCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListBySyncGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

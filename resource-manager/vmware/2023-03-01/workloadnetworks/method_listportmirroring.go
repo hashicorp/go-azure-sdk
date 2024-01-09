@@ -19,7 +19,8 @@ type ListPortMirroringOperationResponse struct {
 }
 
 type ListPortMirroringCompleteResult struct {
-	Items []WorkloadNetworkPortMirroring
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkPortMirroring
 }
 
 // ListPortMirroring ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListPortMirroringCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListPortMirroringCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

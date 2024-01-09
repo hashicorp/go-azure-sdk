@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedInstanceKey
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceKey
 }
 
 type ListByInstanceOperationOptions struct {
@@ -112,7 +113,8 @@ func (c ManagedInstanceKeysClient) ListByInstanceCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

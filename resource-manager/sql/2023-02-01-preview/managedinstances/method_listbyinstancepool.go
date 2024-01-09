@@ -19,7 +19,8 @@ type ListByInstancePoolOperationResponse struct {
 }
 
 type ListByInstancePoolCompleteResult struct {
-	Items []ManagedInstance
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstance
 }
 
 type ListByInstancePoolOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ManagedInstancesClient) ListByInstancePoolCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListByInstancePoolCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

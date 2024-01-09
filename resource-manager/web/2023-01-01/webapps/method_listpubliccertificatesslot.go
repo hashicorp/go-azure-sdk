@@ -19,7 +19,8 @@ type ListPublicCertificatesSlotOperationResponse struct {
 }
 
 type ListPublicCertificatesSlotCompleteResult struct {
-	Items []PublicCertificate
+	LatestHttpResponse *http.Response
+	Items              []PublicCertificate
 }
 
 // ListPublicCertificatesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListPublicCertificatesSlotCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListPublicCertificatesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

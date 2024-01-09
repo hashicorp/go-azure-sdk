@@ -19,7 +19,8 @@ type ListByAuthorizationOperationResponse struct {
 }
 
 type ListByAuthorizationCompleteResult struct {
-	Items []AuthorizationAccessPolicyContract
+	LatestHttpResponse *http.Response
+	Items              []AuthorizationAccessPolicyContract
 }
 
 type ListByAuthorizationOperationOptions struct {
@@ -119,7 +120,8 @@ func (c AuthorizationAccessPolicyClient) ListByAuthorizationCompleteMatchingPred
 	}
 
 	result = ListByAuthorizationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

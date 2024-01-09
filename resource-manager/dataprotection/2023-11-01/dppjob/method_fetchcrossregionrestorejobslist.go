@@ -19,7 +19,8 @@ type FetchCrossRegionRestoreJobsListOperationResponse struct {
 }
 
 type FetchCrossRegionRestoreJobsListCompleteResult struct {
-	Items []AzureBackupJobResource
+	LatestHttpResponse *http.Response
+	Items              []AzureBackupJobResource
 }
 
 type FetchCrossRegionRestoreJobsListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c DppJobClient) FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(c
 	}
 
 	result = FetchCrossRegionRestoreJobsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

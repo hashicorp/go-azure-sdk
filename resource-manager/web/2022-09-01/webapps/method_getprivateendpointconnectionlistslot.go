@@ -19,7 +19,8 @@ type GetPrivateEndpointConnectionListSlotOperationResponse struct {
 }
 
 type GetPrivateEndpointConnectionListSlotCompleteResult struct {
-	Items []RemotePrivateEndpointConnectionARMResource
+	LatestHttpResponse *http.Response
+	Items              []RemotePrivateEndpointConnectionARMResource
 }
 
 // GetPrivateEndpointConnectionListSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) GetPrivateEndpointConnectionListSlotCompleteMatchingPredi
 	}
 
 	result = GetPrivateEndpointConnectionListSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

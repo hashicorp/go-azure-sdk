@@ -20,7 +20,8 @@ type ListBySubscriptionOperationResponse struct {
 }
 
 type ListBySubscriptionCompleteResult struct {
-	Items []PacketCoreControlPlane
+	LatestHttpResponse *http.Response
+	Items              []PacketCoreControlPlane
 }
 
 // ListBySubscription ...
@@ -84,7 +85,8 @@ func (c PacketCoreControlPlanesClient) ListBySubscriptionCompleteMatchingPredica
 	}
 
 	result = ListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

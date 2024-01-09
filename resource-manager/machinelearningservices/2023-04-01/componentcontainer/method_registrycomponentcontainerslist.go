@@ -19,7 +19,8 @@ type RegistryComponentContainersListOperationResponse struct {
 }
 
 type RegistryComponentContainersListCompleteResult struct {
-	Items []ComponentContainerResource
+	LatestHttpResponse *http.Response
+	Items              []ComponentContainerResource
 }
 
 type RegistryComponentContainersListOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ComponentContainerClient) RegistryComponentContainersListCompleteMatchin
 	}
 
 	result = RegistryComponentContainersListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

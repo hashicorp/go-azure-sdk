@@ -20,7 +20,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []IPv6FirewallRule
+	LatestHttpResponse *http.Response
+	Items              []IPv6FirewallRule
 }
 
 // ListByServer ...
@@ -84,7 +85,8 @@ func (c IPv6FirewallRulesClient) ListByServerCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

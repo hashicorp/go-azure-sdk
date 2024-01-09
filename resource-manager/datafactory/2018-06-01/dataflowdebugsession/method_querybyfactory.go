@@ -19,7 +19,8 @@ type QueryByFactoryOperationResponse struct {
 }
 
 type QueryByFactoryCompleteResult struct {
-	Items []DataFlowDebugSessionInfo
+	LatestHttpResponse *http.Response
+	Items              []DataFlowDebugSessionInfo
 }
 
 // QueryByFactory ...
@@ -83,7 +84,8 @@ func (c DataFlowDebugSessionClient) QueryByFactoryCompleteMatchingPredicate(ctx 
 	}
 
 	result = QueryByFactoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type GetAvailableStacksOnPremOperationResponse struct {
 }
 
 type GetAvailableStacksOnPremCompleteResult struct {
-	Items []ApplicationStackResource
+	LatestHttpResponse *http.Response
+	Items              []ApplicationStackResource
 }
 
 type GetAvailableStacksOnPremOperationOptions struct {
@@ -112,7 +113,8 @@ func (c ProviderClient) GetAvailableStacksOnPremCompleteMatchingPredicate(ctx co
 	}
 
 	result = GetAvailableStacksOnPremCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

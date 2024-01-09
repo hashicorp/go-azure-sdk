@@ -20,7 +20,8 @@ type GetSiteConnectionStringKeyVaultReferencesOperationResponse struct {
 }
 
 type GetSiteConnectionStringKeyVaultReferencesCompleteResult struct {
-	Items []ApiKVReference
+	LatestHttpResponse *http.Response
+	Items              []ApiKVReference
 }
 
 // GetSiteConnectionStringKeyVaultReferences ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferencesCompleteMatching
 	}
 
 	result = GetSiteConnectionStringKeyVaultReferencesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

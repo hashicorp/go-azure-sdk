@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []OpenShiftVersion
+	LatestHttpResponse *http.Response
+	Items              []OpenShiftVersion
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c OpenShiftVersionsClient) ListCompleteMatchingPredicate(ctx context.Conte
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

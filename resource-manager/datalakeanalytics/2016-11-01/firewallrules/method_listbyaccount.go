@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []FirewallRule
+	LatestHttpResponse *http.Response
+	Items              []FirewallRule
 }
 
 // ListByAccount ...
@@ -83,7 +84,8 @@ func (c FirewallRulesClient) ListByAccountCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

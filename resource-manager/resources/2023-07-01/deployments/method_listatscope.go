@@ -20,7 +20,8 @@ type ListAtScopeOperationResponse struct {
 }
 
 type ListAtScopeCompleteResult struct {
-	Items []DeploymentExtended
+	LatestHttpResponse *http.Response
+	Items              []DeploymentExtended
 }
 
 type ListAtScopeOperationOptions struct {
@@ -116,7 +117,8 @@ func (c DeploymentsClient) ListAtScopeCompleteMatchingPredicate(ctx context.Cont
 	}
 
 	result = ListAtScopeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

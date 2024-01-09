@@ -19,7 +19,8 @@ type ListHubSchemasOperationResponse struct {
 }
 
 type ListHubSchemasCompleteResult struct {
-	Items []SyncFullSchemaProperties
+	LatestHttpResponse *http.Response
+	Items              []SyncFullSchemaProperties
 }
 
 // ListHubSchemas ...
@@ -83,7 +84,8 @@ func (c SyncGroupsClient) ListHubSchemasCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListHubSchemasCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

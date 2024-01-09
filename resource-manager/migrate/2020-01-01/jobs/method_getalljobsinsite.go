@@ -19,7 +19,8 @@ type GetAllJobsInSiteOperationResponse struct {
 }
 
 type GetAllJobsInSiteCompleteResult struct {
-	Items []VMwareJob
+	LatestHttpResponse *http.Response
+	Items              []VMwareJob
 }
 
 // GetAllJobsInSite ...
@@ -83,7 +84,8 @@ func (c JobsClient) GetAllJobsInSiteCompleteMatchingPredicate(ctx context.Contex
 	}
 
 	result = GetAllJobsInSiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

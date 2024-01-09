@@ -20,7 +20,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []OutboundFirewallRule
+	LatestHttpResponse *http.Response
+	Items              []OutboundFirewallRule
 }
 
 // ListByServer ...
@@ -84,7 +85,8 @@ func (c OutboundFirewallRulesClient) ListByServerCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

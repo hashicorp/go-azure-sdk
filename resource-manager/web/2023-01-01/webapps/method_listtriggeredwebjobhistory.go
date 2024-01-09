@@ -19,7 +19,8 @@ type ListTriggeredWebJobHistoryOperationResponse struct {
 }
 
 type ListTriggeredWebJobHistoryCompleteResult struct {
-	Items []TriggeredJobHistory
+	LatestHttpResponse *http.Response
+	Items              []TriggeredJobHistory
 }
 
 // ListTriggeredWebJobHistory ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListTriggeredWebJobHistoryCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListTriggeredWebJobHistoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

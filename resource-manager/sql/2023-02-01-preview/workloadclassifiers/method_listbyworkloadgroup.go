@@ -19,7 +19,8 @@ type ListByWorkloadGroupOperationResponse struct {
 }
 
 type ListByWorkloadGroupCompleteResult struct {
-	Items []WorkloadClassifier
+	LatestHttpResponse *http.Response
+	Items              []WorkloadClassifier
 }
 
 // ListByWorkloadGroup ...
@@ -83,7 +84,8 @@ func (c WorkloadClassifiersClient) ListByWorkloadGroupCompleteMatchingPredicate(
 	}
 
 	result = ListByWorkloadGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

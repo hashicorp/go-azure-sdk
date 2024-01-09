@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedInstanceEncryptionProtector
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceEncryptionProtector
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstanceEncryptionProtectorsClient) ListByInstanceCompleteMatchin
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

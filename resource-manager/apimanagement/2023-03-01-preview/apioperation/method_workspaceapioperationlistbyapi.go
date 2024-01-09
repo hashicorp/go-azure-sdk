@@ -19,7 +19,8 @@ type WorkspaceApiOperationListByApiOperationResponse struct {
 }
 
 type WorkspaceApiOperationListByApiCompleteResult struct {
-	Items []OperationContract
+	LatestHttpResponse *http.Response
+	Items              []OperationContract
 }
 
 type WorkspaceApiOperationListByApiOperationOptions struct {
@@ -123,7 +124,8 @@ func (c ApiOperationClient) WorkspaceApiOperationListByApiCompleteMatchingPredic
 	}
 
 	result = WorkspaceApiOperationListByApiCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

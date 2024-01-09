@@ -19,7 +19,8 @@ type ListByEmailServiceResourceOperationResponse struct {
 }
 
 type ListByEmailServiceResourceCompleteResult struct {
-	Items []DomainResource
+	LatestHttpResponse *http.Response
+	Items              []DomainResource
 }
 
 // ListByEmailServiceResource ...
@@ -83,7 +84,8 @@ func (c DomainsClient) ListByEmailServiceResourceCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListByEmailServiceResourceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

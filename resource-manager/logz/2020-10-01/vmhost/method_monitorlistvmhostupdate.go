@@ -19,7 +19,8 @@ type MonitorListVMHostUpdateOperationResponse struct {
 }
 
 type MonitorListVMHostUpdateCompleteResult struct {
-	Items []VMResources
+	LatestHttpResponse *http.Response
+	Items              []VMResources
 }
 
 // MonitorListVMHostUpdate ...
@@ -83,7 +84,8 @@ func (c VMHostClient) MonitorListVMHostUpdateCompleteMatchingPredicate(ctx conte
 	}
 
 	result = MonitorListVMHostUpdateCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

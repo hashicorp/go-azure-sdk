@@ -19,7 +19,8 @@ type AuthorizationListByAuthorizationProviderOperationResponse struct {
 }
 
 type AuthorizationListByAuthorizationProviderCompleteResult struct {
-	Items []AuthorizationContract
+	LatestHttpResponse *http.Response
+	Items              []AuthorizationContract
 }
 
 type AuthorizationListByAuthorizationProviderOperationOptions struct {
@@ -119,7 +120,8 @@ func (c AuthorizationsClient) AuthorizationListByAuthorizationProviderCompleteMa
 	}
 
 	result = AuthorizationListByAuthorizationProviderCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

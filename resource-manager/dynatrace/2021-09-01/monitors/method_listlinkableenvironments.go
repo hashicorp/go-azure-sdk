@@ -19,7 +19,8 @@ type ListLinkableEnvironmentsOperationResponse struct {
 }
 
 type ListLinkableEnvironmentsCompleteResult struct {
-	Items []LinkableEnvironmentResponse
+	LatestHttpResponse *http.Response
+	Items              []LinkableEnvironmentResponse
 }
 
 // ListLinkableEnvironments ...
@@ -83,7 +84,8 @@ func (c MonitorsClient) ListLinkableEnvironmentsCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListLinkableEnvironmentsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

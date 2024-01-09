@@ -19,7 +19,8 @@ type ListAssociationsOperationResponse struct {
 }
 
 type ListAssociationsCompleteResult struct {
-	Items []CommitmentPlanAccountAssociation
+	LatestHttpResponse *http.Response
+	Items              []CommitmentPlanAccountAssociation
 }
 
 // ListAssociations ...
@@ -83,7 +84,8 @@ func (c CommitmentPlansClient) ListAssociationsCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListAssociationsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

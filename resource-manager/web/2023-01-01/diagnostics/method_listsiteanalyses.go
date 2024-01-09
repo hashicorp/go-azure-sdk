@@ -19,7 +19,8 @@ type ListSiteAnalysesOperationResponse struct {
 }
 
 type ListSiteAnalysesCompleteResult struct {
-	Items []AnalysisDefinition
+	LatestHttpResponse *http.Response
+	Items              []AnalysisDefinition
 }
 
 // ListSiteAnalyses ...
@@ -83,7 +84,8 @@ func (c DiagnosticsClient) ListSiteAnalysesCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListSiteAnalysesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

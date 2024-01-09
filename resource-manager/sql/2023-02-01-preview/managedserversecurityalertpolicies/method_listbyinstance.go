@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedServerSecurityAlertPolicy
+	LatestHttpResponse *http.Response
+	Items              []ManagedServerSecurityAlertPolicy
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedServerSecurityAlertPoliciesClient) ListByInstanceCompleteMatching
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

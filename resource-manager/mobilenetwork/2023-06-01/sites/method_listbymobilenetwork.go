@@ -19,7 +19,8 @@ type ListByMobileNetworkOperationResponse struct {
 }
 
 type ListByMobileNetworkCompleteResult struct {
-	Items []Site
+	LatestHttpResponse *http.Response
+	Items              []Site
 }
 
 // ListByMobileNetwork ...
@@ -83,7 +84,8 @@ func (c SitesClient) ListByMobileNetworkCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListByMobileNetworkCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListBySiteOperationResponse struct {
 }
 
 type ListBySiteCompleteResult struct {
-	Items []ResourceHealthMetadata
+	LatestHttpResponse *http.Response
+	Items              []ResourceHealthMetadata
 }
 
 // ListBySite ...
@@ -84,7 +85,8 @@ func (c ResourceHealthMetadataClient) ListBySiteCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListBySiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

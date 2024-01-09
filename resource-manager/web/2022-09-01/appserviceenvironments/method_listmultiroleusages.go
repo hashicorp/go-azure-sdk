@@ -20,7 +20,8 @@ type ListMultiRoleUsagesOperationResponse struct {
 }
 
 type ListMultiRoleUsagesCompleteResult struct {
-	Items []Usage
+	LatestHttpResponse *http.Response
+	Items              []Usage
 }
 
 // ListMultiRoleUsages ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListMultiRoleUsagesCompleteMatchingPredica
 	}
 
 	result = ListMultiRoleUsagesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

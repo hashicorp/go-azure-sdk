@@ -20,7 +20,8 @@ type DeploymentsListForClusterOperationResponse struct {
 }
 
 type DeploymentsListForClusterCompleteResult struct {
-	Items []DeploymentResource
+	LatestHttpResponse *http.Response
+	Items              []DeploymentResource
 }
 
 type DeploymentsListForClusterOperationOptions struct {
@@ -112,7 +113,8 @@ func (c AppPlatformClient) DeploymentsListForClusterCompleteMatchingPredicate(ct
 	}
 
 	result = DeploymentsListForClusterCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

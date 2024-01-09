@@ -19,7 +19,8 @@ type WorkspaceApiRevisionListByServiceOperationResponse struct {
 }
 
 type WorkspaceApiRevisionListByServiceCompleteResult struct {
-	Items []ApiRevisionContract
+	LatestHttpResponse *http.Response
+	Items              []ApiRevisionContract
 }
 
 type WorkspaceApiRevisionListByServiceOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiRevisionClient) WorkspaceApiRevisionListByServiceCompleteMatchingPred
 	}
 
 	result = WorkspaceApiRevisionListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

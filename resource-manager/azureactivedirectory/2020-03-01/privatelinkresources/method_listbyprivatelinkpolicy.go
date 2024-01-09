@@ -19,7 +19,8 @@ type ListByPrivateLinkPolicyOperationResponse struct {
 }
 
 type ListByPrivateLinkPolicyCompleteResult struct {
-	Items []PrivateLinkResource
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkResource
 }
 
 // ListByPrivateLinkPolicy ...
@@ -83,7 +84,8 @@ func (c PrivateLinkResourcesClient) ListByPrivateLinkPolicyCompleteMatchingPredi
 	}
 
 	result = ListByPrivateLinkPolicyCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedInstanceAzureADOnlyAuthentication
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceAzureADOnlyAuthentication
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstanceAzureADOnlyAuthenticationsClient) ListByInstanceCompleteM
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

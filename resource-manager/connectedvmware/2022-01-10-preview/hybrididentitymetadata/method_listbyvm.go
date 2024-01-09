@@ -19,7 +19,8 @@ type ListByVMOperationResponse struct {
 }
 
 type ListByVMCompleteResult struct {
-	Items []HybridIdentityMetadata
+	LatestHttpResponse *http.Response
+	Items              []HybridIdentityMetadata
 }
 
 // ListByVM ...
@@ -83,7 +84,8 @@ func (c HybridIdentityMetadataClient) ListByVMCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByVMCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type ListByPacketCoreDataPlaneOperationResponse struct {
 }
 
 type ListByPacketCoreDataPlaneCompleteResult struct {
-	Items []AttachedDataNetwork
+	LatestHttpResponse *http.Response
+	Items              []AttachedDataNetwork
 }
 
 // ListByPacketCoreDataPlane ...
@@ -83,7 +84,8 @@ func (c AttachedDataNetworksClient) ListByPacketCoreDataPlaneCompleteMatchingPre
 	}
 
 	result = ListByPacketCoreDataPlaneCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

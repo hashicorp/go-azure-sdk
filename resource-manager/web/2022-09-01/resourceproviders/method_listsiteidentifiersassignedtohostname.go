@@ -20,7 +20,8 @@ type ListSiteIdentifiersAssignedToHostNameOperationResponse struct {
 }
 
 type ListSiteIdentifiersAssignedToHostNameCompleteResult struct {
-	Items []Identifier
+	LatestHttpResponse *http.Response
+	Items              []Identifier
 }
 
 // ListSiteIdentifiersAssignedToHostName ...
@@ -84,7 +85,8 @@ func (c ResourceProvidersClient) ListSiteIdentifiersAssignedToHostNameCompleteMa
 	}
 
 	result = ListSiteIdentifiersAssignedToHostNameCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

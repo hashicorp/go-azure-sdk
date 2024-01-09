@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []CostAllocationRuleDefinition
+	LatestHttpResponse *http.Response
+	Items              []CostAllocationRuleDefinition
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c CostAllocationRulesClient) ListCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

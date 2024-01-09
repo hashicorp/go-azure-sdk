@@ -19,7 +19,8 @@ type ListAssociatedResourcesOperationResponse struct {
 }
 
 type ListAssociatedResourcesCompleteResult struct {
-	Items []string
+	LatestHttpResponse *http.Response
+	Items              []string
 }
 
 // ListAssociatedResources ...
@@ -76,7 +77,8 @@ func (c DiskEncryptionSetsClient) ListAssociatedResourcesComplete(ctx context.Co
 	}
 
 	result = ListAssociatedResourcesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

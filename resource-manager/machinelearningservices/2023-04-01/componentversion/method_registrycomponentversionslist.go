@@ -19,7 +19,8 @@ type RegistryComponentVersionsListOperationResponse struct {
 }
 
 type RegistryComponentVersionsListCompleteResult struct {
-	Items []ComponentVersionResource
+	LatestHttpResponse *http.Response
+	Items              []ComponentVersionResource
 }
 
 type RegistryComponentVersionsListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ComponentVersionClient) RegistryComponentVersionsListCompleteMatchingPre
 	}
 
 	result = RegistryComponentVersionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

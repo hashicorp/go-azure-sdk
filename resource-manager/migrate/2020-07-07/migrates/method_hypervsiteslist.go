@@ -20,7 +20,8 @@ type HyperVSitesListOperationResponse struct {
 }
 
 type HyperVSitesListCompleteResult struct {
-	Items []HyperVSite
+	LatestHttpResponse *http.Response
+	Items              []HyperVSite
 }
 
 // HyperVSitesList ...
@@ -84,7 +85,8 @@ func (c MigratesClient) HyperVSitesListCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = HyperVSitesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

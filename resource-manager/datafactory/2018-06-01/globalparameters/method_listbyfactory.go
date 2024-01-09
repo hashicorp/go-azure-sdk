@@ -19,7 +19,8 @@ type ListByFactoryOperationResponse struct {
 }
 
 type ListByFactoryCompleteResult struct {
-	Items []GlobalParameterResource
+	LatestHttpResponse *http.Response
+	Items              []GlobalParameterResource
 }
 
 // ListByFactory ...
@@ -83,7 +84,8 @@ func (c GlobalParametersClient) ListByFactoryCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListByFactoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

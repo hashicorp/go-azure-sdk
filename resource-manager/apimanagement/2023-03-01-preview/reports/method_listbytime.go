@@ -19,7 +19,8 @@ type ListByTimeOperationResponse struct {
 }
 
 type ListByTimeCompleteResult struct {
-	Items []ReportRecordContract
+	LatestHttpResponse *http.Response
+	Items              []ReportRecordContract
 }
 
 type ListByTimeOperationOptions struct {
@@ -127,7 +128,8 @@ func (c ReportsClient) ListByTimeCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = ListByTimeCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

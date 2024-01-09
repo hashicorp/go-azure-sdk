@@ -20,7 +20,8 @@ type ListBillingMetersOperationResponse struct {
 }
 
 type ListBillingMetersCompleteResult struct {
-	Items []BillingMeter
+	LatestHttpResponse *http.Response
+	Items              []BillingMeter
 }
 
 type ListBillingMetersOperationOptions struct {
@@ -116,7 +117,8 @@ func (c ResourceProvidersClient) ListBillingMetersCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListBillingMetersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

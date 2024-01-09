@@ -19,7 +19,8 @@ type ListByConfigurationStoreOperationResponse struct {
 }
 
 type ListByConfigurationStoreCompleteResult struct {
-	Items []PrivateEndpointConnection
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnection
 }
 
 // ListByConfigurationStore ...
@@ -83,7 +84,8 @@ func (c PrivateEndpointConnectionsClient) ListByConfigurationStoreCompleteMatchi
 	}
 
 	result = ListByConfigurationStoreCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

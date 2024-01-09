@@ -20,7 +20,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []VirtualMachineTemplate
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachineTemplate
 }
 
 // List ...
@@ -84,7 +85,8 @@ func (c VirtualMachineTemplatesClient) ListCompleteMatchingPredicate(ctx context
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type IntegrationServiceEnvironmentManagedApiOperationsListOperationResponse stru
 }
 
 type IntegrationServiceEnvironmentManagedApiOperationsListCompleteResult struct {
-	Items []ApiOperation
+	LatestHttpResponse *http.Response
+	Items              []ApiOperation
 }
 
 // IntegrationServiceEnvironmentManagedApiOperationsList ...
@@ -83,7 +84,8 @@ func (c IntegrationServiceEnvironmentManagedApisClient) IntegrationServiceEnviro
 	}
 
 	result = IntegrationServiceEnvironmentManagedApiOperationsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

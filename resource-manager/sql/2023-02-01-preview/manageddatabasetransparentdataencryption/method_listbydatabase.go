@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []ManagedTransparentDataEncryption
+	LatestHttpResponse *http.Response
+	Items              []ManagedTransparentDataEncryption
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabaseCompleteMa
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

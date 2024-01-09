@@ -20,7 +20,8 @@ type ClusterManagersListBySubscriptionOperationResponse struct {
 }
 
 type ClusterManagersListBySubscriptionCompleteResult struct {
-	Items []ClusterManager
+	LatestHttpResponse *http.Response
+	Items              []ClusterManager
 }
 
 // ClusterManagersListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) ClusterManagersListBySubscriptionCompleteMatchingPr
 	}
 
 	result = ClusterManagersListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

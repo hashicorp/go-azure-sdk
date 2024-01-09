@@ -19,7 +19,8 @@ type ListInstanceProcessModulesOperationResponse struct {
 }
 
 type ListInstanceProcessModulesCompleteResult struct {
-	Items []ProcessModuleInfo
+	LatestHttpResponse *http.Response
+	Items              []ProcessModuleInfo
 }
 
 // ListInstanceProcessModules ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListInstanceProcessModulesCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListInstanceProcessModulesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

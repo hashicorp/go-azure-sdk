@@ -20,7 +20,8 @@ type VMwareSitesListBySubscriptionOperationResponse struct {
 }
 
 type VMwareSitesListBySubscriptionCompleteResult struct {
-	Items []VMwareSite
+	LatestHttpResponse *http.Response
+	Items              []VMwareSite
 }
 
 // VMwareSitesListBySubscription ...
@@ -84,7 +85,8 @@ func (c MigratesClient) VMwareSitesListBySubscriptionCompleteMatchingPredicate(c
 	}
 
 	result = VMwareSitesListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

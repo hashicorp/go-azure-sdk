@@ -19,7 +19,8 @@ type ListLogsOperationResponse struct {
 }
 
 type ListLogsCompleteResult struct {
-	Items []SyncGroupLogProperties
+	LatestHttpResponse *http.Response
+	Items              []SyncGroupLogProperties
 }
 
 type ListLogsOperationOptions struct {
@@ -123,7 +124,8 @@ func (c SyncGroupsClient) ListLogsCompleteMatchingPredicate(ctx context.Context,
 	}
 
 	result = ListLogsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

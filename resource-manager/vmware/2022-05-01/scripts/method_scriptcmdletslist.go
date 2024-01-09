@@ -19,7 +19,8 @@ type ScriptCmdletsListOperationResponse struct {
 }
 
 type ScriptCmdletsListCompleteResult struct {
-	Items []ScriptCmdlet
+	LatestHttpResponse *http.Response
+	Items              []ScriptCmdlet
 }
 
 // ScriptCmdletsList ...
@@ -83,7 +84,8 @@ func (c ScriptsClient) ScriptCmdletsListCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ScriptCmdletsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

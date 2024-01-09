@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []VirtualNetworkRule
+	LatestHttpResponse *http.Response
+	Items              []VirtualNetworkRule
 }
 
 // ListByAccount ...
@@ -83,7 +84,8 @@ func (c VirtualNetworkRulesClient) ListByAccountCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

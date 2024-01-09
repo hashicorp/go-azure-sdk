@@ -19,7 +19,8 @@ type ListVMGroupsOperationResponse struct {
 }
 
 type ListVMGroupsCompleteResult struct {
-	Items []WorkloadNetworkVMGroup
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkVMGroup
 }
 
 // ListVMGroups ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListVMGroupsCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListVMGroupsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

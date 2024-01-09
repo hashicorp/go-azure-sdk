@@ -19,7 +19,8 @@ type ListSasTokensOperationResponse struct {
 }
 
 type ListSasTokensCompleteResult struct {
-	Items []SasTokenInformation
+	LatestHttpResponse *http.Response
+	Items              []SasTokenInformation
 }
 
 // ListSasTokens ...
@@ -83,7 +84,8 @@ func (c StorageAccountsClient) ListSasTokensCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListSasTokensCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

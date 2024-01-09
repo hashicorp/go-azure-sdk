@@ -19,7 +19,8 @@ type GetAllClustersInSiteOperationResponse struct {
 }
 
 type GetAllClustersInSiteCompleteResult struct {
-	Items []HyperVCluster
+	LatestHttpResponse *http.Response
+	Items              []HyperVCluster
 }
 
 type GetAllClustersInSiteOperationOptions struct {
@@ -111,7 +112,8 @@ func (c HyperVClusterClient) GetAllClustersInSiteCompleteMatchingPredicate(ctx c
 	}
 
 	result = GetAllClustersInSiteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

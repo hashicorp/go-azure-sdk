@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []VirtualMachineScaleSetVM
+	LatestHttpResponse *http.Response
+	Items              []VirtualMachineScaleSetVM
 }
 
 type ListOperationOptions struct {
@@ -119,7 +120,8 @@ func (c VirtualMachineScaleSetVMsClient) ListCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

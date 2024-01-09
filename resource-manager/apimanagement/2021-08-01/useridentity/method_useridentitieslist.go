@@ -19,7 +19,8 @@ type UserIdentitiesListOperationResponse struct {
 }
 
 type UserIdentitiesListCompleteResult struct {
-	Items []UserIdentityContract
+	LatestHttpResponse *http.Response
+	Items              []UserIdentityContract
 }
 
 // UserIdentitiesList ...
@@ -83,7 +84,8 @@ func (c UserIdentityClient) UserIdentitiesListCompleteMatchingPredicate(ctx cont
 	}
 
 	result = UserIdentitiesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

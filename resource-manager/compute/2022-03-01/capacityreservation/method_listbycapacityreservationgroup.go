@@ -19,7 +19,8 @@ type ListByCapacityReservationGroupOperationResponse struct {
 }
 
 type ListByCapacityReservationGroupCompleteResult struct {
-	Items []CapacityReservation
+	LatestHttpResponse *http.Response
+	Items              []CapacityReservation
 }
 
 // ListByCapacityReservationGroup ...
@@ -83,7 +84,8 @@ func (c CapacityReservationClient) ListByCapacityReservationGroupCompleteMatchin
 	}
 
 	result = ListByCapacityReservationGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

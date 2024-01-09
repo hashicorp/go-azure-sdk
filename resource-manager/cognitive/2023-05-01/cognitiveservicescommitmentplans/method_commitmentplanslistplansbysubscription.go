@@ -20,7 +20,8 @@ type CommitmentPlansListPlansBySubscriptionOperationResponse struct {
 }
 
 type CommitmentPlansListPlansBySubscriptionCompleteResult struct {
-	Items []CommitmentPlan
+	LatestHttpResponse *http.Response
+	Items              []CommitmentPlan
 }
 
 // CommitmentPlansListPlansBySubscription ...
@@ -84,7 +85,8 @@ func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansListPlansBySubscr
 	}
 
 	result = CommitmentPlansListPlansBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

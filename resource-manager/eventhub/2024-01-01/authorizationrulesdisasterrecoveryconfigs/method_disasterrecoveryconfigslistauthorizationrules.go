@@ -19,7 +19,8 @@ type DisasterRecoveryConfigsListAuthorizationRulesOperationResponse struct {
 }
 
 type DisasterRecoveryConfigsListAuthorizationRulesCompleteResult struct {
-	Items []AuthorizationRule
+	LatestHttpResponse *http.Response
+	Items              []AuthorizationRule
 }
 
 // DisasterRecoveryConfigsListAuthorizationRules ...
@@ -83,7 +84,8 @@ func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigs
 	}
 
 	result = DisasterRecoveryConfigsListAuthorizationRulesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

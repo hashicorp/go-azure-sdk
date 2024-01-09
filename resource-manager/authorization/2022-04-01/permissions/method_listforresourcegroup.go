@@ -20,7 +20,8 @@ type ListForResourceGroupOperationResponse struct {
 }
 
 type ListForResourceGroupCompleteResult struct {
-	Items []Permission
+	LatestHttpResponse *http.Response
+	Items              []Permission
 }
 
 // ListForResourceGroup ...
@@ -84,7 +85,8 @@ func (c PermissionsClient) ListForResourceGroupCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListForResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

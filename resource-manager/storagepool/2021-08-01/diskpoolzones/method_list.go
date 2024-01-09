@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []DiskPoolZoneInfo
+	LatestHttpResponse *http.Response
+	Items              []DiskPoolZoneInfo
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c DiskPoolZonesClient) ListCompleteMatchingPredicate(ctx context.Context, 
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

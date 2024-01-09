@@ -20,7 +20,8 @@ type ListGeoRegionsOperationResponse struct {
 }
 
 type ListGeoRegionsCompleteResult struct {
-	Items []GeoRegion
+	LatestHttpResponse *http.Response
+	Items              []GeoRegion
 }
 
 type ListGeoRegionsOperationOptions struct {
@@ -124,7 +125,8 @@ func (c ResourceProvidersClient) ListGeoRegionsCompleteMatchingPredicate(ctx con
 	}
 
 	result = ListGeoRegionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

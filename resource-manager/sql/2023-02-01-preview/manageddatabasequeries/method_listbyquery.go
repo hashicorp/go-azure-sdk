@@ -19,7 +19,8 @@ type ListByQueryOperationResponse struct {
 }
 
 type ListByQueryCompleteResult struct {
-	Items []QueryStatistics
+	LatestHttpResponse *http.Response
+	Items              []QueryStatistics
 }
 
 type ListByQueryOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ManagedDatabaseQueriesClient) ListByQueryCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListByQueryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

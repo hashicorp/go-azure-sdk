@@ -19,7 +19,8 @@ type ListSnapshotsFromDRSecondarySlotOperationResponse struct {
 }
 
 type ListSnapshotsFromDRSecondarySlotCompleteResult struct {
-	Items []Snapshot
+	LatestHttpResponse *http.Response
+	Items              []Snapshot
 }
 
 // ListSnapshotsFromDRSecondarySlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListSnapshotsFromDRSecondarySlotCompleteMatchingPredicate
 	}
 
 	result = ListSnapshotsFromDRSecondarySlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

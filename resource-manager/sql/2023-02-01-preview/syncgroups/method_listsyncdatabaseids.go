@@ -19,7 +19,8 @@ type ListSyncDatabaseIdsOperationResponse struct {
 }
 
 type ListSyncDatabaseIdsCompleteResult struct {
-	Items []SyncDatabaseIdProperties
+	LatestHttpResponse *http.Response
+	Items              []SyncDatabaseIdProperties
 }
 
 // ListSyncDatabaseIds ...
@@ -83,7 +84,8 @@ func (c SyncGroupsClient) ListSyncDatabaseIdsCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListSyncDatabaseIdsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

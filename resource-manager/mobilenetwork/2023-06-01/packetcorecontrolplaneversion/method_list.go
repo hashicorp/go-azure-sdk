@@ -19,7 +19,8 @@ type ListOperationResponse struct {
 }
 
 type ListCompleteResult struct {
-	Items []PacketCoreControlPlaneVersion
+	LatestHttpResponse *http.Response
+	Items              []PacketCoreControlPlaneVersion
 }
 
 // List ...
@@ -83,7 +84,8 @@ func (c PacketCoreControlPlaneVersionClient) ListCompleteMatchingPredicate(ctx c
 	}
 
 	result = ListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

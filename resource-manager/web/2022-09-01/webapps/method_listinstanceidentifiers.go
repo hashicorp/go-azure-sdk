@@ -20,7 +20,8 @@ type ListInstanceIdentifiersOperationResponse struct {
 }
 
 type ListInstanceIdentifiersCompleteResult struct {
-	Items []WebSiteInstanceStatus
+	LatestHttpResponse *http.Response
+	Items              []WebSiteInstanceStatus
 }
 
 // ListInstanceIdentifiers ...
@@ -84,7 +85,8 @@ func (c WebAppsClient) ListInstanceIdentifiersCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListInstanceIdentifiersCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

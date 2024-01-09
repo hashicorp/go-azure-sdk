@@ -19,7 +19,8 @@ type ListProcessModulesSlotOperationResponse struct {
 }
 
 type ListProcessModulesSlotCompleteResult struct {
-	Items []ProcessModuleInfo
+	LatestHttpResponse *http.Response
+	Items              []ProcessModuleInfo
 }
 
 // ListProcessModulesSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListProcessModulesSlotCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListProcessModulesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

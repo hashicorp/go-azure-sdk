@@ -19,7 +19,8 @@ type WorkspaceProductListByServiceOperationResponse struct {
 }
 
 type WorkspaceProductListByServiceCompleteResult struct {
-	Items []ProductContract
+	LatestHttpResponse *http.Response
+	Items              []ProductContract
 }
 
 type WorkspaceProductListByServiceOperationOptions struct {
@@ -127,7 +128,8 @@ func (c ProductClient) WorkspaceProductListByServiceCompleteMatchingPredicate(ct
 	}
 
 	result = WorkspaceProductListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

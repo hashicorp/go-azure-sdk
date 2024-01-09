@@ -19,7 +19,8 @@ type RegistryDataVersionsListOperationResponse struct {
 }
 
 type RegistryDataVersionsListCompleteResult struct {
-	Items []DataVersionBaseResource
+	LatestHttpResponse *http.Response
+	Items              []DataVersionBaseResource
 }
 
 type RegistryDataVersionsListOperationOptions struct {
@@ -127,7 +128,8 @@ func (c DataVersionRegistryClient) RegistryDataVersionsListCompleteMatchingPredi
 	}
 
 	result = RegistryDataVersionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

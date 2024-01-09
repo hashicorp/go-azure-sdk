@@ -19,7 +19,8 @@ type ListDeploymentsSlotOperationResponse struct {
 }
 
 type ListDeploymentsSlotCompleteResult struct {
-	Items []Deployment
+	LatestHttpResponse *http.Response
+	Items              []Deployment
 }
 
 // ListDeploymentsSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListDeploymentsSlotCompleteMatchingPredicate(ctx context.
 	}
 
 	result = ListDeploymentsSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

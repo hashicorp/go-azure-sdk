@@ -19,7 +19,8 @@ type ListUsagesSlotOperationResponse struct {
 }
 
 type ListUsagesSlotCompleteResult struct {
-	Items []CsmUsageQuota
+	LatestHttpResponse *http.Response
+	Items              []CsmUsageQuota
 }
 
 type ListUsagesSlotOperationOptions struct {
@@ -111,7 +112,8 @@ func (c WebAppsClient) ListUsagesSlotCompleteMatchingPredicate(ctx context.Conte
 	}
 
 	result = ListUsagesSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

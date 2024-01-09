@@ -19,7 +19,8 @@ type ListByResourceGroupLocationOperationResponse struct {
 }
 
 type ListByResourceGroupLocationCompleteResult struct {
-	Items []ManagedInstanceLongTermRetentionBackup
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceLongTermRetentionBackup
 }
 
 type ListByResourceGroupLocationOperationOptions struct {
@@ -115,7 +116,8 @@ func (c LongTermRetentionManagedInstanceBackupsClient) ListByResourceGroupLocati
 	}
 
 	result = ListByResourceGroupLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

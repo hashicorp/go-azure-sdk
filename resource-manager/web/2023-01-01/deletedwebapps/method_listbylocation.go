@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []DeletedSite
+	LatestHttpResponse *http.Response
+	Items              []DeletedSite
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c DeletedWebAppsClient) ListByLocationCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -19,7 +19,8 @@ type WorkflowRunActionRepetitionsListOperationResponse struct {
 }
 
 type WorkflowRunActionRepetitionsListCompleteResult struct {
-	Items []WorkflowRunActionRepetitionDefinition
+	LatestHttpResponse *http.Response
+	Items              []WorkflowRunActionRepetitionDefinition
 }
 
 // WorkflowRunActionRepetitionsList ...
@@ -83,7 +84,8 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListCompleteMatchi
 	}
 
 	result = WorkflowRunActionRepetitionsListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []ManagedInstanceAdministrator
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceAdministrator
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstanceAdministratorsClient) ListByInstanceCompleteMatchingPredi
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListCustomHostNameSitesOperationResponse struct {
 }
 
 type ListCustomHostNameSitesCompleteResult struct {
-	Items []CustomHostnameSites
+	LatestHttpResponse *http.Response
+	Items              []CustomHostnameSites
 }
 
 type ListCustomHostNameSitesOperationOptions struct {
@@ -112,7 +113,8 @@ func (c ResourceProvidersClient) ListCustomHostNameSitesCompleteMatchingPredicat
 	}
 
 	result = ListCustomHostNameSitesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

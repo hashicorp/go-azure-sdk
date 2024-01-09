@@ -19,7 +19,8 @@ type ListByFactoryOperationResponse struct {
 }
 
 type ListByFactoryCompleteResult struct {
-	Items []ChangeDataCaptureResource
+	LatestHttpResponse *http.Response
+	Items              []ChangeDataCaptureResource
 }
 
 // ListByFactory ...
@@ -83,7 +84,8 @@ func (c ChangeDataCaptureClient) ListByFactoryCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByFactoryCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListMultiRoleMetricDefinitionsOperationResponse struct {
 }
 
 type ListMultiRoleMetricDefinitionsCompleteResult struct {
-	Items []ResourceMetricDefinition
+	LatestHttpResponse *http.Response
+	Items              []ResourceMetricDefinition
 }
 
 // ListMultiRoleMetricDefinitions ...
@@ -84,7 +85,8 @@ func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitionsCompleteMatc
 	}
 
 	result = ListMultiRoleMetricDefinitionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

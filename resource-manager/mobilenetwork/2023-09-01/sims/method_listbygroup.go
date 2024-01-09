@@ -19,7 +19,8 @@ type ListByGroupOperationResponse struct {
 }
 
 type ListByGroupCompleteResult struct {
-	Items []Sim
+	LatestHttpResponse *http.Response
+	Items              []Sim
 }
 
 // ListByGroup ...
@@ -83,7 +84,8 @@ func (c SIMsClient) ListByGroupCompleteMatchingPredicate(ctx context.Context, id
 	}
 
 	result = ListByGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

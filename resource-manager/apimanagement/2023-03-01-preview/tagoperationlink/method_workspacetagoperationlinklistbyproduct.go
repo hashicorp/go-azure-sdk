@@ -19,7 +19,8 @@ type WorkspaceTagOperationLinkListByProductOperationResponse struct {
 }
 
 type WorkspaceTagOperationLinkListByProductCompleteResult struct {
-	Items []TagOperationLinkContract
+	LatestHttpResponse *http.Response
+	Items              []TagOperationLinkContract
 }
 
 type WorkspaceTagOperationLinkListByProductOperationOptions struct {
@@ -119,7 +120,8 @@ func (c TagOperationLinkClient) WorkspaceTagOperationLinkListByProductCompleteMa
 	}
 
 	result = WorkspaceTagOperationLinkListByProductCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

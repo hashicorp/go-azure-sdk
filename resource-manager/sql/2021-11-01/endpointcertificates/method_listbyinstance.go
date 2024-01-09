@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []EndpointCertificate
+	LatestHttpResponse *http.Response
+	Items              []EndpointCertificate
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c EndpointCertificatesClient) ListByInstanceCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

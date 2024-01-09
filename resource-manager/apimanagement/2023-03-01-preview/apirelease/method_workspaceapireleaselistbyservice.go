@@ -19,7 +19,8 @@ type WorkspaceApiReleaseListByServiceOperationResponse struct {
 }
 
 type WorkspaceApiReleaseListByServiceCompleteResult struct {
-	Items []ApiReleaseContract
+	LatestHttpResponse *http.Response
+	Items              []ApiReleaseContract
 }
 
 type WorkspaceApiReleaseListByServiceOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiReleaseClient) WorkspaceApiReleaseListByServiceCompleteMatchingPredic
 	}
 
 	result = WorkspaceApiReleaseListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

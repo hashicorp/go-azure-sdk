@@ -20,7 +20,8 @@ type ListByServerOperationResponse struct {
 }
 
 type ListByServerCompleteResult struct {
-	Items []NetworkSecurityPerimeterConfiguration
+	LatestHttpResponse *http.Response
+	Items              []NetworkSecurityPerimeterConfiguration
 }
 
 // ListByServer ...
@@ -84,7 +85,8 @@ func (c NetworkSecurityPerimeterConfigurationsClient) ListByServerCompleteMatchi
 	}
 
 	result = ListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

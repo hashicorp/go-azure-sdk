@@ -19,7 +19,8 @@ type ListByLocationOperationResponse struct {
 }
 
 type ListByLocationCompleteResult struct {
-	Items []TimeZone
+	LatestHttpResponse *http.Response
+	Items              []TimeZone
 }
 
 // ListByLocation ...
@@ -83,7 +84,8 @@ func (c TimeZonesClient) ListByLocationCompleteMatchingPredicate(ctx context.Con
 	}
 
 	result = ListByLocationCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

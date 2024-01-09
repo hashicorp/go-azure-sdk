@@ -19,7 +19,8 @@ type VMHostListOperationResponse struct {
 }
 
 type VMHostListCompleteResult struct {
-	Items []VMResources
+	LatestHttpResponse *http.Response
+	Items              []VMResources
 }
 
 // VMHostList ...
@@ -83,7 +84,8 @@ func (c VMHHostListClient) VMHostListCompleteMatchingPredicate(ctx context.Conte
 	}
 
 	result = VMHostListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

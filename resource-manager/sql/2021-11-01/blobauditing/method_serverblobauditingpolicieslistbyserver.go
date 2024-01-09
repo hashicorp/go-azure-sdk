@@ -20,7 +20,8 @@ type ServerBlobAuditingPoliciesListByServerOperationResponse struct {
 }
 
 type ServerBlobAuditingPoliciesListByServerCompleteResult struct {
-	Items []ServerBlobAuditingPolicy
+	LatestHttpResponse *http.Response
+	Items              []ServerBlobAuditingPolicy
 }
 
 // ServerBlobAuditingPoliciesListByServer ...
@@ -84,7 +85,8 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerCompleteMatchi
 	}
 
 	result = ServerBlobAuditingPoliciesListByServerCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

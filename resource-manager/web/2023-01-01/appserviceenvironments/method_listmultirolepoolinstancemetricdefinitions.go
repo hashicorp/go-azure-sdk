@@ -19,7 +19,8 @@ type ListMultiRolePoolInstanceMetricDefinitionsOperationResponse struct {
 }
 
 type ListMultiRolePoolInstanceMetricDefinitionsCompleteResult struct {
-	Items []ResourceMetricDefinition
+	LatestHttpResponse *http.Response
+	Items              []ResourceMetricDefinition
 }
 
 // ListMultiRolePoolInstanceMetricDefinitions ...
@@ -83,7 +84,8 @@ func (c AppServiceEnvironmentsClient) ListMultiRolePoolInstanceMetricDefinitions
 	}
 
 	result = ListMultiRolePoolInstanceMetricDefinitionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

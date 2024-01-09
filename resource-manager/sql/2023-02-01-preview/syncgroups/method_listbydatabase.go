@@ -20,7 +20,8 @@ type ListByDatabaseOperationResponse struct {
 }
 
 type ListByDatabaseCompleteResult struct {
-	Items []SyncGroup
+	LatestHttpResponse *http.Response
+	Items              []SyncGroup
 }
 
 // ListByDatabase ...
@@ -84,7 +85,8 @@ func (c SyncGroupsClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Co
 	}
 
 	result = ListByDatabaseCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

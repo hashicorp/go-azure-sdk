@@ -19,7 +19,8 @@ type ListInstanceIdentifiersSlotOperationResponse struct {
 }
 
 type ListInstanceIdentifiersSlotCompleteResult struct {
-	Items []WebSiteInstanceStatus
+	LatestHttpResponse *http.Response
+	Items              []WebSiteInstanceStatus
 }
 
 // ListInstanceIdentifiersSlot ...
@@ -83,7 +84,8 @@ func (c WebAppsClient) ListInstanceIdentifiersSlotCompleteMatchingPredicate(ctx 
 	}
 
 	result = ListInstanceIdentifiersSlotCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

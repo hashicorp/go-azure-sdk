@@ -20,7 +20,8 @@ type ListByInstanceOperationResponse struct {
 }
 
 type ListByInstanceCompleteResult struct {
-	Items []StartStopManagedInstanceSchedule
+	LatestHttpResponse *http.Response
+	Items              []StartStopManagedInstanceSchedule
 }
 
 // ListByInstance ...
@@ -84,7 +85,8 @@ func (c StartStopManagedInstanceSchedulesClient) ListByInstanceCompleteMatchingP
 	}
 
 	result = ListByInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

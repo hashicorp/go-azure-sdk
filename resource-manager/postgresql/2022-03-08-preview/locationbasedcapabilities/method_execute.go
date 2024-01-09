@@ -19,7 +19,8 @@ type ExecuteOperationResponse struct {
 }
 
 type ExecuteCompleteResult struct {
-	Items []CapabilityProperties
+	LatestHttpResponse *http.Response
+	Items              []CapabilityProperties
 }
 
 // Execute ...
@@ -83,7 +84,8 @@ func (c LocationBasedCapabilitiesClient) ExecuteCompleteMatchingPredicate(ctx co
 	}
 
 	result = ExecuteCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

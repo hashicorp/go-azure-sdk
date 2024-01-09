@@ -19,7 +19,8 @@ type ListByDomainsOperationResponse struct {
 }
 
 type ListByDomainsCompleteResult struct {
-	Items []SenderUsernameResource
+	LatestHttpResponse *http.Response
+	Items              []SenderUsernameResource
 }
 
 // ListByDomains ...
@@ -83,7 +84,8 @@ func (c SenderUsernamesClient) ListByDomainsCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByDomainsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

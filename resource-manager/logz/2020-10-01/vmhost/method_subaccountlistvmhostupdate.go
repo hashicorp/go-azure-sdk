@@ -19,7 +19,8 @@ type SubAccountListVMHostUpdateOperationResponse struct {
 }
 
 type SubAccountListVMHostUpdateCompleteResult struct {
-	Items []VMResources
+	LatestHttpResponse *http.Response
+	Items              []VMResources
 }
 
 // SubAccountListVMHostUpdate ...
@@ -83,7 +84,8 @@ func (c VMHostClient) SubAccountListVMHostUpdateCompleteMatchingPredicate(ctx co
 	}
 
 	result = SubAccountListVMHostUpdateCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

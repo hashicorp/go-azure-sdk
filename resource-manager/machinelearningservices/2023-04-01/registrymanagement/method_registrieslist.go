@@ -20,7 +20,8 @@ type RegistriesListOperationResponse struct {
 }
 
 type RegistriesListCompleteResult struct {
-	Items []RegistryTrackedResource
+	LatestHttpResponse *http.Response
+	Items              []RegistryTrackedResource
 }
 
 // RegistriesList ...
@@ -84,7 +85,8 @@ func (c RegistryManagementClient) RegistriesListCompleteMatchingPredicate(ctx co
 	}
 
 	result = RegistriesListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

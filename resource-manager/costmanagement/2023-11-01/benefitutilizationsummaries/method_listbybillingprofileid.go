@@ -19,7 +19,8 @@ type ListByBillingProfileIdOperationResponse struct {
 }
 
 type ListByBillingProfileIdCompleteResult struct {
-	Items []BenefitUtilizationSummary
+	LatestHttpResponse *http.Response
+	Items              []BenefitUtilizationSummary
 }
 
 type ListByBillingProfileIdOperationOptions struct {
@@ -115,7 +116,8 @@ func (c BenefitUtilizationSummariesClient) ListByBillingProfileIdCompleteMatchin
 	}
 
 	result = ListByBillingProfileIdCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

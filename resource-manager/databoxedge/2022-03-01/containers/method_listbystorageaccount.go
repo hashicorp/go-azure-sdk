@@ -19,7 +19,8 @@ type ListByStorageAccountOperationResponse struct {
 }
 
 type ListByStorageAccountCompleteResult struct {
-	Items []Container
+	LatestHttpResponse *http.Response
+	Items              []Container
 }
 
 // ListByStorageAccount ...
@@ -83,7 +84,8 @@ func (c ContainersClient) ListByStorageAccountCompleteMatchingPredicate(ctx cont
 	}
 
 	result = ListByStorageAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

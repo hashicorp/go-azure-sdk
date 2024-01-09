@@ -19,7 +19,8 @@ type MetricsConfigurationsListByClusterOperationResponse struct {
 }
 
 type MetricsConfigurationsListByClusterCompleteResult struct {
-	Items []ClusterMetricsConfiguration
+	LatestHttpResponse *http.Response
+	Items              []ClusterMetricsConfiguration
 }
 
 // MetricsConfigurationsListByCluster ...
@@ -83,7 +84,8 @@ func (c NetworkcloudsClient) MetricsConfigurationsListByClusterCompleteMatchingP
 	}
 
 	result = MetricsConfigurationsListByClusterCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListByManagedInstanceOperationResponse struct {
 }
 
 type ListByManagedInstanceCompleteResult struct {
-	Items []ManagedInstanceDtc
+	LatestHttpResponse *http.Response
+	Items              []ManagedInstanceDtc
 }
 
 // ListByManagedInstance ...
@@ -84,7 +85,8 @@ func (c ManagedInstanceDtcsClient) ListByManagedInstanceCompleteMatchingPredicat
 	}
 
 	result = ListByManagedInstanceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

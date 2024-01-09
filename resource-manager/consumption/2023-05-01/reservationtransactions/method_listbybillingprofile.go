@@ -19,7 +19,8 @@ type ListByBillingProfileOperationResponse struct {
 }
 
 type ListByBillingProfileCompleteResult struct {
-	Items []ModernReservationTransaction
+	LatestHttpResponse *http.Response
+	Items              []ModernReservationTransaction
 }
 
 type ListByBillingProfileOperationOptions struct {
@@ -111,7 +112,8 @@ func (c ReservationTransactionsClient) ListByBillingProfileCompleteMatchingPredi
 	}
 
 	result = ListByBillingProfileCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

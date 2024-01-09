@@ -19,7 +19,8 @@ type GetLinkedBackendsOperationResponse struct {
 }
 
 type GetLinkedBackendsCompleteResult struct {
-	Items []StaticSiteLinkedBackendARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteLinkedBackendARMResource
 }
 
 // GetLinkedBackends ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetLinkedBackendsCompleteMatchingPredicate(ctx contex
 	}
 
 	result = GetLinkedBackendsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

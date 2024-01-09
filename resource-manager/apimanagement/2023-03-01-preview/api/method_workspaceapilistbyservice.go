@@ -19,7 +19,8 @@ type WorkspaceApiListByServiceOperationResponse struct {
 }
 
 type WorkspaceApiListByServiceCompleteResult struct {
-	Items []ApiContract
+	LatestHttpResponse *http.Response
+	Items              []ApiContract
 }
 
 type WorkspaceApiListByServiceOperationOptions struct {
@@ -127,7 +128,8 @@ func (c ApiClient) WorkspaceApiListByServiceCompleteMatchingPredicate(ctx contex
 	}
 
 	result = WorkspaceApiListByServiceCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

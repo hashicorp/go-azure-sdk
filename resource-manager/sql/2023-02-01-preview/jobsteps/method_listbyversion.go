@@ -19,7 +19,8 @@ type ListByVersionOperationResponse struct {
 }
 
 type ListByVersionCompleteResult struct {
-	Items []JobStep
+	LatestHttpResponse *http.Response
+	Items              []JobStep
 }
 
 // ListByVersion ...
@@ -83,7 +84,8 @@ func (c JobStepsClient) ListByVersionCompleteMatchingPredicate(ctx context.Conte
 	}
 
 	result = ListByVersionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

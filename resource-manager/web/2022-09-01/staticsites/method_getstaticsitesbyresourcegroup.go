@@ -20,7 +20,8 @@ type GetStaticSitesByResourceGroupOperationResponse struct {
 }
 
 type GetStaticSitesByResourceGroupCompleteResult struct {
-	Items []StaticSiteARMResource
+	LatestHttpResponse *http.Response
+	Items              []StaticSiteARMResource
 }
 
 // GetStaticSitesByResourceGroup ...
@@ -84,7 +85,8 @@ func (c StaticSitesClient) GetStaticSitesByResourceGroupCompleteMatchingPredicat
 	}
 
 	result = GetStaticSitesByResourceGroupCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

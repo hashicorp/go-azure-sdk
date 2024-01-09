@@ -19,7 +19,8 @@ type ListPublicIPsOperationResponse struct {
 }
 
 type ListPublicIPsCompleteResult struct {
-	Items []WorkloadNetworkPublicIP
+	LatestHttpResponse *http.Response
+	Items              []WorkloadNetworkPublicIP
 }
 
 // ListPublicIPs ...
@@ -83,7 +84,8 @@ func (c WorkloadNetworksClient) ListPublicIPsCompleteMatchingPredicate(ctx conte
 	}
 
 	result = ListPublicIPsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

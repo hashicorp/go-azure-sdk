@@ -23,7 +23,8 @@ type ChangeVnetOperationResponse struct {
 }
 
 type ChangeVnetCompleteResult struct {
-	Items []Site
+	LatestHttpResponse *http.Response
+	Items              []Site
 }
 
 // ChangeVnet ...

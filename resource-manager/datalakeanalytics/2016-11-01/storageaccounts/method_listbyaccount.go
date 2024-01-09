@@ -19,7 +19,8 @@ type ListByAccountOperationResponse struct {
 }
 
 type ListByAccountCompleteResult struct {
-	Items []StorageAccountInformation
+	LatestHttpResponse *http.Response
+	Items              []StorageAccountInformation
 }
 
 type ListByAccountOperationOptions struct {
@@ -131,7 +132,8 @@ func (c StorageAccountsClient) ListByAccountCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListByAccountCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

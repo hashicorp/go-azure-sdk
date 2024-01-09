@@ -19,7 +19,8 @@ type ListByPacketCoreControlPlaneOperationResponse struct {
 }
 
 type ListByPacketCoreControlPlaneCompleteResult struct {
-	Items []PacketCapture
+	LatestHttpResponse *http.Response
+	Items              []PacketCapture
 }
 
 // ListByPacketCoreControlPlane ...
@@ -83,7 +84,8 @@ func (c PacketCapturesClient) ListByPacketCoreControlPlaneCompleteMatchingPredic
 	}
 
 	result = ListByPacketCoreControlPlaneCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListHostingEnvironmentDetectorResponsesOperationResponse struct {
 }
 
 type ListHostingEnvironmentDetectorResponsesCompleteResult struct {
-	Items []DetectorResponse
+	LatestHttpResponse *http.Response
+	Items              []DetectorResponse
 }
 
 // ListHostingEnvironmentDetectorResponses ...
@@ -84,7 +85,8 @@ func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponsesCompleteMatchi
 	}
 
 	result = ListHostingEnvironmentDetectorResponsesCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

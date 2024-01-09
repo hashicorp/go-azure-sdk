@@ -19,7 +19,8 @@ type ListAllExecutionsOperationResponse struct {
 }
 
 type ListAllExecutionsCompleteResult struct {
-	Items []ExperimentExecution
+	LatestHttpResponse *http.Response
+	Items              []ExperimentExecution
 }
 
 // ListAllExecutions ...
@@ -83,7 +84,8 @@ func (c ExperimentsClient) ListAllExecutionsCompleteMatchingPredicate(ctx contex
 	}
 
 	result = ListAllExecutionsCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

@@ -20,7 +20,8 @@ type ListBySubscriptionOperationResponse struct {
 }
 
 type ListBySubscriptionCompleteResult struct {
-	Items []ConfigData
+	LatestHttpResponse *http.Response
+	Items              []ConfigData
 }
 
 // ListBySubscription ...
@@ -84,7 +85,8 @@ func (c ConfigurationsClient) ListBySubscriptionCompleteMatchingPredicate(ctx co
 	}
 
 	result = ListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

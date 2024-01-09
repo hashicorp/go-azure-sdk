@@ -19,7 +19,8 @@ type WorkspaceApiSchemaListByApiOperationResponse struct {
 }
 
 type WorkspaceApiSchemaListByApiCompleteResult struct {
-	Items []SchemaContract
+	LatestHttpResponse *http.Response
+	Items              []SchemaContract
 }
 
 type WorkspaceApiSchemaListByApiOperationOptions struct {
@@ -119,7 +120,8 @@ func (c ApiSchemaClient) WorkspaceApiSchemaListByApiCompleteMatchingPredicate(ct
 	}
 
 	result = WorkspaceApiSchemaListByApiCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

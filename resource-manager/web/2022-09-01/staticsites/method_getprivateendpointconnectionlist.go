@@ -19,7 +19,8 @@ type GetPrivateEndpointConnectionListOperationResponse struct {
 }
 
 type GetPrivateEndpointConnectionListCompleteResult struct {
-	Items []RemotePrivateEndpointConnectionARMResource
+	LatestHttpResponse *http.Response
+	Items              []RemotePrivateEndpointConnectionARMResource
 }
 
 // GetPrivateEndpointConnectionList ...
@@ -83,7 +84,8 @@ func (c StaticSitesClient) GetPrivateEndpointConnectionListCompleteMatchingPredi
 	}
 
 	result = GetPrivateEndpointConnectionListCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }

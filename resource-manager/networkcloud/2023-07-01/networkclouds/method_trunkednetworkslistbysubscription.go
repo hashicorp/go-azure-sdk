@@ -20,7 +20,8 @@ type TrunkedNetworksListBySubscriptionOperationResponse struct {
 }
 
 type TrunkedNetworksListBySubscriptionCompleteResult struct {
-	Items []TrunkedNetwork
+	LatestHttpResponse *http.Response
+	Items              []TrunkedNetwork
 }
 
 // TrunkedNetworksListBySubscription ...
@@ -84,7 +85,8 @@ func (c NetworkcloudsClient) TrunkedNetworksListBySubscriptionCompleteMatchingPr
 	}
 
 	result = TrunkedNetworksListBySubscriptionCompleteResult{
-		Items: items,
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
 	}
 	return
 }
