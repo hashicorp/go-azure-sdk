@@ -6,7 +6,6 @@ package v2023_11_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/asyncoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/capabilities"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/capabilitytypes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/experiments"
@@ -17,7 +16,6 @@ import (
 )
 
 type Client struct {
-	AsyncOperations *asyncoperations.AsyncOperationsClient
 	Capabilities    *capabilities.CapabilitiesClient
 	CapabilityTypes *capabilitytypes.CapabilityTypesClient
 	Experiments     *experiments.ExperimentsClient
@@ -26,12 +24,6 @@ type Client struct {
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	asyncOperationsClient, err := asyncoperations.NewAsyncOperationsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AsyncOperations client: %+v", err)
-	}
-	configureFunc(asyncOperationsClient.Client)
-
 	capabilitiesClient, err := capabilities.NewCapabilitiesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Capabilities client: %+v", err)
@@ -63,7 +55,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(targetsClient.Client)
 
 	return &Client{
-		AsyncOperations: asyncOperationsClient,
 		Capabilities:    capabilitiesClient,
 		CapabilityTypes: capabilityTypesClient,
 		Experiments:     experimentsClient,
