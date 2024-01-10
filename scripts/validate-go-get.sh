@@ -9,7 +9,11 @@ mkdir -p ./tmp/go-get
 cd ./tmp/go-get
 echo 'package main
 
-import _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
+import (
+  _ "github.com/hashicorp/go-azure-sdk/microsoft-graph"
+  _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
+  _ "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 func main() {
 }
@@ -18,7 +22,7 @@ echo "module github.com/some/fake-repo
 
 replace github.com/hashicorp/go-azure-sdk => ../../
 
-go 1.18
+go 1.21
   " > go.mod
 go get github.com/hashicorp/go-azure-sdk@latest
 
