@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type RestartOperationResponse struct {
 }
 
 // Restart ...
-func (c DedicatedHostClient) Restart(ctx context.Context, id HostId) (result RestartOperationResponse, err error) {
+func (c DedicatedHostClient) Restart(ctx context.Context, id commonids.DedicatedHostId) (result RestartOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +56,7 @@ func (c DedicatedHostClient) Restart(ctx context.Context, id HostId) (result Res
 }
 
 // RestartThenPoll performs Restart then polls until it's completed
-func (c DedicatedHostClient) RestartThenPoll(ctx context.Context, id HostId) error {
+func (c DedicatedHostClient) RestartThenPoll(ctx context.Context, id commonids.DedicatedHostId) error {
 	result, err := c.Restart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Restart: %+v", err)

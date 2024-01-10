@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dedicatedhost.NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
+id := dedicatedhost.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
 
 read, err := client.ListAvailableSizes(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dedicatedhost.NewHostGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue")
+id := dedicatedhost.NewDedicatedHostGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue")
 
 // alternatively `client.ListByHostGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByHostGroupComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dedicatedhost.NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
+id := dedicatedhost.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
