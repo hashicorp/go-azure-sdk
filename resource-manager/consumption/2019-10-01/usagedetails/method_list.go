@@ -2,6 +2,7 @@ package usagedetails
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -91,13 +92,24 @@ func (c UsageDetailsClient) List(ctx context.Context, id commonids.ScopeId, opti
 	}
 
 	var values struct {
-		Values *[]UsageDetail `json:"value"`
+		Values *[]json.RawMessage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	result.Model = values.Values
+	temp := make([]UsageDetail, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := unmarshalUsageDetailImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for UsageDetail (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
 
 	return
 }

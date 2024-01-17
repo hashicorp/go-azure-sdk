@@ -2,6 +2,7 @@ package datasetmapping
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -82,13 +83,24 @@ func (c DataSetMappingClient) ListByShareSubscription(ctx context.Context, id Sh
 	}
 
 	var values struct {
-		Values *[]DataSetMapping `json:"value"`
+		Values *[]json.RawMessage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	result.Model = values.Values
+	temp := make([]DataSetMapping, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := unmarshalDataSetMappingImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for DataSetMapping (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
 
 	return
 }
