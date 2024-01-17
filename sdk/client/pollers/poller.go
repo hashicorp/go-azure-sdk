@@ -213,7 +213,8 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 }
 
 // FinalResult attempts to unmarshal the final result into the provided model
-func (p *Poller) FinalResult(model *interface{}) error {
+// model should be a pointer to the type you wish to unmarshal into
+func (p *Poller) FinalResult(model interface{}) error {
 	if latestResponse := p.LatestResponse(); latestResponse != nil {
 		if err := latestResponse.Unmarshal(model); err != nil {
 			return fmt.Errorf("unmarshalling latest response: %+v", err)
