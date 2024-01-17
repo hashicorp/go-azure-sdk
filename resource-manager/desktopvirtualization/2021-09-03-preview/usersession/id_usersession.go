@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = UserSessionId{}
+var _ resourceids.ResourceId = &UserSessionId{}
 
 // UserSessionId is a struct representing the Resource ID for a User Session
 type UserSessionId struct {
@@ -34,7 +34,7 @@ func NewUserSessionID(subscriptionId string, resourceGroupName string, hostPoolN
 
 // ParseUserSessionID parses 'input' into a UserSessionId
 func ParseUserSessionID(input string) (*UserSessionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(UserSessionId{})
+	parser := resourceids.NewParserFromResourceIdType(&UserSessionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseUserSessionID(input string) (*UserSessionId, error) {
 // ParseUserSessionIDInsensitively parses 'input' case-insensitively into a UserSessionId
 // note: this method should only be used for API response data and not user input
 func ParseUserSessionIDInsensitively(input string) (*UserSessionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(UserSessionId{})
+	parser := resourceids.NewParserFromResourceIdType(&UserSessionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

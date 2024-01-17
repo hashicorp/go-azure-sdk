@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HostId{}
+var _ resourceids.ResourceId = &HostId{}
 
 // HostId is a struct representing the Resource ID for a Host
 type HostId struct {
@@ -32,7 +32,7 @@ func NewHostID(subscriptionId string, resourceGroupName string, hyperVSiteName s
 
 // ParseHostID parses 'input' into a HostId
 func ParseHostID(input string) (*HostId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseHostID(input string) (*HostId, error) {
 // ParseHostIDInsensitively parses 'input' case-insensitively into a HostId
 // note: this method should only be used for API response data and not user input
 func ParseHostIDInsensitively(input string) (*HostId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = IPv6FirewallRuleId{}
+var _ resourceids.ResourceId = &IPv6FirewallRuleId{}
 
 // IPv6FirewallRuleId is a struct representing the Resource ID for a I Pv 6 Firewall Rule
 type IPv6FirewallRuleId struct {
@@ -32,7 +32,7 @@ func NewIPv6FirewallRuleID(subscriptionId string, resourceGroupName string, serv
 
 // ParseIPv6FirewallRuleID parses 'input' into a IPv6FirewallRuleId
 func ParseIPv6FirewallRuleID(input string) (*IPv6FirewallRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IPv6FirewallRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&IPv6FirewallRuleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseIPv6FirewallRuleID(input string) (*IPv6FirewallRuleId, error) {
 // ParseIPv6FirewallRuleIDInsensitively parses 'input' case-insensitively into a IPv6FirewallRuleId
 // note: this method should only be used for API response data and not user input
 func ParseIPv6FirewallRuleIDInsensitively(input string) (*IPv6FirewallRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IPv6FirewallRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&IPv6FirewallRuleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

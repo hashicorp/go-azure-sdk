@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LinkedBackendId{}
+var _ resourceids.ResourceId = &LinkedBackendId{}
 
 // LinkedBackendId is a struct representing the Resource ID for a Linked Backend
 type LinkedBackendId struct {
@@ -32,7 +32,7 @@ func NewLinkedBackendID(subscriptionId string, resourceGroupName string, staticS
 
 // ParseLinkedBackendID parses 'input' into a LinkedBackendId
 func ParseLinkedBackendID(input string) (*LinkedBackendId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LinkedBackendId{})
+	parser := resourceids.NewParserFromResourceIdType(&LinkedBackendId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseLinkedBackendID(input string) (*LinkedBackendId, error) {
 // ParseLinkedBackendIDInsensitively parses 'input' case-insensitively into a LinkedBackendId
 // note: this method should only be used for API response data and not user input
 func ParseLinkedBackendIDInsensitively(input string) (*LinkedBackendId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LinkedBackendId{})
+	parser := resourceids.NewParserFromResourceIdType(&LinkedBackendId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

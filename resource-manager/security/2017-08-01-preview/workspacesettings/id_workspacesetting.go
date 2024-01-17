@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkspaceSettingId{}
+var _ resourceids.ResourceId = &WorkspaceSettingId{}
 
 // WorkspaceSettingId is a struct representing the Resource ID for a Workspace Setting
 type WorkspaceSettingId struct {
@@ -28,7 +28,7 @@ func NewWorkspaceSettingID(subscriptionId string, workspaceSettingName string) W
 
 // ParseWorkspaceSettingID parses 'input' into a WorkspaceSettingId
 func ParseWorkspaceSettingID(input string) (*WorkspaceSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspaceSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspaceSettingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseWorkspaceSettingID(input string) (*WorkspaceSettingId, error) {
 // ParseWorkspaceSettingIDInsensitively parses 'input' case-insensitively into a WorkspaceSettingId
 // note: this method should only be used for API response data and not user input
 func ParseWorkspaceSettingIDInsensitively(input string) (*WorkspaceSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspaceSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspaceSettingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

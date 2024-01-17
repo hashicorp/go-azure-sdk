@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = JitNetworkAccessPolicyId{}
+var _ resourceids.ResourceId = &JitNetworkAccessPolicyId{}
 
 // JitNetworkAccessPolicyId is a struct representing the Resource ID for a Jit Network Access Policy
 type JitNetworkAccessPolicyId struct {
@@ -32,7 +32,7 @@ func NewJitNetworkAccessPolicyID(subscriptionId string, resourceGroupName string
 
 // ParseJitNetworkAccessPolicyID parses 'input' into a JitNetworkAccessPolicyId
 func ParseJitNetworkAccessPolicyID(input string) (*JitNetworkAccessPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JitNetworkAccessPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&JitNetworkAccessPolicyId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseJitNetworkAccessPolicyID(input string) (*JitNetworkAccessPolicyId, err
 // ParseJitNetworkAccessPolicyIDInsensitively parses 'input' case-insensitively into a JitNetworkAccessPolicyId
 // note: this method should only be used for API response data and not user input
 func ParseJitNetworkAccessPolicyIDInsensitively(input string) (*JitNetworkAccessPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JitNetworkAccessPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&JitNetworkAccessPolicyId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

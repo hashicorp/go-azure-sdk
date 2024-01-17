@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ActionGroupNotificationStatusId{}
+var _ resourceids.ResourceId = &ActionGroupNotificationStatusId{}
 
 // ActionGroupNotificationStatusId is a struct representing the Resource ID for a Action Group Notification Status
 type ActionGroupNotificationStatusId struct {
@@ -32,7 +32,7 @@ func NewActionGroupNotificationStatusID(subscriptionId string, resourceGroupName
 
 // ParseActionGroupNotificationStatusID parses 'input' into a ActionGroupNotificationStatusId
 func ParseActionGroupNotificationStatusID(input string) (*ActionGroupNotificationStatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ActionGroupNotificationStatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&ActionGroupNotificationStatusId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseActionGroupNotificationStatusID(input string) (*ActionGroupNotificatio
 // ParseActionGroupNotificationStatusIDInsensitively parses 'input' case-insensitively into a ActionGroupNotificationStatusId
 // note: this method should only be used for API response data and not user input
 func ParseActionGroupNotificationStatusIDInsensitively(input string) (*ActionGroupNotificationStatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ActionGroupNotificationStatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&ActionGroupNotificationStatusId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

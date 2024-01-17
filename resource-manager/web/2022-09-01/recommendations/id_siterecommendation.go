@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SiteRecommendationId{}
+var _ resourceids.ResourceId = &SiteRecommendationId{}
 
 // SiteRecommendationId is a struct representing the Resource ID for a Site Recommendation
 type SiteRecommendationId struct {
@@ -32,7 +32,7 @@ func NewSiteRecommendationID(subscriptionId string, resourceGroupName string, si
 
 // ParseSiteRecommendationID parses 'input' into a SiteRecommendationId
 func ParseSiteRecommendationID(input string) (*SiteRecommendationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SiteRecommendationId{})
+	parser := resourceids.NewParserFromResourceIdType(&SiteRecommendationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseSiteRecommendationID(input string) (*SiteRecommendationId, error) {
 // ParseSiteRecommendationIDInsensitively parses 'input' case-insensitively into a SiteRecommendationId
 // note: this method should only be used for API response data and not user input
 func ParseSiteRecommendationIDInsensitively(input string) (*SiteRecommendationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SiteRecommendationId{})
+	parser := resourceids.NewParserFromResourceIdType(&SiteRecommendationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

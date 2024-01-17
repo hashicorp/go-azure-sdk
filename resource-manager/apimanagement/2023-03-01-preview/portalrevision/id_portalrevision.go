@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PortalRevisionId{}
+var _ resourceids.ResourceId = &PortalRevisionId{}
 
 // PortalRevisionId is a struct representing the Resource ID for a Portal Revision
 type PortalRevisionId struct {
@@ -32,7 +32,7 @@ func NewPortalRevisionID(subscriptionId string, resourceGroupName string, servic
 
 // ParsePortalRevisionID parses 'input' into a PortalRevisionId
 func ParsePortalRevisionID(input string) (*PortalRevisionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PortalRevisionId{})
+	parser := resourceids.NewParserFromResourceIdType(&PortalRevisionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParsePortalRevisionID(input string) (*PortalRevisionId, error) {
 // ParsePortalRevisionIDInsensitively parses 'input' case-insensitively into a PortalRevisionId
 // note: this method should only be used for API response data and not user input
 func ParsePortalRevisionIDInsensitively(input string) (*PortalRevisionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PortalRevisionId{})
+	parser := resourceids.NewParserFromResourceIdType(&PortalRevisionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationEventId{}
+var _ resourceids.ResourceId = &ReplicationEventId{}
 
 // ReplicationEventId is a struct representing the Resource ID for a Replication Event
 type ReplicationEventId struct {
@@ -32,7 +32,7 @@ func NewReplicationEventID(subscriptionId string, resourceGroupName string, vaul
 
 // ParseReplicationEventID parses 'input' into a ReplicationEventId
 func ParseReplicationEventID(input string) (*ReplicationEventId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationEventId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationEventId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseReplicationEventID(input string) (*ReplicationEventId, error) {
 // ParseReplicationEventIDInsensitively parses 'input' case-insensitively into a ReplicationEventId
 // note: this method should only be used for API response data and not user input
 func ParseReplicationEventIDInsensitively(input string) (*ReplicationEventId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationEventId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationEventId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VirtualMachineScaleSetExtensionId{}
+var _ resourceids.ResourceId = &VirtualMachineScaleSetExtensionId{}
 
 // VirtualMachineScaleSetExtensionId is a struct representing the Resource ID for a Virtual Machine Scale Set Extension
 type VirtualMachineScaleSetExtensionId struct {
@@ -32,7 +32,7 @@ func NewVirtualMachineScaleSetExtensionID(subscriptionId string, resourceGroupNa
 
 // ParseVirtualMachineScaleSetExtensionID parses 'input' into a VirtualMachineScaleSetExtensionId
 func ParseVirtualMachineScaleSetExtensionID(input string) (*VirtualMachineScaleSetExtensionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineScaleSetExtensionId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineScaleSetExtensionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseVirtualMachineScaleSetExtensionID(input string) (*VirtualMachineScaleS
 // ParseVirtualMachineScaleSetExtensionIDInsensitively parses 'input' case-insensitively into a VirtualMachineScaleSetExtensionId
 // note: this method should only be used for API response data and not user input
 func ParseVirtualMachineScaleSetExtensionIDInsensitively(input string) (*VirtualMachineScaleSetExtensionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineScaleSetExtensionId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineScaleSetExtensionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

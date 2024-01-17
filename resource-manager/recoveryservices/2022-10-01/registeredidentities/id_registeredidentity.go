@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RegisteredIdentityId{}
+var _ resourceids.ResourceId = &RegisteredIdentityId{}
 
 // RegisteredIdentityId is a struct representing the Resource ID for a Registered Identity
 type RegisteredIdentityId struct {
@@ -32,7 +32,7 @@ func NewRegisteredIdentityID(subscriptionId string, resourceGroupName string, va
 
 // ParseRegisteredIdentityID parses 'input' into a RegisteredIdentityId
 func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegisteredIdentityId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegisteredIdentityId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
 // ParseRegisteredIdentityIDInsensitively parses 'input' case-insensitively into a RegisteredIdentityId
 // note: this method should only be used for API response data and not user input
 func ParseRegisteredIdentityIDInsensitively(input string) (*RegisteredIdentityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegisteredIdentityId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegisteredIdentityId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

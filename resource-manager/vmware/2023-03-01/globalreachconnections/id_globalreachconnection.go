@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = GlobalReachConnectionId{}
+var _ resourceids.ResourceId = &GlobalReachConnectionId{}
 
 // GlobalReachConnectionId is a struct representing the Resource ID for a Global Reach Connection
 type GlobalReachConnectionId struct {
@@ -32,7 +32,7 @@ func NewGlobalReachConnectionID(subscriptionId string, resourceGroupName string,
 
 // ParseGlobalReachConnectionID parses 'input' into a GlobalReachConnectionId
 func ParseGlobalReachConnectionID(input string) (*GlobalReachConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalReachConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&GlobalReachConnectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseGlobalReachConnectionID(input string) (*GlobalReachConnectionId, error
 // ParseGlobalReachConnectionIDInsensitively parses 'input' case-insensitively into a GlobalReachConnectionId
 // note: this method should only be used for API response data and not user input
 func ParseGlobalReachConnectionIDInsensitively(input string) (*GlobalReachConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalReachConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&GlobalReachConnectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

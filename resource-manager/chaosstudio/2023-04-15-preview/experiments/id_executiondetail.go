@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ExecutionDetailId{}
+var _ resourceids.ResourceId = &ExecutionDetailId{}
 
 // ExecutionDetailId is a struct representing the Resource ID for a Execution Detail
 type ExecutionDetailId struct {
@@ -32,7 +32,7 @@ func NewExecutionDetailID(subscriptionId string, resourceGroupName string, exper
 
 // ParseExecutionDetailID parses 'input' into a ExecutionDetailId
 func ParseExecutionDetailID(input string) (*ExecutionDetailId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExecutionDetailId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExecutionDetailId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseExecutionDetailID(input string) (*ExecutionDetailId, error) {
 // ParseExecutionDetailIDInsensitively parses 'input' case-insensitively into a ExecutionDetailId
 // note: this method should only be used for API response data and not user input
 func ParseExecutionDetailIDInsensitively(input string) (*ExecutionDetailId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExecutionDetailId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExecutionDetailId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

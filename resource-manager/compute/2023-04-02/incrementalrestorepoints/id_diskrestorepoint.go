@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DiskRestorePointId{}
+var _ resourceids.ResourceId = &DiskRestorePointId{}
 
 // DiskRestorePointId is a struct representing the Resource ID for a Disk Restore Point
 type DiskRestorePointId struct {
@@ -34,7 +34,7 @@ func NewDiskRestorePointID(subscriptionId string, resourceGroupName string, rest
 
 // ParseDiskRestorePointID parses 'input' into a DiskRestorePointId
 func ParseDiskRestorePointID(input string) (*DiskRestorePointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DiskRestorePointId{})
+	parser := resourceids.NewParserFromResourceIdType(&DiskRestorePointId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseDiskRestorePointID(input string) (*DiskRestorePointId, error) {
 // ParseDiskRestorePointIDInsensitively parses 'input' case-insensitively into a DiskRestorePointId
 // note: this method should only be used for API response data and not user input
 func ParseDiskRestorePointIDInsensitively(input string) (*DiskRestorePointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DiskRestorePointId{})
+	parser := resourceids.NewParserFromResourceIdType(&DiskRestorePointId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

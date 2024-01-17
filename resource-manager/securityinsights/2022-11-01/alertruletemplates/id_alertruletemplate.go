@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = AlertRuleTemplateId{}
+var _ resourceids.ResourceId = &AlertRuleTemplateId{}
 
 // AlertRuleTemplateId is a struct representing the Resource ID for a Alert Rule Template
 type AlertRuleTemplateId struct {
@@ -32,7 +32,7 @@ func NewAlertRuleTemplateID(subscriptionId string, resourceGroupName string, wor
 
 // ParseAlertRuleTemplateID parses 'input' into a AlertRuleTemplateId
 func ParseAlertRuleTemplateID(input string) (*AlertRuleTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AlertRuleTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&AlertRuleTemplateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseAlertRuleTemplateID(input string) (*AlertRuleTemplateId, error) {
 // ParseAlertRuleTemplateIDInsensitively parses 'input' case-insensitively into a AlertRuleTemplateId
 // note: this method should only be used for API response data and not user input
 func ParseAlertRuleTemplateIDInsensitively(input string) (*AlertRuleTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AlertRuleTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&AlertRuleTemplateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

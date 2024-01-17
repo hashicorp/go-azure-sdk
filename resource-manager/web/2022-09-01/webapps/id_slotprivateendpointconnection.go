@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotPrivateEndpointConnectionId{}
+var _ resourceids.ResourceId = &SlotPrivateEndpointConnectionId{}
 
 // SlotPrivateEndpointConnectionId is a struct representing the Resource ID for a Slot Private Endpoint Connection
 type SlotPrivateEndpointConnectionId struct {
@@ -34,7 +34,7 @@ func NewSlotPrivateEndpointConnectionID(subscriptionId string, resourceGroupName
 
 // ParseSlotPrivateEndpointConnectionID parses 'input' into a SlotPrivateEndpointConnectionId
 func ParseSlotPrivateEndpointConnectionID(input string) (*SlotPrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotPrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotPrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseSlotPrivateEndpointConnectionID(input string) (*SlotPrivateEndpointCon
 // ParseSlotPrivateEndpointConnectionIDInsensitively parses 'input' case-insensitively into a SlotPrivateEndpointConnectionId
 // note: this method should only be used for API response data and not user input
 func ParseSlotPrivateEndpointConnectionIDInsensitively(input string) (*SlotPrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotPrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotPrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

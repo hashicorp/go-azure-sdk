@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CommunityGalleryImageId{}
+var _ resourceids.ResourceId = &CommunityGalleryImageId{}
 
 // CommunityGalleryImageId is a struct representing the Resource ID for a Community Gallery Image
 type CommunityGalleryImageId struct {
@@ -32,7 +32,7 @@ func NewCommunityGalleryImageID(subscriptionId string, locationName string, comm
 
 // ParseCommunityGalleryImageID parses 'input' into a CommunityGalleryImageId
 func ParseCommunityGalleryImageID(input string) (*CommunityGalleryImageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CommunityGalleryImageId{})
+	parser := resourceids.NewParserFromResourceIdType(&CommunityGalleryImageId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseCommunityGalleryImageID(input string) (*CommunityGalleryImageId, error
 // ParseCommunityGalleryImageIDInsensitively parses 'input' case-insensitively into a CommunityGalleryImageId
 // note: this method should only be used for API response data and not user input
 func ParseCommunityGalleryImageIDInsensitively(input string) (*CommunityGalleryImageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CommunityGalleryImageId{})
+	parser := resourceids.NewParserFromResourceIdType(&CommunityGalleryImageId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkloadClassifierId{}
+var _ resourceids.ResourceId = &WorkloadClassifierId{}
 
 // WorkloadClassifierId is a struct representing the Resource ID for a Workload Classifier
 type WorkloadClassifierId struct {
@@ -36,7 +36,7 @@ func NewWorkloadClassifierID(subscriptionId string, resourceGroupName string, se
 
 // ParseWorkloadClassifierID parses 'input' into a WorkloadClassifierId
 func ParseWorkloadClassifierID(input string) (*WorkloadClassifierId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkloadClassifierId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkloadClassifierId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseWorkloadClassifierID(input string) (*WorkloadClassifierId, error) {
 // ParseWorkloadClassifierIDInsensitively parses 'input' case-insensitively into a WorkloadClassifierId
 // note: this method should only be used for API response data and not user input
 func ParseWorkloadClassifierIDInsensitively(input string) (*WorkloadClassifierId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkloadClassifierId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkloadClassifierId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DatasetId{}
+var _ resourceids.ResourceId = &DatasetId{}
 
 // DatasetId is a struct representing the Resource ID for a Dataset
 type DatasetId struct {
@@ -32,7 +32,7 @@ func NewDatasetID(subscriptionId string, resourceGroupName string, factoryName s
 
 // ParseDatasetID parses 'input' into a DatasetId
 func ParseDatasetID(input string) (*DatasetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatasetId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatasetId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDatasetID(input string) (*DatasetId, error) {
 // ParseDatasetIDInsensitively parses 'input' case-insensitively into a DatasetId
 // note: this method should only be used for API response data and not user input
 func ParseDatasetIDInsensitively(input string) (*DatasetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatasetId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatasetId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

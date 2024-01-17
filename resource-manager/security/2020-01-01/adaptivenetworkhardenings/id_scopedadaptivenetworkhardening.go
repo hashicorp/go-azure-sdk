@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedAdaptiveNetworkHardeningId{}
+var _ resourceids.ResourceId = &ScopedAdaptiveNetworkHardeningId{}
 
 // ScopedAdaptiveNetworkHardeningId is a struct representing the Resource ID for a Scoped Adaptive Network Hardening
 type ScopedAdaptiveNetworkHardeningId struct {
@@ -28,7 +28,7 @@ func NewScopedAdaptiveNetworkHardeningID(scope string, adaptiveNetworkHardeningN
 
 // ParseScopedAdaptiveNetworkHardeningID parses 'input' into a ScopedAdaptiveNetworkHardeningId
 func ParseScopedAdaptiveNetworkHardeningID(input string) (*ScopedAdaptiveNetworkHardeningId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAdaptiveNetworkHardeningId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAdaptiveNetworkHardeningId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseScopedAdaptiveNetworkHardeningID(input string) (*ScopedAdaptiveNetwork
 // ParseScopedAdaptiveNetworkHardeningIDInsensitively parses 'input' case-insensitively into a ScopedAdaptiveNetworkHardeningId
 // note: this method should only be used for API response data and not user input
 func ParseScopedAdaptiveNetworkHardeningIDInsensitively(input string) (*ScopedAdaptiveNetworkHardeningId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAdaptiveNetworkHardeningId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAdaptiveNetworkHardeningId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

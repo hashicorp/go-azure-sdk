@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = MonitoredSubscriptionId{}
+var _ resourceids.ResourceId = &MonitoredSubscriptionId{}
 
 // MonitoredSubscriptionId is a struct representing the Resource ID for a Monitored Subscription
 type MonitoredSubscriptionId struct {
@@ -32,7 +32,7 @@ func NewMonitoredSubscriptionID(subscriptionId string, resourceGroupName string,
 
 // ParseMonitoredSubscriptionID parses 'input' into a MonitoredSubscriptionId
 func ParseMonitoredSubscriptionID(input string) (*MonitoredSubscriptionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MonitoredSubscriptionId{})
+	parser := resourceids.NewParserFromResourceIdType(&MonitoredSubscriptionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseMonitoredSubscriptionID(input string) (*MonitoredSubscriptionId, error
 // ParseMonitoredSubscriptionIDInsensitively parses 'input' case-insensitively into a MonitoredSubscriptionId
 // note: this method should only be used for API response data and not user input
 func ParseMonitoredSubscriptionIDInsensitively(input string) (*MonitoredSubscriptionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MonitoredSubscriptionId{})
+	parser := resourceids.NewParserFromResourceIdType(&MonitoredSubscriptionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

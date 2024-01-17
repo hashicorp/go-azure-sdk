@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ModelId{}
+var _ resourceids.ResourceId = &ModelId{}
 
 // ModelId is a struct representing the Resource ID for a Model
 type ModelId struct {
@@ -32,7 +32,7 @@ func NewModelID(subscriptionId string, resourceGroupName string, workspaceName s
 
 // ParseModelID parses 'input' into a ModelId
 func ParseModelID(input string) (*ModelId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ModelId{})
+	parser := resourceids.NewParserFromResourceIdType(&ModelId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseModelID(input string) (*ModelId, error) {
 // ParseModelIDInsensitively parses 'input' case-insensitively into a ModelId
 // note: this method should only be used for API response data and not user input
 func ParseModelIDInsensitively(input string) (*ModelId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ModelId{})
+	parser := resourceids.NewParserFromResourceIdType(&ModelId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

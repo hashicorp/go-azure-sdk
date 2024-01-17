@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DatabaseConnectionId{}
+var _ resourceids.ResourceId = &DatabaseConnectionId{}
 
 // DatabaseConnectionId is a struct representing the Resource ID for a Database Connection
 type DatabaseConnectionId struct {
@@ -32,7 +32,7 @@ func NewDatabaseConnectionID(subscriptionId string, resourceGroupName string, st
 
 // ParseDatabaseConnectionID parses 'input' into a DatabaseConnectionId
 func ParseDatabaseConnectionID(input string) (*DatabaseConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatabaseConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatabaseConnectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDatabaseConnectionID(input string) (*DatabaseConnectionId, error) {
 // ParseDatabaseConnectionIDInsensitively parses 'input' case-insensitively into a DatabaseConnectionId
 // note: this method should only be used for API response data and not user input
 func ParseDatabaseConnectionIDInsensitively(input string) (*DatabaseConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatabaseConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatabaseConnectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

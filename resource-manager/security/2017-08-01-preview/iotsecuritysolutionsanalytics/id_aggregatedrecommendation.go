@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = AggregatedRecommendationId{}
+var _ resourceids.ResourceId = &AggregatedRecommendationId{}
 
 // AggregatedRecommendationId is a struct representing the Resource ID for a Aggregated Recommendation
 type AggregatedRecommendationId struct {
@@ -32,7 +32,7 @@ func NewAggregatedRecommendationID(subscriptionId string, resourceGroupName stri
 
 // ParseAggregatedRecommendationID parses 'input' into a AggregatedRecommendationId
 func ParseAggregatedRecommendationID(input string) (*AggregatedRecommendationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AggregatedRecommendationId{})
+	parser := resourceids.NewParserFromResourceIdType(&AggregatedRecommendationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseAggregatedRecommendationID(input string) (*AggregatedRecommendationId,
 // ParseAggregatedRecommendationIDInsensitively parses 'input' case-insensitively into a AggregatedRecommendationId
 // note: this method should only be used for API response data and not user input
 func ParseAggregatedRecommendationIDInsensitively(input string) (*AggregatedRecommendationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AggregatedRecommendationId{})
+	parser := resourceids.NewParserFromResourceIdType(&AggregatedRecommendationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

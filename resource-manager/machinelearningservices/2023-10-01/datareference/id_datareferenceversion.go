@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DataReferenceVersionId{}
+var _ resourceids.ResourceId = &DataReferenceVersionId{}
 
 // DataReferenceVersionId is a struct representing the Resource ID for a Data Reference Version
 type DataReferenceVersionId struct {
@@ -34,7 +34,7 @@ func NewDataReferenceVersionID(subscriptionId string, resourceGroupName string, 
 
 // ParseDataReferenceVersionID parses 'input' into a DataReferenceVersionId
 func ParseDataReferenceVersionID(input string) (*DataReferenceVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataReferenceVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataReferenceVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseDataReferenceVersionID(input string) (*DataReferenceVersionId, error) 
 // ParseDataReferenceVersionIDInsensitively parses 'input' case-insensitively into a DataReferenceVersionId
 // note: this method should only be used for API response data and not user input
 func ParseDataReferenceVersionIDInsensitively(input string) (*DataReferenceVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataReferenceVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataReferenceVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

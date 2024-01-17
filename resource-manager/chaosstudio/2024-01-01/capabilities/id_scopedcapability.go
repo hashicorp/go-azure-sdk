@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedCapabilityId{}
+var _ resourceids.ResourceId = &ScopedCapabilityId{}
 
 // ScopedCapabilityId is a struct representing the Resource ID for a Scoped Capability
 type ScopedCapabilityId struct {
@@ -30,7 +30,7 @@ func NewScopedCapabilityID(scope string, targetName string, capabilityName strin
 
 // ParseScopedCapabilityID parses 'input' into a ScopedCapabilityId
 func ParseScopedCapabilityID(input string) (*ScopedCapabilityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedCapabilityId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedCapabilityId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseScopedCapabilityID(input string) (*ScopedCapabilityId, error) {
 // ParseScopedCapabilityIDInsensitively parses 'input' case-insensitively into a ScopedCapabilityId
 // note: this method should only be used for API response data and not user input
 func ParseScopedCapabilityIDInsensitively(input string) (*ScopedCapabilityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedCapabilityId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedCapabilityId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

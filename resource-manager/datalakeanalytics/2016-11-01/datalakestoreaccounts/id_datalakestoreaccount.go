@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DataLakeStoreAccountId{}
+var _ resourceids.ResourceId = &DataLakeStoreAccountId{}
 
 // DataLakeStoreAccountId is a struct representing the Resource ID for a Data Lake Store Account
 type DataLakeStoreAccountId struct {
@@ -32,7 +32,7 @@ func NewDataLakeStoreAccountID(subscriptionId string, resourceGroupName string, 
 
 // ParseDataLakeStoreAccountID parses 'input' into a DataLakeStoreAccountId
 func ParseDataLakeStoreAccountID(input string) (*DataLakeStoreAccountId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataLakeStoreAccountId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataLakeStoreAccountId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDataLakeStoreAccountID(input string) (*DataLakeStoreAccountId, error) 
 // ParseDataLakeStoreAccountIDInsensitively parses 'input' case-insensitively into a DataLakeStoreAccountId
 // note: this method should only be used for API response data and not user input
 func ParseDataLakeStoreAccountIDInsensitively(input string) (*DataLakeStoreAccountId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataLakeStoreAccountId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataLakeStoreAccountId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

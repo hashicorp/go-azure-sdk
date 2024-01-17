@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HostingEnvironmentDiagnosticId{}
+var _ resourceids.ResourceId = &HostingEnvironmentDiagnosticId{}
 
 // HostingEnvironmentDiagnosticId is a struct representing the Resource ID for a Hosting Environment Diagnostic
 type HostingEnvironmentDiagnosticId struct {
@@ -32,7 +32,7 @@ func NewHostingEnvironmentDiagnosticID(subscriptionId string, resourceGroupName 
 
 // ParseHostingEnvironmentDiagnosticID parses 'input' into a HostingEnvironmentDiagnosticId
 func ParseHostingEnvironmentDiagnosticID(input string) (*HostingEnvironmentDiagnosticId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostingEnvironmentDiagnosticId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostingEnvironmentDiagnosticId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseHostingEnvironmentDiagnosticID(input string) (*HostingEnvironmentDiagn
 // ParseHostingEnvironmentDiagnosticIDInsensitively parses 'input' case-insensitively into a HostingEnvironmentDiagnosticId
 // note: this method should only be used for API response data and not user input
 func ParseHostingEnvironmentDiagnosticIDInsensitively(input string) (*HostingEnvironmentDiagnosticId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostingEnvironmentDiagnosticId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostingEnvironmentDiagnosticId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

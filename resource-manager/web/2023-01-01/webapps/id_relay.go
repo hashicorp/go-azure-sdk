@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RelayId{}
+var _ resourceids.ResourceId = &RelayId{}
 
 // RelayId is a struct representing the Resource ID for a Relay
 type RelayId struct {
@@ -34,7 +34,7 @@ func NewRelayID(subscriptionId string, resourceGroupName string, siteName string
 
 // ParseRelayID parses 'input' into a RelayId
 func ParseRelayID(input string) (*RelayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RelayId{})
+	parser := resourceids.NewParserFromResourceIdType(&RelayId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseRelayID(input string) (*RelayId, error) {
 // ParseRelayIDInsensitively parses 'input' case-insensitively into a RelayId
 // note: this method should only be used for API response data and not user input
 func ParseRelayIDInsensitively(input string) (*RelayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RelayId{})
+	parser := resourceids.NewParserFromResourceIdType(&RelayId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

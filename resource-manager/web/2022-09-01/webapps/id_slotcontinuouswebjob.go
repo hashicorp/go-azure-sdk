@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotContinuousWebJobId{}
+var _ resourceids.ResourceId = &SlotContinuousWebJobId{}
 
 // SlotContinuousWebJobId is a struct representing the Resource ID for a Slot Continuous Web Job
 type SlotContinuousWebJobId struct {
@@ -34,7 +34,7 @@ func NewSlotContinuousWebJobID(subscriptionId string, resourceGroupName string, 
 
 // ParseSlotContinuousWebJobID parses 'input' into a SlotContinuousWebJobId
 func ParseSlotContinuousWebJobID(input string) (*SlotContinuousWebJobId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotContinuousWebJobId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotContinuousWebJobId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseSlotContinuousWebJobID(input string) (*SlotContinuousWebJobId, error) 
 // ParseSlotContinuousWebJobIDInsensitively parses 'input' case-insensitively into a SlotContinuousWebJobId
 // note: this method should only be used for API response data and not user input
 func ParseSlotContinuousWebJobIDInsensitively(input string) (*SlotContinuousWebJobId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotContinuousWebJobId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotContinuousWebJobId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

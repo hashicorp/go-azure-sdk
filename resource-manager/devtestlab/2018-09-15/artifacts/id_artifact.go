@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ArtifactId{}
+var _ resourceids.ResourceId = &ArtifactId{}
 
 // ArtifactId is a struct representing the Resource ID for a Artifact
 type ArtifactId struct {
@@ -34,7 +34,7 @@ func NewArtifactID(subscriptionId string, resourceGroupName string, labName stri
 
 // ParseArtifactID parses 'input' into a ArtifactId
 func ParseArtifactID(input string) (*ArtifactId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArtifactId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArtifactId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseArtifactID(input string) (*ArtifactId, error) {
 // ParseArtifactIDInsensitively parses 'input' case-insensitively into a ArtifactId
 // note: this method should only be used for API response data and not user input
 func ParseArtifactIDInsensitively(input string) (*ArtifactId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArtifactId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArtifactId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

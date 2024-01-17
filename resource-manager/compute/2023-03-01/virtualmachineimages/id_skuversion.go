@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SkuVersionId{}
+var _ resourceids.ResourceId = &SkuVersionId{}
 
 // SkuVersionId is a struct representing the Resource ID for a Sku Version
 type SkuVersionId struct {
@@ -36,7 +36,7 @@ func NewSkuVersionID(subscriptionId string, locationName string, publisherName s
 
 // ParseSkuVersionID parses 'input' into a SkuVersionId
 func ParseSkuVersionID(input string) (*SkuVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SkuVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&SkuVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseSkuVersionID(input string) (*SkuVersionId, error) {
 // ParseSkuVersionIDInsensitively parses 'input' case-insensitively into a SkuVersionId
 // note: this method should only be used for API response data and not user input
 func ParseSkuVersionIDInsensitively(input string) (*SkuVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SkuVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&SkuVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

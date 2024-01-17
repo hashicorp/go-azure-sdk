@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SandboxCustomImageId{}
+var _ resourceids.ResourceId = &SandboxCustomImageId{}
 
 // SandboxCustomImageId is a struct representing the Resource ID for a Sandbox Custom Image
 type SandboxCustomImageId struct {
@@ -32,7 +32,7 @@ func NewSandboxCustomImageID(subscriptionId string, resourceGroupName string, cl
 
 // ParseSandboxCustomImageID parses 'input' into a SandboxCustomImageId
 func ParseSandboxCustomImageID(input string) (*SandboxCustomImageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SandboxCustomImageId{})
+	parser := resourceids.NewParserFromResourceIdType(&SandboxCustomImageId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseSandboxCustomImageID(input string) (*SandboxCustomImageId, error) {
 // ParseSandboxCustomImageIDInsensitively parses 'input' case-insensitively into a SandboxCustomImageId
 // note: this method should only be used for API response data and not user input
 func ParseSandboxCustomImageIDInsensitively(input string) (*SandboxCustomImageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SandboxCustomImageId{})
+	parser := resourceids.NewParserFromResourceIdType(&SandboxCustomImageId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

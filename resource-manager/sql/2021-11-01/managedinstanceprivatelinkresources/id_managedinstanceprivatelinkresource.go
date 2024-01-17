@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ManagedInstancePrivateLinkResourceId{}
+var _ resourceids.ResourceId = &ManagedInstancePrivateLinkResourceId{}
 
 // ManagedInstancePrivateLinkResourceId is a struct representing the Resource ID for a Managed Instance Private Link Resource
 type ManagedInstancePrivateLinkResourceId struct {
@@ -32,7 +32,7 @@ func NewManagedInstancePrivateLinkResourceID(subscriptionId string, resourceGrou
 
 // ParseManagedInstancePrivateLinkResourceID parses 'input' into a ManagedInstancePrivateLinkResourceId
 func ParseManagedInstancePrivateLinkResourceID(input string) (*ManagedInstancePrivateLinkResourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstancePrivateLinkResourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstancePrivateLinkResourceId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseManagedInstancePrivateLinkResourceID(input string) (*ManagedInstancePr
 // ParseManagedInstancePrivateLinkResourceIDInsensitively parses 'input' case-insensitively into a ManagedInstancePrivateLinkResourceId
 // note: this method should only be used for API response data and not user input
 func ParseManagedInstancePrivateLinkResourceIDInsensitively(input string) (*ManagedInstancePrivateLinkResourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstancePrivateLinkResourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstancePrivateLinkResourceId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TopologyId{}
+var _ resourceids.ResourceId = &TopologyId{}
 
 // TopologyId is a struct representing the Resource ID for a Topology
 type TopologyId struct {
@@ -32,7 +32,7 @@ func NewTopologyID(subscriptionId string, resourceGroupName string, locationName
 
 // ParseTopologyID parses 'input' into a TopologyId
 func ParseTopologyID(input string) (*TopologyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TopologyId{})
+	parser := resourceids.NewParserFromResourceIdType(&TopologyId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseTopologyID(input string) (*TopologyId, error) {
 // ParseTopologyIDInsensitively parses 'input' case-insensitively into a TopologyId
 // note: this method should only be used for API response data and not user input
 func ParseTopologyIDInsensitively(input string) (*TopologyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TopologyId{})
+	parser := resourceids.NewParserFromResourceIdType(&TopologyId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

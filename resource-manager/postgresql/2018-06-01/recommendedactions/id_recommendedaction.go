@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RecommendedActionId{}
+var _ resourceids.ResourceId = &RecommendedActionId{}
 
 // RecommendedActionId is a struct representing the Resource ID for a Recommended Action
 type RecommendedActionId struct {
@@ -34,7 +34,7 @@ func NewRecommendedActionID(subscriptionId string, resourceGroupName string, ser
 
 // ParseRecommendedActionID parses 'input' into a RecommendedActionId
 func ParseRecommendedActionID(input string) (*RecommendedActionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RecommendedActionId{})
+	parser := resourceids.NewParserFromResourceIdType(&RecommendedActionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseRecommendedActionID(input string) (*RecommendedActionId, error) {
 // ParseRecommendedActionIDInsensitively parses 'input' case-insensitively into a RecommendedActionId
 // note: this method should only be used for API response data and not user input
 func ParseRecommendedActionIDInsensitively(input string) (*RecommendedActionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RecommendedActionId{})
+	parser := resourceids.NewParserFromResourceIdType(&RecommendedActionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

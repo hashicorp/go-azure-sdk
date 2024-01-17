@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VersionArtifactScopedId{}
+var _ resourceids.ResourceId = &VersionArtifactScopedId{}
 
 // VersionArtifactScopedId is a struct representing the Resource ID for a Version Artifact Scoped
 type VersionArtifactScopedId struct {
@@ -32,7 +32,7 @@ func NewVersionArtifactScopedID(resourceScope string, blueprintName string, vers
 
 // ParseVersionArtifactScopedID parses 'input' into a VersionArtifactScopedId
 func ParseVersionArtifactScopedID(input string) (*VersionArtifactScopedId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VersionArtifactScopedId{})
+	parser := resourceids.NewParserFromResourceIdType(&VersionArtifactScopedId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseVersionArtifactScopedID(input string) (*VersionArtifactScopedId, error
 // ParseVersionArtifactScopedIDInsensitively parses 'input' case-insensitively into a VersionArtifactScopedId
 // note: this method should only be used for API response data and not user input
 func ParseVersionArtifactScopedIDInsensitively(input string) (*VersionArtifactScopedId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VersionArtifactScopedId{})
+	parser := resourceids.NewParserFromResourceIdType(&VersionArtifactScopedId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

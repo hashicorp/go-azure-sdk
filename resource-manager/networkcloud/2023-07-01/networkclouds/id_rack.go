@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RackId{}
+var _ resourceids.ResourceId = &RackId{}
 
 // RackId is a struct representing the Resource ID for a Rack
 type RackId struct {
@@ -30,7 +30,7 @@ func NewRackID(subscriptionId string, resourceGroupName string, rackName string)
 
 // ParseRackID parses 'input' into a RackId
 func ParseRackID(input string) (*RackId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RackId{})
+	parser := resourceids.NewParserFromResourceIdType(&RackId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseRackID(input string) (*RackId, error) {
 // ParseRackIDInsensitively parses 'input' case-insensitively into a RackId
 // note: this method should only be used for API response data and not user input
 func ParseRackIDInsensitively(input string) (*RackId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RackId{})
+	parser := resourceids.NewParserFromResourceIdType(&RackId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

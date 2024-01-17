@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SecurityContactId{}
+var _ resourceids.ResourceId = &SecurityContactId{}
 
 // SecurityContactId is a struct representing the Resource ID for a Security Contact
 type SecurityContactId struct {
@@ -28,7 +28,7 @@ func NewSecurityContactID(subscriptionId string, securityContactName string) Sec
 
 // ParseSecurityContactID parses 'input' into a SecurityContactId
 func ParseSecurityContactID(input string) (*SecurityContactId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SecurityContactId{})
+	parser := resourceids.NewParserFromResourceIdType(&SecurityContactId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseSecurityContactID(input string) (*SecurityContactId, error) {
 // ParseSecurityContactIDInsensitively parses 'input' case-insensitively into a SecurityContactId
 // note: this method should only be used for API response data and not user input
 func ParseSecurityContactIDInsensitively(input string) (*SecurityContactId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SecurityContactId{})
+	parser := resourceids.NewParserFromResourceIdType(&SecurityContactId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

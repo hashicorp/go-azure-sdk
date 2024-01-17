@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VMGroupId{}
+var _ resourceids.ResourceId = &VMGroupId{}
 
 // VMGroupId is a struct representing the Resource ID for a V M Group
 type VMGroupId struct {
@@ -32,7 +32,7 @@ func NewVMGroupID(subscriptionId string, resourceGroupName string, privateCloudN
 
 // ParseVMGroupID parses 'input' into a VMGroupId
 func ParseVMGroupID(input string) (*VMGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VMGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&VMGroupId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseVMGroupID(input string) (*VMGroupId, error) {
 // ParseVMGroupIDInsensitively parses 'input' case-insensitively into a VMGroupId
 // note: this method should only be used for API response data and not user input
 func ParseVMGroupIDInsensitively(input string) (*VMGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VMGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&VMGroupId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

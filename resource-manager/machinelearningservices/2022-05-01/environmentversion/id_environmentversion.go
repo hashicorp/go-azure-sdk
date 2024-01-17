@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = EnvironmentVersionId{}
+var _ resourceids.ResourceId = &EnvironmentVersionId{}
 
 // EnvironmentVersionId is a struct representing the Resource ID for a Environment Version
 type EnvironmentVersionId struct {
@@ -34,7 +34,7 @@ func NewEnvironmentVersionID(subscriptionId string, resourceGroupName string, wo
 
 // ParseEnvironmentVersionID parses 'input' into a EnvironmentVersionId
 func ParseEnvironmentVersionID(input string) (*EnvironmentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EnvironmentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&EnvironmentVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseEnvironmentVersionID(input string) (*EnvironmentVersionId, error) {
 // ParseEnvironmentVersionIDInsensitively parses 'input' case-insensitively into a EnvironmentVersionId
 // note: this method should only be used for API response data and not user input
 func ParseEnvironmentVersionIDInsensitively(input string) (*EnvironmentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EnvironmentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&EnvironmentVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

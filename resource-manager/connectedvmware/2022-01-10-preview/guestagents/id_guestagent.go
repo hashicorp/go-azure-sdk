@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = GuestAgentId{}
+var _ resourceids.ResourceId = &GuestAgentId{}
 
 // GuestAgentId is a struct representing the Resource ID for a Guest Agent
 type GuestAgentId struct {
@@ -32,7 +32,7 @@ func NewGuestAgentID(subscriptionId string, resourceGroupName string, virtualMac
 
 // ParseGuestAgentID parses 'input' into a GuestAgentId
 func ParseGuestAgentID(input string) (*GuestAgentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GuestAgentId{})
+	parser := resourceids.NewParserFromResourceIdType(&GuestAgentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseGuestAgentID(input string) (*GuestAgentId, error) {
 // ParseGuestAgentIDInsensitively parses 'input' case-insensitively into a GuestAgentId
 // note: this method should only be used for API response data and not user input
 func ParseGuestAgentIDInsensitively(input string) (*GuestAgentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GuestAgentId{})
+	parser := resourceids.NewParserFromResourceIdType(&GuestAgentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

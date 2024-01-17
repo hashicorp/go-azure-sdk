@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ProviderPricingId{}
+var _ resourceids.ResourceId = &ProviderPricingId{}
 
 // ProviderPricingId is a struct representing the Resource ID for a Provider Pricing
 type ProviderPricingId struct {
@@ -30,7 +30,7 @@ func NewProviderPricingID(subscriptionId string, resourceGroupName string, prici
 
 // ParseProviderPricingID parses 'input' into a ProviderPricingId
 func ParseProviderPricingID(input string) (*ProviderPricingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderPricingId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderPricingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseProviderPricingID(input string) (*ProviderPricingId, error) {
 // ParseProviderPricingIDInsensitively parses 'input' case-insensitively into a ProviderPricingId
 // note: this method should only be used for API response data and not user input
 func ParseProviderPricingIDInsensitively(input string) (*ProviderPricingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderPricingId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderPricingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

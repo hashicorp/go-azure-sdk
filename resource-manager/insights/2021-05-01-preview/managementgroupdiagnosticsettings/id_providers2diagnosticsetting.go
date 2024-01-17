@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2DiagnosticSettingId{}
+var _ resourceids.ResourceId = &Providers2DiagnosticSettingId{}
 
 // Providers2DiagnosticSettingId is a struct representing the Resource ID for a Providers 2 Diagnostic Setting
 type Providers2DiagnosticSettingId struct {
@@ -28,7 +28,7 @@ func NewProviders2DiagnosticSettingID(managementGroupId string, diagnosticSettin
 
 // ParseProviders2DiagnosticSettingID parses 'input' into a Providers2DiagnosticSettingId
 func ParseProviders2DiagnosticSettingID(input string) (*Providers2DiagnosticSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2DiagnosticSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2DiagnosticSettingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseProviders2DiagnosticSettingID(input string) (*Providers2DiagnosticSett
 // ParseProviders2DiagnosticSettingIDInsensitively parses 'input' case-insensitively into a Providers2DiagnosticSettingId
 // note: this method should only be used for API response data and not user input
 func ParseProviders2DiagnosticSettingIDInsensitively(input string) (*Providers2DiagnosticSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2DiagnosticSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2DiagnosticSettingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

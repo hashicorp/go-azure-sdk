@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = OnlineEndpointDeploymentId{}
+var _ resourceids.ResourceId = &OnlineEndpointDeploymentId{}
 
 // OnlineEndpointDeploymentId is a struct representing the Resource ID for a Online Endpoint Deployment
 type OnlineEndpointDeploymentId struct {
@@ -34,7 +34,7 @@ func NewOnlineEndpointDeploymentID(subscriptionId string, resourceGroupName stri
 
 // ParseOnlineEndpointDeploymentID parses 'input' into a OnlineEndpointDeploymentId
 func ParseOnlineEndpointDeploymentID(input string) (*OnlineEndpointDeploymentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OnlineEndpointDeploymentId{})
+	parser := resourceids.NewParserFromResourceIdType(&OnlineEndpointDeploymentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseOnlineEndpointDeploymentID(input string) (*OnlineEndpointDeploymentId,
 // ParseOnlineEndpointDeploymentIDInsensitively parses 'input' case-insensitively into a OnlineEndpointDeploymentId
 // note: this method should only be used for API response data and not user input
 func ParseOnlineEndpointDeploymentIDInsensitively(input string) (*OnlineEndpointDeploymentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OnlineEndpointDeploymentId{})
+	parser := resourceids.NewParserFromResourceIdType(&OnlineEndpointDeploymentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

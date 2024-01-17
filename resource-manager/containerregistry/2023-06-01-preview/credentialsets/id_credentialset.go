@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CredentialSetId{}
+var _ resourceids.ResourceId = &CredentialSetId{}
 
 // CredentialSetId is a struct representing the Resource ID for a Credential Set
 type CredentialSetId struct {
@@ -32,7 +32,7 @@ func NewCredentialSetID(subscriptionId string, resourceGroupName string, registr
 
 // ParseCredentialSetID parses 'input' into a CredentialSetId
 func ParseCredentialSetID(input string) (*CredentialSetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CredentialSetId{})
+	parser := resourceids.NewParserFromResourceIdType(&CredentialSetId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseCredentialSetID(input string) (*CredentialSetId, error) {
 // ParseCredentialSetIDInsensitively parses 'input' case-insensitively into a CredentialSetId
 // note: this method should only be used for API response data and not user input
 func ParseCredentialSetIDInsensitively(input string) (*CredentialSetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CredentialSetId{})
+	parser := resourceids.NewParserFromResourceIdType(&CredentialSetId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

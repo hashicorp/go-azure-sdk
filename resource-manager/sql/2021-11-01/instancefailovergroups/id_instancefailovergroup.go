@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = InstanceFailoverGroupId{}
+var _ resourceids.ResourceId = &InstanceFailoverGroupId{}
 
 // InstanceFailoverGroupId is a struct representing the Resource ID for a Instance Failover Group
 type InstanceFailoverGroupId struct {
@@ -32,7 +32,7 @@ func NewInstanceFailoverGroupID(subscriptionId string, resourceGroupName string,
 
 // ParseInstanceFailoverGroupID parses 'input' into a InstanceFailoverGroupId
 func ParseInstanceFailoverGroupID(input string) (*InstanceFailoverGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(InstanceFailoverGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&InstanceFailoverGroupId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseInstanceFailoverGroupID(input string) (*InstanceFailoverGroupId, error
 // ParseInstanceFailoverGroupIDInsensitively parses 'input' case-insensitively into a InstanceFailoverGroupId
 // note: this method should only be used for API response data and not user input
 func ParseInstanceFailoverGroupIDInsensitively(input string) (*InstanceFailoverGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(InstanceFailoverGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&InstanceFailoverGroupId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

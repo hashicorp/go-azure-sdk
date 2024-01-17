@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ExternalCloudProviderTypeId{}
+var _ resourceids.ResourceId = &ExternalCloudProviderTypeId{}
 
 // ExternalCloudProviderTypeId is a struct representing the Resource ID for a External Cloud Provider Type
 type ExternalCloudProviderTypeId struct {
@@ -28,7 +28,7 @@ func NewExternalCloudProviderTypeID(externalCloudProviderType ExternalCloudProvi
 
 // ParseExternalCloudProviderTypeID parses 'input' into a ExternalCloudProviderTypeId
 func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExternalCloudProviderTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExternalCloudProviderTypeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeI
 // ParseExternalCloudProviderTypeIDInsensitively parses 'input' case-insensitively into a ExternalCloudProviderTypeId
 // note: this method should only be used for API response data and not user input
 func ParseExternalCloudProviderTypeIDInsensitively(input string) (*ExternalCloudProviderTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExternalCloudProviderTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExternalCloudProviderTypeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

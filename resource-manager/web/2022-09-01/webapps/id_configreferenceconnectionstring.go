@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ConfigReferenceConnectionStringId{}
+var _ resourceids.ResourceId = &ConfigReferenceConnectionStringId{}
 
 // ConfigReferenceConnectionStringId is a struct representing the Resource ID for a Config Reference Connection String
 type ConfigReferenceConnectionStringId struct {
@@ -34,7 +34,7 @@ func NewConfigReferenceConnectionStringID(subscriptionId string, resourceGroupNa
 
 // ParseConfigReferenceConnectionStringID parses 'input' into a ConfigReferenceConnectionStringId
 func ParseConfigReferenceConnectionStringID(input string) (*ConfigReferenceConnectionStringId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConfigReferenceConnectionStringId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConfigReferenceConnectionStringId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseConfigReferenceConnectionStringID(input string) (*ConfigReferenceConne
 // ParseConfigReferenceConnectionStringIDInsensitively parses 'input' case-insensitively into a ConfigReferenceConnectionStringId
 // note: this method should only be used for API response data and not user input
 func ParseConfigReferenceConnectionStringIDInsensitively(input string) (*ConfigReferenceConnectionStringId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConfigReferenceConnectionStringId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConfigReferenceConnectionStringId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SchemaTableId{}
+var _ resourceids.ResourceId = &SchemaTableId{}
 
 // SchemaTableId is a struct representing the Resource ID for a Schema Table
 type SchemaTableId struct {
@@ -36,7 +36,7 @@ func NewSchemaTableID(subscriptionId string, resourceGroupName string, managedIn
 
 // ParseSchemaTableID parses 'input' into a SchemaTableId
 func ParseSchemaTableID(input string) (*SchemaTableId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SchemaTableId{})
+	parser := resourceids.NewParserFromResourceIdType(&SchemaTableId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseSchemaTableID(input string) (*SchemaTableId, error) {
 // ParseSchemaTableIDInsensitively parses 'input' case-insensitively into a SchemaTableId
 // note: this method should only be used for API response data and not user input
 func ParseSchemaTableIDInsensitively(input string) (*SchemaTableId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SchemaTableId{})
+	parser := resourceids.NewParserFromResourceIdType(&SchemaTableId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

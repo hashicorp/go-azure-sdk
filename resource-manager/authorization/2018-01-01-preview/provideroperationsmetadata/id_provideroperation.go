@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ProviderOperationId{}
+var _ resourceids.ResourceId = &ProviderOperationId{}
 
 // ProviderOperationId is a struct representing the Resource ID for a Provider Operation
 type ProviderOperationId struct {
@@ -26,7 +26,7 @@ func NewProviderOperationID(providerOperationName string) ProviderOperationId {
 
 // ParseProviderOperationID parses 'input' into a ProviderOperationId
 func ParseProviderOperationID(input string) (*ProviderOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderOperationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -43,7 +43,7 @@ func ParseProviderOperationID(input string) (*ProviderOperationId, error) {
 // ParseProviderOperationIDInsensitively parses 'input' case-insensitively into a ProviderOperationId
 // note: this method should only be used for API response data and not user input
 func ParseProviderOperationIDInsensitively(input string) (*ProviderOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderOperationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

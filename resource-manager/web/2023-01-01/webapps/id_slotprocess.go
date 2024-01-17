@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotProcessId{}
+var _ resourceids.ResourceId = &SlotProcessId{}
 
 // SlotProcessId is a struct representing the Resource ID for a Slot Process
 type SlotProcessId struct {
@@ -34,7 +34,7 @@ func NewSlotProcessID(subscriptionId string, resourceGroupName string, siteName 
 
 // ParseSlotProcessID parses 'input' into a SlotProcessId
 func ParseSlotProcessID(input string) (*SlotProcessId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotProcessId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotProcessId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseSlotProcessID(input string) (*SlotProcessId, error) {
 // ParseSlotProcessIDInsensitively parses 'input' case-insensitively into a SlotProcessId
 // note: this method should only be used for API response data and not user input
 func ParseSlotProcessIDInsensitively(input string) (*SlotProcessId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotProcessId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotProcessId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ManagedInstanceDnsAliasId{}
+var _ resourceids.ResourceId = &ManagedInstanceDnsAliasId{}
 
 // ManagedInstanceDnsAliasId is a struct representing the Resource ID for a Managed Instance Dns Alias
 type ManagedInstanceDnsAliasId struct {
@@ -32,7 +32,7 @@ func NewManagedInstanceDnsAliasID(subscriptionId string, resourceGroupName strin
 
 // ParseManagedInstanceDnsAliasID parses 'input' into a ManagedInstanceDnsAliasId
 func ParseManagedInstanceDnsAliasID(input string) (*ManagedInstanceDnsAliasId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstanceDnsAliasId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstanceDnsAliasId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseManagedInstanceDnsAliasID(input string) (*ManagedInstanceDnsAliasId, e
 // ParseManagedInstanceDnsAliasIDInsensitively parses 'input' case-insensitively into a ManagedInstanceDnsAliasId
 // note: this method should only be used for API response data and not user input
 func ParseManagedInstanceDnsAliasIDInsensitively(input string) (*ManagedInstanceDnsAliasId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstanceDnsAliasId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstanceDnsAliasId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

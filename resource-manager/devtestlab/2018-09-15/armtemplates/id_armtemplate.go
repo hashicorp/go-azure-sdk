@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ArmTemplateId{}
+var _ resourceids.ResourceId = &ArmTemplateId{}
 
 // ArmTemplateId is a struct representing the Resource ID for a Arm Template
 type ArmTemplateId struct {
@@ -34,7 +34,7 @@ func NewArmTemplateID(subscriptionId string, resourceGroupName string, labName s
 
 // ParseArmTemplateID parses 'input' into a ArmTemplateId
 func ParseArmTemplateID(input string) (*ArmTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArmTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArmTemplateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseArmTemplateID(input string) (*ArmTemplateId, error) {
 // ParseArmTemplateIDInsensitively parses 'input' case-insensitively into a ArmTemplateId
 // note: this method should only be used for API response data and not user input
 func ParseArmTemplateIDInsensitively(input string) (*ArmTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArmTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArmTemplateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

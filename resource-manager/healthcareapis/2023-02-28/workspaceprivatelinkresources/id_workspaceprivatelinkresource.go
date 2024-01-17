@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkspacePrivateLinkResourceId{}
+var _ resourceids.ResourceId = &WorkspacePrivateLinkResourceId{}
 
 // WorkspacePrivateLinkResourceId is a struct representing the Resource ID for a Workspace Private Link Resource
 type WorkspacePrivateLinkResourceId struct {
@@ -32,7 +32,7 @@ func NewWorkspacePrivateLinkResourceID(subscriptionId string, resourceGroupName 
 
 // ParseWorkspacePrivateLinkResourceID parses 'input' into a WorkspacePrivateLinkResourceId
 func ParseWorkspacePrivateLinkResourceID(input string) (*WorkspacePrivateLinkResourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspacePrivateLinkResourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspacePrivateLinkResourceId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseWorkspacePrivateLinkResourceID(input string) (*WorkspacePrivateLinkRes
 // ParseWorkspacePrivateLinkResourceIDInsensitively parses 'input' case-insensitively into a WorkspacePrivateLinkResourceId
 // note: this method should only be used for API response data and not user input
 func ParseWorkspacePrivateLinkResourceIDInsensitively(input string) (*WorkspacePrivateLinkResourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspacePrivateLinkResourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspacePrivateLinkResourceId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

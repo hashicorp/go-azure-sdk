@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TableColumnId{}
+var _ resourceids.ResourceId = &TableColumnId{}
 
 // TableColumnId is a struct representing the Resource ID for a Table Column
 type TableColumnId struct {
@@ -38,7 +38,7 @@ func NewTableColumnID(subscriptionId string, resourceGroupName string, managedIn
 
 // ParseTableColumnID parses 'input' into a TableColumnId
 func ParseTableColumnID(input string) (*TableColumnId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TableColumnId{})
+	parser := resourceids.NewParserFromResourceIdType(&TableColumnId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -55,7 +55,7 @@ func ParseTableColumnID(input string) (*TableColumnId, error) {
 // ParseTableColumnIDInsensitively parses 'input' case-insensitively into a TableColumnId
 // note: this method should only be used for API response data and not user input
 func ParseTableColumnIDInsensitively(input string) (*TableColumnId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TableColumnId{})
+	parser := resourceids.NewParserFromResourceIdType(&TableColumnId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

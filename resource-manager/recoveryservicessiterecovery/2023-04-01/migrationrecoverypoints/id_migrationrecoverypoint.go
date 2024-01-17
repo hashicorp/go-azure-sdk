@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = MigrationRecoveryPointId{}
+var _ resourceids.ResourceId = &MigrationRecoveryPointId{}
 
 // MigrationRecoveryPointId is a struct representing the Resource ID for a Migration Recovery Point
 type MigrationRecoveryPointId struct {
@@ -38,7 +38,7 @@ func NewMigrationRecoveryPointID(subscriptionId string, resourceGroupName string
 
 // ParseMigrationRecoveryPointID parses 'input' into a MigrationRecoveryPointId
 func ParseMigrationRecoveryPointID(input string) (*MigrationRecoveryPointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MigrationRecoveryPointId{})
+	parser := resourceids.NewParserFromResourceIdType(&MigrationRecoveryPointId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -55,7 +55,7 @@ func ParseMigrationRecoveryPointID(input string) (*MigrationRecoveryPointId, err
 // ParseMigrationRecoveryPointIDInsensitively parses 'input' case-insensitively into a MigrationRecoveryPointId
 // note: this method should only be used for API response data and not user input
 func ParseMigrationRecoveryPointIDInsensitively(input string) (*MigrationRecoveryPointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MigrationRecoveryPointId{})
+	parser := resourceids.NewParserFromResourceIdType(&MigrationRecoveryPointId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

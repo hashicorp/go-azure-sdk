@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = BestPracticeId{}
+var _ resourceids.ResourceId = &BestPracticeId{}
 
 // BestPracticeId is a struct representing the Resource ID for a Best Practice
 type BestPracticeId struct {
@@ -26,7 +26,7 @@ func NewBestPracticeID(bestPracticeName string) BestPracticeId {
 
 // ParseBestPracticeID parses 'input' into a BestPracticeId
 func ParseBestPracticeID(input string) (*BestPracticeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BestPracticeId{})
+	parser := resourceids.NewParserFromResourceIdType(&BestPracticeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -43,7 +43,7 @@ func ParseBestPracticeID(input string) (*BestPracticeId, error) {
 // ParseBestPracticeIDInsensitively parses 'input' case-insensitively into a BestPracticeId
 // note: this method should only be used for API response data and not user input
 func ParseBestPracticeIDInsensitively(input string) (*BestPracticeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BestPracticeId{})
+	parser := resourceids.NewParserFromResourceIdType(&BestPracticeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

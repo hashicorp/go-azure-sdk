@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RegulatoryComplianceAssessmentId{}
+var _ resourceids.ResourceId = &RegulatoryComplianceAssessmentId{}
 
 // RegulatoryComplianceAssessmentId is a struct representing the Resource ID for a Regulatory Compliance Assessment
 type RegulatoryComplianceAssessmentId struct {
@@ -32,7 +32,7 @@ func NewRegulatoryComplianceAssessmentID(subscriptionId string, regulatoryCompli
 
 // ParseRegulatoryComplianceAssessmentID parses 'input' into a RegulatoryComplianceAssessmentId
 func ParseRegulatoryComplianceAssessmentID(input string) (*RegulatoryComplianceAssessmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegulatoryComplianceAssessmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegulatoryComplianceAssessmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRegulatoryComplianceAssessmentID(input string) (*RegulatoryComplianceA
 // ParseRegulatoryComplianceAssessmentIDInsensitively parses 'input' case-insensitively into a RegulatoryComplianceAssessmentId
 // note: this method should only be used for API response data and not user input
 func ParseRegulatoryComplianceAssessmentIDInsensitively(input string) (*RegulatoryComplianceAssessmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegulatoryComplianceAssessmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegulatoryComplianceAssessmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ProviderNotificationStatusId{}
+var _ resourceids.ResourceId = &ProviderNotificationStatusId{}
 
 // ProviderNotificationStatusId is a struct representing the Resource ID for a Provider Notification Status
 type ProviderNotificationStatusId struct {
@@ -30,7 +30,7 @@ func NewProviderNotificationStatusID(subscriptionId string, resourceGroupName st
 
 // ParseProviderNotificationStatusID parses 'input' into a ProviderNotificationStatusId
 func ParseProviderNotificationStatusID(input string) (*ProviderNotificationStatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderNotificationStatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderNotificationStatusId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseProviderNotificationStatusID(input string) (*ProviderNotificationStatu
 // ParseProviderNotificationStatusIDInsensitively parses 'input' case-insensitively into a ProviderNotificationStatusId
 // note: this method should only be used for API response data and not user input
 func ParseProviderNotificationStatusIDInsensitively(input string) (*ProviderNotificationStatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderNotificationStatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderNotificationStatusId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
