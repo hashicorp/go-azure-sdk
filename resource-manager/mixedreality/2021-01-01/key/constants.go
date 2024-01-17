@@ -6,13 +6,13 @@ package key
 type Serial int64
 
 const (
-	SerialOne Serial = 1
-	SerialTwo Serial = 2
+	SerialPrimary   Serial = 1
+	SerialSecondary Serial = 2
 )
 
 func PossibleValuesForSerial() []int64 {
 	return []int64{
-		int64(SerialOne),
-		int64(SerialTwo),
+		int64(SerialPrimary),
+		int64(SerialSecondary),
 	}
 }
