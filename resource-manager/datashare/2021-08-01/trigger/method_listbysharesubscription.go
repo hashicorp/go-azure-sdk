@@ -2,6 +2,7 @@ package trigger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -50,13 +51,24 @@ func (c TriggerClient) ListByShareSubscription(ctx context.Context, id ShareSubs
 	}
 
 	var values struct {
-		Values *[]Trigger `json:"value"`
+		Values *[]json.RawMessage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	result.Model = values.Values
+	temp := make([]Trigger, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := unmarshalTriggerImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for Trigger (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
 
 	return
 }
