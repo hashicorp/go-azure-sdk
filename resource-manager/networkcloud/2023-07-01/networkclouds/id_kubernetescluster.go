@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = KubernetesClusterId{}
+var _ resourceids.ResourceId = &KubernetesClusterId{}
 
 // KubernetesClusterId is a struct representing the Resource ID for a Kubernetes Cluster
 type KubernetesClusterId struct {
@@ -30,7 +30,7 @@ func NewKubernetesClusterID(subscriptionId string, resourceGroupName string, kub
 
 // ParseKubernetesClusterID parses 'input' into a KubernetesClusterId
 func ParseKubernetesClusterID(input string) (*KubernetesClusterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KubernetesClusterId{})
+	parser := resourceids.NewParserFromResourceIdType(&KubernetesClusterId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseKubernetesClusterID(input string) (*KubernetesClusterId, error) {
 // ParseKubernetesClusterIDInsensitively parses 'input' case-insensitively into a KubernetesClusterId
 // note: this method should only be used for API response data and not user input
 func ParseKubernetesClusterIDInsensitively(input string) (*KubernetesClusterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KubernetesClusterId{})
+	parser := resourceids.NewParserFromResourceIdType(&KubernetesClusterId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedInformationProtectionPolicyId{}
+var _ resourceids.ResourceId = &ScopedInformationProtectionPolicyId{}
 
 // ScopedInformationProtectionPolicyId is a struct representing the Resource ID for a Scoped Information Protection Policy
 type ScopedInformationProtectionPolicyId struct {
@@ -28,7 +28,7 @@ func NewScopedInformationProtectionPolicyID(scope string, informationProtectionP
 
 // ParseScopedInformationProtectionPolicyID parses 'input' into a ScopedInformationProtectionPolicyId
 func ParseScopedInformationProtectionPolicyID(input string) (*ScopedInformationProtectionPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedInformationProtectionPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedInformationProtectionPolicyId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseScopedInformationProtectionPolicyID(input string) (*ScopedInformationP
 // ParseScopedInformationProtectionPolicyIDInsensitively parses 'input' case-insensitively into a ScopedInformationProtectionPolicyId
 // note: this method should only be used for API response data and not user input
 func ParseScopedInformationProtectionPolicyIDInsensitively(input string) (*ScopedInformationProtectionPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedInformationProtectionPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedInformationProtectionPolicyId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

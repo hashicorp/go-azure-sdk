@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = FileId{}
+var _ resourceids.ResourceId = &FileId{}
 
 // FileId is a struct representing the Resource ID for a File
 type FileId struct {
@@ -34,7 +34,7 @@ func NewFileID(subscriptionId string, resourceGroupName string, serviceName stri
 
 // ParseFileID parses 'input' into a FileId
 func ParseFileID(input string) (*FileId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FileId{})
+	parser := resourceids.NewParserFromResourceIdType(&FileId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseFileID(input string) (*FileId, error) {
 // ParseFileIDInsensitively parses 'input' case-insensitively into a FileId
 // note: this method should only be used for API response data and not user input
 func ParseFileIDInsensitively(input string) (*FileId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FileId{})
+	parser := resourceids.NewParserFromResourceIdType(&FileId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

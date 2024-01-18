@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = AlertId{}
+var _ resourceids.ResourceId = &AlertId{}
 
 // AlertId is a struct representing the Resource ID for a Alert
 type AlertId struct {
@@ -32,7 +32,7 @@ func NewAlertID(subscriptionId string, resourceGroupName string, dataBoxEdgeDevi
 
 // ParseAlertID parses 'input' into a AlertId
 func ParseAlertID(input string) (*AlertId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AlertId{})
+	parser := resourceids.NewParserFromResourceIdType(&AlertId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseAlertID(input string) (*AlertId, error) {
 // ParseAlertIDInsensitively parses 'input' case-insensitively into a AlertId
 // note: this method should only be used for API response data and not user input
 func ParseAlertIDInsensitively(input string) (*AlertId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AlertId{})
+	parser := resourceids.NewParserFromResourceIdType(&AlertId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

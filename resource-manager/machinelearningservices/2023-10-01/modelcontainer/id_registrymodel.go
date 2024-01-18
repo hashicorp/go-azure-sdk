@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RegistryModelId{}
+var _ resourceids.ResourceId = &RegistryModelId{}
 
 // RegistryModelId is a struct representing the Resource ID for a Registry Model
 type RegistryModelId struct {
@@ -32,7 +32,7 @@ func NewRegistryModelID(subscriptionId string, resourceGroupName string, registr
 
 // ParseRegistryModelID parses 'input' into a RegistryModelId
 func ParseRegistryModelID(input string) (*RegistryModelId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryModelId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryModelId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRegistryModelID(input string) (*RegistryModelId, error) {
 // ParseRegistryModelIDInsensitively parses 'input' case-insensitively into a RegistryModelId
 // note: this method should only be used for API response data and not user input
 func ParseRegistryModelIDInsensitively(input string) (*RegistryModelId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryModelId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryModelId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

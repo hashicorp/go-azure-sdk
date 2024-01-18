@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = FeatureStoreEntityId{}
+var _ resourceids.ResourceId = &FeatureStoreEntityId{}
 
 // FeatureStoreEntityId is a struct representing the Resource ID for a Feature Store Entity
 type FeatureStoreEntityId struct {
@@ -32,7 +32,7 @@ func NewFeatureStoreEntityID(subscriptionId string, resourceGroupName string, wo
 
 // ParseFeatureStoreEntityID parses 'input' into a FeatureStoreEntityId
 func ParseFeatureStoreEntityID(input string) (*FeatureStoreEntityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FeatureStoreEntityId{})
+	parser := resourceids.NewParserFromResourceIdType(&FeatureStoreEntityId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseFeatureStoreEntityID(input string) (*FeatureStoreEntityId, error) {
 // ParseFeatureStoreEntityIDInsensitively parses 'input' case-insensitively into a FeatureStoreEntityId
 // note: this method should only be used for API response data and not user input
 func ParseFeatureStoreEntityIDInsensitively(input string) (*FeatureStoreEntityId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FeatureStoreEntityId{})
+	parser := resourceids.NewParserFromResourceIdType(&FeatureStoreEntityId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

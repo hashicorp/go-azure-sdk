@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DefaultInstanceId{}
+var _ resourceids.ResourceId = &DefaultInstanceId{}
 
 // DefaultInstanceId is a struct representing the Resource ID for a Default Instance
 type DefaultInstanceId struct {
@@ -32,7 +32,7 @@ func NewDefaultInstanceID(subscriptionId string, resourceGroupName string, hosti
 
 // ParseDefaultInstanceID parses 'input' into a DefaultInstanceId
 func ParseDefaultInstanceID(input string) (*DefaultInstanceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultInstanceId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultInstanceId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDefaultInstanceID(input string) (*DefaultInstanceId, error) {
 // ParseDefaultInstanceIDInsensitively parses 'input' case-insensitively into a DefaultInstanceId
 // note: this method should only be used for API response data and not user input
 func ParseDefaultInstanceIDInsensitively(input string) (*DefaultInstanceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultInstanceId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultInstanceId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

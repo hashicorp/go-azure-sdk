@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ComponentVersionId{}
+var _ resourceids.ResourceId = &ComponentVersionId{}
 
 // ComponentVersionId is a struct representing the Resource ID for a Component Version
 type ComponentVersionId struct {
@@ -34,7 +34,7 @@ func NewComponentVersionID(subscriptionId string, resourceGroupName string, work
 
 // ParseComponentVersionID parses 'input' into a ComponentVersionId
 func ParseComponentVersionID(input string) (*ComponentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ComponentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ComponentVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseComponentVersionID(input string) (*ComponentVersionId, error) {
 // ParseComponentVersionIDInsensitively parses 'input' case-insensitively into a ComponentVersionId
 // note: this method should only be used for API response data and not user input
 func ParseComponentVersionIDInsensitively(input string) (*ComponentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ComponentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ComponentVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

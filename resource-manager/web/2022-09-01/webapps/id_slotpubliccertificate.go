@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotPublicCertificateId{}
+var _ resourceids.ResourceId = &SlotPublicCertificateId{}
 
 // SlotPublicCertificateId is a struct representing the Resource ID for a Slot Public Certificate
 type SlotPublicCertificateId struct {
@@ -34,7 +34,7 @@ func NewSlotPublicCertificateID(subscriptionId string, resourceGroupName string,
 
 // ParseSlotPublicCertificateID parses 'input' into a SlotPublicCertificateId
 func ParseSlotPublicCertificateID(input string) (*SlotPublicCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotPublicCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotPublicCertificateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseSlotPublicCertificateID(input string) (*SlotPublicCertificateId, error
 // ParseSlotPublicCertificateIDInsensitively parses 'input' case-insensitively into a SlotPublicCertificateId
 // note: this method should only be used for API response data and not user input
 func ParseSlotPublicCertificateIDInsensitively(input string) (*SlotPublicCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotPublicCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotPublicCertificateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

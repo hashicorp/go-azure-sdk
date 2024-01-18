@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TriggerRunId{}
+var _ resourceids.ResourceId = &TriggerRunId{}
 
 // TriggerRunId is a struct representing the Resource ID for a Trigger Run
 type TriggerRunId struct {
@@ -34,7 +34,7 @@ func NewTriggerRunID(subscriptionId string, resourceGroupName string, factoryNam
 
 // ParseTriggerRunID parses 'input' into a TriggerRunId
 func ParseTriggerRunID(input string) (*TriggerRunId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TriggerRunId{})
+	parser := resourceids.NewParserFromResourceIdType(&TriggerRunId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseTriggerRunID(input string) (*TriggerRunId, error) {
 // ParseTriggerRunIDInsensitively parses 'input' case-insensitively into a TriggerRunId
 // note: this method should only be used for API response data and not user input
 func ParseTriggerRunIDInsensitively(input string) (*TriggerRunId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TriggerRunId{})
+	parser := resourceids.NewParserFromResourceIdType(&TriggerRunId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

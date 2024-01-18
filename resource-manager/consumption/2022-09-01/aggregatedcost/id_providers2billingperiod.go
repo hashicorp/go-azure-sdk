@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2BillingPeriodId{}
+var _ resourceids.ResourceId = &Providers2BillingPeriodId{}
 
 // Providers2BillingPeriodId is a struct representing the Resource ID for a Providers 2 Billing Period
 type Providers2BillingPeriodId struct {
@@ -28,7 +28,7 @@ func NewProviders2BillingPeriodID(managementGroupId string, billingPeriodName st
 
 // ParseProviders2BillingPeriodID parses 'input' into a Providers2BillingPeriodId
 func ParseProviders2BillingPeriodID(input string) (*Providers2BillingPeriodId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2BillingPeriodId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2BillingPeriodId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseProviders2BillingPeriodID(input string) (*Providers2BillingPeriodId, e
 // ParseProviders2BillingPeriodIDInsensitively parses 'input' case-insensitively into a Providers2BillingPeriodId
 // note: this method should only be used for API response data and not user input
 func ParseProviders2BillingPeriodIDInsensitively(input string) (*Providers2BillingPeriodId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2BillingPeriodId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2BillingPeriodId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

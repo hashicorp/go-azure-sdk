@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VirtualMachineProviders2GuestConfigurationAssignmentId{}
+var _ resourceids.ResourceId = &VirtualMachineProviders2GuestConfigurationAssignmentId{}
 
 // VirtualMachineProviders2GuestConfigurationAssignmentId is a struct representing the Resource ID for a Virtual Machine Providers 2 Guest Configuration Assignment
 type VirtualMachineProviders2GuestConfigurationAssignmentId struct {
@@ -32,7 +32,7 @@ func NewVirtualMachineProviders2GuestConfigurationAssignmentID(subscriptionId st
 
 // ParseVirtualMachineProviders2GuestConfigurationAssignmentID parses 'input' into a VirtualMachineProviders2GuestConfigurationAssignmentId
 func ParseVirtualMachineProviders2GuestConfigurationAssignmentID(input string) (*VirtualMachineProviders2GuestConfigurationAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineProviders2GuestConfigurationAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineProviders2GuestConfigurationAssignmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseVirtualMachineProviders2GuestConfigurationAssignmentID(input string) (
 // ParseVirtualMachineProviders2GuestConfigurationAssignmentIDInsensitively parses 'input' case-insensitively into a VirtualMachineProviders2GuestConfigurationAssignmentId
 // note: this method should only be used for API response data and not user input
 func ParseVirtualMachineProviders2GuestConfigurationAssignmentIDInsensitively(input string) (*VirtualMachineProviders2GuestConfigurationAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineProviders2GuestConfigurationAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineProviders2GuestConfigurationAssignmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ManagementWorkflowId{}
+var _ resourceids.ResourceId = &ManagementWorkflowId{}
 
 // ManagementWorkflowId is a struct representing the Resource ID for a Management Workflow
 type ManagementWorkflowId struct {
@@ -32,7 +32,7 @@ func NewManagementWorkflowID(subscriptionId string, resourceGroupName string, si
 
 // ParseManagementWorkflowID parses 'input' into a ManagementWorkflowId
 func ParseManagementWorkflowID(input string) (*ManagementWorkflowId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagementWorkflowId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagementWorkflowId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseManagementWorkflowID(input string) (*ManagementWorkflowId, error) {
 // ParseManagementWorkflowIDInsensitively parses 'input' case-insensitively into a ManagementWorkflowId
 // note: this method should only be used for API response data and not user input
 func ParseManagementWorkflowIDInsensitively(input string) (*ManagementWorkflowId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagementWorkflowId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagementWorkflowId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationAlertSettingId{}
+var _ resourceids.ResourceId = &ReplicationAlertSettingId{}
 
 // ReplicationAlertSettingId is a struct representing the Resource ID for a Replication Alert Setting
 type ReplicationAlertSettingId struct {
@@ -32,7 +32,7 @@ func NewReplicationAlertSettingID(subscriptionId string, resourceGroupName strin
 
 // ParseReplicationAlertSettingID parses 'input' into a ReplicationAlertSettingId
 func ParseReplicationAlertSettingID(input string) (*ReplicationAlertSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationAlertSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationAlertSettingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseReplicationAlertSettingID(input string) (*ReplicationAlertSettingId, e
 // ParseReplicationAlertSettingIDInsensitively parses 'input' case-insensitively into a ReplicationAlertSettingId
 // note: this method should only be used for API response data and not user input
 func ParseReplicationAlertSettingIDInsensitively(input string) (*ReplicationAlertSettingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationAlertSettingId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationAlertSettingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

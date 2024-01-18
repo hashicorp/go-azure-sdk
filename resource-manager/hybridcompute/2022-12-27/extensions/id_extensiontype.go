@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ExtensionTypeId{}
+var _ resourceids.ResourceId = &ExtensionTypeId{}
 
 // ExtensionTypeId is a struct representing the Resource ID for a Extension Type
 type ExtensionTypeId struct {
@@ -32,7 +32,7 @@ func NewExtensionTypeID(subscriptionId string, locationName string, publisherNam
 
 // ParseExtensionTypeID parses 'input' into a ExtensionTypeId
 func ParseExtensionTypeID(input string) (*ExtensionTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExtensionTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExtensionTypeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseExtensionTypeID(input string) (*ExtensionTypeId, error) {
 // ParseExtensionTypeIDInsensitively parses 'input' case-insensitively into a ExtensionTypeId
 // note: this method should only be used for API response data and not user input
 func ParseExtensionTypeIDInsensitively(input string) (*ExtensionTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ExtensionTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&ExtensionTypeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SecureScoreId{}
+var _ resourceids.ResourceId = &SecureScoreId{}
 
 // SecureScoreId is a struct representing the Resource ID for a Secure Score
 type SecureScoreId struct {
@@ -28,7 +28,7 @@ func NewSecureScoreID(subscriptionId string, secureScoreName string) SecureScore
 
 // ParseSecureScoreID parses 'input' into a SecureScoreId
 func ParseSecureScoreID(input string) (*SecureScoreId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SecureScoreId{})
+	parser := resourceids.NewParserFromResourceIdType(&SecureScoreId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseSecureScoreID(input string) (*SecureScoreId, error) {
 // ParseSecureScoreIDInsensitively parses 'input' case-insensitively into a SecureScoreId
 // note: this method should only be used for API response data and not user input
 func ParseSecureScoreIDInsensitively(input string) (*SecureScoreId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SecureScoreId{})
+	parser := resourceids.NewParserFromResourceIdType(&SecureScoreId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = MigrationId{}
+var _ resourceids.ResourceId = &MigrationId{}
 
 // MigrationId is a struct representing the Resource ID for a Migration
 type MigrationId struct {
@@ -32,7 +32,7 @@ func NewMigrationID(subscriptionId string, resourceGroupName string, flexibleSer
 
 // ParseMigrationID parses 'input' into a MigrationId
 func ParseMigrationID(input string) (*MigrationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MigrationId{})
+	parser := resourceids.NewParserFromResourceIdType(&MigrationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseMigrationID(input string) (*MigrationId, error) {
 // ParseMigrationIDInsensitively parses 'input' case-insensitively into a MigrationId
 // note: this method should only be used for API response data and not user input
 func ParseMigrationIDInsensitively(input string) (*MigrationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MigrationId{})
+	parser := resourceids.NewParserFromResourceIdType(&MigrationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

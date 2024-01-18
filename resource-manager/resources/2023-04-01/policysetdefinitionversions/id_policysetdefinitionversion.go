@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PolicySetDefinitionVersionId{}
+var _ resourceids.ResourceId = &PolicySetDefinitionVersionId{}
 
 // PolicySetDefinitionVersionId is a struct representing the Resource ID for a Policy Set Definition Version
 type PolicySetDefinitionVersionId struct {
@@ -28,7 +28,7 @@ func NewPolicySetDefinitionVersionID(policySetDefinitionName string, versionName
 
 // ParsePolicySetDefinitionVersionID parses 'input' into a PolicySetDefinitionVersionId
 func ParsePolicySetDefinitionVersionID(input string) (*PolicySetDefinitionVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PolicySetDefinitionVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&PolicySetDefinitionVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParsePolicySetDefinitionVersionID(input string) (*PolicySetDefinitionVersio
 // ParsePolicySetDefinitionVersionIDInsensitively parses 'input' case-insensitively into a PolicySetDefinitionVersionId
 // note: this method should only be used for API response data and not user input
 func ParsePolicySetDefinitionVersionIDInsensitively(input string) (*PolicySetDefinitionVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PolicySetDefinitionVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&PolicySetDefinitionVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

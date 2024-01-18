@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PublicIPId{}
+var _ resourceids.ResourceId = &PublicIPId{}
 
 // PublicIPId is a struct representing the Resource ID for a Public I P
 type PublicIPId struct {
@@ -32,7 +32,7 @@ func NewPublicIPID(subscriptionId string, resourceGroupName string, privateCloud
 
 // ParsePublicIPID parses 'input' into a PublicIPId
 func ParsePublicIPID(input string) (*PublicIPId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PublicIPId{})
+	parser := resourceids.NewParserFromResourceIdType(&PublicIPId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParsePublicIPID(input string) (*PublicIPId, error) {
 // ParsePublicIPIDInsensitively parses 'input' case-insensitively into a PublicIPId
 // note: this method should only be used for API response data and not user input
 func ParsePublicIPIDInsensitively(input string) (*PublicIPId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PublicIPId{})
+	parser := resourceids.NewParserFromResourceIdType(&PublicIPId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

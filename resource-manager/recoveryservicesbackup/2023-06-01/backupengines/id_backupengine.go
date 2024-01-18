@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = BackupEngineId{}
+var _ resourceids.ResourceId = &BackupEngineId{}
 
 // BackupEngineId is a struct representing the Resource ID for a Backup Engine
 type BackupEngineId struct {
@@ -32,7 +32,7 @@ func NewBackupEngineID(subscriptionId string, resourceGroupName string, vaultNam
 
 // ParseBackupEngineID parses 'input' into a BackupEngineId
 func ParseBackupEngineID(input string) (*BackupEngineId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BackupEngineId{})
+	parser := resourceids.NewParserFromResourceIdType(&BackupEngineId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseBackupEngineID(input string) (*BackupEngineId, error) {
 // ParseBackupEngineIDInsensitively parses 'input' case-insensitively into a BackupEngineId
 // note: this method should only be used for API response data and not user input
 func ParseBackupEngineIDInsensitively(input string) (*BackupEngineId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BackupEngineId{})
+	parser := resourceids.NewParserFromResourceIdType(&BackupEngineId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

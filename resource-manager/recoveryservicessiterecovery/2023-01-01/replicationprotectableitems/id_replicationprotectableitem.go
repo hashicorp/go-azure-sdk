@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationProtectableItemId{}
+var _ resourceids.ResourceId = &ReplicationProtectableItemId{}
 
 // ReplicationProtectableItemId is a struct representing the Resource ID for a Replication Protectable Item
 type ReplicationProtectableItemId struct {
@@ -36,7 +36,7 @@ func NewReplicationProtectableItemID(subscriptionId string, resourceGroupName st
 
 // ParseReplicationProtectableItemID parses 'input' into a ReplicationProtectableItemId
 func ParseReplicationProtectableItemID(input string) (*ReplicationProtectableItemId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationProtectableItemId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationProtectableItemId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseReplicationProtectableItemID(input string) (*ReplicationProtectableIte
 // ParseReplicationProtectableItemIDInsensitively parses 'input' case-insensitively into a ReplicationProtectableItemId
 // note: this method should only be used for API response data and not user input
 func ParseReplicationProtectableItemIDInsensitively(input string) (*ReplicationProtectableItemId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationProtectableItemId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationProtectableItemId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

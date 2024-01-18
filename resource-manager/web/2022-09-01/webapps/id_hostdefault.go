@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HostDefaultId{}
+var _ resourceids.ResourceId = &HostDefaultId{}
 
 // HostDefaultId is a struct representing the Resource ID for a Host Default
 type HostDefaultId struct {
@@ -36,7 +36,7 @@ func NewHostDefaultID(subscriptionId string, resourceGroupName string, siteName 
 
 // ParseHostDefaultID parses 'input' into a HostDefaultId
 func ParseHostDefaultID(input string) (*HostDefaultId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostDefaultId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostDefaultId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseHostDefaultID(input string) (*HostDefaultId, error) {
 // ParseHostDefaultIDInsensitively parses 'input' case-insensitively into a HostDefaultId
 // note: this method should only be used for API response data and not user input
 func ParseHostDefaultIDInsensitively(input string) (*HostDefaultId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HostDefaultId{})
+	parser := resourceids.NewParserFromResourceIdType(&HostDefaultId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

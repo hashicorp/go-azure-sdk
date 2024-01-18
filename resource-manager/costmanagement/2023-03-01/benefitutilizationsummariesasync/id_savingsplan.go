@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SavingsPlanId{}
+var _ resourceids.ResourceId = &SavingsPlanId{}
 
 // SavingsPlanId is a struct representing the Resource ID for a Savings Plan
 type SavingsPlanId struct {
@@ -28,7 +28,7 @@ func NewSavingsPlanID(savingsPlanOrderId string, savingsPlanId string) SavingsPl
 
 // ParseSavingsPlanID parses 'input' into a SavingsPlanId
 func ParseSavingsPlanID(input string) (*SavingsPlanId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SavingsPlanId{})
+	parser := resourceids.NewParserFromResourceIdType(&SavingsPlanId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseSavingsPlanID(input string) (*SavingsPlanId, error) {
 // ParseSavingsPlanIDInsensitively parses 'input' case-insensitively into a SavingsPlanId
 // note: this method should only be used for API response data and not user input
 func ParseSavingsPlanIDInsensitively(input string) (*SavingsPlanId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SavingsPlanId{})
+	parser := resourceids.NewParserFromResourceIdType(&SavingsPlanId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

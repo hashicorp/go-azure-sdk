@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LtrBackupOperationId{}
+var _ resourceids.ResourceId = &LtrBackupOperationId{}
 
 // LtrBackupOperationId is a struct representing the Resource ID for a Ltr Backup Operation
 type LtrBackupOperationId struct {
@@ -32,7 +32,7 @@ func NewLtrBackupOperationID(subscriptionId string, resourceGroupName string, fl
 
 // ParseLtrBackupOperationID parses 'input' into a LtrBackupOperationId
 func ParseLtrBackupOperationID(input string) (*LtrBackupOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LtrBackupOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&LtrBackupOperationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseLtrBackupOperationID(input string) (*LtrBackupOperationId, error) {
 // ParseLtrBackupOperationIDInsensitively parses 'input' case-insensitively into a LtrBackupOperationId
 // note: this method should only be used for API response data and not user input
 func ParseLtrBackupOperationIDInsensitively(input string) (*LtrBackupOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LtrBackupOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&LtrBackupOperationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

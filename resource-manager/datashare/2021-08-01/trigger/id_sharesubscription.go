@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ShareSubscriptionId{}
+var _ resourceids.ResourceId = &ShareSubscriptionId{}
 
 // ShareSubscriptionId is a struct representing the Resource ID for a Share Subscription
 type ShareSubscriptionId struct {
@@ -32,7 +32,7 @@ func NewShareSubscriptionID(subscriptionId string, resourceGroupName string, acc
 
 // ParseShareSubscriptionID parses 'input' into a ShareSubscriptionId
 func ParseShareSubscriptionID(input string) (*ShareSubscriptionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ShareSubscriptionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ShareSubscriptionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseShareSubscriptionID(input string) (*ShareSubscriptionId, error) {
 // ParseShareSubscriptionIDInsensitively parses 'input' case-insensitively into a ShareSubscriptionId
 // note: this method should only be used for API response data and not user input
 func ParseShareSubscriptionIDInsensitively(input string) (*ShareSubscriptionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ShareSubscriptionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ShareSubscriptionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

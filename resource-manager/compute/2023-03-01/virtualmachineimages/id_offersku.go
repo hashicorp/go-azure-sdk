@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = OfferSkuId{}
+var _ resourceids.ResourceId = &OfferSkuId{}
 
 // OfferSkuId is a struct representing the Resource ID for a Offer Sku
 type OfferSkuId struct {
@@ -36,7 +36,7 @@ func NewOfferSkuID(subscriptionId string, locationName string, edgeZoneName stri
 
 // ParseOfferSkuID parses 'input' into a OfferSkuId
 func ParseOfferSkuID(input string) (*OfferSkuId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OfferSkuId{})
+	parser := resourceids.NewParserFromResourceIdType(&OfferSkuId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseOfferSkuID(input string) (*OfferSkuId, error) {
 // ParseOfferSkuIDInsensitively parses 'input' case-insensitively into a OfferSkuId
 // note: this method should only be used for API response data and not user input
 func ParseOfferSkuIDInsensitively(input string) (*OfferSkuId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OfferSkuId{})
+	parser := resourceids.NewParserFromResourceIdType(&OfferSkuId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

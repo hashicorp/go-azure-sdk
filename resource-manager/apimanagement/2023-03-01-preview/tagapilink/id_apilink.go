@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ApiLinkId{}
+var _ resourceids.ResourceId = &ApiLinkId{}
 
 // ApiLinkId is a struct representing the Resource ID for a Api Link
 type ApiLinkId struct {
@@ -34,7 +34,7 @@ func NewApiLinkID(subscriptionId string, resourceGroupName string, serviceName s
 
 // ParseApiLinkID parses 'input' into a ApiLinkId
 func ParseApiLinkID(input string) (*ApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiLinkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseApiLinkID(input string) (*ApiLinkId, error) {
 // ParseApiLinkIDInsensitively parses 'input' case-insensitively into a ApiLinkId
 // note: this method should only be used for API response data and not user input
 func ParseApiLinkIDInsensitively(input string) (*ApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiLinkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

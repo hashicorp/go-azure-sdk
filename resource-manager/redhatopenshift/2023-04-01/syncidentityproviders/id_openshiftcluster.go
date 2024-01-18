@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = OpenShiftClusterId{}
+var _ resourceids.ResourceId = &OpenShiftClusterId{}
 
 // OpenShiftClusterId is a struct representing the Resource ID for a Open Shift Cluster
 type OpenShiftClusterId struct {
@@ -30,7 +30,7 @@ func NewOpenShiftClusterID(subscriptionId string, resourceGroupName string, open
 
 // ParseOpenShiftClusterID parses 'input' into a OpenShiftClusterId
 func ParseOpenShiftClusterID(input string) (*OpenShiftClusterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OpenShiftClusterId{})
+	parser := resourceids.NewParserFromResourceIdType(&OpenShiftClusterId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseOpenShiftClusterID(input string) (*OpenShiftClusterId, error) {
 // ParseOpenShiftClusterIDInsensitively parses 'input' case-insensitively into a OpenShiftClusterId
 // note: this method should only be used for API response data and not user input
 func ParseOpenShiftClusterIDInsensitively(input string) (*OpenShiftClusterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OpenShiftClusterId{})
+	parser := resourceids.NewParserFromResourceIdType(&OpenShiftClusterId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HybridIdentityMetadataId{}
+var _ resourceids.ResourceId = &HybridIdentityMetadataId{}
 
 // HybridIdentityMetadataId is a struct representing the Resource ID for a Hybrid Identity Metadata
 type HybridIdentityMetadataId struct {
@@ -32,7 +32,7 @@ func NewHybridIdentityMetadataID(subscriptionId string, resourceGroupName string
 
 // ParseHybridIdentityMetadataID parses 'input' into a HybridIdentityMetadataId
 func ParseHybridIdentityMetadataID(input string) (*HybridIdentityMetadataId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HybridIdentityMetadataId{})
+	parser := resourceids.NewParserFromResourceIdType(&HybridIdentityMetadataId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseHybridIdentityMetadataID(input string) (*HybridIdentityMetadataId, err
 // ParseHybridIdentityMetadataIDInsensitively parses 'input' case-insensitively into a HybridIdentityMetadataId
 // note: this method should only be used for API response data and not user input
 func ParseHybridIdentityMetadataIDInsensitively(input string) (*HybridIdentityMetadataId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HybridIdentityMetadataId{})
+	parser := resourceids.NewParserFromResourceIdType(&HybridIdentityMetadataId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

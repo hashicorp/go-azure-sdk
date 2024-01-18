@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = FavoriteId{}
+var _ resourceids.ResourceId = &FavoriteId{}
 
 // FavoriteId is a struct representing the Resource ID for a Favorite
 type FavoriteId struct {
@@ -32,7 +32,7 @@ func NewFavoriteID(subscriptionId string, resourceGroupName string, componentNam
 
 // ParseFavoriteID parses 'input' into a FavoriteId
 func ParseFavoriteID(input string) (*FavoriteId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FavoriteId{})
+	parser := resourceids.NewParserFromResourceIdType(&FavoriteId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseFavoriteID(input string) (*FavoriteId, error) {
 // ParseFavoriteIDInsensitively parses 'input' case-insensitively into a FavoriteId
 // note: this method should only be used for API response data and not user input
 func ParseFavoriteIDInsensitively(input string) (*FavoriteId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FavoriteId{})
+	parser := resourceids.NewParserFromResourceIdType(&FavoriteId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

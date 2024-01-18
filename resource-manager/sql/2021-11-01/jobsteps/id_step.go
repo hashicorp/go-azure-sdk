@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = StepId{}
+var _ resourceids.ResourceId = &StepId{}
 
 // StepId is a struct representing the Resource ID for a Step
 type StepId struct {
@@ -36,7 +36,7 @@ func NewStepID(subscriptionId string, resourceGroupName string, serverName strin
 
 // ParseStepID parses 'input' into a StepId
 func ParseStepID(input string) (*StepId, error) {
-	parser := resourceids.NewParserFromResourceIdType(StepId{})
+	parser := resourceids.NewParserFromResourceIdType(&StepId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseStepID(input string) (*StepId, error) {
 // ParseStepIDInsensitively parses 'input' case-insensitively into a StepId
 // note: this method should only be used for API response data and not user input
 func ParseStepIDInsensitively(input string) (*StepId, error) {
-	parser := resourceids.NewParserFromResourceIdType(StepId{})
+	parser := resourceids.NewParserFromResourceIdType(&StepId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

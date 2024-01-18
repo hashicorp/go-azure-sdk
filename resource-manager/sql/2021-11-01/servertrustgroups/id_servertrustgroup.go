@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServerTrustGroupId{}
+var _ resourceids.ResourceId = &ServerTrustGroupId{}
 
 // ServerTrustGroupId is a struct representing the Resource ID for a Server Trust Group
 type ServerTrustGroupId struct {
@@ -32,7 +32,7 @@ func NewServerTrustGroupID(subscriptionId string, resourceGroupName string, loca
 
 // ParseServerTrustGroupID parses 'input' into a ServerTrustGroupId
 func ParseServerTrustGroupID(input string) (*ServerTrustGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServerTrustGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServerTrustGroupId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseServerTrustGroupID(input string) (*ServerTrustGroupId, error) {
 // ParseServerTrustGroupIDInsensitively parses 'input' case-insensitively into a ServerTrustGroupId
 // note: this method should only be used for API response data and not user input
 func ParseServerTrustGroupIDInsensitively(input string) (*ServerTrustGroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServerTrustGroupId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServerTrustGroupId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

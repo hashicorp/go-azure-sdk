@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = NetworkFeatureId{}
+var _ resourceids.ResourceId = &NetworkFeatureId{}
 
 // NetworkFeatureId is a struct representing the Resource ID for a Network Feature
 type NetworkFeatureId struct {
@@ -32,7 +32,7 @@ func NewNetworkFeatureID(subscriptionId string, resourceGroupName string, siteNa
 
 // ParseNetworkFeatureID parses 'input' into a NetworkFeatureId
 func ParseNetworkFeatureID(input string) (*NetworkFeatureId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NetworkFeatureId{})
+	parser := resourceids.NewParserFromResourceIdType(&NetworkFeatureId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseNetworkFeatureID(input string) (*NetworkFeatureId, error) {
 // ParseNetworkFeatureIDInsensitively parses 'input' case-insensitively into a NetworkFeatureId
 // note: this method should only be used for API response data and not user input
 func ParseNetworkFeatureIDInsensitively(input string) (*NetworkFeatureId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NetworkFeatureId{})
+	parser := resourceids.NewParserFromResourceIdType(&NetworkFeatureId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

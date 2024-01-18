@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = OfficeConsentId{}
+var _ resourceids.ResourceId = &OfficeConsentId{}
 
 // OfficeConsentId is a struct representing the Resource ID for a Office Consent
 type OfficeConsentId struct {
@@ -32,7 +32,7 @@ func NewOfficeConsentID(subscriptionId string, resourceGroupName string, workspa
 
 // ParseOfficeConsentID parses 'input' into a OfficeConsentId
 func ParseOfficeConsentID(input string) (*OfficeConsentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OfficeConsentId{})
+	parser := resourceids.NewParserFromResourceIdType(&OfficeConsentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseOfficeConsentID(input string) (*OfficeConsentId, error) {
 // ParseOfficeConsentIDInsensitively parses 'input' case-insensitively into a OfficeConsentId
 // note: this method should only be used for API response data and not user input
 func ParseOfficeConsentIDInsensitively(input string) (*OfficeConsentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OfficeConsentId{})
+	parser := resourceids.NewParserFromResourceIdType(&OfficeConsentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

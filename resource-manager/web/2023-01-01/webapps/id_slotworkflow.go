@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotWorkflowId{}
+var _ resourceids.ResourceId = &SlotWorkflowId{}
 
 // SlotWorkflowId is a struct representing the Resource ID for a Slot Workflow
 type SlotWorkflowId struct {
@@ -34,7 +34,7 @@ func NewSlotWorkflowID(subscriptionId string, resourceGroupName string, siteName
 
 // ParseSlotWorkflowID parses 'input' into a SlotWorkflowId
 func ParseSlotWorkflowID(input string) (*SlotWorkflowId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotWorkflowId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotWorkflowId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseSlotWorkflowID(input string) (*SlotWorkflowId, error) {
 // ParseSlotWorkflowIDInsensitively parses 'input' case-insensitively into a SlotWorkflowId
 // note: this method should only be used for API response data and not user input
 func ParseSlotWorkflowIDInsensitively(input string) (*SlotWorkflowId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotWorkflowId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotWorkflowId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

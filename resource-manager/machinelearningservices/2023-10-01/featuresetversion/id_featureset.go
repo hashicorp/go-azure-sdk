@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = FeatureSetId{}
+var _ resourceids.ResourceId = &FeatureSetId{}
 
 // FeatureSetId is a struct representing the Resource ID for a Feature Set
 type FeatureSetId struct {
@@ -32,7 +32,7 @@ func NewFeatureSetID(subscriptionId string, resourceGroupName string, workspaceN
 
 // ParseFeatureSetID parses 'input' into a FeatureSetId
 func ParseFeatureSetID(input string) (*FeatureSetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FeatureSetId{})
+	parser := resourceids.NewParserFromResourceIdType(&FeatureSetId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseFeatureSetID(input string) (*FeatureSetId, error) {
 // ParseFeatureSetIDInsensitively parses 'input' case-insensitively into a FeatureSetId
 // note: this method should only be used for API response data and not user input
 func ParseFeatureSetIDInsensitively(input string) (*FeatureSetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(FeatureSetId{})
+	parser := resourceids.NewParserFromResourceIdType(&FeatureSetId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ModelVersionId{}
+var _ resourceids.ResourceId = &ModelVersionId{}
 
 // ModelVersionId is a struct representing the Resource ID for a Model Version
 type ModelVersionId struct {
@@ -34,7 +34,7 @@ func NewModelVersionID(subscriptionId string, resourceGroupName string, workspac
 
 // ParseModelVersionID parses 'input' into a ModelVersionId
 func ParseModelVersionID(input string) (*ModelVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ModelVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ModelVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseModelVersionID(input string) (*ModelVersionId, error) {
 // ParseModelVersionIDInsensitively parses 'input' case-insensitively into a ModelVersionId
 // note: this method should only be used for API response data and not user input
 func ParseModelVersionIDInsensitively(input string) (*ModelVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ModelVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ModelVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

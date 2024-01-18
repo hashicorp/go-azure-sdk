@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CostAllocationRuleId{}
+var _ resourceids.ResourceId = &CostAllocationRuleId{}
 
 // CostAllocationRuleId is a struct representing the Resource ID for a Cost Allocation Rule
 type CostAllocationRuleId struct {
@@ -28,7 +28,7 @@ func NewCostAllocationRuleID(billingAccountId string, costAllocationRuleName str
 
 // ParseCostAllocationRuleID parses 'input' into a CostAllocationRuleId
 func ParseCostAllocationRuleID(input string) (*CostAllocationRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CostAllocationRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&CostAllocationRuleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseCostAllocationRuleID(input string) (*CostAllocationRuleId, error) {
 // ParseCostAllocationRuleIDInsensitively parses 'input' case-insensitively into a CostAllocationRuleId
 // note: this method should only be used for API response data and not user input
 func ParseCostAllocationRuleIDInsensitively(input string) (*CostAllocationRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CostAllocationRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&CostAllocationRuleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

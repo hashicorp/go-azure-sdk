@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VirtualMachineExtensionId{}
+var _ resourceids.ResourceId = &VirtualMachineExtensionId{}
 
 // VirtualMachineExtensionId is a struct representing the Resource ID for a Virtual Machine Extension
 type VirtualMachineExtensionId struct {
@@ -34,7 +34,7 @@ func NewVirtualMachineExtensionID(subscriptionId string, resourceGroupName strin
 
 // ParseVirtualMachineExtensionID parses 'input' into a VirtualMachineExtensionId
 func ParseVirtualMachineExtensionID(input string) (*VirtualMachineExtensionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineExtensionId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineExtensionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseVirtualMachineExtensionID(input string) (*VirtualMachineExtensionId, e
 // ParseVirtualMachineExtensionIDInsensitively parses 'input' case-insensitively into a VirtualMachineExtensionId
 // note: this method should only be used for API response data and not user input
 func ParseVirtualMachineExtensionIDInsensitively(input string) (*VirtualMachineExtensionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VirtualMachineExtensionId{})
+	parser := resourceids.NewParserFromResourceIdType(&VirtualMachineExtensionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

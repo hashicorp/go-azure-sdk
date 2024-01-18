@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RoleIdId{}
+var _ resourceids.ResourceId = &RoleIdId{}
 
 // RoleIdId is a struct representing the Resource ID for a Role Id
 type RoleIdId struct {
@@ -26,7 +26,7 @@ func NewRoleIdID(roleId string) RoleIdId {
 
 // ParseRoleIdID parses 'input' into a RoleIdId
 func ParseRoleIdID(input string) (*RoleIdId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RoleIdId{})
+	parser := resourceids.NewParserFromResourceIdType(&RoleIdId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -43,7 +43,7 @@ func ParseRoleIdID(input string) (*RoleIdId, error) {
 // ParseRoleIdIDInsensitively parses 'input' case-insensitively into a RoleIdId
 // note: this method should only be used for API response data and not user input
 func ParseRoleIdIDInsensitively(input string) (*RoleIdId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RoleIdId{})
+	parser := resourceids.NewParserFromResourceIdType(&RoleIdId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

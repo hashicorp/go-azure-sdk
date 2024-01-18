@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ApiCollectionId{}
+var _ resourceids.ResourceId = &ApiCollectionId{}
 
 // ApiCollectionId is a struct representing the Resource ID for a Api Collection
 type ApiCollectionId struct {
@@ -32,7 +32,7 @@ func NewApiCollectionID(subscriptionId string, resourceGroupName string, service
 
 // ParseApiCollectionID parses 'input' into a ApiCollectionId
 func ParseApiCollectionID(input string) (*ApiCollectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiCollectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiCollectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseApiCollectionID(input string) (*ApiCollectionId, error) {
 // ParseApiCollectionIDInsensitively parses 'input' case-insensitively into a ApiCollectionId
 // note: this method should only be used for API response data and not user input
 func ParseApiCollectionIDInsensitively(input string) (*ApiCollectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiCollectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiCollectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

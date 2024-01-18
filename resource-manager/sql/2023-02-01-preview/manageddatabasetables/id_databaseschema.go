@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DatabaseSchemaId{}
+var _ resourceids.ResourceId = &DatabaseSchemaId{}
 
 // DatabaseSchemaId is a struct representing the Resource ID for a Database Schema
 type DatabaseSchemaId struct {
@@ -34,7 +34,7 @@ func NewDatabaseSchemaID(subscriptionId string, resourceGroupName string, manage
 
 // ParseDatabaseSchemaID parses 'input' into a DatabaseSchemaId
 func ParseDatabaseSchemaID(input string) (*DatabaseSchemaId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatabaseSchemaId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatabaseSchemaId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseDatabaseSchemaID(input string) (*DatabaseSchemaId, error) {
 // ParseDatabaseSchemaIDInsensitively parses 'input' case-insensitively into a DatabaseSchemaId
 // note: this method should only be used for API response data and not user input
 func ParseDatabaseSchemaIDInsensitively(input string) (*DatabaseSchemaId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DatabaseSchemaId{})
+	parser := resourceids.NewParserFromResourceIdType(&DatabaseSchemaId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

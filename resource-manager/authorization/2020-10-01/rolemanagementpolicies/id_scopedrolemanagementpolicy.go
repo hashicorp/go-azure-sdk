@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedRoleManagementPolicyId{}
+var _ resourceids.ResourceId = &ScopedRoleManagementPolicyId{}
 
 // ScopedRoleManagementPolicyId is a struct representing the Resource ID for a Scoped Role Management Policy
 type ScopedRoleManagementPolicyId struct {
@@ -28,7 +28,7 @@ func NewScopedRoleManagementPolicyID(scope string, roleManagementPolicyName stri
 
 // ParseScopedRoleManagementPolicyID parses 'input' into a ScopedRoleManagementPolicyId
 func ParseScopedRoleManagementPolicyID(input string) (*ScopedRoleManagementPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedRoleManagementPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedRoleManagementPolicyId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseScopedRoleManagementPolicyID(input string) (*ScopedRoleManagementPolic
 // ParseScopedRoleManagementPolicyIDInsensitively parses 'input' case-insensitively into a ScopedRoleManagementPolicyId
 // note: this method should only be used for API response data and not user input
 func ParseScopedRoleManagementPolicyIDInsensitively(input string) (*ScopedRoleManagementPolicyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedRoleManagementPolicyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedRoleManagementPolicyId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

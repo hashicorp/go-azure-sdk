@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ManagedInstanceKeyId{}
+var _ resourceids.ResourceId = &ManagedInstanceKeyId{}
 
 // ManagedInstanceKeyId is a struct representing the Resource ID for a Managed Instance Key
 type ManagedInstanceKeyId struct {
@@ -32,7 +32,7 @@ func NewManagedInstanceKeyID(subscriptionId string, resourceGroupName string, ma
 
 // ParseManagedInstanceKeyID parses 'input' into a ManagedInstanceKeyId
 func ParseManagedInstanceKeyID(input string) (*ManagedInstanceKeyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstanceKeyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstanceKeyId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseManagedInstanceKeyID(input string) (*ManagedInstanceKeyId, error) {
 // ParseManagedInstanceKeyIDInsensitively parses 'input' case-insensitively into a ManagedInstanceKeyId
 // note: this method should only be used for API response data and not user input
 func ParseManagedInstanceKeyIDInsensitively(input string) (*ManagedInstanceKeyId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstanceKeyId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstanceKeyId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

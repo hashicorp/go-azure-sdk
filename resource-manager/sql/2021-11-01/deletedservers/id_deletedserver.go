@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DeletedServerId{}
+var _ resourceids.ResourceId = &DeletedServerId{}
 
 // DeletedServerId is a struct representing the Resource ID for a Deleted Server
 type DeletedServerId struct {
@@ -30,7 +30,7 @@ func NewDeletedServerID(subscriptionId string, locationName string, deletedServe
 
 // ParseDeletedServerID parses 'input' into a DeletedServerId
 func ParseDeletedServerID(input string) (*DeletedServerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DeletedServerId{})
+	parser := resourceids.NewParserFromResourceIdType(&DeletedServerId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseDeletedServerID(input string) (*DeletedServerId, error) {
 // ParseDeletedServerIDInsensitively parses 'input' case-insensitively into a DeletedServerId
 // note: this method should only be used for API response data and not user input
 func ParseDeletedServerIDInsensitively(input string) (*DeletedServerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DeletedServerId{})
+	parser := resourceids.NewParserFromResourceIdType(&DeletedServerId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

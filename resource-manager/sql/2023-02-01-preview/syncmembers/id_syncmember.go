@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SyncMemberId{}
+var _ resourceids.ResourceId = &SyncMemberId{}
 
 // SyncMemberId is a struct representing the Resource ID for a Sync Member
 type SyncMemberId struct {
@@ -36,7 +36,7 @@ func NewSyncMemberID(subscriptionId string, resourceGroupName string, serverName
 
 // ParseSyncMemberID parses 'input' into a SyncMemberId
 func ParseSyncMemberID(input string) (*SyncMemberId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SyncMemberId{})
+	parser := resourceids.NewParserFromResourceIdType(&SyncMemberId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseSyncMemberID(input string) (*SyncMemberId, error) {
 // ParseSyncMemberIDInsensitively parses 'input' case-insensitively into a SyncMemberId
 // note: this method should only be used for API response data and not user input
 func ParseSyncMemberIDInsensitively(input string) (*SyncMemberId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SyncMemberId{})
+	parser := resourceids.NewParserFromResourceIdType(&SyncMemberId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

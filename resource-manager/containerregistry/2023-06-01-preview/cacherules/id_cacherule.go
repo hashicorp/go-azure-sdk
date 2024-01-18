@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CacheRuleId{}
+var _ resourceids.ResourceId = &CacheRuleId{}
 
 // CacheRuleId is a struct representing the Resource ID for a Cache Rule
 type CacheRuleId struct {
@@ -32,7 +32,7 @@ func NewCacheRuleID(subscriptionId string, resourceGroupName string, registryNam
 
 // ParseCacheRuleID parses 'input' into a CacheRuleId
 func ParseCacheRuleID(input string) (*CacheRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CacheRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&CacheRuleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseCacheRuleID(input string) (*CacheRuleId, error) {
 // ParseCacheRuleIDInsensitively parses 'input' case-insensitively into a CacheRuleId
 // note: this method should only be used for API response data and not user input
 func ParseCacheRuleIDInsensitively(input string) (*CacheRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CacheRuleId{})
+	parser := resourceids.NewParserFromResourceIdType(&CacheRuleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

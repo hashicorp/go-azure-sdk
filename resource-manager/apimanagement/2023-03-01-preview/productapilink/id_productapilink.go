@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ProductApiLinkId{}
+var _ resourceids.ResourceId = &ProductApiLinkId{}
 
 // ProductApiLinkId is a struct representing the Resource ID for a Product Api Link
 type ProductApiLinkId struct {
@@ -34,7 +34,7 @@ func NewProductApiLinkID(subscriptionId string, resourceGroupName string, servic
 
 // ParseProductApiLinkID parses 'input' into a ProductApiLinkId
 func ParseProductApiLinkID(input string) (*ProductApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProductApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProductApiLinkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseProductApiLinkID(input string) (*ProductApiLinkId, error) {
 // ParseProductApiLinkIDInsensitively parses 'input' case-insensitively into a ProductApiLinkId
 // note: this method should only be used for API response data and not user input
 func ParseProductApiLinkIDInsensitively(input string) (*ProductApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProductApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProductApiLinkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

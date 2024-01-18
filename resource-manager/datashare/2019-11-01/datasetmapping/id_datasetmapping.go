@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DataSetMappingId{}
+var _ resourceids.ResourceId = &DataSetMappingId{}
 
 // DataSetMappingId is a struct representing the Resource ID for a Data Set Mapping
 type DataSetMappingId struct {
@@ -34,7 +34,7 @@ func NewDataSetMappingID(subscriptionId string, resourceGroupName string, accoun
 
 // ParseDataSetMappingID parses 'input' into a DataSetMappingId
 func ParseDataSetMappingID(input string) (*DataSetMappingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataSetMappingId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataSetMappingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseDataSetMappingID(input string) (*DataSetMappingId, error) {
 // ParseDataSetMappingIDInsensitively parses 'input' case-insensitively into a DataSetMappingId
 // note: this method should only be used for API response data and not user input
 func ParseDataSetMappingIDInsensitively(input string) (*DataSetMappingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DataSetMappingId{})
+	parser := resourceids.NewParserFromResourceIdType(&DataSetMappingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

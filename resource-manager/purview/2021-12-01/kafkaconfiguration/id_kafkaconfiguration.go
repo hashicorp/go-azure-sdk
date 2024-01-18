@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = KafkaConfigurationId{}
+var _ resourceids.ResourceId = &KafkaConfigurationId{}
 
 // KafkaConfigurationId is a struct representing the Resource ID for a Kafka Configuration
 type KafkaConfigurationId struct {
@@ -32,7 +32,7 @@ func NewKafkaConfigurationID(subscriptionId string, resourceGroupName string, ac
 
 // ParseKafkaConfigurationID parses 'input' into a KafkaConfigurationId
 func ParseKafkaConfigurationID(input string) (*KafkaConfigurationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KafkaConfigurationId{})
+	parser := resourceids.NewParserFromResourceIdType(&KafkaConfigurationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseKafkaConfigurationID(input string) (*KafkaConfigurationId, error) {
 // ParseKafkaConfigurationIDInsensitively parses 'input' case-insensitively into a KafkaConfigurationId
 // note: this method should only be used for API response data and not user input
 func ParseKafkaConfigurationIDInsensitively(input string) (*KafkaConfigurationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KafkaConfigurationId{})
+	parser := resourceids.NewParserFromResourceIdType(&KafkaConfigurationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

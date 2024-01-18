@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DnsAliasId{}
+var _ resourceids.ResourceId = &DnsAliasId{}
 
 // DnsAliasId is a struct representing the Resource ID for a Dns Alias
 type DnsAliasId struct {
@@ -32,7 +32,7 @@ func NewDnsAliasID(subscriptionId string, resourceGroupName string, serverName s
 
 // ParseDnsAliasID parses 'input' into a DnsAliasId
 func ParseDnsAliasID(input string) (*DnsAliasId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DnsAliasId{})
+	parser := resourceids.NewParserFromResourceIdType(&DnsAliasId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDnsAliasID(input string) (*DnsAliasId, error) {
 // ParseDnsAliasIDInsensitively parses 'input' case-insensitively into a DnsAliasId
 // note: this method should only be used for API response data and not user input
 func ParseDnsAliasIDInsensitively(input string) (*DnsAliasId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DnsAliasId{})
+	parser := resourceids.NewParserFromResourceIdType(&DnsAliasId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

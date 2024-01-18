@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkspaceProductId{}
+var _ resourceids.ResourceId = &WorkspaceProductId{}
 
 // WorkspaceProductId is a struct representing the Resource ID for a Workspace Product
 type WorkspaceProductId struct {
@@ -34,7 +34,7 @@ func NewWorkspaceProductID(subscriptionId string, resourceGroupName string, serv
 
 // ParseWorkspaceProductID parses 'input' into a WorkspaceProductId
 func ParseWorkspaceProductID(input string) (*WorkspaceProductId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspaceProductId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspaceProductId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseWorkspaceProductID(input string) (*WorkspaceProductId, error) {
 // ParseWorkspaceProductIDInsensitively parses 'input' case-insensitively into a WorkspaceProductId
 // note: this method should only be used for API response data and not user input
 func ParseWorkspaceProductIDInsensitively(input string) (*WorkspaceProductId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspaceProductId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspaceProductId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

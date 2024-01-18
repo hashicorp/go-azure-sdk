@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LongTermRetentionServerId{}
+var _ resourceids.ResourceId = &LongTermRetentionServerId{}
 
 // LongTermRetentionServerId is a struct representing the Resource ID for a Long Term Retention Server
 type LongTermRetentionServerId struct {
@@ -30,7 +30,7 @@ func NewLongTermRetentionServerID(subscriptionId string, locationName string, lo
 
 // ParseLongTermRetentionServerID parses 'input' into a LongTermRetentionServerId
 func ParseLongTermRetentionServerID(input string) (*LongTermRetentionServerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LongTermRetentionServerId{})
+	parser := resourceids.NewParserFromResourceIdType(&LongTermRetentionServerId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseLongTermRetentionServerID(input string) (*LongTermRetentionServerId, e
 // ParseLongTermRetentionServerIDInsensitively parses 'input' case-insensitively into a LongTermRetentionServerId
 // note: this method should only be used for API response data and not user input
 func ParseLongTermRetentionServerIDInsensitively(input string) (*LongTermRetentionServerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LongTermRetentionServerId{})
+	parser := resourceids.NewParserFromResourceIdType(&LongTermRetentionServerId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

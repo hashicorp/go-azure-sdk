@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PublicCertificateId{}
+var _ resourceids.ResourceId = &PublicCertificateId{}
 
 // PublicCertificateId is a struct representing the Resource ID for a Public Certificate
 type PublicCertificateId struct {
@@ -32,7 +32,7 @@ func NewPublicCertificateID(subscriptionId string, resourceGroupName string, sit
 
 // ParsePublicCertificateID parses 'input' into a PublicCertificateId
 func ParsePublicCertificateID(input string) (*PublicCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PublicCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&PublicCertificateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParsePublicCertificateID(input string) (*PublicCertificateId, error) {
 // ParsePublicCertificateIDInsensitively parses 'input' case-insensitively into a PublicCertificateId
 // note: this method should only be used for API response data and not user input
 func ParsePublicCertificateIDInsensitively(input string) (*PublicCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PublicCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&PublicCertificateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

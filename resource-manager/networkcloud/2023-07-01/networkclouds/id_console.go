@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ConsoleId{}
+var _ resourceids.ResourceId = &ConsoleId{}
 
 // ConsoleId is a struct representing the Resource ID for a Console
 type ConsoleId struct {
@@ -32,7 +32,7 @@ func NewConsoleID(subscriptionId string, resourceGroupName string, virtualMachin
 
 // ParseConsoleID parses 'input' into a ConsoleId
 func ParseConsoleID(input string) (*ConsoleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConsoleId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConsoleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseConsoleID(input string) (*ConsoleId, error) {
 // ParseConsoleIDInsensitively parses 'input' case-insensitively into a ConsoleId
 // note: this method should only be used for API response data and not user input
 func ParseConsoleIDInsensitively(input string) (*ConsoleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConsoleId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConsoleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

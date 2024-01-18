@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = L3NetworkId{}
+var _ resourceids.ResourceId = &L3NetworkId{}
 
 // L3NetworkId is a struct representing the Resource ID for a L 3 Network
 type L3NetworkId struct {
@@ -30,7 +30,7 @@ func NewL3NetworkID(subscriptionId string, resourceGroupName string, l3NetworkNa
 
 // ParseL3NetworkID parses 'input' into a L3NetworkId
 func ParseL3NetworkID(input string) (*L3NetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(L3NetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&L3NetworkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseL3NetworkID(input string) (*L3NetworkId, error) {
 // ParseL3NetworkIDInsensitively parses 'input' case-insensitively into a L3NetworkId
 // note: this method should only be used for API response data and not user input
 func ParseL3NetworkIDInsensitively(input string) (*L3NetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(L3NetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&L3NetworkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

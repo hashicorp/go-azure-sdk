@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = AutoScaleVCoreId{}
+var _ resourceids.ResourceId = &AutoScaleVCoreId{}
 
 // AutoScaleVCoreId is a struct representing the Resource ID for a Auto Scale V Core
 type AutoScaleVCoreId struct {
@@ -30,7 +30,7 @@ func NewAutoScaleVCoreID(subscriptionId string, resourceGroupName string, autoSc
 
 // ParseAutoScaleVCoreID parses 'input' into a AutoScaleVCoreId
 func ParseAutoScaleVCoreID(input string) (*AutoScaleVCoreId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AutoScaleVCoreId{})
+	parser := resourceids.NewParserFromResourceIdType(&AutoScaleVCoreId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseAutoScaleVCoreID(input string) (*AutoScaleVCoreId, error) {
 // ParseAutoScaleVCoreIDInsensitively parses 'input' case-insensitively into a AutoScaleVCoreId
 // note: this method should only be used for API response data and not user input
 func ParseAutoScaleVCoreIDInsensitively(input string) (*AutoScaleVCoreId, error) {
-	parser := resourceids.NewParserFromResourceIdType(AutoScaleVCoreId{})
+	parser := resourceids.NewParserFromResourceIdType(&AutoScaleVCoreId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
