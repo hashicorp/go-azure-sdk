@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PricingId{}
+var _ resourceids.ResourceId = &PricingId{}
 
 func TestNewPricingID(t *testing.T) {
 	id := NewPricingID("scopeIdValue", "pricingValue")

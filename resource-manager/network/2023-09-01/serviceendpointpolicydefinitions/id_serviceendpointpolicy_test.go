@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServiceEndpointPolicyId{}
+var _ resourceids.ResourceId = &ServiceEndpointPolicyId{}
 
 func TestNewServiceEndpointPolicyID(t *testing.T) {
 	id := NewServiceEndpointPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceEndpointPolicyValue")

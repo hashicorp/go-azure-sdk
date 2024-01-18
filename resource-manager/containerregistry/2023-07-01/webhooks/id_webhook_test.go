@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WebHookId{}
+var _ resourceids.ResourceId = &WebHookId{}
 
 func TestNewWebHookID(t *testing.T) {
 	id := NewWebHookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "webHookValue")

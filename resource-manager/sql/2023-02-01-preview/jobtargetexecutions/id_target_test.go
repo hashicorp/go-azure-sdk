@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TargetId{}
+var _ resourceids.ResourceId = &TargetId{}
 
 func TestNewTargetID(t *testing.T) {
 	id := NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "jobExecutionIdValue", "stepValue", "targetIdValue")

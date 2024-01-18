@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServiceTaskId{}
+var _ resourceids.ResourceId = &ServiceTaskId{}
 
 func TestNewServiceTaskID(t *testing.T) {
 	id := NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "serviceTaskValue")

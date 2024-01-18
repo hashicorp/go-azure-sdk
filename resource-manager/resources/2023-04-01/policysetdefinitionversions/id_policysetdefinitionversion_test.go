@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PolicySetDefinitionVersionId{}
+var _ resourceids.ResourceId = &PolicySetDefinitionVersionId{}
 
 func TestNewPolicySetDefinitionVersionID(t *testing.T) {
 	id := NewPolicySetDefinitionVersionID("policySetDefinitionValue", "versionValue")

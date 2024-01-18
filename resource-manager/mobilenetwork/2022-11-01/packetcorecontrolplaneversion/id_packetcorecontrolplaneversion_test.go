@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PacketCoreControlPlaneVersionId{}
+var _ resourceids.ResourceId = &PacketCoreControlPlaneVersionId{}
 
 func TestNewPacketCoreControlPlaneVersionID(t *testing.T) {
 	id := NewPacketCoreControlPlaneVersionID("packetCoreControlPlaneVersionValue")

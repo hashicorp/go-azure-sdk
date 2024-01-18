@@ -9,7 +9,7 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = B2CDirectoryId{}
+var _ resourceids.ResourceId = &B2CDirectoryId{}
 
 func TestNewB2CDirectoryID(t *testing.T) {
 	id := NewB2CDirectoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "directoryValue")
