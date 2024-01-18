@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LoadBalancingRuleId{}
+var _ resourceids.ResourceId = &LoadBalancingRuleId{}
 
 func TestNewLoadBalancingRuleID(t *testing.T) {
 	id := NewLoadBalancingRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue", "loadBalancingRuleValue")

@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2DeploymentId{}
+var _ resourceids.ResourceId = &Providers2DeploymentId{}
 
 func TestNewProviders2DeploymentID(t *testing.T) {
 	id := NewProviders2DeploymentID("groupIdValue", "deploymentValue")

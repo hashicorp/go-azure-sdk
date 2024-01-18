@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SimPolicyId{}
+var _ resourceids.ResourceId = &SimPolicyId{}
 
 func TestNewSimPolicyID(t *testing.T) {
 	id := NewSimPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "simPolicyValue")

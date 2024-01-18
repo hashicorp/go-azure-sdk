@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = BillingPeriodId{}
+var _ resourceids.ResourceId = &BillingPeriodId{}
 
 func TestNewBillingPeriodID(t *testing.T) {
 	id := NewBillingPeriodID("billingAccountIdValue", "billingPeriodValue")

@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = FqdnListId{}
+var _ resourceids.ResourceId = &FqdnListId{}
 
 func TestNewFqdnListID(t *testing.T) {
 	id := NewFqdnListID("globalRulestackValue", "fqdnListValue")

@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkspaceSubscriptions2Id{}
+var _ resourceids.ResourceId = &WorkspaceSubscriptions2Id{}
 
 func TestNewWorkspaceSubscriptions2ID(t *testing.T) {
 	id := NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")

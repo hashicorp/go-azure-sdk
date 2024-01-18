@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TopicTypeId{}
+var _ resourceids.ResourceId = &TopicTypeId{}
 
 func TestNewTopicTypeID(t *testing.T) {
 	id := NewTopicTypeID("topicTypeValue")

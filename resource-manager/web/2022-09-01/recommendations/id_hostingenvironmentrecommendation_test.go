@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HostingEnvironmentRecommendationId{}
+var _ resourceids.ResourceId = &HostingEnvironmentRecommendationId{}
 
 func TestNewHostingEnvironmentRecommendationID(t *testing.T) {
 	id := NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue", "recommendationValue")

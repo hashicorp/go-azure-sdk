@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationProtectedItemId{}
+var _ resourceids.ResourceId = &ReplicationProtectedItemId{}
 
 func TestNewReplicationProtectedItemID(t *testing.T) {
 	id := NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationProtectedItemValue")

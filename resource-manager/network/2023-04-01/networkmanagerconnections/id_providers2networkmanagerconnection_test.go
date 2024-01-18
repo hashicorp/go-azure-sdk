@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2NetworkManagerConnectionId{}
+var _ resourceids.ResourceId = &Providers2NetworkManagerConnectionId{}
 
 func TestNewProviders2NetworkManagerConnectionID(t *testing.T) {
 	id := NewProviders2NetworkManagerConnectionID("managementGroupIdValue", "networkManagerConnectionValue")

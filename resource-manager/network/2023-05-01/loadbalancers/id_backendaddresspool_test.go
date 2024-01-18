@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = BackendAddressPoolId{}
+var _ resourceids.ResourceId = &BackendAddressPoolId{}
 
 func TestNewBackendAddressPoolID(t *testing.T) {
 	id := NewBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "loadBalancerValue", "backendAddressPoolValue")

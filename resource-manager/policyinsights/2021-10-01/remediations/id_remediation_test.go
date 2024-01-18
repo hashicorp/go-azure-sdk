@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RemediationId{}
+var _ resourceids.ResourceId = &RemediationId{}
 
 func TestNewRemediationID(t *testing.T) {
 	id := NewRemediationID("12345678-1234-9876-4563-123456789012", "remediationValue")

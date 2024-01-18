@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RecoverableDatabaseId{}
+var _ resourceids.ResourceId = &RecoverableDatabaseId{}
 
 func TestNewRecoverableDatabaseID(t *testing.T) {
 	id := NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "recoverableDatabaseValue")

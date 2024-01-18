@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LocationDeletedSiteId{}
+var _ resourceids.ResourceId = &LocationDeletedSiteId{}
 
 func TestNewLocationDeletedSiteID(t *testing.T) {
 	id := NewLocationDeletedSiteID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedSiteIdValue")

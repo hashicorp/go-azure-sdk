@@ -9,7 +9,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SkuVersionId{}
+var _ resourceids.ResourceId = &SkuVersionId{}
 
 func TestNewSkuVersionID(t *testing.T) {
 	id := NewSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "offerValue", "skuValue", "versionValue")
