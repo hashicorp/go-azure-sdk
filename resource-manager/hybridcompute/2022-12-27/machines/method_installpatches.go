@@ -18,6 +18,7 @@ type InstallPatchesOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *MachineInstallPatchesResult
 }
 
 // InstallPatches ...
@@ -48,6 +49,10 @@ func (c MachinesClient) InstallPatches(ctx context.Context, id MachineId, input 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

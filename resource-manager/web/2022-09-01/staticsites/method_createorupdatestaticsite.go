@@ -18,6 +18,7 @@ type CreateOrUpdateStaticSiteOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *StaticSiteARMResource
 }
 
 // CreateOrUpdateStaticSite ...
@@ -48,6 +49,10 @@ func (c StaticSitesClient) CreateOrUpdateStaticSite(ctx context.Context, id Stat
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

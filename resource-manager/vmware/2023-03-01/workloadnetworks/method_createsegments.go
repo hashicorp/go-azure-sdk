@@ -18,6 +18,7 @@ type CreateSegmentsOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkSegment
 }
 
 // CreateSegments ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) CreateSegments(ctx context.Context, id SegmentId
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

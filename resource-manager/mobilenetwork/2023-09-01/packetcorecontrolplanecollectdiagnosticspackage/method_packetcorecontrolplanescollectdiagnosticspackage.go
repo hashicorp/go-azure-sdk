@@ -18,6 +18,7 @@ type PacketCoreControlPlanesCollectDiagnosticsPackageOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *AsyncOperationStatus
 }
 
 // PacketCoreControlPlanesCollectDiagnosticsPackage ...
@@ -48,6 +49,10 @@ func (c PacketCoreControlPlaneCollectDiagnosticsPackageClient) PacketCoreControl
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

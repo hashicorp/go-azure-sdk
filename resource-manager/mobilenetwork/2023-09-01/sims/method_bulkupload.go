@@ -18,6 +18,7 @@ type BulkUploadOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *AsyncOperationStatus
 }
 
 // BulkUpload ...
@@ -48,6 +49,10 @@ func (c SIMsClient) BulkUpload(ctx context.Context, id SimGroupId, input SimUplo
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

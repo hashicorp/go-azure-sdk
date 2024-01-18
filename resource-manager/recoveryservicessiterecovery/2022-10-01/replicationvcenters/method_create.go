@@ -18,6 +18,7 @@ type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *VCenter
 }
 
 // Create ...
@@ -48,6 +49,10 @@ func (c ReplicationvCentersClient) Create(ctx context.Context, id ReplicationvCe
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

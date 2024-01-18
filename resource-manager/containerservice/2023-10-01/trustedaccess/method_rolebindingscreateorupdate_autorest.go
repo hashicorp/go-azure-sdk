@@ -16,6 +16,7 @@ import (
 type RoleBindingsCreateOrUpdateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *TrustedAccessRoleBinding
 }
 
 // RoleBindingsCreateOrUpdate ...

@@ -18,6 +18,7 @@ type VirtualMachinesUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *VirtualMachine
 }
 
 // VirtualMachinesUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) VirtualMachinesUpdate(ctx context.Context, id Virtu
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

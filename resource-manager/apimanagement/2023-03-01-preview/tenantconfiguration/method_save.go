@@ -18,6 +18,7 @@ type SaveOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *OperationResultContract
 }
 
 // Save ...
@@ -48,6 +49,10 @@ func (c TenantConfigurationClient) Save(ctx context.Context, id ServiceId, input
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

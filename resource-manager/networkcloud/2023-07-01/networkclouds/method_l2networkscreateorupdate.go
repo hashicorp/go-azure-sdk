@@ -18,6 +18,7 @@ type L2NetworksCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *L2Network
 }
 
 // L2NetworksCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) L2NetworksCreateOrUpdate(ctx context.Context, id L2
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

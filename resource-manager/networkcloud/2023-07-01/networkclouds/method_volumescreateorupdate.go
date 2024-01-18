@@ -18,6 +18,7 @@ type VolumesCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *Volume
 }
 
 // VolumesCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) VolumesCreateOrUpdate(ctx context.Context, id Volum
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

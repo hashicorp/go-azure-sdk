@@ -18,6 +18,7 @@ type WhatIfAtSubscriptionScopeOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WhatIfOperationResult
 }
 
 // WhatIfAtSubscriptionScope ...
@@ -48,6 +49,10 @@ func (c DeploymentsClient) WhatIfAtSubscriptionScope(ctx context.Context, id Pro
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

@@ -18,6 +18,7 @@ type RegistryComponentContainersCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ComponentContainerResource
 }
 
 // RegistryComponentContainersCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c ComponentContainerClient) RegistryComponentContainersCreateOrUpdate(ctx 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

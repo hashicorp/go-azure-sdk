@@ -16,6 +16,7 @@ import (
 type PutOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *PrivateEndpointConnectionResource
 }
 
 // Put ...

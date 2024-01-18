@@ -18,6 +18,7 @@ type WorkspacePolicyFragmentCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *PolicyFragmentContract
 }
 
 type WorkspacePolicyFragmentCreateOrUpdateOperationOptions struct {
@@ -77,6 +78,10 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentCreateOrUpdate(ctx context.
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

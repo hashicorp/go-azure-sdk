@@ -18,6 +18,7 @@ type RecoverOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *DeletedServer
 }
 
 // Recover ...
@@ -44,6 +45,10 @@ func (c DeletedServersClient) Recover(ctx context.Context, id DeletedServerId) (
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

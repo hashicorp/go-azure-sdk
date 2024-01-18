@@ -2,6 +2,7 @@ package trigger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -18,6 +19,7 @@ type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *Trigger
 }
 
 // Create ...
@@ -50,6 +52,16 @@ func (c TriggerClient) Create(ctx context.Context, id TriggerId, input Trigger) 
 	if err != nil {
 		return
 	}
+
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
+		return
+	}
+	model, err := unmarshalTriggerImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {

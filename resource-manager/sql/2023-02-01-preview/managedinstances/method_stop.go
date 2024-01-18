@@ -19,6 +19,7 @@ type StopOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ManagedInstance
 }
 
 // Stop ...
@@ -45,6 +46,10 @@ func (c ManagedInstancesClient) Stop(ctx context.Context, id commonids.SqlManage
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 
