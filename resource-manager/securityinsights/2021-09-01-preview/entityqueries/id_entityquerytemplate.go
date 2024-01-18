@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = EntityQueryTemplateId{}
+var _ resourceids.ResourceId = &EntityQueryTemplateId{}
 
 // EntityQueryTemplateId is a struct representing the Resource ID for a Entity Query Template
 type EntityQueryTemplateId struct {
@@ -32,7 +32,7 @@ func NewEntityQueryTemplateID(subscriptionId string, resourceGroupName string, w
 
 // ParseEntityQueryTemplateID parses 'input' into a EntityQueryTemplateId
 func ParseEntityQueryTemplateID(input string) (*EntityQueryTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EntityQueryTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&EntityQueryTemplateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseEntityQueryTemplateID(input string) (*EntityQueryTemplateId, error) {
 // ParseEntityQueryTemplateIDInsensitively parses 'input' case-insensitively into a EntityQueryTemplateId
 // note: this method should only be used for API response data and not user input
 func ParseEntityQueryTemplateIDInsensitively(input string) (*EntityQueryTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EntityQueryTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&EntityQueryTemplateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

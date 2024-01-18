@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = MarketplaceRegistrationDefinitionId{}
+var _ resourceids.ResourceId = &MarketplaceRegistrationDefinitionId{}
 
 // MarketplaceRegistrationDefinitionId is a struct representing the Resource ID for a Marketplace Registration Definition
 type MarketplaceRegistrationDefinitionId struct {
@@ -26,7 +26,7 @@ func NewMarketplaceRegistrationDefinitionID(marketplaceIdentifier string) Market
 
 // ParseMarketplaceRegistrationDefinitionID parses 'input' into a MarketplaceRegistrationDefinitionId
 func ParseMarketplaceRegistrationDefinitionID(input string) (*MarketplaceRegistrationDefinitionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MarketplaceRegistrationDefinitionId{})
+	parser := resourceids.NewParserFromResourceIdType(&MarketplaceRegistrationDefinitionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -43,7 +43,7 @@ func ParseMarketplaceRegistrationDefinitionID(input string) (*MarketplaceRegistr
 // ParseMarketplaceRegistrationDefinitionIDInsensitively parses 'input' case-insensitively into a MarketplaceRegistrationDefinitionId
 // note: this method should only be used for API response data and not user input
 func ParseMarketplaceRegistrationDefinitionIDInsensitively(input string) (*MarketplaceRegistrationDefinitionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(MarketplaceRegistrationDefinitionId{})
+	parser := resourceids.NewParserFromResourceIdType(&MarketplaceRegistrationDefinitionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

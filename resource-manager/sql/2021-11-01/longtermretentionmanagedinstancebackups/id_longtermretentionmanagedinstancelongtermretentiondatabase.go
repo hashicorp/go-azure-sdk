@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{}
+var _ resourceids.ResourceId = &LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{}
 
 // LongTermRetentionManagedInstanceLongTermRetentionDatabaseId is a struct representing the Resource ID for a Long Term Retention Managed Instance Long Term Retention Database
 type LongTermRetentionManagedInstanceLongTermRetentionDatabaseId struct {
@@ -34,7 +34,7 @@ func NewLongTermRetentionManagedInstanceLongTermRetentionDatabaseID(subscription
 
 // ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseID parses 'input' into a LongTermRetentionManagedInstanceLongTermRetentionDatabaseId
 func ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseID(input string) (*LongTermRetentionManagedInstanceLongTermRetentionDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseID(input stri
 // ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseIDInsensitively parses 'input' case-insensitively into a LongTermRetentionManagedInstanceLongTermRetentionDatabaseId
 // note: this method should only be used for API response data and not user input
 func ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseIDInsensitively(input string) (*LongTermRetentionManagedInstanceLongTermRetentionDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

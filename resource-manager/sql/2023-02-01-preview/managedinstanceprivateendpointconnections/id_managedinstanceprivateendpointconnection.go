@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ManagedInstancePrivateEndpointConnectionId{}
+var _ resourceids.ResourceId = &ManagedInstancePrivateEndpointConnectionId{}
 
 // ManagedInstancePrivateEndpointConnectionId is a struct representing the Resource ID for a Managed Instance Private Endpoint Connection
 type ManagedInstancePrivateEndpointConnectionId struct {
@@ -32,7 +32,7 @@ func NewManagedInstancePrivateEndpointConnectionID(subscriptionId string, resour
 
 // ParseManagedInstancePrivateEndpointConnectionID parses 'input' into a ManagedInstancePrivateEndpointConnectionId
 func ParseManagedInstancePrivateEndpointConnectionID(input string) (*ManagedInstancePrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstancePrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstancePrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseManagedInstancePrivateEndpointConnectionID(input string) (*ManagedInst
 // ParseManagedInstancePrivateEndpointConnectionIDInsensitively parses 'input' case-insensitively into a ManagedInstancePrivateEndpointConnectionId
 // note: this method should only be used for API response data and not user input
 func ParseManagedInstancePrivateEndpointConnectionIDInsensitively(input string) (*ManagedInstancePrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ManagedInstancePrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&ManagedInstancePrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

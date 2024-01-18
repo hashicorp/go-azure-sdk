@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SubscriptionFeatureRegistrationId{}
+var _ resourceids.ResourceId = &SubscriptionFeatureRegistrationId{}
 
 // SubscriptionFeatureRegistrationId is a struct representing the Resource ID for a Subscription Feature Registration
 type SubscriptionFeatureRegistrationId struct {
@@ -30,7 +30,7 @@ func NewSubscriptionFeatureRegistrationID(subscriptionId string, featureProvider
 
 // ParseSubscriptionFeatureRegistrationID parses 'input' into a SubscriptionFeatureRegistrationId
 func ParseSubscriptionFeatureRegistrationID(input string) (*SubscriptionFeatureRegistrationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SubscriptionFeatureRegistrationId{})
+	parser := resourceids.NewParserFromResourceIdType(&SubscriptionFeatureRegistrationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseSubscriptionFeatureRegistrationID(input string) (*SubscriptionFeatureR
 // ParseSubscriptionFeatureRegistrationIDInsensitively parses 'input' case-insensitively into a SubscriptionFeatureRegistrationId
 // note: this method should only be used for API response data and not user input
 func ParseSubscriptionFeatureRegistrationIDInsensitively(input string) (*SubscriptionFeatureRegistrationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SubscriptionFeatureRegistrationId{})
+	parser := resourceids.NewParserFromResourceIdType(&SubscriptionFeatureRegistrationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

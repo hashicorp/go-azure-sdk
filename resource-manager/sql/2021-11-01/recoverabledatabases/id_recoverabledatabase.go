@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RecoverableDatabaseId{}
+var _ resourceids.ResourceId = &RecoverableDatabaseId{}
 
 // RecoverableDatabaseId is a struct representing the Resource ID for a Recoverable Database
 type RecoverableDatabaseId struct {
@@ -32,7 +32,7 @@ func NewRecoverableDatabaseID(subscriptionId string, resourceGroupName string, s
 
 // ParseRecoverableDatabaseID parses 'input' into a RecoverableDatabaseId
 func ParseRecoverableDatabaseID(input string) (*RecoverableDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RecoverableDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&RecoverableDatabaseId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRecoverableDatabaseID(input string) (*RecoverableDatabaseId, error) {
 // ParseRecoverableDatabaseIDInsensitively parses 'input' case-insensitively into a RecoverableDatabaseId
 // note: this method should only be used for API response data and not user input
 func ParseRecoverableDatabaseIDInsensitively(input string) (*RecoverableDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RecoverableDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&RecoverableDatabaseId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

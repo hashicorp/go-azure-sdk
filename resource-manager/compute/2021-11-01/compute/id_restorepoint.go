@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RestorePointId{}
+var _ resourceids.ResourceId = &RestorePointId{}
 
 // RestorePointId is a struct representing the Resource ID for a Restore Point
 type RestorePointId struct {
@@ -32,7 +32,7 @@ func NewRestorePointID(subscriptionId string, resourceGroupName string, restoreP
 
 // ParseRestorePointID parses 'input' into a RestorePointId
 func ParseRestorePointID(input string) (*RestorePointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RestorePointId{})
+	parser := resourceids.NewParserFromResourceIdType(&RestorePointId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRestorePointID(input string) (*RestorePointId, error) {
 // ParseRestorePointIDInsensitively parses 'input' case-insensitively into a RestorePointId
 // note: this method should only be used for API response data and not user input
 func ParseRestorePointIDInsensitively(input string) (*RestorePointId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RestorePointId{})
+	parser := resourceids.NewParserFromResourceIdType(&RestorePointId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

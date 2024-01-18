@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = JitRequestId{}
+var _ resourceids.ResourceId = &JitRequestId{}
 
 // JitRequestId is a struct representing the Resource ID for a Jit Request
 type JitRequestId struct {
@@ -30,7 +30,7 @@ func NewJitRequestID(subscriptionId string, resourceGroupName string, jitRequest
 
 // ParseJitRequestID parses 'input' into a JitRequestId
 func ParseJitRequestID(input string) (*JitRequestId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JitRequestId{})
+	parser := resourceids.NewParserFromResourceIdType(&JitRequestId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseJitRequestID(input string) (*JitRequestId, error) {
 // ParseJitRequestIDInsensitively parses 'input' case-insensitively into a JitRequestId
 // note: this method should only be used for API response data and not user input
 func ParseJitRequestIDInsensitively(input string) (*JitRequestId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JitRequestId{})
+	parser := resourceids.NewParserFromResourceIdType(&JitRequestId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

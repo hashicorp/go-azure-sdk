@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RegistryComponentVersionId{}
+var _ resourceids.ResourceId = &RegistryComponentVersionId{}
 
 // RegistryComponentVersionId is a struct representing the Resource ID for a Registry Component Version
 type RegistryComponentVersionId struct {
@@ -34,7 +34,7 @@ func NewRegistryComponentVersionID(subscriptionId string, resourceGroupName stri
 
 // ParseRegistryComponentVersionID parses 'input' into a RegistryComponentVersionId
 func ParseRegistryComponentVersionID(input string) (*RegistryComponentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryComponentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryComponentVersionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseRegistryComponentVersionID(input string) (*RegistryComponentVersionId,
 // ParseRegistryComponentVersionIDInsensitively parses 'input' case-insensitively into a RegistryComponentVersionId
 // note: this method should only be used for API response data and not user input
 func ParseRegistryComponentVersionIDInsensitively(input string) (*RegistryComponentVersionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryComponentVersionId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryComponentVersionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

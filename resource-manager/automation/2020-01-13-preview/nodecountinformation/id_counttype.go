@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CountTypeId{}
+var _ resourceids.ResourceId = &CountTypeId{}
 
 // CountTypeId is a struct representing the Resource ID for a Count Type
 type CountTypeId struct {
@@ -32,7 +32,7 @@ func NewCountTypeID(subscriptionId string, resourceGroupName string, automationA
 
 // ParseCountTypeID parses 'input' into a CountTypeId
 func ParseCountTypeID(input string) (*CountTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CountTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&CountTypeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseCountTypeID(input string) (*CountTypeId, error) {
 // ParseCountTypeIDInsensitively parses 'input' case-insensitively into a CountTypeId
 // note: this method should only be used for API response data and not user input
 func ParseCountTypeIDInsensitively(input string) (*CountTypeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CountTypeId{})
+	parser := resourceids.NewParserFromResourceIdType(&CountTypeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LocationLongTermRetentionServerLongTermRetentionDatabaseId{}
+var _ resourceids.ResourceId = &LocationLongTermRetentionServerLongTermRetentionDatabaseId{}
 
 // LocationLongTermRetentionServerLongTermRetentionDatabaseId is a struct representing the Resource ID for a Location Long Term Retention Server Long Term Retention Database
 type LocationLongTermRetentionServerLongTermRetentionDatabaseId struct {
@@ -34,7 +34,7 @@ func NewLocationLongTermRetentionServerLongTermRetentionDatabaseID(subscriptionI
 
 // ParseLocationLongTermRetentionServerLongTermRetentionDatabaseID parses 'input' into a LocationLongTermRetentionServerLongTermRetentionDatabaseId
 func ParseLocationLongTermRetentionServerLongTermRetentionDatabaseID(input string) (*LocationLongTermRetentionServerLongTermRetentionDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LocationLongTermRetentionServerLongTermRetentionDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&LocationLongTermRetentionServerLongTermRetentionDatabaseId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseLocationLongTermRetentionServerLongTermRetentionDatabaseID(input strin
 // ParseLocationLongTermRetentionServerLongTermRetentionDatabaseIDInsensitively parses 'input' case-insensitively into a LocationLongTermRetentionServerLongTermRetentionDatabaseId
 // note: this method should only be used for API response data and not user input
 func ParseLocationLongTermRetentionServerLongTermRetentionDatabaseIDInsensitively(input string) (*LocationLongTermRetentionServerLongTermRetentionDatabaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(LocationLongTermRetentionServerLongTermRetentionDatabaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&LocationLongTermRetentionServerLongTermRetentionDatabaseId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

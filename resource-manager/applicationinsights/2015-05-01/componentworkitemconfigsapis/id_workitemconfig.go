@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkItemConfigId{}
+var _ resourceids.ResourceId = &WorkItemConfigId{}
 
 // WorkItemConfigId is a struct representing the Resource ID for a Work Item Config
 type WorkItemConfigId struct {
@@ -32,7 +32,7 @@ func NewWorkItemConfigID(subscriptionId string, resourceGroupName string, compon
 
 // ParseWorkItemConfigID parses 'input' into a WorkItemConfigId
 func ParseWorkItemConfigID(input string) (*WorkItemConfigId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkItemConfigId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkItemConfigId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseWorkItemConfigID(input string) (*WorkItemConfigId, error) {
 // ParseWorkItemConfigIDInsensitively parses 'input' case-insensitively into a WorkItemConfigId
 // note: this method should only be used for API response data and not user input
 func ParseWorkItemConfigIDInsensitively(input string) (*WorkItemConfigId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkItemConfigId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkItemConfigId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

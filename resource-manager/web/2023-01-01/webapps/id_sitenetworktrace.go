@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SiteNetworkTraceId{}
+var _ resourceids.ResourceId = &SiteNetworkTraceId{}
 
 // SiteNetworkTraceId is a struct representing the Resource ID for a Site Network Trace
 type SiteNetworkTraceId struct {
@@ -32,7 +32,7 @@ func NewSiteNetworkTraceID(subscriptionId string, resourceGroupName string, site
 
 // ParseSiteNetworkTraceID parses 'input' into a SiteNetworkTraceId
 func ParseSiteNetworkTraceID(input string) (*SiteNetworkTraceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SiteNetworkTraceId{})
+	parser := resourceids.NewParserFromResourceIdType(&SiteNetworkTraceId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseSiteNetworkTraceID(input string) (*SiteNetworkTraceId, error) {
 // ParseSiteNetworkTraceIDInsensitively parses 'input' case-insensitively into a SiteNetworkTraceId
 // note: this method should only be used for API response data and not user input
 func ParseSiteNetworkTraceIDInsensitively(input string) (*SiteNetworkTraceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SiteNetworkTraceId{})
+	parser := resourceids.NewParserFromResourceIdType(&SiteNetworkTraceId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

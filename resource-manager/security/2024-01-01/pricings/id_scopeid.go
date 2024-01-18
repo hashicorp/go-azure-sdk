@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopeIdId{}
+var _ resourceids.ResourceId = &ScopeIdId{}
 
 // ScopeIdId is a struct representing the Resource ID for a Scope Id
 type ScopeIdId struct {
@@ -26,7 +26,7 @@ func NewScopeIdID(scopeId string) ScopeIdId {
 
 // ParseScopeIdID parses 'input' into a ScopeIdId
 func ParseScopeIdID(input string) (*ScopeIdId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopeIdId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopeIdId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -43,7 +43,7 @@ func ParseScopeIdID(input string) (*ScopeIdId, error) {
 // ParseScopeIdIDInsensitively parses 'input' case-insensitively into a ScopeIdId
 // note: this method should only be used for API response data and not user input
 func ParseScopeIdIDInsensitively(input string) (*ScopeIdId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopeIdId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopeIdId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

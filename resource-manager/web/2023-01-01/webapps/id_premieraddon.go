@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = PremierAddonId{}
+var _ resourceids.ResourceId = &PremierAddonId{}
 
 // PremierAddonId is a struct representing the Resource ID for a Premier Addon
 type PremierAddonId struct {
@@ -32,7 +32,7 @@ func NewPremierAddonID(subscriptionId string, resourceGroupName string, siteName
 
 // ParsePremierAddonID parses 'input' into a PremierAddonId
 func ParsePremierAddonID(input string) (*PremierAddonId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PremierAddonId{})
+	parser := resourceids.NewParserFromResourceIdType(&PremierAddonId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParsePremierAddonID(input string) (*PremierAddonId, error) {
 // ParsePremierAddonIDInsensitively parses 'input' case-insensitively into a PremierAddonId
 // note: this method should only be used for API response data and not user input
 func ParsePremierAddonIDInsensitively(input string) (*PremierAddonId, error) {
-	parser := resourceids.NewParserFromResourceIdType(PremierAddonId{})
+	parser := resourceids.NewParserFromResourceIdType(&PremierAddonId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

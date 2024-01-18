@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SensitivityLabelSensitivityLabelSourceId{}
+var _ resourceids.ResourceId = &SensitivityLabelSensitivityLabelSourceId{}
 
 // SensitivityLabelSensitivityLabelSourceId is a struct representing the Resource ID for a Sensitivity Label Sensitivity Label Source
 type SensitivityLabelSensitivityLabelSourceId struct {
@@ -40,7 +40,7 @@ func NewSensitivityLabelSensitivityLabelSourceID(subscriptionId string, resource
 
 // ParseSensitivityLabelSensitivityLabelSourceID parses 'input' into a SensitivityLabelSensitivityLabelSourceId
 func ParseSensitivityLabelSensitivityLabelSourceID(input string) (*SensitivityLabelSensitivityLabelSourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SensitivityLabelSensitivityLabelSourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&SensitivityLabelSensitivityLabelSourceId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -57,7 +57,7 @@ func ParseSensitivityLabelSensitivityLabelSourceID(input string) (*SensitivityLa
 // ParseSensitivityLabelSensitivityLabelSourceIDInsensitively parses 'input' case-insensitively into a SensitivityLabelSensitivityLabelSourceId
 // note: this method should only be used for API response data and not user input
 func ParseSensitivityLabelSensitivityLabelSourceIDInsensitively(input string) (*SensitivityLabelSensitivityLabelSourceId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SensitivityLabelSensitivityLabelSourceId{})
+	parser := resourceids.NewParserFromResourceIdType(&SensitivityLabelSensitivityLabelSourceId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = NetworkSecurityPerimeterConfigurationId{}
+var _ resourceids.ResourceId = &NetworkSecurityPerimeterConfigurationId{}
 
 // NetworkSecurityPerimeterConfigurationId is a struct representing the Resource ID for a Network Security Perimeter Configuration
 type NetworkSecurityPerimeterConfigurationId struct {
@@ -32,7 +32,7 @@ func NewNetworkSecurityPerimeterConfigurationID(subscriptionId string, resourceG
 
 // ParseNetworkSecurityPerimeterConfigurationID parses 'input' into a NetworkSecurityPerimeterConfigurationId
 func ParseNetworkSecurityPerimeterConfigurationID(input string) (*NetworkSecurityPerimeterConfigurationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NetworkSecurityPerimeterConfigurationId{})
+	parser := resourceids.NewParserFromResourceIdType(&NetworkSecurityPerimeterConfigurationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseNetworkSecurityPerimeterConfigurationID(input string) (*NetworkSecurit
 // ParseNetworkSecurityPerimeterConfigurationIDInsensitively parses 'input' case-insensitively into a NetworkSecurityPerimeterConfigurationId
 // note: this method should only be used for API response data and not user input
 func ParseNetworkSecurityPerimeterConfigurationIDInsensitively(input string) (*NetworkSecurityPerimeterConfigurationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NetworkSecurityPerimeterConfigurationId{})
+	parser := resourceids.NewParserFromResourceIdType(&NetworkSecurityPerimeterConfigurationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = IntegrationRuntimeId{}
+var _ resourceids.ResourceId = &IntegrationRuntimeId{}
 
 // IntegrationRuntimeId is a struct representing the Resource ID for a Integration Runtime
 type IntegrationRuntimeId struct {
@@ -32,7 +32,7 @@ func NewIntegrationRuntimeID(subscriptionId string, resourceGroupName string, fa
 
 // ParseIntegrationRuntimeID parses 'input' into a IntegrationRuntimeId
 func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IntegrationRuntimeId{})
+	parser := resourceids.NewParserFromResourceIdType(&IntegrationRuntimeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
 // ParseIntegrationRuntimeIDInsensitively parses 'input' case-insensitively into a IntegrationRuntimeId
 // note: this method should only be used for API response data and not user input
 func ParseIntegrationRuntimeIDInsensitively(input string) (*IntegrationRuntimeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IntegrationRuntimeId{})
+	parser := resourceids.NewParserFromResourceIdType(&IntegrationRuntimeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

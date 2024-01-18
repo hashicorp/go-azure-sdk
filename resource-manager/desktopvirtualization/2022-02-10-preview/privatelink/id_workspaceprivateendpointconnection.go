@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WorkspacePrivateEndpointConnectionId{}
+var _ resourceids.ResourceId = &WorkspacePrivateEndpointConnectionId{}
 
 // WorkspacePrivateEndpointConnectionId is a struct representing the Resource ID for a Workspace Private Endpoint Connection
 type WorkspacePrivateEndpointConnectionId struct {
@@ -32,7 +32,7 @@ func NewWorkspacePrivateEndpointConnectionID(subscriptionId string, resourceGrou
 
 // ParseWorkspacePrivateEndpointConnectionID parses 'input' into a WorkspacePrivateEndpointConnectionId
 func ParseWorkspacePrivateEndpointConnectionID(input string) (*WorkspacePrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspacePrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspacePrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseWorkspacePrivateEndpointConnectionID(input string) (*WorkspacePrivateE
 // ParseWorkspacePrivateEndpointConnectionIDInsensitively parses 'input' case-insensitively into a WorkspacePrivateEndpointConnectionId
 // note: this method should only be used for API response data and not user input
 func ParseWorkspacePrivateEndpointConnectionIDInsensitively(input string) (*WorkspacePrivateEndpointConnectionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WorkspacePrivateEndpointConnectionId{})
+	parser := resourceids.NewParserFromResourceIdType(&WorkspacePrivateEndpointConnectionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationStorageClassificationId{}
+var _ resourceids.ResourceId = &ReplicationStorageClassificationId{}
 
 // ReplicationStorageClassificationId is a struct representing the Resource ID for a Replication Storage Classification
 type ReplicationStorageClassificationId struct {
@@ -34,7 +34,7 @@ func NewReplicationStorageClassificationID(subscriptionId string, resourceGroupN
 
 // ParseReplicationStorageClassificationID parses 'input' into a ReplicationStorageClassificationId
 func ParseReplicationStorageClassificationID(input string) (*ReplicationStorageClassificationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationStorageClassificationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationStorageClassificationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseReplicationStorageClassificationID(input string) (*ReplicationStorageC
 // ParseReplicationStorageClassificationIDInsensitively parses 'input' case-insensitively into a ReplicationStorageClassificationId
 // note: this method should only be used for API response data and not user input
 func ParseReplicationStorageClassificationIDInsensitively(input string) (*ReplicationStorageClassificationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationStorageClassificationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationStorageClassificationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

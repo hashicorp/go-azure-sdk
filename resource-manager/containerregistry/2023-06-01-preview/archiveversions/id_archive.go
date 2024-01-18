@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ArchiveId{}
+var _ resourceids.ResourceId = &ArchiveId{}
 
 // ArchiveId is a struct representing the Resource ID for a Archive
 type ArchiveId struct {
@@ -34,7 +34,7 @@ func NewArchiveID(subscriptionId string, resourceGroupName string, registryName 
 
 // ParseArchiveID parses 'input' into a ArchiveId
 func ParseArchiveID(input string) (*ArchiveId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArchiveId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArchiveId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseArchiveID(input string) (*ArchiveId, error) {
 // ParseArchiveIDInsensitively parses 'input' case-insensitively into a ArchiveId
 // note: this method should only be used for API response data and not user input
 func ParseArchiveIDInsensitively(input string) (*ArchiveId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ArchiveId{})
+	parser := resourceids.NewParserFromResourceIdType(&ArchiveId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

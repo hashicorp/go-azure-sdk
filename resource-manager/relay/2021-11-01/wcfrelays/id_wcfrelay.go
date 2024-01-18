@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = WcfRelayId{}
+var _ resourceids.ResourceId = &WcfRelayId{}
 
 // WcfRelayId is a struct representing the Resource ID for a Wcf Relay
 type WcfRelayId struct {
@@ -32,7 +32,7 @@ func NewWcfRelayID(subscriptionId string, resourceGroupName string, namespaceNam
 
 // ParseWcfRelayID parses 'input' into a WcfRelayId
 func ParseWcfRelayID(input string) (*WcfRelayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WcfRelayId{})
+	parser := resourceids.NewParserFromResourceIdType(&WcfRelayId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseWcfRelayID(input string) (*WcfRelayId, error) {
 // ParseWcfRelayIDInsensitively parses 'input' case-insensitively into a WcfRelayId
 // note: this method should only be used for API response data and not user input
 func ParseWcfRelayIDInsensitively(input string) (*WcfRelayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(WcfRelayId{})
+	parser := resourceids.NewParserFromResourceIdType(&WcfRelayId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

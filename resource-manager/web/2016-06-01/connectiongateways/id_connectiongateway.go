@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ConnectionGatewayId{}
+var _ resourceids.ResourceId = &ConnectionGatewayId{}
 
 // ConnectionGatewayId is a struct representing the Resource ID for a Connection Gateway
 type ConnectionGatewayId struct {
@@ -30,7 +30,7 @@ func NewConnectionGatewayID(subscriptionId string, resourceGroupName string, con
 
 // ParseConnectionGatewayID parses 'input' into a ConnectionGatewayId
 func ParseConnectionGatewayID(input string) (*ConnectionGatewayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConnectionGatewayId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConnectionGatewayId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseConnectionGatewayID(input string) (*ConnectionGatewayId, error) {
 // ParseConnectionGatewayIDInsensitively parses 'input' case-insensitively into a ConnectionGatewayId
 // note: this method should only be used for API response data and not user input
 func ParseConnectionGatewayIDInsensitively(input string) (*ConnectionGatewayId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConnectionGatewayId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConnectionGatewayId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

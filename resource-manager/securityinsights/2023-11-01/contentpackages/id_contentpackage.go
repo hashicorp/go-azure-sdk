@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ContentPackageId{}
+var _ resourceids.ResourceId = &ContentPackageId{}
 
 // ContentPackageId is a struct representing the Resource ID for a Content Package
 type ContentPackageId struct {
@@ -32,7 +32,7 @@ func NewContentPackageID(subscriptionId string, resourceGroupName string, worksp
 
 // ParseContentPackageID parses 'input' into a ContentPackageId
 func ParseContentPackageID(input string) (*ContentPackageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ContentPackageId{})
+	parser := resourceids.NewParserFromResourceIdType(&ContentPackageId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseContentPackageID(input string) (*ContentPackageId, error) {
 // ParseContentPackageIDInsensitively parses 'input' case-insensitively into a ContentPackageId
 // note: this method should only be used for API response data and not user input
 func ParseContentPackageIDInsensitively(input string) (*ContentPackageId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ContentPackageId{})
+	parser := resourceids.NewParserFromResourceIdType(&ContentPackageId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SyncIdentityProviderId{}
+var _ resourceids.ResourceId = &SyncIdentityProviderId{}
 
 // SyncIdentityProviderId is a struct representing the Resource ID for a Sync Identity Provider
 type SyncIdentityProviderId struct {
@@ -32,7 +32,7 @@ func NewSyncIdentityProviderID(subscriptionId string, resourceGroupName string, 
 
 // ParseSyncIdentityProviderID parses 'input' into a SyncIdentityProviderId
 func ParseSyncIdentityProviderID(input string) (*SyncIdentityProviderId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SyncIdentityProviderId{})
+	parser := resourceids.NewParserFromResourceIdType(&SyncIdentityProviderId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseSyncIdentityProviderID(input string) (*SyncIdentityProviderId, error) 
 // ParseSyncIdentityProviderIDInsensitively parses 'input' case-insensitively into a SyncIdentityProviderId
 // note: this method should only be used for API response data and not user input
 func ParseSyncIdentityProviderIDInsensitively(input string) (*SyncIdentityProviderId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SyncIdentityProviderId{})
+	parser := resourceids.NewParserFromResourceIdType(&SyncIdentityProviderId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

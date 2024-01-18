@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = L2NetworkId{}
+var _ resourceids.ResourceId = &L2NetworkId{}
 
 // L2NetworkId is a struct representing the Resource ID for a L 2 Network
 type L2NetworkId struct {
@@ -30,7 +30,7 @@ func NewL2NetworkID(subscriptionId string, resourceGroupName string, l2NetworkNa
 
 // ParseL2NetworkID parses 'input' into a L2NetworkId
 func ParseL2NetworkID(input string) (*L2NetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(L2NetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&L2NetworkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseL2NetworkID(input string) (*L2NetworkId, error) {
 // ParseL2NetworkIDInsensitively parses 'input' case-insensitively into a L2NetworkId
 // note: this method should only be used for API response data and not user input
 func ParseL2NetworkIDInsensitively(input string) (*L2NetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(L2NetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&L2NetworkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

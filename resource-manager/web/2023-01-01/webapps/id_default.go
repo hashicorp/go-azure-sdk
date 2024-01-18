@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DefaultId{}
+var _ resourceids.ResourceId = &DefaultId{}
 
 // DefaultId is a struct representing the Resource ID for a Default
 type DefaultId struct {
@@ -34,7 +34,7 @@ func NewDefaultID(subscriptionId string, resourceGroupName string, siteName stri
 
 // ParseDefaultID parses 'input' into a DefaultId
 func ParseDefaultID(input string) (*DefaultId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseDefaultID(input string) (*DefaultId, error) {
 // ParseDefaultIDInsensitively parses 'input' case-insensitively into a DefaultId
 // note: this method should only be used for API response data and not user input
 func ParseDefaultIDInsensitively(input string) (*DefaultId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

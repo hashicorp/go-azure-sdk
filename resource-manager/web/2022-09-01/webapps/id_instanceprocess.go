@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = InstanceProcessId{}
+var _ resourceids.ResourceId = &InstanceProcessId{}
 
 // InstanceProcessId is a struct representing the Resource ID for a Instance Process
 type InstanceProcessId struct {
@@ -34,7 +34,7 @@ func NewInstanceProcessID(subscriptionId string, resourceGroupName string, siteN
 
 // ParseInstanceProcessID parses 'input' into a InstanceProcessId
 func ParseInstanceProcessID(input string) (*InstanceProcessId, error) {
-	parser := resourceids.NewParserFromResourceIdType(InstanceProcessId{})
+	parser := resourceids.NewParserFromResourceIdType(&InstanceProcessId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseInstanceProcessID(input string) (*InstanceProcessId, error) {
 // ParseInstanceProcessIDInsensitively parses 'input' case-insensitively into a InstanceProcessId
 // note: this method should only be used for API response data and not user input
 func ParseInstanceProcessIDInsensitively(input string) (*InstanceProcessId, error) {
-	parser := resourceids.NewParserFromResourceIdType(InstanceProcessId{})
+	parser := resourceids.NewParserFromResourceIdType(&InstanceProcessId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServiceFabricScheduleId{}
+var _ resourceids.ResourceId = &ServiceFabricScheduleId{}
 
 // ServiceFabricScheduleId is a struct representing the Resource ID for a Service Fabric Schedule
 type ServiceFabricScheduleId struct {
@@ -36,7 +36,7 @@ func NewServiceFabricScheduleID(subscriptionId string, resourceGroupName string,
 
 // ParseServiceFabricScheduleID parses 'input' into a ServiceFabricScheduleId
 func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServiceFabricScheduleId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServiceFabricScheduleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error
 // ParseServiceFabricScheduleIDInsensitively parses 'input' case-insensitively into a ServiceFabricScheduleId
 // note: this method should only be used for API response data and not user input
 func ParseServiceFabricScheduleIDInsensitively(input string) (*ServiceFabricScheduleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServiceFabricScheduleId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServiceFabricScheduleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

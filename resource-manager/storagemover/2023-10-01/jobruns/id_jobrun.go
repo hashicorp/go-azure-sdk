@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = JobRunId{}
+var _ resourceids.ResourceId = &JobRunId{}
 
 // JobRunId is a struct representing the Resource ID for a Job Run
 type JobRunId struct {
@@ -36,7 +36,7 @@ func NewJobRunID(subscriptionId string, resourceGroupName string, storageMoverNa
 
 // ParseJobRunID parses 'input' into a JobRunId
 func ParseJobRunID(input string) (*JobRunId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JobRunId{})
+	parser := resourceids.NewParserFromResourceIdType(&JobRunId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseJobRunID(input string) (*JobRunId, error) {
 // ParseJobRunIDInsensitively parses 'input' case-insensitively into a JobRunId
 // note: this method should only be used for API response data and not user input
 func ParseJobRunIDInsensitively(input string) (*JobRunId, error) {
-	parser := resourceids.NewParserFromResourceIdType(JobRunId{})
+	parser := resourceids.NewParserFromResourceIdType(&JobRunId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

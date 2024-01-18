@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DeletedSiteId{}
+var _ resourceids.ResourceId = &DeletedSiteId{}
 
 // DeletedSiteId is a struct representing the Resource ID for a Deleted Site
 type DeletedSiteId struct {
@@ -28,7 +28,7 @@ func NewDeletedSiteID(subscriptionId string, deletedSiteId string) DeletedSiteId
 
 // ParseDeletedSiteID parses 'input' into a DeletedSiteId
 func ParseDeletedSiteID(input string) (*DeletedSiteId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DeletedSiteId{})
+	parser := resourceids.NewParserFromResourceIdType(&DeletedSiteId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseDeletedSiteID(input string) (*DeletedSiteId, error) {
 // ParseDeletedSiteIDInsensitively parses 'input' case-insensitively into a DeletedSiteId
 // note: this method should only be used for API response data and not user input
 func ParseDeletedSiteIDInsensitively(input string) (*DeletedSiteId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DeletedSiteId{})
+	parser := resourceids.NewParserFromResourceIdType(&DeletedSiteId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

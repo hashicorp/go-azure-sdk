@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RelationId{}
+var _ resourceids.ResourceId = &RelationId{}
 
 // RelationId is a struct representing the Resource ID for a Relation
 type RelationId struct {
@@ -34,7 +34,7 @@ func NewRelationID(subscriptionId string, resourceGroupName string, workspaceNam
 
 // ParseRelationID parses 'input' into a RelationId
 func ParseRelationID(input string) (*RelationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RelationId{})
+	parser := resourceids.NewParserFromResourceIdType(&RelationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseRelationID(input string) (*RelationId, error) {
 // ParseRelationIDInsensitively parses 'input' case-insensitively into a RelationId
 // note: this method should only be used for API response data and not user input
 func ParseRelationIDInsensitively(input string) (*RelationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RelationId{})
+	parser := resourceids.NewParserFromResourceIdType(&RelationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

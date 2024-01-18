@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ResourcePoolId{}
+var _ resourceids.ResourceId = &ResourcePoolId{}
 
 // ResourcePoolId is a struct representing the Resource ID for a Resource Pool
 type ResourcePoolId struct {
@@ -30,7 +30,7 @@ func NewResourcePoolID(subscriptionId string, resourceGroupName string, resource
 
 // ParseResourcePoolID parses 'input' into a ResourcePoolId
 func ParseResourcePoolID(input string) (*ResourcePoolId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ResourcePoolId{})
+	parser := resourceids.NewParserFromResourceIdType(&ResourcePoolId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseResourcePoolID(input string) (*ResourcePoolId, error) {
 // ParseResourcePoolIDInsensitively parses 'input' case-insensitively into a ResourcePoolId
 // note: this method should only be used for API response data and not user input
 func ParseResourcePoolIDInsensitively(input string) (*ResourcePoolId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ResourcePoolId{})
+	parser := resourceids.NewParserFromResourceIdType(&ResourcePoolId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

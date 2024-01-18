@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2ConfigurationProfileAssignmentId{}
+var _ resourceids.ResourceId = &Providers2ConfigurationProfileAssignmentId{}
 
 // Providers2ConfigurationProfileAssignmentId is a struct representing the Resource ID for a Providers 2 Configuration Profile Assignment
 type Providers2ConfigurationProfileAssignmentId struct {
@@ -32,7 +32,7 @@ func NewProviders2ConfigurationProfileAssignmentID(subscriptionId string, resour
 
 // ParseProviders2ConfigurationProfileAssignmentID parses 'input' into a Providers2ConfigurationProfileAssignmentId
 func ParseProviders2ConfigurationProfileAssignmentID(input string) (*Providers2ConfigurationProfileAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2ConfigurationProfileAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2ConfigurationProfileAssignmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseProviders2ConfigurationProfileAssignmentID(input string) (*Providers2C
 // ParseProviders2ConfigurationProfileAssignmentIDInsensitively parses 'input' case-insensitively into a Providers2ConfigurationProfileAssignmentId
 // note: this method should only be used for API response data and not user input
 func ParseProviders2ConfigurationProfileAssignmentIDInsensitively(input string) (*Providers2ConfigurationProfileAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2ConfigurationProfileAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2ConfigurationProfileAssignmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

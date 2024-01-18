@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ApiReleaseId{}
+var _ resourceids.ResourceId = &ApiReleaseId{}
 
 // ApiReleaseId is a struct representing the Resource ID for a Api Release
 type ApiReleaseId struct {
@@ -36,7 +36,7 @@ func NewApiReleaseID(subscriptionId string, resourceGroupName string, serviceNam
 
 // ParseApiReleaseID parses 'input' into a ApiReleaseId
 func ParseApiReleaseID(input string) (*ApiReleaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiReleaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiReleaseId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseApiReleaseID(input string) (*ApiReleaseId, error) {
 // ParseApiReleaseIDInsensitively parses 'input' case-insensitively into a ApiReleaseId
 // note: this method should only be used for API response data and not user input
 func ParseApiReleaseIDInsensitively(input string) (*ApiReleaseId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ApiReleaseId{})
+	parser := resourceids.NewParserFromResourceIdType(&ApiReleaseId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

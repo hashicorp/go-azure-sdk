@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedAssignmentOperationId{}
+var _ resourceids.ResourceId = &ScopedAssignmentOperationId{}
 
 // ScopedAssignmentOperationId is a struct representing the Resource ID for a Scoped Assignment Operation
 type ScopedAssignmentOperationId struct {
@@ -30,7 +30,7 @@ func NewScopedAssignmentOperationID(resourceScope string, blueprintAssignmentNam
 
 // ParseScopedAssignmentOperationID parses 'input' into a ScopedAssignmentOperationId
 func ParseScopedAssignmentOperationID(input string) (*ScopedAssignmentOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAssignmentOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAssignmentOperationId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseScopedAssignmentOperationID(input string) (*ScopedAssignmentOperationI
 // ParseScopedAssignmentOperationIDInsensitively parses 'input' case-insensitively into a ScopedAssignmentOperationId
 // note: this method should only be used for API response data and not user input
 func ParseScopedAssignmentOperationIDInsensitively(input string) (*ScopedAssignmentOperationId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAssignmentOperationId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAssignmentOperationId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

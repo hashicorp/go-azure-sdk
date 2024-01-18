@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ScopedAssessmentId{}
+var _ resourceids.ResourceId = &ScopedAssessmentId{}
 
 // ScopedAssessmentId is a struct representing the Resource ID for a Scoped Assessment
 type ScopedAssessmentId struct {
@@ -28,7 +28,7 @@ func NewScopedAssessmentID(resourceId string, assessmentName string) ScopedAsses
 
 // ParseScopedAssessmentID parses 'input' into a ScopedAssessmentId
 func ParseScopedAssessmentID(input string) (*ScopedAssessmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAssessmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAssessmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseScopedAssessmentID(input string) (*ScopedAssessmentId, error) {
 // ParseScopedAssessmentIDInsensitively parses 'input' case-insensitively into a ScopedAssessmentId
 // note: this method should only be used for API response data and not user input
 func ParseScopedAssessmentIDInsensitively(input string) (*ScopedAssessmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ScopedAssessmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ScopedAssessmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

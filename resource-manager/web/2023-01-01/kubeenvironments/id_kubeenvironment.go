@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = KubeEnvironmentId{}
+var _ resourceids.ResourceId = &KubeEnvironmentId{}
 
 // KubeEnvironmentId is a struct representing the Resource ID for a Kube Environment
 type KubeEnvironmentId struct {
@@ -30,7 +30,7 @@ func NewKubeEnvironmentID(subscriptionId string, resourceGroupName string, kubeE
 
 // ParseKubeEnvironmentID parses 'input' into a KubeEnvironmentId
 func ParseKubeEnvironmentID(input string) (*KubeEnvironmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KubeEnvironmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&KubeEnvironmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseKubeEnvironmentID(input string) (*KubeEnvironmentId, error) {
 // ParseKubeEnvironmentIDInsensitively parses 'input' case-insensitively into a KubeEnvironmentId
 // note: this method should only be used for API response data and not user input
 func ParseKubeEnvironmentIDInsensitively(input string) (*KubeEnvironmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(KubeEnvironmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&KubeEnvironmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

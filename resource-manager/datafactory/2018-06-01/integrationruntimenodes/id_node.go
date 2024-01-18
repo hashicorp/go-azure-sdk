@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = NodeId{}
+var _ resourceids.ResourceId = &NodeId{}
 
 // NodeId is a struct representing the Resource ID for a Node
 type NodeId struct {
@@ -34,7 +34,7 @@ func NewNodeID(subscriptionId string, resourceGroupName string, factoryName stri
 
 // ParseNodeID parses 'input' into a NodeId
 func ParseNodeID(input string) (*NodeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NodeId{})
+	parser := resourceids.NewParserFromResourceIdType(&NodeId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseNodeID(input string) (*NodeId, error) {
 // ParseNodeIDInsensitively parses 'input' case-insensitively into a NodeId
 // note: this method should only be used for API response data and not user input
 func ParseNodeIDInsensitively(input string) (*NodeId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NodeId{})
+	parser := resourceids.NewParserFromResourceIdType(&NodeId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

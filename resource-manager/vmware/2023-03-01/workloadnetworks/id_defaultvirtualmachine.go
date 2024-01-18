@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = DefaultVirtualMachineId{}
+var _ resourceids.ResourceId = &DefaultVirtualMachineId{}
 
 // DefaultVirtualMachineId is a struct representing the Resource ID for a Default Virtual Machine
 type DefaultVirtualMachineId struct {
@@ -32,7 +32,7 @@ func NewDefaultVirtualMachineID(subscriptionId string, resourceGroupName string,
 
 // ParseDefaultVirtualMachineID parses 'input' into a DefaultVirtualMachineId
 func ParseDefaultVirtualMachineID(input string) (*DefaultVirtualMachineId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultVirtualMachineId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultVirtualMachineId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseDefaultVirtualMachineID(input string) (*DefaultVirtualMachineId, error
 // ParseDefaultVirtualMachineIDInsensitively parses 'input' case-insensitively into a DefaultVirtualMachineId
 // note: this method should only be used for API response data and not user input
 func ParseDefaultVirtualMachineIDInsensitively(input string) (*DefaultVirtualMachineId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DefaultVirtualMachineId{})
+	parser := resourceids.NewParserFromResourceIdType(&DefaultVirtualMachineId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

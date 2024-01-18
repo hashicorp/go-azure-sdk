@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ConfigurationProfileAssignmentId{}
+var _ resourceids.ResourceId = &ConfigurationProfileAssignmentId{}
 
 // ConfigurationProfileAssignmentId is a struct representing the Resource ID for a Configuration Profile Assignment
 type ConfigurationProfileAssignmentId struct {
@@ -32,7 +32,7 @@ func NewConfigurationProfileAssignmentID(subscriptionId string, resourceGroupNam
 
 // ParseConfigurationProfileAssignmentID parses 'input' into a ConfigurationProfileAssignmentId
 func ParseConfigurationProfileAssignmentID(input string) (*ConfigurationProfileAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConfigurationProfileAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConfigurationProfileAssignmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseConfigurationProfileAssignmentID(input string) (*ConfigurationProfileA
 // ParseConfigurationProfileAssignmentIDInsensitively parses 'input' case-insensitively into a ConfigurationProfileAssignmentId
 // note: this method should only be used for API response data and not user input
 func ParseConfigurationProfileAssignmentIDInsensitively(input string) (*ConfigurationProfileAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ConfigurationProfileAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ConfigurationProfileAssignmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

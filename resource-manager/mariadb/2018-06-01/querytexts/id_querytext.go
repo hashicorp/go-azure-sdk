@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = QueryTextId{}
+var _ resourceids.ResourceId = &QueryTextId{}
 
 // QueryTextId is a struct representing the Resource ID for a Query Text
 type QueryTextId struct {
@@ -32,7 +32,7 @@ func NewQueryTextID(subscriptionId string, resourceGroupName string, serverName 
 
 // ParseQueryTextID parses 'input' into a QueryTextId
 func ParseQueryTextID(input string) (*QueryTextId, error) {
-	parser := resourceids.NewParserFromResourceIdType(QueryTextId{})
+	parser := resourceids.NewParserFromResourceIdType(&QueryTextId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseQueryTextID(input string) (*QueryTextId, error) {
 // ParseQueryTextIDInsensitively parses 'input' case-insensitively into a QueryTextId
 // note: this method should only be used for API response data and not user input
 func ParseQueryTextIDInsensitively(input string) (*QueryTextId, error) {
-	parser := resourceids.NewParserFromResourceIdType(QueryTextId{})
+	parser := resourceids.NewParserFromResourceIdType(&QueryTextId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = NotificationRecipientUserId{}
+var _ resourceids.ResourceId = &NotificationRecipientUserId{}
 
 // NotificationRecipientUserId is a struct representing the Resource ID for a Notification Recipient User
 type NotificationRecipientUserId struct {
@@ -36,7 +36,7 @@ func NewNotificationRecipientUserID(subscriptionId string, resourceGroupName str
 
 // ParseNotificationRecipientUserID parses 'input' into a NotificationRecipientUserId
 func ParseNotificationRecipientUserID(input string) (*NotificationRecipientUserId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NotificationRecipientUserId{})
+	parser := resourceids.NewParserFromResourceIdType(&NotificationRecipientUserId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseNotificationRecipientUserID(input string) (*NotificationRecipientUserI
 // ParseNotificationRecipientUserIDInsensitively parses 'input' case-insensitively into a NotificationRecipientUserId
 // note: this method should only be used for API response data and not user input
 func ParseNotificationRecipientUserIDInsensitively(input string) (*NotificationRecipientUserId, error) {
-	parser := resourceids.NewParserFromResourceIdType(NotificationRecipientUserId{})
+	parser := resourceids.NewParserFromResourceIdType(&NotificationRecipientUserId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

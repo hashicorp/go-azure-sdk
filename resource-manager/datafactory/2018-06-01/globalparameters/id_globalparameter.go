@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = GlobalParameterId{}
+var _ resourceids.ResourceId = &GlobalParameterId{}
 
 // GlobalParameterId is a struct representing the Resource ID for a Global Parameter
 type GlobalParameterId struct {
@@ -32,7 +32,7 @@ func NewGlobalParameterID(subscriptionId string, resourceGroupName string, facto
 
 // ParseGlobalParameterID parses 'input' into a GlobalParameterId
 func ParseGlobalParameterID(input string) (*GlobalParameterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalParameterId{})
+	parser := resourceids.NewParserFromResourceIdType(&GlobalParameterId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseGlobalParameterID(input string) (*GlobalParameterId, error) {
 // ParseGlobalParameterIDInsensitively parses 'input' case-insensitively into a GlobalParameterId
 // note: this method should only be used for API response data and not user input
 func ParseGlobalParameterIDInsensitively(input string) (*GlobalParameterId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalParameterId{})
+	parser := resourceids.NewParserFromResourceIdType(&GlobalParameterId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

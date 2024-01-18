@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TagApiLinkId{}
+var _ resourceids.ResourceId = &TagApiLinkId{}
 
 // TagApiLinkId is a struct representing the Resource ID for a Tag Api Link
 type TagApiLinkId struct {
@@ -36,7 +36,7 @@ func NewTagApiLinkID(subscriptionId string, resourceGroupName string, serviceNam
 
 // ParseTagApiLinkID parses 'input' into a TagApiLinkId
 func ParseTagApiLinkID(input string) (*TagApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TagApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&TagApiLinkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -53,7 +53,7 @@ func ParseTagApiLinkID(input string) (*TagApiLinkId, error) {
 // ParseTagApiLinkIDInsensitively parses 'input' case-insensitively into a TagApiLinkId
 // note: this method should only be used for API response data and not user input
 func ParseTagApiLinkIDInsensitively(input string) (*TagApiLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TagApiLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&TagApiLinkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

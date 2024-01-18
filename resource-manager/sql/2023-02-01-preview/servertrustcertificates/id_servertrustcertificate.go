@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServerTrustCertificateId{}
+var _ resourceids.ResourceId = &ServerTrustCertificateId{}
 
 // ServerTrustCertificateId is a struct representing the Resource ID for a Server Trust Certificate
 type ServerTrustCertificateId struct {
@@ -32,7 +32,7 @@ func NewServerTrustCertificateID(subscriptionId string, resourceGroupName string
 
 // ParseServerTrustCertificateID parses 'input' into a ServerTrustCertificateId
 func ParseServerTrustCertificateID(input string) (*ServerTrustCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServerTrustCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServerTrustCertificateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseServerTrustCertificateID(input string) (*ServerTrustCertificateId, err
 // ParseServerTrustCertificateIDInsensitively parses 'input' case-insensitively into a ServerTrustCertificateId
 // note: this method should only be used for API response data and not user input
 func ParseServerTrustCertificateIDInsensitively(input string) (*ServerTrustCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServerTrustCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServerTrustCertificateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

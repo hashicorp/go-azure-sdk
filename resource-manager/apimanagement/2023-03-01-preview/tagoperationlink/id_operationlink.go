@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = OperationLinkId{}
+var _ resourceids.ResourceId = &OperationLinkId{}
 
 // OperationLinkId is a struct representing the Resource ID for a Operation Link
 type OperationLinkId struct {
@@ -34,7 +34,7 @@ func NewOperationLinkID(subscriptionId string, resourceGroupName string, service
 
 // ParseOperationLinkID parses 'input' into a OperationLinkId
 func ParseOperationLinkID(input string) (*OperationLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OperationLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&OperationLinkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseOperationLinkID(input string) (*OperationLinkId, error) {
 // ParseOperationLinkIDInsensitively parses 'input' case-insensitively into a OperationLinkId
 // note: this method should only be used for API response data and not user input
 func ParseOperationLinkIDInsensitively(input string) (*OperationLinkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(OperationLinkId{})
+	parser := resourceids.NewParserFromResourceIdType(&OperationLinkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

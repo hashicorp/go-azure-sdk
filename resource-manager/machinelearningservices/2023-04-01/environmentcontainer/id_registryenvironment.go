@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = RegistryEnvironmentId{}
+var _ resourceids.ResourceId = &RegistryEnvironmentId{}
 
 // RegistryEnvironmentId is a struct representing the Resource ID for a Registry Environment
 type RegistryEnvironmentId struct {
@@ -32,7 +32,7 @@ func NewRegistryEnvironmentID(subscriptionId string, resourceGroupName string, r
 
 // ParseRegistryEnvironmentID parses 'input' into a RegistryEnvironmentId
 func ParseRegistryEnvironmentID(input string) (*RegistryEnvironmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryEnvironmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryEnvironmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseRegistryEnvironmentID(input string) (*RegistryEnvironmentId, error) {
 // ParseRegistryEnvironmentIDInsensitively parses 'input' case-insensitively into a RegistryEnvironmentId
 // note: this method should only be used for API response data and not user input
 func ParseRegistryEnvironmentIDInsensitively(input string) (*RegistryEnvironmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(RegistryEnvironmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&RegistryEnvironmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

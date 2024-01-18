@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ContentTemplateId{}
+var _ resourceids.ResourceId = &ContentTemplateId{}
 
 // ContentTemplateId is a struct representing the Resource ID for a Content Template
 type ContentTemplateId struct {
@@ -32,7 +32,7 @@ func NewContentTemplateID(subscriptionId string, resourceGroupName string, works
 
 // ParseContentTemplateID parses 'input' into a ContentTemplateId
 func ParseContentTemplateID(input string) (*ContentTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ContentTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ContentTemplateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseContentTemplateID(input string) (*ContentTemplateId, error) {
 // ParseContentTemplateIDInsensitively parses 'input' case-insensitively into a ContentTemplateId
 // note: this method should only be used for API response data and not user input
 func ParseContentTemplateIDInsensitively(input string) (*ContentTemplateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ContentTemplateId{})
+	parser := resourceids.NewParserFromResourceIdType(&ContentTemplateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{}
+var _ resourceids.ResourceId = &ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{}
 
 // ProviderVirtualMachineProviders2GuestConfigurationAssignmentId is a struct representing the Resource ID for a Provider Virtual Machine Providers 2 Guest Configuration Assignment
 type ProviderVirtualMachineProviders2GuestConfigurationAssignmentId struct {
@@ -32,7 +32,7 @@ func NewProviderVirtualMachineProviders2GuestConfigurationAssignmentID(subscript
 
 // ParseProviderVirtualMachineProviders2GuestConfigurationAssignmentID parses 'input' into a ProviderVirtualMachineProviders2GuestConfigurationAssignmentId
 func ParseProviderVirtualMachineProviders2GuestConfigurationAssignmentID(input string) (*ProviderVirtualMachineProviders2GuestConfigurationAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseProviderVirtualMachineProviders2GuestConfigurationAssignmentID(input s
 // ParseProviderVirtualMachineProviders2GuestConfigurationAssignmentIDInsensitively parses 'input' case-insensitively into a ProviderVirtualMachineProviders2GuestConfigurationAssignmentId
 // note: this method should only be used for API response data and not user input
 func ParseProviderVirtualMachineProviders2GuestConfigurationAssignmentIDInsensitively(input string) (*ProviderVirtualMachineProviders2GuestConfigurationAssignmentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{})
+	parser := resourceids.NewParserFromResourceIdType(&ProviderVirtualMachineProviders2GuestConfigurationAssignmentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

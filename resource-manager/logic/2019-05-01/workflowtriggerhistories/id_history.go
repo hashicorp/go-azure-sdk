@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = HistoryId{}
+var _ resourceids.ResourceId = &HistoryId{}
 
 // HistoryId is a struct representing the Resource ID for a History
 type HistoryId struct {
@@ -34,7 +34,7 @@ func NewHistoryID(subscriptionId string, resourceGroupName string, workflowName 
 
 // ParseHistoryID parses 'input' into a HistoryId
 func ParseHistoryID(input string) (*HistoryId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HistoryId{})
+	parser := resourceids.NewParserFromResourceIdType(&HistoryId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseHistoryID(input string) (*HistoryId, error) {
 // ParseHistoryIDInsensitively parses 'input' case-insensitively into a HistoryId
 // note: this method should only be used for API response data and not user input
 func ParseHistoryIDInsensitively(input string) (*HistoryId, error) {
-	parser := resourceids.NewParserFromResourceIdType(HistoryId{})
+	parser := resourceids.NewParserFromResourceIdType(&HistoryId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

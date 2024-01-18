@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = Providers2PolicyDefinitionId{}
+var _ resourceids.ResourceId = &Providers2PolicyDefinitionId{}
 
 // Providers2PolicyDefinitionId is a struct representing the Resource ID for a Providers 2 Policy Definition
 type Providers2PolicyDefinitionId struct {
@@ -28,7 +28,7 @@ func NewProviders2PolicyDefinitionID(managementGroupName string, policyDefinitio
 
 // ParseProviders2PolicyDefinitionID parses 'input' into a Providers2PolicyDefinitionId
 func ParseProviders2PolicyDefinitionID(input string) (*Providers2PolicyDefinitionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2PolicyDefinitionId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2PolicyDefinitionId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -45,7 +45,7 @@ func ParseProviders2PolicyDefinitionID(input string) (*Providers2PolicyDefinitio
 // ParseProviders2PolicyDefinitionIDInsensitively parses 'input' case-insensitively into a Providers2PolicyDefinitionId
 // note: this method should only be used for API response data and not user input
 func ParseProviders2PolicyDefinitionIDInsensitively(input string) (*Providers2PolicyDefinitionId, error) {
-	parser := resourceids.NewParserFromResourceIdType(Providers2PolicyDefinitionId{})
+	parser := resourceids.NewParserFromResourceIdType(&Providers2PolicyDefinitionId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

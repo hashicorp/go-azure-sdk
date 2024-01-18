@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = EndpointCertificateId{}
+var _ resourceids.ResourceId = &EndpointCertificateId{}
 
 // EndpointCertificateId is a struct representing the Resource ID for a Endpoint Certificate
 type EndpointCertificateId struct {
@@ -32,7 +32,7 @@ func NewEndpointCertificateID(subscriptionId string, resourceGroupName string, m
 
 // ParseEndpointCertificateID parses 'input' into a EndpointCertificateId
 func ParseEndpointCertificateID(input string) (*EndpointCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EndpointCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&EndpointCertificateId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseEndpointCertificateID(input string) (*EndpointCertificateId, error) {
 // ParseEndpointCertificateIDInsensitively parses 'input' case-insensitively into a EndpointCertificateId
 // note: this method should only be used for API response data and not user input
 func ParseEndpointCertificateIDInsensitively(input string) (*EndpointCertificateId, error) {
-	parser := resourceids.NewParserFromResourceIdType(EndpointCertificateId{})
+	parser := resourceids.NewParserFromResourceIdType(&EndpointCertificateId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

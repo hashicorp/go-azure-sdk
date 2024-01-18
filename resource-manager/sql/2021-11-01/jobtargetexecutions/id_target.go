@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = TargetId{}
+var _ resourceids.ResourceId = &TargetId{}
 
 // TargetId is a struct representing the Resource ID for a Target
 type TargetId struct {
@@ -40,7 +40,7 @@ func NewTargetID(subscriptionId string, resourceGroupName string, serverName str
 
 // ParseTargetID parses 'input' into a TargetId
 func ParseTargetID(input string) (*TargetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TargetId{})
+	parser := resourceids.NewParserFromResourceIdType(&TargetId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -57,7 +57,7 @@ func ParseTargetID(input string) (*TargetId, error) {
 // ParseTargetIDInsensitively parses 'input' case-insensitively into a TargetId
 // note: this method should only be used for API response data and not user input
 func ParseTargetIDInsensitively(input string) (*TargetId, error) {
-	parser := resourceids.NewParserFromResourceIdType(TargetId{})
+	parser := resourceids.NewParserFromResourceIdType(&TargetId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

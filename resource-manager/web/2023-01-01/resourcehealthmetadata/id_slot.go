@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SlotId{}
+var _ resourceids.ResourceId = &SlotId{}
 
 // SlotId is a struct representing the Resource ID for a Slot
 type SlotId struct {
@@ -32,7 +32,7 @@ func NewSlotID(subscriptionId string, resourceGroupName string, siteName string,
 
 // ParseSlotID parses 'input' into a SlotId
 func ParseSlotID(input string) (*SlotId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseSlotID(input string) (*SlotId, error) {
 // ParseSlotIDInsensitively parses 'input' case-insensitively into a SlotId
 // note: this method should only be used for API response data and not user input
 func ParseSlotIDInsensitively(input string) (*SlotId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SlotId{})
+	parser := resourceids.NewParserFromResourceIdType(&SlotId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

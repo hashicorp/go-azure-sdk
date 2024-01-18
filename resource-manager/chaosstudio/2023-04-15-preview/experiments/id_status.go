@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = StatusId{}
+var _ resourceids.ResourceId = &StatusId{}
 
 // StatusId is a struct representing the Resource ID for a Status
 type StatusId struct {
@@ -32,7 +32,7 @@ func NewStatusID(subscriptionId string, resourceGroupName string, experimentName
 
 // ParseStatusID parses 'input' into a StatusId
 func ParseStatusID(input string) (*StatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(StatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&StatusId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseStatusID(input string) (*StatusId, error) {
 // ParseStatusIDInsensitively parses 'input' case-insensitively into a StatusId
 // note: this method should only be used for API response data and not user input
 func ParseStatusIDInsensitively(input string) (*StatusId, error) {
-	parser := resourceids.NewParserFromResourceIdType(StatusId{})
+	parser := resourceids.NewParserFromResourceIdType(&StatusId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = CommitmentPlanId{}
+var _ resourceids.ResourceId = &CommitmentPlanId{}
 
 // CommitmentPlanId is a struct representing the Resource ID for a Commitment Plan
 type CommitmentPlanId struct {
@@ -30,7 +30,7 @@ func NewCommitmentPlanID(subscriptionId string, resourceGroupName string, commit
 
 // ParseCommitmentPlanID parses 'input' into a CommitmentPlanId
 func ParseCommitmentPlanID(input string) (*CommitmentPlanId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CommitmentPlanId{})
+	parser := resourceids.NewParserFromResourceIdType(&CommitmentPlanId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -47,7 +47,7 @@ func ParseCommitmentPlanID(input string) (*CommitmentPlanId, error) {
 // ParseCommitmentPlanIDInsensitively parses 'input' case-insensitively into a CommitmentPlanId
 // note: this method should only be used for API response data and not user input
 func ParseCommitmentPlanIDInsensitively(input string) (*CommitmentPlanId, error) {
-	parser := resourceids.NewParserFromResourceIdType(CommitmentPlanId{})
+	parser := resourceids.NewParserFromResourceIdType(&CommitmentPlanId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

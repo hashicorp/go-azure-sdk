@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = IncidentId{}
+var _ resourceids.ResourceId = &IncidentId{}
 
 // IncidentId is a struct representing the Resource ID for a Incident
 type IncidentId struct {
@@ -32,7 +32,7 @@ func NewIncidentID(subscriptionId string, resourceGroupName string, workspaceNam
 
 // ParseIncidentID parses 'input' into a IncidentId
 func ParseIncidentID(input string) (*IncidentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IncidentId{})
+	parser := resourceids.NewParserFromResourceIdType(&IncidentId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseIncidentID(input string) (*IncidentId, error) {
 // ParseIncidentIDInsensitively parses 'input' case-insensitively into a IncidentId
 // note: this method should only be used for API response data and not user input
 func ParseIncidentIDInsensitively(input string) (*IncidentId, error) {
-	parser := resourceids.NewParserFromResourceIdType(IncidentId{})
+	parser := resourceids.NewParserFromResourceIdType(&IncidentId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ColumnId{}
+var _ resourceids.ResourceId = &ColumnId{}
 
 // ColumnId is a struct representing the Resource ID for a Column
 type ColumnId struct {
@@ -38,7 +38,7 @@ func NewColumnID(subscriptionId string, resourceGroupName string, serverName str
 
 // ParseColumnID parses 'input' into a ColumnId
 func ParseColumnID(input string) (*ColumnId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ColumnId{})
+	parser := resourceids.NewParserFromResourceIdType(&ColumnId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -55,7 +55,7 @@ func ParseColumnID(input string) (*ColumnId, error) {
 // ParseColumnIDInsensitively parses 'input' case-insensitively into a ColumnId
 // note: this method should only be used for API response data and not user input
 func ParseColumnIDInsensitively(input string) (*ColumnId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ColumnId{})
+	parser := resourceids.NewParserFromResourceIdType(&ColumnId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

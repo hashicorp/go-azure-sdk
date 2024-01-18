@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ReplicationLogicalNetworkId{}
+var _ resourceids.ResourceId = &ReplicationLogicalNetworkId{}
 
 // ReplicationLogicalNetworkId is a struct representing the Resource ID for a Replication Logical Network
 type ReplicationLogicalNetworkId struct {
@@ -34,7 +34,7 @@ func NewReplicationLogicalNetworkID(subscriptionId string, resourceGroupName str
 
 // ParseReplicationLogicalNetworkID parses 'input' into a ReplicationLogicalNetworkId
 func ParseReplicationLogicalNetworkID(input string) (*ReplicationLogicalNetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationLogicalNetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationLogicalNetworkId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -51,7 +51,7 @@ func ParseReplicationLogicalNetworkID(input string) (*ReplicationLogicalNetworkI
 // ParseReplicationLogicalNetworkIDInsensitively parses 'input' case-insensitively into a ReplicationLogicalNetworkId
 // note: this method should only be used for API response data and not user input
 func ParseReplicationLogicalNetworkIDInsensitively(input string) (*ReplicationLogicalNetworkId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ReplicationLogicalNetworkId{})
+	parser := resourceids.NewParserFromResourceIdType(&ReplicationLogicalNetworkId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = ServiceRunnerId{}
+var _ resourceids.ResourceId = &ServiceRunnerId{}
 
 // ServiceRunnerId is a struct representing the Resource ID for a Service Runner
 type ServiceRunnerId struct {
@@ -32,7 +32,7 @@ func NewServiceRunnerID(subscriptionId string, resourceGroupName string, labName
 
 // ParseServiceRunnerID parses 'input' into a ServiceRunnerId
 func ParseServiceRunnerID(input string) (*ServiceRunnerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServiceRunnerId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServiceRunnerId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseServiceRunnerID(input string) (*ServiceRunnerId, error) {
 // ParseServiceRunnerIDInsensitively parses 'input' case-insensitively into a ServiceRunnerId
 // note: this method should only be used for API response data and not user input
 func ParseServiceRunnerIDInsensitively(input string) (*ServiceRunnerId, error) {
-	parser := resourceids.NewParserFromResourceIdType(ServiceRunnerId{})
+	parser := resourceids.NewParserFromResourceIdType(&ServiceRunnerId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)

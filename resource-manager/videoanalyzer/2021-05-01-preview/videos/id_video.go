@@ -10,7 +10,7 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = VideoId{}
+var _ resourceids.ResourceId = &VideoId{}
 
 // VideoId is a struct representing the Resource ID for a Video
 type VideoId struct {
@@ -32,7 +32,7 @@ func NewVideoID(subscriptionId string, resourceGroupName string, videoAnalyzerNa
 
 // ParseVideoID parses 'input' into a VideoId
 func ParseVideoID(input string) (*VideoId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VideoId{})
+	parser := resourceids.NewParserFromResourceIdType(&VideoId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
@@ -49,7 +49,7 @@ func ParseVideoID(input string) (*VideoId, error) {
 // ParseVideoIDInsensitively parses 'input' case-insensitively into a VideoId
 // note: this method should only be used for API response data and not user input
 func ParseVideoIDInsensitively(input string) (*VideoId, error) {
-	parser := resourceids.NewParserFromResourceIdType(VideoId{})
+	parser := resourceids.NewParserFromResourceIdType(&VideoId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
