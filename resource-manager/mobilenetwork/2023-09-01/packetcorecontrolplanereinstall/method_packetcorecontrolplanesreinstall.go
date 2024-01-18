@@ -18,6 +18,7 @@ type PacketCoreControlPlanesReinstallOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *AsyncOperationStatus
 }
 
 // PacketCoreControlPlanesReinstall ...
@@ -44,6 +45,10 @@ func (c PacketCoreControlPlaneReinstallClient) PacketCoreControlPlanesReinstall(
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

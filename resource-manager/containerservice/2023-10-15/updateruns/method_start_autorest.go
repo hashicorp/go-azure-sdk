@@ -16,6 +16,7 @@ import (
 type StartOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *UpdateRun
 }
 
 type StartOperationOptions struct {

@@ -18,6 +18,7 @@ type BareMetalMachineKeySetsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *BareMetalMachineKeySet
 }
 
 // BareMetalMachineKeySetsCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsCreateOrUpdate(ctx context.C
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

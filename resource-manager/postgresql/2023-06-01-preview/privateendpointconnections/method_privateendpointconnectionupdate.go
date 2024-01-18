@@ -18,6 +18,7 @@ type PrivateEndpointConnectionUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *PrivateEndpointConnection
 }
 
 // PrivateEndpointConnectionUpdate ...
@@ -49,6 +50,10 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionUpdate(ctx co
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

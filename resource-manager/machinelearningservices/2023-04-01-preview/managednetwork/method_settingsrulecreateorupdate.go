@@ -18,6 +18,7 @@ type SettingsRuleCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *OutboundRuleBasicResource
 }
 
 // SettingsRuleCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c ManagedNetworkClient) SettingsRuleCreateOrUpdate(ctx context.Context, id
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

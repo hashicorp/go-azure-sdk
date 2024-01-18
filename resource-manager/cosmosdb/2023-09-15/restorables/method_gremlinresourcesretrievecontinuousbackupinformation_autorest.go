@@ -16,6 +16,7 @@ import (
 type GremlinResourcesRetrieveContinuousBackupInformationOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *BackupInformation
 }
 
 // GremlinResourcesRetrieveContinuousBackupInformation ...

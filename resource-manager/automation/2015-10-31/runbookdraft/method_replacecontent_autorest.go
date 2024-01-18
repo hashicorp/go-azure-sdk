@@ -16,6 +16,7 @@ import (
 type ReplaceContentOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *[]byte
 }
 
 // ReplaceContent ...

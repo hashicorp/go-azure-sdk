@@ -18,6 +18,7 @@ type GetMetadataOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *SubvolumeModel
 }
 
 // GetMetadata ...
@@ -44,6 +45,10 @@ func (c SubVolumesClient) GetMetadata(ctx context.Context, id SubVolumeId) (resu
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

@@ -18,6 +18,7 @@ type FailoverOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *FailoverGroup
 }
 
 // Failover ...
@@ -44,6 +45,10 @@ func (c FailoverGroupsClient) Failover(ctx context.Context, id FailoverGroupId) 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

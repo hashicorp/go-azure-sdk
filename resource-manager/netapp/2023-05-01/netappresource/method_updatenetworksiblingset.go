@@ -18,6 +18,7 @@ type UpdateNetworkSiblingSetOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *NetworkSiblingSet
 }
 
 // UpdateNetworkSiblingSet ...
@@ -48,6 +49,10 @@ func (c NetAppResourceClient) UpdateNetworkSiblingSet(ctx context.Context, id Lo
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

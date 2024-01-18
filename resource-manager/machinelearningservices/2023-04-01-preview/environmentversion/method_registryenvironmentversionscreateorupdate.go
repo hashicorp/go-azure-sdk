@@ -18,6 +18,7 @@ type RegistryEnvironmentVersionsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *EnvironmentVersionResource
 }
 
 // RegistryEnvironmentVersionsCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c EnvironmentVersionClient) RegistryEnvironmentVersionsCreateOrUpdate(ctx 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

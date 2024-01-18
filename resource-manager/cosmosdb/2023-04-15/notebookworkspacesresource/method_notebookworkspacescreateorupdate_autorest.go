@@ -16,6 +16,7 @@ import (
 type NotebookWorkspacesCreateOrUpdateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *NotebookWorkspace
 }
 
 // NotebookWorkspacesCreateOrUpdate ...

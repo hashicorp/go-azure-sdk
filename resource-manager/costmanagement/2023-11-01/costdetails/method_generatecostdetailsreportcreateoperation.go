@@ -19,6 +19,7 @@ type GenerateCostDetailsReportCreateOperationOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *CostDetailsOperationResults
 }
 
 // GenerateCostDetailsReportCreateOperation ...
@@ -50,6 +51,10 @@ func (c CostDetailsClient) GenerateCostDetailsReportCreateOperation(ctx context.
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

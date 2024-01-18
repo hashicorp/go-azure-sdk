@@ -18,6 +18,7 @@ type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ArchiveVersion
 }
 
 // Create ...
@@ -44,6 +45,10 @@ func (c ArchiveVersionsClient) Create(ctx context.Context, id VersionId) (result
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

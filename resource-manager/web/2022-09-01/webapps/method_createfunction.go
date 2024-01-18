@@ -18,6 +18,7 @@ type CreateFunctionOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *FunctionEnvelope
 }
 
 // CreateFunction ...
@@ -47,6 +48,10 @@ func (c WebAppsClient) CreateFunction(ctx context.Context, id FunctionId, input 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

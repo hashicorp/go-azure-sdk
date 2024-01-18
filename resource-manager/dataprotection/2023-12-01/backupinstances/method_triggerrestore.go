@@ -2,6 +2,7 @@ package backupinstances
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -18,6 +19,7 @@ type TriggerRestoreOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *OperationJobExtendedInfo
 }
 
 // TriggerRestore ...
@@ -50,6 +52,16 @@ func (c BackupInstancesClient) TriggerRestore(ctx context.Context, id BackupInst
 	if err != nil {
 		return
 	}
+
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
+		return
+	}
+	model, err := unmarshalOperationExtendedInfoImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {

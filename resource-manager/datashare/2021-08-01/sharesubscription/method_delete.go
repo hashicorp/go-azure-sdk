@@ -18,6 +18,7 @@ type DeleteOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *OperationResponse
 }
 
 // Delete ...
@@ -45,6 +46,10 @@ func (c ShareSubscriptionClient) Delete(ctx context.Context, id ShareSubscriptio
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

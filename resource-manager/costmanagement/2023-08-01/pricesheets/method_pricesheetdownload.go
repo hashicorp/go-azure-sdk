@@ -18,6 +18,7 @@ type PriceSheetDownloadOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *DownloadUrl
 }
 
 // PriceSheetDownload ...
@@ -44,6 +45,10 @@ func (c PriceSheetsClient) PriceSheetDownload(ctx context.Context, id InvoiceId)
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

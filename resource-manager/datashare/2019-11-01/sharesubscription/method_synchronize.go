@@ -18,6 +18,7 @@ type SynchronizeOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ShareSubscriptionSynchronization
 }
 
 // Synchronize ...
@@ -48,6 +49,10 @@ func (c ShareSubscriptionClient) Synchronize(ctx context.Context, id ShareSubscr
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

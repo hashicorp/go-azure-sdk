@@ -19,6 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ManagementGroup
 }
 
 type CreateOrUpdateOperationOptions struct {
@@ -77,6 +78,10 @@ func (c ManagementGroupsClient) CreateOrUpdate(ctx context.Context, id commonids
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 
