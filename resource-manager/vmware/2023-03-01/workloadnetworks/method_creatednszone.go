@@ -18,6 +18,7 @@ type CreateDnsZoneOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkDnsZone
 }
 
 // CreateDnsZone ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) CreateDnsZone(ctx context.Context, id DnsZoneId,
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

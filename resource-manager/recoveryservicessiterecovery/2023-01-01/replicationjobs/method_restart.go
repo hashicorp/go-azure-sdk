@@ -18,6 +18,7 @@ type RestartOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *Job
 }
 
 // Restart ...
@@ -44,6 +45,10 @@ func (c ReplicationJobsClient) Restart(ctx context.Context, id ReplicationJobId)
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

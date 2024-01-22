@@ -18,6 +18,7 @@ type CreateMSDeployOperationSlotOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *MSDeployStatus
 }
 
 // CreateMSDeployOperationSlot ...
@@ -47,6 +48,10 @@ func (c WebAppsClient) CreateMSDeployOperationSlot(ctx context.Context, id SlotI
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

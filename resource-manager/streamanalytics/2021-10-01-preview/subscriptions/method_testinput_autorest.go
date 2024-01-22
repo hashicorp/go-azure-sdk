@@ -16,6 +16,7 @@ import (
 type TestInputOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *TestDatasourceResult
 }
 
 // TestInput ...

@@ -18,6 +18,7 @@ type CreateDhcpOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkDhcp
 }
 
 // CreateDhcp ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) CreateDhcp(ctx context.Context, id DhcpConfigura
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

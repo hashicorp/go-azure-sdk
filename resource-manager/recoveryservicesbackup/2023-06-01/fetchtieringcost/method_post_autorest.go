@@ -16,6 +16,7 @@ import (
 type PostOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *TieringCostInfo
 }
 
 // Post ...

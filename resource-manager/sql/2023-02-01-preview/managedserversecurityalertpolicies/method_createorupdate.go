@@ -19,6 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ManagedServerSecurityAlertPolicy
 }
 
 // CreateOrUpdate ...
@@ -49,6 +50,10 @@ func (c ManagedServerSecurityAlertPoliciesClient) CreateOrUpdate(ctx context.Con
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

@@ -18,6 +18,7 @@ type CopyOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *LongTermRetentionBackupOperationResult
 }
 
 // Copy ...
@@ -48,6 +49,10 @@ func (c LongTermRetentionBackupsClient) Copy(ctx context.Context, id LongTermRet
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

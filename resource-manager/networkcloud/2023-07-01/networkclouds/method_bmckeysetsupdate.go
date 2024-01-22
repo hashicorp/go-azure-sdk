@@ -18,6 +18,7 @@ type BmcKeySetsUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *BmcKeySet
 }
 
 // BmcKeySetsUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) BmcKeySetsUpdate(ctx context.Context, id BmcKeySetI
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

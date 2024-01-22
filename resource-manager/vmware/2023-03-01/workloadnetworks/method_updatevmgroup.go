@@ -18,6 +18,7 @@ type UpdateVMGroupOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkVMGroup
 }
 
 // UpdateVMGroup ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) UpdateVMGroup(ctx context.Context, id VMGroupId,
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

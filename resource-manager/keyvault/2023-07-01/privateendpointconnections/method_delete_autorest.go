@@ -17,6 +17,7 @@ import (
 type DeleteOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *PrivateEndpointConnection
 }
 
 // Delete ...

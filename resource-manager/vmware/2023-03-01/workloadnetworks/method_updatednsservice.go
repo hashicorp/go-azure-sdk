@@ -18,6 +18,7 @@ type UpdateDnsServiceOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkDnsService
 }
 
 // UpdateDnsService ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) UpdateDnsService(ctx context.Context, id DnsServ
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

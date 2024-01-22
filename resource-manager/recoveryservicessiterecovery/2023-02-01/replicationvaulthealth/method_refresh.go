@@ -18,6 +18,7 @@ type RefreshOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *VaultHealthDetails
 }
 
 // Refresh ...
@@ -44,6 +45,10 @@ func (c ReplicationVaultHealthClient) Refresh(ctx context.Context, id VaultId) (
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

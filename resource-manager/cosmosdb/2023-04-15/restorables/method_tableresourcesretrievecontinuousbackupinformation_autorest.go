@@ -16,6 +16,7 @@ import (
 type TableResourcesRetrieveContinuousBackupInformationOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *BackupInformation
 }
 
 // TableResourcesRetrieveContinuousBackupInformation ...

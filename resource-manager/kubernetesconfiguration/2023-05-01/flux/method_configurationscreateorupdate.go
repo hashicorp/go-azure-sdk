@@ -18,6 +18,7 @@ type ConfigurationsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *FluxConfiguration
 }
 
 // ConfigurationsCreateOrUpdate ...
@@ -48,6 +49,10 @@ func (c FluxClient) ConfigurationsCreateOrUpdate(ctx context.Context, id ScopedF
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

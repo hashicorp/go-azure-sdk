@@ -16,6 +16,7 @@ import (
 type TestQueryOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *QueryTestingResult
 }
 
 // TestQuery ...

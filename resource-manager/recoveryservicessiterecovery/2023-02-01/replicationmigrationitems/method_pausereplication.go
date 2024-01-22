@@ -18,6 +18,7 @@ type PauseReplicationOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *MigrationItem
 }
 
 // PauseReplication ...
@@ -48,6 +49,10 @@ func (c ReplicationMigrationItemsClient) PauseReplication(ctx context.Context, i
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

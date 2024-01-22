@@ -18,6 +18,7 @@ type InstallSiteExtensionOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *SiteExtensionInfo
 }
 
 // InstallSiteExtension ...
@@ -44,6 +45,10 @@ func (c WebAppsClient) InstallSiteExtension(ctx context.Context, id SiteExtensio
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

@@ -18,6 +18,7 @@ type CreatePublicIPOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WorkloadNetworkPublicIP
 }
 
 // CreatePublicIP ...
@@ -48,6 +49,10 @@ func (c WorkloadNetworksClient) CreatePublicIP(ctx context.Context, id PublicIPI
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

@@ -16,6 +16,7 @@ import (
 type PoliciesUpdateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *WebApplicationFirewallPolicy
 }
 
 // PoliciesUpdate ...

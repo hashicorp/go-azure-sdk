@@ -16,6 +16,7 @@ import (
 type APICollectionsOnboardAzureApiManagementApiOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *ApiCollection
 }
 
 // APICollectionsOnboardAzureApiManagementApi ...
