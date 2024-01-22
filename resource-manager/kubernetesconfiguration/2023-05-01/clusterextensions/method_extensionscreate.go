@@ -18,6 +18,7 @@ type ExtensionsCreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *Extension
 }
 
 // ExtensionsCreate ...
@@ -48,6 +49,10 @@ func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id Scoped
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

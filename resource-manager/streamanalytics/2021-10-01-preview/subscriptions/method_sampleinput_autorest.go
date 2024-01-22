@@ -16,6 +16,7 @@ import (
 type SampleInputOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *SampleInputResult
 }
 
 // SampleInput ...

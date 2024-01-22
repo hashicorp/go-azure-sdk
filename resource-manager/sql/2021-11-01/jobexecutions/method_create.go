@@ -18,6 +18,7 @@ type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *JobExecution
 }
 
 // Create ...
@@ -44,6 +45,10 @@ func (c JobExecutionsClient) Create(ctx context.Context, id JobId) (result Creat
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

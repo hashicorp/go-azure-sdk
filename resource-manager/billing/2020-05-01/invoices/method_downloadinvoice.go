@@ -18,6 +18,7 @@ type DownloadInvoiceOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *DownloadUrl
 }
 
 type DownloadInvoiceOperationOptions struct {
@@ -72,6 +73,10 @@ func (c InvoicesClient) DownloadInvoice(ctx context.Context, id BillingAccountIn
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

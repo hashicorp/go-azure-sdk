@@ -18,6 +18,7 @@ type CustomizedAcceleratorsValidateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *CustomizedAcceleratorValidateResult
 }
 
 // CustomizedAcceleratorsValidate ...
@@ -48,6 +49,10 @@ func (c AppPlatformClient) CustomizedAcceleratorsValidate(ctx context.Context, i
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

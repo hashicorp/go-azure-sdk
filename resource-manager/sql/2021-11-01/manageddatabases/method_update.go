@@ -19,6 +19,7 @@ type UpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ManagedDatabase
 }
 
 // Update ...
@@ -49,6 +50,10 @@ func (c ManagedDatabasesClient) Update(ctx context.Context, id commonids.SqlMana
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

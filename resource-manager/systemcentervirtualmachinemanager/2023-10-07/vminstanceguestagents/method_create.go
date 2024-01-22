@@ -19,6 +19,7 @@ type CreateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *GuestAgent
 }
 
 // Create ...
@@ -49,6 +50,10 @@ func (c VMInstanceGuestAgentsClient) Create(ctx context.Context, id commonids.Sc
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

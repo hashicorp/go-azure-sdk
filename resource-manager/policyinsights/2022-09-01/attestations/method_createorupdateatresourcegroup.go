@@ -18,6 +18,7 @@ type CreateOrUpdateAtResourceGroupOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *Attestation
 }
 
 // CreateOrUpdateAtResourceGroup ...
@@ -48,6 +49,10 @@ func (c AttestationsClient) CreateOrUpdateAtResourceGroup(ctx context.Context, i
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

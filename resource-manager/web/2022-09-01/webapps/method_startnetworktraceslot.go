@@ -18,6 +18,7 @@ type StartNetworkTraceSlotOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *[]NetworkTrace
 }
 
 type StartNetworkTraceSlotOperationOptions struct {
@@ -80,6 +81,10 @@ func (c WebAppsClient) StartNetworkTraceSlot(ctx context.Context, id SlotId, opt
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

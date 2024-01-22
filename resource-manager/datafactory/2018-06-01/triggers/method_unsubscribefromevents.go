@@ -18,6 +18,7 @@ type UnsubscribeFromEventsOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *TriggerSubscriptionOperationStatus
 }
 
 // UnsubscribeFromEvents ...
@@ -44,6 +45,10 @@ func (c TriggersClient) UnsubscribeFromEvents(ctx context.Context, id TriggerId)
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

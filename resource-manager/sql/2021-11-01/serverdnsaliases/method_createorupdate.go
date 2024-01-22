@@ -18,6 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ServerDnsAlias
 }
 
 // CreateOrUpdate ...
@@ -45,6 +46,10 @@ func (c ServerDnsAliasesClient) CreateOrUpdate(ctx context.Context, id DnsAliasI
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

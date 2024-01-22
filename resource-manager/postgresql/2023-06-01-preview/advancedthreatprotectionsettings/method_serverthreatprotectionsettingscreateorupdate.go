@@ -18,6 +18,7 @@ type ServerThreatProtectionSettingsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *ServerThreatProtectionSettingsModel
 }
 
 // ServerThreatProtectionSettingsCreateOrUpdate ...
@@ -49,6 +50,10 @@ func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCr
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

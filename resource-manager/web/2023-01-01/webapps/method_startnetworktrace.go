@@ -19,6 +19,7 @@ type StartNetworkTraceOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *[]NetworkTrace
 }
 
 type StartNetworkTraceOperationOptions struct {
@@ -81,6 +82,10 @@ func (c WebAppsClient) StartNetworkTrace(ctx context.Context, id commonids.AppSe
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

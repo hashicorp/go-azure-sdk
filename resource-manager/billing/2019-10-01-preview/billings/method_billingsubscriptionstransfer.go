@@ -18,6 +18,7 @@ type BillingSubscriptionsTransferOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *TransferBillingSubscriptionResult
 }
 
 // BillingSubscriptionsTransfer ...
@@ -48,6 +49,10 @@ func (c BillingsClient) BillingSubscriptionsTransfer(ctx context.Context, id Inv
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

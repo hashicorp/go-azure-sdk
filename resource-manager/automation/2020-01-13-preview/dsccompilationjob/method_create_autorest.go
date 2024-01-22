@@ -17,6 +17,7 @@ import (
 type CreateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *DscCompilationJob
 }
 
 // Create ...

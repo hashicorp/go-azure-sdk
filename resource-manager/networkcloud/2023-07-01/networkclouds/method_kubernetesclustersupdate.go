@@ -18,6 +18,7 @@ type KubernetesClustersUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *KubernetesCluster
 }
 
 // KubernetesClustersUpdate ...
@@ -48,6 +49,10 @@ func (c NetworkcloudsClient) KubernetesClustersUpdate(ctx context.Context, id Ku
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

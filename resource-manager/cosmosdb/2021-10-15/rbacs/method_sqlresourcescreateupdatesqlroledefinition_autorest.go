@@ -16,6 +16,7 @@ import (
 type SqlResourcesCreateUpdateSqlRoleDefinitionOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *SqlRoleDefinitionGetResults
 }
 
 // SqlResourcesCreateUpdateSqlRoleDefinition ...

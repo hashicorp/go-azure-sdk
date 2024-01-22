@@ -18,6 +18,7 @@ type LinkBackendOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *StaticSiteLinkedBackendARMResource
 }
 
 // LinkBackend ...
@@ -47,6 +48,10 @@ func (c StaticSitesClient) LinkBackend(ctx context.Context, id LinkedBackendId, 
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

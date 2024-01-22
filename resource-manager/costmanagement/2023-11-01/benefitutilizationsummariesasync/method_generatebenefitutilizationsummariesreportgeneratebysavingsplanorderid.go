@@ -18,6 +18,7 @@ type GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdOperat
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *BenefitUtilizationSummariesOperationStatus
 }
 
 // GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId ...
@@ -48,6 +49,10 @@ func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummar
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 

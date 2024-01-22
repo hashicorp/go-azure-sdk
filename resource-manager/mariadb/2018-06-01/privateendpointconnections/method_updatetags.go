@@ -18,6 +18,7 @@ type UpdateTagsOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *PrivateEndpointConnection
 }
 
 // UpdateTags ...
@@ -47,6 +48,10 @@ func (c PrivateEndpointConnectionsClient) UpdateTags(ctx context.Context, id Pri
 		result.HttpResponse = resp.Response
 	}
 	if err != nil {
+		return
+	}
+
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 
