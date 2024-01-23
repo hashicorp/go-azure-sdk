@@ -1,6 +1,10 @@
 package mhsmprivatelinkresources
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForManagedHsmSkuFamily() []string {
 	return []string{
 		string(ManagedHsmSkuFamilyB),
 	}
+}
+
+func (s *ManagedHsmSkuFamily) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedHsmSkuFamily(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedHsmSkuFamily(input string) (*ManagedHsmSkuFamily, error) {
@@ -44,6 +61,19 @@ func PossibleValuesForManagedHsmSkuName() []string {
 		string(ManagedHsmSkuNameCustomBThreeTwo),
 		string(ManagedHsmSkuNameStandardBOne),
 	}
+}
+
+func (s *ManagedHsmSkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedHsmSkuName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
