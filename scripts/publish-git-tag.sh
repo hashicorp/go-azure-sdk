@@ -55,12 +55,10 @@ function main {
   publish "$version"
 
   echo "Tagging the 'microsoft-graph' module.."
-  local microsoftGraphTag="microsoft-graph/$version"
-  updateSdkReferenceThenPublish "microsoft-graph" "$microsoftGraphTag"
+  updateSdkReferenceThenPublish "microsoft-graph" "$version"
 
   echo "Tagging the 'resource-manager' module.."
-  local resourceManagerTag="resource-manager/$version"
-  updateSdkReferenceThenPublish "resource-manager" "$resourceManagerTag"
+  updateSdkReferenceThenPublish "resource-manager" "$version"
 }
 
 main "$1"
