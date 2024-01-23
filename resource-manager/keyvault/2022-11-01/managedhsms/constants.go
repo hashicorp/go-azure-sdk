@@ -1,6 +1,10 @@
 package managedhsms
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForActionsRequired() []string {
 	return []string{
 		string(ActionsRequiredNone),
 	}
+}
+
+func (s *ActionsRequired) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActionsRequired(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseActionsRequired(input string) (*ActionsRequired, error) {
@@ -48,6 +65,19 @@ func PossibleValuesForActivationStatus() []string {
 	}
 }
 
+func (s *ActivationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActivationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseActivationStatus(input string) (*ActivationStatus, error) {
 	vals := map[string]ActivationStatus{
 		"active":       ActivationStatusActive,
@@ -78,6 +108,19 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
+func (s *CreateMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCreateMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCreateMode(input string) (*CreateMode, error) {
 	vals := map[string]CreateMode{
 		"default": CreateModeDefault,
@@ -102,6 +145,19 @@ func PossibleValuesForManagedHsmSkuFamily() []string {
 	return []string{
 		string(ManagedHsmSkuFamilyB),
 	}
+}
+
+func (s *ManagedHsmSkuFamily) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedHsmSkuFamily(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedHsmSkuFamily(input string) (*ManagedHsmSkuFamily, error) {
@@ -133,6 +189,19 @@ func PossibleValuesForManagedHsmSkuName() []string {
 	}
 }
 
+func (s *ManagedHsmSkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedHsmSkuName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
 	vals := map[string]ManagedHsmSkuName{
 		"custom_b6":   ManagedHsmSkuNameCustomBSix,
@@ -162,6 +231,19 @@ func PossibleValuesForNetworkRuleAction() []string {
 	}
 }
 
+func (s *NetworkRuleAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkRuleAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNetworkRuleAction(input string) (*NetworkRuleAction, error) {
 	vals := map[string]NetworkRuleAction{
 		"allow": NetworkRuleActionAllow,
@@ -188,6 +270,19 @@ func PossibleValuesForNetworkRuleBypassOptions() []string {
 		string(NetworkRuleBypassOptionsAzureServices),
 		string(NetworkRuleBypassOptionsNone),
 	}
+}
+
+func (s *NetworkRuleBypassOptions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkRuleBypassOptions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNetworkRuleBypassOptions(input string) (*NetworkRuleBypassOptions, error) {
@@ -226,6 +321,19 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
+func (s *PrivateEndpointConnectionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePrivateEndpointConnectionProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
 	vals := map[string]PrivateEndpointConnectionProvisioningState{
 		"creating":     PrivateEndpointConnectionProvisioningStateCreating,
@@ -260,6 +368,19 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
+}
+
+func (s *PrivateEndpointServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePrivateEndpointServiceConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
@@ -304,6 +425,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"activated":             ProvisioningStateActivated,
@@ -338,6 +472,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
 	vals := map[string]PublicNetworkAccess{
 		"disabled": PublicNetworkAccessDisabled,
@@ -364,6 +511,19 @@ func PossibleValuesForReason() []string {
 		string(ReasonAccountNameInvalid),
 		string(ReasonAlreadyExists),
 	}
+}
+
+func (s *Reason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseReason(input string) (*Reason, error) {
