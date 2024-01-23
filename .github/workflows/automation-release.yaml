@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      latest_tag: ${{ steps.results.version-number.latest_tag }}
+      latest_tag: ${{ steps.version-number.outputs.latest_tag }}
       should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -33,7 +33,7 @@ jobs:
 
       - name: "Publish the Git Tag"
         run: |
-          ./scripts/publish-git-tag.sh ${{ steps.results.version-number.latest_tag }}
+          ./scripts/publish-git-tag.sh ${{ steps.version-number.outputs.latest_tag }}
         shell: bash
 
       - id: results
