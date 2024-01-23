@@ -26,6 +26,7 @@ jobs:
 
       - id: version-number
         name: "Determining the Version Number.."
+        run: |
           latestTag=$(./scripts/determine-git-tag.sh)
           echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
         shell: bash
