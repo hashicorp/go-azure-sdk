@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      latest_tag: ${{ steps.results.outputs.latest_tag }}
+      latest_tag: ${{ steps.results.version-number.latest_tag }}
       should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -24,15 +24,20 @@ jobs:
           make tools
           make test
 
-      - name: "determine and publish the Git Tag"
+      - id: version-number
+        name: "Determining the Version Number.."
+          latestTag=$(./scripts/determine-git-tag.sh)
+          echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: "Publish the Git Tag"
         run: |
-          ./scripts/determine-and-publish-git-tag.sh
+          ./scripts/publish-git-tag.sh ${{ steps.results.version-number.latest_tag }}
+        shell: bash
 
       - id: results
         name: "collecting outputs"
         run: |
-          latestTag=$(git describe --tags $(git rev-list --tags --max-count=1))
-          echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
           echo "should_update_azurerm=${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'update-azurerm-after-release') }}" >> "$GITHUB_OUTPUT"
         shell: bash
 

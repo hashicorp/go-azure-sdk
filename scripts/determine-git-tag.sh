@@ -23,20 +23,8 @@ function determineGitTag {
   date '+v0.%Y%m%d.1%H%M%S'
 }
 
-function publish {
-  local version=$1
-
-  echo "Tagging as '$version'.."
-  git tag "$version"
-
-  echo "Pushing Tags.."
-  git push --tags
-}
-
 function main {
-  local gitTag
-  gitTag=$(determineGitTag)
-  publish "$gitTag"
+  determineGitTag
 }
 
 main
