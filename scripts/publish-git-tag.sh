@@ -9,6 +9,9 @@ DIR="$(cd "$(dirname "$0")" && pwd)/.."
 function publish {
   local version=$1
 
+  echo "Publishing the branch.."
+  git push
+
   echo "Tagging as '$version'.."
   git tag "$version"
 
@@ -16,17 +19,14 @@ function publish {
   git push --tags
 }
 
-function updateSdkReferenceThenPublish {
+function updateSdkReferenceAndCommitChanges {
   local directory=$1
   local tag=$2
 
   cd "${directory}"
 
-  echo "Checking out a working branch from 'sdk/$tag'.."
-  git checkout -b "$directory/$tag" "sdk/$tag"
-
   echo "Updating the dependency on 'github.com/hashicorp/go-azure-sdk/sdk'.."
-  go get "github.com/hashicorp/go-azure-sdk/sdk@$sdkTag"
+  go get "github.com/hashicorp/go-azure-sdk/sdk@$tag"
 
   echo "Running 'go mod tidy'.."
   go mod tidy
@@ -38,7 +38,7 @@ function updateSdkReferenceThenPublish {
   git add --all
 
   echo "Committing the changes.."
-  git commit -m "$directory: updating to '$sdkTag' of 'github.com/hashicorp/go-azure-sdk/sdk'"
+  git commit -m "$directory: updating to '$tag' of 'github.com/hashicorp/go-azure-sdk/sdk'"
 
   cd "${DIR}"
 }
@@ -50,15 +50,20 @@ function main {
   git config --global user.name "hc-github-team-tf-azure"
   git config --global user.email '<>'
 
-  echo "Tagging the 'sdk' module.."
+  local microsoftGraphTag="microsoft-graph/$version"
+  local resourceManagerTag="resource-manager/$version"
   local sdkTag="sdk/$version"
+
+  echo "Releasing the 'sdk' module.."
   publish "$version"
 
-  echo "Tagging the 'microsoft-graph' module.."
-  updateSdkReferenceThenPublish "microsoft-graph" "$version"
+  echo "Releasing the 'microsoft-graph' module.."
+  updateSdkReferenceAndCommitChanges "microsoft-graph" "$version"
+  publish "$microsoftGraphTag"
 
-  echo "Tagging the 'resource-manager' module.."
-  updateSdkReferenceThenPublish "resource-manager" "$version"
+  echo "Releasing the 'resource-manager' module.."
+  updateSdkReferenceAndCommitChanges "resource-manager" "$version"
+  publish "$resourceManagerTag"
 }
 
 main "$1"
