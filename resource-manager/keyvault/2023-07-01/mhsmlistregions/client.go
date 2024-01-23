@@ -1,18 +1,26 @@
 package mhsmlistregions
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MHSMListRegionsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewMHSMListRegionsClientWithBaseURI(endpoint string) MHSMListRegionsClient {
-	return MHSMListRegionsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewMHSMListRegionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMListRegionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mhsmlistregions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MHSMListRegionsClient: %+v", err)
 	}
+
+	return &MHSMListRegionsClient{
+		Client: client,
+	}, nil
 }
