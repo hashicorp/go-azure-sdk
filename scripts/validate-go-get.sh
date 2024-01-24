@@ -20,7 +20,9 @@ func main() {
 ' > main.go
 echo "module github.com/some/fake-repo
 
-replace github.com/hashicorp/go-azure-sdk => ../../
+replace github.com/hashicorp/go-azure-sdk/microsoft-graph => ../../
+replace github.com/hashicorp/go-azure-sdk/resource-manager => ../../
+replace github.com/hashicorp/go-azure-sdk/sdk => ../../
 
 go 1.21
   " > go.mod
