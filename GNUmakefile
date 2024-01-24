@@ -1,7 +1,7 @@
 default: test
 
 acctest: fmt
-	ACCTEST=1 go test -count=1 -race -v ./sdk/... -run '^TestAcc'
+	cd ./sdk/ && ACCTEST=1 go test -count=1 -race -v ./... -run '^TestAcc' && cd ../
 
 fmt: tools
 	@echo "==> Fixing source code with gofmt..."
