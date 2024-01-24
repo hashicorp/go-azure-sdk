@@ -20,7 +20,7 @@ prepare:
 
 test: fmt
 	cd ./sdk/ && go test -short -v ./... && cd ../
-	#cd ./resource-manager/ && go test -v ./... && cd ../
+	cd ./resource-manager/ && go test -v ./... && cd ../
 
 tools:
 	@echo "==> installing required tooling..."
