@@ -46,11 +46,16 @@ function updateSdkReferenceAndCommitChanges {
 function main {
   local version=$1
 
+  local microsoftGraphTag="microsoft-graph/$version"
   local resourceManagerTag="resource-manager/$version"
   local sdkTag="sdk/$version"
 
   echo "Releasing the Base Layer.."
   publish "$sdkTag"
+
+  echo "Releasing the Microsoft Graph SDK.."
+  updateSdkReferenceAndCommitChanges "microsoft-graph" "$version"
+  publish "$microsoftGraphTag"
 
   echo "Releasing the Resource Manager SDK.."
   updateSdkReferenceAndCommitChanges "resource-manager" "$version"

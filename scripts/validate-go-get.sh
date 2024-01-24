@@ -9,6 +9,7 @@ mkdir -p ./tmp/go-get
 cd ./tmp/go-get
 echo 'package main
 
+import _ "github.com/hashicorp/go-azure-sdk/microsoft-graph/applications"
 import _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
 import _ "github.com/hashicorp/go-azure-sdk/sdk/environments"
 
@@ -17,6 +18,7 @@ func main() {
 ' > main.go
 echo "module github.com/some/fake-repo
 
+replace github.com/hashicorp/go-azure-sdk/microsoft-graph => ../../microsoft-graph
 replace github.com/hashicorp/go-azure-sdk/resource-manager => ../../resource-manager
 replace github.com/hashicorp/go-azure-sdk/sdk => ../../sdk
 
@@ -25,6 +27,9 @@ go 1.21
 
 # Update the Base Layer
 go get github.com/hashicorp/go-azure-sdk/sdk@latest
+
+# Update the Microsoft Graph SDK
+go get github.com/hashicorp/go-azure-sdk/microsoft-graph@latest
 
 # Update the Resource Manager SDK
 go get github.com/hashicorp/go-azure-sdk/resource-manager@latest
