@@ -4,6 +4,8 @@
 
 set -e
 
+DIR="$(cd "$(dirname "$0")" && pwd)/.."
+
 function publish {
   local version=$1
 
@@ -17,7 +19,10 @@ function publish {
 function main {
   local version=$1
 
-  publish "$version"
+  local sdkTag="sdk/$version"
+
+  echo "Releasing the Base Layer.."
+  publish "$sdkTag"
 }
 
 main "$1"
