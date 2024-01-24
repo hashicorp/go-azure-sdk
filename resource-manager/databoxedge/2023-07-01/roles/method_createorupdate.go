@@ -2,7 +2,6 @@ package roles
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -52,16 +51,6 @@ func (c RolesClient) CreateOrUpdate(ctx context.Context, id RoleId, input Role) 
 	if err != nil {
 		return
 	}
-
-	var respObj json.RawMessage
-	if err = resp.Unmarshal(&respObj); err != nil {
-		return
-	}
-	model, err := unmarshalRoleImplementation(respObj)
-	if err != nil {
-		return
-	}
-	result.Model = &model
 
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {

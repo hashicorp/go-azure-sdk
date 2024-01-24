@@ -52,10 +52,6 @@ func (c NetworkcloudsClient) RacksUpdate(ctx context.Context, id RackId, input R
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

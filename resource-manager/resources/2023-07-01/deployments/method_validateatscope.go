@@ -52,10 +52,6 @@ func (c DeploymentsClient) ValidateAtScope(ctx context.Context, id ScopedDeploym
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

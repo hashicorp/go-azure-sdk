@@ -52,10 +52,6 @@ func (c ReplicationJobsClient) Export(ctx context.Context, id VaultId, input Job
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

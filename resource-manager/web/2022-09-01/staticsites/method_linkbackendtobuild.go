@@ -51,10 +51,6 @@ func (c StaticSitesClient) LinkBackendToBuild(ctx context.Context, id BuildLinke
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

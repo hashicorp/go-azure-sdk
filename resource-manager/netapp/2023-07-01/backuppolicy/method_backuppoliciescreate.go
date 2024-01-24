@@ -53,10 +53,6 @@ func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupP
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return
