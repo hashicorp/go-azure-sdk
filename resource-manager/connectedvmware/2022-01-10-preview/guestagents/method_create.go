@@ -52,10 +52,6 @@ func (c GuestAgentsClient) Create(ctx context.Context, id GuestAgentId, input Gu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

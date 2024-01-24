@@ -52,10 +52,6 @@ func (c TenantConfigurationClient) Save(ctx context.Context, id ServiceId, input
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

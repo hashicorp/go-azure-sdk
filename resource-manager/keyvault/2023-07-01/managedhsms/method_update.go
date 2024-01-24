@@ -52,10 +52,6 @@ func (c ManagedHsmsClient) Update(ctx context.Context, id ManagedHSMId, input Ma
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

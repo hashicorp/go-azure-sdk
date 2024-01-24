@@ -54,15 +54,6 @@ func (c AppServiceEnvironmentsClient) Suspend(ctx context.Context, id commonids.
 		return
 	}
 
-	var values struct {
-		Values *[]Site `json:"value"`
-	}
-	if err = resp.Unmarshal(&values); err != nil {
-		return
-	}
-
-	result.Model = values.Values
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

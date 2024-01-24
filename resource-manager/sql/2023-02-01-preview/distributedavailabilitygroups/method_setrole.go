@@ -52,10 +52,6 @@ func (c DistributedAvailabilityGroupsClient) SetRole(ctx context.Context, id Dis
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return

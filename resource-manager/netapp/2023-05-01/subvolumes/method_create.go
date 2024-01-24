@@ -53,10 +53,6 @@ func (c SubVolumesClient) Create(ctx context.Context, id SubVolumeId, input Subv
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
-		return
-	}
-
 	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
 	if err != nil {
 		return
