@@ -25,6 +25,10 @@ function updateSdkReferenceAndCommitChanges {
 
   cd "${directory}"
 
+  echo "Setting the committer information.."
+  git config user.name "hc-github-team-tf-azure"
+  git config user.email "<>"
+
   echo "Updating the dependency on 'github.com/hashicorp/go-azure-sdk/sdk'.."
   if [[ $(uname) == "Darwin" ]]; then
     echo "Using BSD sed"
