@@ -26,7 +26,12 @@ function updateSdkReferenceAndCommitChanges {
   cd "${directory}"
 
   echo "Updating the dependency on 'github.com/hashicorp/go-azure-sdk/sdk'.."
-  sed -i "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
+  if [[ $(uname) == "Darwin" ]]; then
+    echo "Using BSD sed"
+    sed -i "" "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
+  else
+    sed -i "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
+  fi
 
   echo "Running 'go mod tidy'.."
   go mod tidy
