@@ -11,6 +11,7 @@ At this time this SDK uses both [the base-layer within this repository](./sdk) a
 This repository contains:
 
 * `./docs` - usage documentation.
+* `./micrsosoft-graph` - (WIP) the Microsoft Graph Services supported by this SDK. 
 * `./resource-manager` - the Resource Manager Services supported by this SDK.
 * `./sdk` - the base layer that's used in this repository.
 
