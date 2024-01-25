@@ -1,7 +1,7 @@
 default: test
 
 acctest: fmt
-	ACCTEST=1 go test -count=1 -race -v ./sdk/... -run '^TestAcc'
+	cd ./sdk/ && ACCTEST=1 go test -count=1 -race -v ./... -run '^TestAcc' && cd ../
 
 fmt: tools
 	@echo "==> Fixing source code with gofmt..."
@@ -19,8 +19,8 @@ prepare:
 	mkdir -p ./resource-manager/
 
 test: fmt
-	go test -v ./resource-manager/...
-	go test -short -v ./sdk/...
+	cd ./sdk/ && go test -short -v ./... && cd ../
+	#cd ./resource-manager/ && go test -v ./... && cd ../
 
 tools:
 	@echo "==> installing required tooling..."

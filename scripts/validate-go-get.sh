@@ -9,18 +9,20 @@ mkdir -p ./tmp/go-get
 cd ./tmp/go-get
 echo 'package main
 
-import _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
+import _ "github.com/hashicorp/go-azure-sdk/sdk/environments"
 
 func main() {
 }
 ' > main.go
 echo "module github.com/some/fake-repo
 
-replace github.com/hashicorp/go-azure-sdk => ../../
+replace github.com/hashicorp/go-azure-sdk/sdk => ../../sdk/
 
-go 1.18
-  " > go.mod
-go get github.com/hashicorp/go-azure-sdk@latest
+go 1.21
+" > go.mod
+
+# Update the base layer
+go get github.com/hashicorp/go-azure-sdk/sdk@latest
 
 if [[ ! $(go mod tidy) -eq 0 ]]; then
   echo "Go Mod Tidy failed"
