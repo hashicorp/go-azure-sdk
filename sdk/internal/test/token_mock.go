@@ -6,11 +6,12 @@ package test
 import (
 	"bytes"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io"
 	"net/http"
 	"net/url"
 	"regexp"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 const (

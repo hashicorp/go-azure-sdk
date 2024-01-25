@@ -5,9 +5,10 @@ package odata_test
 
 import (
 	"encoding/json"
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"reflect"
 	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
