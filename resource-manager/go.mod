@@ -2,13 +2,10 @@ module github.com/hashicorp/go-azure-sdk/resource-manager
 
 go 1.21
 
-# TODO: remove me once the base layer module is published
-replace github.com/hashicorp/go-azure-sdk/sdk => ../sdk
-
 require (
 	github.com/Azure/go-autorest/autorest v0.11.29
 	github.com/hashicorp/go-azure-helpers v0.66.1
-	github.com/hashicorp/go-azure-sdk/sdk v0.0.0-00010101000000-000000000000
+	github.com/hashicorp/go-azure-sdk/sdk v0.20240125.1111756
 )
 
 require (
