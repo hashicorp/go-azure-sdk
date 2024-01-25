@@ -26,7 +26,7 @@ function updateSdkReferenceAndCommitChanges {
   cd "${directory}"
 
   echo "Updating the dependency on 'github.com/hashicorp/go-azure-sdk/sdk'.."
-  go get "github.com/hashicorp/go-azure-sdk/sdk@$tag"
+  sed -i "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
 
   echo "Running 'go mod tidy'.."
   go mod tidy
