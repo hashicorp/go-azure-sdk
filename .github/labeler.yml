@@ -4,4 +4,6 @@
 release-once-merged:
 - changed-files:
   - any-glob-to-any-file:
+    - microsoft-graph/**/*
     - resource-manager/**/*
+    - sdk/**/*
