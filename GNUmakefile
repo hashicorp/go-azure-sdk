@@ -16,11 +16,12 @@ imports: tools
 prepare:
 	@echo "==> Preparing the repository to be updated.."
 	@echo "==> 1. Resource Manager - Removing all existing generated files"
-	rm -rf ./resource-manager/
+	find ./resource-manager/ -maxdepth 1 -mindepth 1 -type d -exec rm -rf '{}' \;
 	@echo "==> 2. Resource Manager - Re-creating the directory structure in preparation"
 	mkdir -p ./resource-manager/
+	# TODO: enable Microsoft Graph support prior to enabling generation of that SDK
 	#@echo "==> 3. Microsoft Graph - Removing all existing generated files"
-	#rm -rf ./microsoft-graph/
+	#find ./microsoft-graph/ -maxdepth 1 -mindepth 1 -type d -exec rm -rf '{}' \;
 	#@echo "==> 4. Microsoft Graph - Re-creating the directory structure in preparation"
 	#mkdir -p ./microsoft-graph/
 
