@@ -4,7 +4,8 @@ package v2022_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/application"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/applicationtype"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/applicationtypeversion"
@@ -14,6 +15,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/nodetype"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/service"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2022-01-01/services"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -28,44 +31,70 @@ type Client struct {
 	Services               *services.ServicesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	applicationClient := application.NewApplicationClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationClient.Client)
-
-	applicationTypeClient := applicationtype.NewApplicationTypeClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationTypeClient.Client)
-
-	applicationTypeVersionClient := applicationtypeversion.NewApplicationTypeVersionClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationTypeVersionClient.Client)
-
-	managedClusterClient := managedcluster.NewManagedClusterClientWithBaseURI(endpoint)
-	configureAuthFunc(&managedClusterClient.Client)
-
-	managedClusterVersionClient := managedclusterversion.NewManagedClusterVersionClientWithBaseURI(endpoint)
-	configureAuthFunc(&managedClusterVersionClient.Client)
-
-	managedVMSizesClient := managedvmsizes.NewManagedVMSizesClientWithBaseURI(endpoint)
-	configureAuthFunc(&managedVMSizesClient.Client)
-
-	nodeTypeClient := nodetype.NewNodeTypeClientWithBaseURI(endpoint)
-	configureAuthFunc(&nodeTypeClient.Client)
-
-	serviceClient := service.NewServiceClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceClient.Client)
-
-	servicesClient := services.NewServicesClientWithBaseURI(endpoint)
-	configureAuthFunc(&servicesClient.Client)
-
-	return Client{
-		Application:            &applicationClient,
-		ApplicationType:        &applicationTypeClient,
-		ApplicationTypeVersion: &applicationTypeVersionClient,
-		ManagedCluster:         &managedClusterClient,
-		ManagedClusterVersion:  &managedClusterVersionClient,
-		ManagedVMSizes:         &managedVMSizesClient,
-		NodeType:               &nodeTypeClient,
-		Service:                &serviceClient,
-		Services:               &servicesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	applicationClient, err := application.NewApplicationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Application client: %+v", err)
 	}
+	configureFunc(applicationClient.Client)
+
+	applicationTypeClient, err := applicationtype.NewApplicationTypeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ApplicationType client: %+v", err)
+	}
+	configureFunc(applicationTypeClient.Client)
+
+	applicationTypeVersionClient, err := applicationtypeversion.NewApplicationTypeVersionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ApplicationTypeVersion client: %+v", err)
+	}
+	configureFunc(applicationTypeVersionClient.Client)
+
+	managedClusterClient, err := managedcluster.NewManagedClusterClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagedCluster client: %+v", err)
+	}
+	configureFunc(managedClusterClient.Client)
+
+	managedClusterVersionClient, err := managedclusterversion.NewManagedClusterVersionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagedClusterVersion client: %+v", err)
+	}
+	configureFunc(managedClusterVersionClient.Client)
+
+	managedVMSizesClient, err := managedvmsizes.NewManagedVMSizesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagedVMSizes client: %+v", err)
+	}
+	configureFunc(managedVMSizesClient.Client)
+
+	nodeTypeClient, err := nodetype.NewNodeTypeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building NodeType client: %+v", err)
+	}
+	configureFunc(nodeTypeClient.Client)
+
+	serviceClient, err := service.NewServiceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Service client: %+v", err)
+	}
+	configureFunc(serviceClient.Client)
+
+	servicesClient, err := services.NewServicesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Services client: %+v", err)
+	}
+	configureFunc(servicesClient.Client)
+
+	return &Client{
+		Application:            applicationClient,
+		ApplicationType:        applicationTypeClient,
+		ApplicationTypeVersion: applicationTypeVersionClient,
+		ManagedCluster:         managedClusterClient,
+		ManagedClusterVersion:  managedClusterVersionClient,
+		ManagedVMSizes:         managedVMSizesClient,
+		NodeType:               nodeTypeClient,
+		Service:                serviceClient,
+		Services:               servicesClient,
+	}, nil
 }

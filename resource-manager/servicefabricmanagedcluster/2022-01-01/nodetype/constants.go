@@ -1,6 +1,10 @@
 package nodetype
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAccess() []string {
 		string(AccessAllow),
 		string(AccessDeny),
 	}
+}
+
+func (s *Access) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAccess(input string) (*Access, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForDirection() []string {
 		string(DirectionInbound),
 		string(DirectionOutbound),
 	}
+}
+
+func (s *Direction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDirection(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDirection(input string) (*Direction, error) {
@@ -77,6 +107,19 @@ func PossibleValuesForDiskType() []string {
 	}
 }
 
+func (s *DiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDiskType(input string) (*DiskType, error) {
 	vals := map[string]DiskType{
 		"premium_lrs":     DiskTypePremiumLRS,
@@ -104,6 +147,19 @@ func PossibleValuesForIPAddressType() []string {
 		string(IPAddressTypeIPvFour),
 		string(IPAddressTypeIPvSix),
 	}
+}
+
+func (s *IPAddressType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIPAddressType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIPAddressType(input string) (*IPAddressType, error) {
@@ -150,6 +206,19 @@ func PossibleValuesForManagedResourceProvisioningState() []string {
 	}
 }
 
+func (s *ManagedResourceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedResourceProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedResourceProvisioningState(input string) (*ManagedResourceProvisioningState, error) {
 	vals := map[string]ManagedResourceProvisioningState{
 		"canceled":  ManagedResourceProvisioningStateCanceled,
@@ -186,6 +255,19 @@ func PossibleValuesForNodeTypeSkuScaleType() []string {
 		string(NodeTypeSkuScaleTypeManual),
 		string(NodeTypeSkuScaleTypeNone),
 	}
+}
+
+func (s *NodeTypeSkuScaleType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNodeTypeSkuScaleType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNodeTypeSkuScaleType(input string) (*NodeTypeSkuScaleType, error) {
@@ -225,6 +307,19 @@ func PossibleValuesForNsgProtocol() []string {
 		string(NsgProtocolTcp),
 		string(NsgProtocolUdp),
 	}
+}
+
+func (s *NsgProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNsgProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNsgProtocol(input string) (*NsgProtocol, error) {
