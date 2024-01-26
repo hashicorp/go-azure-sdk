@@ -1,6 +1,10 @@
 package services
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForMoveCost() []string {
 		string(MoveCostMedium),
 		string(MoveCostZero),
 	}
+}
+
+func (s *MoveCost) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMoveCost(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMoveCost(input string) (*MoveCost, error) {
@@ -55,6 +72,19 @@ func PossibleValuesForPartitionScheme() []string {
 	}
 }
 
+func (s *PartitionScheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePartitionScheme(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePartitionScheme(input string) (*PartitionScheme, error) {
 	vals := map[string]PartitionScheme{
 		"named":             PartitionSchemeNamed,
@@ -84,6 +114,19 @@ func PossibleValuesForServiceCorrelationScheme() []string {
 	}
 }
 
+func (s *ServiceCorrelationScheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceCorrelationScheme(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServiceCorrelationScheme(input string) (*ServiceCorrelationScheme, error) {
 	vals := map[string]ServiceCorrelationScheme{
 		"alignedaffinity":    ServiceCorrelationSchemeAlignedAffinity,
@@ -110,6 +153,19 @@ func PossibleValuesForServiceKind() []string {
 		string(ServiceKindStateful),
 		string(ServiceKindStateless),
 	}
+}
+
+func (s *ServiceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServiceKind(input string) (*ServiceKind, error) {
@@ -144,6 +200,19 @@ func PossibleValuesForServiceLoadMetricWeight() []string {
 	}
 }
 
+func (s *ServiceLoadMetricWeight) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceLoadMetricWeight(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServiceLoadMetricWeight(input string) (*ServiceLoadMetricWeight, error) {
 	vals := map[string]ServiceLoadMetricWeight{
 		"high":   ServiceLoadMetricWeightHigh,
@@ -172,6 +241,19 @@ func PossibleValuesForServicePackageActivationMode() []string {
 		string(ServicePackageActivationModeExclusiveProcess),
 		string(ServicePackageActivationModeSharedProcess),
 	}
+}
+
+func (s *ServicePackageActivationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServicePackageActivationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServicePackageActivationMode(input string) (*ServicePackageActivationMode, error) {
@@ -208,6 +290,19 @@ func PossibleValuesForServicePlacementPolicyType() []string {
 	}
 }
 
+func (s *ServicePlacementPolicyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServicePlacementPolicyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServicePlacementPolicyType(input string) (*ServicePlacementPolicyType, error) {
 	vals := map[string]ServicePlacementPolicyType{
 		"invaliddomain":              ServicePlacementPolicyTypeInvalidDomain,
@@ -239,6 +334,19 @@ func PossibleValuesForServiceScalingMechanismKind() []string {
 	}
 }
 
+func (s *ServiceScalingMechanismKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceScalingMechanismKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServiceScalingMechanismKind(input string) (*ServiceScalingMechanismKind, error) {
 	vals := map[string]ServiceScalingMechanismKind{
 		"addremoveincrementalnamedpartition": ServiceScalingMechanismKindAddRemoveIncrementalNamedPartition,
@@ -265,6 +373,19 @@ func PossibleValuesForServiceScalingTriggerKind() []string {
 		string(ServiceScalingTriggerKindAveragePartitionLoad),
 		string(ServiceScalingTriggerKindAverageServiceLoad),
 	}
+}
+
+func (s *ServiceScalingTriggerKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceScalingTriggerKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServiceScalingTriggerKind(input string) (*ServiceScalingTriggerKind, error) {
