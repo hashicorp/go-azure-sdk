@@ -16,12 +16,12 @@ import (
 type ListByClusterOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]RuntimeScriptActionDetail
+	Model        *[]RuntimeScriptAction
 }
 
 type ListByClusterCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []RuntimeScriptActionDetail
+	Items              []RuntimeScriptAction
 }
 
 // ListByCluster ...
@@ -51,7 +51,7 @@ func (c ScriptExecutionHistoryClient) ListByCluster(ctx context.Context, id comm
 	}
 
 	var values struct {
-		Values *[]RuntimeScriptActionDetail `json:"value"`
+		Values *[]RuntimeScriptAction `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -64,12 +64,12 @@ func (c ScriptExecutionHistoryClient) ListByCluster(ctx context.Context, id comm
 
 // ListByClusterComplete retrieves all the results into a single object
 func (c ScriptExecutionHistoryClient) ListByClusterComplete(ctx context.Context, id commonids.HDInsightClusterId) (ListByClusterCompleteResult, error) {
-	return c.ListByClusterCompleteMatchingPredicate(ctx, id, RuntimeScriptActionDetailOperationPredicate{})
+	return c.ListByClusterCompleteMatchingPredicate(ctx, id, RuntimeScriptActionOperationPredicate{})
 }
 
 // ListByClusterCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ScriptExecutionHistoryClient) ListByClusterCompleteMatchingPredicate(ctx context.Context, id commonids.HDInsightClusterId, predicate RuntimeScriptActionDetailOperationPredicate) (result ListByClusterCompleteResult, err error) {
-	items := make([]RuntimeScriptActionDetail, 0)
+func (c ScriptExecutionHistoryClient) ListByClusterCompleteMatchingPredicate(ctx context.Context, id commonids.HDInsightClusterId, predicate RuntimeScriptActionOperationPredicate) (result ListByClusterCompleteResult, err error) {
+	items := make([]RuntimeScriptAction, 0)
 
 	resp, err := c.ListByCluster(ctx, id)
 	if err != nil {

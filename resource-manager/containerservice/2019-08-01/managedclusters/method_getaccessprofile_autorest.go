@@ -14,7 +14,7 @@ import (
 
 type GetAccessProfileOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *ManagedClusterAccessProfile
+	Model        *Resource
 }
 
 // GetAccessProfile ...

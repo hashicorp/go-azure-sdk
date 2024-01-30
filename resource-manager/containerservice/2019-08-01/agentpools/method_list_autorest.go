@@ -16,14 +16,14 @@ import (
 
 type ListOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *[]AgentPool
+	Model        *[]SubResource
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListOperationResponse, error)
 }
 
 type ListCompleteResult struct {
-	Items []AgentPool
+	Items []SubResource
 }
 
 func (r ListOperationResponse) HasMore() bool {
@@ -104,8 +104,8 @@ func (c AgentPoolsClient) preparerForListWithNextLink(ctx context.Context, nextL
 // closes the http.Response Body.
 func (c AgentPoolsClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
-		Values   []AgentPool `json:"value"`
-		NextLink *string     `json:"nextLink"`
+		Values   []SubResource `json:"value"`
+		NextLink *string       `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -144,12 +144,12 @@ func (c AgentPoolsClient) responderForList(resp *http.Response) (result ListOper
 
 // ListComplete retrieves all of the results into a single object
 func (c AgentPoolsClient) ListComplete(ctx context.Context, id commonids.KubernetesClusterId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, AgentPoolOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, SubResourceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c AgentPoolsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesClusterId, predicate AgentPoolOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]AgentPool, 0)
+func (c AgentPoolsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesClusterId, predicate SubResourceOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]SubResource, 0)
 
 	page, err := c.List(ctx, id)
 	if err != nil {

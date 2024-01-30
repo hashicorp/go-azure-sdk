@@ -3,13 +3,13 @@ package agentpools
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type AgentPoolOperationPredicate struct {
+type SubResourceOperationPredicate struct {
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p AgentPoolOperationPredicate) Matches(input AgentPool) bool {
+func (p SubResourceOperationPredicate) Matches(input SubResource) bool {
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false

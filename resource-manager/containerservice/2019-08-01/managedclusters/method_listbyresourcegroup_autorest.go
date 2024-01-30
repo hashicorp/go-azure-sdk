@@ -16,14 +16,14 @@ import (
 
 type ListByResourceGroupOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *[]ManagedCluster
+	Model        *[]Resource
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListByResourceGroupOperationResponse, error)
 }
 
 type ListByResourceGroupCompleteResult struct {
-	Items []ManagedCluster
+	Items []Resource
 }
 
 func (r ListByResourceGroupOperationResponse) HasMore() bool {
@@ -104,8 +104,8 @@ func (c ManagedClustersClient) preparerForListByResourceGroupWithNextLink(ctx co
 // closes the http.Response Body.
 func (c ManagedClustersClient) responderForListByResourceGroup(resp *http.Response) (result ListByResourceGroupOperationResponse, err error) {
 	type page struct {
-		Values   []ManagedCluster `json:"value"`
-		NextLink *string          `json:"nextLink"`
+		Values   []Resource `json:"value"`
+		NextLink *string    `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -144,12 +144,12 @@ func (c ManagedClustersClient) responderForListByResourceGroup(resp *http.Respon
 
 // ListByResourceGroupComplete retrieves all of the results into a single object
 func (c ManagedClustersClient) ListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (ListByResourceGroupCompleteResult, error) {
-	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, ManagedClusterOperationPredicate{})
+	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, ResourceOperationPredicate{})
 }
 
 // ListByResourceGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ManagedClustersClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate ManagedClusterOperationPredicate) (resp ListByResourceGroupCompleteResult, err error) {
-	items := make([]ManagedCluster, 0)
+func (c ManagedClustersClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate ResourceOperationPredicate) (resp ListByResourceGroupCompleteResult, err error) {
+	items := make([]Resource, 0)
 
 	page, err := c.ListByResourceGroup(ctx, id)
 	if err != nil {
