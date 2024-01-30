@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/resourcegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/resources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/tags"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -19,6 +20,7 @@ type Client struct {
 	Providers      *providers.ProvidersClient
 	ResourceGroups *resourcegroups.ResourceGroupsClient
 	Resources      *resources.ResourcesClient
+	Tags           *tags.TagsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -46,10 +48,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(resourcesClient.Client)
 
+	tagsClient, err := tags.NewTagsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Tags client: %+v", err)
+	}
+	configureFunc(tagsClient.Client)
+
 	return &Client{
 		Deployments:    deploymentsClient,
 		Providers:      providersClient,
 		ResourceGroups: resourceGroupsClient,
 		Resources:      resourcesClient,
+		Tags:           tagsClient,
 	}, nil
 }
