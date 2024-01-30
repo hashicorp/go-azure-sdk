@@ -14,7 +14,7 @@ import (
 type ScriptActionsGetExecutionDetailOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *RuntimeScriptActionDetail
+	Model        *RuntimeScriptAction
 }
 
 // ScriptActionsGetExecutionDetail ...

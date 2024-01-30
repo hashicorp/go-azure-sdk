@@ -17,11 +17,11 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
-	Model        *ManagedCluster
+	Model        *Resource
 }
 
 // CreateOrUpdate ...
-func (c ManagedClustersClient) CreateOrUpdate(ctx context.Context, id commonids.KubernetesClusterId, input ManagedCluster) (result CreateOrUpdateOperationResponse, err error) {
+func (c ManagedClustersClient) CreateOrUpdate(ctx context.Context, id commonids.KubernetesClusterId, input Resource) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managedclusters.ManagedClustersClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -38,7 +38,7 @@ func (c ManagedClustersClient) CreateOrUpdate(ctx context.Context, id commonids.
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ManagedClustersClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.KubernetesClusterId, input ManagedCluster) error {
+func (c ManagedClustersClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.KubernetesClusterId, input Resource) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -52,7 +52,7 @@ func (c ManagedClustersClient) CreateOrUpdateThenPoll(ctx context.Context, id co
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ManagedClustersClient) preparerForCreateOrUpdate(ctx context.Context, id commonids.KubernetesClusterId, input ManagedCluster) (*http.Request, error) {
+func (c ManagedClustersClient) preparerForCreateOrUpdate(ctx context.Context, id commonids.KubernetesClusterId, input Resource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -13,7 +13,7 @@ import (
 
 type GetOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *AgentPool
+	Model        *SubResource
 }
 
 // Get ...

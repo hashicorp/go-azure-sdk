@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "agentPoolValue")
 
-payload := agentpools.AgentPool{
+payload := agentpools.SubResource{
 	// ...
 }
 
