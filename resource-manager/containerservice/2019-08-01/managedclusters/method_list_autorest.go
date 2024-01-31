@@ -16,14 +16,14 @@ import (
 
 type ListOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *[]Resource
+	Model        *[]ManagedCluster
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListOperationResponse, error)
 }
 
 type ListCompleteResult struct {
-	Items []Resource
+	Items []ManagedCluster
 }
 
 func (r ListOperationResponse) HasMore() bool {
@@ -104,8 +104,8 @@ func (c ManagedClustersClient) preparerForListWithNextLink(ctx context.Context, 
 // closes the http.Response Body.
 func (c ManagedClustersClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
-		Values   []Resource `json:"value"`
-		NextLink *string    `json:"nextLink"`
+		Values   []ManagedCluster `json:"value"`
+		NextLink *string          `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -144,12 +144,12 @@ func (c ManagedClustersClient) responderForList(resp *http.Response) (result Lis
 
 // ListComplete retrieves all of the results into a single object
 func (c ManagedClustersClient) ListComplete(ctx context.Context, id commonids.SubscriptionId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, ResourceOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, ManagedClusterOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ManagedClustersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ResourceOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]Resource, 0)
+func (c ManagedClustersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ManagedClusterOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]ManagedCluster, 0)
 
 	page, err := c.List(ctx, id)
 	if err != nil {

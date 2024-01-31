@@ -3,14 +3,14 @@ package scriptactions
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type RuntimeScriptActionOperationPredicate struct {
+type RuntimeScriptActionDetailOperationPredicate struct {
 	ApplicationName *string
 	Name            *string
 	Parameters      *string
 	Uri             *string
 }
 
-func (p RuntimeScriptActionOperationPredicate) Matches(input RuntimeScriptAction) bool {
+func (p RuntimeScriptActionDetailOperationPredicate) Matches(input RuntimeScriptActionDetail) bool {
 
 	if p.ApplicationName != nil && (input.ApplicationName == nil || *p.ApplicationName != *input.ApplicationName) {
 		return false
