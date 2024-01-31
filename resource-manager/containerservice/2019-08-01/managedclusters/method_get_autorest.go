@@ -14,7 +14,7 @@ import (
 
 type GetOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *Resource
+	Model        *ManagedCluster
 }
 
 // Get ...

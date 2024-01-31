@@ -16,11 +16,11 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
-	Model        *SubResource
+	Model        *AgentPool
 }
 
 // CreateOrUpdate ...
-func (c AgentPoolsClient) CreateOrUpdate(ctx context.Context, id AgentPoolId, input SubResource) (result CreateOrUpdateOperationResponse, err error) {
+func (c AgentPoolsClient) CreateOrUpdate(ctx context.Context, id AgentPoolId, input AgentPool) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "agentpools.AgentPoolsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -37,7 +37,7 @@ func (c AgentPoolsClient) CreateOrUpdate(ctx context.Context, id AgentPoolId, in
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c AgentPoolsClient) CreateOrUpdateThenPoll(ctx context.Context, id AgentPoolId, input SubResource) error {
+func (c AgentPoolsClient) CreateOrUpdateThenPoll(ctx context.Context, id AgentPoolId, input AgentPool) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -51,7 +51,7 @@ func (c AgentPoolsClient) CreateOrUpdateThenPoll(ctx context.Context, id AgentPo
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c AgentPoolsClient) preparerForCreateOrUpdate(ctx context.Context, id AgentPoolId, input SubResource) (*http.Request, error) {
+func (c AgentPoolsClient) preparerForCreateOrUpdate(ctx context.Context, id AgentPoolId, input AgentPool) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
