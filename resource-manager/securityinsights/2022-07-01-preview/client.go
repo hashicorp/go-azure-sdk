@@ -20,6 +20,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/entities"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/entityqueries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/entityrelations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/entitytypes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/incidentalerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/incidentbookmarks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-07-01-preview/incidentcomments"
@@ -56,6 +57,7 @@ type Client struct {
 	Entities                       *entities.EntitiesClient
 	EntityQueries                  *entityqueries.EntityQueriesClient
 	EntityRelations                *entityrelations.EntityRelationsClient
+	EntityTypes                    *entitytypes.EntityTypesClient
 	IncidentAlerts                 *incidentalerts.IncidentAlertsClient
 	IncidentBookmarks              *incidentbookmarks.IncidentBookmarksClient
 	IncidentComments               *incidentcomments.IncidentCommentsClient
@@ -122,6 +124,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	entityRelationsClient := entityrelations.NewEntityRelationsClientWithBaseURI(endpoint)
 	configureAuthFunc(&entityRelationsClient.Client)
+
+	entityTypesClient := entitytypes.NewEntityTypesClientWithBaseURI(endpoint)
+	configureAuthFunc(&entityTypesClient.Client)
 
 	incidentAlertsClient := incidentalerts.NewIncidentAlertsClientWithBaseURI(endpoint)
 	configureAuthFunc(&incidentAlertsClient.Client)
@@ -193,6 +198,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		Entities:                       &entitiesClient,
 		EntityQueries:                  &entityQueriesClient,
 		EntityRelations:                &entityRelationsClient,
+		EntityTypes:                    &entityTypesClient,
 		IncidentAlerts:                 &incidentAlertsClient,
 		IncidentBookmarks:              &incidentBookmarksClient,
 		IncidentComments:               &incidentCommentsClient,

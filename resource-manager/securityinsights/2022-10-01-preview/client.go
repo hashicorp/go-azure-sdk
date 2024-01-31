@@ -20,6 +20,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entities"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityrelations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entitytypes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/fileimports"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentalerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentbookmarks"
@@ -57,6 +58,7 @@ type Client struct {
 	Entities                       *entities.EntitiesClient
 	EntityQueries                  *entityqueries.EntityQueriesClient
 	EntityRelations                *entityrelations.EntityRelationsClient
+	EntityTypes                    *entitytypes.EntityTypesClient
 	FileImports                    *fileimports.FileImportsClient
 	IncidentAlerts                 *incidentalerts.IncidentAlertsClient
 	IncidentBookmarks              *incidentbookmarks.IncidentBookmarksClient
@@ -124,6 +126,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	entityRelationsClient := entityrelations.NewEntityRelationsClientWithBaseURI(endpoint)
 	configureAuthFunc(&entityRelationsClient.Client)
+
+	entityTypesClient := entitytypes.NewEntityTypesClientWithBaseURI(endpoint)
+	configureAuthFunc(&entityTypesClient.Client)
 
 	fileImportsClient := fileimports.NewFileImportsClientWithBaseURI(endpoint)
 	configureAuthFunc(&fileImportsClient.Client)
@@ -198,6 +203,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		Entities:                       &entitiesClient,
 		EntityQueries:                  &entityQueriesClient,
 		EntityRelations:                &entityRelationsClient,
+		EntityTypes:                    &entityTypesClient,
 		FileImports:                    &fileImportsClient,
 		IncidentAlerts:                 &incidentAlertsClient,
 		IncidentBookmarks:              &incidentBookmarksClient,
