@@ -11,6 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/automationrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/bookmarks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/dataconnectors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/entitytypes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/incidentalerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/incidentbookmarks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/incidentcomments"
@@ -32,6 +33,7 @@ type Client struct {
 	AutomationRules             *automationrules.AutomationRulesClient
 	Bookmarks                   *bookmarks.BookmarksClient
 	DataConnectors              *dataconnectors.DataConnectorsClient
+	EntityTypes                 *entitytypes.EntityTypesClient
 	IncidentAlerts              *incidentalerts.IncidentAlertsClient
 	IncidentBookmarks           *incidentbookmarks.IncidentBookmarksClient
 	IncidentComments            *incidentcomments.IncidentCommentsClient
@@ -65,6 +67,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	dataConnectorsClient := dataconnectors.NewDataConnectorsClientWithBaseURI(endpoint)
 	configureAuthFunc(&dataConnectorsClient.Client)
+
+	entityTypesClient := entitytypes.NewEntityTypesClientWithBaseURI(endpoint)
+	configureAuthFunc(&entityTypesClient.Client)
 
 	incidentAlertsClient := incidentalerts.NewIncidentAlertsClientWithBaseURI(endpoint)
 	configureAuthFunc(&incidentAlertsClient.Client)
@@ -109,6 +114,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		AutomationRules:             &automationRulesClient,
 		Bookmarks:                   &bookmarksClient,
 		DataConnectors:              &dataConnectorsClient,
+		EntityTypes:                 &entityTypesClient,
 		IncidentAlerts:              &incidentAlertsClient,
 		IncidentBookmarks:           &incidentBookmarksClient,
 		IncidentComments:            &incidentCommentsClient,
