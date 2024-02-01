@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2023-07-01/networkclouds"
 ```
 
@@ -244,7 +245,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.BareMetalMachinesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.BareMetalMachinesListByResourceGroupComplete(ctx, id)
@@ -261,7 +262,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.BareMetalMachinesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.BareMetalMachinesListBySubscriptionComplete(ctx, id)
@@ -552,7 +553,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.CloudServicesNetworksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.CloudServicesNetworksListByResourceGroupComplete(ctx, id)
@@ -569,7 +570,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.CloudServicesNetworksListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.CloudServicesNetworksListBySubscriptionComplete(ctx, id)
@@ -648,7 +649,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ClusterManagersListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ClusterManagersListByResourceGroupComplete(ctx, id)
@@ -665,7 +666,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ClusterManagersListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ClusterManagersListBySubscriptionComplete(ctx, id)
@@ -765,7 +766,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ClustersListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ClustersListByResourceGroupComplete(ctx, id)
@@ -782,7 +783,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ClustersListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ClustersListBySubscriptionComplete(ctx, id)
@@ -957,7 +958,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.KubernetesClustersListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.KubernetesClustersListByResourceGroupComplete(ctx, id)
@@ -974,7 +975,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.KubernetesClustersListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.KubernetesClustersListBySubscriptionComplete(ctx, id)
@@ -1070,7 +1071,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.L2NetworksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.L2NetworksListByResourceGroupComplete(ctx, id)
@@ -1087,7 +1088,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.L2NetworksListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.L2NetworksListBySubscriptionComplete(ctx, id)
@@ -1170,7 +1171,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.L3NetworksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.L3NetworksListByResourceGroupComplete(ctx, id)
@@ -1187,7 +1188,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.L3NetworksListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.L3NetworksListBySubscriptionComplete(ctx, id)
@@ -1320,7 +1321,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.RackSkusListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.RackSkusListBySubscriptionComplete(ctx, id)
@@ -1382,7 +1383,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.RacksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.RacksListByResourceGroupComplete(ctx, id)
@@ -1399,7 +1400,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.RacksListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.RacksListBySubscriptionComplete(ctx, id)
@@ -1507,7 +1508,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.StorageAppliancesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.StorageAppliancesListByResourceGroupComplete(ctx, id)
@@ -1524,7 +1525,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.StorageAppliancesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.StorageAppliancesListBySubscriptionComplete(ctx, id)
@@ -1603,7 +1604,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.TrunkedNetworksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.TrunkedNetworksListByResourceGroupComplete(ctx, id)
@@ -1620,7 +1621,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.TrunkedNetworksListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.TrunkedNetworksListBySubscriptionComplete(ctx, id)
@@ -1703,7 +1704,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.VirtualMachinesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.VirtualMachinesListByResourceGroupComplete(ctx, id)
@@ -1720,7 +1721,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.VirtualMachinesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.VirtualMachinesListBySubscriptionComplete(ctx, id)
@@ -1852,7 +1853,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.VolumesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.VolumesListByResourceGroupComplete(ctx, id)
@@ -1869,7 +1870,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkclouds.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.VolumesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.VolumesListBySubscriptionComplete(ctx, id)

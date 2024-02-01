@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/jobs"
 ```
 
@@ -41,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jobs.NewVMwareSiteJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue", "jobValue")
+id := commonids.NewVMwareSiteJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue", "jobValue")
 
 read, err := client.GetJob(ctx, id)
 if err != nil {

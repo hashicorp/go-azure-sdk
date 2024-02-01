@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2022-09-01/attestations"
 ```
 
@@ -171,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.ListForResource(ctx, id, attestations.DefaultListForResourceOperationOptions())` can be used to do batched pagination
 items, err := client.ListForResourceComplete(ctx, id, attestations.DefaultListForResourceOperationOptions())
@@ -188,7 +189,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ListForResourceGroup(ctx, id, attestations.DefaultListForResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListForResourceGroupComplete(ctx, id, attestations.DefaultListForResourceGroupOperationOptions())
@@ -205,7 +206,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListForSubscription(ctx, id, attestations.DefaultListForSubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListForSubscriptionComplete(ctx, id, attestations.DefaultListForSubscriptionOperationOptions())

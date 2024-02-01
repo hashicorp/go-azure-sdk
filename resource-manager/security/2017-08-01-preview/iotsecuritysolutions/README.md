@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/iotsecuritysolutions"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := iotsecuritysolutions.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.IoTSecuritySolutionsList(ctx, id, iotsecuritysolutions.DefaultIoTSecuritySolutionsListOperationOptions())` can be used to do batched pagination
 items, err := client.IoTSecuritySolutionsListComplete(ctx, id, iotsecuritysolutions.DefaultIoTSecuritySolutionsListOperationOptions())
@@ -41,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := iotsecuritysolutions.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.IoTSecuritySolutionsResourceGroupList(ctx, id, iotsecuritysolutions.DefaultIoTSecuritySolutionsResourceGroupListOperationOptions())` can be used to do batched pagination
 items, err := client.IoTSecuritySolutionsResourceGroupListComplete(ctx, id, iotsecuritysolutions.DefaultIoTSecuritySolutionsResourceGroupListOperationOptions())

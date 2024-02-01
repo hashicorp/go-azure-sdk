@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/recommendations"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 read, err := client.DisableAllForHostingEnvironment(ctx, id, recommendations.DefaultDisableAllForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -40,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 read, err := client.DisableAllForWebApp(ctx, id)
 if err != nil {
@@ -136,7 +137,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.List(ctx, id, recommendations.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, recommendations.DefaultListOperationOptions())
@@ -153,7 +154,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 // alternatively `client.ListHistoryForHostingEnvironment(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())
@@ -170,7 +171,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListHistoryForWebApp(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForWebAppComplete(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())
@@ -187,7 +188,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 // alternatively `client.ListRecommendedRulesForHostingEnvironment(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())
@@ -204,7 +205,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListRecommendedRulesForWebApp(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForWebAppComplete(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())
@@ -221,7 +222,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ResetAllFilters(ctx, id)
 if err != nil {
@@ -237,7 +238,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 read, err := client.ResetAllFiltersForHostingEnvironment(ctx, id, recommendations.DefaultResetAllFiltersForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -253,7 +254,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 read, err := client.ResetAllFiltersForWebApp(ctx, id)
 if err != nil {

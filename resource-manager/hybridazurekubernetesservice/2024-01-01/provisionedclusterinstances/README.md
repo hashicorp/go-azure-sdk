@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/hybridazurekubernetesservice/2024-01-01/provisionedclusterinstances"
 ```
 
@@ -69,7 +70,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.AgentPoolListByProvisionedCluster(ctx, id)` can be used to do batched pagination
 items, err := client.AgentPoolListByProvisionedClusterComplete(ctx, id)
@@ -86,7 +87,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.DeleteKubernetesVersionsThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -98,7 +99,7 @@ if err := client.DeleteKubernetesVersionsThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.DeleteVMSkusThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -110,7 +111,7 @@ if err := client.DeleteVMSkusThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.GetKubernetesVersions(ctx, id)
 if err != nil {
@@ -126,7 +127,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.GetUpgradeProfile(ctx, id)
 if err != nil {
@@ -142,7 +143,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.GetVMSkus(ctx, id)
 if err != nil {
@@ -158,7 +159,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.HybridIdentityMetadataDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -170,7 +171,7 @@ if err := client.HybridIdentityMetadataDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.HybridIdentityMetadataGet(ctx, id)
 if err != nil {
@@ -186,7 +187,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.HybridIdentityMetadataListByCluster(ctx, id)` can be used to do batched pagination
 items, err := client.HybridIdentityMetadataListByClusterComplete(ctx, id)
@@ -203,7 +204,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := provisionedclusterinstances.HybridIdentityMetadata{
 	// ...
@@ -224,7 +225,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.KubernetesVersionsList(ctx, id)` can be used to do batched pagination
 items, err := client.KubernetesVersionsListComplete(ctx, id)
@@ -241,7 +242,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.ListAdminKubeconfigThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -253,7 +254,7 @@ if err := client.ListAdminKubeconfigThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.ListUserKubeconfigThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -265,7 +266,7 @@ if err := client.ListUserKubeconfigThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := provisionedclusterinstances.ProvisionedCluster{
 	// ...
@@ -282,7 +283,7 @@ if err := client.ProvisionedClusterInstancesCreateOrUpdateThenPoll(ctx, id, payl
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.ProvisionedClusterInstancesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -294,7 +295,7 @@ if err := client.ProvisionedClusterInstancesDeleteThenPoll(ctx, id); err != nil 
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.ProvisionedClusterInstancesGet(ctx, id)
 if err != nil {
@@ -310,7 +311,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.ProvisionedClusterInstancesList(ctx, id)` can be used to do batched pagination
 items, err := client.ProvisionedClusterInstancesListComplete(ctx, id)
@@ -327,7 +328,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := provisionedclusterinstances.KubernetesVersionProfile{
 	// ...
@@ -344,7 +345,7 @@ if err := client.PutKubernetesVersionsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := provisionedclusterinstances.VMSkuProfile{
 	// ...
@@ -361,7 +362,7 @@ if err := client.PutVMSkusThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := provisionedclusterinstances.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.VMSkusList(ctx, id)` can be used to do batched pagination
 items, err := client.VMSkusListComplete(ctx, id)

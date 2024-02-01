@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/migrates"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := migrates.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.HyperVSitesList(ctx, id)` can be used to do batched pagination
 items, err := client.HyperVSitesListComplete(ctx, id)
@@ -41,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := migrates.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.HyperVSitesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.HyperVSitesListBySubscriptionComplete(ctx, id)
@@ -58,7 +59,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := migrates.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.VMwareSitesList(ctx, id)` can be used to do batched pagination
 items, err := client.VMwareSitesListComplete(ctx, id)
@@ -75,7 +76,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := migrates.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.VMwareSitesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.VMwareSitesListBySubscriptionComplete(ctx, id)

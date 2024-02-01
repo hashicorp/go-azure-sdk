@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-05-05-preview/smartgroups"
 ```
 
@@ -40,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := smartgroups.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.GetAll(ctx, id, smartgroups.DefaultGetAllOperationOptions())` can be used to do batched pagination
 items, err := client.GetAllComplete(ctx, id, smartgroups.DefaultGetAllOperationOptions())
