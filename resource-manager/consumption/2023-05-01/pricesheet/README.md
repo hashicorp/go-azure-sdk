@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2023-05-01/pricesheet"
 ```
 
@@ -36,7 +37,7 @@ if err := client.DownloadByBillingAccountPeriodThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := pricesheet.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.Get(ctx, id, pricesheet.DefaultGetOperationOptions())
 if err != nil {

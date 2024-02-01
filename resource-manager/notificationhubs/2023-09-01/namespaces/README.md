@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/namespaces"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := namespaces.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 payload := namespaces.CheckAvailabilityParameters{
 	// ...
@@ -163,7 +164,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespaces.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.List(ctx, id, namespaces.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, namespaces.DefaultListOperationOptions())
@@ -180,7 +181,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := namespaces.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListAll(ctx, id, namespaces.DefaultListAllOperationOptions())` can be used to do batched pagination
 items, err := client.ListAllComplete(ctx, id, namespaces.DefaultListAllOperationOptions())

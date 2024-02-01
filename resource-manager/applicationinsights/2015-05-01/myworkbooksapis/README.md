@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/myworkbooksapis"
 ```
 
@@ -77,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.MyWorkbooksListByResourceGroup(ctx, id, myworkbooksapis.DefaultMyWorkbooksListByResourceGroupOperationOptions())
 if err != nil {
@@ -93,7 +94,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.MyWorkbooksListBySubscription(ctx, id, myworkbooksapis.DefaultMyWorkbooksListBySubscriptionOperationOptions())
 if err != nil {

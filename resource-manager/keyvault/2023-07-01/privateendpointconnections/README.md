@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/privateendpointconnections"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
+id := commonids.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +37,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
+id := commonids.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -52,7 +53,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewKeyVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := commonids.NewKeyVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 // alternatively `client.ListByResource(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceComplete(ctx, id)
@@ -69,7 +70,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
+id := commonids.NewKeyVaultPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateEndpointConnectionValue")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...

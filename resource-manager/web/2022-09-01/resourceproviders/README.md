@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/resourceproviders"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 payload := resourceproviders.ResourceNameAvailabilityRequest{
 	// ...
@@ -77,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.GetSubscriptionDeploymentLocations(ctx, id)
 if err != nil {
@@ -93,7 +94,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListBillingMeters(ctx, id, resourceproviders.DefaultListBillingMetersOperationOptions())` can be used to do batched pagination
 items, err := client.ListBillingMetersComplete(ctx, id, resourceproviders.DefaultListBillingMetersOperationOptions())
@@ -110,7 +111,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListCustomHostNameSites(ctx, id, resourceproviders.DefaultListCustomHostNameSitesOperationOptions())` can be used to do batched pagination
 items, err := client.ListCustomHostNameSitesComplete(ctx, id, resourceproviders.DefaultListCustomHostNameSitesOperationOptions())
@@ -127,7 +128,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListGeoRegions(ctx, id, resourceproviders.DefaultListGeoRegionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListGeoRegionsComplete(ctx, id, resourceproviders.DefaultListGeoRegionsOperationOptions())
@@ -144,7 +145,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListPremierAddOnOffers(ctx, id)` can be used to do batched pagination
 items, err := client.ListPremierAddOnOffersComplete(ctx, id)
@@ -161,7 +162,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 payload := resourceproviders.NameIdentifier{
 	// ...
@@ -183,7 +184,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ListSkus(ctx, id)
 if err != nil {
@@ -216,7 +217,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourceproviders.CsmMoveResourceEnvelope{
 	// ...
@@ -278,7 +279,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourceproviders.ValidateRequest{
 	// ...
@@ -299,7 +300,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourceproviders.CsmMoveResourceEnvelope{
 	// ...
@@ -320,7 +321,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 payload := resourceproviders.VnetParameters{
 	// ...

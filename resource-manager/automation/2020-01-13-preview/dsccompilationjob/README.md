@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dsccompilationjob"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dsccompilationjob.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
 
 payload := dsccompilationjob.DscCompilationJobCreateParameters{
 	// ...
@@ -41,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dsccompilationjob.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -90,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dsccompilationjob.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
 
 read, err := client.StreamListByJob(ctx, id)
 if err != nil {

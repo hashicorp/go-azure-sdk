@@ -8,6 +8,7 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2023-11-01/aggregatedcost"
 ```
 
@@ -24,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := aggregatedcost.NewManagementGroupID("groupIdValue")
+id := commonids.NewManagementGroupID("groupIdValue")
 
 read, err := client.GetByManagementGroup(ctx, id, aggregatedcost.DefaultGetByManagementGroupOperationOptions())
 if err != nil {
