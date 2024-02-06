@@ -4,4 +4,4 @@ go 1.21
 
 require github.com/hashicorp/go-azure-sdk/sdk v0.20240201.1165154
 
-require github.com/hashicorp/go-azure-helpers v0.66.1 // indirect
+require github.com/hashicorp/go-azure-helpers v0.66.2 // indirect
