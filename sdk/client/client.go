@@ -289,6 +289,49 @@ func NewClient(baseUri string, serviceName, apiVersion string) *Client {
 	}
 }
 
+// SetAuthorizer configures the request authorizer for the client
+func (c *Client) SetAuthorizer(authorizer auth.Authorizer) {
+	c.Authorizer = authorizer
+}
+
+// SetUserAgent configures the user agent to be included in requests
+func (c *Client) SetUserAgent(userAgent string) {
+	c.UserAgent = userAgent
+}
+
+// GetUserAgent retrieves the configured user agent for the client
+func (c *Client) GetUserAgent() string {
+	return c.UserAgent
+}
+
+// AppendRequestMiddleware appends a request middleware function for the client
+func (c *Client) AppendRequestMiddleware(f RequestMiddleware) {
+	if c.RequestMiddlewares == nil {
+		m := make([]RequestMiddleware, 0)
+		c.RequestMiddlewares = &m
+	}
+	*c.RequestMiddlewares = append(*c.RequestMiddlewares, f)
+}
+
+// ClearRequestMiddlewares removes all request middleware functions for the client
+func (c *Client) ClearRequestMiddlewares() {
+	c.RequestMiddlewares = nil
+}
+
+// AppendResponseMiddleware appends a response middleware function for the client
+func (c *Client) AppendResponseMiddleware(f ResponseMiddleware) {
+	if c.ResponseMiddlewares == nil {
+		m := make([]ResponseMiddleware, 0)
+		c.ResponseMiddlewares = &m
+	}
+	*c.ResponseMiddlewares = append(*c.ResponseMiddlewares, f)
+}
+
+// ClearResponseMiddlewares removes all response middleware functions for the client
+func (c *Client) ClearResponseMiddlewares() {
+	c.ResponseMiddlewares = nil
+}
+
 // NewRequest configures a new *Request
 func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request, error) {
 	req := (&http.Request{}).WithContext(ctx)

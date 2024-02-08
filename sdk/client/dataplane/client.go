@@ -9,8 +9,10 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 )
 
+var _ client.BaseClient = &Client{}
+
 type Client struct {
-	Client *client.Client
+	*client.Client
 
 	// ApiVersion specifies the version of the API being used, which (by design) will be consistent across a client
 	// as we intentionally split out multiple API Versions into different clients, rather than using composite API

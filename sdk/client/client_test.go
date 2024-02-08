@@ -78,7 +78,7 @@ func TestAccClient(t *testing.T) {
 	c := &testClient{
 		Client: NewClient(*endpoint, "example", "2020-01-01"),
 	}
-	c.Authorizer = conn.Authorizer
+	c.SetAuthorizer(conn.Authorizer)
 
 	path := fmt.Sprintf("/v1.0/servicePrincipals/%s", conn.Claims.ObjectId)
 	reqOpts := RequestOptions{
@@ -128,7 +128,7 @@ func TestAccClient_Paged(t *testing.T) {
 	c := &testClient{
 		Client: NewClient(*endpoint, "example", "2020-01-01"),
 	}
-	c.Authorizer = conn.Authorizer
+	c.SetAuthorizer(conn.Authorizer)
 
 	path := "/v1.0/applications"
 	reqOpts := RequestOptions{
@@ -192,7 +192,7 @@ func TestAccClient_CustomPaged(t *testing.T) {
 	c := &testClient{
 		Client: NewClient(*endpoint, "example", "2020-01-01"),
 	}
-	c.Authorizer = conn.Authorizer
+	c.SetAuthorizer(conn.Authorizer)
 
 	path := "/v1.0/applications"
 	reqOpts := RequestOptions{

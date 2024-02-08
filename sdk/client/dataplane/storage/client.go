@@ -8,17 +8,18 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/dataplane"
 )
+
+var _ client.BaseClient = &BaseClient{}
 
 var storageDefaultRetryFunctions = []client.RequestRetryFunc{
 	// TODO: stuff n tings
 }
 
 type BaseClient struct {
-	Client *dataplane.Client
+	*dataplane.Client
 }
 
 func NewBaseClient(baseUri string, componentName, apiVersion string) (*BaseClient, error) {
@@ -77,8 +78,4 @@ func (c *BaseClient) Execute(ctx context.Context, req *client.Request) (*client.
 
 func (c *BaseClient) ExecutePaged(ctx context.Context, req *client.Request) (*client.Response, error) {
 	return c.Client.ExecutePaged(ctx, req)
-}
-
-func (c *BaseClient) WithAuthorizer(auth auth.Authorizer) {
-	c.Client.Client.Authorizer = auth
 }
