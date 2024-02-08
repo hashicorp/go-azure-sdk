@@ -4,13 +4,16 @@ package v2021_10_01_preview
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/functions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/inputs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/outputs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/streamingjobs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/subscriptions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/transformations"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -22,32 +25,49 @@ type Client struct {
 	Transformations *transformations.TransformationsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	functionsClient := functions.NewFunctionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&functionsClient.Client)
-
-	inputsClient := inputs.NewInputsClientWithBaseURI(endpoint)
-	configureAuthFunc(&inputsClient.Client)
-
-	outputsClient := outputs.NewOutputsClientWithBaseURI(endpoint)
-	configureAuthFunc(&outputsClient.Client)
-
-	streamingJobsClient := streamingjobs.NewStreamingJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&streamingJobsClient.Client)
-
-	subscriptionsClient := subscriptions.NewSubscriptionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&subscriptionsClient.Client)
-
-	transformationsClient := transformations.NewTransformationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&transformationsClient.Client)
-
-	return Client{
-		Functions:       &functionsClient,
-		Inputs:          &inputsClient,
-		Outputs:         &outputsClient,
-		StreamingJobs:   &streamingJobsClient,
-		Subscriptions:   &subscriptionsClient,
-		Transformations: &transformationsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	functionsClient, err := functions.NewFunctionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Functions client: %+v", err)
 	}
+	configureFunc(functionsClient.Client)
+
+	inputsClient, err := inputs.NewInputsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Inputs client: %+v", err)
+	}
+	configureFunc(inputsClient.Client)
+
+	outputsClient, err := outputs.NewOutputsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Outputs client: %+v", err)
+	}
+	configureFunc(outputsClient.Client)
+
+	streamingJobsClient, err := streamingjobs.NewStreamingJobsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building StreamingJobs client: %+v", err)
+	}
+	configureFunc(streamingJobsClient.Client)
+
+	subscriptionsClient, err := subscriptions.NewSubscriptionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Subscriptions client: %+v", err)
+	}
+	configureFunc(subscriptionsClient.Client)
+
+	transformationsClient, err := transformations.NewTransformationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Transformations client: %+v", err)
+	}
+	configureFunc(transformationsClient.Client)
+
+	return &Client{
+		Functions:       functionsClient,
+		Inputs:          inputsClient,
+		Outputs:         outputsClient,
+		StreamingJobs:   streamingJobsClient,
+		Subscriptions:   subscriptionsClient,
+		Transformations: transformationsClient,
+	}, nil
 }
