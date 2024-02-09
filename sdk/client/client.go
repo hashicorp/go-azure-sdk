@@ -215,6 +215,11 @@ func (r *Response) Unmarshal(model interface{}) error {
 		// Trim away a BOM if present
 		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 
+		// In some cases the respBody is empty, but not nil, so don't attempt to unmarshal this
+		if len(respBody) == 0 {
+			return nil
+		}
+
 		// Unmarshal into provided model
 		if err := xml.Unmarshal(respBody, model); err != nil {
 			return err
