@@ -1,6 +1,10 @@
 package containerappsauthconfigs
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForClientCredentialMethod() []string {
 	return []string{
 		string(ClientCredentialMethodClientSecretPost),
 	}
+}
+
+func (s *ClientCredentialMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClientCredentialMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseClientCredentialMethod(input string) (*ClientCredentialMethod, error) {
@@ -42,6 +59,19 @@ func PossibleValuesForCookieExpirationConvention() []string {
 		string(CookieExpirationConventionFixedTime),
 		string(CookieExpirationConventionIdentityProviderDerived),
 	}
+}
+
+func (s *CookieExpirationConvention) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCookieExpirationConvention(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCookieExpirationConvention(input string) (*CookieExpirationConvention, error) {
@@ -72,6 +102,19 @@ func PossibleValuesForForwardProxyConvention() []string {
 		string(ForwardProxyConventionNoProxy),
 		string(ForwardProxyConventionStandard),
 	}
+}
+
+func (s *ForwardProxyConvention) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseForwardProxyConvention(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseForwardProxyConvention(input string) (*ForwardProxyConvention, error) {
@@ -105,6 +148,19 @@ func PossibleValuesForUnauthenticatedClientActionV2() []string {
 		string(UnauthenticatedClientActionV2ReturnFourZeroOne),
 		string(UnauthenticatedClientActionV2ReturnFourZeroThree),
 	}
+}
+
+func (s *UnauthenticatedClientActionV2) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUnauthenticatedClientActionV2(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUnauthenticatedClientActionV2(input string) (*UnauthenticatedClientActionV2, error) {

@@ -1,6 +1,10 @@
 package connectedenvironments
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForCertificateProvisioningState() []string {
 		string(CertificateProvisioningStatePending),
 		string(CertificateProvisioningStateSucceeded),
 	}
+}
+
+func (s *CertificateProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCertificateProvisioningState(input string) (*CertificateProvisioningState, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForCheckNameAvailabilityReason() []string {
 		string(CheckNameAvailabilityReasonAlreadyExists),
 		string(CheckNameAvailabilityReasonInvalid),
 	}
+}
+
+func (s *CheckNameAvailabilityReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameAvailabilityReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCheckNameAvailabilityReason(input string) (*CheckNameAvailabilityReason, error) {
@@ -96,6 +126,19 @@ func PossibleValuesForConnectedEnvironmentProvisioningState() []string {
 	}
 }
 
+func (s *ConnectedEnvironmentProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectedEnvironmentProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseConnectedEnvironmentProvisioningState(input string) (*ConnectedEnvironmentProvisioningState, error) {
 	vals := map[string]ConnectedEnvironmentProvisioningState{
 		"canceled":                      ConnectedEnvironmentProvisioningStateCanceled,
@@ -126,6 +169,19 @@ func PossibleValuesForExtendedLocationTypes() []string {
 	return []string{
 		string(ExtendedLocationTypesCustomLocation),
 	}
+}
+
+func (s *ExtendedLocationTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExtendedLocationTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseExtendedLocationTypes(input string) (*ExtendedLocationTypes, error) {
