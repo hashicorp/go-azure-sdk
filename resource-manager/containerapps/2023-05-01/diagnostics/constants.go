@@ -1,6 +1,10 @@
 package diagnostics
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAction() []string {
 		string(ActionAllow),
 		string(ActionDeny),
 	}
+}
+
+func (s *Action) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAction(input string) (*Action, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForActiveRevisionsMode() []string {
 	}
 }
 
+func (s *ActiveRevisionsMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActiveRevisionsMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseActiveRevisionsMode(input string) (*ActiveRevisionsMode, error) {
 	vals := map[string]ActiveRevisionsMode{
 		"multiple": ActiveRevisionsModeMultiple,
@@ -73,6 +103,19 @@ func PossibleValuesForAffinity() []string {
 		string(AffinityNone),
 		string(AffinitySticky),
 	}
+}
+
+func (s *Affinity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAffinity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAffinity(input string) (*Affinity, error) {
@@ -103,6 +146,19 @@ func PossibleValuesForAppProtocol() []string {
 	}
 }
 
+func (s *AppProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAppProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAppProtocol(input string) (*AppProtocol, error) {
 	vals := map[string]AppProtocol{
 		"grpc": AppProtocolGrpc,
@@ -129,6 +185,19 @@ func PossibleValuesForBindingType() []string {
 		string(BindingTypeDisabled),
 		string(BindingTypeSniEnabled),
 	}
+}
+
+func (s *BindingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBindingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBindingType(input string) (*BindingType, error) {
@@ -163,6 +232,19 @@ func PossibleValuesForContainerAppProvisioningState() []string {
 		string(ContainerAppProvisioningStateInProgress),
 		string(ContainerAppProvisioningStateSucceeded),
 	}
+}
+
+func (s *ContainerAppProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseContainerAppProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseContainerAppProvisioningState(input string) (*ContainerAppProvisioningState, error) {
@@ -212,6 +294,19 @@ func PossibleValuesForEnvironmentProvisioningState() []string {
 	}
 }
 
+func (s *EnvironmentProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnvironmentProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEnvironmentProvisioningState(input string) (*EnvironmentProvisioningState, error) {
 	vals := map[string]EnvironmentProvisioningState{
 		"canceled":                      EnvironmentProvisioningStateCanceled,
@@ -246,6 +341,19 @@ func PossibleValuesForExtendedLocationTypes() []string {
 	}
 }
 
+func (s *ExtendedLocationTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExtendedLocationTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExtendedLocationTypes(input string) (*ExtendedLocationTypes, error) {
 	vals := map[string]ExtendedLocationTypes{
 		"customlocation": ExtendedLocationTypesCustomLocation,
@@ -273,6 +381,19 @@ func PossibleValuesForIngressClientCertificateMode() []string {
 		string(IngressClientCertificateModeIgnore),
 		string(IngressClientCertificateModeRequire),
 	}
+}
+
+func (s *IngressClientCertificateMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIngressClientCertificateMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIngressClientCertificateMode(input string) (*IngressClientCertificateMode, error) {
@@ -306,6 +427,19 @@ func PossibleValuesForIngressTransportMethod() []string {
 		string(IngressTransportMethodHTTPTwo),
 		string(IngressTransportMethodTcp),
 	}
+}
+
+func (s *IngressTransportMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIngressTransportMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIngressTransportMethod(input string) (*IngressTransportMethod, error) {
@@ -342,6 +476,19 @@ func PossibleValuesForLogLevel() []string {
 	}
 }
 
+func (s *LogLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLogLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLogLevel(input string) (*LogLevel, error) {
 	vals := map[string]LogLevel{
 		"debug": LogLevelDebug,
@@ -372,6 +519,19 @@ func PossibleValuesForRevisionHealthState() []string {
 		string(RevisionHealthStateNone),
 		string(RevisionHealthStateUnhealthy),
 	}
+}
+
+func (s *RevisionHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRevisionHealthState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRevisionHealthState(input string) (*RevisionHealthState, error) {
@@ -407,6 +567,19 @@ func PossibleValuesForRevisionProvisioningState() []string {
 		string(RevisionProvisioningStateProvisioned),
 		string(RevisionProvisioningStateProvisioning),
 	}
+}
+
+func (s *RevisionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRevisionProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRevisionProvisioningState(input string) (*RevisionProvisioningState, error) {
@@ -448,6 +621,19 @@ func PossibleValuesForRevisionRunningState() []string {
 	}
 }
 
+func (s *RevisionRunningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRevisionRunningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRevisionRunningState(input string) (*RevisionRunningState, error) {
 	vals := map[string]RevisionRunningState{
 		"degraded":   RevisionRunningStateDegraded,
@@ -480,6 +666,19 @@ func PossibleValuesForScheme() []string {
 	}
 }
 
+func (s *Scheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScheme(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScheme(input string) (*Scheme, error) {
 	vals := map[string]Scheme{
 		"http":  SchemeHTTP,
@@ -508,6 +707,19 @@ func PossibleValuesForStorageType() []string {
 		string(StorageTypeEmptyDir),
 		string(StorageTypeSecret),
 	}
+}
+
+func (s *StorageType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStorageType(input string) (*StorageType, error) {
@@ -539,6 +751,19 @@ func PossibleValuesForType() []string {
 		string(TypeReadiness),
 		string(TypeStartup),
 	}
+}
+
+func (s *Type) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseType(input string) (*Type, error) {
