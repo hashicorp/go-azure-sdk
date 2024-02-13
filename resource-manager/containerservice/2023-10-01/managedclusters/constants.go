@@ -1,6 +1,10 @@
 package managedclusters
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAgentPoolMode() []string {
 		string(AgentPoolModeSystem),
 		string(AgentPoolModeUser),
 	}
+}
+
+func (s *AgentPoolMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAgentPoolMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAgentPoolMode(input string) (*AgentPoolMode, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForAgentPoolType() []string {
 	}
 }
 
+func (s *AgentPoolType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAgentPoolType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAgentPoolType(input string) (*AgentPoolType, error) {
 	vals := map[string]AgentPoolType{
 		"availabilityset":         AgentPoolTypeAvailabilitySet,
@@ -75,6 +105,19 @@ func PossibleValuesForBackendPoolType() []string {
 	}
 }
 
+func (s *BackendPoolType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBackendPoolType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseBackendPoolType(input string) (*BackendPoolType, error) {
 	vals := map[string]BackendPoolType{
 		"nodeip":              BackendPoolTypeNodeIP,
@@ -101,6 +144,19 @@ func PossibleValuesForCode() []string {
 		string(CodeRunning),
 		string(CodeStopped),
 	}
+}
+
+func (s *Code) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCode(input string) (*Code, error) {
@@ -135,6 +191,19 @@ func PossibleValuesForExpander() []string {
 	}
 }
 
+func (s *Expander) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExpander(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExpander(input string) (*Expander, error) {
 	vals := map[string]Expander{
 		"least-waste": ExpanderLeastNegativewaste,
@@ -163,6 +232,19 @@ func PossibleValuesForFormat() []string {
 		string(FormatAzure),
 		string(FormatExec),
 	}
+}
+
+func (s *Format) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFormat(input string) (*Format, error) {
@@ -199,6 +281,19 @@ func PossibleValuesForGPUInstanceProfile() []string {
 	}
 }
 
+func (s *GPUInstanceProfile) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGPUInstanceProfile(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGPUInstanceProfile(input string) (*GPUInstanceProfile, error) {
 	vals := map[string]GPUInstanceProfile{
 		"mig4g": GPUInstanceProfileMIGFourg,
@@ -230,6 +325,19 @@ func PossibleValuesForIPFamily() []string {
 	}
 }
 
+func (s *IPFamily) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIPFamily(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIPFamily(input string) (*IPFamily, error) {
 	vals := map[string]IPFamily{
 		"ipv4": IPFamilyIPvFour,
@@ -256,6 +364,19 @@ func PossibleValuesForIstioIngressGatewayMode() []string {
 		string(IstioIngressGatewayModeExternal),
 		string(IstioIngressGatewayModeInternal),
 	}
+}
+
+func (s *IstioIngressGatewayMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIstioIngressGatewayMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIstioIngressGatewayMode(input string) (*IstioIngressGatewayMode, error) {
@@ -286,6 +407,19 @@ func PossibleValuesForKeyVaultNetworkAccessTypes() []string {
 	}
 }
 
+func (s *KeyVaultNetworkAccessTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKeyVaultNetworkAccessTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKeyVaultNetworkAccessTypes(input string) (*KeyVaultNetworkAccessTypes, error) {
 	vals := map[string]KeyVaultNetworkAccessTypes{
 		"private": KeyVaultNetworkAccessTypesPrivate,
@@ -312,6 +446,19 @@ func PossibleValuesForKubeletDiskType() []string {
 		string(KubeletDiskTypeOS),
 		string(KubeletDiskTypeTemporary),
 	}
+}
+
+func (s *KubeletDiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKubeletDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKubeletDiskType(input string) (*KubeletDiskType, error) {
@@ -342,6 +489,19 @@ func PossibleValuesForKubernetesSupportPlan() []string {
 	}
 }
 
+func (s *KubernetesSupportPlan) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKubernetesSupportPlan(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKubernetesSupportPlan(input string) (*KubernetesSupportPlan, error) {
 	vals := map[string]KubernetesSupportPlan{
 		"akslongtermsupport": KubernetesSupportPlanAKSLongTermSupport,
@@ -370,6 +530,19 @@ func PossibleValuesForLicenseType() []string {
 	}
 }
 
+func (s *LicenseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLicenseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLicenseType(input string) (*LicenseType, error) {
 	vals := map[string]LicenseType{
 		"none":           LicenseTypeNone,
@@ -396,6 +569,19 @@ func PossibleValuesForLoadBalancerSku() []string {
 		string(LoadBalancerSkuBasic),
 		string(LoadBalancerSkuStandard),
 	}
+}
+
+func (s *LoadBalancerSku) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLoadBalancerSku(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLoadBalancerSku(input string) (*LoadBalancerSku, error) {
@@ -434,6 +620,19 @@ func PossibleValuesForManagedClusterPodIdentityProvisioningState() []string {
 	}
 }
 
+func (s *ManagedClusterPodIdentityProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedClusterPodIdentityProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedClusterPodIdentityProvisioningState(input string) (*ManagedClusterPodIdentityProvisioningState, error) {
 	vals := map[string]ManagedClusterPodIdentityProvisioningState{
 		"assigned":  ManagedClusterPodIdentityProvisioningStateAssigned,
@@ -462,6 +661,19 @@ func PossibleValuesForManagedClusterSKUName() []string {
 	return []string{
 		string(ManagedClusterSKUNameBase),
 	}
+}
+
+func (s *ManagedClusterSKUName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedClusterSKUName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedClusterSKUName(input string) (*ManagedClusterSKUName, error) {
@@ -493,6 +705,19 @@ func PossibleValuesForManagedClusterSKUTier() []string {
 	}
 }
 
+func (s *ManagedClusterSKUTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedClusterSKUTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedClusterSKUTier(input string) (*ManagedClusterSKUTier, error) {
 	vals := map[string]ManagedClusterSKUTier{
 		"free":     ManagedClusterSKUTierFree,
@@ -522,6 +747,19 @@ func PossibleValuesForNetworkDataplane() []string {
 	}
 }
 
+func (s *NetworkDataplane) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkDataplane(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNetworkDataplane(input string) (*NetworkDataplane, error) {
 	vals := map[string]NetworkDataplane{
 		"azure":  NetworkDataplaneAzure,
@@ -548,6 +786,19 @@ func PossibleValuesForNetworkMode() []string {
 		string(NetworkModeBridge),
 		string(NetworkModeTransparent),
 	}
+}
+
+func (s *NetworkMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNetworkMode(input string) (*NetworkMode, error) {
@@ -580,6 +831,19 @@ func PossibleValuesForNetworkPlugin() []string {
 	}
 }
 
+func (s *NetworkPlugin) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkPlugin(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNetworkPlugin(input string) (*NetworkPlugin, error) {
 	vals := map[string]NetworkPlugin{
 		"azure":   NetworkPluginAzure,
@@ -605,6 +869,19 @@ func PossibleValuesForNetworkPluginMode() []string {
 	return []string{
 		string(NetworkPluginModeOverlay),
 	}
+}
+
+func (s *NetworkPluginMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkPluginMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNetworkPluginMode(input string) (*NetworkPluginMode, error) {
@@ -634,6 +911,19 @@ func PossibleValuesForNetworkPolicy() []string {
 		string(NetworkPolicyCalico),
 		string(NetworkPolicyCilium),
 	}
+}
+
+func (s *NetworkPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNetworkPolicy(input string) (*NetworkPolicy, error) {
@@ -667,6 +957,19 @@ func PossibleValuesForNodeOSUpgradeChannel() []string {
 	}
 }
 
+func (s *NodeOSUpgradeChannel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNodeOSUpgradeChannel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNodeOSUpgradeChannel(input string) (*NodeOSUpgradeChannel, error) {
 	vals := map[string]NodeOSUpgradeChannel{
 		"nodeimage": NodeOSUpgradeChannelNodeImage,
@@ -694,6 +997,19 @@ func PossibleValuesForOSDiskType() []string {
 		string(OSDiskTypeEphemeral),
 		string(OSDiskTypeManaged),
 	}
+}
+
+func (s *OSDiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOSDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOSDiskType(input string) (*OSDiskType, error) {
@@ -730,6 +1046,19 @@ func PossibleValuesForOSSKU() []string {
 	}
 }
 
+func (s *OSSKU) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOSSKU(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOSSKU(input string) (*OSSKU, error) {
 	vals := map[string]OSSKU{
 		"azurelinux":  OSSKUAzureLinux,
@@ -759,6 +1088,19 @@ func PossibleValuesForOSType() []string {
 		string(OSTypeLinux),
 		string(OSTypeWindows),
 	}
+}
+
+func (s *OSType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOSType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOSType(input string) (*OSType, error) {
@@ -793,6 +1135,19 @@ func PossibleValuesForOutboundType() []string {
 	}
 }
 
+func (s *OutboundType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOutboundType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOutboundType(input string) (*OutboundType, error) {
 	vals := map[string]OutboundType{
 		"loadbalancer":           OutboundTypeLoadBalancer,
@@ -823,6 +1178,19 @@ func PossibleValuesForProtocol() []string {
 	}
 }
 
+func (s *Protocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProtocol(input string) (*Protocol, error) {
 	vals := map[string]Protocol{
 		"tcp": ProtocolTCP,
@@ -849,6 +1217,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
+}
+
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
@@ -879,6 +1260,19 @@ func PossibleValuesForScaleDownMode() []string {
 	}
 }
 
+func (s *ScaleDownMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScaleDownMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScaleDownMode(input string) (*ScaleDownMode, error) {
 	vals := map[string]ScaleDownMode{
 		"deallocate": ScaleDownModeDeallocate,
@@ -905,6 +1299,19 @@ func PossibleValuesForScaleSetEvictionPolicy() []string {
 		string(ScaleSetEvictionPolicyDeallocate),
 		string(ScaleSetEvictionPolicyDelete),
 	}
+}
+
+func (s *ScaleSetEvictionPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScaleSetEvictionPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScaleSetEvictionPolicy(input string) (*ScaleSetEvictionPolicy, error) {
@@ -935,6 +1342,19 @@ func PossibleValuesForScaleSetPriority() []string {
 	}
 }
 
+func (s *ScaleSetPriority) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScaleSetPriority(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScaleSetPriority(input string) (*ScaleSetPriority, error) {
 	vals := map[string]ScaleSetPriority{
 		"regular": ScaleSetPriorityRegular,
@@ -961,6 +1381,19 @@ func PossibleValuesForServiceMeshMode() []string {
 		string(ServiceMeshModeDisabled),
 		string(ServiceMeshModeIstio),
 	}
+}
+
+func (s *ServiceMeshMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceMeshMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServiceMeshMode(input string) (*ServiceMeshMode, error) {
@@ -997,6 +1430,19 @@ func PossibleValuesForUpgradeChannel() []string {
 	}
 }
 
+func (s *UpgradeChannel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpgradeChannel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseUpgradeChannel(input string) (*UpgradeChannel, error) {
 	vals := map[string]UpgradeChannel{
 		"node-image": UpgradeChannelNodeNegativeimage,
@@ -1026,6 +1472,19 @@ func PossibleValuesForWorkloadRuntime() []string {
 		string(WorkloadRuntimeOCIContainer),
 		string(WorkloadRuntimeWasmWasi),
 	}
+}
+
+func (s *WorkloadRuntime) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadRuntime(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWorkloadRuntime(input string) (*WorkloadRuntime, error) {
