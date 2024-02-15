@@ -4,10 +4,13 @@ package v2022_02_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2022-02-01/availabilitygrouplisteners"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2022-02-01/sqlvirtualmachinegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2022-02-01/sqlvirtualmachines"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	SqlVirtualMachines         *sqlvirtualmachines.SqlVirtualMachinesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	availabilityGroupListenersClient := availabilitygrouplisteners.NewAvailabilityGroupListenersClientWithBaseURI(endpoint)
-	configureAuthFunc(&availabilityGroupListenersClient.Client)
-
-	sqlVirtualMachineGroupsClient := sqlvirtualmachinegroups.NewSqlVirtualMachineGroupsClientWithBaseURI(endpoint)
-	configureAuthFunc(&sqlVirtualMachineGroupsClient.Client)
-
-	sqlVirtualMachinesClient := sqlvirtualmachines.NewSqlVirtualMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sqlVirtualMachinesClient.Client)
-
-	return Client{
-		AvailabilityGroupListeners: &availabilityGroupListenersClient,
-		SqlVirtualMachineGroups:    &sqlVirtualMachineGroupsClient,
-		SqlVirtualMachines:         &sqlVirtualMachinesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	availabilityGroupListenersClient, err := availabilitygrouplisteners.NewAvailabilityGroupListenersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AvailabilityGroupListeners client: %+v", err)
 	}
+	configureFunc(availabilityGroupListenersClient.Client)
+
+	sqlVirtualMachineGroupsClient, err := sqlvirtualmachinegroups.NewSqlVirtualMachineGroupsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SqlVirtualMachineGroups client: %+v", err)
+	}
+	configureFunc(sqlVirtualMachineGroupsClient.Client)
+
+	sqlVirtualMachinesClient, err := sqlvirtualmachines.NewSqlVirtualMachinesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SqlVirtualMachines client: %+v", err)
+	}
+	configureFunc(sqlVirtualMachinesClient.Client)
+
+	return &Client{
+		AvailabilityGroupListeners: availabilityGroupListenersClient,
+		SqlVirtualMachineGroups:    sqlVirtualMachineGroupsClient,
+		SqlVirtualMachines:         sqlVirtualMachinesClient,
+	}, nil
 }
