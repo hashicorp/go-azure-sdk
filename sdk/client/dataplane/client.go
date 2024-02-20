@@ -4,8 +4,6 @@
 package dataplane
 
 import (
-	"context"
-
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 )
 
@@ -26,12 +24,4 @@ func NewDataPlaneClient(baseUri string, serviceName, apiVersion string) *Client 
 		ApiVersion: apiVersion,
 	}
 	return client
-}
-
-func (c *Client) Execute(ctx context.Context, req *client.Request) (*client.Response, error) {
-	return c.Client.Execute(ctx, req)
-}
-
-func (c *Client) ExecutePaged(ctx context.Context, req *client.Request) (*client.Response, error) {
-	return c.Client.ExecutePaged(ctx, req)
 }
