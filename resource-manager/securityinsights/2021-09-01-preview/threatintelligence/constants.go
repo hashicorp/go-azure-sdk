@@ -1,6 +1,10 @@
 package threatintelligence
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForThreatIntelligenceResourceKindEnum() []string {
 	return []string{
 		string(ThreatIntelligenceResourceKindEnumIndicator),
 	}
+}
+
+func (s *ThreatIntelligenceResourceKindEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseThreatIntelligenceResourceKindEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseThreatIntelligenceResourceKindEnum(input string) (*ThreatIntelligenceResourceKindEnum, error) {
@@ -44,6 +61,19 @@ func PossibleValuesForThreatIntelligenceSortingCriteriaEnum() []string {
 		string(ThreatIntelligenceSortingCriteriaEnumDescending),
 		string(ThreatIntelligenceSortingCriteriaEnumUnsorted),
 	}
+}
+
+func (s *ThreatIntelligenceSortingCriteriaEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseThreatIntelligenceSortingCriteriaEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseThreatIntelligenceSortingCriteriaEnum(input string) (*ThreatIntelligenceSortingCriteriaEnum, error) {

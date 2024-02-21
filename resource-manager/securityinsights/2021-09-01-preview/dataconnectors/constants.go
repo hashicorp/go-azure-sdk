@@ -1,6 +1,10 @@
 package dataconnectors
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForConnectivityType() []string {
 	return []string{
 		string(ConnectivityTypeIsConnectedQuery),
 	}
+}
+
+func (s *ConnectivityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectivityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectivityType(input string) (*ConnectivityType, error) {
@@ -86,6 +103,19 @@ func PossibleValuesForDataConnectorKind() []string {
 	}
 }
 
+func (s *DataConnectorKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataConnectorKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataConnectorKind(input string) (*DataConnectorKind, error) {
 	vals := map[string]DataConnectorKind{
 		"apipolling":                                DataConnectorKindAPIPolling,
@@ -129,6 +159,19 @@ func PossibleValuesForDataTypeState() []string {
 	}
 }
 
+func (s *DataTypeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataTypeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataTypeState(input string) (*DataTypeState, error) {
 	vals := map[string]DataTypeState{
 		"disabled": DataTypeStateDisabled,
@@ -157,6 +200,19 @@ func PossibleValuesForPermissionProviderScope() []string {
 		string(PermissionProviderScopeSubscription),
 		string(PermissionProviderScopeWorkspace),
 	}
+}
+
+func (s *PermissionProviderScope) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePermissionProviderScope(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePermissionProviderScope(input string) (*PermissionProviderScope, error) {
@@ -188,6 +244,19 @@ func PossibleValuesForPollingFrequency() []string {
 		string(PollingFrequencyOnceAMinute),
 		string(PollingFrequencyOnceAnHour),
 	}
+}
+
+func (s *PollingFrequency) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePollingFrequency(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePollingFrequency(input string) (*PollingFrequency, error) {
@@ -227,6 +296,19 @@ func PossibleValuesForProviderName() []string {
 	}
 }
 
+func (s *ProviderName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProviderName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProviderName(input string) (*ProviderName, error) {
 	vals := map[string]ProviderName{
 		"microsoft.authorization/policyassignments":            ProviderNameMicrosoftPointAuthorizationPolicyAssignments,
@@ -259,6 +341,19 @@ func PossibleValuesForSettingType() []string {
 		string(SettingTypeInfoMessage),
 		string(SettingTypeInstructionStepsGroup),
 	}
+}
+
+func (s *SettingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSettingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSettingType(input string) (*SettingType, error) {

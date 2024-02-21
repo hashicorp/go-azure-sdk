@@ -1,6 +1,10 @@
 package settings
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForEntityProviders() []string {
 		string(EntityProvidersActiveDirectory),
 		string(EntityProvidersAzureActiveDirectory),
 	}
+}
+
+func (s *EntityProviders) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityProviders(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEntityProviders(input string) (*EntityProviders, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForSettingKind() []string {
 	}
 }
 
+func (s *SettingKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSettingKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSettingKind(input string) (*SettingKind, error) {
 	vals := map[string]SettingKind{
 		"anomalies":       SettingKindAnomalies,
@@ -83,6 +113,19 @@ func PossibleValuesForUebaDataSources() []string {
 		string(UebaDataSourcesSecurityEvent),
 		string(UebaDataSourcesSigninLogs),
 	}
+}
+
+func (s *UebaDataSources) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUebaDataSources(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUebaDataSources(input string) (*UebaDataSources, error) {

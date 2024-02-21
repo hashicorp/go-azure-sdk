@@ -1,6 +1,10 @@
 package incidentbookmarks
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
+}
+
+func (s *AlertSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertSeverity(input string) (*AlertSeverity, error) {
@@ -57,6 +74,19 @@ func PossibleValuesForAlertStatus() []string {
 		string(AlertStatusResolved),
 		string(AlertStatusUnknown),
 	}
+}
+
+func (s *AlertStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertStatus(input string) (*AlertStatus, error) {
@@ -120,6 +150,19 @@ func PossibleValuesForAttackTactic() []string {
 	}
 }
 
+func (s *AttackTactic) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAttackTactic(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAttackTactic(input string) (*AttackTactic, error) {
 	vals := map[string]AttackTactic{
 		"collection":              AttackTacticCollection,
@@ -165,6 +208,19 @@ func PossibleValuesForConfidenceLevel() []string {
 	}
 }
 
+func (s *ConfidenceLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConfidenceLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseConfidenceLevel(input string) (*ConfidenceLevel, error) {
 	vals := map[string]ConfidenceLevel{
 		"high":    ConfidenceLevelHigh,
@@ -196,6 +252,19 @@ func PossibleValuesForConfidenceScoreStatus() []string {
 		string(ConfidenceScoreStatusNotApplicable),
 		string(ConfidenceScoreStatusNotFinal),
 	}
+}
+
+func (s *ConfidenceScoreStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConfidenceScoreStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConfidenceScoreStatus(input string) (*ConfidenceScoreStatus, error) {
@@ -266,6 +335,19 @@ func PossibleValuesForEntityKindEnum() []string {
 	}
 }
 
+func (s *EntityKindEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityKindEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityKindEnum(input string) (*EntityKindEnum, error) {
 	vals := map[string]EntityKindEnum{
 		"account":          EntityKindEnumAccount,
@@ -315,6 +397,19 @@ func PossibleValuesForIncidentSeverity() []string {
 		string(IncidentSeverityLow),
 		string(IncidentSeverityMedium),
 	}
+}
+
+func (s *IncidentSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
@@ -369,6 +464,19 @@ func PossibleValuesForKillChainIntent() []string {
 		string(KillChainIntentProbing),
 		string(KillChainIntentUnknown),
 	}
+}
+
+func (s *KillChainIntent) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKillChainIntent(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKillChainIntent(input string) (*KillChainIntent, error) {

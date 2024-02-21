@@ -1,6 +1,10 @@
 package sourcecontrols
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForContentType() []string {
 		string(ContentTypePlaybook),
 		string(ContentTypeWorkbook),
 	}
+}
+
+func (s *ContentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseContentType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseContentType(input string) (*ContentType, error) {
@@ -61,6 +78,19 @@ func PossibleValuesForDeploymentFetchStatus() []string {
 	}
 }
 
+func (s *DeploymentFetchStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeploymentFetchStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDeploymentFetchStatus(input string) (*DeploymentFetchStatus, error) {
 	vals := map[string]DeploymentFetchStatus{
 		"notfound":     DeploymentFetchStatusNotFound,
@@ -90,6 +120,19 @@ func PossibleValuesForDeploymentResult() []string {
 		string(DeploymentResultFailed),
 		string(DeploymentResultSuccess),
 	}
+}
+
+func (s *DeploymentResult) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeploymentResult(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDeploymentResult(input string) (*DeploymentResult, error) {
@@ -125,6 +168,19 @@ func PossibleValuesForDeploymentState() []string {
 	}
 }
 
+func (s *DeploymentState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeploymentState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDeploymentState(input string) (*DeploymentState, error) {
 	vals := map[string]DeploymentState{
 		"canceling":   DeploymentStateCanceling,
@@ -153,6 +209,19 @@ func PossibleValuesForRepoType() []string {
 		string(RepoTypeAzureDevOps),
 		string(RepoTypeGithub),
 	}
+}
+
+func (s *RepoType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRepoType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRepoType(input string) (*RepoType, error) {
@@ -185,6 +254,19 @@ func PossibleValuesForRepositoryAccessKind() []string {
 	}
 }
 
+func (s *RepositoryAccessKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRepositoryAccessKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRepositoryAccessKind(input string) (*RepositoryAccessKind, error) {
 	vals := map[string]RepositoryAccessKind{
 		"app":   RepositoryAccessKindApp,
@@ -214,6 +296,19 @@ func PossibleValuesForState() []string {
 	}
 }
 
+func (s *State) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseState(input string) (*State, error) {
 	vals := map[string]State{
 		"closed": StateClosed,
@@ -240,6 +335,19 @@ func PossibleValuesForVersion() []string {
 		string(VersionVOne),
 		string(VersionVTwo),
 	}
+}
+
+func (s *Version) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVersion(input string) (*Version, error) {
@@ -274,6 +382,19 @@ func PossibleValuesForWarningCode() []string {
 		string(WarningCodeSourceControlWarningDeleteServicePrincipal),
 		string(WarningCodeSourceControlWarningDeleteWorkflowAndSecretFromGitHub),
 	}
+}
+
+func (s *WarningCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWarningCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWarningCode(input string) (*WarningCode, error) {

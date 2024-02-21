@@ -1,6 +1,10 @@
 package fileimports
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDeleteStatus() []string {
 		string(DeleteStatusNotDeleted),
 		string(DeleteStatusUnspecified),
 	}
+}
+
+func (s *DeleteStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeleteStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDeleteStatus(input string) (*DeleteStatus, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForFileFormat() []string {
 	}
 }
 
+func (s *FileFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFileFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFileFormat(input string) (*FileFormat, error) {
 	vals := map[string]FileFormat{
 		"csv":         FileFormatCSV,
@@ -81,6 +111,19 @@ func PossibleValuesForFileImportContentType() []string {
 		string(FileImportContentTypeStixIndicator),
 		string(FileImportContentTypeUnspecified),
 	}
+}
+
+func (s *FileImportContentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFileImportContentType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFileImportContentType(input string) (*FileImportContentType, error) {
@@ -122,6 +165,19 @@ func PossibleValuesForFileImportState() []string {
 	}
 }
 
+func (s *FileImportState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFileImportState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFileImportState(input string) (*FileImportState, error) {
 	vals := map[string]FileImportState{
 		"fatalerror":         FileImportStateFatalError,
@@ -155,6 +211,19 @@ func PossibleValuesForIngestionMode() []string {
 		string(IngestionModeIngestOnlyIfAllAreValid),
 		string(IngestionModeUnspecified),
 	}
+}
+
+func (s *IngestionMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIngestionMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIngestionMode(input string) (*IngestionMode, error) {
