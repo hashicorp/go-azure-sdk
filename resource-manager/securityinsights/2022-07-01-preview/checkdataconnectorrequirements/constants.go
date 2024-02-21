@@ -1,6 +1,10 @@
 package checkdataconnectorrequirements
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForDataConnectorAuthorizationState() []string {
 		string(DataConnectorAuthorizationStateInvalid),
 		string(DataConnectorAuthorizationStateValid),
 	}
+}
+
+func (s *DataConnectorAuthorizationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataConnectorAuthorizationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataConnectorAuthorizationState(input string) (*DataConnectorAuthorizationState, error) {
@@ -83,6 +100,19 @@ func PossibleValuesForDataConnectorKind() []string {
 	}
 }
 
+func (s *DataConnectorKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataConnectorKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataConnectorKind(input string) (*DataConnectorKind, error) {
 	vals := map[string]DataConnectorKind{
 		"apipolling":                    DataConnectorKindAPIPolling,
@@ -129,6 +159,19 @@ func PossibleValuesForDataConnectorLicenseState() []string {
 		string(DataConnectorLicenseStateUnknown),
 		string(DataConnectorLicenseStateValid),
 	}
+}
+
+func (s *DataConnectorLicenseState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataConnectorLicenseState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataConnectorLicenseState(input string) (*DataConnectorLicenseState, error) {

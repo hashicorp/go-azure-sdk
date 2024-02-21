@@ -1,6 +1,10 @@
 package entities
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
+}
+
+func (s *AlertSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertSeverity(input string) (*AlertSeverity, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForEntityItemQueryKind() []string {
 	return []string{
 		string(EntityItemQueryKindInsight),
 	}
+}
+
+func (s *EntityItemQueryKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityItemQueryKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEntityItemQueryKind(input string) (*EntityItemQueryKind, error) {
@@ -118,6 +148,19 @@ func PossibleValuesForEntityKind() []string {
 	}
 }
 
+func (s *EntityKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityKind(input string) (*EntityKind, error) {
 	vals := map[string]EntityKind{
 		"account":          EntityKindAccount,
@@ -168,6 +211,19 @@ func PossibleValuesForEntityQueryKind() []string {
 	}
 }
 
+func (s *EntityQueryKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityQueryKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityQueryKind(input string) (*EntityQueryKind, error) {
 	vals := map[string]EntityQueryKind{
 		"activity":  EntityQueryKindActivity,
@@ -199,6 +255,19 @@ func PossibleValuesForEntityTimelineKind() []string {
 		string(EntityTimelineKindBookmark),
 		string(EntityTimelineKindSecurityAlert),
 	}
+}
+
+func (s *EntityTimelineKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityTimelineKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEntityTimelineKind(input string) (*EntityTimelineKind, error) {
@@ -271,6 +340,19 @@ func PossibleValuesForEntityType() []string {
 	}
 }
 
+func (s *EntityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityType(input string) (*EntityType, error) {
 	vals := map[string]EntityType{
 		"account":          EntityTypeAccount,
@@ -317,6 +399,19 @@ func PossibleValuesForGetInsightsError() []string {
 	}
 }
 
+func (s *GetInsightsError) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGetInsightsError(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGetInsightsError(input string) (*GetInsightsError, error) {
 	vals := map[string]GetInsightsError{
 		"insight": GetInsightsErrorInsight,
@@ -346,6 +441,19 @@ func PossibleValuesForOutputType() []string {
 		string(OutputTypeNumber),
 		string(OutputTypeString),
 	}
+}
+
+func (s *OutputType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOutputType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOutputType(input string) (*OutputType, error) {

@@ -1,18 +1,26 @@
 package incidentrelations
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IncidentRelationsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewIncidentRelationsClientWithBaseURI(endpoint string) IncidentRelationsClient {
-	return IncidentRelationsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewIncidentRelationsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentRelationsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "incidentrelations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IncidentRelationsClient: %+v", err)
 	}
+
+	return &IncidentRelationsClient{
+		Client: client,
+	}, nil
 }

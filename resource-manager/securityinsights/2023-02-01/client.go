@@ -4,7 +4,8 @@ package v2023_02_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/actions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/alertrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/alertruletemplates"
@@ -24,6 +25,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/threatintelligence"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/watchlistitems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/watchlists"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -48,84 +51,140 @@ type Client struct {
 	Watchlists                  *watchlists.WatchlistsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	actionsClient := actions.NewActionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&actionsClient.Client)
-
-	alertRuleTemplatesClient := alertruletemplates.NewAlertRuleTemplatesClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertRuleTemplatesClient.Client)
-
-	alertRulesClient := alertrules.NewAlertRulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertRulesClient.Client)
-
-	automationRulesClient := automationrules.NewAutomationRulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&automationRulesClient.Client)
-
-	bookmarksClient := bookmarks.NewBookmarksClientWithBaseURI(endpoint)
-	configureAuthFunc(&bookmarksClient.Client)
-
-	dataConnectorsClient := dataconnectors.NewDataConnectorsClientWithBaseURI(endpoint)
-	configureAuthFunc(&dataConnectorsClient.Client)
-
-	entityTypesClient := entitytypes.NewEntityTypesClientWithBaseURI(endpoint)
-	configureAuthFunc(&entityTypesClient.Client)
-
-	incidentAlertsClient := incidentalerts.NewIncidentAlertsClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentAlertsClient.Client)
-
-	incidentBookmarksClient := incidentbookmarks.NewIncidentBookmarksClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentBookmarksClient.Client)
-
-	incidentCommentsClient := incidentcomments.NewIncidentCommentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentCommentsClient.Client)
-
-	incidentEntitiesClient := incidententities.NewIncidentEntitiesClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentEntitiesClient.Client)
-
-	incidentRelationsClient := incidentrelations.NewIncidentRelationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentRelationsClient.Client)
-
-	incidentsClient := incidents.NewIncidentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&incidentsClient.Client)
-
-	metadataClient := metadata.NewMetadataClientWithBaseURI(endpoint)
-	configureAuthFunc(&metadataClient.Client)
-
-	securityMLAnalyticsSettingsClient := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&securityMLAnalyticsSettingsClient.Client)
-
-	sentinelOnboardingStatesClient := sentinelonboardingstates.NewSentinelOnboardingStatesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sentinelOnboardingStatesClient.Client)
-
-	threatIntelligenceClient := threatintelligence.NewThreatIntelligenceClientWithBaseURI(endpoint)
-	configureAuthFunc(&threatIntelligenceClient.Client)
-
-	watchlistItemsClient := watchlistitems.NewWatchlistItemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&watchlistItemsClient.Client)
-
-	watchlistsClient := watchlists.NewWatchlistsClientWithBaseURI(endpoint)
-	configureAuthFunc(&watchlistsClient.Client)
-
-	return Client{
-		Actions:                     &actionsClient,
-		AlertRuleTemplates:          &alertRuleTemplatesClient,
-		AlertRules:                  &alertRulesClient,
-		AutomationRules:             &automationRulesClient,
-		Bookmarks:                   &bookmarksClient,
-		DataConnectors:              &dataConnectorsClient,
-		EntityTypes:                 &entityTypesClient,
-		IncidentAlerts:              &incidentAlertsClient,
-		IncidentBookmarks:           &incidentBookmarksClient,
-		IncidentComments:            &incidentCommentsClient,
-		IncidentEntities:            &incidentEntitiesClient,
-		IncidentRelations:           &incidentRelationsClient,
-		Incidents:                   &incidentsClient,
-		Metadata:                    &metadataClient,
-		SecurityMLAnalyticsSettings: &securityMLAnalyticsSettingsClient,
-		SentinelOnboardingStates:    &sentinelOnboardingStatesClient,
-		ThreatIntelligence:          &threatIntelligenceClient,
-		WatchlistItems:              &watchlistItemsClient,
-		Watchlists:                  &watchlistsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	actionsClient, err := actions.NewActionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Actions client: %+v", err)
 	}
+	configureFunc(actionsClient.Client)
+
+	alertRuleTemplatesClient, err := alertruletemplates.NewAlertRuleTemplatesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AlertRuleTemplates client: %+v", err)
+	}
+	configureFunc(alertRuleTemplatesClient.Client)
+
+	alertRulesClient, err := alertrules.NewAlertRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AlertRules client: %+v", err)
+	}
+	configureFunc(alertRulesClient.Client)
+
+	automationRulesClient, err := automationrules.NewAutomationRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AutomationRules client: %+v", err)
+	}
+	configureFunc(automationRulesClient.Client)
+
+	bookmarksClient, err := bookmarks.NewBookmarksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Bookmarks client: %+v", err)
+	}
+	configureFunc(bookmarksClient.Client)
+
+	dataConnectorsClient, err := dataconnectors.NewDataConnectorsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataConnectors client: %+v", err)
+	}
+	configureFunc(dataConnectorsClient.Client)
+
+	entityTypesClient, err := entitytypes.NewEntityTypesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntityTypes client: %+v", err)
+	}
+	configureFunc(entityTypesClient.Client)
+
+	incidentAlertsClient, err := incidentalerts.NewIncidentAlertsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IncidentAlerts client: %+v", err)
+	}
+	configureFunc(incidentAlertsClient.Client)
+
+	incidentBookmarksClient, err := incidentbookmarks.NewIncidentBookmarksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IncidentBookmarks client: %+v", err)
+	}
+	configureFunc(incidentBookmarksClient.Client)
+
+	incidentCommentsClient, err := incidentcomments.NewIncidentCommentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IncidentComments client: %+v", err)
+	}
+	configureFunc(incidentCommentsClient.Client)
+
+	incidentEntitiesClient, err := incidententities.NewIncidentEntitiesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IncidentEntities client: %+v", err)
+	}
+	configureFunc(incidentEntitiesClient.Client)
+
+	incidentRelationsClient, err := incidentrelations.NewIncidentRelationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IncidentRelations client: %+v", err)
+	}
+	configureFunc(incidentRelationsClient.Client)
+
+	incidentsClient, err := incidents.NewIncidentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Incidents client: %+v", err)
+	}
+	configureFunc(incidentsClient.Client)
+
+	metadataClient, err := metadata.NewMetadataClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Metadata client: %+v", err)
+	}
+	configureFunc(metadataClient.Client)
+
+	securityMLAnalyticsSettingsClient, err := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecurityMLAnalyticsSettings client: %+v", err)
+	}
+	configureFunc(securityMLAnalyticsSettingsClient.Client)
+
+	sentinelOnboardingStatesClient, err := sentinelonboardingstates.NewSentinelOnboardingStatesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SentinelOnboardingStates client: %+v", err)
+	}
+	configureFunc(sentinelOnboardingStatesClient.Client)
+
+	threatIntelligenceClient, err := threatintelligence.NewThreatIntelligenceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ThreatIntelligence client: %+v", err)
+	}
+	configureFunc(threatIntelligenceClient.Client)
+
+	watchlistItemsClient, err := watchlistitems.NewWatchlistItemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building WatchlistItems client: %+v", err)
+	}
+	configureFunc(watchlistItemsClient.Client)
+
+	watchlistsClient, err := watchlists.NewWatchlistsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Watchlists client: %+v", err)
+	}
+	configureFunc(watchlistsClient.Client)
+
+	return &Client{
+		Actions:                     actionsClient,
+		AlertRuleTemplates:          alertRuleTemplatesClient,
+		AlertRules:                  alertRulesClient,
+		AutomationRules:             automationRulesClient,
+		Bookmarks:                   bookmarksClient,
+		DataConnectors:              dataConnectorsClient,
+		EntityTypes:                 entityTypesClient,
+		IncidentAlerts:              incidentAlertsClient,
+		IncidentBookmarks:           incidentBookmarksClient,
+		IncidentComments:            incidentCommentsClient,
+		IncidentEntities:            incidentEntitiesClient,
+		IncidentRelations:           incidentRelationsClient,
+		Incidents:                   incidentsClient,
+		Metadata:                    metadataClient,
+		SecurityMLAnalyticsSettings: securityMLAnalyticsSettingsClient,
+		SentinelOnboardingStates:    sentinelOnboardingStatesClient,
+		ThreatIntelligence:          threatIntelligenceClient,
+		WatchlistItems:              watchlistItemsClient,
+		Watchlists:                  watchlistsClient,
+	}, nil
 }

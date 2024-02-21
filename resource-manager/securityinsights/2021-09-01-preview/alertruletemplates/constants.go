@@ -1,6 +1,10 @@
 package alertruletemplates
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForAlertRuleKind() []string {
 		string(AlertRuleKindScheduled),
 		string(AlertRuleKindThreatIntelligence),
 	}
+}
+
+func (s *AlertRuleKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertRuleKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertRuleKind(input string) (*AlertRuleKind, error) {
@@ -61,6 +78,19 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
+}
+
+func (s *AlertSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertSeverity(input string) (*AlertSeverity, error) {
@@ -113,6 +143,19 @@ func PossibleValuesForAttackTactic() []string {
 		string(AttackTacticPreAttack),
 		string(AttackTacticPrivilegeEscalation),
 	}
+}
+
+func (s *AttackTactic) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAttackTactic(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAttackTactic(input string) (*AttackTactic, error) {
@@ -186,6 +229,19 @@ func PossibleValuesForEntityMappingType() []string {
 	}
 }
 
+func (s *EntityMappingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityMappingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityMappingType(input string) (*EntityMappingType, error) {
 	vals := map[string]EntityMappingType{
 		"account":          EntityMappingTypeAccount,
@@ -230,6 +286,19 @@ func PossibleValuesForEventGroupingAggregationKind() []string {
 	}
 }
 
+func (s *EventGroupingAggregationKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEventGroupingAggregationKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEventGroupingAggregationKind(input string) (*EventGroupingAggregationKind, error) {
 	vals := map[string]EventGroupingAggregationKind{
 		"alertperresult": EventGroupingAggregationKindAlertPerResult,
@@ -268,6 +337,19 @@ func PossibleValuesForMicrosoftSecurityProductName() []string {
 	}
 }
 
+func (s *MicrosoftSecurityProductName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMicrosoftSecurityProductName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMicrosoftSecurityProductName(input string) (*MicrosoftSecurityProductName, error) {
 	vals := map[string]MicrosoftSecurityProductName{
 		"azure active directory identity protection":    MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection,
@@ -303,6 +385,19 @@ func PossibleValuesForTemplateStatus() []string {
 	}
 }
 
+func (s *TemplateStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTemplateStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTemplateStatus(input string) (*TemplateStatus, error) {
 	vals := map[string]TemplateStatus{
 		"available":    TemplateStatusAvailable,
@@ -334,6 +429,19 @@ func PossibleValuesForTriggerOperator() []string {
 		string(TriggerOperatorLessThan),
 		string(TriggerOperatorNotEqual),
 	}
+}
+
+func (s *TriggerOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggerOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTriggerOperator(input string) (*TriggerOperator, error) {
