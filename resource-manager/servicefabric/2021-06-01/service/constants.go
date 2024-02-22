@@ -1,6 +1,10 @@
 package service
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForArmServicePackageActivationMode() []string {
 		string(ArmServicePackageActivationModeExclusiveProcess),
 		string(ArmServicePackageActivationModeSharedProcess),
 	}
+}
+
+func (s *ArmServicePackageActivationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArmServicePackageActivationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArmServicePackageActivationMode(input string) (*ArmServicePackageActivationMode, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForMoveCost() []string {
 		string(MoveCostMedium),
 		string(MoveCostZero),
 	}
+}
+
+func (s *MoveCost) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMoveCost(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMoveCost(input string) (*MoveCost, error) {
@@ -85,6 +115,19 @@ func PossibleValuesForPartitionScheme() []string {
 	}
 }
 
+func (s *PartitionScheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePartitionScheme(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePartitionScheme(input string) (*PartitionScheme, error) {
 	vals := map[string]PartitionScheme{
 		"invalid":           PartitionSchemeInvalid,
@@ -119,6 +162,19 @@ func PossibleValuesForServiceCorrelationScheme() []string {
 	}
 }
 
+func (s *ServiceCorrelationScheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceCorrelationScheme(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServiceCorrelationScheme(input string) (*ServiceCorrelationScheme, error) {
 	vals := map[string]ServiceCorrelationScheme{
 		"affinity":           ServiceCorrelationSchemeAffinity,
@@ -149,6 +205,19 @@ func PossibleValuesForServiceKind() []string {
 		string(ServiceKindStateful),
 		string(ServiceKindStateless),
 	}
+}
+
+func (s *ServiceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServiceKind(input string) (*ServiceKind, error) {
@@ -182,6 +251,19 @@ func PossibleValuesForServiceLoadMetricWeight() []string {
 		string(ServiceLoadMetricWeightMedium),
 		string(ServiceLoadMetricWeightZero),
 	}
+}
+
+func (s *ServiceLoadMetricWeight) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServiceLoadMetricWeight(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServiceLoadMetricWeight(input string) (*ServiceLoadMetricWeight, error) {
@@ -220,6 +302,19 @@ func PossibleValuesForServicePlacementPolicyType() []string {
 		string(ServicePlacementPolicyTypeRequiredDomain),
 		string(ServicePlacementPolicyTypeRequiredDomainDistribution),
 	}
+}
+
+func (s *ServicePlacementPolicyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServicePlacementPolicyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServicePlacementPolicyType(input string) (*ServicePlacementPolicyType, error) {
