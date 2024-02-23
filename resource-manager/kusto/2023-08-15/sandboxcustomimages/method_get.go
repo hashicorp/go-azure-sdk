@@ -43,7 +43,10 @@ func (c SandboxCustomImagesClient) Get(ctx context.Context, id SandboxCustomImag
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SandboxCustomImage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

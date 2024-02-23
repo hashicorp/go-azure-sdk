@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) KubernetesClustersGet(ctx context.Context, id Kuber
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model KubernetesCluster
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

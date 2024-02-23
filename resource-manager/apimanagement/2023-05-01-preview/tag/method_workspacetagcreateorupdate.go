@@ -77,7 +77,10 @@ func (c TagClient) WorkspaceTagCreateOrUpdate(ctx context.Context, id WorkspaceT
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TagContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

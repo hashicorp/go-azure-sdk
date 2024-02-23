@@ -43,7 +43,10 @@ func (c WorkflowResourceClient) WorkflowsGet(ctx context.Context, id WorkflowId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Workflow
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

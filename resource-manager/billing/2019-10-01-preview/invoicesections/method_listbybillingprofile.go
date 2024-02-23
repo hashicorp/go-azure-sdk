@@ -44,7 +44,10 @@ func (c InvoiceSectionsClient) ListByBillingProfile(ctx context.Context, id Bill
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model InvoiceSectionListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

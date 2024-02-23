@@ -45,7 +45,10 @@ func (c CreditsClient) Get(ctx context.Context, id BillingProfileId) (result Get
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CreditSummary
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

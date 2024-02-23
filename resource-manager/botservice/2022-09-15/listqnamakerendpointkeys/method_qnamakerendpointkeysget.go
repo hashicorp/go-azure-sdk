@@ -49,7 +49,10 @@ func (c ListQnAMakerEndpointKeysClient) QnAMakerEndpointKeysGet(ctx context.Cont
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QnAMakerEndpointKeysResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

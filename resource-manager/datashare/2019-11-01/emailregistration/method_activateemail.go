@@ -48,7 +48,10 @@ func (c EmailRegistrationClient) ActivateEmail(ctx context.Context, id LocationI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EmailRegistration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

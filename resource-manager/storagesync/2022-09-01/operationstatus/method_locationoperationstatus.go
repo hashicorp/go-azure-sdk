@@ -43,7 +43,10 @@ func (c OperationStatusClient) LocationOperationStatus(ctx context.Context, id O
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LocationOperationStatus
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

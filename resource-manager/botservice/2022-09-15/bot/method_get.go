@@ -44,7 +44,10 @@ func (c BotClient) Get(ctx context.Context, id commonids.BotServiceId) (result G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Bot
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

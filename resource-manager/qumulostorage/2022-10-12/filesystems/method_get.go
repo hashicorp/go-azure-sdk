@@ -43,7 +43,10 @@ func (c FileSystemsClient) Get(ctx context.Context, id FileSystemId) (result Get
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FileSystemResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

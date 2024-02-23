@@ -43,7 +43,10 @@ func (c BookmarkRelationsClient) Get(ctx context.Context, id BookmarkRelationId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Relation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c QuotaByCounterKeysClient) ListByService(ctx context.Context, id QuotaId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QuotaCounterCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c ComponentContinuousExportAPIsClient) ExportConfigurationsGet(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsComponentExportConfiguration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

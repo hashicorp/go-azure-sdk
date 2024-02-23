@@ -76,7 +76,10 @@ func (c DataFlowsClient) CreateOrUpdate(ctx context.Context, id DataflowId, inpu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DataFlowResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

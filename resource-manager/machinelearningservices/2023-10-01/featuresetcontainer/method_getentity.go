@@ -43,7 +43,10 @@ func (c FeaturesetContainerClient) GetEntity(ctx context.Context, id FeatureSetI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FeaturesetContainerResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

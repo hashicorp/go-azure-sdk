@@ -47,7 +47,10 @@ func (c MSIXPackageClient) Update(ctx context.Context, id MsixPackageId, input M
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MSIXPackage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

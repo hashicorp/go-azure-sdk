@@ -80,7 +80,10 @@ func (c TransactionsClient) ListByBillingProfile(ctx context.Context, id Billing
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TransactionListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

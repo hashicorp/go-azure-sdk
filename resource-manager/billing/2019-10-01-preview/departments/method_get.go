@@ -76,7 +76,10 @@ func (c DepartmentsClient) Get(ctx context.Context, id DepartmentId, options Get
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Department
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c ComponentWorkItemConfigsAPIsClient) WorkItemConfigurationsCreate(ctx con
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkItemConfiguration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c WebTestLocationsAPIsClient) WebTestLocationsList(ctx context.Context, id
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsWebTestLocationsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

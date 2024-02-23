@@ -43,7 +43,10 @@ func (c TimeZonesClient) Get(ctx context.Context, id TimeZoneId) (result GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TimeZone
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

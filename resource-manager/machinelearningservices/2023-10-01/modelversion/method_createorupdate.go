@@ -48,7 +48,10 @@ func (c ModelVersionClient) CreateOrUpdate(ctx context.Context, id ModelVersionI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ModelVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c BackupPolicyClient) BackupPoliciesList(ctx context.Context, id NetAppAcc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BackupPoliciesList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

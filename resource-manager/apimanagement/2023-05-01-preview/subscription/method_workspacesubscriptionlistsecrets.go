@@ -44,7 +44,10 @@ func (c SubscriptionClient) WorkspaceSubscriptionListSecrets(ctx context.Context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionKeysContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

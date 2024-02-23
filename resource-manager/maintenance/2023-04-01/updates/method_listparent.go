@@ -45,7 +45,10 @@ func (c UpdatesClient) ListParent(ctx context.Context, id commonids.ScopeId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ListUpdatesResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

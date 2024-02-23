@@ -47,7 +47,10 @@ func (c CustomAPIsClient) Update(ctx context.Context, id CustomApiId, input Cust
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CustomApiDefinition
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

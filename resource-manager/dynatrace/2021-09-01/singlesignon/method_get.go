@@ -43,7 +43,10 @@ func (c SingleSignOnClient) Get(ctx context.Context, id SingleSignOnConfiguratio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DynatraceSingleSignOnResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

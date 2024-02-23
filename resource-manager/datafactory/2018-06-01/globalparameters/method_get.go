@@ -43,7 +43,10 @@ func (c GlobalParametersClient) Get(ctx context.Context, id GlobalParameterId) (
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GlobalParameterResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

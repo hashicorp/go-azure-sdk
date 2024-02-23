@@ -43,7 +43,10 @@ func (c JobStreamClient) Get(ctx context.Context, id StreamId) (result GetOperat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model JobStream
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c CostsClient) Get(ctx context.Context, id CostId, options GetOperationOpt
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LabCost
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

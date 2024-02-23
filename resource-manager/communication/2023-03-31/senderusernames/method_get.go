@@ -43,7 +43,10 @@ func (c SenderUsernamesClient) Get(ctx context.Context, id SenderUsernameId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SenderUsernameResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

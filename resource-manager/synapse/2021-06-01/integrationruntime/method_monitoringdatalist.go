@@ -44,7 +44,10 @@ func (c IntegrationRuntimeClient) MonitoringDataList(ctx context.Context, id Int
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeMonitoringData
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

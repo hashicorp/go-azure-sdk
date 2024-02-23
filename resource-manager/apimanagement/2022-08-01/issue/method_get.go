@@ -43,7 +43,10 @@ func (c IssueClient) Get(ctx context.Context, id IssueId) (result GetOperationRe
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IssueContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

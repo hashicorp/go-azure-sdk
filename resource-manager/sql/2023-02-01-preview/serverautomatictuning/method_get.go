@@ -45,7 +45,10 @@ func (c ServerAutomaticTuningClient) Get(ctx context.Context, id commonids.SqlSe
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerAutomaticTuning
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

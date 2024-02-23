@@ -43,7 +43,10 @@ func (c ServerTrustGroupsClient) Get(ctx context.Context, id ServerTrustGroupId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerTrustGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

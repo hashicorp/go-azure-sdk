@@ -43,7 +43,10 @@ func (c VirtualClustersClient) Get(ctx context.Context, id VirtualClusterId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualCluster
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

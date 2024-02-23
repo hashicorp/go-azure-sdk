@@ -48,7 +48,10 @@ func (c TagProductLinkClient) CreateOrUpdate(ctx context.Context, id ProductLink
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TagProductLinkContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c HcxEnterpriseSitesClient) CreateOrUpdate(ctx context.Context, id HcxEnte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HcxEnterpriseSite
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

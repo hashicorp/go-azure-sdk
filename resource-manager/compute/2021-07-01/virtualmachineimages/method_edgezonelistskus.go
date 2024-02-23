@@ -44,7 +44,10 @@ func (c VirtualMachineImagesClient) EdgeZoneListSkus(ctx context.Context, id VMI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []VirtualMachineImageResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

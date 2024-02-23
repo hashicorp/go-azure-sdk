@@ -43,7 +43,10 @@ func (c IncidentCommentsClient) Get(ctx context.Context, id CommentId) (result G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IncidentComment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

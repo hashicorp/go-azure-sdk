@@ -76,7 +76,10 @@ func (c RecoverableDatabasesClient) Get(ctx context.Context, id RecoverableDatab
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RecoverableDatabase
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

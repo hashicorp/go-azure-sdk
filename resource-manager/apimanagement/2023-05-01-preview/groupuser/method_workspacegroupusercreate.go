@@ -44,7 +44,10 @@ func (c GroupUserClient) WorkspaceGroupUserCreate(ctx context.Context, id Worksp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UserContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

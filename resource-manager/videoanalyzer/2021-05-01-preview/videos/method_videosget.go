@@ -43,7 +43,10 @@ func (c VideosClient) VideosGet(ctx context.Context, id VideoId) (result VideosG
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VideoEntity
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

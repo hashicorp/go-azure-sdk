@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) TrunkedNetworksGet(ctx context.Context, id TrunkedN
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TrunkedNetwork
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

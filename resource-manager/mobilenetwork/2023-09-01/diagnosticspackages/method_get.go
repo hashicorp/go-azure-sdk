@@ -43,7 +43,10 @@ func (c DiagnosticsPackagesClient) Get(ctx context.Context, id DiagnosticsPackag
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DiagnosticsPackage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

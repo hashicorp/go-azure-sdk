@@ -48,7 +48,10 @@ func (c CommitmentPlansClient) CreateOrUpdate(ctx context.Context, id AccountCom
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CommitmentPlan
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

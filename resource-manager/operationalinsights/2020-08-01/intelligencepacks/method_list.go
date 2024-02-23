@@ -44,7 +44,10 @@ func (c IntelligencePacksClient) List(ctx context.Context, id WorkspaceId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []IntelligencePack
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -47,7 +47,10 @@ func (c ManagedHsmKeysClient) CreateIfNotExist(ctx context.Context, id KeyId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedHsmKey
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

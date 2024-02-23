@@ -43,7 +43,10 @@ func (c BillingSubscriptionsClient) Get(ctx context.Context, id BillingAccountBi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BillingSubscription
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

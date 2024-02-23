@@ -44,7 +44,10 @@ func (c NotificationRecipientEmailClient) WorkspaceNotificationRecipientEmailCre
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RecipientEmailContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

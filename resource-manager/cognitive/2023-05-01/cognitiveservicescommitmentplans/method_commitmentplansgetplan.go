@@ -43,7 +43,10 @@ func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansGetPlan(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CommitmentPlan
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

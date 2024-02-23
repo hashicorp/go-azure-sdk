@@ -43,7 +43,10 @@ func (c NetAppResourceClient) QuotaLimitsGet(ctx context.Context, id QuotaLimitI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionQuotaItem
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

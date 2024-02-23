@@ -44,7 +44,10 @@ func (c PrivateLinkResourcesClient) ListByAccount(ctx context.Context, id Accoun
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourceListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

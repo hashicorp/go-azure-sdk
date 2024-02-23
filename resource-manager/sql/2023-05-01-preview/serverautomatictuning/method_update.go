@@ -49,7 +49,10 @@ func (c ServerAutomaticTuningClient) Update(ctx context.Context, id commonids.Sq
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerAutomaticTuning
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

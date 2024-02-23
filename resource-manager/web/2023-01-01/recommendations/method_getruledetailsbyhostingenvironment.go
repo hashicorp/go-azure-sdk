@@ -76,7 +76,10 @@ func (c RecommendationsClient) GetRuleDetailsByHostingEnvironment(ctx context.Co
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RecommendationRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

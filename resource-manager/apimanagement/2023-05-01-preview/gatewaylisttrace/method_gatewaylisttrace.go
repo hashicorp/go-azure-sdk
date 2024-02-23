@@ -48,7 +48,10 @@ func (c GatewayListTraceClient) GatewayListTrace(ctx context.Context, id Gateway
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model interface{}
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

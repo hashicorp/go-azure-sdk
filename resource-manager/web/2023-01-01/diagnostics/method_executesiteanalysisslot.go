@@ -80,7 +80,10 @@ func (c DiagnosticsClient) ExecuteSiteAnalysisSlot(ctx context.Context, id Diagn
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DiagnosticAnalysis
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

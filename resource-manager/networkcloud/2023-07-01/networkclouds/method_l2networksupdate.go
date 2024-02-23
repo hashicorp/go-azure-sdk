@@ -47,7 +47,10 @@ func (c NetworkcloudsClient) L2NetworksUpdate(ctx context.Context, id L2NetworkI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model L2Network
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c UserTokenClient) UserGetSharedAccessToken(ctx context.Context, id UserId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UserTokenResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

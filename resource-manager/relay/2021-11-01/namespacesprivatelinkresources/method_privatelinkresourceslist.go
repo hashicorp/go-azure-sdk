@@ -44,7 +44,10 @@ func (c NamespacesPrivateLinkResourcesClient) PrivateLinkResourcesList(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourcesListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

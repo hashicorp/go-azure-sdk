@@ -43,7 +43,10 @@ func (c ApiIssueAttachmentClient) Get(ctx context.Context, id AttachmentId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IssueAttachmentContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

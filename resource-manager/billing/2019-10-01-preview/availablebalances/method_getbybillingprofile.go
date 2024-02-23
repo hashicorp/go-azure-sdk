@@ -44,7 +44,10 @@ func (c AvailableBalancesClient) GetByBillingProfile(ctx context.Context, id Bil
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AvailableBalance
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

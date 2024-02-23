@@ -43,7 +43,10 @@ func (c NodeCountInformationClient) Get(ctx context.Context, id CountTypeId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NodeCounts
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

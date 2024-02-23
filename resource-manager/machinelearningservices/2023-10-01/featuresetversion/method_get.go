@@ -43,7 +43,10 @@ func (c FeaturesetVersionClient) Get(ctx context.Context, id FeatureSetVersionId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FeaturesetVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

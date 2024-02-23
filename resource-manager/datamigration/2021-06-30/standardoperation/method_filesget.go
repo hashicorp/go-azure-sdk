@@ -43,7 +43,10 @@ func (c StandardOperationClient) FilesGet(ctx context.Context, id FileId) (resul
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectFile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

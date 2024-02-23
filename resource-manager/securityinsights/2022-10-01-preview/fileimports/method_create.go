@@ -47,7 +47,10 @@ func (c FileImportsClient) Create(ctx context.Context, id FileImportId, input Fi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FileImport
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

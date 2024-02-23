@@ -48,7 +48,10 @@ func (c ServiceTaskResourceClient) ServiceTasksCreateOrUpdate(ctx context.Contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectTask
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

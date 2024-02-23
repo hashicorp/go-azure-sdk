@@ -43,7 +43,10 @@ func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupGet(ctx context.Contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

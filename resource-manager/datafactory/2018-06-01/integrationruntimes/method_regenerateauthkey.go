@@ -48,7 +48,10 @@ func (c IntegrationRuntimesClient) RegenerateAuthKey(ctx context.Context, id Int
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeAuthKeys
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

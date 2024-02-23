@@ -76,7 +76,10 @@ func (c LinkedServicesClient) CreateOrUpdate(ctx context.Context, id LinkedServi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LinkedServiceResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c UsagesClient) UsageBySubscriptionSku(ctx context.Context, id UsageId, op
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QuotaUsageResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) ClustersGet(ctx context.Context, id ClusterId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Cluster
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

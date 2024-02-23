@@ -44,7 +44,10 @@ func (c VMIngestionDetailsClient) VMIngestionDetails(ctx context.Context, id Mon
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VMIngestionDetailsResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

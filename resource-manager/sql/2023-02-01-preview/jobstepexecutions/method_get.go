@@ -43,7 +43,10 @@ func (c JobStepExecutionsClient) Get(ctx context.Context, id ExecutionStepId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model JobExecution
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

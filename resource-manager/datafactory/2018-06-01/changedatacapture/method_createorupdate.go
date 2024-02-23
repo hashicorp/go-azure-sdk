@@ -76,7 +76,10 @@ func (c ChangeDataCaptureClient) CreateOrUpdate(ctx context.Context, id AdfcdcId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ChangeDataCaptureResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

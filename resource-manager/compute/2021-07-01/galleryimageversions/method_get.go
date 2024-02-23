@@ -72,7 +72,10 @@ func (c GalleryImageVersionsClient) Get(ctx context.Context, id ImageVersionId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GalleryImageVersion
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

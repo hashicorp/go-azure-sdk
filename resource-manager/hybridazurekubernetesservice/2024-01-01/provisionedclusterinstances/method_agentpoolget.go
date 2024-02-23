@@ -43,7 +43,10 @@ func (c ProvisionedClusterInstancesClient) AgentPoolGet(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AgentPool
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

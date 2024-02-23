@@ -43,7 +43,10 @@ func (c AppServiceCertificateOrdersClient) Get(ctx context.Context, id Certifica
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AppServiceCertificateOrder
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

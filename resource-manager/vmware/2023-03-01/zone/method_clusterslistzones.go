@@ -44,7 +44,10 @@ func (c ZoneClient) ClustersListZones(ctx context.Context, id ClusterId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ClusterZoneList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

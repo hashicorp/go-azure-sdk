@@ -44,7 +44,10 @@ func (c ProvidersClient) ProviderPermissions(ctx context.Context, id Subscriptio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProviderPermissionListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

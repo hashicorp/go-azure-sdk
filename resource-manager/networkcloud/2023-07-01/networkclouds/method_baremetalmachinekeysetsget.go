@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsGet(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BareMetalMachineKeySet
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

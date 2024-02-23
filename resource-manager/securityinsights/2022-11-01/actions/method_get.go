@@ -43,7 +43,10 @@ func (c ActionsClient) Get(ctx context.Context, id ActionId) (result GetOperatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ActionResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

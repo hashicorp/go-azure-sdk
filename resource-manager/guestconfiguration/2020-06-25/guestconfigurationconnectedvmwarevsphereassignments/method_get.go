@@ -43,7 +43,10 @@ func (c GuestConfigurationConnectedVMwarevSphereAssignmentsClient) Get(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GuestConfigurationAssignment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

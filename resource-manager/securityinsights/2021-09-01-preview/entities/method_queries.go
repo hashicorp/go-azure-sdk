@@ -72,7 +72,10 @@ func (c EntitiesClient) Queries(ctx context.Context, id EntityId, options Querie
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GetQueriesResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

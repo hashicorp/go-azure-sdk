@@ -77,7 +77,10 @@ func (c CustomAPIsClient) List(ctx context.Context, id commonids.SubscriptionId,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CustomApiDefinitionCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

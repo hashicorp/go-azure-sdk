@@ -43,7 +43,10 @@ func (c EnvironmentVersionClient) RegistryEnvironmentVersionsGet(ctx context.Con
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EnvironmentVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

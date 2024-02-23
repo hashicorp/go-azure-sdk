@@ -44,7 +44,10 @@ func (c ComponentFeaturesAndPricingAPIsClient) ComponentAvailableFeaturesGet(ctx
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsComponentAvailableFeatures
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

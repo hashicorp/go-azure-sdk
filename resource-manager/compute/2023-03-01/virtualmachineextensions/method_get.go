@@ -72,7 +72,10 @@ func (c VirtualMachineExtensionsClient) Get(ctx context.Context, id ExtensionId,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineExtension
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

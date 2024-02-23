@@ -44,7 +44,10 @@ func (c VirtualMachineScaleSetsClient) GetInstanceView(ctx context.Context, id V
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineScaleSetInstanceView
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

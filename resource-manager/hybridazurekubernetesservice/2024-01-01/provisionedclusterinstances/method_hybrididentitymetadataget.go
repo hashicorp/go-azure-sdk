@@ -45,7 +45,10 @@ func (c ProvisionedClusterInstancesClient) HybridIdentityMetadataGet(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HybridIdentityMetadata
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

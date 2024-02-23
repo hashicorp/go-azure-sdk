@@ -47,7 +47,10 @@ func (c ResourcePoolsClient) Update(ctx context.Context, id ResourcePoolId, inpu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ResourcePool
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

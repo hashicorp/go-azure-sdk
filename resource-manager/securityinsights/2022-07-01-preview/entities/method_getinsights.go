@@ -48,7 +48,10 @@ func (c EntitiesClient) GetInsights(ctx context.Context, id EntityId, input Enti
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EntityGetInsightsResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c UsersClient) Get(ctx context.Context, id UserId, options GetOperationOpt
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model User
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

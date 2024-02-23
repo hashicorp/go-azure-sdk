@@ -45,7 +45,10 @@ func (c RealUserMetricsClient) TrafficManagerUserMetricsKeysGet(ctx context.Cont
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UserMetricsModel
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

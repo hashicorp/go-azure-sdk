@@ -48,7 +48,10 @@ func (c PoliciesClient) Update(ctx context.Context, id BillingProfileId, input P
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Policy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

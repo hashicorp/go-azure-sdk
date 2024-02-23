@@ -80,7 +80,10 @@ func (c VirtualMachineImagesClient) EdgeZoneList(ctx context.Context, id OfferSk
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []VirtualMachineImageResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

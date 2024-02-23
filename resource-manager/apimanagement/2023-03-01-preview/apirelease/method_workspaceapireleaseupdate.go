@@ -76,7 +76,10 @@ func (c ApiReleaseClient) WorkspaceApiReleaseUpdate(ctx context.Context, id ApiR
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApiReleaseContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

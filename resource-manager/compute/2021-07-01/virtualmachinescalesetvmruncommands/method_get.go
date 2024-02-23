@@ -72,7 +72,10 @@ func (c VirtualMachineScaleSetVMRunCommandsClient) Get(ctx context.Context, id V
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineRunCommand
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

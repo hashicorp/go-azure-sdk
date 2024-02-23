@@ -43,7 +43,10 @@ func (c JobTargetGroupsClient) Get(ctx context.Context, id TargetGroupId) (resul
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model JobTargetGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

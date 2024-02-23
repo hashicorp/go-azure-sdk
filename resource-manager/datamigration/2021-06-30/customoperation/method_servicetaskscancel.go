@@ -44,7 +44,10 @@ func (c CustomOperationClient) ServiceTasksCancel(ctx context.Context, id Servic
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectTask
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

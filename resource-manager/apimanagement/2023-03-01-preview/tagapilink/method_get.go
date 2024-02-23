@@ -43,7 +43,10 @@ func (c TagApiLinkClient) Get(ctx context.Context, id ApiLinkId) (result GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TagApiLinkContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

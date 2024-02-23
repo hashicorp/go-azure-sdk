@@ -43,7 +43,10 @@ func (c TagClient) WorkspaceTagGet(ctx context.Context, id WorkspaceTagId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TagContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

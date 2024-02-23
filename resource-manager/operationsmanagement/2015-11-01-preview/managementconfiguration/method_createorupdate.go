@@ -47,7 +47,10 @@ func (c ManagementConfigurationClient) CreateOrUpdate(ctx context.Context, id Ma
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagementConfiguration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

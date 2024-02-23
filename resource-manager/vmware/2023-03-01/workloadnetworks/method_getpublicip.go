@@ -43,7 +43,10 @@ func (c WorkloadNetworksClient) GetPublicIP(ctx context.Context, id PublicIPId) 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadNetworkPublicIP
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

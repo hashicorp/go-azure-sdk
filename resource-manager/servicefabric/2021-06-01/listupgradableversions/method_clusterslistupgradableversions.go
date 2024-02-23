@@ -48,7 +48,10 @@ func (c ListUpgradableVersionsClient) ClustersListUpgradableVersions(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UpgradableVersionPathResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

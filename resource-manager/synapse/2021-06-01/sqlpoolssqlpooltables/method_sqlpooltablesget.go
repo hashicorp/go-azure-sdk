@@ -43,7 +43,10 @@ func (c SqlPoolsSqlPoolTablesClient) SqlPoolTablesGet(ctx context.Context, id Ta
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Resource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

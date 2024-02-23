@@ -44,7 +44,10 @@ func (c SnapshotPolicyListVolumesClient) SnapshotPoliciesListVolumes(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SnapshotPolicyVolumeList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

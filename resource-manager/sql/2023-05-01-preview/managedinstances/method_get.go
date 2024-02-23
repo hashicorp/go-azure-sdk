@@ -73,7 +73,10 @@ func (c ManagedInstancesClient) Get(ctx context.Context, id commonids.SqlManaged
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedInstance
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

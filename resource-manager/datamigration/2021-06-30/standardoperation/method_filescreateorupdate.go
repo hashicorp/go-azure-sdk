@@ -48,7 +48,10 @@ func (c StandardOperationClient) FilesCreateOrUpdate(ctx context.Context, id Fil
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectFile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

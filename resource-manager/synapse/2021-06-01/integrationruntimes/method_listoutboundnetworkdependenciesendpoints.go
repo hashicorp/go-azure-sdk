@@ -44,7 +44,10 @@ func (c IntegrationRuntimesClient) ListOutboundNetworkDependenciesEndpoints(ctx 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

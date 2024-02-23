@@ -48,7 +48,10 @@ func (c FieResourceClient) FilesCreateOrUpdate(ctx context.Context, id FileId, i
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectFile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

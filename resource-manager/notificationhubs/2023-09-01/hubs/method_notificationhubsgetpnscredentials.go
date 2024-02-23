@@ -44,7 +44,10 @@ func (c HubsClient) NotificationHubsGetPnsCredentials(ctx context.Context, id No
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PnsCredentialsResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

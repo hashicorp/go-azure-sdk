@@ -43,7 +43,10 @@ func (c ManagedClusterVersionClient) GetByEnvironment(ctx context.Context, id En
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedClusterCodeVersionResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

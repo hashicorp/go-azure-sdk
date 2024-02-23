@@ -43,7 +43,10 @@ func (c InvitationClient) Get(ctx context.Context, id InvitationId) (result GetO
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Invitation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

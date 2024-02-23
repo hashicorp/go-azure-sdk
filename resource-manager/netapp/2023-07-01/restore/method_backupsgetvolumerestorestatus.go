@@ -44,7 +44,10 @@ func (c RestoreClient) BackupsGetVolumeRestoreStatus(ctx context.Context, id Vol
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RestoreStatus
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

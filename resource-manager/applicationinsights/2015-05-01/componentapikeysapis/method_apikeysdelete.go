@@ -43,7 +43,10 @@ func (c ComponentApiKeysAPIsClient) APIKeysDelete(ctx context.Context, id ApiKey
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsComponentAPIKey
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

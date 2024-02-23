@@ -44,7 +44,10 @@ func (c PolicyClient) ListByService(ctx context.Context, id ServiceId) (result L
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -45,7 +45,10 @@ func (c ManagedDatabaseRestoreDetailsClient) Get(ctx context.Context, id commoni
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedDatabaseRestoreDetailsResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

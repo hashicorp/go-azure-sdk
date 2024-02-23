@@ -48,7 +48,10 @@ func (c ApplicationPackageClient) Activate(ctx context.Context, id VersionId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationPackage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

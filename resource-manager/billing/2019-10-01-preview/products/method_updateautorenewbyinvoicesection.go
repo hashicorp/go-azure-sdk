@@ -48,7 +48,10 @@ func (c ProductsClient) UpdateAutoRenewByInvoiceSection(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UpdateAutoRenewOperation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

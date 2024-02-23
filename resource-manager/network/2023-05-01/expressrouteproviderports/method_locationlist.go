@@ -73,7 +73,10 @@ func (c ExpressRouteProviderPortsClient) LocationList(ctx context.Context, id co
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ExpressRouteProviderPortListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

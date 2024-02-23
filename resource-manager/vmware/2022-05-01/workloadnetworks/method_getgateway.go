@@ -43,7 +43,10 @@ func (c WorkloadNetworksClient) GetGateway(ctx context.Context, id GatewayId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadNetworkGateway
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

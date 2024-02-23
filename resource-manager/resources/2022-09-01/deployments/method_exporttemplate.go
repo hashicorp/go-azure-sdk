@@ -44,7 +44,10 @@ func (c DeploymentsClient) ExportTemplate(ctx context.Context, id ResourceGroupP
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DeploymentExportResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

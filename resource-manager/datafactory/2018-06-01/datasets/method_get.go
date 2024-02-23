@@ -72,7 +72,10 @@ func (c DatasetsClient) Get(ctx context.Context, id DatasetId, options GetOperat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DatasetResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

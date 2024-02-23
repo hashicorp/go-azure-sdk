@@ -43,7 +43,10 @@ func (c TenantBackfillClient) Status(ctx context.Context) (result StatusOperatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TenantBackfillStatusResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

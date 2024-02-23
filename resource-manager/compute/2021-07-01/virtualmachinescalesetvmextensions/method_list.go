@@ -72,7 +72,10 @@ func (c VirtualMachineScaleSetVMExtensionsClient) List(ctx context.Context, id V
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineScaleSetVMExtensionsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

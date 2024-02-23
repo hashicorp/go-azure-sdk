@@ -44,7 +44,10 @@ func (c ExperimentsClient) Cancel(ctx context.Context, id ExperimentId) (result 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ExperimentCancelOperationResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

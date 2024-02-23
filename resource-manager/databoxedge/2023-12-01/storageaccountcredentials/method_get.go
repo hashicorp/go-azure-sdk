@@ -43,7 +43,10 @@ func (c StorageAccountCredentialsClient) Get(ctx context.Context, id StorageAcco
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model StorageAccountCredential
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

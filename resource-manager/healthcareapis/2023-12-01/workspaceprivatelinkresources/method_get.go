@@ -43,7 +43,10 @@ func (c WorkspacePrivateLinkResourcesClient) Get(ctx context.Context, id Workspa
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourceDescription
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

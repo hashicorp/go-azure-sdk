@@ -48,7 +48,10 @@ func (c ShareClient) ProviderShareSubscriptionsAdjust(ctx context.Context, id Pr
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProviderShareSubscription
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

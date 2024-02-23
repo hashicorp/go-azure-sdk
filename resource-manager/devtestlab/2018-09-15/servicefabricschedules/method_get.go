@@ -72,7 +72,10 @@ func (c ServiceFabricSchedulesClient) Get(ctx context.Context, id ServiceFabricS
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Schedule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

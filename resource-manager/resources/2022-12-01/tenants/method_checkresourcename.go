@@ -47,7 +47,10 @@ func (c TenantsClient) CheckResourceName(ctx context.Context, input ResourceName
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CheckResourceNameResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

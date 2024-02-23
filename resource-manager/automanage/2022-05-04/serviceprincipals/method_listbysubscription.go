@@ -45,7 +45,10 @@ func (c ServicePrincipalsClient) ListBySubscription(ctx context.Context, id comm
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServicePrincipalListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

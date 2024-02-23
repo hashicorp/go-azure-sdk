@@ -48,7 +48,10 @@ func (c ServiceRunnersClient) CreateOrUpdate(ctx context.Context, id ServiceRunn
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServiceRunner
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

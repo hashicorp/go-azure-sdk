@@ -72,7 +72,10 @@ func (c FormulasClient) Get(ctx context.Context, id FormulaId, options GetOperat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Formula
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

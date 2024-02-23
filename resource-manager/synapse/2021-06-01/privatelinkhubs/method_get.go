@@ -43,7 +43,10 @@ func (c PrivateLinkHubsClient) Get(ctx context.Context, id PrivateLinkHubId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkHub
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

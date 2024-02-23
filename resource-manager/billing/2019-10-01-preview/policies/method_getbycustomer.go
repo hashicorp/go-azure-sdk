@@ -44,7 +44,10 @@ func (c PoliciesClient) GetByCustomer(ctx context.Context, id CustomerId) (resul
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CustomerPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

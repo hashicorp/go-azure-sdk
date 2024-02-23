@@ -72,7 +72,10 @@ func (c ServiceTaskResourceClient) ServiceTasksGet(ctx context.Context, id Servi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectTask
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -76,7 +76,10 @@ func (c DocumentationResourceClient) Update(ctx context.Context, id Documentatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DocumentationContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

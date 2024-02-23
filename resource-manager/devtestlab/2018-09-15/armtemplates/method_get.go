@@ -72,7 +72,10 @@ func (c ArmTemplatesClient) Get(ctx context.Context, id ArmTemplateId, options G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ArmTemplate
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

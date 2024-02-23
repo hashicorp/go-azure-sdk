@@ -47,7 +47,10 @@ func (c ApplicationTypeClient) Update(ctx context.Context, id ApplicationTypeId,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationTypeResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

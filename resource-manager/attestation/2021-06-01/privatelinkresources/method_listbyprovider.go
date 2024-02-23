@@ -44,7 +44,10 @@ func (c PrivateLinkResourcesClient) ListByProvider(ctx context.Context, id Attes
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourceListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

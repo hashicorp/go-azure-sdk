@@ -44,7 +44,10 @@ func (c SignalRClient) ListSkus(ctx context.Context, id SignalRId) (result ListS
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SkuList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

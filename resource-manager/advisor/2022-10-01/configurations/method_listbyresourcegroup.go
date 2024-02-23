@@ -45,7 +45,10 @@ func (c ConfigurationsClient) ListByResourceGroup(ctx context.Context, id common
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConfigurationListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

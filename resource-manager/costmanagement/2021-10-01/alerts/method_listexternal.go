@@ -44,7 +44,10 @@ func (c AlertsClient) ListExternal(ctx context.Context, id ExternalCloudProvider
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AlertsResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

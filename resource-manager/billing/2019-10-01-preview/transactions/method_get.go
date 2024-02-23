@@ -76,7 +76,10 @@ func (c TransactionsClient) Get(ctx context.Context, id TransactionId, options G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Transaction
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

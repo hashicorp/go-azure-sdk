@@ -47,7 +47,10 @@ func (c StandardOperationClient) ServiceTasksUpdate(ctx context.Context, id Serv
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectTask
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

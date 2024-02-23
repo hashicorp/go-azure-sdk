@@ -44,7 +44,10 @@ func (c StandardOperationClient) FilesRead(ctx context.Context, id FileId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FileStorageInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -84,7 +84,10 @@ func (c PolicyFragmentClient) ListByService(ctx context.Context, id ServiceId, o
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyFragmentCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

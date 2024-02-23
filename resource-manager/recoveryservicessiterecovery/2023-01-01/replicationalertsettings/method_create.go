@@ -47,7 +47,10 @@ func (c ReplicationAlertSettingsClient) Create(ctx context.Context, id Replicati
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Alert
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

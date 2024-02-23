@@ -44,7 +44,10 @@ func (c SettingsClient) ProductSettingsList(ctx context.Context, id WorkspaceId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SettingList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

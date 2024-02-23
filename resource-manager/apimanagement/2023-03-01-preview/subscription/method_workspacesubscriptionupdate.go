@@ -83,7 +83,10 @@ func (c SubscriptionClient) WorkspaceSubscriptionUpdate(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c PipelineRunsClient) QueryByFactory(ctx context.Context, id FactoryId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PipelineRunsQueryResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

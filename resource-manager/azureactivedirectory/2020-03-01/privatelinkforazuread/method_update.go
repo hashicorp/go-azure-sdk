@@ -47,7 +47,10 @@ func (c PrivateLinkForAzureAdClient) Update(ctx context.Context, id PrivateLinkF
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c OutboundNetworkDependenciesEndpointsClient) ListByService(ctx context.Co
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OutboundEnvironmentEndpointList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

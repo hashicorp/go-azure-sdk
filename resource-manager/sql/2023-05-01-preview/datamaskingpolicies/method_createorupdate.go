@@ -50,7 +50,10 @@ func (c DataMaskingPoliciesClient) CreateOrUpdate(ctx context.Context, id common
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DataMaskingPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

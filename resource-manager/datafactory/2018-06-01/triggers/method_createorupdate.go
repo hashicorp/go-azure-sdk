@@ -76,7 +76,10 @@ func (c TriggersClient) CreateOrUpdate(ctx context.Context, id TriggerId, input 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TriggerResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c BookmarkClient) Expand(ctx context.Context, id BookmarkId, input Bookmar
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BookmarkExpandResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

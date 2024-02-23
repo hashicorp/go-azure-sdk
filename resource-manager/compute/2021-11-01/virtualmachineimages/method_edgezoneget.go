@@ -43,7 +43,10 @@ func (c VirtualMachineImagesClient) EdgeZoneGet(ctx context.Context, id OfferSku
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineImage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

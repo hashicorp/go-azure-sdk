@@ -43,7 +43,10 @@ func (c StorageContainersClient) Get(ctx context.Context, id StorageContainerId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model StorageContainers
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

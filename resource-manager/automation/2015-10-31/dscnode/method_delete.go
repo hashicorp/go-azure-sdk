@@ -43,7 +43,10 @@ func (c DscNodeClient) Delete(ctx context.Context, id NodeId) (result DeleteOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DscNode
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

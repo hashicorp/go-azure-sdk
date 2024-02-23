@@ -44,7 +44,10 @@ func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityP
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NetworkSecurityPerimeterConfigurationList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

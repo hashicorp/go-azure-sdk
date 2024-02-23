@@ -48,7 +48,10 @@ func (c DomainsClient) Update(ctx context.Context, id DomainId, input DomainPatc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Domain
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

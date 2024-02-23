@@ -48,7 +48,10 @@ func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id Int
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SsisObjectMetadataListResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

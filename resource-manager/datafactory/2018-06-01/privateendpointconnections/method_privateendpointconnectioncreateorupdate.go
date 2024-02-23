@@ -76,7 +76,10 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionCreateOrUpdat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateEndpointConnectionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

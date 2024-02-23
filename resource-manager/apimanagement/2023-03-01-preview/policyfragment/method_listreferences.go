@@ -76,7 +76,10 @@ func (c PolicyFragmentClient) ListReferences(ctx context.Context, id PolicyFragm
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ResourceCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

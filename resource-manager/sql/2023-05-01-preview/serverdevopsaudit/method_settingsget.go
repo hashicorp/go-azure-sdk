@@ -45,7 +45,10 @@ func (c ServerDevOpsAuditClient) SettingsGet(ctx context.Context, id commonids.S
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerDevOpsAuditingSettings
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

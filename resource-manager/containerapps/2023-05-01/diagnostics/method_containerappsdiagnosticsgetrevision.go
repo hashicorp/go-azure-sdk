@@ -43,7 +43,10 @@ func (c DiagnosticsClient) ContainerAppsDiagnosticsGetRevision(ctx context.Conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Revision
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

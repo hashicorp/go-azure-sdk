@@ -48,7 +48,10 @@ func (c POSTClient) ServicesCheckChildrenNameAvailability(ctx context.Context, i
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NameAvailabilityResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

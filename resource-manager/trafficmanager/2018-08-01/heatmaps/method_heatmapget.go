@@ -76,7 +76,10 @@ func (c HeatMapsClient) HeatMapGet(ctx context.Context, id TrafficManagerProfile
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HeatMapModel
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

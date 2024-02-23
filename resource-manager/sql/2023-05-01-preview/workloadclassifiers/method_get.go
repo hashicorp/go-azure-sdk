@@ -43,7 +43,10 @@ func (c WorkloadClassifiersClient) Get(ctx context.Context, id WorkloadClassifie
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadClassifier
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

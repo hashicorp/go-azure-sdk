@@ -72,7 +72,10 @@ func (c ProvidersClient) ProviderResourceTypesList(ctx context.Context, id Subsc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProviderResourceTypeListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

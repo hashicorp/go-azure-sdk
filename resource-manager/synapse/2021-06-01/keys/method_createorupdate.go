@@ -47,7 +47,10 @@ func (c KeysClient) CreateOrUpdate(ctx context.Context, id KeyId, input Key) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Key
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c ApiIssueCommentClient) Get(ctx context.Context, id CommentId) (result Ge
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IssueCommentContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -84,7 +84,10 @@ func (c FavoritesAPIsClient) FavoritesList(ctx context.Context, id ComponentId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []ApplicationInsightsComponentFavorite
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

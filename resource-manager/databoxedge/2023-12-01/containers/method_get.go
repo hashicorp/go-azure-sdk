@@ -43,7 +43,10 @@ func (c ContainersClient) Get(ctx context.Context, id ContainerId) (result GetOp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Container
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

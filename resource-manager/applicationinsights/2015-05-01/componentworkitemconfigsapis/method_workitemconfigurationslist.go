@@ -44,7 +44,10 @@ func (c ComponentWorkItemConfigsAPIsClient) WorkItemConfigurationsList(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkItemConfigurationsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c ProviderOperationsMetadataClient) Get(ctx context.Context, id ProviderOp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProviderOperationsMetadata
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

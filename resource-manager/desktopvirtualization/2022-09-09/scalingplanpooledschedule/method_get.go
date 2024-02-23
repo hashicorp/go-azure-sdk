@@ -43,7 +43,10 @@ func (c ScalingPlanPooledScheduleClient) Get(ctx context.Context, id PooledSched
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ScalingPlanPooledSchedule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

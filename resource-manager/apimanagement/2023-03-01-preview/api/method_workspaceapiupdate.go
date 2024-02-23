@@ -76,7 +76,10 @@ func (c ApiClient) WorkspaceApiUpdate(ctx context.Context, id WorkspaceApiId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApiContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

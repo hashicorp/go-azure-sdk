@@ -48,7 +48,10 @@ func (c ConsumerInvitationClient) RejectInvitation(ctx context.Context, id Locat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConsumerInvitation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

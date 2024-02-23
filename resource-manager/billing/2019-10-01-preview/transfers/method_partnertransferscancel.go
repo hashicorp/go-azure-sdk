@@ -43,7 +43,10 @@ func (c TransfersClient) PartnerTransfersCancel(ctx context.Context, id Customer
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TransferDetails
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

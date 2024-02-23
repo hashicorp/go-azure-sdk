@@ -44,7 +44,10 @@ func (c WCFRelaysClient) Get(ctx context.Context, id WcfRelayId) (result GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WcfRelay
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

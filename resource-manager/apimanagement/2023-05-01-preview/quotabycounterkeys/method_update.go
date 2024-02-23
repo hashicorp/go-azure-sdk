@@ -47,7 +47,10 @@ func (c QuotaByCounterKeysClient) Update(ctx context.Context, id QuotaId, input 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QuotaCounterCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

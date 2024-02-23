@@ -43,7 +43,10 @@ func (c GalleryImagesClient) Get(ctx context.Context, id GalleryImageId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GalleryImage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

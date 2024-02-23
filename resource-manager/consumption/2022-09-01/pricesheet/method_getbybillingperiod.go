@@ -76,7 +76,10 @@ func (c PriceSheetClient) GetByBillingPeriod(ctx context.Context, id BillingPeri
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PriceSheetResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

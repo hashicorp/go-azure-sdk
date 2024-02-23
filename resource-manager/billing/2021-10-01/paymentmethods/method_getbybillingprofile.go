@@ -43,7 +43,10 @@ func (c PaymentMethodsClient) GetByBillingProfile(ctx context.Context, id Paymen
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PaymentMethodLink
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

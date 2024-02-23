@@ -44,7 +44,10 @@ func (c SmartGroupsClient) GetHistory(ctx context.Context, id SmartGroupId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SmartGroupModification
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

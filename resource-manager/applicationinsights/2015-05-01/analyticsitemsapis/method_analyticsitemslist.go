@@ -80,7 +80,10 @@ func (c AnalyticsItemsAPIsClient) AnalyticsItemsList(ctx context.Context, id Pro
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []ApplicationInsightsComponentAnalyticsItem
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c LogicalNetworksClient) Get(ctx context.Context, id LogicalNetworkId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LogicalNetworks
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -45,7 +45,10 @@ func (c AlertsClient) List(ctx context.Context, id commonids.ScopeId) (result Li
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AlertsResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

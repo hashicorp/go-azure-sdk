@@ -44,7 +44,10 @@ func (c WorkflowRunActionsClient) CopeRepetitionsList(ctx context.Context, id Ac
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkflowRunActionRepetitionDefinitionCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

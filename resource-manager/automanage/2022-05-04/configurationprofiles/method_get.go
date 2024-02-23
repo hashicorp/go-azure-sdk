@@ -43,7 +43,10 @@ func (c ConfigurationProfilesClient) Get(ctx context.Context, id ConfigurationPr
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConfigurationProfile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

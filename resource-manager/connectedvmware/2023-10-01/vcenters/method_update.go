@@ -47,7 +47,10 @@ func (c VCentersClient) Update(ctx context.Context, id VCenterId, input Resource
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VCenter
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

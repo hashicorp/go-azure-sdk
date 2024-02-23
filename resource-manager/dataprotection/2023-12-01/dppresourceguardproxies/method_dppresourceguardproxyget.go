@@ -43,7 +43,10 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyGet(ctx context.Cont
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ResourceGuardProxyBaseResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

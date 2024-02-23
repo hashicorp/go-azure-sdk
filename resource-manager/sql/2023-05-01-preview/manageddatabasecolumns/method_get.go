@@ -43,7 +43,10 @@ func (c ManagedDatabaseColumnsClient) Get(ctx context.Context, id TableColumnId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DatabaseColumn
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

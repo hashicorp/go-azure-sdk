@@ -44,7 +44,10 @@ func (c MonitorsClient) GetAccountCredentials(ctx context.Context, id MonitorId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AccountInfoSecure
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

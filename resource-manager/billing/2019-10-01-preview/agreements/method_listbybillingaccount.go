@@ -72,7 +72,10 @@ func (c AgreementsClient) ListByBillingAccount(ctx context.Context, id BillingAc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AgreementListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

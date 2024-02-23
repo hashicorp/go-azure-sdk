@@ -44,7 +44,10 @@ func (c GatewayListKeysClient) GatewayListKeys(ctx context.Context, id GatewayId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GatewayKeysContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

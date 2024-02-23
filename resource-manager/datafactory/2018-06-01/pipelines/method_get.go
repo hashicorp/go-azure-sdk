@@ -72,7 +72,10 @@ func (c PipelinesClient) Get(ctx context.Context, id PipelineId, options GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PipelineResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

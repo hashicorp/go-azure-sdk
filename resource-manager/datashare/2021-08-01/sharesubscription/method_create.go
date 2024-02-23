@@ -48,7 +48,10 @@ func (c ShareSubscriptionClient) Create(ctx context.Context, id ShareSubscriptio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ShareSubscription
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

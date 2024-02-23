@@ -44,7 +44,10 @@ func (c HyperVSitesClient) GetSiteUsage(ctx context.Context, id HyperVSiteId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HyperVSiteUsage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

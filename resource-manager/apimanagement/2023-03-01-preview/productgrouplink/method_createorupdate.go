@@ -48,7 +48,10 @@ func (c ProductGroupLinkClient) CreateOrUpdate(ctx context.Context, id GroupLink
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProductGroupLinkContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -45,7 +45,10 @@ func (c BotHostSettingsClient) HostSettingsGet(ctx context.Context, id commonids
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HostSettingsResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

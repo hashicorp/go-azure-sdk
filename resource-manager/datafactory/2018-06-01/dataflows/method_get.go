@@ -72,7 +72,10 @@ func (c DataFlowsClient) Get(ctx context.Context, id DataflowId, options GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DataFlowResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

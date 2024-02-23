@@ -72,7 +72,10 @@ func (c ArtifactSourcesClient) Get(ctx context.Context, id ArtifactSourceId, opt
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ArtifactSource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

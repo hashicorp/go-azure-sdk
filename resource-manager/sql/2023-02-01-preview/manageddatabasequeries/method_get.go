@@ -43,7 +43,10 @@ func (c ManagedDatabaseQueriesClient) Get(ctx context.Context, id QueryId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedInstanceQuery
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

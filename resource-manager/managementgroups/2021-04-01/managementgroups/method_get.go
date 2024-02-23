@@ -84,7 +84,10 @@ func (c ManagementGroupsClient) Get(ctx context.Context, id commonids.Management
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagementGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

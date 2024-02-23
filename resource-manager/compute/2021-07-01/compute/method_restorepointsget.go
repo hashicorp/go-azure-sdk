@@ -43,7 +43,10 @@ func (c ComputeClient) RestorePointsGet(ctx context.Context, id RestorePointId) 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RestorePoint
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

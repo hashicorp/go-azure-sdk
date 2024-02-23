@@ -43,7 +43,10 @@ func (c BandwidthSchedulesClient) Get(ctx context.Context, id BandwidthScheduleI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BandwidthSchedule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

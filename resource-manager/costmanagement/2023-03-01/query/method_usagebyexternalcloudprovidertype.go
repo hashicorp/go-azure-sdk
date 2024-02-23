@@ -48,7 +48,10 @@ func (c QueryClient) UsageByExternalCloudProviderType(ctx context.Context, id Ex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QueryResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -49,7 +49,10 @@ func (c SqlPoolsSecurityAlertPoliciesClient) SqlPoolSecurityAlertPoliciesCreateO
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SqlPoolSecurityAlertPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

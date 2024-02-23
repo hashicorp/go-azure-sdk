@@ -43,7 +43,10 @@ func (c AlertsClient) Get(ctx context.Context, id AlertId) (result GetOperationR
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Alert
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

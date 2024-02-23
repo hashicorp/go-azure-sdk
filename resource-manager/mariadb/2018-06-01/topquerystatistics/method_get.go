@@ -43,7 +43,10 @@ func (c TopQueryStatisticsClient) Get(ctx context.Context, id TopQueryStatisticI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QueryStatistic
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

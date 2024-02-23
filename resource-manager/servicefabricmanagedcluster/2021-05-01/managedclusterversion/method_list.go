@@ -44,7 +44,10 @@ func (c ManagedClusterVersionClient) List(ctx context.Context, id LocationId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []ManagedClusterCodeVersionResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

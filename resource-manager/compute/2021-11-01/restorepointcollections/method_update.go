@@ -47,7 +47,10 @@ func (c RestorePointCollectionsClient) Update(ctx context.Context, id RestorePoi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RestorePointCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

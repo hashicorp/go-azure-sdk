@@ -76,7 +76,10 @@ func (c DepartmentsClient) ListByBillingAccountName(ctx context.Context, id Bill
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DepartmentListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

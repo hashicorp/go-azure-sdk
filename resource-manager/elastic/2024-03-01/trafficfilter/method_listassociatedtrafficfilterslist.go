@@ -44,7 +44,10 @@ func (c TrafficFilterClient) ListAssociatedTrafficFilterslist(ctx context.Contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ElasticTrafficFilterResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 
