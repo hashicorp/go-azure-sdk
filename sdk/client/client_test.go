@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"io"
 	"log"
 	"net/http"
@@ -17,6 +16,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
