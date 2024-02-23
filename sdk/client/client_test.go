@@ -355,12 +355,12 @@ func TestUnmarshalByteStreamAndPowerShell(t *testing.T) {
 				Body: io.NopCloser(bytes.NewReader(expected)),
 			},
 		}
-		var unmarshaled = pointer.To(make([]byte, 0))
+		var unmarshaled = make([]byte, 0)
 		if err := r.Unmarshal(&unmarshaled); err != nil {
 			t.Fatalf("unmarshaling: %+v", err)
 		}
-		if string(*unmarshaled) != "you serve butter" {
-			t.Fatalf("unexpected difference in decoded objects. Expected %q\n\nGot: %q", string(expected), string(*unmarshaled))
+		if string(unmarshaled) != "you serve butter" {
+			t.Fatalf("unexpected difference in decoded objects. Expected %q\n\nGot: %q", string(expected), string(unmarshaled))
 		}
 	}
 }
@@ -373,7 +373,9 @@ func TestUnmarshalByteStreamAndPowerShellWithModel(t *testing.T) {
 	var respModel = struct {
 		HttpResponse *http.Response
 		Model        *[]byte
-	}{}
+	}{
+		Model: pointer.To(make([]byte, 0)),
+	}
 	expected := []byte("you serve butter")
 	for _, contentType := range contentTypes {
 		r := &Response{
@@ -384,7 +386,7 @@ func TestUnmarshalByteStreamAndPowerShellWithModel(t *testing.T) {
 				Body: io.NopCloser(bytes.NewReader(expected)),
 			},
 		}
-		if err := r.Unmarshal(&respModel.Model); err != nil {
+		if err := r.Unmarshal(respModel.Model); err != nil {
 			t.Fatalf("unmarshaling: %+v", err)
 		}
 		if string(*respModel.Model) != "you serve butter" {
