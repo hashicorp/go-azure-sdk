@@ -47,7 +47,10 @@ func (c AutoScaleVCoresClient) Create(ctx context.Context, id AutoScaleVCoreId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AutoScaleVCore
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

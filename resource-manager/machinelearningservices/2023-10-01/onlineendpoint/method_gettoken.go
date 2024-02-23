@@ -44,7 +44,10 @@ func (c OnlineEndpointClient) GetToken(ctx context.Context, id OnlineEndpointId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EndpointAuthToken
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

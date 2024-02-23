@@ -44,7 +44,10 @@ func (c ConnectionGatewaysClient) ConnectionGatewayInstallationsList(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConnectionGatewayInstallationDefinitionCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c SmartDetectorAlertRulesClient) Get(ctx context.Context, id SmartDetector
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AlertRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

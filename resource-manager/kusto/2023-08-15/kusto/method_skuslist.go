@@ -44,7 +44,10 @@ func (c KustoClient) SkusList(ctx context.Context, id LocationId) (result SkusLi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SkuDescriptionList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

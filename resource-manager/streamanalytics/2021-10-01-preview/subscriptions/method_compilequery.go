@@ -48,7 +48,10 @@ func (c SubscriptionsClient) CompileQuery(ctx context.Context, id LocationId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QueryCompilationResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

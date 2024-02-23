@@ -43,7 +43,10 @@ func (c IntegrationRuntimeClient) NodesGet(ctx context.Context, id NodeId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SelfHostedIntegrationRuntimeNode
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -47,7 +47,10 @@ func (c ResourcesClient) Resources(ctx context.Context, input QueryRequest) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model QueryResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

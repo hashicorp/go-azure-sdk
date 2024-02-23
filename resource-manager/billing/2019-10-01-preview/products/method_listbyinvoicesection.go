@@ -72,7 +72,10 @@ func (c ProductsClient) ListByInvoiceSection(ctx context.Context, id InvoiceSect
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProductsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

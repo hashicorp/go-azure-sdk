@@ -48,7 +48,10 @@ func (c AccountsClient) CheckNameAvailability(ctx context.Context, id LocationId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NameAvailabilityInformation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

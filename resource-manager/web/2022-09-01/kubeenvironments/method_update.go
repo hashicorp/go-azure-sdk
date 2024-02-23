@@ -48,7 +48,10 @@ func (c KubeEnvironmentsClient) Update(ctx context.Context, id KubeEnvironmentId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model KubeEnvironment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

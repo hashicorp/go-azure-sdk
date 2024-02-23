@@ -47,7 +47,10 @@ func (c ArtifactSourcesClient) Update(ctx context.Context, id ArtifactSourceId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ArtifactSource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

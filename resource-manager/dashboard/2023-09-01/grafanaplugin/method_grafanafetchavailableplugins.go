@@ -44,7 +44,10 @@ func (c GrafanaPluginClient) GrafanaFetchAvailablePlugins(ctx context.Context, i
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GrafanaAvailablePluginListResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

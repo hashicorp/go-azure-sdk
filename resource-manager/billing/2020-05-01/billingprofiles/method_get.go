@@ -72,7 +72,10 @@ func (c BillingProfilesClient) Get(ctx context.Context, id BillingProfileId, opt
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BillingProfile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

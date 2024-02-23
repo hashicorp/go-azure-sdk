@@ -72,7 +72,10 @@ func (c RestorePointCollectionsClient) Get(ctx context.Context, id RestorePointC
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RestorePointCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

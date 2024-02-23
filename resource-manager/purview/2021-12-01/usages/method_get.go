@@ -72,7 +72,10 @@ func (c UsagesClient) Get(ctx context.Context, id LocationId, options GetOperati
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UsageList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

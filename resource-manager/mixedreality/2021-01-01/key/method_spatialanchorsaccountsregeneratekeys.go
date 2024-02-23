@@ -48,7 +48,10 @@ func (c KeyClient) SpatialAnchorsAccountsRegenerateKeys(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AccountKeys
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

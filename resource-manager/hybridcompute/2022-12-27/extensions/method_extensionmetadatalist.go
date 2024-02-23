@@ -44,7 +44,10 @@ func (c ExtensionsClient) ExtensionMetadataList(ctx context.Context, id Extensio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ExtensionValueListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

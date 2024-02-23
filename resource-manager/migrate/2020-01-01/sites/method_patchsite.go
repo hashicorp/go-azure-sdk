@@ -48,7 +48,10 @@ func (c SitesClient) PatchSite(ctx context.Context, id VMwareSiteId, input VMwar
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VMwareSite
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

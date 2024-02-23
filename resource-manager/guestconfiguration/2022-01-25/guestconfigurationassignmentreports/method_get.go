@@ -43,7 +43,10 @@ func (c GuestConfigurationAssignmentReportsClient) Get(ctx context.Context, id P
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GuestConfigurationAssignmentReport
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

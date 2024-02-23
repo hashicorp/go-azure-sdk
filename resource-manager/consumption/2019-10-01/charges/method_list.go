@@ -85,7 +85,10 @@ func (c ChargesClient) List(ctx context.Context, id commonids.ScopeId, options L
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ChargesListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

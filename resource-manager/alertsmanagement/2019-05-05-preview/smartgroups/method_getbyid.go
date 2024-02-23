@@ -43,7 +43,10 @@ func (c SmartGroupsClient) GetById(ctx context.Context, id SmartGroupId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SmartGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

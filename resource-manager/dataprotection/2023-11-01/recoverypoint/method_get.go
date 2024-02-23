@@ -43,7 +43,10 @@ func (c RecoveryPointClient) Get(ctx context.Context, id RecoveryPointId) (resul
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AzureBackupRecoveryPointResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

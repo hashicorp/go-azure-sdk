@@ -43,7 +43,10 @@ func (c ConnectedEnvironmentsClient) Update(ctx context.Context, id ConnectedEnv
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConnectedEnvironment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

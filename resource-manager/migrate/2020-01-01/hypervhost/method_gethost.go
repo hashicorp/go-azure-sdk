@@ -43,7 +43,10 @@ func (c HyperVHostClient) GetHost(ctx context.Context, id HostId) (result GetHos
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HyperVHost
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

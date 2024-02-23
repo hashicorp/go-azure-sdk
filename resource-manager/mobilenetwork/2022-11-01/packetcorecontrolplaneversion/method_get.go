@@ -43,7 +43,10 @@ func (c PacketCoreControlPlaneVersionClient) Get(ctx context.Context, id PacketC
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PacketCoreControlPlaneVersion
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

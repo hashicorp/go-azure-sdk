@@ -48,7 +48,10 @@ func (c BillingsClient) ProductsValidateMove(ctx context.Context, id ProductId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ValidateProductTransferEligibilityResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

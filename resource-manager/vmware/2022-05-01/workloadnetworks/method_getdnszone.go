@@ -43,7 +43,10 @@ func (c WorkloadNetworksClient) GetDnsZone(ctx context.Context, id DnsZoneId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadNetworkDnsZone
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

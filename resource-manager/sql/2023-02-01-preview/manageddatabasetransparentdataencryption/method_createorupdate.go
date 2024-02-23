@@ -50,7 +50,10 @@ func (c ManagedDatabaseTransparentDataEncryptionClient) CreateOrUpdate(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedTransparentDataEncryption
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

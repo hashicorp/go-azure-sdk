@@ -43,7 +43,10 @@ func (c RoleAssignmentsClient) GetById(ctx context.Context, id RoleIdId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RoleAssignment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

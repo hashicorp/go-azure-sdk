@@ -48,7 +48,10 @@ func (c CustomAPIsClient) ListWsdlInterfaces(ctx context.Context, id LocationId,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WsdlServiceCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c CommitmentPlansClient) GetAssociation(ctx context.Context, id AccountAss
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CommitmentPlanAccountAssociation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

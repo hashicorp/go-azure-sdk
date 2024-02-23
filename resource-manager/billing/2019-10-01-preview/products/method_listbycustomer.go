@@ -72,7 +72,10 @@ func (c ProductsClient) ListByCustomer(ctx context.Context, id CustomerId, optio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProductsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

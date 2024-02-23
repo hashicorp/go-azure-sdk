@@ -43,7 +43,10 @@ func (c FeaturestoreEntityVersionClient) Get(ctx context.Context, id FeatureStor
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FeaturestoreEntityVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

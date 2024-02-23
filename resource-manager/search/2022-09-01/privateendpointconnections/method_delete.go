@@ -72,7 +72,10 @@ func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id Private
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateEndpointConnection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

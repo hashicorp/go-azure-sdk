@@ -43,7 +43,10 @@ func (c SqlPoolsDataMaskingRulesClient) DataMaskingRulesGet(ctx context.Context,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DataMaskingRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

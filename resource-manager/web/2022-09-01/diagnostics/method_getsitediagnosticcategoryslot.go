@@ -43,7 +43,10 @@ func (c DiagnosticsClient) GetSiteDiagnosticCategorySlot(ctx context.Context, id
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DiagnosticCategory
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

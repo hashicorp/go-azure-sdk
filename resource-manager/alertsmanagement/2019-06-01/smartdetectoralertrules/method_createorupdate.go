@@ -48,7 +48,10 @@ func (c SmartDetectorAlertRulesClient) CreateOrUpdate(ctx context.Context, id Sm
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AlertRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

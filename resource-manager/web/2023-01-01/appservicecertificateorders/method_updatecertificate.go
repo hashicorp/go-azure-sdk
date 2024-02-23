@@ -47,7 +47,10 @@ func (c AppServiceCertificateOrdersClient) UpdateCertificate(ctx context.Context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AppServiceCertificateResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

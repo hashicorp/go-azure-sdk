@@ -43,7 +43,10 @@ func (c SubscriptionUsagesClient) Get(ctx context.Context, id UsageId) (result G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionUsage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

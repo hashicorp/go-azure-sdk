@@ -47,7 +47,10 @@ func (c DeploymentsClient) CalculateTemplateHash(ctx context.Context, input inte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TemplateHashResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

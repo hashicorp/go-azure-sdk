@@ -43,7 +43,10 @@ func (c ConnectedEnvironmentsClient) CertificatesGet(ctx context.Context, id Con
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Certificate
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

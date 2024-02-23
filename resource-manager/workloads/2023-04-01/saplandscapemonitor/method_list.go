@@ -44,7 +44,10 @@ func (c SapLandscapeMonitorClient) List(ctx context.Context, id MonitorId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SapLandscapeMonitorListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

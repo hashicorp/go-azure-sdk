@@ -48,7 +48,10 @@ func (c CostAllocationRulesClient) CreateOrUpdate(ctx context.Context, id CostAl
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CostAllocationRuleDefinition
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c InstancePoolsClient) Get(ctx context.Context, id InstancePoolId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model InstancePool
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c ConnectedResourcesClient) BillingInfoGet(ctx context.Context, id Monitor
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BillingInfoResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

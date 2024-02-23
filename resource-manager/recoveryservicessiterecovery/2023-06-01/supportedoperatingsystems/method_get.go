@@ -72,7 +72,10 @@ func (c SupportedOperatingSystemsClient) Get(ctx context.Context, id VaultId, op
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SupportedOperatingSystems
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

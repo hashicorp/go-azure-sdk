@@ -43,7 +43,10 @@ func (c WorkloadNetworksClient) GetDnsService(ctx context.Context, id DnsService
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadNetworkDnsService
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

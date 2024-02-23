@@ -47,7 +47,10 @@ func (c ServerAdvisorsClient) Update(ctx context.Context, id AdvisorId, input Ad
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Advisor
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

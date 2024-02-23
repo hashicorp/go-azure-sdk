@@ -48,7 +48,10 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyUnlockDelete(ctx con
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UnlockDeleteResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

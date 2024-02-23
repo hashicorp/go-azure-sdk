@@ -43,7 +43,10 @@ func (c PaymentMethodsClient) GetByUser(ctx context.Context, id PaymentMethodId)
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PaymentMethod
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

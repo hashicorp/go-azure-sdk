@@ -43,7 +43,10 @@ func (c ProductsClient) Get(ctx context.Context, id InvoiceSectionProductId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Product
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

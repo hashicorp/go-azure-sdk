@@ -44,7 +44,10 @@ func (c PrivateEndpointConnectionProxiesClient) ListByAccount(ctx context.Contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateEndpointConnectionProxyListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

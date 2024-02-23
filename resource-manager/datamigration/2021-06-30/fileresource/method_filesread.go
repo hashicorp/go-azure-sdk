@@ -44,7 +44,10 @@ func (c FileResourceClient) FilesRead(ctx context.Context, id FileId) (result Fi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FileStorageInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

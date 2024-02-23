@@ -47,7 +47,10 @@ func (c IntegrationRuntimeClient) Update(ctx context.Context, id IntegrationRunt
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

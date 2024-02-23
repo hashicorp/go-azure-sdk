@@ -44,7 +44,10 @@ func (c POSTClient) FilesRead(ctx context.Context, id FileId) (result FilesReadO
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model FileStorageInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

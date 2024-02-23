@@ -47,7 +47,10 @@ func (c SyncIdentityProvidersClient) Update(ctx context.Context, id SyncIdentity
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SyncIdentityProvider
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

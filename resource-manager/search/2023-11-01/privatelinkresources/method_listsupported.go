@@ -72,7 +72,10 @@ func (c PrivateLinkResourcesClient) ListSupported(ctx context.Context, id Search
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourcesResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

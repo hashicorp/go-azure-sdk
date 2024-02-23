@@ -43,7 +43,10 @@ func (c PolicyRestrictionClient) Get(ctx context.Context, id PolicyRestrictionId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyRestrictionContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c ManagedServerDnsAliasesClient) Get(ctx context.Context, id ManagedInstan
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedServerDnsAlias
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

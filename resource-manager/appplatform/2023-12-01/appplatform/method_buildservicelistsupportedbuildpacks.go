@@ -44,7 +44,10 @@ func (c AppPlatformClient) BuildServiceListSupportedBuildpacks(ctx context.Conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SupportedBuildpacksCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

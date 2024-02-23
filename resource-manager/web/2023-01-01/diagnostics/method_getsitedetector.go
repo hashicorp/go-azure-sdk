@@ -43,7 +43,10 @@ func (c DiagnosticsClient) GetSiteDetector(ctx context.Context, id DiagnosticDet
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DetectorDefinitionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

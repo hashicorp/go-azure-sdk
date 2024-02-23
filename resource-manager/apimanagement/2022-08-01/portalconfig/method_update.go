@@ -76,7 +76,10 @@ func (c PortalConfigClient) Update(ctx context.Context, id PortalConfigId, input
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PortalConfigContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

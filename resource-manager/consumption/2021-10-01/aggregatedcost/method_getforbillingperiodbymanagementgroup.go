@@ -44,7 +44,10 @@ func (c AggregatedCostClient) GetForBillingPeriodByManagementGroup(ctx context.C
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagementGroupAggregatedCostResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

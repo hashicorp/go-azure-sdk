@@ -43,7 +43,10 @@ func (c MetadataClient) RecommendationMetadataGet(ctx context.Context, id Metada
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MetadataEntity
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

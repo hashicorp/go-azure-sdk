@@ -44,7 +44,10 @@ func (c VirtualMachineImagesClient) ListByEdgeZone(ctx context.Context, id EdgeZ
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VMImagesInEdgeZoneListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

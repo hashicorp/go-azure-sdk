@@ -48,7 +48,10 @@ func (c OpenAIIntegrationClient) OpenAICreateOrUpdate(ctx context.Context, id Op
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OpenAIIntegrationRPModel
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c NotificationRecipientEmailClient) ListByNotification(ctx context.Context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RecipientEmailCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

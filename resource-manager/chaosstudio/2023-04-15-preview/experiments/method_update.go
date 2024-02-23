@@ -47,7 +47,10 @@ func (c ExperimentsClient) Update(ctx context.Context, id ExperimentId, input Ex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Experiment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

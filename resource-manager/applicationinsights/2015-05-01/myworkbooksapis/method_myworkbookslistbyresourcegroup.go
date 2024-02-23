@@ -81,7 +81,10 @@ func (c MyworkbooksAPIsClient) MyWorkbooksListByResourceGroup(ctx context.Contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MyWorkbooksListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

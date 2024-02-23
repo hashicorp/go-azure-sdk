@@ -73,7 +73,10 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CreateResourceSupportedResponseList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c AuthorizationLoginLinksClient) Post(ctx context.Context, id Authorizatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AuthorizationLoginResponseContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

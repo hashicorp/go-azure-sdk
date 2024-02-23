@@ -44,7 +44,10 @@ func (c SqlPoolsClient) SqlPoolMetadataSyncConfigsGet(ctx context.Context, id Sq
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MetadataSyncConfig
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

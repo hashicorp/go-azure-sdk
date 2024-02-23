@@ -47,7 +47,10 @@ func (c ConnectedEnvironmentsStoragesClient) CreateOrUpdate(ctx context.Context,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConnectedEnvironmentStorage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

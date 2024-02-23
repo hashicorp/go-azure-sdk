@@ -43,7 +43,10 @@ func (c IPFirewallRulesClient) Get(ctx context.Context, id FirewallRuleId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IPFirewallRuleInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

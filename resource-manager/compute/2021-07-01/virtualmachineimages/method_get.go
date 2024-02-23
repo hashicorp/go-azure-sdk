@@ -43,7 +43,10 @@ func (c VirtualMachineImagesClient) Get(ctx context.Context, id SkuVersionId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineImage
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

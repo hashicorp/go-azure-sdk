@@ -80,7 +80,10 @@ func (c DiagnosticsClient) GetSiteDetectorResponse(ctx context.Context, id Detec
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DetectorResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

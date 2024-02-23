@@ -44,7 +44,10 @@ func (c VirtualMachineImagesClient) ListSkus(ctx context.Context, id OfferId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []VirtualMachineImageResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

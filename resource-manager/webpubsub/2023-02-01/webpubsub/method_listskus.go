@@ -44,7 +44,10 @@ func (c WebPubSubClient) ListSkus(ctx context.Context, id WebPubSubId) (result L
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SkuList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

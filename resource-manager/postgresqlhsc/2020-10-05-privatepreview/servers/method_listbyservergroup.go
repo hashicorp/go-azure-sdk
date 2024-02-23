@@ -44,7 +44,10 @@ func (c ServersClient) ListByServerGroup(ctx context.Context, id ServerGroupsv2I
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerGroupServerListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c ReplicasClient) ListByServer(ctx context.Context, id FlexibleServerId) (
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

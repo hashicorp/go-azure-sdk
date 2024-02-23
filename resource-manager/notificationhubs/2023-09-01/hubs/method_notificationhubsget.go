@@ -43,7 +43,10 @@ func (c HubsClient) NotificationHubsGet(ctx context.Context, id NotificationHubI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NotificationHubResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -47,7 +47,10 @@ func (c NetworkcloudsClient) VolumesUpdate(ctx context.Context, id VolumeId, inp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Volume
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

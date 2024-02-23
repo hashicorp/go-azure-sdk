@@ -47,7 +47,10 @@ func (c AlertsClient) Dismiss(ctx context.Context, id ScopedAlertId, input Dismi
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Alert
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

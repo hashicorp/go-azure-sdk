@@ -47,7 +47,10 @@ func (c SmartDetectorAlertRulesClient) Patch(ctx context.Context, id SmartDetect
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AlertRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

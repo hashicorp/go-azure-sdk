@@ -48,7 +48,10 @@ func (c CheckPolicyRestrictionsClient) PolicyRestrictionsCheckAtManagementGroupS
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CheckRestrictionsResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

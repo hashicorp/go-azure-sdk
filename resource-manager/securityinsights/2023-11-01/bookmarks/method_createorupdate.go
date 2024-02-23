@@ -48,7 +48,10 @@ func (c BookmarksClient) CreateOrUpdate(ctx context.Context, id BookmarkId, inpu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Bookmark
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

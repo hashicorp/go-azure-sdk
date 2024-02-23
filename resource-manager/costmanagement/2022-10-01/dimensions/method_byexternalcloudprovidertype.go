@@ -80,7 +80,10 @@ func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id Ex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Dimension
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c DataVersionRegistryClient) RegistryDataVersionsGet(ctx context.Context, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DataVersionBaseResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

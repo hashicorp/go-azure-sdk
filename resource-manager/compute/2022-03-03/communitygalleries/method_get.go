@@ -43,7 +43,10 @@ func (c CommunityGalleriesClient) Get(ctx context.Context, id CommunityGalleryId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PirCommunityGalleryResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

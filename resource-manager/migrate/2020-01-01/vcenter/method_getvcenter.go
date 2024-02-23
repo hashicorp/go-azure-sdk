@@ -43,7 +43,10 @@ func (c VCenterClient) GetVCenter(ctx context.Context, id VCenterId) (result Get
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VCenter
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

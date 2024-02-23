@@ -43,7 +43,10 @@ func (c ReplicationLogicalNetworksClient) Get(ctx context.Context, id Replicatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LogicalNetwork
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

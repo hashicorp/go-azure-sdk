@@ -48,7 +48,10 @@ func (c ComponentFeaturesAndPricingAPIsClient) ComponentCurrentBillingFeaturesUp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsComponentBillingFeatures
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

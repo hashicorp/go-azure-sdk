@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) StorageAppliancesGet(ctx context.Context, id Storag
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model StorageAppliance
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

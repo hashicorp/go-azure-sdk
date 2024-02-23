@@ -83,7 +83,10 @@ func (c SoftwareUpdateConfigurationMachineRunClient) List(ctx context.Context, i
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SoftwareUpdateConfigurationMachineRunListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

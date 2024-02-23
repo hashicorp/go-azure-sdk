@@ -77,7 +77,10 @@ func (c AuthorizationProviderClient) CreateOrUpdate(ctx context.Context, id Auth
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AuthorizationProviderContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

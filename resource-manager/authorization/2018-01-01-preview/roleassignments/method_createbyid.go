@@ -47,7 +47,10 @@ func (c RoleAssignmentsClient) CreateById(ctx context.Context, id RoleIdId, inpu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RoleAssignment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

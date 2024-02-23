@@ -43,7 +43,10 @@ func (c ManagedInstancePrivateLinkResourcesClient) Get(ctx context.Context, id M
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedInstancePrivateLink
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

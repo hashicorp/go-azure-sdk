@@ -48,7 +48,10 @@ func (c JobStepsClient) CreateOrUpdate(ctx context.Context, id StepId, input Job
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model JobStep
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

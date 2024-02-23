@@ -47,7 +47,10 @@ func (c UsersClient) Update(ctx context.Context, id UserId, input UpdateResource
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model User
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

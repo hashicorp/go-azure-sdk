@@ -43,7 +43,10 @@ func (c InvoicesClient) Get(ctx context.Context, id BillingProfileInvoiceId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Invoice
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

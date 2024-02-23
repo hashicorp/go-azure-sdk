@@ -43,7 +43,10 @@ func (c BestPracticesVersionsClient) Get(ctx context.Context, id VersionId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BestPractice
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

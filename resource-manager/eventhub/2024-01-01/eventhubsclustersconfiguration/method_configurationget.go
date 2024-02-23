@@ -44,7 +44,10 @@ func (c EventHubsClustersConfigurationClient) ConfigurationGet(ctx context.Conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ClusterQuotaConfigurationProperties
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

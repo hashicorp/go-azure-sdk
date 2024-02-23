@@ -72,7 +72,10 @@ func (c CustomersClient) Get(ctx context.Context, id CustomerId, options GetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Customer
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

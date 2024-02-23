@@ -43,7 +43,10 @@ func (c ServerGroupsClient) Get(ctx context.Context, id ServerGroupsv2Id) (resul
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ServerGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

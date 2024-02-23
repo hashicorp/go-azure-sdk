@@ -80,7 +80,10 @@ func (c VirtualMachineImagesClient) List(ctx context.Context, id SkuId, options 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []VirtualMachineImageResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c ActionRulesClient) Delete(ctx context.Context, id ActionRuleId) (result 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model bool
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

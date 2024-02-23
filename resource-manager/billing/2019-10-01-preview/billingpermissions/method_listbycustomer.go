@@ -44,7 +44,10 @@ func (c BillingPermissionsClient) ListByCustomer(ctx context.Context, id Custome
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BillingPermissionsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

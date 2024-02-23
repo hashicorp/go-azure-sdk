@@ -48,7 +48,10 @@ func (c QuotaClient) Update(ctx context.Context, id LocationId, input QuotaUpdat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model UpdateWorkspaceQuotasResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

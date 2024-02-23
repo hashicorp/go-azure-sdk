@@ -77,7 +77,10 @@ func (c AuthorizationAccessPolicyClient) CreateOrUpdate(ctx context.Context, id 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AuthorizationAccessPolicyContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

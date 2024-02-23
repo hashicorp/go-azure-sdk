@@ -73,7 +73,10 @@ func (c MaintenanceWindowOptionsClient) Get(ctx context.Context, id commonids.Sq
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MaintenanceWindowOptions
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

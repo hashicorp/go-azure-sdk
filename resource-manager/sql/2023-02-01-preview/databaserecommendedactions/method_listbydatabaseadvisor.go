@@ -44,7 +44,10 @@ func (c DatabaseRecommendedActionsClient) ListByDatabaseAdvisor(ctx context.Cont
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []RecommendedAction
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

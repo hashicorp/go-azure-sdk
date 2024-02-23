@@ -43,7 +43,10 @@ func (c HcxEnterpriseSitesClient) Get(ctx context.Context, id HcxEnterpriseSiteI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model HcxEnterpriseSite
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

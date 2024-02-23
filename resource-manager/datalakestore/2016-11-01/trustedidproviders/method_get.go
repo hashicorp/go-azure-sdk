@@ -43,7 +43,10 @@ func (c TrustedIdProvidersClient) Get(ctx context.Context, id TrustedIdProviderI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TrustedIdProvider
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

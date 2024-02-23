@@ -76,7 +76,10 @@ func (c DatasetsClient) CreateOrUpdate(ctx context.Context, id DatasetId, input 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DatasetResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c OuContainerClient) Get(ctx context.Context, id OuContainerId) (result Ge
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OuContainer
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -47,7 +47,10 @@ func (c TrustedIdProvidersClient) CreateOrUpdate(ctx context.Context, id Trusted
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TrustedIdProvider
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

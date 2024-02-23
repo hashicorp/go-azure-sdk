@@ -43,7 +43,10 @@ func (c SubscriptionFeatureRegistrationsClient) Get(ctx context.Context, id Subs
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionFeatureRegistration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

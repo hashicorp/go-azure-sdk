@@ -47,7 +47,10 @@ func (c FormulasClient) Update(ctx context.Context, id FormulaId, input UpdateRe
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Formula
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c OutboundFirewallRulesClient) Get(ctx context.Context, id OutboundFirewal
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OutboundFirewallRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

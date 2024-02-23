@@ -43,7 +43,10 @@ func (c GETClient) FilesGet(ctx context.Context, id FileId) (result FilesGetOper
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProjectFile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c SyncSetsClient) Get(ctx context.Context, id SyncSetId) (result GetOperat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SyncSet
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -47,7 +47,10 @@ func (c ApplicationTypeVersionClient) Update(ctx context.Context, id VersionId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationTypeVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

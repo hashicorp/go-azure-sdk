@@ -72,7 +72,10 @@ func (c WorkspacePolicyClient) Get(ctx context.Context, id WorkspaceId, options 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

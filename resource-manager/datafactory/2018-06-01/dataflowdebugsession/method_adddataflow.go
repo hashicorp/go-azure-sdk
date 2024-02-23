@@ -48,7 +48,10 @@ func (c DataFlowDebugSessionClient) AddDataFlow(ctx context.Context, id FactoryI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AddDataFlowToDebugSessionResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

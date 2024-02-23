@@ -43,7 +43,10 @@ func (c ExperimentsClient) GetStatus(ctx context.Context, id StatusId) (result G
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ExperimentStatus
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

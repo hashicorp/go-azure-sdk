@@ -43,7 +43,10 @@ func (c EnvironmentContainerClient) RegistryEnvironmentContainersGet(ctx context
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EnvironmentContainerResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

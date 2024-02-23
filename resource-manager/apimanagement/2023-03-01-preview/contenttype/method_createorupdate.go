@@ -77,7 +77,10 @@ func (c ContentTypeClient) CreateOrUpdate(ctx context.Context, id ContentTypeId,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ContentTypeContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

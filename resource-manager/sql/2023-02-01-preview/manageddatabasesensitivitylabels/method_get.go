@@ -43,7 +43,10 @@ func (c ManagedDatabaseSensitivityLabelsClient) Get(ctx context.Context, id Sens
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SensitivityLabel
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

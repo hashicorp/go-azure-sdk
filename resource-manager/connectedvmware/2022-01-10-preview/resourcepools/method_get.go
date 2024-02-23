@@ -43,7 +43,10 @@ func (c ResourcePoolsClient) Get(ctx context.Context, id ResourcePoolId) (result
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ResourcePool
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

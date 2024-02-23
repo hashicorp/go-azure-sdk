@@ -43,7 +43,10 @@ func (c WorkloadNetworksClient) GetSegment(ctx context.Context, id SegmentId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkloadNetworkSegment
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

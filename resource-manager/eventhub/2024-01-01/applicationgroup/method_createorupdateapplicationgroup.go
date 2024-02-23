@@ -47,7 +47,10 @@ func (c ApplicationGroupClient) CreateOrUpdateApplicationGroup(ctx context.Conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

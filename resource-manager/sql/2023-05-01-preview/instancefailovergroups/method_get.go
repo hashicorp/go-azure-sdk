@@ -43,7 +43,10 @@ func (c InstanceFailoverGroupsClient) Get(ctx context.Context, id InstanceFailov
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model InstanceFailoverGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

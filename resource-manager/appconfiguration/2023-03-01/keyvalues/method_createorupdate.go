@@ -47,7 +47,10 @@ func (c KeyValuesClient) CreateOrUpdate(ctx context.Context, id KeyValueId, inpu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model KeyValue
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

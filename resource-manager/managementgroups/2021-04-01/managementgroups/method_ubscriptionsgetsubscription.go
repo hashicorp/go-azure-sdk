@@ -72,7 +72,10 @@ func (c ManagementGroupsClient) UbscriptionsGetSubscription(ctx context.Context,
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubscriptionUnderManagementGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

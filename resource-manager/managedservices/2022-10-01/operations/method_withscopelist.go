@@ -45,7 +45,10 @@ func (c OperationsClient) WithScopeList(ctx context.Context, id commonids.ScopeI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OperationList
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

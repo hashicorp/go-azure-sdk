@@ -48,7 +48,10 @@ func (c ConnectionGatewaysClient) ConnectionGatewaysCreateOrUpdate(ctx context.C
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConnectionGatewayDefinition
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

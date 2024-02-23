@@ -48,7 +48,10 @@ func (c RecipientTransfersClient) Validate(ctx context.Context, id TransferId, i
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ValidateTransferListResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

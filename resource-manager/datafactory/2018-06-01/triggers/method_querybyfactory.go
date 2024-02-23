@@ -48,7 +48,10 @@ func (c TriggersClient) QueryByFactory(ctx context.Context, id FactoryId, input 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TriggerQueryResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

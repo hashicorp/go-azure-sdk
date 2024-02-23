@@ -43,7 +43,10 @@ func (c SharedGalleriesClient) Get(ctx context.Context, id SharedGalleryId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PirSharedGalleryResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

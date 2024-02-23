@@ -44,7 +44,10 @@ func (c SqlPoolsConnectionPoliciesClient) SqlPoolConnectionPoliciesGet(ctx conte
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SqlPoolConnectionPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

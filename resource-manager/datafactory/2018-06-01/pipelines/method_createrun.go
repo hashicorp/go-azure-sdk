@@ -88,7 +88,10 @@ func (c PipelinesClient) CreateRun(ctx context.Context, id PipelineId, input map
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model CreateRunResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c SubVolumesClient) Get(ctx context.Context, id SubVolumeId) (result GetOp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SubvolumeInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

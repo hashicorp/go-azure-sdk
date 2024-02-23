@@ -43,7 +43,10 @@ func (c DeletedWebAppsClient) GetDeletedWebAppByLocation(ctx context.Context, id
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DeletedSite
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

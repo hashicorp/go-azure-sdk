@@ -43,7 +43,10 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionProxiesGet(ct
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateEndpointConnectionProxy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

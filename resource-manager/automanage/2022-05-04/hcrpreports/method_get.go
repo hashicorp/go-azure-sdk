@@ -43,7 +43,10 @@ func (c HCRPReportsClient) Get(ctx context.Context, id ConfigurationProfileAssig
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Report
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

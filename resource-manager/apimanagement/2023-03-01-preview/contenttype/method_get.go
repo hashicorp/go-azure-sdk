@@ -43,7 +43,10 @@ func (c ContentTypeClient) Get(ctx context.Context, id ContentTypeId) (result Ge
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ContentTypeContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

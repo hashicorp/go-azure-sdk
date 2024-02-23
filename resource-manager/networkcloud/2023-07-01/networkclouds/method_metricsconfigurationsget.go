@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) MetricsConfigurationsGet(ctx context.Context, id Me
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ClusterMetricsConfiguration
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

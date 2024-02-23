@@ -43,7 +43,10 @@ func (c AttestationsClient) GetAtSubscription(ctx context.Context, id Attestatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Attestation
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -82,7 +82,10 @@ func (c DimensionsClient) List(ctx context.Context, id commonids.ScopeId, option
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Dimension
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

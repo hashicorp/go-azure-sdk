@@ -44,7 +44,10 @@ func (c EventHubsClustersNamespaceClient) ClustersListNamespaces(ctx context.Con
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EHNamespaceIdListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

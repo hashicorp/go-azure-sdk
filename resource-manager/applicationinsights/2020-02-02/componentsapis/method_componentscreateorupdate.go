@@ -47,7 +47,10 @@ func (c ComponentsAPIsClient) ComponentsCreateOrUpdate(ctx context.Context, id C
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApplicationInsightsComponent
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

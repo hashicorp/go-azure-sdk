@@ -48,7 +48,10 @@ func (c PrivateLinkHubsClient) CreateOrUpdate(ctx context.Context, id PrivateLin
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkHub
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

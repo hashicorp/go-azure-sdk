@@ -43,7 +43,10 @@ func (c TransfersClient) Cancel(ctx context.Context, id InvoiceSectionTransferId
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TransferDetails
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c OnlineEndpointClient) Get(ctx context.Context, id OnlineEndpointId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model OnlineEndpointTrackedResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

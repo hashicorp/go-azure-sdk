@@ -76,7 +76,10 @@ func (c IntegrationRuntimesClient) CreateOrUpdate(ctx context.Context, id Integr
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

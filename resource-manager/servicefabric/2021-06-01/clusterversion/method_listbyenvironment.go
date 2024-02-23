@@ -44,7 +44,10 @@ func (c ClusterVersionClient) ListByEnvironment(ctx context.Context, id Environm
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ClusterCodeVersionsListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

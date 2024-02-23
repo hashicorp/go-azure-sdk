@@ -73,7 +73,10 @@ func (c EnrichmentClient) IPGeodataGet(ctx context.Context, id commonids.Resourc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model EnrichmentIPGeodata
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

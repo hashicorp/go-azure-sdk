@@ -43,7 +43,10 @@ func (c VirtualEndpointsClient) Get(ctx context.Context, id VirtualEndpointId) (
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualEndpointResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

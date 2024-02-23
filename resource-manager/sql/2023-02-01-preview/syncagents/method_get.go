@@ -43,7 +43,10 @@ func (c SyncAgentsClient) Get(ctx context.Context, id SyncAgentId) (result GetOp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SyncAgent
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

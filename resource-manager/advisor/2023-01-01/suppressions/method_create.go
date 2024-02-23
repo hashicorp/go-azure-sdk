@@ -47,7 +47,10 @@ func (c SuppressionsClient) Create(ctx context.Context, id ScopedSuppressionId, 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model SuppressionContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

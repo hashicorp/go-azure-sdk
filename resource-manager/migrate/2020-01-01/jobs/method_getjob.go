@@ -44,7 +44,10 @@ func (c JobsClient) GetJob(ctx context.Context, id commonids.VMwareSiteJobId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VMwareJob
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

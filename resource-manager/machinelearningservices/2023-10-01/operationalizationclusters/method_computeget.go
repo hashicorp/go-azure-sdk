@@ -43,7 +43,10 @@ func (c OperationalizationClustersClient) ComputeGet(ctx context.Context, id Com
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ComputeResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

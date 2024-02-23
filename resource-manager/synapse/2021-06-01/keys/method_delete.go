@@ -44,7 +44,10 @@ func (c KeysClient) Delete(ctx context.Context, id KeyId) (result DeleteOperatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Key
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c HCIReportsClient) Get(ctx context.Context, id ReportId) (result GetOpera
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Report
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

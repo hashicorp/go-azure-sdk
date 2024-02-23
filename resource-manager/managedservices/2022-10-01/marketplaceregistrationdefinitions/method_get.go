@@ -43,7 +43,10 @@ func (c MarketplaceRegistrationDefinitionsClient) Get(ctx context.Context, id Sc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model MarketplaceRegistrationDefinition
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

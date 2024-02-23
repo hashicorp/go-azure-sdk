@@ -49,7 +49,10 @@ func (c VaultsClient) Update(ctx context.Context, id commonids.KeyVaultId, input
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Vault
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

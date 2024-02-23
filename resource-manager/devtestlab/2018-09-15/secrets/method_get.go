@@ -72,7 +72,10 @@ func (c SecretsClient) Get(ctx context.Context, id SecretId, options GetOperatio
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Secret
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

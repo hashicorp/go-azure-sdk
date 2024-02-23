@@ -48,7 +48,10 @@ func (c ScalingPlanPooledScheduleClient) Create(ctx context.Context, id PooledSc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ScalingPlanPooledSchedule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

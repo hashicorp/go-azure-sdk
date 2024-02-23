@@ -43,7 +43,10 @@ func (c AssociationsClient) Get(ctx context.Context, id ScopedAssociationId) (re
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Association
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

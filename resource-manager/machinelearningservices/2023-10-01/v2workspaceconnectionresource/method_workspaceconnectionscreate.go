@@ -47,7 +47,10 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsCreate(ctx cont
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model WorkspaceConnectionPropertiesV2BasicResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

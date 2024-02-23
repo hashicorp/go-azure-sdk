@@ -48,7 +48,10 @@ func (c CodeVersionClient) CreateOrGetStartPendingUpload(ctx context.Context, id
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PendingUploadResponseDto
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

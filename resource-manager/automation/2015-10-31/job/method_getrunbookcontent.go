@@ -44,7 +44,10 @@ func (c JobClient) GetRunbookContent(ctx context.Context, id JobId) (result GetR
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []byte
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c NetworkcloudsClient) RacksGet(ctx context.Context, id RackId) (result Ra
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Rack
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

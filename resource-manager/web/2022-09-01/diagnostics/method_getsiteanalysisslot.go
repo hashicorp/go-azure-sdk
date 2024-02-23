@@ -43,7 +43,10 @@ func (c DiagnosticsClient) GetSiteAnalysisSlot(ctx context.Context, id Diagnosti
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AnalysisDefinition
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c AppServiceCertificateOrdersClient) RetrieveCertificateActions(ctx contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model []CertificateOrderAction
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

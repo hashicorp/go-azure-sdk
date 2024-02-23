@@ -44,7 +44,10 @@ func (c DiagnosticsClient) ManagedEnvironmentDiagnosticsListDetectors(ctx contex
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model DiagnosticsCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c ApiVersionSetClient) WorkspaceApiVersionSetGet(ctx context.Context, id W
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ApiVersionSetContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

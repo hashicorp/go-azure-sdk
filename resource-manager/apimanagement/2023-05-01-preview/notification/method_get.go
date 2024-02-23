@@ -43,7 +43,10 @@ func (c NotificationClient) Get(ctx context.Context, id NotificationId) (result 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NotificationContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

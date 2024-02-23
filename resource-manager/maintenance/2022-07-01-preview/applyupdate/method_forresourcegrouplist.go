@@ -45,7 +45,10 @@ func (c ApplyUpdateClient) ForResourceGroupList(ctx context.Context, id commonid
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ListApplyUpdate
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

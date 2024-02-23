@@ -76,7 +76,10 @@ func (c GroupClient) WorkspaceGroupUpdate(ctx context.Context, id WorkspaceGroup
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GroupContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

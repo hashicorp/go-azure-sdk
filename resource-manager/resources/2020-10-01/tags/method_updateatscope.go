@@ -49,7 +49,10 @@ func (c TagsClient) UpdateAtScope(ctx context.Context, id commonids.ScopeId, inp
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TagsResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

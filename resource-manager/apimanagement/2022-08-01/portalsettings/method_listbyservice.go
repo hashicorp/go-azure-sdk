@@ -44,7 +44,10 @@ func (c PortalSettingsClient) ListByService(ctx context.Context, id ServiceId) (
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PortalSettingsCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

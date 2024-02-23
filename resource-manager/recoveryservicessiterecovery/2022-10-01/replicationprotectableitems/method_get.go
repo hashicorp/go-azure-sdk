@@ -43,7 +43,10 @@ func (c ReplicationProtectableItemsClient) Get(ctx context.Context, id Replicati
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ProtectableItem
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c ConnectedEnvironmentsStoragesClient) List(ctx context.Context, id Connec
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ConnectedEnvironmentStoragesCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

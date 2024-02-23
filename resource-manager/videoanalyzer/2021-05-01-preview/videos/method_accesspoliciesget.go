@@ -43,7 +43,10 @@ func (c VideosClient) AccessPoliciesGet(ctx context.Context, id AccessPolicyId) 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model AccessPolicyEntity
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

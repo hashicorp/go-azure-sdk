@@ -72,7 +72,10 @@ func (c IntegrationRuntimeClient) Get(ctx context.Context, id IntegrationRuntime
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

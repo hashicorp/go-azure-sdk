@@ -72,7 +72,10 @@ func (c ApiIssueClient) Get(ctx context.Context, id ApiIssueId, options GetOpera
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IssueContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

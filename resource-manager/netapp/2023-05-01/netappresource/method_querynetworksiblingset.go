@@ -48,7 +48,10 @@ func (c NetAppResourceClient) QueryNetworkSiblingSet(ctx context.Context, id Loc
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NetworkSiblingSet
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

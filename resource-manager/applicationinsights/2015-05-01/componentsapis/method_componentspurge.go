@@ -48,7 +48,10 @@ func (c ComponentsAPIsClient) ComponentsPurge(ctx context.Context, id ComponentI
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ComponentPurgeResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

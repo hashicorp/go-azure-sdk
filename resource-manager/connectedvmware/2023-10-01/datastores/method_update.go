@@ -47,7 +47,10 @@ func (c DataStoresClient) Update(ctx context.Context, id DataStoreId, input Reso
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Datastore
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

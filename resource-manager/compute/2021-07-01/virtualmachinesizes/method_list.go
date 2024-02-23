@@ -44,7 +44,10 @@ func (c VirtualMachineSizesClient) List(ctx context.Context, id LocationId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model VirtualMachineSizeListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

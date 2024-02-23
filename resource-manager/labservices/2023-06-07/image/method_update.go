@@ -47,7 +47,10 @@ func (c ImageClient) Update(ctx context.Context, id ImageId, input ImageUpdate) 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model Image
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

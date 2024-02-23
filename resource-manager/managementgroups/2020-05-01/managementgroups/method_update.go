@@ -77,7 +77,10 @@ func (c ManagementGroupsClient) Update(ctx context.Context, id commonids.Managem
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagementGroup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

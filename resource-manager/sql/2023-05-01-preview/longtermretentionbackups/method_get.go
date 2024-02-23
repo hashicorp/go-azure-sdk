@@ -43,7 +43,10 @@ func (c LongTermRetentionBackupsClient) Get(ctx context.Context, id LongTermRete
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model LongTermRetentionBackup
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c ExperimentsClient) Start(ctx context.Context, id ExperimentId) (result S
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ExperimentStartOperationResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

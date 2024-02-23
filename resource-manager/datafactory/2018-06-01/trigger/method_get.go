@@ -72,7 +72,10 @@ func (c TriggerClient) Get(ctx context.Context, id TriggerId, options GetOperati
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model TriggerResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

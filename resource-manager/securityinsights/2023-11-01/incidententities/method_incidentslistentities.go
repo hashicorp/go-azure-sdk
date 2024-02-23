@@ -44,7 +44,10 @@ func (c IncidentEntitiesClient) IncidentsListEntities(ctx context.Context, id In
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IncidentEntitiesResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

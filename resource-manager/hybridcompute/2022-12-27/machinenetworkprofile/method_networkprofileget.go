@@ -44,7 +44,10 @@ func (c MachineNetworkProfileClient) NetworkProfileGet(ctx context.Context, id M
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model NetworkProfile
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

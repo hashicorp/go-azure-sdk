@@ -43,7 +43,10 @@ func (c BackupPolicyClient) BackupPoliciesGet(ctx context.Context, id BackupPoli
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BackupPolicy
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c ComponentContainerClient) CreateOrUpdate(ctx context.Context, id Compone
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ComponentContainerResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

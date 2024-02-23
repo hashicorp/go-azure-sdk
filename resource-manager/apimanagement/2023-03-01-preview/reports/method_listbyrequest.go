@@ -80,7 +80,10 @@ func (c ReportsClient) ListByRequest(ctx context.Context, id ServiceId, options 
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RequestReportCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

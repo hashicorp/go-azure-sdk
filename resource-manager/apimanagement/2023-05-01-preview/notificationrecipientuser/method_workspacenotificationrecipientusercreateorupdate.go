@@ -44,7 +44,10 @@ func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserCreat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model RecipientUserContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

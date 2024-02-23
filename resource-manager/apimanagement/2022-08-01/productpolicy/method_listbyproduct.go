@@ -44,7 +44,10 @@ func (c ProductPolicyClient) ListByProduct(ctx context.Context, id ProductId) (r
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyCollection
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -48,7 +48,10 @@ func (c ComponentVersionClient) CreateOrUpdate(ctx context.Context, id Component
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ComponentVersionResource
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

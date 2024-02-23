@@ -43,7 +43,10 @@ func (c ManagedCertificatesClient) Get(ctx context.Context, id ManagedCertificat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ManagedCertificate
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

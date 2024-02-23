@@ -47,7 +47,10 @@ func (c ActionRulesClient) CreateUpdate(ctx context.Context, id ActionRuleId, in
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model ActionRule
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

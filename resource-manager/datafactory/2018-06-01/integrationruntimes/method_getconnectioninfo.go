@@ -44,7 +44,10 @@ func (c IntegrationRuntimesClient) GetConnectionInfo(ctx context.Context, id Int
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model IntegrationRuntimeConnectionInfo
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -44,7 +44,10 @@ func (c PrivateLinkResourcesClient) Get(ctx context.Context, id FactoryId) (resu
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PrivateLinkResourcesWrapper
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -72,7 +72,10 @@ func (c ApiPolicyClient) WorkspaceApiPolicyGet(ctx context.Context, id Workspace
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PolicyContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

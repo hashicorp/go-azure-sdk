@@ -72,7 +72,10 @@ func (c BillingProfilesClient) ListByBillingAccount(ctx context.Context, id Bill
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model BillingProfileListResult
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

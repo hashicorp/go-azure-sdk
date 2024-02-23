@@ -44,7 +44,10 @@ func (c PrivateEndpointsClient) PrivateLinkResourcesList(ctx context.Context, id
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model GroupIdInformationResponse
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 

@@ -43,7 +43,10 @@ func (c PortalRevisionClient) Get(ctx context.Context, id PortalRevisionId) (res
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var model PortalRevisionContract
+	result.Model = &model
+
+	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 
