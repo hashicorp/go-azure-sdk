@@ -1,6 +1,10 @@
 package automationrules
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForActionType() []string {
 		string(ActionTypeModifyProperties),
 		string(ActionTypeRunPlaybook),
 	}
+}
+
+func (s *ActionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseActionType(input string) (*ActionType, error) {
@@ -57,6 +74,19 @@ func PossibleValuesForAutomationRulePropertyConditionSupportedOperator() []strin
 		string(AutomationRulePropertyConditionSupportedOperatorNotStartsWith),
 		string(AutomationRulePropertyConditionSupportedOperatorStartsWith),
 	}
+}
+
+func (s *AutomationRulePropertyConditionSupportedOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAutomationRulePropertyConditionSupportedOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAutomationRulePropertyConditionSupportedOperator(input string) (*AutomationRulePropertyConditionSupportedOperator, error) {
@@ -197,6 +227,19 @@ func PossibleValuesForAutomationRulePropertyConditionSupportedProperty() []strin
 	}
 }
 
+func (s *AutomationRulePropertyConditionSupportedProperty) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAutomationRulePropertyConditionSupportedProperty(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAutomationRulePropertyConditionSupportedProperty(input string) (*AutomationRulePropertyConditionSupportedProperty, error) {
 	vals := map[string]AutomationRulePropertyConditionSupportedProperty{
 		"accountaadtenantid":             AutomationRulePropertyConditionSupportedPropertyAccountAadTenantId,
@@ -275,6 +318,19 @@ func PossibleValuesForConditionType() []string {
 	}
 }
 
+func (s *ConditionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConditionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseConditionType(input string) (*ConditionType, error) {
 	vals := map[string]ConditionType{
 		"property": ConditionTypeProperty,
@@ -304,6 +360,19 @@ func PossibleValuesForIncidentClassification() []string {
 		string(IncidentClassificationTruePositive),
 		string(IncidentClassificationUndetermined),
 	}
+}
+
+func (s *IncidentClassification) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentClassification(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIncidentClassification(input string) (*IncidentClassification, error) {
@@ -340,6 +409,19 @@ func PossibleValuesForIncidentClassificationReason() []string {
 	}
 }
 
+func (s *IncidentClassificationReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentClassificationReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentClassificationReason(input string) (*IncidentClassificationReason, error) {
 	vals := map[string]IncidentClassificationReason{
 		"inaccuratedata":        IncidentClassificationReasonInaccurateData,
@@ -368,6 +450,19 @@ func PossibleValuesForIncidentLabelType() []string {
 		string(IncidentLabelTypeAutoAssigned),
 		string(IncidentLabelTypeUser),
 	}
+}
+
+func (s *IncidentLabelType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentLabelType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIncidentLabelType(input string) (*IncidentLabelType, error) {
@@ -402,6 +497,19 @@ func PossibleValuesForIncidentSeverity() []string {
 	}
 }
 
+func (s *IncidentSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
 	vals := map[string]IncidentSeverity{
 		"high":          IncidentSeverityHigh,
@@ -432,6 +540,19 @@ func PossibleValuesForIncidentStatus() []string {
 		string(IncidentStatusClosed),
 		string(IncidentStatusNew),
 	}
+}
+
+func (s *IncidentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIncidentStatus(input string) (*IncidentStatus, error) {
@@ -465,6 +586,19 @@ func PossibleValuesForOwnerType() []string {
 	}
 }
 
+func (s *OwnerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOwnerType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOwnerType(input string) (*OwnerType, error) {
 	vals := map[string]OwnerType{
 		"group":   OwnerTypeGroup,
@@ -492,6 +626,19 @@ func PossibleValuesForTriggersOn() []string {
 	}
 }
 
+func (s *TriggersOn) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggersOn(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTriggersOn(input string) (*TriggersOn, error) {
 	vals := map[string]TriggersOn{
 		"incidents": TriggersOnIncidents,
@@ -515,6 +662,19 @@ func PossibleValuesForTriggersWhen() []string {
 	return []string{
 		string(TriggersWhenCreated),
 	}
+}
+
+func (s *TriggersWhen) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggersWhen(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTriggersWhen(input string) (*TriggersWhen, error) {

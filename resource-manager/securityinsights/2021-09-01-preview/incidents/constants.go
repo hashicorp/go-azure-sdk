@@ -1,6 +1,10 @@
 package incidents
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -39,6 +43,19 @@ func PossibleValuesForAttackTactic() []string {
 		string(AttackTacticPreAttack),
 		string(AttackTacticPrivilegeEscalation),
 	}
+}
+
+func (s *AttackTactic) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAttackTactic(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAttackTactic(input string) (*AttackTactic, error) {
@@ -84,6 +101,19 @@ func PossibleValuesForIncidentClassification() []string {
 	}
 }
 
+func (s *IncidentClassification) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentClassification(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentClassification(input string) (*IncidentClassification, error) {
 	vals := map[string]IncidentClassification{
 		"benignpositive": IncidentClassificationBenignPositive,
@@ -118,6 +148,19 @@ func PossibleValuesForIncidentClassificationReason() []string {
 	}
 }
 
+func (s *IncidentClassificationReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentClassificationReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentClassificationReason(input string) (*IncidentClassificationReason, error) {
 	vals := map[string]IncidentClassificationReason{
 		"inaccuratedata":        IncidentClassificationReasonInaccurateData,
@@ -146,6 +189,19 @@ func PossibleValuesForIncidentLabelType() []string {
 		string(IncidentLabelTypeSystem),
 		string(IncidentLabelTypeUser),
 	}
+}
+
+func (s *IncidentLabelType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentLabelType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIncidentLabelType(input string) (*IncidentLabelType, error) {
@@ -180,6 +236,19 @@ func PossibleValuesForIncidentSeverity() []string {
 	}
 }
 
+func (s *IncidentSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
 	vals := map[string]IncidentSeverity{
 		"high":          IncidentSeverityHigh,
@@ -212,6 +281,19 @@ func PossibleValuesForIncidentStatus() []string {
 	}
 }
 
+func (s *IncidentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIncidentStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIncidentStatus(input string) (*IncidentStatus, error) {
 	vals := map[string]IncidentStatus{
 		"active": IncidentStatusActive,
@@ -241,6 +323,19 @@ func PossibleValuesForOwnerType() []string {
 		string(OwnerTypeUnknown),
 		string(OwnerTypeUser),
 	}
+}
+
+func (s *OwnerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOwnerType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOwnerType(input string) (*OwnerType, error) {

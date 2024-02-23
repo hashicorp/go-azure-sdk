@@ -1,6 +1,10 @@
 package entityqueries
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForCustomEntityQueryKind() []string {
 	return []string{
 		string(CustomEntityQueryKindActivity),
 	}
+}
+
+func (s *CustomEntityQueryKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomEntityQueryKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCustomEntityQueryKind(input string) (*CustomEntityQueryKind, error) {
@@ -46,6 +63,19 @@ func PossibleValuesForEntityQueryKind() []string {
 	}
 }
 
+func (s *EntityQueryKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityQueryKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityQueryKind(input string) (*EntityQueryKind, error) {
 	vals := map[string]EntityQueryKind{
 		"activity":  EntityQueryKindActivity,
@@ -71,6 +101,19 @@ func PossibleValuesForEntityQueryTemplateKind() []string {
 	return []string{
 		string(EntityQueryTemplateKindActivity),
 	}
+}
+
+func (s *EntityQueryTemplateKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityQueryTemplateKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEntityQueryTemplateKind(input string) (*EntityQueryTemplateKind, error) {
@@ -140,6 +183,19 @@ func PossibleValuesForEntityType() []string {
 	}
 }
 
+func (s *EntityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityType(input string) (*EntityType, error) {
 	vals := map[string]EntityType{
 		"account":          EntityTypeAccount,
@@ -186,6 +242,19 @@ func PossibleValuesForKind() []string {
 		string(KindActivity),
 		string(KindExpansion),
 	}
+}
+
+func (s *Kind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKind(input string) (*Kind, error) {

@@ -1,6 +1,10 @@
 package threatintelligence
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForThreatIntelligenceResourceInnerKind() []string {
 	return []string{
 		string(ThreatIntelligenceResourceInnerKindIndicator),
 	}
+}
+
+func (s *ThreatIntelligenceResourceInnerKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseThreatIntelligenceResourceInnerKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseThreatIntelligenceResourceInnerKind(input string) (*ThreatIntelligenceResourceInnerKind, error) {
@@ -44,6 +61,19 @@ func PossibleValuesForThreatIntelligenceSortingOrder() []string {
 		string(ThreatIntelligenceSortingOrderDescending),
 		string(ThreatIntelligenceSortingOrderUnsorted),
 	}
+}
+
+func (s *ThreatIntelligenceSortingOrder) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseThreatIntelligenceSortingOrder(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseThreatIntelligenceSortingOrder(input string) (*ThreatIntelligenceSortingOrder, error) {
