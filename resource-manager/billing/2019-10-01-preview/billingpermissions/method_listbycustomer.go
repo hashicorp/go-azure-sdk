@@ -15,7 +15,12 @@ import (
 type ListByCustomerOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingPermissionsListResult
+	Model        *[]BillingPermissionsProperties
+}
+
+type ListByCustomerCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingPermissionsProperties
 }
 
 // ListByCustomer ...
@@ -35,7 +40,7 @@ func (c BillingPermissionsClient) ListByCustomer(ctx context.Context, id Custome
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c BillingPermissionsClient) ListByCustomer(ctx context.Context, id Custome
 		return
 	}
 
-	var model BillingPermissionsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingPermissionsProperties `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByCustomerComplete retrieves all the results into a single object
+func (c BillingPermissionsClient) ListByCustomerComplete(ctx context.Context, id CustomerId) (ListByCustomerCompleteResult, error) {
+	return c.ListByCustomerCompleteMatchingPredicate(ctx, id, BillingPermissionsPropertiesOperationPredicate{})
+}
+
+// ListByCustomerCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingPermissionsClient) ListByCustomerCompleteMatchingPredicate(ctx context.Context, id CustomerId, predicate BillingPermissionsPropertiesOperationPredicate) (result ListByCustomerCompleteResult, err error) {
+	items := make([]BillingPermissionsProperties, 0)
+
+	resp, err := c.ListByCustomer(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByCustomerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

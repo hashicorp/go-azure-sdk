@@ -15,12 +15,12 @@ import (
 type ListAgreementsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]TldLegalAgreement
+	Model        *[]TldLegalAgreementCollection
 }
 
 type ListAgreementsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []TldLegalAgreement
+	Items              []TldLegalAgreementCollection
 }
 
 // ListAgreements ...
@@ -50,7 +50,7 @@ func (c TopLevelDomainsClient) ListAgreements(ctx context.Context, id TopLevelDo
 	}
 
 	var values struct {
-		Values *[]TldLegalAgreement `json:"value"`
+		Values *[]TldLegalAgreementCollection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c TopLevelDomainsClient) ListAgreements(ctx context.Context, id TopLevelDo
 
 // ListAgreementsComplete retrieves all the results into a single object
 func (c TopLevelDomainsClient) ListAgreementsComplete(ctx context.Context, id TopLevelDomainId, input TopLevelDomainAgreementOption) (ListAgreementsCompleteResult, error) {
-	return c.ListAgreementsCompleteMatchingPredicate(ctx, id, input, TldLegalAgreementOperationPredicate{})
+	return c.ListAgreementsCompleteMatchingPredicate(ctx, id, input, TldLegalAgreementCollectionOperationPredicate{})
 }
 
 // ListAgreementsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c TopLevelDomainsClient) ListAgreementsCompleteMatchingPredicate(ctx context.Context, id TopLevelDomainId, input TopLevelDomainAgreementOption, predicate TldLegalAgreementOperationPredicate) (result ListAgreementsCompleteResult, err error) {
-	items := make([]TldLegalAgreement, 0)
+func (c TopLevelDomainsClient) ListAgreementsCompleteMatchingPredicate(ctx context.Context, id TopLevelDomainId, input TopLevelDomainAgreementOption, predicate TldLegalAgreementCollectionOperationPredicate) (result ListAgreementsCompleteResult, err error) {
+	items := make([]TldLegalAgreementCollection, 0)
 
 	resp, err := c.ListAgreements(ctx, id, input)
 	if err != nil {

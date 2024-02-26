@@ -6,13 +6,13 @@ package contentproductpackages
 type ProductPackageProperties struct {
 	Author                   *MetadataAuthor       `json:"author,omitempty"`
 	Categories               *MetadataCategories   `json:"categories,omitempty"`
-	ContentId                string                `json:"contentId"`
-	ContentKind              PackageKind           `json:"contentKind"`
+	ContentId                *string               `json:"contentId,omitempty"`
+	ContentKind              *PackageKind          `json:"contentKind,omitempty"`
 	ContentProductId         *string               `json:"contentProductId,omitempty"`
 	ContentSchemaVersion     *string               `json:"contentSchemaVersion,omitempty"`
 	Dependencies             *MetadataDependencies `json:"dependencies,omitempty"`
 	Description              *string               `json:"description,omitempty"`
-	DisplayName              string                `json:"displayName"`
+	DisplayName              *string               `json:"displayName,omitempty"`
 	FirstPublishDate         *string               `json:"firstPublishDate,omitempty"`
 	Icon                     *string               `json:"icon,omitempty"`
 	InstalledVersion         *string               `json:"installedVersion,omitempty"`
@@ -29,5 +29,5 @@ type ProductPackageProperties struct {
 	Support                  *MetadataSupport      `json:"support,omitempty"`
 	ThreatAnalysisTactics    *[]string             `json:"threatAnalysisTactics,omitempty"`
 	ThreatAnalysisTechniques *[]string             `json:"threatAnalysisTechniques,omitempty"`
-	Version                  string                `json:"version"`
+	Version                  *string               `json:"version,omitempty"`
 }

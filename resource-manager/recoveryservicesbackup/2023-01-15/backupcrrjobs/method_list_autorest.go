@@ -15,14 +15,14 @@ import (
 
 type ListOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *[]JobResource
+	Model        *[]JobResourceList
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListOperationResponse, error)
 }
 
 type ListCompleteResult struct {
-	Items []JobResource
+	Items []JobResourceList
 }
 
 func (r ListOperationResponse) HasMore() bool {
@@ -133,8 +133,8 @@ func (c BackupCrrJobsClient) preparerForListWithNextLink(ctx context.Context, ne
 // closes the http.Response Body.
 func (c BackupCrrJobsClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
-		Values   []JobResource `json:"value"`
-		NextLink *string       `json:"nextLink"`
+		Values   []JobResourceList `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -173,12 +173,12 @@ func (c BackupCrrJobsClient) responderForList(resp *http.Response) (result ListO
 
 // ListComplete retrieves all of the results into a single object
 func (c BackupCrrJobsClient) ListComplete(ctx context.Context, id LocationId, input CrrJobRequest, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, input, options, JobResourceOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, input, options, JobResourceListOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c BackupCrrJobsClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, input CrrJobRequest, options ListOperationOptions, predicate JobResourceOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]JobResource, 0)
+func (c BackupCrrJobsClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, input CrrJobRequest, options ListOperationOptions, predicate JobResourceListOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]JobResourceList, 0)
 
 	page, err := c.List(ctx, id, input, options)
 	if err != nil {

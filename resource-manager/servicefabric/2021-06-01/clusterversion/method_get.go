@@ -2,6 +2,7 @@ package clusterversion
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -14,7 +15,12 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ClusterCodeVersionsListResult
+	Model        *[]ClusterCodeVersionsResult
+}
+
+type GetCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []ClusterCodeVersionsResult
 }
 
 // Get ...
@@ -34,7 +40,7 @@ func (c ClusterVersionClient) Get(ctx context.Context, id ClusterVersionId) (res
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -43,12 +49,43 @@ func (c ClusterVersionClient) Get(ctx context.Context, id ClusterVersionId) (res
 		return
 	}
 
-	var model ClusterCodeVersionsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]ClusterCodeVersionsResult `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GetComplete retrieves all the results into a single object
+func (c ClusterVersionClient) GetComplete(ctx context.Context, id ClusterVersionId) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, ClusterCodeVersionsResultOperationPredicate{})
+}
+
+// GetCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ClusterVersionClient) GetCompleteMatchingPredicate(ctx context.Context, id ClusterVersionId, predicate ClusterCodeVersionsResultOperationPredicate) (result GetCompleteResult, err error) {
+	items := make([]ClusterCodeVersionsResult, 0)
+
+	resp, err := c.Get(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

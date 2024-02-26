@@ -74,12 +74,13 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := notificationrecipientemail.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
 
-read, err := client.ListByNotification(ctx, id)
+// alternatively `client.ListByNotification(ctx, id)` can be used to do batched pagination
+items, err := client.ListByNotificationComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -138,11 +139,12 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := notificationrecipientemail.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher")
 
-read, err := client.WorkspaceNotificationRecipientEmailListByNotification(ctx, id)
+// alternatively `client.WorkspaceNotificationRecipientEmailListByNotification(ctx, id)` can be used to do batched pagination
+items, err := client.WorkspaceNotificationRecipientEmailListByNotificationComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

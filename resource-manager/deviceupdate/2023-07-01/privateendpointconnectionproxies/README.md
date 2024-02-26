@@ -55,11 +55,12 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 ctx := context.TODO()
 id := privateendpointconnectionproxies.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
-read, err := client.ListByAccount(ctx, id)
+// alternatively `client.ListByAccount(ctx, id)` can be used to do batched pagination
+items, err := client.ListByAccountComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

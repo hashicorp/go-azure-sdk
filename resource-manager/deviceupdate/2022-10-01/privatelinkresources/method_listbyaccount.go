@@ -15,7 +15,12 @@ import (
 type ListByAccountOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateLinkResourceListResult
+	Model        *[]GroupInformation
+}
+
+type ListByAccountCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []GroupInformation
 }
 
 // ListByAccount ...
@@ -35,7 +40,7 @@ func (c PrivateLinkResourcesClient) ListByAccount(ctx context.Context, id Accoun
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c PrivateLinkResourcesClient) ListByAccount(ctx context.Context, id Accoun
 		return
 	}
 
-	var model PrivateLinkResourceListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]GroupInformation `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByAccountComplete retrieves all the results into a single object
+func (c PrivateLinkResourcesClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, GroupInformationOperationPredicate{})
+}
+
+// ListByAccountCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c PrivateLinkResourcesClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate GroupInformationOperationPredicate) (result ListByAccountCompleteResult, err error) {
+	items := make([]GroupInformation, 0)
+
+	resp, err := c.ListByAccount(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByAccountCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

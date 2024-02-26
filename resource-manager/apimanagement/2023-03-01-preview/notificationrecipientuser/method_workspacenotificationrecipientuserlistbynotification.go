@@ -15,7 +15,12 @@ import (
 type WorkspaceNotificationRecipientUserListByNotificationOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *RecipientUserCollection
+	Model        *[]RecipientUserContract
+}
+
+type WorkspaceNotificationRecipientUserListByNotificationCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []RecipientUserContract
 }
 
 // WorkspaceNotificationRecipientUserListByNotification ...
@@ -35,7 +40,7 @@ func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListB
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListB
 		return
 	}
 
-	var model RecipientUserCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]RecipientUserContract `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// WorkspaceNotificationRecipientUserListByNotificationComplete retrieves all the results into a single object
+func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListByNotificationComplete(ctx context.Context, id NotificationNotificationId) (WorkspaceNotificationRecipientUserListByNotificationCompleteResult, error) {
+	return c.WorkspaceNotificationRecipientUserListByNotificationCompleteMatchingPredicate(ctx, id, RecipientUserContractOperationPredicate{})
+}
+
+// WorkspaceNotificationRecipientUserListByNotificationCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListByNotificationCompleteMatchingPredicate(ctx context.Context, id NotificationNotificationId, predicate RecipientUserContractOperationPredicate) (result WorkspaceNotificationRecipientUserListByNotificationCompleteResult, err error) {
+	items := make([]RecipientUserContract, 0)
+
+	resp, err := c.WorkspaceNotificationRecipientUserListByNotification(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = WorkspaceNotificationRecipientUserListByNotificationCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

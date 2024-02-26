@@ -15,12 +15,12 @@ import (
 type ListAppServicesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]AppServiceInfo
+	Model        *[]AppServiceListResponse
 }
 
 type ListAppServicesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []AppServiceInfo
+	Items              []AppServiceListResponse
 }
 
 // ListAppServices ...
@@ -50,7 +50,7 @@ func (c MonitorsClient) ListAppServices(ctx context.Context, id MonitorId) (resu
 	}
 
 	var values struct {
-		Values *[]AppServiceInfo `json:"value"`
+		Values *[]AppServiceListResponse `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c MonitorsClient) ListAppServices(ctx context.Context, id MonitorId) (resu
 
 // ListAppServicesComplete retrieves all the results into a single object
 func (c MonitorsClient) ListAppServicesComplete(ctx context.Context, id MonitorId) (ListAppServicesCompleteResult, error) {
-	return c.ListAppServicesCompleteMatchingPredicate(ctx, id, AppServiceInfoOperationPredicate{})
+	return c.ListAppServicesCompleteMatchingPredicate(ctx, id, AppServiceListResponseOperationPredicate{})
 }
 
 // ListAppServicesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c MonitorsClient) ListAppServicesCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate AppServiceInfoOperationPredicate) (result ListAppServicesCompleteResult, err error) {
-	items := make([]AppServiceInfo, 0)
+func (c MonitorsClient) ListAppServicesCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate AppServiceListResponseOperationPredicate) (result ListAppServicesCompleteResult, err error) {
+	items := make([]AppServiceListResponse, 0)
 
 	resp, err := c.ListAppServices(ctx, id)
 	if err != nil {

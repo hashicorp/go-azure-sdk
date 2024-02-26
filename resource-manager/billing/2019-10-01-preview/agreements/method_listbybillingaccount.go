@@ -15,7 +15,12 @@ import (
 type ListByBillingAccountOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *AgreementListResult
+	Model        *[]Agreement
+}
+
+type ListByBillingAccountCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Agreement
 }
 
 type ListByBillingAccountOperationOptions struct {
@@ -63,7 +68,7 @@ func (c AgreementsClient) ListByBillingAccount(ctx context.Context, id BillingAc
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -72,12 +77,43 @@ func (c AgreementsClient) ListByBillingAccount(ctx context.Context, id BillingAc
 		return
 	}
 
-	var model AgreementListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Agreement `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByBillingAccountComplete retrieves all the results into a single object
+func (c AgreementsClient) ListByBillingAccountComplete(ctx context.Context, id BillingAccountId, options ListByBillingAccountOperationOptions) (ListByBillingAccountCompleteResult, error) {
+	return c.ListByBillingAccountCompleteMatchingPredicate(ctx, id, options, AgreementOperationPredicate{})
+}
+
+// ListByBillingAccountCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c AgreementsClient) ListByBillingAccountCompleteMatchingPredicate(ctx context.Context, id BillingAccountId, options ListByBillingAccountOperationOptions, predicate AgreementOperationPredicate) (result ListByBillingAccountCompleteResult, err error) {
+	items := make([]Agreement, 0)
+
+	resp, err := c.ListByBillingAccount(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByBillingAccountCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

@@ -8,8 +8,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LtrServerBackupOperation struct {
-	Id         string                                `json:"id"`
-	Name       string                                `json:"name"`
+	Id         *string                               `json:"id,omitempty"`
+	Name       *string                               `json:"name,omitempty"`
 	Properties *LtrBackupOperationResponseProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData                `json:"systemData,omitempty"`
 	Type       *string                               `json:"type,omitempty"`

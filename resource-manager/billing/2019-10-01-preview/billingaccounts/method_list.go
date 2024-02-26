@@ -15,7 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingAccountListResult
+	Model        *[]BillingAccount
+}
+
+type ListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingAccount
 }
 
 type ListOperationOptions struct {
@@ -63,7 +68,7 @@ func (c BillingAccountsClient) List(ctx context.Context, options ListOperationOp
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -72,12 +77,43 @@ func (c BillingAccountsClient) List(ctx context.Context, options ListOperationOp
 		return
 	}
 
-	var model BillingAccountListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingAccount `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListComplete retrieves all the results into a single object
+func (c BillingAccountsClient) ListComplete(ctx context.Context, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, options, BillingAccountOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingAccountsClient) ListCompleteMatchingPredicate(ctx context.Context, options ListOperationOptions, predicate BillingAccountOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]BillingAccount, 0)
+
+	resp, err := c.List(ctx, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

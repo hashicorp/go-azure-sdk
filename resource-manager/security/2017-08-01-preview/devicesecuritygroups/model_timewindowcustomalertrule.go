@@ -6,9 +6,9 @@ package devicesecuritygroups
 type TimeWindowCustomAlertRule struct {
 	Description    *string `json:"description,omitempty"`
 	DisplayName    *string `json:"displayName,omitempty"`
-	IsEnabled      *bool   `json:"isEnabled,omitempty"`
+	IsEnabled      bool    `json:"isEnabled"`
 	MaxThreshold   int64   `json:"maxThreshold"`
 	MinThreshold   int64   `json:"minThreshold"`
-	RuleType       *string `json:"ruleType,omitempty"`
+	RuleType       string  `json:"ruleType"`
 	TimeWindowSize string  `json:"timeWindowSize"`
 }

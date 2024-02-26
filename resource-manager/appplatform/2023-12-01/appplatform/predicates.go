@@ -670,6 +670,29 @@ func (p SupportedApmTypeOperationPredicate) Matches(input SupportedApmType) bool
 	return true
 }
 
+type SupportedBuildpackResourceOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p SupportedBuildpackResourceOperationPredicate) Matches(input SupportedBuildpackResource) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}
+
 type SupportedServerVersionOperationPredicate struct {
 	Server  *string
 	Value   *string
@@ -687,6 +710,29 @@ func (p SupportedServerVersionOperationPredicate) Matches(input SupportedServerV
 	}
 
 	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}
+
+type SupportedStackResourceOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p SupportedStackResourceOperationPredicate) Matches(input SupportedStackResource) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

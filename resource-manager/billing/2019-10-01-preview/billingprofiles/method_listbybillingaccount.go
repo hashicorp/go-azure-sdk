@@ -15,7 +15,12 @@ import (
 type ListByBillingAccountOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingProfileListResult
+	Model        *[]BillingProfile
+}
+
+type ListByBillingAccountCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingProfile
 }
 
 type ListByBillingAccountOperationOptions struct {
@@ -63,7 +68,7 @@ func (c BillingProfilesClient) ListByBillingAccount(ctx context.Context, id Bill
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -72,12 +77,43 @@ func (c BillingProfilesClient) ListByBillingAccount(ctx context.Context, id Bill
 		return
 	}
 
-	var model BillingProfileListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingProfile `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByBillingAccountComplete retrieves all the results into a single object
+func (c BillingProfilesClient) ListByBillingAccountComplete(ctx context.Context, id BillingAccountId, options ListByBillingAccountOperationOptions) (ListByBillingAccountCompleteResult, error) {
+	return c.ListByBillingAccountCompleteMatchingPredicate(ctx, id, options, BillingProfileOperationPredicate{})
+}
+
+// ListByBillingAccountCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingProfilesClient) ListByBillingAccountCompleteMatchingPredicate(ctx context.Context, id BillingAccountId, options ListByBillingAccountOperationOptions, predicate BillingProfileOperationPredicate) (result ListByBillingAccountCompleteResult, err error) {
+	items := make([]BillingProfile, 0)
+
+	resp, err := c.ListByBillingAccount(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByBillingAccountCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

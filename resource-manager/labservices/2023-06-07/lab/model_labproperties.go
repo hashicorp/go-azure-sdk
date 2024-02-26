@@ -4,16 +4,16 @@ package lab
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LabProperties struct {
-	AutoShutdownProfile    AutoShutdownProfile     `json:"autoShutdownProfile"`
-	ConnectionProfile      ConnectionProfile       `json:"connectionProfile"`
+	AutoShutdownProfile    *AutoShutdownProfile    `json:"autoShutdownProfile,omitempty"`
+	ConnectionProfile      *ConnectionProfile      `json:"connectionProfile,omitempty"`
 	Description            *string                 `json:"description,omitempty"`
 	LabPlanId              *string                 `json:"labPlanId,omitempty"`
 	NetworkProfile         *LabNetworkProfile      `json:"networkProfile,omitempty"`
 	ProvisioningState      *ProvisioningState      `json:"provisioningState,omitempty"`
 	ResourceOperationError *ResourceOperationError `json:"resourceOperationError,omitempty"`
 	RosterProfile          *RosterProfile          `json:"rosterProfile,omitempty"`
-	SecurityProfile        SecurityProfile         `json:"securityProfile"`
+	SecurityProfile        *SecurityProfile        `json:"securityProfile,omitempty"`
 	State                  *LabState               `json:"state,omitempty"`
 	Title                  *string                 `json:"title,omitempty"`
-	VirtualMachineProfile  VirtualMachineProfile   `json:"virtualMachineProfile"`
+	VirtualMachineProfile  *VirtualMachineProfile  `json:"virtualMachineProfile,omitempty"`
 }

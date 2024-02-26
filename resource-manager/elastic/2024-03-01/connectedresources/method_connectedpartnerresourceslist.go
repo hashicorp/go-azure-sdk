@@ -15,12 +15,12 @@ import (
 type ConnectedPartnerResourcesListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ConnectedPartnerResourcesListFormat
+	Model        *[]ConnectedPartnerResourcesListResponse
 }
 
 type ConnectedPartnerResourcesListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ConnectedPartnerResourcesListFormat
+	Items              []ConnectedPartnerResourcesListResponse
 }
 
 // ConnectedPartnerResourcesList ...
@@ -50,7 +50,7 @@ func (c ConnectedResourcesClient) ConnectedPartnerResourcesList(ctx context.Cont
 	}
 
 	var values struct {
-		Values *[]ConnectedPartnerResourcesListFormat `json:"value"`
+		Values *[]ConnectedPartnerResourcesListResponse `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c ConnectedResourcesClient) ConnectedPartnerResourcesList(ctx context.Cont
 
 // ConnectedPartnerResourcesListComplete retrieves all the results into a single object
 func (c ConnectedResourcesClient) ConnectedPartnerResourcesListComplete(ctx context.Context, id MonitorId) (ConnectedPartnerResourcesListCompleteResult, error) {
-	return c.ConnectedPartnerResourcesListCompleteMatchingPredicate(ctx, id, ConnectedPartnerResourcesListFormatOperationPredicate{})
+	return c.ConnectedPartnerResourcesListCompleteMatchingPredicate(ctx, id, ConnectedPartnerResourcesListResponseOperationPredicate{})
 }
 
 // ConnectedPartnerResourcesListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ConnectedResourcesClient) ConnectedPartnerResourcesListCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate ConnectedPartnerResourcesListFormatOperationPredicate) (result ConnectedPartnerResourcesListCompleteResult, err error) {
-	items := make([]ConnectedPartnerResourcesListFormat, 0)
+func (c ConnectedResourcesClient) ConnectedPartnerResourcesListCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate ConnectedPartnerResourcesListResponseOperationPredicate) (result ConnectedPartnerResourcesListCompleteResult, err error) {
+	items := make([]ConnectedPartnerResourcesListResponse, 0)
 
 	resp, err := c.ConnectedPartnerResourcesList(ctx, id)
 	if err != nil {

@@ -15,12 +15,12 @@ import (
 type WorkflowRunActionRepetitionsListExpressionTracesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]interface{}
+	Model        *[]ExpressionTraces
 }
 
 type WorkflowRunActionRepetitionsListExpressionTracesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []interface{}
+	Items              []ExpressionTraces
 }
 
 // WorkflowRunActionRepetitionsListExpressionTraces ...
@@ -50,7 +50,7 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 	}
 
 	var values struct {
-		Values *[]interface{} `json:"value"`
+		Values *[]ExpressionTraces `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -62,8 +62,13 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 }
 
 // WorkflowRunActionRepetitionsListExpressionTracesComplete retrieves all the results into a single object
-func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTracesComplete(ctx context.Context, id RepetitionId) (result WorkflowRunActionRepetitionsListExpressionTracesCompleteResult, err error) {
-	items := make([]interface{}, 0)
+func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTracesComplete(ctx context.Context, id RepetitionId) (WorkflowRunActionRepetitionsListExpressionTracesCompleteResult, error) {
+	return c.WorkflowRunActionRepetitionsListExpressionTracesCompleteMatchingPredicate(ctx, id, ExpressionTracesOperationPredicate{})
+}
+
+// WorkflowRunActionRepetitionsListExpressionTracesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTracesCompleteMatchingPredicate(ctx context.Context, id RepetitionId, predicate ExpressionTracesOperationPredicate) (result WorkflowRunActionRepetitionsListExpressionTracesCompleteResult, err error) {
+	items := make([]ExpressionTraces, 0)
 
 	resp, err := c.WorkflowRunActionRepetitionsListExpressionTraces(ctx, id)
 	if err != nil {
@@ -72,7 +77,9 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 	}
 	if resp.Model != nil {
 		for _, v := range *resp.Model {
-			items = append(items, v)
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
 		}
 	}
 

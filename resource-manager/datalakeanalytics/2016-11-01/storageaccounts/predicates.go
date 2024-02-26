@@ -3,13 +3,13 @@ package storageaccounts
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type SasTokenInformationOperationPredicate struct {
-	AccessToken *string
+type SasTokenInformationListResultOperationPredicate struct {
+	NextLink *string
 }
 
-func (p SasTokenInformationOperationPredicate) Matches(input SasTokenInformation) bool {
+func (p SasTokenInformationListResultOperationPredicate) Matches(input SasTokenInformationListResult) bool {
 
-	if p.AccessToken != nil && (input.AccessToken == nil || *p.AccessToken != *input.AccessToken) {
+	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
 		return false
 	}
 

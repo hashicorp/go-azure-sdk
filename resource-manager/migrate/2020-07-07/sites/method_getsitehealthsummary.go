@@ -15,12 +15,12 @@ import (
 type GetSiteHealthSummaryOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]SiteHealthSummary
+	Model        *[]SiteHealthSummaryCollection
 }
 
 type GetSiteHealthSummaryCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []SiteHealthSummary
+	Items              []SiteHealthSummaryCollection
 }
 
 // GetSiteHealthSummary ...
@@ -50,7 +50,7 @@ func (c SitesClient) GetSiteHealthSummary(ctx context.Context, id VMwareSiteId) 
 	}
 
 	var values struct {
-		Values *[]SiteHealthSummary `json:"value"`
+		Values *[]SiteHealthSummaryCollection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c SitesClient) GetSiteHealthSummary(ctx context.Context, id VMwareSiteId) 
 
 // GetSiteHealthSummaryComplete retrieves all the results into a single object
 func (c SitesClient) GetSiteHealthSummaryComplete(ctx context.Context, id VMwareSiteId) (GetSiteHealthSummaryCompleteResult, error) {
-	return c.GetSiteHealthSummaryCompleteMatchingPredicate(ctx, id, SiteHealthSummaryOperationPredicate{})
+	return c.GetSiteHealthSummaryCompleteMatchingPredicate(ctx, id, SiteHealthSummaryCollectionOperationPredicate{})
 }
 
 // GetSiteHealthSummaryCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c SitesClient) GetSiteHealthSummaryCompleteMatchingPredicate(ctx context.Context, id VMwareSiteId, predicate SiteHealthSummaryOperationPredicate) (result GetSiteHealthSummaryCompleteResult, err error) {
-	items := make([]SiteHealthSummary, 0)
+func (c SitesClient) GetSiteHealthSummaryCompleteMatchingPredicate(ctx context.Context, id VMwareSiteId, predicate SiteHealthSummaryCollectionOperationPredicate) (result GetSiteHealthSummaryCompleteResult, err error) {
+	items := make([]SiteHealthSummaryCollection, 0)
 
 	resp, err := c.GetSiteHealthSummary(ctx, id)
 	if err != nil {

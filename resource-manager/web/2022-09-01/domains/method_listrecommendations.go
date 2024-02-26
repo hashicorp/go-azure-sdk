@@ -16,12 +16,12 @@ import (
 type ListRecommendationsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NameIdentifier
+	Model        *[]NameIdentifierCollection
 }
 
 type ListRecommendationsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NameIdentifier
+	Items              []NameIdentifierCollection
 }
 
 // ListRecommendations ...
@@ -51,7 +51,7 @@ func (c DomainsClient) ListRecommendations(ctx context.Context, id commonids.Sub
 	}
 
 	var values struct {
-		Values *[]NameIdentifier `json:"value"`
+		Values *[]NameIdentifierCollection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -64,12 +64,12 @@ func (c DomainsClient) ListRecommendations(ctx context.Context, id commonids.Sub
 
 // ListRecommendationsComplete retrieves all the results into a single object
 func (c DomainsClient) ListRecommendationsComplete(ctx context.Context, id commonids.SubscriptionId, input DomainRecommendationSearchParameters) (ListRecommendationsCompleteResult, error) {
-	return c.ListRecommendationsCompleteMatchingPredicate(ctx, id, input, NameIdentifierOperationPredicate{})
+	return c.ListRecommendationsCompleteMatchingPredicate(ctx, id, input, NameIdentifierCollectionOperationPredicate{})
 }
 
 // ListRecommendationsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DomainsClient) ListRecommendationsCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, input DomainRecommendationSearchParameters, predicate NameIdentifierOperationPredicate) (result ListRecommendationsCompleteResult, err error) {
-	items := make([]NameIdentifier, 0)
+func (c DomainsClient) ListRecommendationsCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, input DomainRecommendationSearchParameters, predicate NameIdentifierCollectionOperationPredicate) (result ListRecommendationsCompleteResult, err error) {
+	items := make([]NameIdentifierCollection, 0)
 
 	resp, err := c.ListRecommendations(ctx, id, input)
 	if err != nil {

@@ -15,12 +15,12 @@ import (
 type ListLinkableEnvironmentsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]LinkableEnvironmentResponse
+	Model        *[]LinkableEnvironmentListResponse
 }
 
 type ListLinkableEnvironmentsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []LinkableEnvironmentResponse
+	Items              []LinkableEnvironmentListResponse
 }
 
 // ListLinkableEnvironments ...
@@ -50,7 +50,7 @@ func (c MonitorsClient) ListLinkableEnvironments(ctx context.Context, id Monitor
 	}
 
 	var values struct {
-		Values *[]LinkableEnvironmentResponse `json:"value"`
+		Values *[]LinkableEnvironmentListResponse `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c MonitorsClient) ListLinkableEnvironments(ctx context.Context, id Monitor
 
 // ListLinkableEnvironmentsComplete retrieves all the results into a single object
 func (c MonitorsClient) ListLinkableEnvironmentsComplete(ctx context.Context, id MonitorId, input LinkableEnvironmentRequest) (ListLinkableEnvironmentsCompleteResult, error) {
-	return c.ListLinkableEnvironmentsCompleteMatchingPredicate(ctx, id, input, LinkableEnvironmentResponseOperationPredicate{})
+	return c.ListLinkableEnvironmentsCompleteMatchingPredicate(ctx, id, input, LinkableEnvironmentListResponseOperationPredicate{})
 }
 
 // ListLinkableEnvironmentsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c MonitorsClient) ListLinkableEnvironmentsCompleteMatchingPredicate(ctx context.Context, id MonitorId, input LinkableEnvironmentRequest, predicate LinkableEnvironmentResponseOperationPredicate) (result ListLinkableEnvironmentsCompleteResult, err error) {
-	items := make([]LinkableEnvironmentResponse, 0)
+func (c MonitorsClient) ListLinkableEnvironmentsCompleteMatchingPredicate(ctx context.Context, id MonitorId, input LinkableEnvironmentRequest, predicate LinkableEnvironmentListResponseOperationPredicate) (result ListLinkableEnvironmentsCompleteResult, err error) {
+	items := make([]LinkableEnvironmentListResponse, 0)
 
 	resp, err := c.ListLinkableEnvironments(ctx, id, input)
 	if err != nil {

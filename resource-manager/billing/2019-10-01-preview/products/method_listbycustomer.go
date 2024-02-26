@@ -15,7 +15,12 @@ import (
 type ListByCustomerOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ProductsListResult
+	Model        *[]Product
+}
+
+type ListByCustomerCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Product
 }
 
 type ListByCustomerOperationOptions struct {
@@ -63,7 +68,7 @@ func (c ProductsClient) ListByCustomer(ctx context.Context, id CustomerId, optio
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -72,12 +77,43 @@ func (c ProductsClient) ListByCustomer(ctx context.Context, id CustomerId, optio
 		return
 	}
 
-	var model ProductsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Product `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByCustomerComplete retrieves all the results into a single object
+func (c ProductsClient) ListByCustomerComplete(ctx context.Context, id CustomerId, options ListByCustomerOperationOptions) (ListByCustomerCompleteResult, error) {
+	return c.ListByCustomerCompleteMatchingPredicate(ctx, id, options, ProductOperationPredicate{})
+}
+
+// ListByCustomerCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ProductsClient) ListByCustomerCompleteMatchingPredicate(ctx context.Context, id CustomerId, options ListByCustomerOperationOptions, predicate ProductOperationPredicate) (result ListByCustomerCompleteResult, err error) {
+	items := make([]Product, 0)
+
+	resp, err := c.ListByCustomer(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByCustomerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }
