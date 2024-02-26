@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CountTypeId{}
 
 func TestNewCountTypeID(t *testing.T) {
-	id := NewCountTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeconfiguration")
+	id := NewCountTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewCountTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
 	}
 
-	if id.CountType != "nodeconfiguration" {
-		t.Fatalf("Expected %q but got %q for Segment 'CountType'", id.CountType, "nodeconfiguration")
+	if id.CountType != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'CountType'", id.CountType, "example")
 	}
 }
 
 func TestFormatCountTypeID(t *testing.T) {
-	actual := NewCountTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeconfiguration").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/nodeconfiguration"
+	actual := NewCountTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseCountTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/nodeconfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/example",
 			Expected: &CountTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				CountType:             "nodeconfiguration",
+				CountType:             "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/nodeconfiguration/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseCountTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/nodeconfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/example",
 			Expected: &CountTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				CountType:             "nodeconfiguration",
+				CountType:             "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/nodeconfiguration/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/nodeCounts/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/nOdEcOuNtS/nOdEcOnFiGuRaTiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/nOdEcOuNtS/eXaMpLe",
 			Expected: &CountTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				CountType:             "nodeconfiguration",
+				CountType:             "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/nOdEcOuNtS/nOdEcOnFiGuRaTiOn/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/nOdEcOuNtS/eXaMpLe/extra",
 			Error: true,
 		},
 	}

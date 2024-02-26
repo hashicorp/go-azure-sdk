@@ -126,7 +126,7 @@ func (id DataSourceTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticLinkedStorageAccounts", "linkedStorageAccounts", "linkedStorageAccounts"),
-		resourceids.ConstantSegment("dataSourceType", PossibleValuesForDataSourceType(), "Alerts"),
+		resourceids.ConstantSegment("dataSourceType", PossibleValuesForDataSourceType(), "example"),
 	}
 }
 

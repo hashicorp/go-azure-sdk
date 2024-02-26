@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KeyKindId{}
 
 func TestNewKeyKindID(t *testing.T) {
-	id := NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "primary")
+	id := NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewKeyKindID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceValue")
 	}
 
-	if id.KeyKind != "primary" {
-		t.Fatalf("Expected %q but got %q for Segment 'KeyKind'", id.KeyKind, "primary")
+	if id.KeyKind != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'KeyKind'", id.KeyKind, "example")
 	}
 }
 
 func TestFormatKeyKindID(t *testing.T) {
-	actual := NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "primary").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/primary"
+	actual := NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseKeyKindID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/primary",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/example",
 			Expected: &KeyKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				SearchServiceName: "searchServiceValue",
-				KeyKind:           "primary",
+				KeyKind:           "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/primary/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseKeyKindIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/primary",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/example",
 			Expected: &KeyKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				SearchServiceName: "searchServiceValue",
-				KeyKind:           "primary",
+				KeyKind:           "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/primary/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/regenerateAdminKey/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/rEgEnErAtEaDmInKeY/pRiMaRy",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/rEgEnErAtEaDmInKeY/eXaMpLe",
 			Expected: &KeyKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				SearchServiceName: "sEaRcHsErViCeVaLuE",
-				KeyKind:           "primary",
+				KeyKind:           "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/rEgEnErAtEaDmInKeY/pRiMaRy/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/rEgEnErAtEaDmInKeY/eXaMpLe/extra",
 			Error: true,
 		},
 	}

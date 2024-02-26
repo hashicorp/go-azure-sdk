@@ -23,7 +23,7 @@ type GenerateVpnProfileOperationResponse struct {
 }
 
 // GenerateVpnProfile ...
-func (c P2sVpnGatewaysClient) GenerateVpnProfile(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnProfileParameters) (result GenerateVpnProfileOperationResponse, err error) {
+func (c P2sVpnGatewaysClient) GenerateVpnProfile(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnProfileParameters) (result GenerateVpnProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c P2sVpnGatewaysClient) GenerateVpnProfile(ctx context.Context, id commoni
 }
 
 // GenerateVpnProfileThenPoll performs GenerateVpnProfile then polls until it's completed
-func (c P2sVpnGatewaysClient) GenerateVpnProfileThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnProfileParameters) error {
+func (c P2sVpnGatewaysClient) GenerateVpnProfileThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnProfileParameters) error {
 	result, err := c.GenerateVpnProfile(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateVpnProfile: %+v", err)

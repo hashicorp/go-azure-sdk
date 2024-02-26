@@ -23,7 +23,7 @@ type ResetOperationResponse struct {
 }
 
 // Reset ...
-func (c P2sVpnGatewaysClient) Reset(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) (result ResetOperationResponse, err error) {
+func (c P2sVpnGatewaysClient) Reset(ctx context.Context, id commonids.P2sVPNGatewayId) (result ResetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -58,7 +58,7 @@ func (c P2sVpnGatewaysClient) Reset(ctx context.Context, id commonids.VirtualWAN
 }
 
 // ResetThenPoll performs Reset then polls until it's completed
-func (c P2sVpnGatewaysClient) ResetThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) error {
+func (c P2sVpnGatewaysClient) ResetThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId) error {
 	result, err := c.Reset(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Reset: %+v", err)

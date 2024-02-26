@@ -131,7 +131,7 @@ func (id EndpointTypeId) Segments() []resourceids.Segment {
 		resourceids.ResourceProviderSegment("staticMicrosoftNetwork", "Microsoft.Network", "Microsoft.Network"),
 		resourceids.StaticSegment("staticTrafficManagerProfiles", "trafficManagerProfiles", "trafficManagerProfiles"),
 		resourceids.UserSpecifiedSegment("trafficManagerProfileName", "trafficManagerProfileValue"),
-		resourceids.ConstantSegment("endpointType", PossibleValuesForEndpointType(), "AzureEndpoints"),
+		resourceids.ConstantSegment("endpointType", PossibleValuesForEndpointType(), "example"),
 		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
 	}
 }

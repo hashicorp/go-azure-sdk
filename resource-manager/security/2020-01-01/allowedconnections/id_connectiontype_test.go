@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectionTypeId{}
 
 func TestNewConnectionTypeID(t *testing.T) {
-	id := NewConnectionTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "External")
+	id := NewConnectionTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewConnectionTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.ConnectionType != "External" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectionType'", id.ConnectionType, "External")
+	if id.ConnectionType != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectionType'", id.ConnectionType, "example")
 	}
 }
 
 func TestFormatConnectionTypeID(t *testing.T) {
-	actual := NewConnectionTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "External").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/External"
+	actual := NewConnectionTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseConnectionTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/External",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/example",
 			Expected: &ConnectionTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LocationName:      "locationValue",
-				ConnectionType:    "External",
+				ConnectionType:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/External/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseConnectionTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/External",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/example",
 			Expected: &ConnectionTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LocationName:      "locationValue",
-				ConnectionType:    "External",
+				ConnectionType:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/External/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/allowedConnections/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/aLlOwEdCoNnEcTiOnS/eXtErNaL",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/aLlOwEdCoNnEcTiOnS/eXaMpLe",
 			Expected: &ConnectionTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LocationName:      "lOcAtIoNvAlUe",
-				ConnectionType:    "External",
+				ConnectionType:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/aLlOwEdCoNnEcTiOnS/eXtErNaL/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/aLlOwEdCoNnEcTiOnS/eXaMpLe/extra",
 			Error: true,
 		},
 	}

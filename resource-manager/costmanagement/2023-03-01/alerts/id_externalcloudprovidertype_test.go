@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = &ExternalCloudProviderTypeId{}
 
 func TestNewExternalCloudProviderTypeID(t *testing.T) {
-	id := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+	id := NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue")
 
-	if id.ExternalCloudProviderType != "externalBillingAccounts" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExternalCloudProviderType'", id.ExternalCloudProviderType, "externalBillingAccounts")
+	if id.ExternalCloudProviderType != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExternalCloudProviderType'", id.ExternalCloudProviderType, "example")
 	}
 
 	if id.ExternalCloudProviderId != "externalCloudProviderIdValue" {
@@ -24,8 +24,8 @@ func TestNewExternalCloudProviderTypeID(t *testing.T) {
 }
 
 func TestFormatExternalCloudProviderTypeID(t *testing.T) {
-	actual := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue").ID()
-	expected := "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue"
+	actual := NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue").ID()
+	expected := "/providers/Microsoft.CostManagement/example/externalCloudProviderIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,20 +54,20 @@ func TestParseExternalCloudProviderTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts",
+			Input: "/providers/Microsoft.CostManagement/example",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue",
+			Input: "/providers/Microsoft.CostManagement/example/externalCloudProviderIdValue",
 			Expected: &ExternalCloudProviderTypeId{
-				ExternalCloudProviderType: "externalBillingAccounts",
+				ExternalCloudProviderType: "example",
 				ExternalCloudProviderId:   "externalCloudProviderIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue/extra",
+			Input: "/providers/Microsoft.CostManagement/example/externalCloudProviderIdValue/extra",
 			Error: true,
 		},
 	}
@@ -130,38 +130,38 @@ func TestParseExternalCloudProviderTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts",
+			Input: "/providers/Microsoft.CostManagement/example",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXaMpLe",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue",
+			Input: "/providers/Microsoft.CostManagement/example/externalCloudProviderIdValue",
 			Expected: &ExternalCloudProviderTypeId{
-				ExternalCloudProviderType: "externalBillingAccounts",
+				ExternalCloudProviderType: "example",
 				ExternalCloudProviderId:   "externalCloudProviderIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue/extra",
+			Input: "/providers/Microsoft.CostManagement/example/externalCloudProviderIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXaMpLe/eXtErNaLcLoUdPrOvIdErIdVaLuE",
 			Expected: &ExternalCloudProviderTypeId{
-				ExternalCloudProviderType: "externalBillingAccounts",
+				ExternalCloudProviderType: "example",
 				ExternalCloudProviderId:   "eXtErNaLcLoUdPrOvIdErIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXaMpLe/eXtErNaLcLoUdPrOvIdErIdVaLuE/extra",
 			Error: true,
 		},
 	}

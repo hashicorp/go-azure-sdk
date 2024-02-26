@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := forecast.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+id := forecast.NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue")
 
 payload := forecast.ForecastDefinition{
 	// ...

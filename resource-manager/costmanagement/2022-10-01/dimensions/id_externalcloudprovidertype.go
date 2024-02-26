@@ -107,7 +107,7 @@ func (id ExternalCloudProviderTypeId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCostManagement", "Microsoft.CostManagement", "Microsoft.CostManagement"),
-		resourceids.ConstantSegment("externalCloudProviderType", PossibleValuesForExternalCloudProviderType(), "externalBillingAccounts"),
+		resourceids.ConstantSegment("externalCloudProviderType", PossibleValuesForExternalCloudProviderType(), "example"),
 		resourceids.UserSpecifiedSegment("externalCloudProviderId", "externalCloudProviderIdValue"),
 	}
 }

@@ -23,7 +23,7 @@ type P2sVpnGatewaysCreateOrUpdateOperationResponse struct {
 }
 
 // P2sVpnGatewaysCreateOrUpdate ...
-func (c VirtualWANsClient) P2sVpnGatewaysCreateOrUpdate(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnGateway) (result P2sVpnGatewaysCreateOrUpdateOperationResponse, err error) {
+func (c VirtualWANsClient) P2sVpnGatewaysCreateOrUpdate(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnGateway) (result P2sVpnGatewaysCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c VirtualWANsClient) P2sVpnGatewaysCreateOrUpdate(ctx context.Context, id 
 }
 
 // P2sVpnGatewaysCreateOrUpdateThenPoll performs P2sVpnGatewaysCreateOrUpdate then polls until it's completed
-func (c VirtualWANsClient) P2sVpnGatewaysCreateOrUpdateThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnGateway) error {
+func (c VirtualWANsClient) P2sVpnGatewaysCreateOrUpdateThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnGateway) error {
 	result, err := c.P2sVpnGatewaysCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing P2sVpnGatewaysCreateOrUpdate: %+v", err)

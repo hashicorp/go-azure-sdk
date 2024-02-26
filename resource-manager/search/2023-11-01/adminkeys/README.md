@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := adminkeys.NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "primary")
+id := adminkeys.NewKeyKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "example")
 
 read, err := client.Regenerate(ctx, id, adminkeys.DefaultRegenerateOperationOptions())
 if err != nil {

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 payload := tenantaccess.AccessInformationCreateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.ListSecrets(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.RegeneratePrimaryKey(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.RegenerateSecondaryKey(ctx, id)
 if err != nil {
@@ -142,7 +142,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "access")
+id := tenantaccess.NewAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 payload := tenantaccess.AccessInformationUpdateParameters{
 	// ...

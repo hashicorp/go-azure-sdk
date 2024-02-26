@@ -352,7 +352,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewVirtualWANP2SVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
+id := commonids.NewP2sVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
 
 payload := virtualwans.P2SVpnGateway{
 	// ...
@@ -369,7 +369,7 @@ if err := client.P2sVpnGatewaysCreateOrUpdateThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := commonids.NewVirtualWANP2SVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
+id := commonids.NewP2sVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
 
 if err := client.P2sVpnGatewaysDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -381,7 +381,7 @@ if err := client.P2sVpnGatewaysDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewVirtualWANP2SVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
+id := commonids.NewP2sVPNGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "p2sVpnGatewayValue")
 
 read, err := client.P2sVpnGatewaysGet(ctx, id)
 if err != nil {

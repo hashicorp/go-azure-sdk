@@ -158,7 +158,7 @@ func (id SensitivityLabelSourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticColumns", "columns", "columns"),
 		resourceids.UserSpecifiedSegment("columnName", "columnValue"),
 		resourceids.StaticSegment("staticSensitivityLabels", "sensitivityLabels", "sensitivityLabels"),
-		resourceids.ConstantSegment("sensitivityLabelSource", PossibleValuesForSensitivityLabelSource(), "current"),
+		resourceids.ConstantSegment("sensitivityLabelSource", PossibleValuesForSensitivityLabelSource(), "example"),
 	}
 }
 

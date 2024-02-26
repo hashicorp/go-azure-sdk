@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OperationKindId{}
 
 func TestNewOperationKindID(t *testing.T) {
-	id := NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "add")
+	id := NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewOperationKindID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.OperationKind != "add" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationKind'", id.OperationKind, "add")
+	if id.OperationKind != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationKind'", id.OperationKind, "example")
 	}
 }
 
 func TestFormatOperationKindID(t *testing.T) {
-	actual := NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "add").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/add"
+	actual := NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseOperationKindID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/add",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/example",
 			Expected: &OperationKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				OperationKind:     "add",
+				OperationKind:     "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/add/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseOperationKindIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/add",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/example",
 			Expected: &OperationKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				OperationKind:     "add",
+				OperationKind:     "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/add/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue/accessPolicies/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/vAuLtS/vAuLtVaLuE/aCcEsSpOlIcIeS/aDd",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/vAuLtS/vAuLtVaLuE/aCcEsSpOlIcIeS/eXaMpLe",
 			Expected: &OperationKindId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:         "vAuLtVaLuE",
-				OperationKind:     "add",
+				OperationKind:     "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/vAuLtS/vAuLtVaLuE/aCcEsSpOlIcIeS/aDd/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/vAuLtS/vAuLtVaLuE/aCcEsSpOlIcIeS/eXaMpLe/extra",
 			Error: true,
 		},
 	}

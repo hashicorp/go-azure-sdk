@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -24,7 +25,7 @@ type ListByFleetCompleteResult struct {
 }
 
 // ListByFleet ...
-func (c FleetMembersClient) ListByFleet(ctx context.Context, id FleetId) (result ListByFleetOperationResponse, err error) {
+func (c FleetMembersClient) ListByFleet(ctx context.Context, id commonids.KubernetesFleetId) (result ListByFleetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,12 +63,12 @@ func (c FleetMembersClient) ListByFleet(ctx context.Context, id FleetId) (result
 }
 
 // ListByFleetComplete retrieves all the results into a single object
-func (c FleetMembersClient) ListByFleetComplete(ctx context.Context, id FleetId) (ListByFleetCompleteResult, error) {
+func (c FleetMembersClient) ListByFleetComplete(ctx context.Context, id commonids.KubernetesFleetId) (ListByFleetCompleteResult, error) {
 	return c.ListByFleetCompleteMatchingPredicate(ctx, id, FleetMemberOperationPredicate{})
 }
 
 // ListByFleetCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FleetMembersClient) ListByFleetCompleteMatchingPredicate(ctx context.Context, id FleetId, predicate FleetMemberOperationPredicate) (result ListByFleetCompleteResult, err error) {
+func (c FleetMembersClient) ListByFleetCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesFleetId, predicate FleetMemberOperationPredicate) (result ListByFleetCompleteResult, err error) {
 	items := make([]FleetMember, 0)
 
 	resp, err := c.ListByFleet(ctx, id)

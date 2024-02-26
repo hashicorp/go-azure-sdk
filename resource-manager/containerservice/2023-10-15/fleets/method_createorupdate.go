@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -53,7 +54,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c FleetsClient) CreateOrUpdate(ctx context.Context, id FleetId, input Fleet, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c FleetsClient) CreateOrUpdate(ctx context.Context, id commonids.KubernetesFleetId, input Fleet, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,7 +94,7 @@ func (c FleetsClient) CreateOrUpdate(ctx context.Context, id FleetId, input Flee
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c FleetsClient) CreateOrUpdateThenPoll(ctx context.Context, id FleetId, input Fleet, options CreateOrUpdateOperationOptions) error {
+func (c FleetsClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.KubernetesFleetId, input Fleet, options CreateOrUpdateOperationOptions) error {
 	result, err := c.CreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

@@ -131,7 +131,7 @@ func (id RecordTypeId) Segments() []resourceids.Segment {
 		resourceids.ResourceProviderSegment("staticMicrosoftNetwork", "Microsoft.Network", "Microsoft.Network"),
 		resourceids.StaticSegment("staticDnsZones", "dnsZones", "dnsZones"),
 		resourceids.UserSpecifiedSegment("dnsZoneName", "dnsZoneValue"),
-		resourceids.ConstantSegment("recordType", PossibleValuesForRecordType(), "A"),
+		resourceids.ConstantSegment("recordType", PossibleValuesForRecordType(), "example"),
 		resourceids.UserSpecifiedSegment("relativeRecordSetName", "relativeRecordSetValue"),
 	}
 }

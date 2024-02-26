@@ -125,7 +125,7 @@ func (id PrivateZoneId) Segments() []resourceids.Segment {
 		resourceids.ResourceProviderSegment("staticMicrosoftNetwork", "Microsoft.Network", "Microsoft.Network"),
 		resourceids.StaticSegment("staticPrivateDnsZones", "privateDnsZones", "privateDnsZones"),
 		resourceids.UserSpecifiedSegment("privateDnsZoneName", "privateDnsZoneValue"),
-		resourceids.ConstantSegment("recordType", PossibleValuesForRecordType(), "A"),
+		resourceids.ConstantSegment("recordType", PossibleValuesForRecordType(), "example"),
 	}
 }
 

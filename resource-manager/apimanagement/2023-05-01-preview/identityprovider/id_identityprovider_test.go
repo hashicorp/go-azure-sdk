@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IdentityProviderId{}
 
 func TestNewIdentityProviderID(t *testing.T) {
-	id := NewIdentityProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "aad")
+	id := NewIdentityProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewIdentityProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
 	}
 
-	if id.IdentityProviderName != "aad" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderName'", id.IdentityProviderName, "aad")
+	if id.IdentityProviderName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderName'", id.IdentityProviderName, "example")
 	}
 }
 
 func TestFormatIdentityProviderID(t *testing.T) {
-	actual := NewIdentityProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "aad").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/aad"
+	actual := NewIdentityProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseIdentityProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/aad",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/example",
 			Expected: &IdentityProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServiceName:          "serviceValue",
-				IdentityProviderName: "aad",
+				IdentityProviderName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/aad/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseIdentityProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/aad",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/example",
 			Expected: &IdentityProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServiceName:          "serviceValue",
-				IdentityProviderName: "aad",
+				IdentityProviderName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/aad/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/identityProviders/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/iDeNtItYpRoViDeRs/aAd",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/iDeNtItYpRoViDeRs/eXaMpLe",
 			Expected: &IdentityProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:          "sErViCeVaLuE",
-				IdentityProviderName: "aad",
+				IdentityProviderName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/iDeNtItYpRoViDeRs/aAd/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/iDeNtItYpRoViDeRs/eXaMpLe/extra",
 			Error: true,
 		},
 	}
