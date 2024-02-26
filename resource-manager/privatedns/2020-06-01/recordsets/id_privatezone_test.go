@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateZoneId{}
 
 func TestNewPrivateZoneID(t *testing.T) {
-	id := NewPrivateZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue", "A")
+	id := NewPrivateZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewPrivateZoneID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'PrivateDnsZoneName'", id.PrivateDnsZoneName, "privateDnsZoneValue")
 	}
 
-	if id.RecordType != "A" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecordType'", id.RecordType, "A")
+	if id.RecordType != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecordType'", id.RecordType, "example")
 	}
 }
 
 func TestFormatPrivateZoneID(t *testing.T) {
-	actual := NewPrivateZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue", "A").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/A"
+	actual := NewPrivateZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -92,17 +92,17 @@ func TestParsePrivateZoneID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/A",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/example",
 			Expected: &PrivateZoneId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				PrivateDnsZoneName: "privateDnsZoneValue",
-				RecordType:         "A",
+				RecordType:         "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/A/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/example/extra",
 			Error: true,
 		},
 	}
@@ -233,32 +233,32 @@ func TestParsePrivateZoneIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/A",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/example",
 			Expected: &PrivateZoneId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				PrivateDnsZoneName: "privateDnsZoneValue",
-				RecordType:         "A",
+				RecordType:         "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/A/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe/a",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe/eXaMpLe",
 			Expected: &PrivateZoneId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				PrivateDnsZoneName: "pRiVaTeDnSzOnEvAlUe",
-				RecordType:         "A",
+				RecordType:         "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe/a/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe/eXaMpLe/extra",
 			Error: true,
 		},
 	}

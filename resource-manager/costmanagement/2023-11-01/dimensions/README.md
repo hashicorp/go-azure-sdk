@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dimensions.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+id := dimensions.NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue")
 
 read, err := client.ByExternalCloudProviderType(ctx, id, dimensions.DefaultByExternalCloudProviderTypeOperationOptions())
 if err != nil {

@@ -126,7 +126,7 @@ func (id CountTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
 		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
 		resourceids.StaticSegment("staticNodeCounts", "nodeCounts", "nodeCounts"),
-		resourceids.ConstantSegment("countType", PossibleValuesForCountType(), "nodeconfiguration"),
+		resourceids.ConstantSegment("countType", PossibleValuesForCountType(), "example"),
 	}
 }
 

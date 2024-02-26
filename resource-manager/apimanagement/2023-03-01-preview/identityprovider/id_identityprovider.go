@@ -126,7 +126,7 @@ func (id IdentityProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticIdentityProviders", "identityProviders", "identityProviders"),
-		resourceids.ConstantSegment("identityProviderName", PossibleValuesForIdentityProviderType(), "aad"),
+		resourceids.ConstantSegment("identityProviderName", PossibleValuesForIdentityProviderType(), "example"),
 	}
 }
 

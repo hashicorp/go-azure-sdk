@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 payload := channel.BotChannel{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 payload := channel.SiteInfo{
 	// ...
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -132,7 +132,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 read, err := client.ListWithKeys(ctx, id)
 if err != nil {
@@ -148,7 +148,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "AcsChatChannel")
+id := commonids.NewBotServiceChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceValue", "example")
 
 payload := channel.BotChannel{
 	// ...

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &SettingId{}
 
 func TestNewSettingID(t *testing.T) {
-	id := NewSettingID("12345678-1234-9876-4563-123456789012", "MCAS")
+	id := NewSettingID("12345678-1234-9876-4563-123456789012", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.SettingName != "MCAS" {
-		t.Fatalf("Expected %q but got %q for Segment 'SettingName'", id.SettingName, "MCAS")
+	if id.SettingName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'SettingName'", id.SettingName, "example")
 	}
 }
 
 func TestFormatSettingID(t *testing.T) {
-	actual := NewSettingID("12345678-1234-9876-4563-123456789012", "MCAS").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/MCAS"
+	actual := NewSettingID("12345678-1234-9876-4563-123456789012", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/MCAS",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/example",
 			Expected: &SettingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SettingName:    "MCAS",
+				SettingName:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/MCAS/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/example/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/MCAS",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/example",
 			Expected: &SettingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SettingName:    "MCAS",
+				SettingName:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/MCAS/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/settings/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEtTiNgS/mCaS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEtTiNgS/eXaMpLe",
 			Expected: &SettingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SettingName:    "MCAS",
+				SettingName:    "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEtTiNgS/mCaS/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEtTiNgS/eXaMpLe/extra",
 			Error: true,
 		},
 	}

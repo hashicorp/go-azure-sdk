@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+id := alerts.NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue")
 
 read, err := client.ListExternal(ctx, id)
 if err != nil {

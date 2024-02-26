@@ -126,7 +126,7 @@ func (id TemplateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticTemplates", "templates", "templates"),
-		resourceids.ConstantSegment("templateName", PossibleValuesForTemplateName(), "accountClosedDeveloper"),
+		resourceids.ConstantSegment("templateName", PossibleValuesForTemplateName(), "example"),
 	}
 }
 

@@ -124,7 +124,7 @@ func (id EnvironmentClusterVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.ConstantSegment("environment", PossibleValuesForClusterVersionsEnvironment(), "Linux"),
+		resourceids.ConstantSegment("environment", PossibleValuesForClusterVersionsEnvironment(), "example"),
 		resourceids.StaticSegment("staticClusterVersions", "clusterVersions", "clusterVersions"),
 		resourceids.UserSpecifiedSegment("clusterVersionName", "clusterVersionValue"),
 	}

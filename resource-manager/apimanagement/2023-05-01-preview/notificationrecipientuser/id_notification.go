@@ -126,7 +126,7 @@ func (id NotificationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticNotifications", "notifications", "notifications"),
-		resourceids.ConstantSegment("notificationName", PossibleValuesForNotificationName(), "AccountClosedPublisher"),
+		resourceids.ConstantSegment("notificationName", PossibleValuesForNotificationName(), "example"),
 	}
 }
 

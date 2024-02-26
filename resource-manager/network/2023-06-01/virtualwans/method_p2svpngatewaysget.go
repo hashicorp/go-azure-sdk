@@ -19,7 +19,7 @@ type P2sVpnGatewaysGetOperationResponse struct {
 }
 
 // P2sVpnGatewaysGet ...
-func (c VirtualWANsClient) P2sVpnGatewaysGet(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) (result P2sVpnGatewaysGetOperationResponse, err error) {
+func (c VirtualWANsClient) P2sVpnGatewaysGet(ctx context.Context, id commonids.P2sVPNGatewayId) (result P2sVpnGatewaysGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

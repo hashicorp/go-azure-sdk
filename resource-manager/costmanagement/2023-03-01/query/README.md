@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := query.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+id := query.NewExternalCloudProviderTypeID("example", "externalCloudProviderIdValue")
 
 payload := query.QueryDefinition{
 	// ...

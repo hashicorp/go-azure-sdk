@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedInformationProtectionPolicyId{}
 
 func TestNewScopedInformationProtectionPolicyID(t *testing.T) {
-	id := NewScopedInformationProtectionPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "custom")
+	id := NewScopedInformationProtectionPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "example")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.InformationProtectionPolicyName != "custom" {
-		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionPolicyName'", id.InformationProtectionPolicyName, "custom")
+	if id.InformationProtectionPolicyName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionPolicyName'", id.InformationProtectionPolicyName, "example")
 	}
 }
 
 func TestFormatScopedInformationProtectionPolicyID(t *testing.T) {
-	actual := NewScopedInformationProtectionPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "custom").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/custom"
+	actual := NewScopedInformationProtectionPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedInformationProtectionPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/custom",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/example",
 			Expected: &ScopedInformationProtectionPolicyId{
 				Scope:                           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				InformationProtectionPolicyName: "custom",
+				InformationProtectionPolicyName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/custom/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/example/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedInformationProtectionPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/custom",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/example",
 			Expected: &ScopedInformationProtectionPolicyId{
 				Scope:                           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				InformationProtectionPolicyName: "custom",
+				InformationProtectionPolicyName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/custom/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/informationProtectionPolicies/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/iNfOrMaTiOnPrOtEcTiOnPoLiCiEs/cUsToM",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/iNfOrMaTiOnPrOtEcTiOnPoLiCiEs/eXaMpLe",
 			Expected: &ScopedInformationProtectionPolicyId{
 				Scope:                           "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				InformationProtectionPolicyName: "custom",
+				InformationProtectionPolicyName: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/iNfOrMaTiOnPrOtEcTiOnPoLiCiEs/cUsToM/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/iNfOrMaTiOnPrOtEcTiOnPoLiCiEs/eXaMpLe/extra",
 			Error: true,
 		},
 	}

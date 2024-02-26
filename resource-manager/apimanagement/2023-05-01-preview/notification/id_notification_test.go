@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NotificationId{}
 
 func TestNewNotificationID(t *testing.T) {
-	id := NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
+	id := NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewNotificationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
 	}
 
-	if id.NotificationName != "AccountClosedPublisher" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "AccountClosedPublisher")
+	if id.NotificationName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "example")
 	}
 }
 
 func TestFormatNotificationID(t *testing.T) {
-	actual := NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher"
+	actual := NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseNotificationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/example",
 			Expected: &NotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/example/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseNotificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/example",
 			Expected: &NotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/eXaMpLe",
 			Expected: &NotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:       "sErViCeVaLuE",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/eXaMpLe/extra",
 			Error: true,
 		},
 	}

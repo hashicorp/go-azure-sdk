@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NotificationNotificationId{}
 
 func TestNewNotificationNotificationID(t *testing.T) {
-	id := NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher")
+	id := NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewNotificationNotificationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceId'", id.WorkspaceId, "workspaceIdValue")
 	}
 
-	if id.NotificationName != "AccountClosedPublisher" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "AccountClosedPublisher")
+	if id.NotificationName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "example")
 	}
 }
 
 func TestFormatNotificationNotificationID(t *testing.T) {
-	actual := NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher"
+	actual := NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseNotificationNotificationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example",
 			Expected: &NotificationNotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
 				WorkspaceId:       "workspaceIdValue",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseNotificationNotificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example",
 			Expected: &NotificationNotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
 				WorkspaceId:       "workspaceIdValue",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe",
 			Expected: &NotificationNotificationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:       "sErViCeVaLuE",
 				WorkspaceId:       "wOrKsPaCeIdVaLuE",
-				NotificationName:  "AccountClosedPublisher",
+				NotificationName:  "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe/extra",
 			Error: true,
 		},
 	}

@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := commonids.NewKubernetesFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
 
 payload := fleets.Fleet{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload, fleets.DefaultCreateOr
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := commonids.NewKubernetesFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
 
 if err := client.DeleteThenPoll(ctx, id, fleets.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id, fleets.DefaultDeleteOperationOptions())
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := commonids.NewKubernetesFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := commonids.NewKubernetesFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
 
 read, err := client.ListCredentials(ctx, id)
 if err != nil {
@@ -120,7 +120,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := commonids.NewKubernetesFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
 
 payload := fleets.FleetPatch{
 	// ...

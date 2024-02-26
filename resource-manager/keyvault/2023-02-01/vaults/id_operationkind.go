@@ -126,7 +126,7 @@ func (id OperationKindId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticAccessPolicies", "accessPolicies", "accessPolicies"),
-		resourceids.ConstantSegment("operationKind", PossibleValuesForAccessPolicyUpdateKind(), "add"),
+		resourceids.ConstantSegment("operationKind", PossibleValuesForAccessPolicyUpdateKind(), "example"),
 	}
 }
 

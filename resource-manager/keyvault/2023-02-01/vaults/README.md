@@ -212,7 +212,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vaults.NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "add")
+id := vaults.NewOperationKindID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "example")
 
 payload := vaults.VaultAccessPolicyParameters{
 	// ...

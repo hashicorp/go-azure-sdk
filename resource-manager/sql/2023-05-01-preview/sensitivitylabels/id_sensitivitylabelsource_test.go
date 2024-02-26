@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SensitivityLabelSourceId{}
 
 func TestNewSensitivityLabelSourceID(t *testing.T) {
-	id := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current")
+	id := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "example")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -42,14 +42,14 @@ func TestNewSensitivityLabelSourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ColumnName'", id.ColumnName, "columnValue")
 	}
 
-	if id.SensitivityLabelSource != "current" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelSource'", id.SensitivityLabelSource, "current")
+	if id.SensitivityLabelSource != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelSource'", id.SensitivityLabelSource, "example")
 	}
 }
 
 func TestFormatSensitivityLabelSourceID(t *testing.T) {
-	actual := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current"
+	actual := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "example").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/example"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -153,7 +153,7 @@ func TestParseSensitivityLabelSourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/example",
 			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
@@ -162,12 +162,12 @@ func TestParseSensitivityLabelSourceID(t *testing.T) {
 				SchemaName:             "schemaValue",
 				TableName:              "tableValue",
 				ColumnName:             "columnValue",
-				SensitivityLabelSource: "current",
+				SensitivityLabelSource: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/example/extra",
 			Error: true,
 		},
 	}
@@ -404,7 +404,7 @@ func TestParseSensitivityLabelSourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/example",
 			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
@@ -413,17 +413,17 @@ func TestParseSensitivityLabelSourceIDInsensitively(t *testing.T) {
 				SchemaName:             "schemaValue",
 				TableName:              "tableValue",
 				ColumnName:             "columnValue",
-				SensitivityLabelSource: "current",
+				SensitivityLabelSource: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/example/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/sChEmAs/sChEmAvAlUe/tAbLeS/tAbLeVaLuE/cOlUmNs/cOlUmNvAlUe/sEnSiTiViTyLaBeLs/cUrReNt",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/sChEmAs/sChEmAvAlUe/tAbLeS/tAbLeVaLuE/cOlUmNs/cOlUmNvAlUe/sEnSiTiViTyLaBeLs/eXaMpLe",
 			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
@@ -432,12 +432,12 @@ func TestParseSensitivityLabelSourceIDInsensitively(t *testing.T) {
 				SchemaName:             "sChEmAvAlUe",
 				TableName:              "tAbLeVaLuE",
 				ColumnName:             "cOlUmNvAlUe",
-				SensitivityLabelSource: "current",
+				SensitivityLabelSource: "example",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/sChEmAs/sChEmAvAlUe/tAbLeS/tAbLeVaLuE/cOlUmNs/cOlUmNvAlUe/sEnSiTiViTyLaBeLs/cUrReNt/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/sChEmAs/sChEmAvAlUe/tAbLeS/tAbLeVaLuE/cOlUmNs/cOlUmNvAlUe/sEnSiTiViTyLaBeLs/eXaMpLe/extra",
 			Error: true,
 		},
 	}

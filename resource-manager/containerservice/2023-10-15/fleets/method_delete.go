@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -48,7 +49,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Delete ...
-func (c FleetsClient) Delete(ctx context.Context, id FleetId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c FleetsClient) Delete(ctx context.Context, id commonids.KubernetesFleetId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -85,7 +86,7 @@ func (c FleetsClient) Delete(ctx context.Context, id FleetId, options DeleteOper
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c FleetsClient) DeleteThenPoll(ctx context.Context, id FleetId, options DeleteOperationOptions) error {
+func (c FleetsClient) DeleteThenPoll(ctx context.Context, id commonids.KubernetesFleetId, options DeleteOperationOptions) error {
 	result, err := c.Delete(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

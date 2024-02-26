@@ -109,7 +109,7 @@ func (id ScopedInformationProtectionPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticInformationProtectionPolicies", "informationProtectionPolicies", "informationProtectionPolicies"),
-		resourceids.ConstantSegment("informationProtectionPolicyName", PossibleValuesForInformationProtectionPolicyName(), "custom"),
+		resourceids.ConstantSegment("informationProtectionPolicyName", PossibleValuesForInformationProtectionPolicyName(), "example"),
 	}
 }
 

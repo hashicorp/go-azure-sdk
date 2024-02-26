@@ -23,7 +23,7 @@ type UpdateTagsOperationResponse struct {
 }
 
 // UpdateTags ...
-func (c P2sVpnGatewaysClient) UpdateTags(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input TagsObject) (result UpdateTagsOperationResponse, err error) {
+func (c P2sVpnGatewaysClient) UpdateTags(ctx context.Context, id commonids.P2sVPNGatewayId, input TagsObject) (result UpdateTagsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c P2sVpnGatewaysClient) UpdateTags(ctx context.Context, id commonids.Virtu
 }
 
 // UpdateTagsThenPoll performs UpdateTags then polls until it's completed
-func (c P2sVpnGatewaysClient) UpdateTagsThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input TagsObject) error {
+func (c P2sVpnGatewaysClient) UpdateTagsThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId, input TagsObject) error {
 	result, err := c.UpdateTags(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateTags: %+v", err)

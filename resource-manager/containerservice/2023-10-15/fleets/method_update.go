@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -49,7 +50,7 @@ func (o UpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Update ...
-func (c FleetsClient) Update(ctx context.Context, id FleetId, input FleetPatch, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
+func (c FleetsClient) Update(ctx context.Context, id commonids.KubernetesFleetId, input FleetPatch, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,7 +90,7 @@ func (c FleetsClient) Update(ctx context.Context, id FleetId, input FleetPatch, 
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c FleetsClient) UpdateThenPoll(ctx context.Context, id FleetId, input FleetPatch, options UpdateOperationOptions) error {
+func (c FleetsClient) UpdateThenPoll(ctx context.Context, id commonids.KubernetesFleetId, input FleetPatch, options UpdateOperationOptions) error {
 	result, err := c.Update(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)

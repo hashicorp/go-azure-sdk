@@ -22,7 +22,7 @@ type P2sVpnGatewaysDeleteOperationResponse struct {
 }
 
 // P2sVpnGatewaysDelete ...
-func (c VirtualWANsClient) P2sVpnGatewaysDelete(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) (result P2sVpnGatewaysDeleteOperationResponse, err error) {
+func (c VirtualWANsClient) P2sVpnGatewaysDelete(ctx context.Context, id commonids.P2sVPNGatewayId) (result P2sVpnGatewaysDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -58,7 +58,7 @@ func (c VirtualWANsClient) P2sVpnGatewaysDelete(ctx context.Context, id commonid
 }
 
 // P2sVpnGatewaysDeleteThenPoll performs P2sVpnGatewaysDelete then polls until it's completed
-func (c VirtualWANsClient) P2sVpnGatewaysDeleteThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) error {
+func (c VirtualWANsClient) P2sVpnGatewaysDeleteThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId) error {
 	result, err := c.P2sVpnGatewaysDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing P2sVpnGatewaysDelete: %+v", err)

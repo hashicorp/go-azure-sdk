@@ -23,7 +23,7 @@ type GetP2sVpnConnectionHealthOperationResponse struct {
 }
 
 // GetP2sVpnConnectionHealth ...
-func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealth(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) (result GetP2sVpnConnectionHealthOperationResponse, err error) {
+func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealth(ctx context.Context, id commonids.P2sVPNGatewayId) (result GetP2sVpnConnectionHealthOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -58,7 +58,7 @@ func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealth(ctx context.Context, id 
 }
 
 // GetP2sVpnConnectionHealthThenPoll performs GetP2sVpnConnectionHealth then polls until it's completed
-func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealthThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId) error {
+func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealthThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId) error {
 	result, err := c.GetP2sVpnConnectionHealth(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing GetP2sVpnConnectionHealth: %+v", err)

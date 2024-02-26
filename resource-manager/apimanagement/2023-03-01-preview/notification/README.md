@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := notification.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
+id := notification.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.CreateOrUpdate(ctx, id, notification.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notification.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
+id := notification.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := notification.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher")
+id := notification.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example")
 
 read, err := client.WorkspaceNotificationCreateOrUpdate(ctx, id, notification.DefaultWorkspaceNotificationCreateOrUpdateOperationOptions())
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notification.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher")
+id := notification.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example")
 
 read, err := client.WorkspaceNotificationGet(ctx, id)
 if err != nil {

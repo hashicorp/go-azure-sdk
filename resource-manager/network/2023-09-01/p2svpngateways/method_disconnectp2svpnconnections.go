@@ -22,7 +22,7 @@ type DisconnectP2sVpnConnectionsOperationResponse struct {
 }
 
 // DisconnectP2sVpnConnections ...
-func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnections(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnConnectionRequest) (result DisconnectP2sVpnConnectionsOperationResponse, err error) {
+func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnections(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnConnectionRequest) (result DisconnectP2sVpnConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnections(ctx context.Context, i
 }
 
 // DisconnectP2sVpnConnectionsThenPoll performs DisconnectP2sVpnConnections then polls until it's completed
-func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnectionsThenPoll(ctx context.Context, id commonids.VirtualWANP2SVPNGatewayId, input P2SVpnConnectionRequest) error {
+func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnectionsThenPoll(ctx context.Context, id commonids.P2sVPNGatewayId, input P2SVpnConnectionRequest) error {
 	result, err := c.DisconnectP2sVpnConnections(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DisconnectP2sVpnConnections: %+v", err)

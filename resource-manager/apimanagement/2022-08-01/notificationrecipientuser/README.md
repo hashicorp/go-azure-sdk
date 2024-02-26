@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "userIdValue")
+id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example", "userIdValue")
 
 read, err := client.CheckEntityExists(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "userIdValue")
+id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example", "userIdValue")
 
 read, err := client.CreateOrUpdate(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "userIdValue")
+id := notificationrecipientuser.NewRecipientUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example", "userIdValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientuser.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
+id := notificationrecipientuser.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "example")
 
 read, err := client.ListByNotification(ctx, id)
 if err != nil {

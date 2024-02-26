@@ -126,7 +126,7 @@ func (id AccessId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticTenant", "tenant", "tenant"),
-		resourceids.ConstantSegment("accessName", PossibleValuesForAccessIdName(), "access"),
+		resourceids.ConstantSegment("accessName", PossibleValuesForAccessIdName(), "example"),
 	}
 }
 

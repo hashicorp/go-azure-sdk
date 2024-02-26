@@ -126,7 +126,7 @@ func (id KeyKindId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSearchServices", "searchServices", "searchServices"),
 		resourceids.UserSpecifiedSegment("searchServiceName", "searchServiceValue"),
 		resourceids.StaticSegment("staticRegenerateAdminKey", "regenerateAdminKey", "regenerateAdminKey"),
-		resourceids.ConstantSegment("keyKind", PossibleValuesForAdminKeyKind(), "primary"),
+		resourceids.ConstantSegment("keyKind", PossibleValuesForAdminKeyKind(), "example"),
 	}
 }
 

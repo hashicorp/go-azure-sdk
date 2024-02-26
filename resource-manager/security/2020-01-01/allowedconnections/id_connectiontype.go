@@ -126,7 +126,7 @@ func (id ConnectionTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticAllowedConnections", "allowedConnections", "allowedConnections"),
-		resourceids.ConstantSegment("connectionType", PossibleValuesForConnectionType(), "External"),
+		resourceids.ConstantSegment("connectionType", PossibleValuesForConnectionType(), "example"),
 	}
 }
 

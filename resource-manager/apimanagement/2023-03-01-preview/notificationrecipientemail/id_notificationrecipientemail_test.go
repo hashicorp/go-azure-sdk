@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NotificationRecipientEmailId{}
 
 func TestNewNotificationRecipientEmailID(t *testing.T) {
-	id := NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher", "recipientEmailValue")
+	id := NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example", "recipientEmailValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,8 +30,8 @@ func TestNewNotificationRecipientEmailID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceId'", id.WorkspaceId, "workspaceIdValue")
 	}
 
-	if id.NotificationName != "AccountClosedPublisher" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "AccountClosedPublisher")
+	if id.NotificationName != "example" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "example")
 	}
 
 	if id.RecipientEmailName != "recipientEmailValue" {
@@ -40,8 +40,8 @@ func TestNewNotificationRecipientEmailID(t *testing.T) {
 }
 
 func TestFormatNotificationRecipientEmailID(t *testing.T) {
-	actual := NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher", "recipientEmailValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue"
+	actual := NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "example", "recipientEmailValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails/recipientEmailValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -115,29 +115,29 @@ func TestParseNotificationRecipientEmailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails/recipientEmailValue",
 			Expected: &NotificationRecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceValue",
 				WorkspaceId:        "workspaceIdValue",
-				NotificationName:   "AccountClosedPublisher",
+				NotificationName:   "example",
 				RecipientEmailName: "recipientEmailValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails/recipientEmailValue/extra",
 			Error: true,
 		},
 	}
@@ -306,56 +306,56 @@ func TestParseNotificationRecipientEmailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe/rEcIpIeNtEmAiLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails/recipientEmailValue",
 			Expected: &NotificationRecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceValue",
 				WorkspaceId:        "workspaceIdValue",
-				NotificationName:   "AccountClosedPublisher",
+				NotificationName:   "example",
 				RecipientEmailName: "recipientEmailValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/workspaces/workspaceIdValue/notifications/example/recipientEmails/recipientEmailValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe",
 			Expected: &NotificationRecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:        "sErViCeVaLuE",
 				WorkspaceId:        "wOrKsPaCeIdVaLuE",
-				NotificationName:   "AccountClosedPublisher",
+				NotificationName:   "example",
 				RecipientEmailName: "rEcIpIeNtEmAiLvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeIdVaLuE/nOtIfIcAtIoNs/eXaMpLe/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe/extra",
 			Error: true,
 		},
 	}

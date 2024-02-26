@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux", "clusterVersionValue")
+id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "example", "clusterVersionValue")
 
 read, err := client.GetByEnvironment(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux")
+id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "locationValue", "example")
 
 read, err := client.ListByEnvironment(ctx, id)
 if err != nil {
