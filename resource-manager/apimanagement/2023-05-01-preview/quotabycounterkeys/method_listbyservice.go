@@ -2,6 +2,7 @@ package quotabycounterkeys
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -14,7 +15,12 @@ import (
 type ListByServiceOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *QuotaCounterCollection
+	Model        *[]QuotaCounterContract
+}
+
+type ListByServiceCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []QuotaCounterContract
 }
 
 // ListByService ...
@@ -34,7 +40,7 @@ func (c QuotaByCounterKeysClient) ListByService(ctx context.Context, id QuotaId)
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -43,12 +49,43 @@ func (c QuotaByCounterKeysClient) ListByService(ctx context.Context, id QuotaId)
 		return
 	}
 
-	var model QuotaCounterCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]QuotaCounterContract `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByServiceComplete retrieves all the results into a single object
+func (c QuotaByCounterKeysClient) ListByServiceComplete(ctx context.Context, id QuotaId) (ListByServiceCompleteResult, error) {
+	return c.ListByServiceCompleteMatchingPredicate(ctx, id, QuotaCounterContractOperationPredicate{})
+}
+
+// ListByServiceCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c QuotaByCounterKeysClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id QuotaId, predicate QuotaCounterContractOperationPredicate) (result ListByServiceCompleteResult, err error) {
+	items := make([]QuotaCounterContract, 0)
+
+	resp, err := c.ListByService(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByServiceCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

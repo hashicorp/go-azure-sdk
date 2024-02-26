@@ -14,7 +14,7 @@ import (
 
 type ListOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *BackupManagementUsage
+	Model        *BackupManagementUsageList
 }
 
 type ListOperationOptions struct {

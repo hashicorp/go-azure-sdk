@@ -15,7 +15,12 @@ import (
 type GetPrivateEndpointConnectionsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateEndpointConnectionCollection
+	Model        *[]PrivateEndpointConnection
+}
+
+type GetPrivateEndpointConnectionsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnection
 }
 
 // GetPrivateEndpointConnections ...
@@ -35,7 +40,7 @@ func (c PrivateEndpointConnectionClient) GetPrivateEndpointConnections(ctx conte
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c PrivateEndpointConnectionClient) GetPrivateEndpointConnections(ctx conte
 		return
 	}
 
-	var model PrivateEndpointConnectionCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]PrivateEndpointConnection `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GetPrivateEndpointConnectionsComplete retrieves all the results into a single object
+func (c PrivateEndpointConnectionClient) GetPrivateEndpointConnectionsComplete(ctx context.Context, id MasterSiteId) (GetPrivateEndpointConnectionsCompleteResult, error) {
+	return c.GetPrivateEndpointConnectionsCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}
+
+// GetPrivateEndpointConnectionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c PrivateEndpointConnectionClient) GetPrivateEndpointConnectionsCompleteMatchingPredicate(ctx context.Context, id MasterSiteId, predicate PrivateEndpointConnectionOperationPredicate) (result GetPrivateEndpointConnectionsCompleteResult, err error) {
+	items := make([]PrivateEndpointConnection, 0)
+
+	resp, err := c.GetPrivateEndpointConnections(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetPrivateEndpointConnectionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

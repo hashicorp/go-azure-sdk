@@ -15,7 +15,12 @@ import (
 type ListByInvoiceSectionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingSubscriptionsListResult
+	Model        *[]BillingSubscription
+}
+
+type ListByInvoiceSectionCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingSubscription
 }
 
 // ListByInvoiceSection ...
@@ -35,7 +40,7 @@ func (c BillingSubscriptionsClient) ListByInvoiceSection(ctx context.Context, id
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c BillingSubscriptionsClient) ListByInvoiceSection(ctx context.Context, id
 		return
 	}
 
-	var model BillingSubscriptionsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingSubscription `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByInvoiceSectionComplete retrieves all the results into a single object
+func (c BillingSubscriptionsClient) ListByInvoiceSectionComplete(ctx context.Context, id InvoiceSectionId) (ListByInvoiceSectionCompleteResult, error) {
+	return c.ListByInvoiceSectionCompleteMatchingPredicate(ctx, id, BillingSubscriptionOperationPredicate{})
+}
+
+// ListByInvoiceSectionCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingSubscriptionsClient) ListByInvoiceSectionCompleteMatchingPredicate(ctx context.Context, id InvoiceSectionId, predicate BillingSubscriptionOperationPredicate) (result ListByInvoiceSectionCompleteResult, err error) {
+	items := make([]BillingSubscription, 0)
+
+	resp, err := c.ListByInvoiceSection(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByInvoiceSectionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

@@ -15,7 +15,12 @@ import (
 type ListByBillingProfileOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingRoleDefinitionListResult
+	Model        *[]BillingRoleDefinition
+}
+
+type ListByBillingProfileCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingRoleDefinition
 }
 
 // ListByBillingProfile ...
@@ -35,7 +40,7 @@ func (c BillingRoleDefinitionsClient) ListByBillingProfile(ctx context.Context, 
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c BillingRoleDefinitionsClient) ListByBillingProfile(ctx context.Context, 
 		return
 	}
 
-	var model BillingRoleDefinitionListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingRoleDefinition `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByBillingProfileComplete retrieves all the results into a single object
+func (c BillingRoleDefinitionsClient) ListByBillingProfileComplete(ctx context.Context, id BillingProfileId) (ListByBillingProfileCompleteResult, error) {
+	return c.ListByBillingProfileCompleteMatchingPredicate(ctx, id, BillingRoleDefinitionOperationPredicate{})
+}
+
+// ListByBillingProfileCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingRoleDefinitionsClient) ListByBillingProfileCompleteMatchingPredicate(ctx context.Context, id BillingProfileId, predicate BillingRoleDefinitionOperationPredicate) (result ListByBillingProfileCompleteResult, err error) {
+	items := make([]BillingRoleDefinition, 0)
+
+	resp, err := c.ListByBillingProfile(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByBillingProfileCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

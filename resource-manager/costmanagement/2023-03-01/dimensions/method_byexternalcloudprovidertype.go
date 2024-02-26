@@ -15,7 +15,7 @@ import (
 type ByExternalCloudProviderTypeOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Dimension
+	Model        *DimensionsListResult
 }
 
 type ByExternalCloudProviderTypeOperationOptions struct {
@@ -80,7 +80,7 @@ func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id Ex
 		return
 	}
 
-	var model Dimension
+	var model DimensionsListResult
 	result.Model = &model
 
 	if err = resp.Unmarshal(result.Model); err != nil {

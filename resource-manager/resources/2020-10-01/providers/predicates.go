@@ -30,3 +30,26 @@ func (p ProviderOperationPredicate) Matches(input Provider) bool {
 
 	return true
 }
+
+type ProviderResourceTypeOperationPredicate struct {
+	Capabilities      *string
+	DefaultApiVersion *string
+	ResourceType      *string
+}
+
+func (p ProviderResourceTypeOperationPredicate) Matches(input ProviderResourceType) bool {
+
+	if p.Capabilities != nil && (input.Capabilities == nil || *p.Capabilities != *input.Capabilities) {
+		return false
+	}
+
+	if p.DefaultApiVersion != nil && (input.DefaultApiVersion == nil || *p.DefaultApiVersion != *input.DefaultApiVersion) {
+		return false
+	}
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	return true
+}

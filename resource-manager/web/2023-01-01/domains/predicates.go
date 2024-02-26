@@ -64,13 +64,13 @@ func (p DomainOwnershipIdentifierOperationPredicate) Matches(input DomainOwnersh
 	return true
 }
 
-type NameIdentifierOperationPredicate struct {
-	Name *string
+type NameIdentifierCollectionOperationPredicate struct {
+	NextLink *string
 }
 
-func (p NameIdentifierOperationPredicate) Matches(input NameIdentifier) bool {
+func (p NameIdentifierCollectionOperationPredicate) Matches(input NameIdentifierCollection) bool {
 
-	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
 		return false
 	}
 

@@ -15,7 +15,12 @@ import (
 type ListByEnvironmentOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ClusterCodeVersionsListResult
+	Model        *[]ClusterCodeVersionsResult
+}
+
+type ListByEnvironmentCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []ClusterCodeVersionsResult
 }
 
 // ListByEnvironment ...
@@ -35,7 +40,7 @@ func (c ClusterVersionClient) ListByEnvironment(ctx context.Context, id Environm
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c ClusterVersionClient) ListByEnvironment(ctx context.Context, id Environm
 		return
 	}
 
-	var model ClusterCodeVersionsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]ClusterCodeVersionsResult `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByEnvironmentComplete retrieves all the results into a single object
+func (c ClusterVersionClient) ListByEnvironmentComplete(ctx context.Context, id EnvironmentId) (ListByEnvironmentCompleteResult, error) {
+	return c.ListByEnvironmentCompleteMatchingPredicate(ctx, id, ClusterCodeVersionsResultOperationPredicate{})
+}
+
+// ListByEnvironmentCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ClusterVersionClient) ListByEnvironmentCompleteMatchingPredicate(ctx context.Context, id EnvironmentId, predicate ClusterCodeVersionsResultOperationPredicate) (result ListByEnvironmentCompleteResult, err error) {
+	items := make([]ClusterCodeVersionsResult, 0)
+
+	resp, err := c.ListByEnvironment(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByEnvironmentCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

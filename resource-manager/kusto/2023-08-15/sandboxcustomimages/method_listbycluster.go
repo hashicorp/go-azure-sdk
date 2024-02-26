@@ -16,7 +16,12 @@ import (
 type ListByClusterOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SandboxCustomImagesListResult
+	Model        *[]SandboxCustomImage
+}
+
+type ListByClusterCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []SandboxCustomImage
 }
 
 // ListByCluster ...
@@ -36,7 +41,7 @@ func (c SandboxCustomImagesClient) ListByCluster(ctx context.Context, id commoni
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,12 +50,43 @@ func (c SandboxCustomImagesClient) ListByCluster(ctx context.Context, id commoni
 		return
 	}
 
-	var model SandboxCustomImagesListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]SandboxCustomImage `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByClusterComplete retrieves all the results into a single object
+func (c SandboxCustomImagesClient) ListByClusterComplete(ctx context.Context, id commonids.KustoClusterId) (ListByClusterCompleteResult, error) {
+	return c.ListByClusterCompleteMatchingPredicate(ctx, id, SandboxCustomImageOperationPredicate{})
+}
+
+// ListByClusterCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c SandboxCustomImagesClient) ListByClusterCompleteMatchingPredicate(ctx context.Context, id commonids.KustoClusterId, predicate SandboxCustomImageOperationPredicate) (result ListByClusterCompleteResult, err error) {
+	items := make([]SandboxCustomImage, 0)
+
+	resp, err := c.ListByCluster(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByClusterCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

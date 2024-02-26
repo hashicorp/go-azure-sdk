@@ -16,7 +16,12 @@ import (
 type StreamListByJobOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *JobStreamListResult
+	Model        *[]JobStream
+}
+
+type StreamListByJobCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []JobStream
 }
 
 // StreamListByJob ...
@@ -36,7 +41,7 @@ func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id commoni
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,12 +50,43 @@ func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id commoni
 		return
 	}
 
-	var model JobStreamListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]JobStream `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// StreamListByJobComplete retrieves all the results into a single object
+func (c DscCompilationJobClient) StreamListByJobComplete(ctx context.Context, id commonids.AutomationCompilationJobId) (StreamListByJobCompleteResult, error) {
+	return c.StreamListByJobCompleteMatchingPredicate(ctx, id, JobStreamOperationPredicate{})
+}
+
+// StreamListByJobCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c DscCompilationJobClient) StreamListByJobCompleteMatchingPredicate(ctx context.Context, id commonids.AutomationCompilationJobId, predicate JobStreamOperationPredicate) (result StreamListByJobCompleteResult, err error) {
+	items := make([]JobStream, 0)
+
+	resp, err := c.StreamListByJob(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = StreamListByJobCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

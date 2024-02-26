@@ -7,7 +7,7 @@ type AllowlistCustomAlertRule struct {
 	AllowlistValues []string   `json:"allowlistValues"`
 	Description     *string    `json:"description,omitempty"`
 	DisplayName     *string    `json:"displayName,omitempty"`
-	IsEnabled       *bool      `json:"isEnabled,omitempty"`
-	RuleType        *string    `json:"ruleType,omitempty"`
+	IsEnabled       bool       `json:"isEnabled"`
+	RuleType        string     `json:"ruleType"`
 	ValueType       *ValueType `json:"valueType,omitempty"`
 }

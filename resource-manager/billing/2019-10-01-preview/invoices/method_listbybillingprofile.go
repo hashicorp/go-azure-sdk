@@ -15,7 +15,12 @@ import (
 type ListByBillingProfileOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *InvoiceListResult
+	Model        *[]Invoice
+}
+
+type ListByBillingProfileCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Invoice
 }
 
 type ListByBillingProfileOperationOptions struct {
@@ -67,7 +72,7 @@ func (c InvoicesClient) ListByBillingProfile(ctx context.Context, id BillingProf
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -76,12 +81,43 @@ func (c InvoicesClient) ListByBillingProfile(ctx context.Context, id BillingProf
 		return
 	}
 
-	var model InvoiceListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Invoice `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByBillingProfileComplete retrieves all the results into a single object
+func (c InvoicesClient) ListByBillingProfileComplete(ctx context.Context, id BillingProfileId, options ListByBillingProfileOperationOptions) (ListByBillingProfileCompleteResult, error) {
+	return c.ListByBillingProfileCompleteMatchingPredicate(ctx, id, options, InvoiceOperationPredicate{})
+}
+
+// ListByBillingProfileCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c InvoicesClient) ListByBillingProfileCompleteMatchingPredicate(ctx context.Context, id BillingProfileId, options ListByBillingProfileOperationOptions, predicate InvoiceOperationPredicate) (result ListByBillingProfileCompleteResult, err error) {
+	items := make([]Invoice, 0)
+
+	resp, err := c.ListByBillingProfile(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByBillingProfileCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

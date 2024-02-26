@@ -8,7 +8,7 @@ type ImageProperties struct {
 	AvailableRegions  *[]string          `json:"availableRegions,omitempty"`
 	Description       *string            `json:"description,omitempty"`
 	DisplayName       *string            `json:"displayName,omitempty"`
-	EnabledState      EnableState        `json:"enabledState"`
+	EnabledState      *EnableState       `json:"enabledState,omitempty"`
 	IconUrl           *string            `json:"iconUrl,omitempty"`
 	Offer             *string            `json:"offer,omitempty"`
 	OsState           *OsState           `json:"osState,omitempty"`

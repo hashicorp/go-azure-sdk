@@ -15,12 +15,12 @@ import (
 type SubAccountListVMHostUpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]VMResources
+	Model        *[]VMResourcesListResponse
 }
 
 type SubAccountListVMHostUpdateCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []VMResources
+	Items              []VMResourcesListResponse
 }
 
 // SubAccountListVMHostUpdate ...
@@ -50,7 +50,7 @@ func (c VMHostClient) SubAccountListVMHostUpdate(ctx context.Context, id Account
 	}
 
 	var values struct {
-		Values *[]VMResources `json:"value"`
+		Values *[]VMResourcesListResponse `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c VMHostClient) SubAccountListVMHostUpdate(ctx context.Context, id Account
 
 // SubAccountListVMHostUpdateComplete retrieves all the results into a single object
 func (c VMHostClient) SubAccountListVMHostUpdateComplete(ctx context.Context, id AccountId, input VMHostUpdateRequest) (SubAccountListVMHostUpdateCompleteResult, error) {
-	return c.SubAccountListVMHostUpdateCompleteMatchingPredicate(ctx, id, input, VMResourcesOperationPredicate{})
+	return c.SubAccountListVMHostUpdateCompleteMatchingPredicate(ctx, id, input, VMResourcesListResponseOperationPredicate{})
 }
 
 // SubAccountListVMHostUpdateCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VMHostClient) SubAccountListVMHostUpdateCompleteMatchingPredicate(ctx context.Context, id AccountId, input VMHostUpdateRequest, predicate VMResourcesOperationPredicate) (result SubAccountListVMHostUpdateCompleteResult, err error) {
-	items := make([]VMResources, 0)
+func (c VMHostClient) SubAccountListVMHostUpdateCompleteMatchingPredicate(ctx context.Context, id AccountId, input VMHostUpdateRequest, predicate VMResourcesListResponseOperationPredicate) (result SubAccountListVMHostUpdateCompleteResult, err error) {
+	items := make([]VMResourcesListResponse, 0)
 
 	resp, err := c.SubAccountListVMHostUpdate(ctx, id, input)
 	if err != nil {

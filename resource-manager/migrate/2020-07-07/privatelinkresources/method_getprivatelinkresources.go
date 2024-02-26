@@ -15,7 +15,12 @@ import (
 type GetPrivateLinkResourcesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateLinkResourceCollection
+	Model        *[]PrivateLinkResource
+}
+
+type GetPrivateLinkResourcesCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []PrivateLinkResource
 }
 
 // GetPrivateLinkResources ...
@@ -35,7 +40,7 @@ func (c PrivateLinkResourcesClient) GetPrivateLinkResources(ctx context.Context,
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c PrivateLinkResourcesClient) GetPrivateLinkResources(ctx context.Context,
 		return
 	}
 
-	var model PrivateLinkResourceCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]PrivateLinkResource `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GetPrivateLinkResourcesComplete retrieves all the results into a single object
+func (c PrivateLinkResourcesClient) GetPrivateLinkResourcesComplete(ctx context.Context, id MasterSiteId) (GetPrivateLinkResourcesCompleteResult, error) {
+	return c.GetPrivateLinkResourcesCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}
+
+// GetPrivateLinkResourcesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c PrivateLinkResourcesClient) GetPrivateLinkResourcesCompleteMatchingPredicate(ctx context.Context, id MasterSiteId, predicate PrivateLinkResourceOperationPredicate) (result GetPrivateLinkResourcesCompleteResult, err error) {
+	items := make([]PrivateLinkResource, 0)
+
+	resp, err := c.GetPrivateLinkResources(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetPrivateLinkResourcesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

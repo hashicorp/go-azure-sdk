@@ -48,3 +48,26 @@ func (p IoTSecurityAggregatedRecommendationOperationPredicate) Matches(input IoT
 
 	return true
 }
+
+type IoTSecuritySolutionAnalyticsModelOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p IoTSecuritySolutionAnalyticsModelOperationPredicate) Matches(input IoTSecuritySolutionAnalyticsModel) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

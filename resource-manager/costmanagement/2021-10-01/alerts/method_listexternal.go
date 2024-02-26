@@ -15,7 +15,12 @@ import (
 type ListExternalOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *AlertsResult
+	Model        *[]Alert
+}
+
+type ListExternalCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Alert
 }
 
 // ListExternal ...
@@ -35,7 +40,7 @@ func (c AlertsClient) ListExternal(ctx context.Context, id ExternalCloudProvider
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c AlertsClient) ListExternal(ctx context.Context, id ExternalCloudProvider
 		return
 	}
 
-	var model AlertsResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Alert `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListExternalComplete retrieves all the results into a single object
+func (c AlertsClient) ListExternalComplete(ctx context.Context, id ExternalCloudProviderTypeId) (ListExternalCompleteResult, error) {
+	return c.ListExternalCompleteMatchingPredicate(ctx, id, AlertOperationPredicate{})
+}
+
+// ListExternalCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c AlertsClient) ListExternalCompleteMatchingPredicate(ctx context.Context, id ExternalCloudProviderTypeId, predicate AlertOperationPredicate) (result ListExternalCompleteResult, err error) {
+	items := make([]Alert, 0)
+
+	resp, err := c.ListExternal(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListExternalCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

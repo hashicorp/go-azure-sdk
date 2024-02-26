@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]AzureBackupRecoveryPointResource
+	Model        *[]AzureBackupRecoveryPointResourceList
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []AzureBackupRecoveryPointResource
+	Items              []AzureBackupRecoveryPointResourceList
 }
 
 type ListOperationOptions struct {
@@ -78,7 +78,7 @@ func (c FetchSecondaryRecoveryPointsClient) List(ctx context.Context, id Provide
 	}
 
 	var values struct {
-		Values *[]AzureBackupRecoveryPointResource `json:"value"`
+		Values *[]AzureBackupRecoveryPointResourceList `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -91,12 +91,12 @@ func (c FetchSecondaryRecoveryPointsClient) List(ctx context.Context, id Provide
 
 // ListComplete retrieves all the results into a single object
 func (c FetchSecondaryRecoveryPointsClient) ListComplete(ctx context.Context, id ProviderLocationId, input FetchSecondaryRPsRequestParameters, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, input, options, AzureBackupRecoveryPointResourceOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, input, options, AzureBackupRecoveryPointResourceListOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FetchSecondaryRecoveryPointsClient) ListCompleteMatchingPredicate(ctx context.Context, id ProviderLocationId, input FetchSecondaryRPsRequestParameters, options ListOperationOptions, predicate AzureBackupRecoveryPointResourceOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]AzureBackupRecoveryPointResource, 0)
+func (c FetchSecondaryRecoveryPointsClient) ListCompleteMatchingPredicate(ctx context.Context, id ProviderLocationId, input FetchSecondaryRPsRequestParameters, options ListOperationOptions, predicate AzureBackupRecoveryPointResourceListOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]AzureBackupRecoveryPointResourceList, 0)
 
 	resp, err := c.List(ctx, id, input, options)
 	if err != nil {

@@ -11,7 +11,7 @@ import (
 var _ AutoMLVertical = ImageObjectDetection{}
 
 type ImageObjectDetection struct {
-	LimitSettings      *ImageLimitSettings                              `json:"limitSettings,omitempty"`
+	LimitSettings      ImageLimitSettings                               `json:"limitSettings"`
 	ModelSettings      *ImageModelSettingsObjectDetection               `json:"modelSettings,omitempty"`
 	PrimaryMetric      *ObjectDetectionPrimaryMetrics                   `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsObjectDetection `json:"searchSpace,omitempty"`

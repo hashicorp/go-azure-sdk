@@ -15,7 +15,12 @@ import (
 type ListByAccountOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateEndpointConnectionProxyListResult
+	Model        *[]PrivateEndpointConnectionProxy
+}
+
+type ListByAccountCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []PrivateEndpointConnectionProxy
 }
 
 // ListByAccount ...
@@ -35,7 +40,7 @@ func (c PrivateEndpointConnectionProxiesClient) ListByAccount(ctx context.Contex
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c PrivateEndpointConnectionProxiesClient) ListByAccount(ctx context.Contex
 		return
 	}
 
-	var model PrivateEndpointConnectionProxyListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]PrivateEndpointConnectionProxy `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByAccountComplete retrieves all the results into a single object
+func (c PrivateEndpointConnectionProxiesClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionProxyOperationPredicate{})
+}
+
+// ListByAccountCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c PrivateEndpointConnectionProxiesClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate PrivateEndpointConnectionProxyOperationPredicate) (result ListByAccountCompleteResult, err error) {
+	items := make([]PrivateEndpointConnectionProxy, 0)
+
+	resp, err := c.ListByAccount(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByAccountCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

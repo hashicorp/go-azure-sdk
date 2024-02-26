@@ -15,7 +15,12 @@ import (
 type ListByInvoiceSectionsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingPermissionsListResult
+	Model        *[]BillingPermissionsProperties
+}
+
+type ListByInvoiceSectionsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingPermissionsProperties
 }
 
 // ListByInvoiceSections ...
@@ -35,7 +40,7 @@ func (c BillingPermissionsClient) ListByInvoiceSections(ctx context.Context, id 
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c BillingPermissionsClient) ListByInvoiceSections(ctx context.Context, id 
 		return
 	}
 
-	var model BillingPermissionsListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingPermissionsProperties `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByInvoiceSectionsComplete retrieves all the results into a single object
+func (c BillingPermissionsClient) ListByInvoiceSectionsComplete(ctx context.Context, id InvoiceSectionId) (ListByInvoiceSectionsCompleteResult, error) {
+	return c.ListByInvoiceSectionsCompleteMatchingPredicate(ctx, id, BillingPermissionsPropertiesOperationPredicate{})
+}
+
+// ListByInvoiceSectionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingPermissionsClient) ListByInvoiceSectionsCompleteMatchingPredicate(ctx context.Context, id InvoiceSectionId, predicate BillingPermissionsPropertiesOperationPredicate) (result ListByInvoiceSectionsCompleteResult, err error) {
+	items := make([]BillingPermissionsProperties, 0)
+
+	resp, err := c.ListByInvoiceSections(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByInvoiceSectionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

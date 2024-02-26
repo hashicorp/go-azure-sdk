@@ -3,18 +3,13 @@ package vmhost
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type VMResourcesOperationPredicate struct {
-	AgentVersion *string
-	Id           *string
+type VMResourcesListResponseOperationPredicate struct {
+	NextLink *string
 }
 
-func (p VMResourcesOperationPredicate) Matches(input VMResources) bool {
+func (p VMResourcesListResponseOperationPredicate) Matches(input VMResourcesListResponse) bool {
 
-	if p.AgentVersion != nil && (input.AgentVersion == nil || *p.AgentVersion != *input.AgentVersion) {
-		return false
-	}
-
-	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
 		return false
 	}
 

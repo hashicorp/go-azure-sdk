@@ -11,7 +11,7 @@ import (
 var _ AutoMLVertical = ImageInstanceSegmentation{}
 
 type ImageInstanceSegmentation struct {
-	LimitSettings      *ImageLimitSettings                              `json:"limitSettings,omitempty"`
+	LimitSettings      ImageLimitSettings                               `json:"limitSettings"`
 	ModelSettings      *ImageModelSettingsObjectDetection               `json:"modelSettings,omitempty"`
 	PrimaryMetric      *InstanceSegmentationPrimaryMetrics              `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsObjectDetection `json:"searchSpace,omitempty"`

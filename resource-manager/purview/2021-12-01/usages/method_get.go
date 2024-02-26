@@ -15,7 +15,12 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *UsageList
+	Model        *[]Usage
+}
+
+type GetCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Usage
 }
 
 type GetOperationOptions struct {
@@ -63,7 +68,7 @@ func (c UsagesClient) Get(ctx context.Context, id LocationId, options GetOperati
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -72,12 +77,43 @@ func (c UsagesClient) Get(ctx context.Context, id LocationId, options GetOperati
 		return
 	}
 
-	var model UsageList
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Usage `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GetComplete retrieves all the results into a single object
+func (c UsagesClient) GetComplete(ctx context.Context, id LocationId, options GetOperationOptions) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, options, UsageOperationPredicate{})
+}
+
+// GetCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c UsagesClient) GetCompleteMatchingPredicate(ctx context.Context, id LocationId, options GetOperationOptions, predicate UsageOperationPredicate) (result GetCompleteResult, err error) {
+	items := make([]Usage, 0)
+
+	resp, err := c.Get(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

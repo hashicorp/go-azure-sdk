@@ -15,12 +15,12 @@ import (
 type ListInvoiceSectionsByCreateSubscriptionPermissionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]InvoiceSectionWithCreateSubPermission
+	Model        *[]InvoiceSectionListWithCreateSubPermissionResult
 }
 
 type ListInvoiceSectionsByCreateSubscriptionPermissionCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []InvoiceSectionWithCreateSubPermission
+	Items              []InvoiceSectionListWithCreateSubPermissionResult
 }
 
 // ListInvoiceSectionsByCreateSubscriptionPermission ...
@@ -50,7 +50,7 @@ func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermission
 	}
 
 	var values struct {
-		Values *[]InvoiceSectionWithCreateSubPermission `json:"value"`
+		Values *[]InvoiceSectionListWithCreateSubPermissionResult `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermission
 
 // ListInvoiceSectionsByCreateSubscriptionPermissionComplete retrieves all the results into a single object
 func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermissionComplete(ctx context.Context, id BillingAccountId) (ListInvoiceSectionsByCreateSubscriptionPermissionCompleteResult, error) {
-	return c.ListInvoiceSectionsByCreateSubscriptionPermissionCompleteMatchingPredicate(ctx, id, InvoiceSectionWithCreateSubPermissionOperationPredicate{})
+	return c.ListInvoiceSectionsByCreateSubscriptionPermissionCompleteMatchingPredicate(ctx, id, InvoiceSectionListWithCreateSubPermissionResultOperationPredicate{})
 }
 
 // ListInvoiceSectionsByCreateSubscriptionPermissionCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermissionCompleteMatchingPredicate(ctx context.Context, id BillingAccountId, predicate InvoiceSectionWithCreateSubPermissionOperationPredicate) (result ListInvoiceSectionsByCreateSubscriptionPermissionCompleteResult, err error) {
-	items := make([]InvoiceSectionWithCreateSubPermission, 0)
+func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermissionCompleteMatchingPredicate(ctx context.Context, id BillingAccountId, predicate InvoiceSectionListWithCreateSubPermissionResultOperationPredicate) (result ListInvoiceSectionsByCreateSubscriptionPermissionCompleteResult, err error) {
+	items := make([]InvoiceSectionListWithCreateSubPermissionResult, 0)
 
 	resp, err := c.ListInvoiceSectionsByCreateSubscriptionPermission(ctx, id)
 	if err != nil {

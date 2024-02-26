@@ -15,12 +15,12 @@ import (
 type GetBuildDatabaseConnectionsWithDetailsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]DatabaseConnection
+	Model        *[]DatabaseConnectionCollection
 }
 
 type GetBuildDatabaseConnectionsWithDetailsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []DatabaseConnection
+	Items              []DatabaseConnectionCollection
 }
 
 // GetBuildDatabaseConnectionsWithDetails ...
@@ -50,7 +50,7 @@ func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetails(ctx context.Co
 	}
 
 	var values struct {
-		Values *[]DatabaseConnection `json:"value"`
+		Values *[]DatabaseConnectionCollection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetails(ctx context.Co
 
 // GetBuildDatabaseConnectionsWithDetailsComplete retrieves all the results into a single object
 func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetailsComplete(ctx context.Context, id BuildId) (GetBuildDatabaseConnectionsWithDetailsCompleteResult, error) {
-	return c.GetBuildDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx, id, DatabaseConnectionOperationPredicate{})
+	return c.GetBuildDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx, id, DatabaseConnectionCollectionOperationPredicate{})
 }
 
 // GetBuildDatabaseConnectionsWithDetailsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx context.Context, id BuildId, predicate DatabaseConnectionOperationPredicate) (result GetBuildDatabaseConnectionsWithDetailsCompleteResult, err error) {
-	items := make([]DatabaseConnection, 0)
+func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx context.Context, id BuildId, predicate DatabaseConnectionCollectionOperationPredicate) (result GetBuildDatabaseConnectionsWithDetailsCompleteResult, err error) {
+	items := make([]DatabaseConnectionCollection, 0)
 
 	resp, err := c.GetBuildDatabaseConnectionsWithDetails(ctx, id)
 	if err != nil {

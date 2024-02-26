@@ -15,7 +15,12 @@ import (
 type WorkspaceProductPolicyListByProductOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PolicyCollection
+	Model        *[]PolicyContract
+}
+
+type WorkspaceProductPolicyListByProductCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []PolicyContract
 }
 
 // WorkspaceProductPolicyListByProduct ...
@@ -35,7 +40,7 @@ func (c ProductPolicyClient) WorkspaceProductPolicyListByProduct(ctx context.Con
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c ProductPolicyClient) WorkspaceProductPolicyListByProduct(ctx context.Con
 		return
 	}
 
-	var model PolicyCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]PolicyContract `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// WorkspaceProductPolicyListByProductComplete retrieves all the results into a single object
+func (c ProductPolicyClient) WorkspaceProductPolicyListByProductComplete(ctx context.Context, id WorkspaceProductId) (WorkspaceProductPolicyListByProductCompleteResult, error) {
+	return c.WorkspaceProductPolicyListByProductCompleteMatchingPredicate(ctx, id, PolicyContractOperationPredicate{})
+}
+
+// WorkspaceProductPolicyListByProductCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ProductPolicyClient) WorkspaceProductPolicyListByProductCompleteMatchingPredicate(ctx context.Context, id WorkspaceProductId, predicate PolicyContractOperationPredicate) (result WorkspaceProductPolicyListByProductCompleteResult, err error) {
+	items := make([]PolicyContract, 0)
+
+	resp, err := c.WorkspaceProductPolicyListByProduct(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = WorkspaceProductPolicyListByProductCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

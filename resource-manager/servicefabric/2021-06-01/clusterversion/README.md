@@ -26,12 +26,13 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := clusterversion.NewClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue")
 
-read, err := client.Get(ctx, id)
+// alternatively `client.Get(ctx, id)` can be used to do batched pagination
+items, err := client.GetComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -42,12 +43,13 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux", "clusterVersionValue")
 
-read, err := client.GetByEnvironment(ctx, id)
+// alternatively `client.GetByEnvironment(ctx, id)` can be used to do batched pagination
+items, err := client.GetByEnvironmentComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -58,12 +60,13 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := clusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
 
-read, err := client.List(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -74,11 +77,12 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux")
 
-read, err := client.ListByEnvironment(ctx, id)
+// alternatively `client.ListByEnvironment(ctx, id)` can be used to do batched pagination
+items, err := client.ListByEnvironmentComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

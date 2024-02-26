@@ -15,7 +15,12 @@ import (
 type ListByServerOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ServerListResult
+	Model        *[]Server
+}
+
+type ListByServerCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Server
 }
 
 // ListByServer ...
@@ -35,7 +40,7 @@ func (c ReplicasClient) ListByServer(ctx context.Context, id FlexibleServerId) (
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c ReplicasClient) ListByServer(ctx context.Context, id FlexibleServerId) (
 		return
 	}
 
-	var model ServerListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Server `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByServerComplete retrieves all the results into a single object
+func (c ReplicasClient) ListByServerComplete(ctx context.Context, id FlexibleServerId) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, ServerOperationPredicate{})
+}
+
+// ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ReplicasClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id FlexibleServerId, predicate ServerOperationPredicate) (result ListByServerCompleteResult, err error) {
+	items := make([]Server, 0)
+
+	resp, err := c.ListByServer(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByServerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

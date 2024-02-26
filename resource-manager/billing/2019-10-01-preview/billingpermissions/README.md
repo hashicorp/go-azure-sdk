@@ -43,12 +43,13 @@ for _, item := range items {
 ctx := context.TODO()
 id := billingpermissions.NewBillingProfileID("billingAccountValue", "billingProfileValue")
 
-read, err := client.ListByBillingProfile(ctx, id)
+// alternatively `client.ListByBillingProfile(ctx, id)` can be used to do batched pagination
+items, err := client.ListByBillingProfileComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -59,12 +60,13 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := billingpermissions.NewCustomerID("billingAccountValue", "customerValue")
 
-read, err := client.ListByCustomer(ctx, id)
+// alternatively `client.ListByCustomer(ctx, id)` can be used to do batched pagination
+items, err := client.ListByCustomerComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -109,11 +111,12 @@ for _, item := range items {
 ctx := context.TODO()
 id := billingpermissions.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
 
-read, err := client.ListByInvoiceSections(ctx, id)
+// alternatively `client.ListByInvoiceSections(ctx, id)` can be used to do batched pagination
+items, err := client.ListByInvoiceSectionsComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

@@ -2,7 +2,6 @@ package threatintelligence
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -16,12 +15,12 @@ import (
 type IndicatorQueryIndicatorsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ThreatIntelligenceInformation
+	Model        *[]ThreatIntelligenceInformationList
 }
 
 type IndicatorQueryIndicatorsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ThreatIntelligenceInformation
+	Items              []ThreatIntelligenceInformationList
 }
 
 // IndicatorQueryIndicators ...
@@ -51,36 +50,25 @@ func (c ThreatIntelligenceClient) IndicatorQueryIndicators(ctx context.Context, 
 	}
 
 	var values struct {
-		Values *[]json.RawMessage `json:"value"`
+		Values *[]ThreatIntelligenceInformationList `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	temp := make([]ThreatIntelligenceInformation, 0)
-	if values.Values != nil {
-		for i, v := range *values.Values {
-			val, err := unmarshalThreatIntelligenceInformationImplementation(v)
-			if err != nil {
-				err = fmt.Errorf("unmarshalling item %d for ThreatIntelligenceInformation (%q): %+v", i, v, err)
-				return result, err
-			}
-			temp = append(temp, val)
-		}
-	}
-	result.Model = &temp
+	result.Model = values.Values
 
 	return
 }
 
 // IndicatorQueryIndicatorsComplete retrieves all the results into a single object
 func (c ThreatIntelligenceClient) IndicatorQueryIndicatorsComplete(ctx context.Context, id WorkspaceId, input ThreatIntelligenceFilteringCriteria) (IndicatorQueryIndicatorsCompleteResult, error) {
-	return c.IndicatorQueryIndicatorsCompleteMatchingPredicate(ctx, id, input, ThreatIntelligenceInformationOperationPredicate{})
+	return c.IndicatorQueryIndicatorsCompleteMatchingPredicate(ctx, id, input, ThreatIntelligenceInformationListOperationPredicate{})
 }
 
 // IndicatorQueryIndicatorsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ThreatIntelligenceClient) IndicatorQueryIndicatorsCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, input ThreatIntelligenceFilteringCriteria, predicate ThreatIntelligenceInformationOperationPredicate) (result IndicatorQueryIndicatorsCompleteResult, err error) {
-	items := make([]ThreatIntelligenceInformation, 0)
+func (c ThreatIntelligenceClient) IndicatorQueryIndicatorsCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, input ThreatIntelligenceFilteringCriteria, predicate ThreatIntelligenceInformationListOperationPredicate) (result IndicatorQueryIndicatorsCompleteResult, err error) {
+	items := make([]ThreatIntelligenceInformationList, 0)
 
 	resp, err := c.IndicatorQueryIndicators(ctx, id, input)
 	if err != nil {

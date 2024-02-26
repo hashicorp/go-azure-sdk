@@ -21,7 +21,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationrecommendations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationsummaries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationtransactions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -42,7 +41,6 @@ type Client struct {
 	ReservationRecommendations       *reservationrecommendations.ReservationRecommendationsClient
 	ReservationSummaries             *reservationsummaries.ReservationSummariesClient
 	ReservationTransactions          *reservationtransactions.ReservationTransactionsClient
-	UsageDetails                     *usagedetails.UsageDetailsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -136,12 +134,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(reservationTransactionsClient.Client)
 
-	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building UsageDetails client: %+v", err)
-	}
-	configureFunc(usageDetailsClient.Client)
-
 	return &Client{
 		AggregatedCost:                   aggregatedCostClient,
 		Balances:                         balancesClient,
@@ -158,6 +150,5 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		ReservationRecommendations:       reservationRecommendationsClient,
 		ReservationSummaries:             reservationSummariesClient,
 		ReservationTransactions:          reservationTransactionsClient,
-		UsageDetails:                     usageDetailsClient,
 	}, nil
 }

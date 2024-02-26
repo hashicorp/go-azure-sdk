@@ -16,7 +16,12 @@ import (
 type ListBySubscriptionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *JitRequestDefinitionListResult
+	Model        *[]JitRequestDefinition
+}
+
+type ListBySubscriptionCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []JitRequestDefinition
 }
 
 // ListBySubscription ...
@@ -36,7 +41,7 @@ func (c JitRequestsClient) ListBySubscription(ctx context.Context, id commonids.
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,12 +50,43 @@ func (c JitRequestsClient) ListBySubscription(ctx context.Context, id commonids.
 		return
 	}
 
-	var model JitRequestDefinitionListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]JitRequestDefinition `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListBySubscriptionComplete retrieves all the results into a single object
+func (c JitRequestsClient) ListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ListBySubscriptionCompleteResult, error) {
+	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, JitRequestDefinitionOperationPredicate{})
+}
+
+// ListBySubscriptionCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c JitRequestsClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate JitRequestDefinitionOperationPredicate) (result ListBySubscriptionCompleteResult, err error) {
+	items := make([]JitRequestDefinition, 0)
+
+	resp, err := c.ListBySubscription(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListBySubscriptionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }
