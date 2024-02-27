@@ -104,6 +104,9 @@ func (r *Request) Marshal(payload interface{}) error {
 	case strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml"):
 		body, err := xml.Marshal(payload)
 		if err == nil {
+			// Prepend the xml doctype declaration since it is not automatically added
+			body = append([]byte(xml.Header), body...)
+
 			r.ContentLength = int64(len(body))
 			r.Body = io.NopCloser(bytes.NewReader(body))
 		}
