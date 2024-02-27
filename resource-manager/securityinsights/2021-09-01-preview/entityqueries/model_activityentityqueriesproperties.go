@@ -30,9 +30,19 @@ func (o *ActivityEntityQueriesProperties) GetCreatedTimeUtcAsTime() (*time.Time,
 	return dates.ParseAsFormat(o.CreatedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ActivityEntityQueriesProperties) SetCreatedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTimeUtc = &formatted
+}
+
 func (o *ActivityEntityQueriesProperties) GetLastModifiedTimeUtcAsTime() (*time.Time, error) {
 	if o.LastModifiedTimeUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ActivityEntityQueriesProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTimeUtc = &formatted
 }

@@ -28,9 +28,19 @@ func (o *SharedAccessAuthorizationRuleProperties) GetCreatedTimeAsTime() (*time.
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SharedAccessAuthorizationRuleProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
+}
+
 func (o *SharedAccessAuthorizationRuleProperties) GetModifiedTimeAsTime() (*time.Time, error) {
 	if o.ModifiedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ModifiedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SharedAccessAuthorizationRuleProperties) SetModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ModifiedTime = &formatted
 }

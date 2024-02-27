@@ -30,3 +30,8 @@ func (o *ConnectedRegistryProperties) GetLastActivityTimeAsTime() (*time.Time, e
 	}
 	return dates.ParseAsFormat(o.LastActivityTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *ConnectedRegistryProperties) SetLastActivityTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastActivityTime = &formatted
+}

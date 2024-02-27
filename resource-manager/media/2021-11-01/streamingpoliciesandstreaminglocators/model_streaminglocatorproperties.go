@@ -29,6 +29,11 @@ func (o *StreamingLocatorProperties) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *StreamingLocatorProperties) SetCreatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Created = &formatted
+}
+
 func (o *StreamingLocatorProperties) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil

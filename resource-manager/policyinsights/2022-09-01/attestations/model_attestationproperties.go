@@ -53,3 +53,8 @@ func (o *AttestationProperties) GetLastComplianceStateChangeAtAsTime() (*time.Ti
 	}
 	return dates.ParseAsFormat(o.LastComplianceStateChangeAt, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *AttestationProperties) SetLastComplianceStateChangeAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastComplianceStateChangeAt = &formatted
+}

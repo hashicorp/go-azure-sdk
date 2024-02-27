@@ -23,3 +23,8 @@ func (o *ManagedInstanceKeyProperties) GetCreationDateAsTime() (*time.Time, erro
 	}
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *ManagedInstanceKeyProperties) SetCreationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationDate = &formatted
+}

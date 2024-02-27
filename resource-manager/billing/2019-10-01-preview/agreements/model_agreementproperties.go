@@ -26,9 +26,19 @@ func (o *AgreementProperties) GetEffectiveDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EffectiveDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AgreementProperties) SetEffectiveDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EffectiveDate = &formatted
+}
+
 func (o *AgreementProperties) GetExpirationDateAsTime() (*time.Time, error) {
 	if o.ExpirationDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ExpirationDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *AgreementProperties) SetExpirationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpirationDate = &formatted
 }

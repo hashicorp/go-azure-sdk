@@ -33,6 +33,11 @@ func (o *TransferProperties) GetCreationTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *TransferProperties) SetCreationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationTime = &formatted
+}
+
 func (o *TransferProperties) GetExpirationTimeAsTime() (*time.Time, error) {
 	if o.ExpirationTime == nil {
 		return nil, nil
@@ -40,9 +45,19 @@ func (o *TransferProperties) GetExpirationTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *TransferProperties) SetExpirationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpirationTime = &formatted
+}
+
 func (o *TransferProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
 	if o.LastModifiedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *TransferProperties) SetLastModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTime = &formatted
 }

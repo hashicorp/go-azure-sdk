@@ -43,9 +43,19 @@ func (o *EventData) GetEventTimestampAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EventTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *EventData) SetEventTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EventTimestamp = &formatted
+}
+
 func (o *EventData) GetSubmissionTimestampAsTime() (*time.Time, error) {
 	if o.SubmissionTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SubmissionTimestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *EventData) SetSubmissionTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.SubmissionTimestamp = &formatted
 }

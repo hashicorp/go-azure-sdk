@@ -24,9 +24,19 @@ func (o *AssessmentStatusResponse) GetFirstEvaluationDateAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.FirstEvaluationDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AssessmentStatusResponse) SetFirstEvaluationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.FirstEvaluationDate = &formatted
+}
+
 func (o *AssessmentStatusResponse) GetStatusChangeDateAsTime() (*time.Time, error) {
 	if o.StatusChangeDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StatusChangeDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *AssessmentStatusResponse) SetStatusChangeDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StatusChangeDate = &formatted
 }

@@ -28,9 +28,19 @@ func (o *RoleDefinitionProperties) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RoleDefinitionProperties) SetCreatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedOn = &formatted
+}
+
 func (o *RoleDefinitionProperties) GetUpdatedOnAsTime() (*time.Time, error) {
 	if o.UpdatedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedOn, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RoleDefinitionProperties) SetUpdatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdatedOn = &formatted
 }

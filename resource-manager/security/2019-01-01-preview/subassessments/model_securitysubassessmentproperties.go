@@ -31,6 +31,11 @@ func (o *SecuritySubAssessmentProperties) GetTimeGeneratedAsTime() (*time.Time, 
 	return dates.ParseAsFormat(o.TimeGenerated, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SecuritySubAssessmentProperties) SetTimeGeneratedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TimeGenerated = &formatted
+}
+
 var _ json.Unmarshaler = &SecuritySubAssessmentProperties{}
 
 func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {

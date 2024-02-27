@@ -3,13 +3,23 @@ package fetchsecondaryrecoverypoints
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type AzureBackupRecoveryPointResourceListOperationPredicate struct {
-	NextLink *string
+type AzureBackupRecoveryPointResourceOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
 }
 
-func (p AzureBackupRecoveryPointResourceListOperationPredicate) Matches(input AzureBackupRecoveryPointResourceList) bool {
+func (p AzureBackupRecoveryPointResourceOperationPredicate) Matches(input AzureBackupRecoveryPointResource) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

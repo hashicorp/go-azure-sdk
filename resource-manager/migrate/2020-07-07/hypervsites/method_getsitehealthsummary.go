@@ -15,12 +15,12 @@ import (
 type GetSiteHealthSummaryOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]SiteHealthSummaryCollection
+	Model        *[]SiteHealthSummary
 }
 
 type GetSiteHealthSummaryCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []SiteHealthSummaryCollection
+	Items              []SiteHealthSummary
 }
 
 // GetSiteHealthSummary ...
@@ -50,7 +50,7 @@ func (c HyperVSitesClient) GetSiteHealthSummary(ctx context.Context, id HyperVSi
 	}
 
 	var values struct {
-		Values *[]SiteHealthSummaryCollection `json:"value"`
+		Values *[]SiteHealthSummary `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c HyperVSitesClient) GetSiteHealthSummary(ctx context.Context, id HyperVSi
 
 // GetSiteHealthSummaryComplete retrieves all the results into a single object
 func (c HyperVSitesClient) GetSiteHealthSummaryComplete(ctx context.Context, id HyperVSiteId) (GetSiteHealthSummaryCompleteResult, error) {
-	return c.GetSiteHealthSummaryCompleteMatchingPredicate(ctx, id, SiteHealthSummaryCollectionOperationPredicate{})
+	return c.GetSiteHealthSummaryCompleteMatchingPredicate(ctx, id, SiteHealthSummaryOperationPredicate{})
 }
 
 // GetSiteHealthSummaryCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c HyperVSitesClient) GetSiteHealthSummaryCompleteMatchingPredicate(ctx context.Context, id HyperVSiteId, predicate SiteHealthSummaryCollectionOperationPredicate) (result GetSiteHealthSummaryCompleteResult, err error) {
-	items := make([]SiteHealthSummaryCollection, 0)
+func (c HyperVSitesClient) GetSiteHealthSummaryCompleteMatchingPredicate(ctx context.Context, id HyperVSiteId, predicate SiteHealthSummaryOperationPredicate) (result GetSiteHealthSummaryCompleteResult, err error) {
+	items := make([]SiteHealthSummary, 0)
 
 	resp, err := c.GetSiteHealthSummary(ctx, id)
 	if err != nil {

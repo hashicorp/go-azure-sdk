@@ -26,9 +26,19 @@ func (o *MigrationValidationDatabaseSummaryResult) GetEndedOnAsTime() (*time.Tim
 	return dates.ParseAsFormat(o.EndedOn, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *MigrationValidationDatabaseSummaryResult) SetEndedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndedOn = &formatted
+}
+
 func (o *MigrationValidationDatabaseSummaryResult) GetStartedOnAsTime() (*time.Time, error) {
 	if o.StartedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartedOn, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *MigrationValidationDatabaseSummaryResult) SetStartedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedOn = &formatted
 }

@@ -26,3 +26,8 @@ func (o *NotificationChannelProperties) GetCreatedDateAsTime() (*time.Time, erro
 	}
 	return dates.ParseAsFormat(o.CreatedDate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *NotificationChannelProperties) SetCreatedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedDate = &formatted
+}

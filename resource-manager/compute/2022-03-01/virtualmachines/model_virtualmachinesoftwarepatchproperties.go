@@ -29,9 +29,19 @@ func (o *VirtualMachineSoftwarePatchProperties) GetLastModifiedDateTimeAsTime() 
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *VirtualMachineSoftwarePatchProperties) SetLastModifiedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedDateTime = &formatted
+}
+
 func (o *VirtualMachineSoftwarePatchProperties) GetPublishedDateAsTime() (*time.Time, error) {
 	if o.PublishedDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.PublishedDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *VirtualMachineSoftwarePatchProperties) SetPublishedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.PublishedDate = &formatted
 }

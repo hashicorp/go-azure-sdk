@@ -24,9 +24,19 @@ func (o *ApplicationPackageProperties) GetLastActivationTimeAsTime() (*time.Time
 	return dates.ParseAsFormat(o.LastActivationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ApplicationPackageProperties) SetLastActivationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastActivationTime = &formatted
+}
+
 func (o *ApplicationPackageProperties) GetStorageUrlExpiryAsTime() (*time.Time, error) {
 	if o.StorageUrlExpiry == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StorageUrlExpiry, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ApplicationPackageProperties) SetStorageUrlExpiryAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StorageUrlExpiry = &formatted
 }

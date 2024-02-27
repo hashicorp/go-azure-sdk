@@ -20,3 +20,8 @@ func (o *BlobInventoryPolicyProperties) GetLastModifiedTimeAsTime() (*time.Time,
 	}
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *BlobInventoryPolicyProperties) SetLastModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTime = &formatted
+}

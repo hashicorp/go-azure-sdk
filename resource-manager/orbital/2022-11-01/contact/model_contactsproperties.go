@@ -54,11 +54,21 @@ func (o *ContactsProperties) GetRxEndTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.RxEndTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ContactsProperties) SetRxEndTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RxEndTime = &formatted
+}
+
 func (o *ContactsProperties) GetRxStartTimeAsTime() (*time.Time, error) {
 	if o.RxStartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RxStartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ContactsProperties) SetRxStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RxStartTime = &formatted
 }
 
 func (o *ContactsProperties) GetTxEndTimeAsTime() (*time.Time, error) {
@@ -68,9 +78,19 @@ func (o *ContactsProperties) GetTxEndTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.TxEndTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ContactsProperties) SetTxEndTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TxEndTime = &formatted
+}
+
 func (o *ContactsProperties) GetTxStartTimeAsTime() (*time.Time, error) {
 	if o.TxStartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TxStartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ContactsProperties) SetTxStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TxStartTime = &formatted
 }

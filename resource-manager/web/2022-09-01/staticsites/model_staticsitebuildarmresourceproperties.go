@@ -29,9 +29,19 @@ func (o *StaticSiteBuildARMResourceProperties) GetCreatedTimeUtcAsTime() (*time.
 	return dates.ParseAsFormat(o.CreatedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *StaticSiteBuildARMResourceProperties) SetCreatedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTimeUtc = &formatted
+}
+
 func (o *StaticSiteBuildARMResourceProperties) GetLastUpdatedOnAsTime() (*time.Time, error) {
 	if o.LastUpdatedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastUpdatedOn, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *StaticSiteBuildARMResourceProperties) SetLastUpdatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedOn = &formatted
 }

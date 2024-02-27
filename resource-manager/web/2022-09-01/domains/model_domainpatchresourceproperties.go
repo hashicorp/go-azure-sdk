@@ -39,6 +39,11 @@ func (o *DomainPatchResourceProperties) GetCreatedTimeAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DomainPatchResourceProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
+}
+
 func (o *DomainPatchResourceProperties) GetExpirationTimeAsTime() (*time.Time, error) {
 	if o.ExpirationTime == nil {
 		return nil, nil
@@ -46,9 +51,19 @@ func (o *DomainPatchResourceProperties) GetExpirationTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.ExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DomainPatchResourceProperties) SetExpirationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpirationTime = &formatted
+}
+
 func (o *DomainPatchResourceProperties) GetLastRenewedTimeAsTime() (*time.Time, error) {
 	if o.LastRenewedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastRenewedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DomainPatchResourceProperties) SetLastRenewedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastRenewedTime = &formatted
 }

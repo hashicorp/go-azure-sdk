@@ -26,13 +26,38 @@ func (p BillingAccountOperationPredicate) Matches(input BillingAccount) bool {
 	return true
 }
 
-type InvoiceSectionListWithCreateSubPermissionResultOperationPredicate struct {
-	NextLink *string
+type InvoiceSectionWithCreateSubPermissionOperationPredicate struct {
+	BillingProfileDisplayName *string
+	BillingProfileId          *string
+	BillingProfileSystemId    *string
+	InvoiceSectionDisplayName *string
+	InvoiceSectionId          *string
+	InvoiceSectionSystemId    *string
 }
 
-func (p InvoiceSectionListWithCreateSubPermissionResultOperationPredicate) Matches(input InvoiceSectionListWithCreateSubPermissionResult) bool {
+func (p InvoiceSectionWithCreateSubPermissionOperationPredicate) Matches(input InvoiceSectionWithCreateSubPermission) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.BillingProfileDisplayName != nil && (input.BillingProfileDisplayName == nil || *p.BillingProfileDisplayName != *input.BillingProfileDisplayName) {
+		return false
+	}
+
+	if p.BillingProfileId != nil && (input.BillingProfileId == nil || *p.BillingProfileId != *input.BillingProfileId) {
+		return false
+	}
+
+	if p.BillingProfileSystemId != nil && (input.BillingProfileSystemId == nil || *p.BillingProfileSystemId != *input.BillingProfileSystemId) {
+		return false
+	}
+
+	if p.InvoiceSectionDisplayName != nil && (input.InvoiceSectionDisplayName == nil || *p.InvoiceSectionDisplayName != *input.InvoiceSectionDisplayName) {
+		return false
+	}
+
+	if p.InvoiceSectionId != nil && (input.InvoiceSectionId == nil || *p.InvoiceSectionId != *input.InvoiceSectionId) {
+		return false
+	}
+
+	if p.InvoiceSectionSystemId != nil && (input.InvoiceSectionSystemId == nil || *p.InvoiceSectionSystemId != *input.InvoiceSectionSystemId) {
 		return false
 	}
 

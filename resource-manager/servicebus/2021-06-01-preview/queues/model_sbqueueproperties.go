@@ -41,6 +41,11 @@ func (o *SBQueueProperties) GetAccessedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.AccessedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SBQueueProperties) SetAccessedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.AccessedAt = &formatted
+}
+
 func (o *SBQueueProperties) GetCreatedAtAsTime() (*time.Time, error) {
 	if o.CreatedAt == nil {
 		return nil, nil
@@ -48,9 +53,19 @@ func (o *SBQueueProperties) GetCreatedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SBQueueProperties) SetCreatedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedAt = &formatted
+}
+
 func (o *SBQueueProperties) GetUpdatedAtAsTime() (*time.Time, error) {
 	if o.UpdatedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedAt, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SBQueueProperties) SetUpdatedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdatedAt = &formatted
 }

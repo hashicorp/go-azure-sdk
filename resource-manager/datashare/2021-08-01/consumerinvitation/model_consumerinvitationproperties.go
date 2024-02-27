@@ -34,6 +34,11 @@ func (o *ConsumerInvitationProperties) GetExpirationDateAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.ExpirationDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ConsumerInvitationProperties) SetExpirationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpirationDate = &formatted
+}
+
 func (o *ConsumerInvitationProperties) GetRespondedAtAsTime() (*time.Time, error) {
 	if o.RespondedAt == nil {
 		return nil, nil
@@ -41,9 +46,19 @@ func (o *ConsumerInvitationProperties) GetRespondedAtAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.RespondedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ConsumerInvitationProperties) SetRespondedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RespondedAt = &formatted
+}
+
 func (o *ConsumerInvitationProperties) GetSentAtAsTime() (*time.Time, error) {
 	if o.SentAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SentAt, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ConsumerInvitationProperties) SetSentAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.SentAt = &formatted
 }

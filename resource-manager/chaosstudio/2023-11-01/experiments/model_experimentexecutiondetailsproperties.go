@@ -25,6 +25,11 @@ func (o *ExperimentExecutionDetailsProperties) GetLastActionAtAsTime() (*time.Ti
 	return dates.ParseAsFormat(o.LastActionAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ExperimentExecutionDetailsProperties) SetLastActionAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastActionAt = &formatted
+}
+
 func (o *ExperimentExecutionDetailsProperties) GetStartedAtAsTime() (*time.Time, error) {
 	if o.StartedAt == nil {
 		return nil, nil
@@ -32,9 +37,19 @@ func (o *ExperimentExecutionDetailsProperties) GetStartedAtAsTime() (*time.Time,
 	return dates.ParseAsFormat(o.StartedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ExperimentExecutionDetailsProperties) SetStartedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedAt = &formatted
+}
+
 func (o *ExperimentExecutionDetailsProperties) GetStoppedAtAsTime() (*time.Time, error) {
 	if o.StoppedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StoppedAt, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ExperimentExecutionDetailsProperties) SetStoppedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StoppedAt = &formatted
 }

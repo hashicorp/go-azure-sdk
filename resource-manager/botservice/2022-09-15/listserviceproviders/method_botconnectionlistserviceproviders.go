@@ -16,7 +16,12 @@ import (
 type BotConnectionListServiceProvidersOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ServiceProviderResponseList
+	Model        *[]ServiceProvider
+}
+
+type BotConnectionListServiceProvidersCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []ServiceProvider
 }
 
 // BotConnectionListServiceProviders ...
@@ -36,7 +41,7 @@ func (c ListServiceProvidersClient) BotConnectionListServiceProviders(ctx contex
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,12 +50,43 @@ func (c ListServiceProvidersClient) BotConnectionListServiceProviders(ctx contex
 		return
 	}
 
-	var model ServiceProviderResponseList
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]ServiceProvider `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// BotConnectionListServiceProvidersComplete retrieves all the results into a single object
+func (c ListServiceProvidersClient) BotConnectionListServiceProvidersComplete(ctx context.Context, id commonids.SubscriptionId) (BotConnectionListServiceProvidersCompleteResult, error) {
+	return c.BotConnectionListServiceProvidersCompleteMatchingPredicate(ctx, id, ServiceProviderOperationPredicate{})
+}
+
+// BotConnectionListServiceProvidersCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ListServiceProvidersClient) BotConnectionListServiceProvidersCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ServiceProviderOperationPredicate) (result BotConnectionListServiceProvidersCompleteResult, err error) {
+	items := make([]ServiceProvider, 0)
+
+	resp, err := c.BotConnectionListServiceProviders(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = BotConnectionListServiceProvidersCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

@@ -26,3 +26,8 @@ func (o *VirtualMachineAssessPatchesResult) GetStartDateTimeAsTime() (*time.Time
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *VirtualMachineAssessPatchesResult) SetStartDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartDateTime = &formatted
+}

@@ -51,3 +51,8 @@ func (o *RecoveryPointDataStoreDetails) GetRehydrationExpiryTimeAsTime() (*time.
 	}
 	return dates.ParseAsFormat(o.RehydrationExpiryTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *RecoveryPointDataStoreDetails) SetRehydrationExpiryTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RehydrationExpiryTime = &formatted
+}

@@ -47,11 +47,21 @@ func (o *PoolProperties) GetAllocationStateTransitionTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.AllocationStateTransitionTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *PoolProperties) SetAllocationStateTransitionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.AllocationStateTransitionTime = &formatted
+}
+
 func (o *PoolProperties) GetCreationTimeAsTime() (*time.Time, error) {
 	if o.CreationTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *PoolProperties) SetCreationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationTime = &formatted
 }
 
 func (o *PoolProperties) GetLastModifiedAsTime() (*time.Time, error) {
@@ -61,9 +71,19 @@ func (o *PoolProperties) GetLastModifiedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastModified, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *PoolProperties) SetLastModifiedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModified = &formatted
+}
+
 func (o *PoolProperties) GetProvisioningStateTransitionTimeAsTime() (*time.Time, error) {
 	if o.ProvisioningStateTransitionTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ProvisioningStateTransitionTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *PoolProperties) SetProvisioningStateTransitionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ProvisioningStateTransitionTime = &formatted
 }

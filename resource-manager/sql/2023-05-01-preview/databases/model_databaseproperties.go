@@ -67,6 +67,11 @@ func (o *DatabaseProperties) GetCreationDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DatabaseProperties) SetCreationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationDate = &formatted
+}
+
 func (o *DatabaseProperties) GetEarliestRestoreDateAsTime() (*time.Time, error) {
 	if o.EarliestRestoreDate == nil {
 		return nil, nil
@@ -74,11 +79,21 @@ func (o *DatabaseProperties) GetEarliestRestoreDateAsTime() (*time.Time, error) 
 	return dates.ParseAsFormat(o.EarliestRestoreDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DatabaseProperties) SetEarliestRestoreDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EarliestRestoreDate = &formatted
+}
+
 func (o *DatabaseProperties) GetPausedDateAsTime() (*time.Time, error) {
 	if o.PausedDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.PausedDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DatabaseProperties) SetPausedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.PausedDate = &formatted
 }
 
 func (o *DatabaseProperties) GetRestorePointInTimeAsTime() (*time.Time, error) {
@@ -98,6 +113,11 @@ func (o *DatabaseProperties) GetResumedDateAsTime() (*time.Time, error) {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ResumedDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DatabaseProperties) SetResumedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ResumedDate = &formatted
 }
 
 func (o *DatabaseProperties) GetSourceDatabaseDeletionDateAsTime() (*time.Time, error) {

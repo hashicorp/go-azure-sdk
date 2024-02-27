@@ -28,3 +28,8 @@ func (o *WebAppRuntimeSettings) GetEndOfLifeDateAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.EndOfLifeDate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *WebAppRuntimeSettings) SetEndOfLifeDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndOfLifeDate = &formatted
+}

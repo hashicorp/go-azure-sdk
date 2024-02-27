@@ -20,3 +20,8 @@ func (o *ContainerAppAuthTokenProperties) GetExpiresAsTime() (*time.Time, error)
 	}
 	return dates.ParseAsFormat(o.Expires, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *ContainerAppAuthTokenProperties) SetExpiresAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Expires = &formatted
+}

@@ -24,9 +24,19 @@ func (o *LogFileProperties) GetCreatedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *LogFileProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
+}
+
 func (o *LogFileProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
 	if o.LastModifiedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *LogFileProperties) SetLastModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTime = &formatted
 }

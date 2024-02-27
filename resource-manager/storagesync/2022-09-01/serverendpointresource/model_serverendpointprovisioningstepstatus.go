@@ -27,9 +27,19 @@ func (o *ServerEndpointProvisioningStepStatus) GetEndTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ServerEndpointProvisioningStepStatus) SetEndTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndTime = &formatted
+}
+
 func (o *ServerEndpointProvisioningStepStatus) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ServerEndpointProvisioningStepStatus) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

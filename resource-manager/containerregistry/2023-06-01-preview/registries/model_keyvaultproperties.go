@@ -23,3 +23,8 @@ func (o *KeyVaultProperties) GetLastKeyRotationTimestampAsTime() (*time.Time, er
 	}
 	return dates.ParseAsFormat(o.LastKeyRotationTimestamp, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *KeyVaultProperties) SetLastKeyRotationTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastKeyRotationTimestamp = &formatted
+}

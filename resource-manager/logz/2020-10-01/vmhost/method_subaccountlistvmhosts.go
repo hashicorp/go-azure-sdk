@@ -15,12 +15,12 @@ import (
 type SubAccountListVMHostsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]VMResourcesListResponse
+	Model        *[]VMResources
 }
 
 type SubAccountListVMHostsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []VMResourcesListResponse
+	Items              []VMResources
 }
 
 // SubAccountListVMHosts ...
@@ -50,7 +50,7 @@ func (c VMHostClient) SubAccountListVMHosts(ctx context.Context, id AccountId) (
 	}
 
 	var values struct {
-		Values *[]VMResourcesListResponse `json:"value"`
+		Values *[]VMResources `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c VMHostClient) SubAccountListVMHosts(ctx context.Context, id AccountId) (
 
 // SubAccountListVMHostsComplete retrieves all the results into a single object
 func (c VMHostClient) SubAccountListVMHostsComplete(ctx context.Context, id AccountId) (SubAccountListVMHostsCompleteResult, error) {
-	return c.SubAccountListVMHostsCompleteMatchingPredicate(ctx, id, VMResourcesListResponseOperationPredicate{})
+	return c.SubAccountListVMHostsCompleteMatchingPredicate(ctx, id, VMResourcesOperationPredicate{})
 }
 
 // SubAccountListVMHostsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VMHostClient) SubAccountListVMHostsCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate VMResourcesListResponseOperationPredicate) (result SubAccountListVMHostsCompleteResult, err error) {
-	items := make([]VMResourcesListResponse, 0)
+func (c VMHostClient) SubAccountListVMHostsCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate VMResourcesOperationPredicate) (result SubAccountListVMHostsCompleteResult, err error) {
+	items := make([]VMResources, 0)
 
 	resp, err := c.SubAccountListVMHosts(ctx, id)
 	if err != nil {

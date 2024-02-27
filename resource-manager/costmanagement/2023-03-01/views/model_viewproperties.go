@@ -31,6 +31,11 @@ func (o *ViewProperties) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ViewProperties) SetCreatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedOn = &formatted
+}
+
 func (o *ViewProperties) GetModifiedOnAsTime() (*time.Time, error) {
 	if o.ModifiedOn == nil {
 		return nil, nil

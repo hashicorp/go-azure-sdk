@@ -15,7 +15,12 @@ import (
 type UpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *UpdateWorkspaceQuotasResult
+	Model        *[]UpdateWorkspaceQuotas
+}
+
+type UpdateCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []UpdateWorkspaceQuotas
 }
 
 // Update ...
@@ -34,12 +39,8 @@ func (c QuotaClient) Update(ctx context.Context, id LocationId, input QuotaUpdat
 		return
 	}
 
-	if err = req.Marshal(input); err != nil {
-		return
-	}
-
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -48,12 +49,43 @@ func (c QuotaClient) Update(ctx context.Context, id LocationId, input QuotaUpdat
 		return
 	}
 
-	var model UpdateWorkspaceQuotasResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]UpdateWorkspaceQuotas `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// UpdateComplete retrieves all the results into a single object
+func (c QuotaClient) UpdateComplete(ctx context.Context, id LocationId, input QuotaUpdateParameters) (UpdateCompleteResult, error) {
+	return c.UpdateCompleteMatchingPredicate(ctx, id, input, UpdateWorkspaceQuotasOperationPredicate{})
+}
+
+// UpdateCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c QuotaClient) UpdateCompleteMatchingPredicate(ctx context.Context, id LocationId, input QuotaUpdateParameters, predicate UpdateWorkspaceQuotasOperationPredicate) (result UpdateCompleteResult, err error) {
+	items := make([]UpdateWorkspaceQuotas, 0)
+
+	resp, err := c.Update(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = UpdateCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

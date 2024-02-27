@@ -2,6 +2,7 @@ package integrationruntime
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -15,7 +16,12 @@ import (
 type ObjectMetadataListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SsisObjectMetadataListResponse
+	Model        *[]SsisObjectMetadata
+}
+
+type ObjectMetadataListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []SsisObjectMetadata
 }
 
 // ObjectMetadataList ...
@@ -34,12 +40,8 @@ func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id Int
 		return
 	}
 
-	if err = req.Marshal(input); err != nil {
-		return
-	}
-
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -48,12 +50,54 @@ func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id Int
 		return
 	}
 
-	var model SsisObjectMetadataListResponse
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]json.RawMessage `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	temp := make([]SsisObjectMetadata, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := unmarshalSsisObjectMetadataImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for SsisObjectMetadata (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
+
+	return
+}
+
+// ObjectMetadataListComplete retrieves all the results into a single object
+func (c IntegrationRuntimeClient) ObjectMetadataListComplete(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (ObjectMetadataListCompleteResult, error) {
+	return c.ObjectMetadataListCompleteMatchingPredicate(ctx, id, input, SsisObjectMetadataOperationPredicate{})
+}
+
+// ObjectMetadataListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c IntegrationRuntimeClient) ObjectMetadataListCompleteMatchingPredicate(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest, predicate SsisObjectMetadataOperationPredicate) (result ObjectMetadataListCompleteResult, err error) {
+	items := make([]SsisObjectMetadata, 0)
+
+	resp, err := c.ObjectMetadataList(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ObjectMetadataListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

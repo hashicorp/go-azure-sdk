@@ -26,9 +26,19 @@ func (o *ShareSubscriptionSynchronization) GetEndTimeAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ShareSubscriptionSynchronization) SetEndTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndTime = &formatted
+}
+
 func (o *ShareSubscriptionSynchronization) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ShareSubscriptionSynchronization) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

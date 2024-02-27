@@ -28,9 +28,19 @@ func (o *CertificateProperties) GetPreviousProvisioningStateTransitionTimeAsTime
 	return dates.ParseAsFormat(o.PreviousProvisioningStateTransitionTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *CertificateProperties) SetPreviousProvisioningStateTransitionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.PreviousProvisioningStateTransitionTime = &formatted
+}
+
 func (o *CertificateProperties) GetProvisioningStateTransitionTimeAsTime() (*time.Time, error) {
 	if o.ProvisioningStateTransitionTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ProvisioningStateTransitionTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *CertificateProperties) SetProvisioningStateTransitionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ProvisioningStateTransitionTime = &formatted
 }

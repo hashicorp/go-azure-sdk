@@ -31,12 +31,13 @@ payload := billingroleassignments.BillingRoleAssignmentPayload{
 }
 
 
-read, err := client.AddByBillingAccount(ctx, id, payload)
+// alternatively `client.AddByBillingAccount(ctx, id, payload)` can be used to do batched pagination
+items, err := client.AddByBillingAccountComplete(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -52,12 +53,13 @@ payload := billingroleassignments.BillingRoleAssignmentPayload{
 }
 
 
-read, err := client.AddByBillingProfile(ctx, id, payload)
+// alternatively `client.AddByBillingProfile(ctx, id, payload)` can be used to do batched pagination
+items, err := client.AddByBillingProfileComplete(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -73,12 +75,13 @@ payload := billingroleassignments.BillingRoleAssignmentPayload{
 }
 
 
-read, err := client.AddByInvoiceSection(ctx, id, payload)
+// alternatively `client.AddByInvoiceSection(ctx, id, payload)` can be used to do batched pagination
+items, err := client.AddByInvoiceSectionComplete(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 

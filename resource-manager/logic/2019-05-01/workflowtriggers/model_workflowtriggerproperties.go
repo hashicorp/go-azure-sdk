@@ -28,11 +28,21 @@ func (o *WorkflowTriggerProperties) GetChangedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ChangedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *WorkflowTriggerProperties) SetChangedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ChangedTime = &formatted
+}
+
 func (o *WorkflowTriggerProperties) GetCreatedTimeAsTime() (*time.Time, error) {
 	if o.CreatedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *WorkflowTriggerProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
 }
 
 func (o *WorkflowTriggerProperties) GetLastExecutionTimeAsTime() (*time.Time, error) {
@@ -42,9 +52,19 @@ func (o *WorkflowTriggerProperties) GetLastExecutionTimeAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.LastExecutionTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *WorkflowTriggerProperties) SetLastExecutionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastExecutionTime = &formatted
+}
+
 func (o *WorkflowTriggerProperties) GetNextExecutionTimeAsTime() (*time.Time, error) {
 	if o.NextExecutionTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.NextExecutionTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *WorkflowTriggerProperties) SetNextExecutionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.NextExecutionTime = &formatted
 }

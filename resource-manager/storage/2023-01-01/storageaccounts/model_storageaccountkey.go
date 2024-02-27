@@ -22,3 +22,8 @@ func (o *StorageAccountKey) GetCreationTimeAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *StorageAccountKey) SetCreationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationTime = &formatted
+}

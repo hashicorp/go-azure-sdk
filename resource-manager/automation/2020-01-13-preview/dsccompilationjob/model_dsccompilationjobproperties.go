@@ -33,11 +33,21 @@ func (o *DscCompilationJobProperties) GetCreationTimeAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DscCompilationJobProperties) SetCreationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationTime = &formatted
+}
+
 func (o *DscCompilationJobProperties) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DscCompilationJobProperties) SetEndTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndTime = &formatted
 }
 
 func (o *DscCompilationJobProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
@@ -47,6 +57,11 @@ func (o *DscCompilationJobProperties) GetLastModifiedTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DscCompilationJobProperties) SetLastModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTime = &formatted
+}
+
 func (o *DscCompilationJobProperties) GetLastStatusModifiedTimeAsTime() (*time.Time, error) {
 	if o.LastStatusModifiedTime == nil {
 		return nil, nil
@@ -54,9 +69,19 @@ func (o *DscCompilationJobProperties) GetLastStatusModifiedTimeAsTime() (*time.T
 	return dates.ParseAsFormat(o.LastStatusModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DscCompilationJobProperties) SetLastStatusModifiedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastStatusModifiedTime = &formatted
+}
+
 func (o *DscCompilationJobProperties) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DscCompilationJobProperties) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

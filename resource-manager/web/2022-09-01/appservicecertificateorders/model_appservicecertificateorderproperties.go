@@ -39,6 +39,11 @@ func (o *AppServiceCertificateOrderProperties) GetExpirationTimeAsTime() (*time.
 	return dates.ParseAsFormat(o.ExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AppServiceCertificateOrderProperties) SetExpirationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpirationTime = &formatted
+}
+
 func (o *AppServiceCertificateOrderProperties) GetLastCertificateIssuanceTimeAsTime() (*time.Time, error) {
 	if o.LastCertificateIssuanceTime == nil {
 		return nil, nil
@@ -46,9 +51,19 @@ func (o *AppServiceCertificateOrderProperties) GetLastCertificateIssuanceTimeAsT
 	return dates.ParseAsFormat(o.LastCertificateIssuanceTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AppServiceCertificateOrderProperties) SetLastCertificateIssuanceTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastCertificateIssuanceTime = &formatted
+}
+
 func (o *AppServiceCertificateOrderProperties) GetNextAutoRenewalTimeStampAsTime() (*time.Time, error) {
 	if o.NextAutoRenewalTimeStamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.NextAutoRenewalTimeStamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *AppServiceCertificateOrderProperties) SetNextAutoRenewalTimeStampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.NextAutoRenewalTimeStamp = &formatted
 }

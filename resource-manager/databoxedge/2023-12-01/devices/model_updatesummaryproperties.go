@@ -56,11 +56,21 @@ func (o *UpdateSummaryProperties) GetInProgressDownloadJobStartedDateTimeAsTime(
 	return dates.ParseAsFormat(o.InProgressDownloadJobStartedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *UpdateSummaryProperties) SetInProgressDownloadJobStartedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.InProgressDownloadJobStartedDateTime = &formatted
+}
+
 func (o *UpdateSummaryProperties) GetInProgressInstallJobStartedDateTimeAsTime() (*time.Time, error) {
 	if o.InProgressInstallJobStartedDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.InProgressInstallJobStartedDateTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *UpdateSummaryProperties) SetInProgressInstallJobStartedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.InProgressInstallJobStartedDateTime = &formatted
 }
 
 func (o *UpdateSummaryProperties) GetLastCompletedDownloadJobDateTimeAsTime() (*time.Time, error) {
@@ -70,11 +80,21 @@ func (o *UpdateSummaryProperties) GetLastCompletedDownloadJobDateTimeAsTime() (*
 	return dates.ParseAsFormat(o.LastCompletedDownloadJobDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *UpdateSummaryProperties) SetLastCompletedDownloadJobDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastCompletedDownloadJobDateTime = &formatted
+}
+
 func (o *UpdateSummaryProperties) GetLastCompletedInstallJobDateTimeAsTime() (*time.Time, error) {
 	if o.LastCompletedInstallJobDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastCompletedInstallJobDateTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *UpdateSummaryProperties) SetLastCompletedInstallJobDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastCompletedInstallJobDateTime = &formatted
 }
 
 func (o *UpdateSummaryProperties) GetLastCompletedScanJobDateTimeAsTime() (*time.Time, error) {

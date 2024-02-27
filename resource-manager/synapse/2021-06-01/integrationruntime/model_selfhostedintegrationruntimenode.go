@@ -37,11 +37,21 @@ func (o *SelfHostedIntegrationRuntimeNode) GetExpiryTimeAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.ExpiryTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SelfHostedIntegrationRuntimeNode) SetExpiryTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpiryTime = &formatted
+}
+
 func (o *SelfHostedIntegrationRuntimeNode) GetLastConnectTimeAsTime() (*time.Time, error) {
 	if o.LastConnectTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastConnectTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SelfHostedIntegrationRuntimeNode) SetLastConnectTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastConnectTime = &formatted
 }
 
 func (o *SelfHostedIntegrationRuntimeNode) GetLastEndUpdateTimeAsTime() (*time.Time, error) {
@@ -51,11 +61,21 @@ func (o *SelfHostedIntegrationRuntimeNode) GetLastEndUpdateTimeAsTime() (*time.T
 	return dates.ParseAsFormat(o.LastEndUpdateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SelfHostedIntegrationRuntimeNode) SetLastEndUpdateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastEndUpdateTime = &formatted
+}
+
 func (o *SelfHostedIntegrationRuntimeNode) GetLastStartTimeAsTime() (*time.Time, error) {
 	if o.LastStartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastStartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SelfHostedIntegrationRuntimeNode) SetLastStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastStartTime = &formatted
 }
 
 func (o *SelfHostedIntegrationRuntimeNode) GetLastStartUpdateTimeAsTime() (*time.Time, error) {
@@ -65,6 +85,11 @@ func (o *SelfHostedIntegrationRuntimeNode) GetLastStartUpdateTimeAsTime() (*time
 	return dates.ParseAsFormat(o.LastStartUpdateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SelfHostedIntegrationRuntimeNode) SetLastStartUpdateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastStartUpdateTime = &formatted
+}
+
 func (o *SelfHostedIntegrationRuntimeNode) GetLastStopTimeAsTime() (*time.Time, error) {
 	if o.LastStopTime == nil {
 		return nil, nil
@@ -72,9 +97,19 @@ func (o *SelfHostedIntegrationRuntimeNode) GetLastStopTimeAsTime() (*time.Time, 
 	return dates.ParseAsFormat(o.LastStopTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SelfHostedIntegrationRuntimeNode) SetLastStopTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastStopTime = &formatted
+}
+
 func (o *SelfHostedIntegrationRuntimeNode) GetRegisterTimeAsTime() (*time.Time, error) {
 	if o.RegisterTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RegisterTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SelfHostedIntegrationRuntimeNode) SetRegisterTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RegisterTime = &formatted
 }

@@ -79,6 +79,11 @@ func (o *ProcessServer) GetPsStatsRefreshTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.PsStatsRefreshTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ProcessServer) SetPsStatsRefreshTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.PsStatsRefreshTime = &formatted
+}
+
 func (o *ProcessServer) GetSslCertExpiryDateAsTime() (*time.Time, error) {
 	if o.SslCertExpiryDate == nil {
 		return nil, nil

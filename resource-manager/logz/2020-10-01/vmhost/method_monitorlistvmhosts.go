@@ -15,12 +15,12 @@ import (
 type MonitorListVMHostsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]VMResourcesListResponse
+	Model        *[]VMResources
 }
 
 type MonitorListVMHostsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []VMResourcesListResponse
+	Items              []VMResources
 }
 
 // MonitorListVMHosts ...
@@ -50,7 +50,7 @@ func (c VMHostClient) MonitorListVMHosts(ctx context.Context, id MonitorId) (res
 	}
 
 	var values struct {
-		Values *[]VMResourcesListResponse `json:"value"`
+		Values *[]VMResources `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c VMHostClient) MonitorListVMHosts(ctx context.Context, id MonitorId) (res
 
 // MonitorListVMHostsComplete retrieves all the results into a single object
 func (c VMHostClient) MonitorListVMHostsComplete(ctx context.Context, id MonitorId) (MonitorListVMHostsCompleteResult, error) {
-	return c.MonitorListVMHostsCompleteMatchingPredicate(ctx, id, VMResourcesListResponseOperationPredicate{})
+	return c.MonitorListVMHostsCompleteMatchingPredicate(ctx, id, VMResourcesOperationPredicate{})
 }
 
 // MonitorListVMHostsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VMHostClient) MonitorListVMHostsCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate VMResourcesListResponseOperationPredicate) (result MonitorListVMHostsCompleteResult, err error) {
-	items := make([]VMResourcesListResponse, 0)
+func (c VMHostClient) MonitorListVMHostsCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate VMResourcesOperationPredicate) (result MonitorListVMHostsCompleteResult, err error) {
+	items := make([]VMResources, 0)
 
 	resp, err := c.MonitorListVMHosts(ctx, id)
 	if err != nil {

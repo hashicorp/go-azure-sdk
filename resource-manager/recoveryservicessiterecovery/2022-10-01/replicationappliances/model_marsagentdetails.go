@@ -27,3 +27,8 @@ func (o *MarsAgentDetails) GetLastHeartbeatUtcAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.LastHeartbeatUtc, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *MarsAgentDetails) SetLastHeartbeatUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastHeartbeatUtc = &formatted
+}

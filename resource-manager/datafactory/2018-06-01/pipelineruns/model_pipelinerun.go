@@ -32,6 +32,11 @@ func (o *PipelineRun) GetLastUpdatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastUpdated, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *PipelineRun) SetLastUpdatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdated = &formatted
+}
+
 func (o *PipelineRun) GetRunEndAsTime() (*time.Time, error) {
 	if o.RunEnd == nil {
 		return nil, nil
@@ -39,9 +44,19 @@ func (o *PipelineRun) GetRunEndAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.RunEnd, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *PipelineRun) SetRunEndAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RunEnd = &formatted
+}
+
 func (o *PipelineRun) GetRunStartAsTime() (*time.Time, error) {
 	if o.RunStart == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RunStart, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *PipelineRun) SetRunStartAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RunStart = &formatted
 }

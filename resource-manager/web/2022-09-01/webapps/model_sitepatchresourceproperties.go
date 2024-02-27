@@ -60,9 +60,19 @@ func (o *SitePatchResourceProperties) GetLastModifiedTimeUtcAsTime() (*time.Time
 	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SitePatchResourceProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedTimeUtc = &formatted
+}
+
 func (o *SitePatchResourceProperties) GetSuspendedTillAsTime() (*time.Time, error) {
 	if o.SuspendedTill == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SuspendedTill, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SitePatchResourceProperties) SetSuspendedTillAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.SuspendedTill = &formatted
 }

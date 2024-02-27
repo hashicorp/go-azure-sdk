@@ -23,9 +23,19 @@ func (o *UpdateStatus) GetCompletedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CompletedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *UpdateStatus) SetCompletedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CompletedTime = &formatted
+}
+
 func (o *UpdateStatus) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *UpdateStatus) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

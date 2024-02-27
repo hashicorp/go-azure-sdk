@@ -15,12 +15,12 @@ import (
 type GetDatabaseConnectionsWithDetailsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]DatabaseConnectionCollection
+	Model        *[]DatabaseConnection
 }
 
 type GetDatabaseConnectionsWithDetailsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []DatabaseConnectionCollection
+	Items              []DatabaseConnection
 }
 
 // GetDatabaseConnectionsWithDetails ...
@@ -50,7 +50,7 @@ func (c StaticSitesClient) GetDatabaseConnectionsWithDetails(ctx context.Context
 	}
 
 	var values struct {
-		Values *[]DatabaseConnectionCollection `json:"value"`
+		Values *[]DatabaseConnection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c StaticSitesClient) GetDatabaseConnectionsWithDetails(ctx context.Context
 
 // GetDatabaseConnectionsWithDetailsComplete retrieves all the results into a single object
 func (c StaticSitesClient) GetDatabaseConnectionsWithDetailsComplete(ctx context.Context, id StaticSiteId) (GetDatabaseConnectionsWithDetailsCompleteResult, error) {
-	return c.GetDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx, id, DatabaseConnectionCollectionOperationPredicate{})
+	return c.GetDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx, id, DatabaseConnectionOperationPredicate{})
 }
 
 // GetDatabaseConnectionsWithDetailsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c StaticSitesClient) GetDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx context.Context, id StaticSiteId, predicate DatabaseConnectionCollectionOperationPredicate) (result GetDatabaseConnectionsWithDetailsCompleteResult, err error) {
-	items := make([]DatabaseConnectionCollection, 0)
+func (c StaticSitesClient) GetDatabaseConnectionsWithDetailsCompleteMatchingPredicate(ctx context.Context, id StaticSiteId, predicate DatabaseConnectionOperationPredicate) (result GetDatabaseConnectionsWithDetailsCompleteResult, err error) {
+	items := make([]DatabaseConnection, 0)
 
 	resp, err := c.GetDatabaseConnectionsWithDetails(ctx, id)
 	if err != nil {

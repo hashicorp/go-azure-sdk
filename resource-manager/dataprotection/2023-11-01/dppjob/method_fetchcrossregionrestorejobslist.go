@@ -15,12 +15,12 @@ import (
 type FetchCrossRegionRestoreJobsListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]AzureBackupJobResourceList
+	Model        *[]AzureBackupJobResource
 }
 
 type FetchCrossRegionRestoreJobsListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []AzureBackupJobResourceList
+	Items              []AzureBackupJobResource
 }
 
 type FetchCrossRegionRestoreJobsListOperationOptions struct {
@@ -78,7 +78,7 @@ func (c DppJobClient) FetchCrossRegionRestoreJobsList(ctx context.Context, id Pr
 	}
 
 	var values struct {
-		Values *[]AzureBackupJobResourceList `json:"value"`
+		Values *[]AzureBackupJobResource `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -91,12 +91,12 @@ func (c DppJobClient) FetchCrossRegionRestoreJobsList(ctx context.Context, id Pr
 
 // FetchCrossRegionRestoreJobsListComplete retrieves all the results into a single object
 func (c DppJobClient) FetchCrossRegionRestoreJobsListComplete(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreJobsRequest, options FetchCrossRegionRestoreJobsListOperationOptions) (FetchCrossRegionRestoreJobsListCompleteResult, error) {
-	return c.FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(ctx, id, input, options, AzureBackupJobResourceListOperationPredicate{})
+	return c.FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(ctx, id, input, options, AzureBackupJobResourceOperationPredicate{})
 }
 
 // FetchCrossRegionRestoreJobsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DppJobClient) FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreJobsRequest, options FetchCrossRegionRestoreJobsListOperationOptions, predicate AzureBackupJobResourceListOperationPredicate) (result FetchCrossRegionRestoreJobsListCompleteResult, err error) {
-	items := make([]AzureBackupJobResourceList, 0)
+func (c DppJobClient) FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreJobsRequest, options FetchCrossRegionRestoreJobsListOperationOptions, predicate AzureBackupJobResourceOperationPredicate) (result FetchCrossRegionRestoreJobsListCompleteResult, err error) {
+	items := make([]AzureBackupJobResource, 0)
 
 	resp, err := c.FetchCrossRegionRestoreJobsList(ctx, id, input, options)
 	if err != nil {

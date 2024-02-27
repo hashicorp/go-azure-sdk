@@ -23,9 +23,19 @@ func (o *LogAnalyticsQueryPackProperties) GetTimeCreatedAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.TimeCreated, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *LogAnalyticsQueryPackProperties) SetTimeCreatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TimeCreated = &formatted
+}
+
 func (o *LogAnalyticsQueryPackProperties) GetTimeModifiedAsTime() (*time.Time, error) {
 	if o.TimeModified == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TimeModified, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *LogAnalyticsQueryPackProperties) SetTimeModifiedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TimeModified = &formatted
 }
