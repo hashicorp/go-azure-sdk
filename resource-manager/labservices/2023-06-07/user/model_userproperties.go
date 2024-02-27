@@ -27,8 +27,3 @@ func (o *UserProperties) GetInvitationSentAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.InvitationSent, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *UserProperties) SetInvitationSentAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.InvitationSent = &formatted
-}

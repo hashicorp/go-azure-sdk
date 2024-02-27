@@ -35,21 +35,11 @@ func (o *ComputeInstance) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ComputeInstance) SetCreatedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedOn = &formatted
-}
-
 func (o *ComputeInstance) GetModifiedOnAsTime() (*time.Time, error) {
 	if o.ModifiedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ModifiedOn, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ComputeInstance) SetModifiedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ModifiedOn = &formatted
 }
 
 var _ json.Marshaler = ComputeInstance{}

@@ -22,8 +22,3 @@ func (o *PlanData) GetEffectiveDateAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.EffectiveDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *PlanData) SetEffectiveDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EffectiveDate = &formatted
-}

@@ -23,19 +23,9 @@ func (o *RestorePolicyProperties) GetLastEnabledTimeAsTime() (*time.Time, error)
 	return dates.ParseAsFormat(o.LastEnabledTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *RestorePolicyProperties) SetLastEnabledTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastEnabledTime = &formatted
-}
-
 func (o *RestorePolicyProperties) GetMinRestoreTimeAsTime() (*time.Time, error) {
 	if o.MinRestoreTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.MinRestoreTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RestorePolicyProperties) SetMinRestoreTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.MinRestoreTime = &formatted
 }

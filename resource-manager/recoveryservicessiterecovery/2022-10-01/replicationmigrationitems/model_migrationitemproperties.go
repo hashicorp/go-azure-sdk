@@ -41,21 +41,11 @@ func (o *MigrationItemProperties) GetLastMigrationTimeAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.LastMigrationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *MigrationItemProperties) SetLastMigrationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastMigrationTime = &formatted
-}
-
 func (o *MigrationItemProperties) GetLastTestMigrationTimeAsTime() (*time.Time, error) {
 	if o.LastTestMigrationTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastTestMigrationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MigrationItemProperties) SetLastTestMigrationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastTestMigrationTime = &formatted
 }
 
 var _ json.Unmarshaler = &MigrationItemProperties{}

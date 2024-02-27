@@ -29,11 +29,6 @@ func (o *InMageRcmMobilityAgentDetails) GetAgentVersionExpiryDateAsTime() (*time
 	return dates.ParseAsFormat(o.AgentVersionExpiryDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *InMageRcmMobilityAgentDetails) SetAgentVersionExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AgentVersionExpiryDate = &formatted
-}
-
 func (o *InMageRcmMobilityAgentDetails) GetDriverVersionExpiryDateAsTime() (*time.Time, error) {
 	if o.DriverVersionExpiryDate == nil {
 		return nil, nil
@@ -41,19 +36,9 @@ func (o *InMageRcmMobilityAgentDetails) GetDriverVersionExpiryDateAsTime() (*tim
 	return dates.ParseAsFormat(o.DriverVersionExpiryDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *InMageRcmMobilityAgentDetails) SetDriverVersionExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DriverVersionExpiryDate = &formatted
-}
-
 func (o *InMageRcmMobilityAgentDetails) GetLastHeartbeatUtcAsTime() (*time.Time, error) {
 	if o.LastHeartbeatUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastHeartbeatUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *InMageRcmMobilityAgentDetails) SetLastHeartbeatUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHeartbeatUtc = &formatted
 }

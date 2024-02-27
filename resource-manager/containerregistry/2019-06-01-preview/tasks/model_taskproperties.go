@@ -33,11 +33,6 @@ func (o *TaskProperties) GetCreationDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *TaskProperties) SetCreationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationDate = &formatted
-}
-
 var _ json.Unmarshaler = &TaskProperties{}
 
 func (s *TaskProperties) UnmarshalJSON(bytes []byte) error {

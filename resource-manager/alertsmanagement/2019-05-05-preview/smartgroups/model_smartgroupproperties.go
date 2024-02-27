@@ -33,19 +33,9 @@ func (o *SmartGroupProperties) GetLastModifiedDateTimeAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SmartGroupProperties) SetLastModifiedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedDateTime = &formatted
-}
-
 func (o *SmartGroupProperties) GetStartDateTimeAsTime() (*time.Time, error) {
 	if o.StartDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SmartGroupProperties) SetStartDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartDateTime = &formatted
 }

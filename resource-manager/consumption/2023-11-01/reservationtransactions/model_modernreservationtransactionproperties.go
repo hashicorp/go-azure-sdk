@@ -38,8 +38,3 @@ func (o *ModernReservationTransactionProperties) GetEventDateAsTime() (*time.Tim
 	}
 	return dates.ParseAsFormat(o.EventDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *ModernReservationTransactionProperties) SetEventDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EventDate = &formatted
-}

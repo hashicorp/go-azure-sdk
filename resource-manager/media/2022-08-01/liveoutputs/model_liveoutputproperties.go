@@ -30,19 +30,9 @@ func (o *LiveOutputProperties) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *LiveOutputProperties) SetCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Created = &formatted
-}
-
 func (o *LiveOutputProperties) GetLastModifiedAsTime() (*time.Time, error) {
 	if o.LastModified == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModified, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *LiveOutputProperties) SetLastModifiedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModified = &formatted
 }

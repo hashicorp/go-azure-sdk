@@ -35,21 +35,11 @@ func (o *UpdateConfigurationMachineRunProperties) GetCreationTimeAsTime() (*time
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *UpdateConfigurationMachineRunProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *UpdateConfigurationMachineRunProperties) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *UpdateConfigurationMachineRunProperties) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
 }
 
 func (o *UpdateConfigurationMachineRunProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
@@ -59,19 +49,9 @@ func (o *UpdateConfigurationMachineRunProperties) GetLastModifiedTimeAsTime() (*
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *UpdateConfigurationMachineRunProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
-}
-
 func (o *UpdateConfigurationMachineRunProperties) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *UpdateConfigurationMachineRunProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

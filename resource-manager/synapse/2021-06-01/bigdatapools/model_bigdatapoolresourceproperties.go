@@ -38,19 +38,9 @@ func (o *BigDataPoolResourceProperties) GetCreationDateAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *BigDataPoolResourceProperties) SetCreationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationDate = &formatted
-}
-
 func (o *BigDataPoolResourceProperties) GetLastSucceededTimestampAsTime() (*time.Time, error) {
 	if o.LastSucceededTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastSucceededTimestamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *BigDataPoolResourceProperties) SetLastSucceededTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSucceededTimestamp = &formatted
 }

@@ -26,19 +26,9 @@ func (o *SyncAgentProperties) GetExpiryTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ExpiryTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SyncAgentProperties) SetExpiryTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpiryTime = &formatted
-}
-
 func (o *SyncAgentProperties) GetLastAliveTimeAsTime() (*time.Time, error) {
 	if o.LastAliveTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastAliveTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SyncAgentProperties) SetLastAliveTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastAliveTime = &formatted
 }

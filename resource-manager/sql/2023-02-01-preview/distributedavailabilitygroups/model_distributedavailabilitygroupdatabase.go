@@ -39,21 +39,11 @@ func (o *DistributedAvailabilityGroupDatabase) GetLastBackupTimeAsTime() (*time.
 	return dates.ParseAsFormat(o.LastBackupTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *DistributedAvailabilityGroupDatabase) SetLastBackupTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastBackupTime = &formatted
-}
-
 func (o *DistributedAvailabilityGroupDatabase) GetLastCommitTimeAsTime() (*time.Time, error) {
 	if o.LastCommitTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastCommitTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DistributedAvailabilityGroupDatabase) SetLastCommitTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastCommitTime = &formatted
 }
 
 func (o *DistributedAvailabilityGroupDatabase) GetLastHardenedTimeAsTime() (*time.Time, error) {
@@ -63,11 +53,6 @@ func (o *DistributedAvailabilityGroupDatabase) GetLastHardenedTimeAsTime() (*tim
 	return dates.ParseAsFormat(o.LastHardenedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *DistributedAvailabilityGroupDatabase) SetLastHardenedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHardenedTime = &formatted
-}
-
 func (o *DistributedAvailabilityGroupDatabase) GetLastReceivedTimeAsTime() (*time.Time, error) {
 	if o.LastReceivedTime == nil {
 		return nil, nil
@@ -75,19 +60,9 @@ func (o *DistributedAvailabilityGroupDatabase) GetLastReceivedTimeAsTime() (*tim
 	return dates.ParseAsFormat(o.LastReceivedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *DistributedAvailabilityGroupDatabase) SetLastReceivedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastReceivedTime = &formatted
-}
-
 func (o *DistributedAvailabilityGroupDatabase) GetLastSentTimeAsTime() (*time.Time, error) {
 	if o.LastSentTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastSentTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DistributedAvailabilityGroupDatabase) SetLastSentTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSentTime = &formatted
 }

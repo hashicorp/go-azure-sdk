@@ -38,19 +38,9 @@ func (o *ContainerProperties) GetDeletedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.DeletedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ContainerProperties) SetDeletedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeletedTime = &formatted
-}
-
 func (o *ContainerProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
 	if o.LastModifiedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ContainerProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
 }

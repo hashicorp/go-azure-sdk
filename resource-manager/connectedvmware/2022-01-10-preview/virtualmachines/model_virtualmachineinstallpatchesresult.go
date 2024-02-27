@@ -34,19 +34,9 @@ func (o *VirtualMachineInstallPatchesResult) GetLastModifiedDateTimeAsTime() (*t
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *VirtualMachineInstallPatchesResult) SetLastModifiedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedDateTime = &formatted
-}
-
 func (o *VirtualMachineInstallPatchesResult) GetStartDateTimeAsTime() (*time.Time, error) {
 	if o.StartDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *VirtualMachineInstallPatchesResult) SetStartDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartDateTime = &formatted
 }

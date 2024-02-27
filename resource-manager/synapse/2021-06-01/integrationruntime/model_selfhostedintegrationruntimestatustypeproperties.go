@@ -36,11 +36,6 @@ func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) GetAutoUpdateETAAsTim
 	return dates.ParseAsFormat(o.AutoUpdateETA, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) SetAutoUpdateETAAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AutoUpdateETA = &formatted
-}
-
 func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) GetCreateTimeAsTime() (*time.Time, error) {
 	if o.CreateTime == nil {
 		return nil, nil
@@ -48,19 +43,9 @@ func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) GetCreateTimeAsTime()
 	return dates.ParseAsFormat(o.CreateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) SetCreateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreateTime = &formatted
-}
-
 func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) GetScheduledUpdateDateAsTime() (*time.Time, error) {
 	if o.ScheduledUpdateDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ScheduledUpdateDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SelfHostedIntegrationRuntimeStatusTypeProperties) SetScheduledUpdateDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ScheduledUpdateDate = &formatted
 }

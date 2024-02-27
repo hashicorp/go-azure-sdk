@@ -22,8 +22,3 @@ func (o *RecoverableSqlPoolProperties) GetLastAvailableBackupDateAsTime() (*time
 	}
 	return dates.ParseAsFormat(o.LastAvailableBackupDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *RecoverableSqlPoolProperties) SetLastAvailableBackupDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastAvailableBackupDate = &formatted
-}

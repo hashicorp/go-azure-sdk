@@ -23,8 +23,3 @@ func (o *PaymentProperties) GetDateAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.Date, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *PaymentProperties) SetDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Date = &formatted
-}

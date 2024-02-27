@@ -32,21 +32,11 @@ func (o *SoftwareUpdateConfigurationRunProperties) GetCreationTimeAsTime() (*tim
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SoftwareUpdateConfigurationRunProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *SoftwareUpdateConfigurationRunProperties) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SoftwareUpdateConfigurationRunProperties) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
 }
 
 func (o *SoftwareUpdateConfigurationRunProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
@@ -56,19 +46,9 @@ func (o *SoftwareUpdateConfigurationRunProperties) GetLastModifiedTimeAsTime() (
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SoftwareUpdateConfigurationRunProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
-}
-
 func (o *SoftwareUpdateConfigurationRunProperties) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SoftwareUpdateConfigurationRunProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

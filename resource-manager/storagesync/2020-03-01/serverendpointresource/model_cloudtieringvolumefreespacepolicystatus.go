@@ -21,8 +21,3 @@ func (o *CloudTieringVolumeFreeSpacePolicyStatus) GetLastUpdatedTimestampAsTime(
 	}
 	return dates.ParseAsFormat(o.LastUpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *CloudTieringVolumeFreeSpacePolicyStatus) SetLastUpdatedTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedTimestamp = &formatted
-}

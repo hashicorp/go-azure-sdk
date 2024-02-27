@@ -30,19 +30,9 @@ func (o *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties) GetCreate
 	return dates.ParseAsFormat(o.CreatedDateUTC, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties) SetCreatedDateUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedDateUTC = &formatted
-}
-
 func (o *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties) GetLastUpdatedDateUTCAsTime() (*time.Time, error) {
 	if o.LastUpdatedDateUTC == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastUpdatedDateUTC, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties) SetLastUpdatedDateUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedDateUTC = &formatted
 }

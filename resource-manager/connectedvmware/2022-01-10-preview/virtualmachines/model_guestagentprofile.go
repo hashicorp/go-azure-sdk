@@ -23,8 +23,3 @@ func (o *GuestAgentProfile) GetLastStatusChangeAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.LastStatusChange, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *GuestAgentProfile) SetLastStatusChangeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastStatusChange = &formatted
-}

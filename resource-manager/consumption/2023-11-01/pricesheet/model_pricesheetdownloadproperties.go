@@ -20,8 +20,3 @@ func (o *PricesheetDownloadProperties) GetValidTillAsTime() (*time.Time, error) 
 	}
 	return dates.ParseAsFormat(o.ValidTill, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *PricesheetDownloadProperties) SetValidTillAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ValidTill = &formatted
-}

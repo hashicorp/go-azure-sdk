@@ -25,8 +25,3 @@ func (o *SqlPoolUsage) GetNextResetTimeAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.NextResetTime, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *SqlPoolUsage) SetNextResetTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NextResetTime = &formatted
-}

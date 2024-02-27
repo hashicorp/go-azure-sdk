@@ -22,8 +22,3 @@ func (o *SourceControlSyncJobStreamProperties) GetTimeAsTime() (*time.Time, erro
 	}
 	return dates.ParseAsFormat(o.Time, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *SourceControlSyncJobStreamProperties) SetTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Time = &formatted
-}

@@ -25,11 +25,6 @@ func (o *ScriptStatus) GetEndTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ScriptStatus) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
 func (o *ScriptStatus) GetExpirationTimeAsTime() (*time.Time, error) {
 	if o.ExpirationTime == nil {
 		return nil, nil
@@ -37,19 +32,9 @@ func (o *ScriptStatus) GetExpirationTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ScriptStatus) SetExpirationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpirationTime = &formatted
-}
-
 func (o *ScriptStatus) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ScriptStatus) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

@@ -23,8 +23,3 @@ func (o *EmailRegistration) GetActivationExpirationDateAsTime() (*time.Time, err
 	}
 	return dates.ParseAsFormat(o.ActivationExpirationDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *EmailRegistration) SetActivationExpirationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ActivationExpirationDate = &formatted
-}

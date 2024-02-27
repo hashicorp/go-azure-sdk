@@ -35,8 +35,3 @@ func (o *AzureFileshareProtectedItemExtendedInfo) GetResourceStateSyncTimeAsTime
 	}
 	return dates.ParseAsFormat(o.ResourceStateSyncTime, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *AzureFileshareProtectedItemExtendedInfo) SetResourceStateSyncTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ResourceStateSyncTime = &formatted
-}

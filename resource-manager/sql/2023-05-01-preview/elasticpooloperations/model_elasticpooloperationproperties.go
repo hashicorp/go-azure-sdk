@@ -33,19 +33,9 @@ func (o *ElasticPoolOperationProperties) GetEstimatedCompletionTimeAsTime() (*ti
 	return dates.ParseAsFormat(o.EstimatedCompletionTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ElasticPoolOperationProperties) SetEstimatedCompletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EstimatedCompletionTime = &formatted
-}
-
 func (o *ElasticPoolOperationProperties) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ElasticPoolOperationProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

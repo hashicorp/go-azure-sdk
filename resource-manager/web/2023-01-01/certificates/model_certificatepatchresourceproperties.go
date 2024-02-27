@@ -40,19 +40,9 @@ func (o *CertificatePatchResourceProperties) GetExpirationDateAsTime() (*time.Ti
 	return dates.ParseAsFormat(o.ExpirationDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CertificatePatchResourceProperties) SetExpirationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpirationDate = &formatted
-}
-
 func (o *CertificatePatchResourceProperties) GetIssueDateAsTime() (*time.Time, error) {
 	if o.IssueDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.IssueDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CertificatePatchResourceProperties) SetIssueDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.IssueDate = &formatted
 }

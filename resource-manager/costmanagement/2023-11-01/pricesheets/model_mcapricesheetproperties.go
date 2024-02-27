@@ -43,19 +43,9 @@ func (o *MCAPriceSheetProperties) GetEffectiveEndDateAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.EffectiveEndDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *MCAPriceSheetProperties) SetEffectiveEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EffectiveEndDate = &formatted
-}
-
 func (o *MCAPriceSheetProperties) GetEffectiveStartDateAsTime() (*time.Time, error) {
 	if o.EffectiveStartDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EffectiveStartDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MCAPriceSheetProperties) SetEffectiveStartDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EffectiveStartDate = &formatted
 }

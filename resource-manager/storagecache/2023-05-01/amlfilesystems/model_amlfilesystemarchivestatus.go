@@ -25,19 +25,9 @@ func (o *AmlFilesystemArchiveStatus) GetLastCompletionTimeAsTime() (*time.Time, 
 	return dates.ParseAsFormat(o.LastCompletionTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *AmlFilesystemArchiveStatus) SetLastCompletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastCompletionTime = &formatted
-}
-
 func (o *AmlFilesystemArchiveStatus) GetLastStartedTimeAsTime() (*time.Time, error) {
 	if o.LastStartedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastStartedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AmlFilesystemArchiveStatus) SetLastStartedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastStartedTime = &formatted
 }

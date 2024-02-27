@@ -25,11 +25,6 @@ func (o *CloudEndpointLastChangeEnumerationStatus) GetCompletedTimestampAsTime()
 	return dates.ParseAsFormat(o.CompletedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CloudEndpointLastChangeEnumerationStatus) SetCompletedTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CompletedTimestamp = &formatted
-}
-
 func (o *CloudEndpointLastChangeEnumerationStatus) GetNextRunTimestampAsTime() (*time.Time, error) {
 	if o.NextRunTimestamp == nil {
 		return nil, nil
@@ -37,19 +32,9 @@ func (o *CloudEndpointLastChangeEnumerationStatus) GetNextRunTimestampAsTime() (
 	return dates.ParseAsFormat(o.NextRunTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CloudEndpointLastChangeEnumerationStatus) SetNextRunTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NextRunTimestamp = &formatted
-}
-
 func (o *CloudEndpointLastChangeEnumerationStatus) GetStartedTimestampAsTime() (*time.Time, error) {
 	if o.StartedTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartedTimestamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CloudEndpointLastChangeEnumerationStatus) SetStartedTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartedTimestamp = &formatted
 }

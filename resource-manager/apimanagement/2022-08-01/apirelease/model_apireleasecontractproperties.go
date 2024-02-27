@@ -23,19 +23,9 @@ func (o *ApiReleaseContractProperties) GetCreatedDateTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.CreatedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ApiReleaseContractProperties) SetCreatedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedDateTime = &formatted
-}
-
 func (o *ApiReleaseContractProperties) GetUpdatedDateTimeAsTime() (*time.Time, error) {
 	if o.UpdatedDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ApiReleaseContractProperties) SetUpdatedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UpdatedDateTime = &formatted
 }

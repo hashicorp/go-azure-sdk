@@ -65,19 +65,9 @@ func (o *SiteProperties) GetLastModifiedTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SiteProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTimeUtc = &formatted
-}
-
 func (o *SiteProperties) GetSuspendedTillAsTime() (*time.Time, error) {
 	if o.SuspendedTill == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SuspendedTill, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SiteProperties) SetSuspendedTillAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SuspendedTill = &formatted
 }

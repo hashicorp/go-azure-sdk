@@ -38,11 +38,6 @@ func (o *Essentials) GetLastModifiedDateTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *Essentials) SetLastModifiedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedDateTime = &formatted
-}
-
 func (o *Essentials) GetMonitorConditionResolvedDateTimeAsTime() (*time.Time, error) {
 	if o.MonitorConditionResolvedDateTime == nil {
 		return nil, nil
@@ -50,19 +45,9 @@ func (o *Essentials) GetMonitorConditionResolvedDateTimeAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.MonitorConditionResolvedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *Essentials) SetMonitorConditionResolvedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.MonitorConditionResolvedDateTime = &formatted
-}
-
 func (o *Essentials) GetStartDateTimeAsTime() (*time.Time, error) {
 	if o.StartDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *Essentials) SetStartDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartDateTime = &formatted
 }
