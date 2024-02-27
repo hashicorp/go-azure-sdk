@@ -45,11 +45,6 @@ func (o *ClusterProperties) GetEarliestRestoreTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EarliestRestoreTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ClusterProperties) SetEarliestRestoreTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EarliestRestoreTime = &formatted
-}
-
 func (o *ClusterProperties) GetPointInTimeUTCAsTime() (*time.Time, error) {
 	if o.PointInTimeUTC == nil {
 		return nil, nil

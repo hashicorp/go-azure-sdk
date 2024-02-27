@@ -20,8 +20,3 @@ func (o *TopologyResourceProperties) GetCalculatedDateTimeAsTime() (*time.Time, 
 	}
 	return dates.ParseAsFormat(o.CalculatedDateTime, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *TopologyResourceProperties) SetCalculatedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CalculatedDateTime = &formatted
-}

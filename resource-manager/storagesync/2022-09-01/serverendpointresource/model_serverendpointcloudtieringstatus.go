@@ -30,11 +30,6 @@ func (o *ServerEndpointCloudTieringStatus) GetHealthLastUpdatedTimestampAsTime()
 	return dates.ParseAsFormat(o.HealthLastUpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ServerEndpointCloudTieringStatus) SetHealthLastUpdatedTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.HealthLastUpdatedTimestamp = &formatted
-}
-
 func (o *ServerEndpointCloudTieringStatus) GetLastSuccessTimestampAsTime() (*time.Time, error) {
 	if o.LastSuccessTimestamp == nil {
 		return nil, nil
@@ -42,19 +37,9 @@ func (o *ServerEndpointCloudTieringStatus) GetLastSuccessTimestampAsTime() (*tim
 	return dates.ParseAsFormat(o.LastSuccessTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ServerEndpointCloudTieringStatus) SetLastSuccessTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSuccessTimestamp = &formatted
-}
-
 func (o *ServerEndpointCloudTieringStatus) GetLastUpdatedTimestampAsTime() (*time.Time, error) {
 	if o.LastUpdatedTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastUpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ServerEndpointCloudTieringStatus) SetLastUpdatedTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedTimestamp = &formatted
 }

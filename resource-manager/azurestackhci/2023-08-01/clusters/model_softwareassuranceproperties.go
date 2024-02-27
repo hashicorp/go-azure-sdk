@@ -21,8 +21,3 @@ func (o *SoftwareAssuranceProperties) GetLastUpdatedAsTime() (*time.Time, error)
 	}
 	return dates.ParseAsFormat(o.LastUpdated, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *SoftwareAssuranceProperties) SetLastUpdatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdated = &formatted
-}

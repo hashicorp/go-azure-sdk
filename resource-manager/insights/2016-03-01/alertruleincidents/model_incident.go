@@ -24,19 +24,9 @@ func (o *Incident) GetActivatedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ActivatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *Incident) SetActivatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ActivatedTime = &formatted
-}
-
 func (o *Incident) GetResolvedTimeAsTime() (*time.Time, error) {
 	if o.ResolvedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ResolvedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *Incident) SetResolvedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ResolvedTime = &formatted
 }

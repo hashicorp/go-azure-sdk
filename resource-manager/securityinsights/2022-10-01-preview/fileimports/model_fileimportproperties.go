@@ -32,11 +32,6 @@ func (o *FileImportProperties) GetCreatedTimeUTCAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedTimeUTC, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *FileImportProperties) SetCreatedTimeUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTimeUTC = &formatted
-}
-
 func (o *FileImportProperties) GetFilesValidUntilTimeUTCAsTime() (*time.Time, error) {
 	if o.FilesValidUntilTimeUTC == nil {
 		return nil, nil
@@ -44,19 +39,9 @@ func (o *FileImportProperties) GetFilesValidUntilTimeUTCAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.FilesValidUntilTimeUTC, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *FileImportProperties) SetFilesValidUntilTimeUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FilesValidUntilTimeUTC = &formatted
-}
-
 func (o *FileImportProperties) GetImportValidUntilTimeUTCAsTime() (*time.Time, error) {
 	if o.ImportValidUntilTimeUTC == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ImportValidUntilTimeUTC, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileImportProperties) SetImportValidUntilTimeUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ImportValidUntilTimeUTC = &formatted
 }

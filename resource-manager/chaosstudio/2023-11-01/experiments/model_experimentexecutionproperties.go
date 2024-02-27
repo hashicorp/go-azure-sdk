@@ -22,19 +22,9 @@ func (o *ExperimentExecutionProperties) GetStartedAtAsTime() (*time.Time, error)
 	return dates.ParseAsFormat(o.StartedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ExperimentExecutionProperties) SetStartedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartedAt = &formatted
-}
-
 func (o *ExperimentExecutionProperties) GetStoppedAtAsTime() (*time.Time, error) {
 	if o.StoppedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StoppedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ExperimentExecutionProperties) SetStoppedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StoppedAt = &formatted
 }

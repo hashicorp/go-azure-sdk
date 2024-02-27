@@ -36,11 +36,6 @@ func (o *IncidentProperties) GetCreatedTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *IncidentProperties) SetCreatedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTimeUtc = &formatted
-}
-
 func (o *IncidentProperties) GetFirstActivityTimeUtcAsTime() (*time.Time, error) {
 	if o.FirstActivityTimeUtc == nil {
 		return nil, nil
@@ -70,9 +65,4 @@ func (o *IncidentProperties) GetLastModifiedTimeUtcAsTime() (*time.Time, error) 
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *IncidentProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTimeUtc = &formatted
 }

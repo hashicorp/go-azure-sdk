@@ -4,5 +4,5 @@ package packetcorecontrolplane
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HomeNetworkPrivateKeysProvisioning struct {
-	State HomeNetworkPrivateKeysProvisioningState `json:"state"`
+	State *HomeNetworkPrivateKeysProvisioningState `json:"state,omitempty"`
 }

@@ -44,11 +44,6 @@ func (o *ServerGroupProperties) GetEarliestRestoreTimeAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.EarliestRestoreTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ServerGroupProperties) SetEarliestRestoreTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EarliestRestoreTime = &formatted
-}
-
 func (o *ServerGroupProperties) GetPointInTimeUTCAsTime() (*time.Time, error) {
 	if o.PointInTimeUTC == nil {
 		return nil, nil

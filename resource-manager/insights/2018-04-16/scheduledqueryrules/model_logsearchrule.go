@@ -32,11 +32,6 @@ func (o *LogSearchRule) GetLastUpdatedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastUpdatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *LogSearchRule) SetLastUpdatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedTime = &formatted
-}
-
 var _ json.Unmarshaler = &LogSearchRule{}
 
 func (s *LogSearchRule) UnmarshalJSON(bytes []byte) error {

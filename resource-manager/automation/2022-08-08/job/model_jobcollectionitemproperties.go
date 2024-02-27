@@ -28,21 +28,11 @@ func (o *JobCollectionItemProperties) GetCreationTimeAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *JobCollectionItemProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *JobCollectionItemProperties) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobCollectionItemProperties) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
 }
 
 func (o *JobCollectionItemProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
@@ -52,19 +42,9 @@ func (o *JobCollectionItemProperties) GetLastModifiedTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *JobCollectionItemProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
-}
-
 func (o *JobCollectionItemProperties) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobCollectionItemProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

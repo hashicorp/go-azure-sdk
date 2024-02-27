@@ -23,19 +23,9 @@ func (o *RestorableLocationResource) GetCreationTimeAsTime() (*time.Time, error)
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *RestorableLocationResource) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *RestorableLocationResource) GetDeletionTimeAsTime() (*time.Time, error) {
 	if o.DeletionTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.DeletionTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RestorableLocationResource) SetDeletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeletionTime = &formatted
 }

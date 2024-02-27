@@ -27,11 +27,6 @@ func (o *AssetStreamingLocator) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *AssetStreamingLocator) SetCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Created = &formatted
-}
-
 func (o *AssetStreamingLocator) GetEndTimeAsTime() (*time.Time, error) {
 	if o.EndTime == nil {
 		return nil, nil
@@ -39,19 +34,9 @@ func (o *AssetStreamingLocator) GetEndTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *AssetStreamingLocator) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
 func (o *AssetStreamingLocator) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AssetStreamingLocator) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

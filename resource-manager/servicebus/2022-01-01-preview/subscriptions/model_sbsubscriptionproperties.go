@@ -38,11 +38,6 @@ func (o *SBSubscriptionProperties) GetAccessedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.AccessedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SBSubscriptionProperties) SetAccessedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AccessedAt = &formatted
-}
-
 func (o *SBSubscriptionProperties) GetCreatedAtAsTime() (*time.Time, error) {
 	if o.CreatedAt == nil {
 		return nil, nil
@@ -50,19 +45,9 @@ func (o *SBSubscriptionProperties) GetCreatedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SBSubscriptionProperties) SetCreatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedAt = &formatted
-}
-
 func (o *SBSubscriptionProperties) GetUpdatedAtAsTime() (*time.Time, error) {
 	if o.UpdatedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SBSubscriptionProperties) SetUpdatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UpdatedAt = &formatted
 }

@@ -57,11 +57,6 @@ func (o *BillingSubscriptionAliasProperties) GetPurchaseDateAsTime() (*time.Time
 	return dates.ParseAsFormat(o.PurchaseDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *BillingSubscriptionAliasProperties) SetPurchaseDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.PurchaseDate = &formatted
-}
-
 func (o *BillingSubscriptionAliasProperties) GetTermEndDateAsTime() (*time.Time, error) {
 	if o.TermEndDate == nil {
 		return nil, nil
@@ -69,19 +64,9 @@ func (o *BillingSubscriptionAliasProperties) GetTermEndDateAsTime() (*time.Time,
 	return dates.ParseAsFormat(o.TermEndDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *BillingSubscriptionAliasProperties) SetTermEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TermEndDate = &formatted
-}
-
 func (o *BillingSubscriptionAliasProperties) GetTermStartDateAsTime() (*time.Time, error) {
 	if o.TermStartDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TermStartDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *BillingSubscriptionAliasProperties) SetTermStartDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TermStartDate = &formatted
 }

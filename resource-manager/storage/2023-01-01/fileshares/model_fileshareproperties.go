@@ -37,21 +37,11 @@ func (o *FileShareProperties) GetAccessTierChangeTimeAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.AccessTierChangeTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *FileShareProperties) SetAccessTierChangeTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AccessTierChangeTime = &formatted
-}
-
 func (o *FileShareProperties) GetDeletedTimeAsTime() (*time.Time, error) {
 	if o.DeletedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.DeletedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileShareProperties) SetDeletedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeletedTime = &formatted
 }
 
 func (o *FileShareProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
@@ -61,19 +51,9 @@ func (o *FileShareProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *FileShareProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
-}
-
 func (o *FileShareProperties) GetSnapshotTimeAsTime() (*time.Time, error) {
 	if o.SnapshotTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SnapshotTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileShareProperties) SetSnapshotTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SnapshotTime = &formatted
 }

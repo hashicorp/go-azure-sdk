@@ -29,11 +29,6 @@ func (o *ProviderShareSubscriptionProperties) GetCreatedAtAsTime() (*time.Time, 
 	return dates.ParseAsFormat(o.CreatedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ProviderShareSubscriptionProperties) SetCreatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedAt = &formatted
-}
-
 func (o *ProviderShareSubscriptionProperties) GetExpirationDateAsTime() (*time.Time, error) {
 	if o.ExpirationDate == nil {
 		return nil, nil
@@ -51,9 +46,4 @@ func (o *ProviderShareSubscriptionProperties) GetSharedAtAsTime() (*time.Time, e
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SharedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProviderShareSubscriptionProperties) SetSharedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SharedAt = &formatted
 }

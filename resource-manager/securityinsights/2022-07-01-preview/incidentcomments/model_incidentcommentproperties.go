@@ -23,19 +23,9 @@ func (o *IncidentCommentProperties) GetCreatedTimeUtcAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.CreatedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *IncidentCommentProperties) SetCreatedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTimeUtc = &formatted
-}
-
 func (o *IncidentCommentProperties) GetLastModifiedTimeUtcAsTime() (*time.Time, error) {
 	if o.LastModifiedTimeUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *IncidentCommentProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTimeUtc = &formatted
 }

@@ -20,8 +20,3 @@ func (o *EnrollmentAccountSubscriptionDetails) GetEnrollmentAccountStartDateAsTi
 	}
 	return dates.ParseAsFormat(o.EnrollmentAccountStartDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *EnrollmentAccountSubscriptionDetails) SetEnrollmentAccountStartDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EnrollmentAccountStartDate = &formatted
-}

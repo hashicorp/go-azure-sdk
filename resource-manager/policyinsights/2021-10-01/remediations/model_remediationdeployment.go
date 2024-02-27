@@ -26,19 +26,9 @@ func (o *RemediationDeployment) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *RemediationDeployment) SetCreatedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedOn = &formatted
-}
-
 func (o *RemediationDeployment) GetLastUpdatedOnAsTime() (*time.Time, error) {
 	if o.LastUpdatedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastUpdatedOn, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RemediationDeployment) SetLastUpdatedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedOn = &formatted
 }

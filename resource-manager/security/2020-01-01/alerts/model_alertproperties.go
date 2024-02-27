@@ -44,21 +44,11 @@ func (o *AlertProperties) GetEndTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *AlertProperties) SetEndTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTimeUtc = &formatted
-}
-
 func (o *AlertProperties) GetProcessingEndTimeUtcAsTime() (*time.Time, error) {
 	if o.ProcessingEndTimeUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ProcessingEndTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AlertProperties) SetProcessingEndTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ProcessingEndTimeUtc = &formatted
 }
 
 func (o *AlertProperties) GetStartTimeUtcAsTime() (*time.Time, error) {
@@ -68,21 +58,11 @@ func (o *AlertProperties) GetStartTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.StartTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *AlertProperties) SetStartTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTimeUtc = &formatted
-}
-
 func (o *AlertProperties) GetTimeGeneratedUtcAsTime() (*time.Time, error) {
 	if o.TimeGeneratedUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TimeGeneratedUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AlertProperties) SetTimeGeneratedUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeGeneratedUtc = &formatted
 }
 
 var _ json.Unmarshaler = &AlertProperties{}

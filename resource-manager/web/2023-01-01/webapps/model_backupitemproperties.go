@@ -33,11 +33,6 @@ func (o *BackupItemProperties) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *BackupItemProperties) SetCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Created = &formatted
-}
-
 func (o *BackupItemProperties) GetFinishedTimeStampAsTime() (*time.Time, error) {
 	if o.FinishedTimeStamp == nil {
 		return nil, nil
@@ -45,19 +40,9 @@ func (o *BackupItemProperties) GetFinishedTimeStampAsTime() (*time.Time, error) 
 	return dates.ParseAsFormat(o.FinishedTimeStamp, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *BackupItemProperties) SetFinishedTimeStampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FinishedTimeStamp = &formatted
-}
-
 func (o *BackupItemProperties) GetLastRestoreTimeStampAsTime() (*time.Time, error) {
 	if o.LastRestoreTimeStamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastRestoreTimeStamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *BackupItemProperties) SetLastRestoreTimeStampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastRestoreTimeStamp = &formatted
 }

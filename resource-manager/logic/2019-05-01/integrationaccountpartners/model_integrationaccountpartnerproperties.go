@@ -24,19 +24,9 @@ func (o *IntegrationAccountPartnerProperties) GetChangedTimeAsTime() (*time.Time
 	return dates.ParseAsFormat(o.ChangedTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *IntegrationAccountPartnerProperties) SetChangedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ChangedTime = &formatted
-}
-
 func (o *IntegrationAccountPartnerProperties) GetCreatedTimeAsTime() (*time.Time, error) {
 	if o.CreatedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *IntegrationAccountPartnerProperties) SetCreatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTime = &formatted
 }

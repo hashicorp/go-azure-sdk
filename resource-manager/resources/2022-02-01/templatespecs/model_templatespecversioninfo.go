@@ -22,19 +22,9 @@ func (o *TemplateSpecVersionInfo) GetTimeCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.TimeCreated, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *TemplateSpecVersionInfo) SetTimeCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeCreated = &formatted
-}
-
 func (o *TemplateSpecVersionInfo) GetTimeModifiedAsTime() (*time.Time, error) {
 	if o.TimeModified == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TimeModified, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TemplateSpecVersionInfo) SetTimeModifiedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeModified = &formatted
 }

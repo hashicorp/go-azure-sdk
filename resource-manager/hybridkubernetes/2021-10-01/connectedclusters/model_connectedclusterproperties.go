@@ -31,19 +31,9 @@ func (o *ConnectedClusterProperties) GetLastConnectivityTimeAsTime() (*time.Time
 	return dates.ParseAsFormat(o.LastConnectivityTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ConnectedClusterProperties) SetLastConnectivityTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastConnectivityTime = &formatted
-}
-
 func (o *ConnectedClusterProperties) GetManagedIdentityCertificateExpirationTimeAsTime() (*time.Time, error) {
 	if o.ManagedIdentityCertificateExpirationTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ManagedIdentityCertificateExpirationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ConnectedClusterProperties) SetManagedIdentityCertificateExpirationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ManagedIdentityCertificateExpirationTime = &formatted
 }

@@ -23,19 +23,9 @@ func (o *RestorePointProperties) GetEarliestRestoreDateAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.EarliestRestoreDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *RestorePointProperties) SetEarliestRestoreDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EarliestRestoreDate = &formatted
-}
-
 func (o *RestorePointProperties) GetRestorePointCreationDateAsTime() (*time.Time, error) {
 	if o.RestorePointCreationDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RestorePointCreationDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RestorePointProperties) SetRestorePointCreationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.RestorePointCreationDate = &formatted
 }

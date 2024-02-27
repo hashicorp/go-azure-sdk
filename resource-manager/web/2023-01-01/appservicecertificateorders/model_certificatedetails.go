@@ -28,19 +28,9 @@ func (o *CertificateDetails) GetNotAfterAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.NotAfter, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CertificateDetails) SetNotAfterAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NotAfter = &formatted
-}
-
 func (o *CertificateDetails) GetNotBeforeAsTime() (*time.Time, error) {
 	if o.NotBefore == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.NotBefore, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CertificateDetails) SetNotBeforeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NotBefore = &formatted
 }

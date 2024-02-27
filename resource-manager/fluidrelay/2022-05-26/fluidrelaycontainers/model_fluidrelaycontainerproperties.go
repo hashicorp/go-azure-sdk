@@ -24,19 +24,9 @@ func (o *FluidRelayContainerProperties) GetCreationTimeAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *FluidRelayContainerProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *FluidRelayContainerProperties) GetLastAccessTimeAsTime() (*time.Time, error) {
 	if o.LastAccessTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastAccessTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FluidRelayContainerProperties) SetLastAccessTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastAccessTime = &formatted
 }

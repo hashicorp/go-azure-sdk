@@ -24,19 +24,9 @@ func (o *CacheUpgradeStatus) GetFirmwareUpdateDeadlineAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.FirmwareUpdateDeadline, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CacheUpgradeStatus) SetFirmwareUpdateDeadlineAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirmwareUpdateDeadline = &formatted
-}
-
 func (o *CacheUpgradeStatus) GetLastFirmwareUpdateAsTime() (*time.Time, error) {
 	if o.LastFirmwareUpdate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastFirmwareUpdate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CacheUpgradeStatus) SetLastFirmwareUpdateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastFirmwareUpdate = &formatted
 }

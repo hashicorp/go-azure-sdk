@@ -32,11 +32,6 @@ func (o *SubscriptionContractProperties) GetCreatedDateAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.CreatedDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SubscriptionContractProperties) SetCreatedDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedDate = &formatted
-}
-
 func (o *SubscriptionContractProperties) GetEndDateAsTime() (*time.Time, error) {
 	if o.EndDate == nil {
 		return nil, nil

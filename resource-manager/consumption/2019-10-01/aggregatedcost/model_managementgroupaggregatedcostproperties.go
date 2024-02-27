@@ -29,19 +29,9 @@ func (o *ManagementGroupAggregatedCostProperties) GetUsageEndAsTime() (*time.Tim
 	return dates.ParseAsFormat(o.UsageEnd, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ManagementGroupAggregatedCostProperties) SetUsageEndAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UsageEnd = &formatted
-}
-
 func (o *ManagementGroupAggregatedCostProperties) GetUsageStartAsTime() (*time.Time, error) {
 	if o.UsageStart == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UsageStart, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ManagementGroupAggregatedCostProperties) SetUsageStartAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UsageStart = &formatted
 }

@@ -22,19 +22,9 @@ func (o *HealthCheckStatusDetailsProperties) GetEndDateTimeAsTime() (*time.Time,
 	return dates.ParseAsFormat(o.EndDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *HealthCheckStatusDetailsProperties) SetEndDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndDateTime = &formatted
-}
-
 func (o *HealthCheckStatusDetailsProperties) GetStartDateTimeAsTime() (*time.Time, error) {
 	if o.StartDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *HealthCheckStatusDetailsProperties) SetStartDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartDateTime = &formatted
 }

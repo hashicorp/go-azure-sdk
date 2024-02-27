@@ -21,8 +21,3 @@ func (o *Participants) GetStatusDateAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.StatusDate, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *Participants) SetStatusDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StatusDate = &formatted
-}

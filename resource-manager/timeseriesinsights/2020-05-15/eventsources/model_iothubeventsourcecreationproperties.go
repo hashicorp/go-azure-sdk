@@ -28,8 +28,3 @@ func (o *IoTHubEventSourceCreationProperties) GetCreationTimeAsTime() (*time.Tim
 	}
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *IoTHubEventSourceCreationProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}

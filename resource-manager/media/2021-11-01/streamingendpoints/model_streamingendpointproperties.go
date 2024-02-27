@@ -35,11 +35,6 @@ func (o *StreamingEndpointProperties) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *StreamingEndpointProperties) SetCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Created = &formatted
-}
-
 func (o *StreamingEndpointProperties) GetFreeTrialEndTimeAsTime() (*time.Time, error) {
 	if o.FreeTrialEndTime == nil {
 		return nil, nil
@@ -47,19 +42,9 @@ func (o *StreamingEndpointProperties) GetFreeTrialEndTimeAsTime() (*time.Time, e
 	return dates.ParseAsFormat(o.FreeTrialEndTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *StreamingEndpointProperties) SetFreeTrialEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FreeTrialEndTime = &formatted
-}
-
 func (o *StreamingEndpointProperties) GetLastModifiedAsTime() (*time.Time, error) {
 	if o.LastModified == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModified, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *StreamingEndpointProperties) SetLastModifiedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModified = &formatted
 }

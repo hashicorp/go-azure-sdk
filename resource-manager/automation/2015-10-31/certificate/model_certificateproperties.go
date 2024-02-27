@@ -25,11 +25,6 @@ func (o *CertificateProperties) GetCreationTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CertificateProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 func (o *CertificateProperties) GetExpiryTimeAsTime() (*time.Time, error) {
 	if o.ExpiryTime == nil {
 		return nil, nil
@@ -37,19 +32,9 @@ func (o *CertificateProperties) GetExpiryTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ExpiryTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CertificateProperties) SetExpiryTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpiryTime = &formatted
-}
-
 func (o *CertificateProperties) GetLastModifiedTimeAsTime() (*time.Time, error) {
 	if o.LastModifiedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModifiedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CertificateProperties) SetLastModifiedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTime = &formatted
 }

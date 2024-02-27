@@ -33,11 +33,6 @@ func (o *WorkflowRunTrigger) GetEndTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *WorkflowRunTrigger) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
 func (o *WorkflowRunTrigger) GetScheduledTimeAsTime() (*time.Time, error) {
 	if o.ScheduledTime == nil {
 		return nil, nil
@@ -45,19 +40,9 @@ func (o *WorkflowRunTrigger) GetScheduledTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ScheduledTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *WorkflowRunTrigger) SetScheduledTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ScheduledTime = &formatted
-}
-
 func (o *WorkflowRunTrigger) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *WorkflowRunTrigger) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

@@ -28,19 +28,9 @@ func (o *InvitationProperties) GetRespondedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.RespondedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *InvitationProperties) SetRespondedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.RespondedAt = &formatted
-}
-
 func (o *InvitationProperties) GetSentAtAsTime() (*time.Time, error) {
 	if o.SentAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SentAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *InvitationProperties) SetSentAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SentAt = &formatted
 }

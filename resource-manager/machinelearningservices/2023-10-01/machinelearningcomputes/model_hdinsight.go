@@ -35,21 +35,11 @@ func (o *HDInsight) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *HDInsight) SetCreatedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedOn = &formatted
-}
-
 func (o *HDInsight) GetModifiedOnAsTime() (*time.Time, error) {
 	if o.ModifiedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ModifiedOn, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *HDInsight) SetModifiedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ModifiedOn = &formatted
 }
 
 var _ json.Marshaler = HDInsight{}

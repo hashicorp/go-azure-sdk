@@ -25,19 +25,9 @@ func (o *CapacityReservationProperties) GetProvisioningTimeAsTime() (*time.Time,
 	return dates.ParseAsFormat(o.ProvisioningTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *CapacityReservationProperties) SetProvisioningTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ProvisioningTime = &formatted
-}
-
 func (o *CapacityReservationProperties) GetTimeCreatedAsTime() (*time.Time, error) {
 	if o.TimeCreated == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TimeCreated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *CapacityReservationProperties) SetTimeCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeCreated = &formatted
 }

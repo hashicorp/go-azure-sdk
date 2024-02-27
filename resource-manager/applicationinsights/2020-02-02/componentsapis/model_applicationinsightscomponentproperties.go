@@ -44,19 +44,9 @@ func (o *ApplicationInsightsComponentProperties) GetCreationDateAsTime() (*time.
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ApplicationInsightsComponentProperties) SetCreationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationDate = &formatted
-}
-
 func (o *ApplicationInsightsComponentProperties) GetLaMigrationDateAsTime() (*time.Time, error) {
 	if o.LaMigrationDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LaMigrationDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ApplicationInsightsComponentProperties) SetLaMigrationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LaMigrationDate = &formatted
 }

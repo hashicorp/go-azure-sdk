@@ -31,11 +31,6 @@ func (o *SqlDedicatedGatewayServiceResourceProperties) GetCreationTimeAsTime() (
 	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SqlDedicatedGatewayServiceResourceProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
 var _ json.Marshaler = SqlDedicatedGatewayServiceResourceProperties{}
 
 func (s SqlDedicatedGatewayServiceResourceProperties) MarshalJSON() ([]byte, error) {

@@ -43,21 +43,11 @@ func (o *StreamingJobProperties) GetCreatedDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *StreamingJobProperties) SetCreatedDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedDate = &formatted
-}
-
 func (o *StreamingJobProperties) GetLastOutputEventTimeAsTime() (*time.Time, error) {
 	if o.LastOutputEventTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastOutputEventTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *StreamingJobProperties) SetLastOutputEventTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastOutputEventTime = &formatted
 }
 
 func (o *StreamingJobProperties) GetOutputStartTimeAsTime() (*time.Time, error) {

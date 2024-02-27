@@ -29,19 +29,9 @@ func (o *SBNamespaceUpdateProperties) GetCreatedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedAt, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SBNamespaceUpdateProperties) SetCreatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedAt = &formatted
-}
-
 func (o *SBNamespaceUpdateProperties) GetUpdatedAtAsTime() (*time.Time, error) {
 	if o.UpdatedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SBNamespaceUpdateProperties) SetUpdatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UpdatedAt = &formatted
 }

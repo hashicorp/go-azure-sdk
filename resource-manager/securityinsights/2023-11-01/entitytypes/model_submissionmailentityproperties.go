@@ -31,19 +31,9 @@ func (o *SubmissionMailEntityProperties) GetSubmissionDateAsTime() (*time.Time, 
 	return dates.ParseAsFormat(o.SubmissionDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *SubmissionMailEntityProperties) SetSubmissionDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SubmissionDate = &formatted
-}
-
 func (o *SubmissionMailEntityProperties) GetTimestampAsTime() (*time.Time, error) {
 	if o.Timestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.Timestamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SubmissionMailEntityProperties) SetTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Timestamp = &formatted
 }

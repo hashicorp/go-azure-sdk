@@ -41,11 +41,6 @@ func (o *ProductProperties) GetEndDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ProductProperties) SetEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndDate = &formatted
-}
-
 func (o *ProductProperties) GetLastChargeDateAsTime() (*time.Time, error) {
 	if o.LastChargeDate == nil {
 		return nil, nil
@@ -53,19 +48,9 @@ func (o *ProductProperties) GetLastChargeDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastChargeDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ProductProperties) SetLastChargeDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastChargeDate = &formatted
-}
-
 func (o *ProductProperties) GetPurchaseDateAsTime() (*time.Time, error) {
 	if o.PurchaseDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.PurchaseDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProductProperties) SetPurchaseDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.PurchaseDate = &formatted
 }

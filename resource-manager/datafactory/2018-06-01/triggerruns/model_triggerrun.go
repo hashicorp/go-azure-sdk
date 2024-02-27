@@ -28,8 +28,3 @@ func (o *TriggerRun) GetTriggerRunTimestampAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.TriggerRunTimestamp, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *TriggerRun) SetTriggerRunTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TriggerRunTimestamp = &formatted
-}

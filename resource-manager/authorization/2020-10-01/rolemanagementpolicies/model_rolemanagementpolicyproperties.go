@@ -30,11 +30,6 @@ func (o *RoleManagementPolicyProperties) GetLastModifiedDateTimeAsTime() (*time.
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *RoleManagementPolicyProperties) SetLastModifiedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedDateTime = &formatted
-}
-
 var _ json.Unmarshaler = &RoleManagementPolicyProperties{}
 
 func (s *RoleManagementPolicyProperties) UnmarshalJSON(bytes []byte) error {

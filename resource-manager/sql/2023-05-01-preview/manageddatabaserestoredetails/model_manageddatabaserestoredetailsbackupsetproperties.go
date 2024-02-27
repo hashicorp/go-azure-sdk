@@ -25,19 +25,9 @@ func (o *ManagedDatabaseRestoreDetailsBackupSetProperties) GetRestoreFinishedTim
 	return dates.ParseAsFormat(o.RestoreFinishedTimestampUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ManagedDatabaseRestoreDetailsBackupSetProperties) SetRestoreFinishedTimestampUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.RestoreFinishedTimestampUtc = &formatted
-}
-
 func (o *ManagedDatabaseRestoreDetailsBackupSetProperties) GetRestoreStartedTimestampUtcAsTime() (*time.Time, error) {
 	if o.RestoreStartedTimestampUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RestoreStartedTimestampUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ManagedDatabaseRestoreDetailsBackupSetProperties) SetRestoreStartedTimestampUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.RestoreStartedTimestampUtc = &formatted
 }

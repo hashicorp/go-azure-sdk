@@ -22,8 +22,3 @@ func (o *OpenAIIntegrationProperties) GetLastRefreshAtAsTime() (*time.Time, erro
 	}
 	return dates.ParseAsFormat(o.LastRefreshAt, "2006-01-02T15:04:05Z07:00")
 }
-
-func (o *OpenAIIntegrationProperties) SetLastRefreshAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastRefreshAt = &formatted
-}

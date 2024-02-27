@@ -32,19 +32,9 @@ func (o *ReprotectAgentDetails) GetLastDiscoveryInUtcAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.LastDiscoveryInUtc, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ReprotectAgentDetails) SetLastDiscoveryInUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastDiscoveryInUtc = &formatted
-}
-
 func (o *ReprotectAgentDetails) GetLastHeartbeatUtcAsTime() (*time.Time, error) {
 	if o.LastHeartbeatUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastHeartbeatUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ReprotectAgentDetails) SetLastHeartbeatUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHeartbeatUtc = &formatted
 }

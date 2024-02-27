@@ -36,11 +36,6 @@ func (o *MailClusterEntityProperties) GetClusterQueryEndTimeAsTime() (*time.Time
 	return dates.ParseAsFormat(o.ClusterQueryEndTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *MailClusterEntityProperties) SetClusterQueryEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ClusterQueryEndTime = &formatted
-}
-
 func (o *MailClusterEntityProperties) GetClusterQueryStartTimeAsTime() (*time.Time, error) {
 	if o.ClusterQueryStartTime == nil {
 		return nil, nil
@@ -48,19 +43,9 @@ func (o *MailClusterEntityProperties) GetClusterQueryStartTimeAsTime() (*time.Ti
 	return dates.ParseAsFormat(o.ClusterQueryStartTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *MailClusterEntityProperties) SetClusterQueryStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ClusterQueryStartTime = &formatted
-}
-
 func (o *MailClusterEntityProperties) GetQueryTimeAsTime() (*time.Time, error) {
 	if o.QueryTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.QueryTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MailClusterEntityProperties) SetQueryTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.QueryTime = &formatted
 }

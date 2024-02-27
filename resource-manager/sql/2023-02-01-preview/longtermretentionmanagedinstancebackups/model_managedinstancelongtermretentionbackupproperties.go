@@ -26,21 +26,11 @@ func (o *ManagedInstanceLongTermRetentionBackupProperties) GetBackupExpirationTi
 	return dates.ParseAsFormat(o.BackupExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ManagedInstanceLongTermRetentionBackupProperties) SetBackupExpirationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.BackupExpirationTime = &formatted
-}
-
 func (o *ManagedInstanceLongTermRetentionBackupProperties) GetBackupTimeAsTime() (*time.Time, error) {
 	if o.BackupTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.BackupTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ManagedInstanceLongTermRetentionBackupProperties) SetBackupTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.BackupTime = &formatted
 }
 
 func (o *ManagedInstanceLongTermRetentionBackupProperties) GetDatabaseDeletionTimeAsTime() (*time.Time, error) {
@@ -50,19 +40,9 @@ func (o *ManagedInstanceLongTermRetentionBackupProperties) GetDatabaseDeletionTi
 	return dates.ParseAsFormat(o.DatabaseDeletionTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ManagedInstanceLongTermRetentionBackupProperties) SetDatabaseDeletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DatabaseDeletionTime = &formatted
-}
-
 func (o *ManagedInstanceLongTermRetentionBackupProperties) GetManagedInstanceCreateTimeAsTime() (*time.Time, error) {
 	if o.ManagedInstanceCreateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ManagedInstanceCreateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ManagedInstanceLongTermRetentionBackupProperties) SetManagedInstanceCreateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ManagedInstanceCreateTime = &formatted
 }

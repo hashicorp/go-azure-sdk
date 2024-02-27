@@ -28,19 +28,9 @@ func (o *DedicatedHostProperties) GetProvisioningTimeAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.ProvisioningTime, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *DedicatedHostProperties) SetProvisioningTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ProvisioningTime = &formatted
-}
-
 func (o *DedicatedHostProperties) GetTimeCreatedAsTime() (*time.Time, error) {
 	if o.TimeCreated == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TimeCreated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DedicatedHostProperties) SetTimeCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeCreated = &formatted
 }

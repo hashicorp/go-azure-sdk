@@ -53,11 +53,6 @@ func (o *TransactionProperties) GetDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Date, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *TransactionProperties) SetDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Date = &formatted
-}
-
 func (o *TransactionProperties) GetServicePeriodEndDateAsTime() (*time.Time, error) {
 	if o.ServicePeriodEndDate == nil {
 		return nil, nil
@@ -65,19 +60,9 @@ func (o *TransactionProperties) GetServicePeriodEndDateAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.ServicePeriodEndDate, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *TransactionProperties) SetServicePeriodEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ServicePeriodEndDate = &formatted
-}
-
 func (o *TransactionProperties) GetServicePeriodStartDateAsTime() (*time.Time, error) {
 	if o.ServicePeriodStartDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ServicePeriodStartDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TransactionProperties) SetServicePeriodStartDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ServicePeriodStartDate = &formatted
 }
