@@ -15,12 +15,12 @@ import (
 type ListSynchronizationsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ShareSubscriptionSynchronizationList
+	Model        *[]ShareSubscriptionSynchronization
 }
 
 type ListSynchronizationsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ShareSubscriptionSynchronizationList
+	Items              []ShareSubscriptionSynchronization
 }
 
 type ListSynchronizationsOperationOptions struct {
@@ -82,7 +82,7 @@ func (c ShareSubscriptionClient) ListSynchronizations(ctx context.Context, id Sh
 	}
 
 	var values struct {
-		Values *[]ShareSubscriptionSynchronizationList `json:"value"`
+		Values *[]ShareSubscriptionSynchronization `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -95,12 +95,12 @@ func (c ShareSubscriptionClient) ListSynchronizations(ctx context.Context, id Sh
 
 // ListSynchronizationsComplete retrieves all the results into a single object
 func (c ShareSubscriptionClient) ListSynchronizationsComplete(ctx context.Context, id ShareSubscriptionId, options ListSynchronizationsOperationOptions) (ListSynchronizationsCompleteResult, error) {
-	return c.ListSynchronizationsCompleteMatchingPredicate(ctx, id, options, ShareSubscriptionSynchronizationListOperationPredicate{})
+	return c.ListSynchronizationsCompleteMatchingPredicate(ctx, id, options, ShareSubscriptionSynchronizationOperationPredicate{})
 }
 
 // ListSynchronizationsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ShareSubscriptionClient) ListSynchronizationsCompleteMatchingPredicate(ctx context.Context, id ShareSubscriptionId, options ListSynchronizationsOperationOptions, predicate ShareSubscriptionSynchronizationListOperationPredicate) (result ListSynchronizationsCompleteResult, err error) {
-	items := make([]ShareSubscriptionSynchronizationList, 0)
+func (c ShareSubscriptionClient) ListSynchronizationsCompleteMatchingPredicate(ctx context.Context, id ShareSubscriptionId, options ListSynchronizationsOperationOptions, predicate ShareSubscriptionSynchronizationOperationPredicate) (result ListSynchronizationsCompleteResult, err error) {
+	items := make([]ShareSubscriptionSynchronization, 0)
 
 	resp, err := c.ListSynchronizations(ctx, id, options)
 	if err != nil {

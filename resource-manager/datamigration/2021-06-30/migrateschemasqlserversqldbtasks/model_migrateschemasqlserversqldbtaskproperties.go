@@ -79,7 +79,7 @@ func (s *MigrateSchemaSqlServerSqlDbTaskProperties) UnmarshalJSON(bytes []byte) 
 			}
 			output = append(output, impl)
 		}
-		s.Output = &output
+		s.Output = output
 	}
 	return nil
 }

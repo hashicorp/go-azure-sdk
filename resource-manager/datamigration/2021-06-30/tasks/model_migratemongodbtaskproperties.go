@@ -79,7 +79,7 @@ func (s *MigrateMongoDbTaskProperties) UnmarshalJSON(bytes []byte) error {
 			}
 			output = append(output, impl)
 		}
-		s.Output = &output
+		s.Output = output
 	}
 	return nil
 }

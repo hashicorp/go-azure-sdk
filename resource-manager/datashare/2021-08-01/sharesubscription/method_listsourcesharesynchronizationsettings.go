@@ -2,6 +2,7 @@ package sharesubscription
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -15,12 +16,12 @@ import (
 type ListSourceShareSynchronizationSettingsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]SourceShareSynchronizationSettingList
+	Model        *[]SourceShareSynchronizationSetting
 }
 
 type ListSourceShareSynchronizationSettingsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []SourceShareSynchronizationSettingList
+	Items              []SourceShareSynchronizationSetting
 }
 
 // ListSourceShareSynchronizationSettings ...
@@ -50,25 +51,36 @@ func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettings(ctx cont
 	}
 
 	var values struct {
-		Values *[]SourceShareSynchronizationSettingList `json:"value"`
+		Values *[]json.RawMessage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	result.Model = values.Values
+	temp := make([]SourceShareSynchronizationSetting, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := unmarshalSourceShareSynchronizationSettingImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for SourceShareSynchronizationSetting (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
 
 	return
 }
 
 // ListSourceShareSynchronizationSettingsComplete retrieves all the results into a single object
 func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettingsComplete(ctx context.Context, id ShareSubscriptionId) (ListSourceShareSynchronizationSettingsCompleteResult, error) {
-	return c.ListSourceShareSynchronizationSettingsCompleteMatchingPredicate(ctx, id, SourceShareSynchronizationSettingListOperationPredicate{})
+	return c.ListSourceShareSynchronizationSettingsCompleteMatchingPredicate(ctx, id, SourceShareSynchronizationSettingOperationPredicate{})
 }
 
 // ListSourceShareSynchronizationSettingsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettingsCompleteMatchingPredicate(ctx context.Context, id ShareSubscriptionId, predicate SourceShareSynchronizationSettingListOperationPredicate) (result ListSourceShareSynchronizationSettingsCompleteResult, err error) {
-	items := make([]SourceShareSynchronizationSettingList, 0)
+func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettingsCompleteMatchingPredicate(ctx context.Context, id ShareSubscriptionId, predicate SourceShareSynchronizationSettingOperationPredicate) (result ListSourceShareSynchronizationSettingsCompleteResult, err error) {
+	items := make([]SourceShareSynchronizationSetting, 0)
 
 	resp, err := c.ListSourceShareSynchronizationSettings(ctx, id)
 	if err != nil {

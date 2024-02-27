@@ -35,7 +35,7 @@ func (s *ChargesListResult) UnmarshalJSON(bytes []byte) error {
 			}
 			output = append(output, impl)
 		}
-		s.Value = &output
+		s.Value = output
 	}
 	return nil
 }

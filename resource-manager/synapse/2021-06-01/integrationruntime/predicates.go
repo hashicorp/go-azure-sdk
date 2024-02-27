@@ -30,3 +30,11 @@ func (p IntegrationRuntimeResourceOperationPredicate) Matches(input IntegrationR
 
 	return true
 }
+
+type SsisObjectMetadataOperationPredicate struct {
+}
+
+func (p SsisObjectMetadataOperationPredicate) Matches(input SsisObjectMetadata) bool {
+
+	return true
+}

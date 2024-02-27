@@ -15,12 +15,12 @@ import (
 type ExpandOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ExpandMsixImageList
+	Model        *[]ExpandMsixImage
 }
 
 type ExpandCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ExpandMsixImageList
+	Items              []ExpandMsixImage
 }
 
 // Expand ...
@@ -50,7 +50,7 @@ func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXIm
 	}
 
 	var values struct {
-		Values *[]ExpandMsixImageList `json:"value"`
+		Values *[]ExpandMsixImage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXIm
 
 // ExpandComplete retrieves all the results into a single object
 func (c MsixImageClient) ExpandComplete(ctx context.Context, id HostPoolId, input MSIXImageURI) (ExpandCompleteResult, error) {
-	return c.ExpandCompleteMatchingPredicate(ctx, id, input, ExpandMsixImageListOperationPredicate{})
+	return c.ExpandCompleteMatchingPredicate(ctx, id, input, ExpandMsixImageOperationPredicate{})
 }
 
 // ExpandCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id HostPoolId, input MSIXImageURI, predicate ExpandMsixImageListOperationPredicate) (result ExpandCompleteResult, err error) {
-	items := make([]ExpandMsixImageList, 0)
+func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id HostPoolId, input MSIXImageURI, predicate ExpandMsixImageOperationPredicate) (result ExpandCompleteResult, err error) {
+	items := make([]ExpandMsixImage, 0)
 
 	resp, err := c.Expand(ctx, id, input)
 	if err != nil {

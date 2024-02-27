@@ -15,12 +15,12 @@ import (
 type ListStaticSiteUsersOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]StaticSiteUserCollection
+	Model        *[]StaticSiteUserARMResource
 }
 
 type ListStaticSiteUsersCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []StaticSiteUserCollection
+	Items              []StaticSiteUserARMResource
 }
 
 // ListStaticSiteUsers ...
@@ -50,7 +50,7 @@ func (c StaticSitesClient) ListStaticSiteUsers(ctx context.Context, id AuthProvi
 	}
 
 	var values struct {
-		Values *[]StaticSiteUserCollection `json:"value"`
+		Values *[]StaticSiteUserARMResource `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c StaticSitesClient) ListStaticSiteUsers(ctx context.Context, id AuthProvi
 
 // ListStaticSiteUsersComplete retrieves all the results into a single object
 func (c StaticSitesClient) ListStaticSiteUsersComplete(ctx context.Context, id AuthProviderId) (ListStaticSiteUsersCompleteResult, error) {
-	return c.ListStaticSiteUsersCompleteMatchingPredicate(ctx, id, StaticSiteUserCollectionOperationPredicate{})
+	return c.ListStaticSiteUsersCompleteMatchingPredicate(ctx, id, StaticSiteUserARMResourceOperationPredicate{})
 }
 
 // ListStaticSiteUsersCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c StaticSitesClient) ListStaticSiteUsersCompleteMatchingPredicate(ctx context.Context, id AuthProviderId, predicate StaticSiteUserCollectionOperationPredicate) (result ListStaticSiteUsersCompleteResult, err error) {
-	items := make([]StaticSiteUserCollection, 0)
+func (c StaticSitesClient) ListStaticSiteUsersCompleteMatchingPredicate(ctx context.Context, id AuthProviderId, predicate StaticSiteUserARMResourceOperationPredicate) (result ListStaticSiteUsersCompleteResult, err error) {
+	items := make([]StaticSiteUserARMResource, 0)
 
 	resp, err := c.ListStaticSiteUsers(ctx, id)
 	if err != nil {

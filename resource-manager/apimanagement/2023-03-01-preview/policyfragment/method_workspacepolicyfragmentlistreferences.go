@@ -15,7 +15,12 @@ import (
 type WorkspacePolicyFragmentListReferencesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ResourceCollection
+	Model        *[]Resource
+}
+
+type WorkspacePolicyFragmentListReferencesCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []Resource
 }
 
 type WorkspacePolicyFragmentListReferencesOperationOptions struct {
@@ -67,7 +72,7 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferences(ctx context.
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -76,12 +81,43 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferences(ctx context.
 		return
 	}
 
-	var model ResourceCollection
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]Resource `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// WorkspacePolicyFragmentListReferencesComplete retrieves all the results into a single object
+func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferencesComplete(ctx context.Context, id WorkspacePolicyFragmentId, options WorkspacePolicyFragmentListReferencesOperationOptions) (WorkspacePolicyFragmentListReferencesCompleteResult, error) {
+	return c.WorkspacePolicyFragmentListReferencesCompleteMatchingPredicate(ctx, id, options, ResourceOperationPredicate{})
+}
+
+// WorkspacePolicyFragmentListReferencesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferencesCompleteMatchingPredicate(ctx context.Context, id WorkspacePolicyFragmentId, options WorkspacePolicyFragmentListReferencesOperationOptions, predicate ResourceOperationPredicate) (result WorkspacePolicyFragmentListReferencesCompleteResult, err error) {
+	items := make([]Resource, 0)
+
+	resp, err := c.WorkspacePolicyFragmentListReferences(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = WorkspacePolicyFragmentListReferencesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

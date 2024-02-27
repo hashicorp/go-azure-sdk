@@ -49,7 +49,7 @@ func (s *RoleManagementPolicyAssignmentProperties) UnmarshalJSON(bytes []byte) e
 			}
 			output = append(output, impl)
 		}
-		s.EffectiveRules = &output
+		s.EffectiveRules = output
 	}
 	return nil
 }

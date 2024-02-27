@@ -15,7 +15,12 @@ import (
 type AddByInvoiceSectionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *BillingRoleAssignmentListResult
+	Model        *[]BillingRoleAssignment
+}
+
+type AddByInvoiceSectionCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BillingRoleAssignment
 }
 
 // AddByInvoiceSection ...
@@ -34,12 +39,8 @@ func (c BillingRoleAssignmentsClient) AddByInvoiceSection(ctx context.Context, i
 		return
 	}
 
-	if err = req.Marshal(input); err != nil {
-		return
-	}
-
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -48,12 +49,43 @@ func (c BillingRoleAssignmentsClient) AddByInvoiceSection(ctx context.Context, i
 		return
 	}
 
-	var model BillingRoleAssignmentListResult
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BillingRoleAssignment `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// AddByInvoiceSectionComplete retrieves all the results into a single object
+func (c BillingRoleAssignmentsClient) AddByInvoiceSectionComplete(ctx context.Context, id InvoiceSectionId, input BillingRoleAssignmentPayload) (AddByInvoiceSectionCompleteResult, error) {
+	return c.AddByInvoiceSectionCompleteMatchingPredicate(ctx, id, input, BillingRoleAssignmentOperationPredicate{})
+}
+
+// AddByInvoiceSectionCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BillingRoleAssignmentsClient) AddByInvoiceSectionCompleteMatchingPredicate(ctx context.Context, id InvoiceSectionId, input BillingRoleAssignmentPayload, predicate BillingRoleAssignmentOperationPredicate) (result AddByInvoiceSectionCompleteResult, err error) {
+	items := make([]BillingRoleAssignment, 0)
+
+	resp, err := c.AddByInvoiceSection(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = AddByInvoiceSectionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

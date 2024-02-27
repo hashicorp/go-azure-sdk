@@ -15,7 +15,12 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SsisObjectMetadataListResponse
+	Model        *[]SsisObjectMetadata
+}
+
+type GetCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []SsisObjectMetadata
 }
 
 // Get ...
@@ -34,12 +39,8 @@ func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id Inte
 		return
 	}
 
-	if err = req.Marshal(input); err != nil {
-		return
-	}
-
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -48,12 +49,43 @@ func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id Inte
 		return
 	}
 
-	var model SsisObjectMetadataListResponse
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]SsisObjectMetadata `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GetComplete retrieves all the results into a single object
+func (c IntegrationRuntimeObjectMetadataClient) GetComplete(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, input, SsisObjectMetadataOperationPredicate{})
+}
+
+// GetCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c IntegrationRuntimeObjectMetadataClient) GetCompleteMatchingPredicate(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest, predicate SsisObjectMetadataOperationPredicate) (result GetCompleteResult, err error) {
+	items := make([]SsisObjectMetadata, 0)
+
+	resp, err := c.Get(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

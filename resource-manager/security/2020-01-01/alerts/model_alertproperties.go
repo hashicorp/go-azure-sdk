@@ -116,7 +116,7 @@ func (s *AlertProperties) UnmarshalJSON(bytes []byte) error {
 			}
 			output = append(output, impl)
 		}
-		s.ResourceIdentifiers = &output
+		s.ResourceIdentifiers = output
 	}
 	return nil
 }

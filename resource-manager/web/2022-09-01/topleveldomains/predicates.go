@@ -3,13 +3,28 @@ package topleveldomains
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type TldLegalAgreementCollectionOperationPredicate struct {
-	NextLink *string
+type TldLegalAgreementOperationPredicate struct {
+	AgreementKey *string
+	Content      *string
+	Title        *string
+	Url          *string
 }
 
-func (p TldLegalAgreementCollectionOperationPredicate) Matches(input TldLegalAgreementCollection) bool {
+func (p TldLegalAgreementOperationPredicate) Matches(input TldLegalAgreement) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.AgreementKey != nil && *p.AgreementKey != input.AgreementKey {
+		return false
+	}
+
+	if p.Content != nil && *p.Content != input.Content {
+		return false
+	}
+
+	if p.Title != nil && *p.Title != input.Title {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
 		return false
 	}
 

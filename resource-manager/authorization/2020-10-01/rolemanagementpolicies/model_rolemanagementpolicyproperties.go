@@ -66,7 +66,7 @@ func (s *RoleManagementPolicyProperties) UnmarshalJSON(bytes []byte) error {
 			}
 			output = append(output, impl)
 		}
-		s.EffectiveRules = &output
+		s.EffectiveRules = output
 	}
 
 	if v, ok := temp["rules"]; ok {
