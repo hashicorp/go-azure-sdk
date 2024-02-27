@@ -36,3 +36,8 @@ func (o *RoleAssignmentScheduleRequestProperties) GetCreatedOnAsTime() (*time.Ti
 	}
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *RoleAssignmentScheduleRequestProperties) SetCreatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedOn = &formatted
+}

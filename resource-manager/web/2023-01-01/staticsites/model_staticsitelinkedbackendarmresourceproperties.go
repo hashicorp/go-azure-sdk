@@ -22,3 +22,8 @@ func (o *StaticSiteLinkedBackendARMResourceProperties) GetCreatedOnAsTime() (*ti
 	}
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *StaticSiteLinkedBackendARMResourceProperties) SetCreatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedOn = &formatted
+}

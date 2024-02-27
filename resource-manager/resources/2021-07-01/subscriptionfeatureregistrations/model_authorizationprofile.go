@@ -24,9 +24,19 @@ func (o *AuthorizationProfile) GetApprovedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.ApprovedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AuthorizationProfile) SetApprovedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ApprovedTime = &formatted
+}
+
 func (o *AuthorizationProfile) GetRequestedTimeAsTime() (*time.Time, error) {
 	if o.RequestedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RequestedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *AuthorizationProfile) SetRequestedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RequestedTime = &formatted
 }

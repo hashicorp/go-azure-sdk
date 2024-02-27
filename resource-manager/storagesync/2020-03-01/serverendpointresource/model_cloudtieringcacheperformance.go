@@ -22,3 +22,8 @@ func (o *CloudTieringCachePerformance) GetLastUpdatedTimestampAsTime() (*time.Ti
 	}
 	return dates.ParseAsFormat(o.LastUpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *CloudTieringCachePerformance) SetLastUpdatedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedTimestamp = &formatted
+}

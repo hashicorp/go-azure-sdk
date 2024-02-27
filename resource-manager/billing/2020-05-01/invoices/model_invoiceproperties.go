@@ -44,11 +44,21 @@ func (o *InvoiceProperties) GetDueDateAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.DueDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *InvoiceProperties) SetDueDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.DueDate = &formatted
+}
+
 func (o *InvoiceProperties) GetInvoiceDateAsTime() (*time.Time, error) {
 	if o.InvoiceDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.InvoiceDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *InvoiceProperties) SetInvoiceDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.InvoiceDate = &formatted
 }
 
 func (o *InvoiceProperties) GetInvoicePeriodEndDateAsTime() (*time.Time, error) {
@@ -58,9 +68,19 @@ func (o *InvoiceProperties) GetInvoicePeriodEndDateAsTime() (*time.Time, error) 
 	return dates.ParseAsFormat(o.InvoicePeriodEndDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *InvoiceProperties) SetInvoicePeriodEndDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.InvoicePeriodEndDate = &formatted
+}
+
 func (o *InvoiceProperties) GetInvoicePeriodStartDateAsTime() (*time.Time, error) {
 	if o.InvoicePeriodStartDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.InvoicePeriodStartDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *InvoiceProperties) SetInvoicePeriodStartDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.InvoicePeriodStartDate = &formatted
 }

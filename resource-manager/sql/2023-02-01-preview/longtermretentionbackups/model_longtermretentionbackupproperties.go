@@ -28,11 +28,21 @@ func (o *LongTermRetentionBackupProperties) GetBackupExpirationTimeAsTime() (*ti
 	return dates.ParseAsFormat(o.BackupExpirationTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *LongTermRetentionBackupProperties) SetBackupExpirationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.BackupExpirationTime = &formatted
+}
+
 func (o *LongTermRetentionBackupProperties) GetBackupTimeAsTime() (*time.Time, error) {
 	if o.BackupTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.BackupTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *LongTermRetentionBackupProperties) SetBackupTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.BackupTime = &formatted
 }
 
 func (o *LongTermRetentionBackupProperties) GetDatabaseDeletionTimeAsTime() (*time.Time, error) {
@@ -42,9 +52,19 @@ func (o *LongTermRetentionBackupProperties) GetDatabaseDeletionTimeAsTime() (*ti
 	return dates.ParseAsFormat(o.DatabaseDeletionTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *LongTermRetentionBackupProperties) SetDatabaseDeletionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.DatabaseDeletionTime = &formatted
+}
+
 func (o *LongTermRetentionBackupProperties) GetServerCreateTimeAsTime() (*time.Time, error) {
 	if o.ServerCreateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ServerCreateTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *LongTermRetentionBackupProperties) SetServerCreateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ServerCreateTime = &formatted
 }

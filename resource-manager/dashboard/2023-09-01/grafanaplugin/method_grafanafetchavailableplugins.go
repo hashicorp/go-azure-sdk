@@ -15,7 +15,12 @@ import (
 type GrafanaFetchAvailablePluginsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *GrafanaAvailablePluginListResponse
+	Model        *[]GrafanaAvailablePlugin
+}
+
+type GrafanaFetchAvailablePluginsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []GrafanaAvailablePlugin
 }
 
 // GrafanaFetchAvailablePlugins ...
@@ -35,7 +40,7 @@ func (c GrafanaPluginClient) GrafanaFetchAvailablePlugins(ctx context.Context, i
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -44,12 +49,43 @@ func (c GrafanaPluginClient) GrafanaFetchAvailablePlugins(ctx context.Context, i
 		return
 	}
 
-	var model GrafanaAvailablePluginListResponse
-	result.Model = &model
-
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]GrafanaAvailablePlugin `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// GrafanaFetchAvailablePluginsComplete retrieves all the results into a single object
+func (c GrafanaPluginClient) GrafanaFetchAvailablePluginsComplete(ctx context.Context, id GrafanaId) (GrafanaFetchAvailablePluginsCompleteResult, error) {
+	return c.GrafanaFetchAvailablePluginsCompleteMatchingPredicate(ctx, id, GrafanaAvailablePluginOperationPredicate{})
+}
+
+// GrafanaFetchAvailablePluginsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c GrafanaPluginClient) GrafanaFetchAvailablePluginsCompleteMatchingPredicate(ctx context.Context, id GrafanaId, predicate GrafanaAvailablePluginOperationPredicate) (result GrafanaFetchAvailablePluginsCompleteResult, err error) {
+	items := make([]GrafanaAvailablePlugin, 0)
+
+	resp, err := c.GrafanaFetchAvailablePlugins(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GrafanaFetchAvailablePluginsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

@@ -15,12 +15,12 @@ import (
 type QueryByFactoryOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]QueryDataFlowDebugSessionsResponse
+	Model        *[]DataFlowDebugSessionInfo
 }
 
 type QueryByFactoryCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []QueryDataFlowDebugSessionsResponse
+	Items              []DataFlowDebugSessionInfo
 }
 
 // QueryByFactory ...
@@ -50,7 +50,7 @@ func (c DataFlowDebugSessionClient) QueryByFactory(ctx context.Context, id Facto
 	}
 
 	var values struct {
-		Values *[]QueryDataFlowDebugSessionsResponse `json:"value"`
+		Values *[]DataFlowDebugSessionInfo `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c DataFlowDebugSessionClient) QueryByFactory(ctx context.Context, id Facto
 
 // QueryByFactoryComplete retrieves all the results into a single object
 func (c DataFlowDebugSessionClient) QueryByFactoryComplete(ctx context.Context, id FactoryId) (QueryByFactoryCompleteResult, error) {
-	return c.QueryByFactoryCompleteMatchingPredicate(ctx, id, QueryDataFlowDebugSessionsResponseOperationPredicate{})
+	return c.QueryByFactoryCompleteMatchingPredicate(ctx, id, DataFlowDebugSessionInfoOperationPredicate{})
 }
 
 // QueryByFactoryCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DataFlowDebugSessionClient) QueryByFactoryCompleteMatchingPredicate(ctx context.Context, id FactoryId, predicate QueryDataFlowDebugSessionsResponseOperationPredicate) (result QueryByFactoryCompleteResult, err error) {
-	items := make([]QueryDataFlowDebugSessionsResponse, 0)
+func (c DataFlowDebugSessionClient) QueryByFactoryCompleteMatchingPredicate(ctx context.Context, id FactoryId, predicate DataFlowDebugSessionInfoOperationPredicate) (result QueryByFactoryCompleteResult, err error) {
+	items := make([]DataFlowDebugSessionInfo, 0)
 
 	resp, err := c.QueryByFactory(ctx, id)
 	if err != nil {

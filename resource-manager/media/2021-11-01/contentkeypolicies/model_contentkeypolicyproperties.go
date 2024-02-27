@@ -24,9 +24,19 @@ func (o *ContentKeyPolicyProperties) GetCreatedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ContentKeyPolicyProperties) SetCreatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Created = &formatted
+}
+
 func (o *ContentKeyPolicyProperties) GetLastModifiedAsTime() (*time.Time, error) {
 	if o.LastModified == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastModified, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ContentKeyPolicyProperties) SetLastModifiedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModified = &formatted
 }

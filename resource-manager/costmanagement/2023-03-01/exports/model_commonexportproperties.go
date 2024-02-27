@@ -24,3 +24,8 @@ func (o *CommonExportProperties) GetNextRunTimeEstimateAsTime() (*time.Time, err
 	}
 	return dates.ParseAsFormat(o.NextRunTimeEstimate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *CommonExportProperties) SetNextRunTimeEstimateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.NextRunTimeEstimate = &formatted
+}

@@ -15,14 +15,14 @@ import (
 
 type ListOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *[]RecoveryPointResourceList
+	Model        *[]RecoveryPointResource
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListOperationResponse, error)
 }
 
 type ListCompleteResult struct {
-	Items []RecoveryPointResourceList
+	Items []RecoveryPointResource
 }
 
 func (r ListOperationResponse) HasMore() bool {
@@ -104,8 +104,8 @@ func (c RecoveryPointsRecommendedForMoveClient) preparerForListWithNextLink(ctx 
 // closes the http.Response Body.
 func (c RecoveryPointsRecommendedForMoveClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
-		Values   []RecoveryPointResourceList `json:"value"`
-		NextLink *string                     `json:"nextLink"`
+		Values   []RecoveryPointResource `json:"value"`
+		NextLink *string                 `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -144,12 +144,12 @@ func (c RecoveryPointsRecommendedForMoveClient) responderForList(resp *http.Resp
 
 // ListComplete retrieves all of the results into a single object
 func (c RecoveryPointsRecommendedForMoveClient) ListComplete(ctx context.Context, id ProtectedItemId, input ListRecoveryPointsRecommendedForMoveRequest) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, input, RecoveryPointResourceListOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, input, RecoveryPointResourceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c RecoveryPointsRecommendedForMoveClient) ListCompleteMatchingPredicate(ctx context.Context, id ProtectedItemId, input ListRecoveryPointsRecommendedForMoveRequest, predicate RecoveryPointResourceListOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]RecoveryPointResourceList, 0)
+func (c RecoveryPointsRecommendedForMoveClient) ListCompleteMatchingPredicate(ctx context.Context, id ProtectedItemId, input ListRecoveryPointsRecommendedForMoveRequest, predicate RecoveryPointResourceOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]RecoveryPointResource, 0)
 
 	page, err := c.List(ctx, id, input)
 	if err != nil {

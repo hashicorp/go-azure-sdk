@@ -15,12 +15,12 @@ import (
 type ListSasTokensOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]SasTokenInformationListResult
+	Model        *[]SasTokenInformation
 }
 
 type ListSasTokensCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []SasTokenInformationListResult
+	Items              []SasTokenInformation
 }
 
 // ListSasTokens ...
@@ -50,7 +50,7 @@ func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId
 	}
 
 	var values struct {
-		Values *[]SasTokenInformationListResult `json:"value"`
+		Values *[]SasTokenInformation `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId
 
 // ListSasTokensComplete retrieves all the results into a single object
 func (c StorageAccountsClient) ListSasTokensComplete(ctx context.Context, id ContainerId) (ListSasTokensCompleteResult, error) {
-	return c.ListSasTokensCompleteMatchingPredicate(ctx, id, SasTokenInformationListResultOperationPredicate{})
+	return c.ListSasTokensCompleteMatchingPredicate(ctx, id, SasTokenInformationOperationPredicate{})
 }
 
 // ListSasTokensCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c StorageAccountsClient) ListSasTokensCompleteMatchingPredicate(ctx context.Context, id ContainerId, predicate SasTokenInformationListResultOperationPredicate) (result ListSasTokensCompleteResult, err error) {
-	items := make([]SasTokenInformationListResult, 0)
+func (c StorageAccountsClient) ListSasTokensCompleteMatchingPredicate(ctx context.Context, id ContainerId, predicate SasTokenInformationOperationPredicate) (result ListSasTokensCompleteResult, err error) {
+	items := make([]SasTokenInformation, 0)
 
 	resp, err := c.ListSasTokens(ctx, id)
 	if err != nil {

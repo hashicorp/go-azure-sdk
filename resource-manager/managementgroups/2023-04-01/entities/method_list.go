@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]EntityListResult
+	Model        *[]EntityInfo
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []EntityListResult
+	Items              []EntityInfo
 }
 
 type ListOperationOptions struct {
@@ -105,7 +105,7 @@ func (c EntitiesClient) List(ctx context.Context, options ListOperationOptions) 
 	}
 
 	var values struct {
-		Values *[]EntityListResult `json:"value"`
+		Values *[]EntityInfo `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -118,12 +118,12 @@ func (c EntitiesClient) List(ctx context.Context, options ListOperationOptions) 
 
 // ListComplete retrieves all the results into a single object
 func (c EntitiesClient) ListComplete(ctx context.Context, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, options, EntityListResultOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, options, EntityInfoOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c EntitiesClient) ListCompleteMatchingPredicate(ctx context.Context, options ListOperationOptions, predicate EntityListResultOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]EntityListResult, 0)
+func (c EntitiesClient) ListCompleteMatchingPredicate(ctx context.Context, options ListOperationOptions, predicate EntityInfoOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]EntityInfo, 0)
 
 	resp, err := c.List(ctx, options)
 	if err != nil {

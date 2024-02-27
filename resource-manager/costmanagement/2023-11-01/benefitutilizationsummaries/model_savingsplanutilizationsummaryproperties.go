@@ -26,3 +26,8 @@ func (o *SavingsPlanUtilizationSummaryProperties) GetUsageDateAsTime() (*time.Ti
 	}
 	return dates.ParseAsFormat(o.UsageDate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *SavingsPlanUtilizationSummaryProperties) SetUsageDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UsageDate = &formatted
+}

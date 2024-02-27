@@ -34,6 +34,11 @@ func (o *MetricAlertPropertiesPatch) GetLastUpdatedTimeAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.LastUpdatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *MetricAlertPropertiesPatch) SetLastUpdatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedTime = &formatted
+}
+
 var _ json.Unmarshaler = &MetricAlertPropertiesPatch{}
 
 func (s *MetricAlertPropertiesPatch) UnmarshalJSON(bytes []byte) error {

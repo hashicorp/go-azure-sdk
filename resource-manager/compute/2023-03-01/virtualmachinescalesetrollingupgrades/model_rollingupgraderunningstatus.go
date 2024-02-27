@@ -23,9 +23,19 @@ func (o *RollingUpgradeRunningStatus) GetLastActionTimeAsTime() (*time.Time, err
 	return dates.ParseAsFormat(o.LastActionTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RollingUpgradeRunningStatus) SetLastActionTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastActionTime = &formatted
+}
+
 func (o *RollingUpgradeRunningStatus) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RollingUpgradeRunningStatus) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

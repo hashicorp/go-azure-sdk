@@ -22,9 +22,19 @@ func (o *ExperimentStatusProperties) GetCreatedDateUtcAsTime() (*time.Time, erro
 	return dates.ParseAsFormat(o.CreatedDateUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ExperimentStatusProperties) SetCreatedDateUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedDateUtc = &formatted
+}
+
 func (o *ExperimentStatusProperties) GetEndDateUtcAsTime() (*time.Time, error) {
 	if o.EndDateUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EndDateUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ExperimentStatusProperties) SetEndDateUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndDateUtc = &formatted
 }

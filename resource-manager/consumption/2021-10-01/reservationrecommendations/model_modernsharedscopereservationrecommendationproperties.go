@@ -41,6 +41,11 @@ func (o *ModernSharedScopeReservationRecommendationProperties) GetFirstUsageDate
 	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ModernSharedScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.FirstUsageDate = &formatted
+}
+
 var _ json.Marshaler = ModernSharedScopeReservationRecommendationProperties{}
 
 func (s ModernSharedScopeReservationRecommendationProperties) MarshalJSON() ([]byte, error) {

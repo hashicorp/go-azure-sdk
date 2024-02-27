@@ -24,9 +24,19 @@ func (o *ContainerState) GetFinishTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.FinishTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ContainerState) SetFinishTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.FinishTime = &formatted
+}
+
 func (o *ContainerState) GetStartTimeAsTime() (*time.Time, error) {
 	if o.StartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ContainerState) SetStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTime = &formatted
 }

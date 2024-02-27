@@ -24,9 +24,19 @@ func (o *ExperimentExecutionActionTargetDetailsProperties) GetTargetCompletedTim
 	return dates.ParseAsFormat(o.TargetCompletedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ExperimentExecutionActionTargetDetailsProperties) SetTargetCompletedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TargetCompletedTime = &formatted
+}
+
 func (o *ExperimentExecutionActionTargetDetailsProperties) GetTargetFailedTimeAsTime() (*time.Time, error) {
 	if o.TargetFailedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.TargetFailedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ExperimentExecutionActionTargetDetailsProperties) SetTargetFailedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TargetFailedTime = &formatted
 }

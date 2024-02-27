@@ -29,3 +29,8 @@ func (o *ClusterReportedProperties) GetLastUpdatedAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.LastUpdated, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *ClusterReportedProperties) SetLastUpdatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdated = &formatted
+}

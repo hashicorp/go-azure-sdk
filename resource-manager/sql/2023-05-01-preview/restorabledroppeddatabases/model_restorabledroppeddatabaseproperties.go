@@ -26,6 +26,11 @@ func (o *RestorableDroppedDatabaseProperties) GetCreationDateAsTime() (*time.Tim
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RestorableDroppedDatabaseProperties) SetCreationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationDate = &formatted
+}
+
 func (o *RestorableDroppedDatabaseProperties) GetDeletionDateAsTime() (*time.Time, error) {
 	if o.DeletionDate == nil {
 		return nil, nil
@@ -33,9 +38,19 @@ func (o *RestorableDroppedDatabaseProperties) GetDeletionDateAsTime() (*time.Tim
 	return dates.ParseAsFormat(o.DeletionDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RestorableDroppedDatabaseProperties) SetDeletionDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.DeletionDate = &formatted
+}
+
 func (o *RestorableDroppedDatabaseProperties) GetEarliestRestoreDateAsTime() (*time.Time, error) {
 	if o.EarliestRestoreDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.EarliestRestoreDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RestorableDroppedDatabaseProperties) SetEarliestRestoreDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EarliestRestoreDate = &formatted
 }

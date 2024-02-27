@@ -33,3 +33,8 @@ func (o *ClusterNode) GetLastLicensingTimestampAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.LastLicensingTimestamp, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *ClusterNode) SetLastLicensingTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastLicensingTimestamp = &formatted
+}

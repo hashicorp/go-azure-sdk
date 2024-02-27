@@ -26,3 +26,8 @@ func (o *WindowsJavaContainerSettings) GetEndOfLifeDateAsTime() (*time.Time, err
 	}
 	return dates.ParseAsFormat(o.EndOfLifeDate, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *WindowsJavaContainerSettings) SetEndOfLifeDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndOfLifeDate = &formatted
+}

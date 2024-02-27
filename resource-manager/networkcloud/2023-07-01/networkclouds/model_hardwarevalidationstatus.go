@@ -20,3 +20,8 @@ func (o *HardwareValidationStatus) GetLastValidationTimeAsTime() (*time.Time, er
 	}
 	return dates.ParseAsFormat(o.LastValidationTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *HardwareValidationStatus) SetLastValidationTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastValidationTime = &formatted
+}

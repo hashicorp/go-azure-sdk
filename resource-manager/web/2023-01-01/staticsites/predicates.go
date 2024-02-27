@@ -31,19 +31,6 @@ func (p DatabaseConnectionOperationPredicate) Matches(input DatabaseConnection) 
 	return true
 }
 
-type DatabaseConnectionCollectionOperationPredicate struct {
-	NextLink *string
-}
-
-func (p DatabaseConnectionCollectionOperationPredicate) Matches(input DatabaseConnectionCollection) bool {
-
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
-		return false
-	}
-
-	return true
-}
-
 type RemotePrivateEndpointConnectionARMResourceOperationPredicate struct {
 	Id   *string
 	Kind *string
@@ -245,13 +232,28 @@ func (p StaticSiteLinkedBackendARMResourceOperationPredicate) Matches(input Stat
 	return true
 }
 
-type StaticSiteUserCollectionOperationPredicate struct {
-	NextLink *string
+type StaticSiteUserARMResourceOperationPredicate struct {
+	Id   *string
+	Kind *string
+	Name *string
+	Type *string
 }
 
-func (p StaticSiteUserCollectionOperationPredicate) Matches(input StaticSiteUserCollection) bool {
+func (p StaticSiteUserARMResourceOperationPredicate) Matches(input StaticSiteUserARMResource) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

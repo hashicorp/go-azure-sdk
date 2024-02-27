@@ -3,26 +3,46 @@ package monitors
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type AppServiceListResponseOperationPredicate struct {
-	NextLink *string
+type AppServiceInfoOperationPredicate struct {
+	HostGroup  *string
+	HostName   *string
+	ResourceId *string
+	Version    *string
 }
 
-func (p AppServiceListResponseOperationPredicate) Matches(input AppServiceListResponse) bool {
+func (p AppServiceInfoOperationPredicate) Matches(input AppServiceInfo) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.HostGroup != nil && (input.HostGroup == nil || *p.HostGroup != *input.HostGroup) {
+		return false
+	}
+
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
 		return false
 	}
 
 	return true
 }
 
-type LinkableEnvironmentListResponseOperationPredicate struct {
-	NextLink *string
+type LinkableEnvironmentResponseOperationPredicate struct {
+	EnvironmentId   *string
+	EnvironmentName *string
 }
 
-func (p LinkableEnvironmentListResponseOperationPredicate) Matches(input LinkableEnvironmentListResponse) bool {
+func (p LinkableEnvironmentResponseOperationPredicate) Matches(input LinkableEnvironmentResponse) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.EnvironmentId != nil && (input.EnvironmentId == nil || *p.EnvironmentId != *input.EnvironmentId) {
+		return false
+	}
+
+	if p.EnvironmentName != nil && (input.EnvironmentName == nil || *p.EnvironmentName != *input.EnvironmentName) {
 		return false
 	}
 
@@ -57,26 +77,51 @@ func (p MonitorResourceOperationPredicate) Matches(input MonitorResource) bool {
 	return true
 }
 
-type MonitoredResourceListResponseOperationPredicate struct {
-	NextLink *string
+type MonitoredResourceOperationPredicate struct {
+	Id                     *string
+	ReasonForLogsStatus    *string
+	ReasonForMetricsStatus *string
 }
 
-func (p MonitoredResourceListResponseOperationPredicate) Matches(input MonitoredResourceListResponse) bool {
+func (p MonitoredResourceOperationPredicate) Matches(input MonitoredResource) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil || *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
+		return false
+	}
+
+	if p.ReasonForMetricsStatus != nil && (input.ReasonForMetricsStatus == nil || *p.ReasonForMetricsStatus != *input.ReasonForMetricsStatus) {
 		return false
 	}
 
 	return true
 }
 
-type VMHostsListResponseOperationPredicate struct {
-	NextLink *string
+type VMInfoOperationPredicate struct {
+	HostGroup  *string
+	HostName   *string
+	ResourceId *string
+	Version    *string
 }
 
-func (p VMHostsListResponseOperationPredicate) Matches(input VMHostsListResponse) bool {
+func (p VMInfoOperationPredicate) Matches(input VMInfo) bool {
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.HostGroup != nil && (input.HostGroup == nil || *p.HostGroup != *input.HostGroup) {
+		return false
+	}
+
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
 		return false
 	}
 

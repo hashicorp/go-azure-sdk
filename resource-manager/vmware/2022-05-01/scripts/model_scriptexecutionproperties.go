@@ -36,6 +36,11 @@ func (o *ScriptExecutionProperties) GetFinishedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.FinishedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ScriptExecutionProperties) SetFinishedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.FinishedAt = &formatted
+}
+
 func (o *ScriptExecutionProperties) GetStartedAtAsTime() (*time.Time, error) {
 	if o.StartedAt == nil {
 		return nil, nil
@@ -43,11 +48,21 @@ func (o *ScriptExecutionProperties) GetStartedAtAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.StartedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ScriptExecutionProperties) SetStartedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedAt = &formatted
+}
+
 func (o *ScriptExecutionProperties) GetSubmittedAtAsTime() (*time.Time, error) {
 	if o.SubmittedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.SubmittedAt, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ScriptExecutionProperties) SetSubmittedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.SubmittedAt = &formatted
 }
 
 var _ json.Unmarshaler = &ScriptExecutionProperties{}

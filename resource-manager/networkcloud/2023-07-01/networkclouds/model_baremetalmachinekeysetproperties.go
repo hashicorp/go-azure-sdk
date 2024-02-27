@@ -38,3 +38,8 @@ func (o *BareMetalMachineKeySetProperties) GetLastValidationAsTime() (*time.Time
 	}
 	return dates.ParseAsFormat(o.LastValidation, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *BareMetalMachineKeySetProperties) SetLastValidationAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastValidation = &formatted
+}

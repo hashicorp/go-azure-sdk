@@ -48,11 +48,12 @@ payload := quota.QuotaUpdateParameters{
 }
 
 
-read, err := client.Update(ctx, id, payload)
+// alternatively `client.Update(ctx, id, payload)` can be used to do batched pagination
+items, err := client.UpdateComplete(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

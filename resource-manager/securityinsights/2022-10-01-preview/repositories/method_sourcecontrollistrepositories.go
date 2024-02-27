@@ -15,12 +15,12 @@ import (
 type SourceControllistRepositoriesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]RepoList
+	Model        *[]Repo
 }
 
 type SourceControllistRepositoriesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []RepoList
+	Items              []Repo
 }
 
 // SourceControllistRepositories ...
@@ -50,7 +50,7 @@ func (c RepositoriesClient) SourceControllistRepositories(ctx context.Context, i
 	}
 
 	var values struct {
-		Values *[]RepoList `json:"value"`
+		Values *[]Repo `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c RepositoriesClient) SourceControllistRepositories(ctx context.Context, i
 
 // SourceControllistRepositoriesComplete retrieves all the results into a single object
 func (c RepositoriesClient) SourceControllistRepositoriesComplete(ctx context.Context, id WorkspaceId, input RepoType) (SourceControllistRepositoriesCompleteResult, error) {
-	return c.SourceControllistRepositoriesCompleteMatchingPredicate(ctx, id, input, RepoListOperationPredicate{})
+	return c.SourceControllistRepositoriesCompleteMatchingPredicate(ctx, id, input, RepoOperationPredicate{})
 }
 
 // SourceControllistRepositoriesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RepositoriesClient) SourceControllistRepositoriesCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, input RepoType, predicate RepoListOperationPredicate) (result SourceControllistRepositoriesCompleteResult, err error) {
-	items := make([]RepoList, 0)
+func (c RepositoriesClient) SourceControllistRepositoriesCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, input RepoType, predicate RepoOperationPredicate) (result SourceControllistRepositoriesCompleteResult, err error) {
+	items := make([]Repo, 0)
 
 	resp, err := c.SourceControllistRepositories(ctx, id, input)
 	if err != nil {

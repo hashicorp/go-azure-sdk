@@ -15,12 +15,12 @@ import (
 type ListExpressionTracesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ExpressionTraces
+	Model        *[]interface{}
 }
 
 type ListExpressionTracesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ExpressionTraces
+	Items              []interface{}
 }
 
 // ListExpressionTraces ...
@@ -50,7 +50,7 @@ func (c WorkflowRunActionsClient) ListExpressionTraces(ctx context.Context, id A
 	}
 
 	var values struct {
-		Values *[]ExpressionTraces `json:"value"`
+		Values *[]interface{} `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -62,13 +62,8 @@ func (c WorkflowRunActionsClient) ListExpressionTraces(ctx context.Context, id A
 }
 
 // ListExpressionTracesComplete retrieves all the results into a single object
-func (c WorkflowRunActionsClient) ListExpressionTracesComplete(ctx context.Context, id ActionId) (ListExpressionTracesCompleteResult, error) {
-	return c.ListExpressionTracesCompleteMatchingPredicate(ctx, id, ExpressionTracesOperationPredicate{})
-}
-
-// ListExpressionTracesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WorkflowRunActionsClient) ListExpressionTracesCompleteMatchingPredicate(ctx context.Context, id ActionId, predicate ExpressionTracesOperationPredicate) (result ListExpressionTracesCompleteResult, err error) {
-	items := make([]ExpressionTraces, 0)
+func (c WorkflowRunActionsClient) ListExpressionTracesComplete(ctx context.Context, id ActionId) (result ListExpressionTracesCompleteResult, err error) {
+	items := make([]interface{}, 0)
 
 	resp, err := c.ListExpressionTraces(ctx, id)
 	if err != nil {
@@ -77,9 +72,7 @@ func (c WorkflowRunActionsClient) ListExpressionTracesCompleteMatchingPredicate(
 	}
 	if resp.Model != nil {
 		for _, v := range *resp.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
+			items = append(items, v)
 		}
 	}
 

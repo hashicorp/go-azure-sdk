@@ -108,12 +108,13 @@ for _, item := range items {
 ctx := context.TODO()
 id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "policyFragmentValue")
 
-read, err := client.ListReferences(ctx, id, policyfragment.DefaultListReferencesOperationOptions())
+// alternatively `client.ListReferences(ctx, id, policyfragment.DefaultListReferencesOperationOptions())` can be used to do batched pagination
+items, err := client.ListReferencesComplete(ctx, id, policyfragment.DefaultListReferencesOperationOptions())
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -206,11 +207,12 @@ for _, item := range items {
 ctx := context.TODO()
 id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "policyFragmentValue")
 
-read, err := client.WorkspacePolicyFragmentListReferences(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentListReferencesOperationOptions())
+// alternatively `client.WorkspacePolicyFragmentListReferences(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentListReferencesOperationOptions())` can be used to do batched pagination
+items, err := client.WorkspacePolicyFragmentListReferencesComplete(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentListReferencesOperationOptions())
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

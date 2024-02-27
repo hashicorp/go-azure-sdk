@@ -31,6 +31,11 @@ func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) GetCreatedTimestampAsTim
 	return dates.ParseAsFormat(o.CreatedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) SetCreatedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTimestamp = &formatted
+}
+
 func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) GetLastDiscoveryTimeInUtcAsTime() (*time.Time, error) {
 	if o.LastDiscoveryTimeInUtc == nil {
 		return nil, nil
@@ -38,9 +43,19 @@ func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) GetLastDiscoveryTimeInUt
 	return dates.ParseAsFormat(o.LastDiscoveryTimeInUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) SetLastDiscoveryTimeInUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastDiscoveryTimeInUtc = &formatted
+}
+
 func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) GetUpdatedTimestampAsTime() (*time.Time, error) {
 	if o.UpdatedTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *InMageRcmFailbackDiscoveredProtectedVMDetails) SetUpdatedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdatedTimestamp = &formatted
 }

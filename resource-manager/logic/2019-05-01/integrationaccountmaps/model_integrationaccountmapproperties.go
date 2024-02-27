@@ -27,9 +27,19 @@ func (o *IntegrationAccountMapProperties) GetChangedTimeAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.ChangedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *IntegrationAccountMapProperties) SetChangedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ChangedTime = &formatted
+}
+
 func (o *IntegrationAccountMapProperties) GetCreatedTimeAsTime() (*time.Time, error) {
 	if o.CreatedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *IntegrationAccountMapProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
 }

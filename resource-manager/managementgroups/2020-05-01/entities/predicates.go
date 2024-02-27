@@ -3,18 +3,23 @@ package entities
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type EntityListResultOperationPredicate struct {
-	Count    *int64
-	NextLink *string
+type EntityInfoOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
 }
 
-func (p EntityListResultOperationPredicate) Matches(input EntityListResult) bool {
+func (p EntityInfoOperationPredicate) Matches(input EntityInfo) bool {
 
-	if p.Count != nil && (input.Count == nil || *p.Count != *input.Count) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.NextLink != nil && (input.NextLink == nil || *p.NextLink != *input.NextLink) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

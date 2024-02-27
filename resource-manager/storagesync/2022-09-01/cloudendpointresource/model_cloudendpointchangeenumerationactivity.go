@@ -32,9 +32,19 @@ func (o *CloudEndpointChangeEnumerationActivity) GetLastUpdatedTimestampAsTime()
 	return dates.ParseAsFormat(o.LastUpdatedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *CloudEndpointChangeEnumerationActivity) SetLastUpdatedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedTimestamp = &formatted
+}
+
 func (o *CloudEndpointChangeEnumerationActivity) GetStartedTimestampAsTime() (*time.Time, error) {
 	if o.StartedTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartedTimestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *CloudEndpointChangeEnumerationActivity) SetStartedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedTimestamp = &formatted
 }

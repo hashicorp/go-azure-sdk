@@ -29,9 +29,19 @@ func (o *MachineAssessPatchesResult) GetLastModifiedDateTimeAsTime() (*time.Time
 	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *MachineAssessPatchesResult) SetLastModifiedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedDateTime = &formatted
+}
+
 func (o *MachineAssessPatchesResult) GetStartDateTimeAsTime() (*time.Time, error) {
 	if o.StartDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartDateTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *MachineAssessPatchesResult) SetStartDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartDateTime = &formatted
 }

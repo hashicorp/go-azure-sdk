@@ -25,9 +25,19 @@ func (o *KeyVaultProperties) GetCurrentVersionedKeyExpirationTimestampAsTime() (
 	return dates.ParseAsFormat(o.CurrentVersionedKeyExpirationTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *KeyVaultProperties) SetCurrentVersionedKeyExpirationTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CurrentVersionedKeyExpirationTimestamp = &formatted
+}
+
 func (o *KeyVaultProperties) GetLastKeyRotationTimestampAsTime() (*time.Time, error) {
 	if o.LastKeyRotationTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastKeyRotationTimestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *KeyVaultProperties) SetLastKeyRotationTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastKeyRotationTimestamp = &formatted
 }

@@ -23,3 +23,8 @@ func (o *OrderStatus) GetUpdateDateTimeAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.UpdateDateTime, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *OrderStatus) SetUpdateDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdateDateTime = &formatted
+}

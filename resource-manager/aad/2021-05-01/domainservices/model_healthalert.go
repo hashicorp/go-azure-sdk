@@ -26,9 +26,19 @@ func (o *HealthAlert) GetLastDetectedAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastDetected, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *HealthAlert) SetLastDetectedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastDetected = &formatted
+}
+
 func (o *HealthAlert) GetRaisedAsTime() (*time.Time, error) {
 	if o.Raised == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.Raised, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *HealthAlert) SetRaisedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Raised = &formatted
 }

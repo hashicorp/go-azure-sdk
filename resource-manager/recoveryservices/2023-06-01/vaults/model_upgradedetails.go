@@ -28,6 +28,11 @@ func (o *UpgradeDetails) GetEndTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.EndTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *UpgradeDetails) SetEndTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndTimeUtc = &formatted
+}
+
 func (o *UpgradeDetails) GetLastUpdatedTimeUtcAsTime() (*time.Time, error) {
 	if o.LastUpdatedTimeUtc == nil {
 		return nil, nil
@@ -35,9 +40,19 @@ func (o *UpgradeDetails) GetLastUpdatedTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastUpdatedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *UpgradeDetails) SetLastUpdatedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedTimeUtc = &formatted
+}
+
 func (o *UpgradeDetails) GetStartTimeUtcAsTime() (*time.Time, error) {
 	if o.StartTimeUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartTimeUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *UpgradeDetails) SetStartTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartTimeUtc = &formatted
 }

@@ -38,9 +38,19 @@ func (o *FluxConfigurationProperties) GetSourceUpdatedAtAsTime() (*time.Time, er
 	return dates.ParseAsFormat(o.SourceUpdatedAt, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *FluxConfigurationProperties) SetSourceUpdatedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.SourceUpdatedAt = &formatted
+}
+
 func (o *FluxConfigurationProperties) GetStatusUpdatedAtAsTime() (*time.Time, error) {
 	if o.StatusUpdatedAt == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StatusUpdatedAt, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *FluxConfigurationProperties) SetStatusUpdatedAtAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StatusUpdatedAt = &formatted
 }

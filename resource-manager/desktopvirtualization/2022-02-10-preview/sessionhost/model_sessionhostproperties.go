@@ -48,9 +48,19 @@ func (o *SessionHostProperties) GetLastUpdateTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.LastUpdateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SessionHostProperties) SetLastUpdateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdateTime = &formatted
+}
+
 func (o *SessionHostProperties) GetStatusTimestampAsTime() (*time.Time, error) {
 	if o.StatusTimestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StatusTimestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *SessionHostProperties) SetStatusTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StatusTimestamp = &formatted
 }

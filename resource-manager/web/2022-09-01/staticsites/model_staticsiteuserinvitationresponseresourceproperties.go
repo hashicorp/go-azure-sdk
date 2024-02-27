@@ -20,3 +20,8 @@ func (o *StaticSiteUserInvitationResponseResourceProperties) GetExpiresOnAsTime(
 	}
 	return dates.ParseAsFormat(o.ExpiresOn, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *StaticSiteUserInvitationResponseResourceProperties) SetExpiresOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExpiresOn = &formatted
+}

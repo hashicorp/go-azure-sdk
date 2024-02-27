@@ -30,9 +30,19 @@ func (o *RevisionProperties) GetCreatedTimeAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RevisionProperties) SetCreatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedTime = &formatted
+}
+
 func (o *RevisionProperties) GetLastActiveTimeAsTime() (*time.Time, error) {
 	if o.LastActiveTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastActiveTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RevisionProperties) SetLastActiveTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastActiveTime = &formatted
 }

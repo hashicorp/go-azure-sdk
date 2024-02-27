@@ -30,6 +30,11 @@ func (o *SqlPoolResourceProperties) GetCreationDateAsTime() (*time.Time, error) 
 	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *SqlPoolResourceProperties) SetCreationDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreationDate = &formatted
+}
+
 func (o *SqlPoolResourceProperties) GetRestorePointInTimeAsTime() (*time.Time, error) {
 	if o.RestorePointInTime == nil {
 		return nil, nil

@@ -32,9 +32,19 @@ func (o *RemediationProperties) GetCreatedOnAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RemediationProperties) SetCreatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedOn = &formatted
+}
+
 func (o *RemediationProperties) GetLastUpdatedOnAsTime() (*time.Time, error) {
 	if o.LastUpdatedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.LastUpdatedOn, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RemediationProperties) SetLastUpdatedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUpdatedOn = &formatted
 }

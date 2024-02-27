@@ -23,9 +23,19 @@ func (o *ServerEndpointBackgroundDataDownloadActivity) GetStartedTimestampAsTime
 	return dates.ParseAsFormat(o.StartedTimestamp, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *ServerEndpointBackgroundDataDownloadActivity) SetStartedTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedTimestamp = &formatted
+}
+
 func (o *ServerEndpointBackgroundDataDownloadActivity) GetTimestampAsTime() (*time.Time, error) {
 	if o.Timestamp == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.Timestamp, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ServerEndpointBackgroundDataDownloadActivity) SetTimestampAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Timestamp = &formatted
 }

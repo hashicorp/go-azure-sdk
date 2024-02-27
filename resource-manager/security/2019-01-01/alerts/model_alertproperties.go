@@ -42,9 +42,19 @@ func (o *AlertProperties) GetDetectedTimeUtcAsTime() (*time.Time, error) {
 	return dates.ParseAsFormat(o.DetectedTimeUtc, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *AlertProperties) SetDetectedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.DetectedTimeUtc = &formatted
+}
+
 func (o *AlertProperties) GetReportedTimeUtcAsTime() (*time.Time, error) {
 	if o.ReportedTimeUtc == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ReportedTimeUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *AlertProperties) SetReportedTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ReportedTimeUtc = &formatted
 }

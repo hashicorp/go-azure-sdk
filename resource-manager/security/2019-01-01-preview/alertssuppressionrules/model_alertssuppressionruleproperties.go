@@ -37,3 +37,8 @@ func (o *AlertsSuppressionRuleProperties) GetLastModifiedUtcAsTime() (*time.Time
 	}
 	return dates.ParseAsFormat(o.LastModifiedUtc, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *AlertsSuppressionRuleProperties) SetLastModifiedUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastModifiedUtc = &formatted
+}

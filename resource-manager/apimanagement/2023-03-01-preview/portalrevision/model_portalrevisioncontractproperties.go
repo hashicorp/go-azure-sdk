@@ -25,9 +25,19 @@ func (o *PortalRevisionContractProperties) GetCreatedDateTimeAsTime() (*time.Tim
 	return dates.ParseAsFormat(o.CreatedDateTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *PortalRevisionContractProperties) SetCreatedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedDateTime = &formatted
+}
+
 func (o *PortalRevisionContractProperties) GetUpdatedDateTimeAsTime() (*time.Time, error) {
 	if o.UpdatedDateTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedDateTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *PortalRevisionContractProperties) SetUpdatedDateTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdatedDateTime = &formatted
 }

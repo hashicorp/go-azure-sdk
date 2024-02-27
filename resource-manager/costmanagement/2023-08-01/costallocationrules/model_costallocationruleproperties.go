@@ -24,9 +24,19 @@ func (o *CostAllocationRuleProperties) GetCreatedDateAsTime() (*time.Time, error
 	return dates.ParseAsFormat(o.CreatedDate, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *CostAllocationRuleProperties) SetCreatedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.CreatedDate = &formatted
+}
+
 func (o *CostAllocationRuleProperties) GetUpdatedDateAsTime() (*time.Time, error) {
 	if o.UpdatedDate == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.UpdatedDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *CostAllocationRuleProperties) SetUpdatedDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.UpdatedDate = &formatted
 }

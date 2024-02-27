@@ -271,12 +271,13 @@ payload := integrationruntime.GetSsisObjectMetadataRequest{
 }
 
 
-read, err := client.ObjectMetadataList(ctx, id, payload)
+// alternatively `client.ObjectMetadataList(ctx, id, payload)` can be used to do batched pagination
+items, err := client.ObjectMetadataListComplete(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 

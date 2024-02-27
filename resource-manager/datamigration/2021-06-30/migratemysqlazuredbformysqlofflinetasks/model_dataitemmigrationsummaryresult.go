@@ -28,9 +28,19 @@ func (o *DataItemMigrationSummaryResult) GetEndedOnAsTime() (*time.Time, error) 
 	return dates.ParseAsFormat(o.EndedOn, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *DataItemMigrationSummaryResult) SetEndedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.EndedOn = &formatted
+}
+
 func (o *DataItemMigrationSummaryResult) GetStartedOnAsTime() (*time.Time, error) {
 	if o.StartedOn == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.StartedOn, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *DataItemMigrationSummaryResult) SetStartedOnAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.StartedOn = &formatted
 }

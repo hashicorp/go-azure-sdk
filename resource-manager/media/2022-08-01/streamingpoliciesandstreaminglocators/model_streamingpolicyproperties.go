@@ -24,3 +24,8 @@ func (o *StreamingPolicyProperties) GetCreatedAsTime() (*time.Time, error) {
 	}
 	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
 }
+
+func (o *StreamingPolicyProperties) SetCreatedAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.Created = &formatted
+}

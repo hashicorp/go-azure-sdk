@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ViolationsList
+	Model        *[]Violation
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ViolationsList
+	Items              []Violation
 }
 
 // List ...
@@ -50,7 +50,7 @@ func (c ListTenantConfigurationViolationsClient) List(ctx context.Context) (resu
 	}
 
 	var values struct {
-		Values *[]ViolationsList `json:"value"`
+		Values *[]Violation `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -63,12 +63,12 @@ func (c ListTenantConfigurationViolationsClient) List(ctx context.Context) (resu
 
 // ListComplete retrieves all the results into a single object
 func (c ListTenantConfigurationViolationsClient) ListComplete(ctx context.Context) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, ViolationsListOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, ViolationOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ListTenantConfigurationViolationsClient) ListCompleteMatchingPredicate(ctx context.Context, predicate ViolationsListOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]ViolationsList, 0)
+func (c ListTenantConfigurationViolationsClient) ListCompleteMatchingPredicate(ctx context.Context, predicate ViolationOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]Violation, 0)
 
 	resp, err := c.List(ctx)
 	if err != nil {

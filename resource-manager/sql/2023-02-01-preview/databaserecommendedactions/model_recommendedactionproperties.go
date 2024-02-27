@@ -42,11 +42,21 @@ func (o *RecommendedActionProperties) GetExecuteActionInitiatedTimeAsTime() (*ti
 	return dates.ParseAsFormat(o.ExecuteActionInitiatedTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RecommendedActionProperties) SetExecuteActionInitiatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExecuteActionInitiatedTime = &formatted
+}
+
 func (o *RecommendedActionProperties) GetExecuteActionStartTimeAsTime() (*time.Time, error) {
 	if o.ExecuteActionStartTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ExecuteActionStartTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RecommendedActionProperties) SetExecuteActionStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExecuteActionStartTime = &formatted
 }
 
 func (o *RecommendedActionProperties) GetLastRefreshAsTime() (*time.Time, error) {
@@ -56,11 +66,21 @@ func (o *RecommendedActionProperties) GetLastRefreshAsTime() (*time.Time, error)
 	return dates.ParseAsFormat(o.LastRefresh, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RecommendedActionProperties) SetLastRefreshAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastRefresh = &formatted
+}
+
 func (o *RecommendedActionProperties) GetRevertActionInitiatedTimeAsTime() (*time.Time, error) {
 	if o.RevertActionInitiatedTime == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.RevertActionInitiatedTime, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RecommendedActionProperties) SetRevertActionInitiatedTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RevertActionInitiatedTime = &formatted
 }
 
 func (o *RecommendedActionProperties) GetRevertActionStartTimeAsTime() (*time.Time, error) {
@@ -70,9 +90,19 @@ func (o *RecommendedActionProperties) GetRevertActionStartTimeAsTime() (*time.Ti
 	return dates.ParseAsFormat(o.RevertActionStartTime, "2006-01-02T15:04:05Z07:00")
 }
 
+func (o *RecommendedActionProperties) SetRevertActionStartTimeAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.RevertActionStartTime = &formatted
+}
+
 func (o *RecommendedActionProperties) GetValidSinceAsTime() (*time.Time, error) {
 	if o.ValidSince == nil {
 		return nil, nil
 	}
 	return dates.ParseAsFormat(o.ValidSince, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *RecommendedActionProperties) SetValidSinceAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ValidSince = &formatted
 }
