@@ -1,18 +1,26 @@
 package compliances
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CompliancesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewCompliancesClientWithBaseURI(endpoint string) CompliancesClient {
-	return CompliancesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewCompliancesClientWithBaseURI(sdkApi sdkEnv.Api) (*CompliancesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "compliances", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CompliancesClient: %+v", err)
 	}
+
+	return &CompliancesClient{
+		Client: client,
+	}, nil
 }

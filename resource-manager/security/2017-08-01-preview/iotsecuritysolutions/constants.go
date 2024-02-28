@@ -1,6 +1,10 @@
 package iotsecuritysolutions
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForDataSource() []string {
 	return []string{
 		string(DataSourceTwinData),
 	}
+}
+
+func (s *DataSource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataSource(input string) (*DataSource, error) {
@@ -42,6 +59,19 @@ func PossibleValuesForExportData() []string {
 	}
 }
 
+func (s *ExportData) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExportData(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExportData(input string) (*ExportData, error) {
 	vals := map[string]ExportData{
 		"rawevents": ExportDataRawEvents,
@@ -67,6 +97,19 @@ func PossibleValuesForRecommendationConfigStatus() []string {
 		string(RecommendationConfigStatusDisabled),
 		string(RecommendationConfigStatusEnabled),
 	}
+}
+
+func (s *RecommendationConfigStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendationConfigStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRecommendationConfigStatus(input string) (*RecommendationConfigStatus, error) {
@@ -125,6 +168,19 @@ func PossibleValuesForRecommendationType() []string {
 	}
 }
 
+func (s *RecommendationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRecommendationType(input string) (*RecommendationType, error) {
 	vals := map[string]RecommendationType{
 		"iot_acrauthentication":             RecommendationTypeIoTACRAuthentication,
@@ -165,6 +221,19 @@ func PossibleValuesForSecuritySolutionStatus() []string {
 		string(SecuritySolutionStatusDisabled),
 		string(SecuritySolutionStatusEnabled),
 	}
+}
+
+func (s *SecuritySolutionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSecuritySolutionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSecuritySolutionStatus(input string) (*SecuritySolutionStatus, error) {

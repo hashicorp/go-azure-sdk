@@ -4,7 +4,8 @@ package v2020_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/adaptivenetworkhardenings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/alerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/allowedconnections"
@@ -22,6 +23,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/servervulnerabilityassessment"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/servervulnerabilityassessments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/topology"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -44,76 +47,126 @@ type Client struct {
 	Topology                       *topology.TopologyClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	adaptiveNetworkHardeningsClient := adaptivenetworkhardenings.NewAdaptiveNetworkHardeningsClientWithBaseURI(endpoint)
-	configureAuthFunc(&adaptiveNetworkHardeningsClient.Client)
-
-	alertsClient := alerts.NewAlertsClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertsClient.Client)
-
-	allowedConnectionsClient := allowedconnections.NewAllowedConnectionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&allowedConnectionsClient.Client)
-
-	applicationWhitelistingsClient := applicationwhitelistings.NewApplicationWhitelistingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationWhitelistingsClient.Client)
-
-	assessmentsClient := assessments.NewAssessmentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&assessmentsClient.Client)
-
-	assessmentsMetadataClient := assessmentsmetadata.NewAssessmentsMetadataClientWithBaseURI(endpoint)
-	configureAuthFunc(&assessmentsMetadataClient.Client)
-
-	discoveredSecuritySolutionsClient := discoveredsecuritysolutions.NewDiscoveredSecuritySolutionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&discoveredSecuritySolutionsClient.Client)
-
-	externalSecuritySolutionsClient := externalsecuritysolutions.NewExternalSecuritySolutionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&externalSecuritySolutionsClient.Client)
-
-	jitNetworkAccessPoliciesClient := jitnetworkaccesspolicies.NewJitNetworkAccessPoliciesClientWithBaseURI(endpoint)
-	configureAuthFunc(&jitNetworkAccessPoliciesClient.Client)
-
-	secureScoreClient := securescore.NewSecureScoreClientWithBaseURI(endpoint)
-	configureAuthFunc(&secureScoreClient.Client)
-
-	secureScoreControlDefinitionsClient := securescorecontroldefinitions.NewSecureScoreControlDefinitionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&secureScoreControlDefinitionsClient.Client)
-
-	secureScoreControlsClient := securescorecontrols.NewSecureScoreControlsClientWithBaseURI(endpoint)
-	configureAuthFunc(&secureScoreControlsClient.Client)
-
-	securitySolutionsClient := securitysolutions.NewSecuritySolutionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&securitySolutionsClient.Client)
-
-	securitySolutionsReferenceDataClient := securitysolutionsreferencedata.NewSecuritySolutionsReferenceDataClientWithBaseURI(endpoint)
-	configureAuthFunc(&securitySolutionsReferenceDataClient.Client)
-
-	serverVulnerabilityAssessmentClient := servervulnerabilityassessment.NewServerVulnerabilityAssessmentClientWithBaseURI(endpoint)
-	configureAuthFunc(&serverVulnerabilityAssessmentClient.Client)
-
-	serverVulnerabilityAssessmentsClient := servervulnerabilityassessments.NewServerVulnerabilityAssessmentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&serverVulnerabilityAssessmentsClient.Client)
-
-	topologyClient := topology.NewTopologyClientWithBaseURI(endpoint)
-	configureAuthFunc(&topologyClient.Client)
-
-	return Client{
-		AdaptiveNetworkHardenings:      &adaptiveNetworkHardeningsClient,
-		Alerts:                         &alertsClient,
-		AllowedConnections:             &allowedConnectionsClient,
-		ApplicationWhitelistings:       &applicationWhitelistingsClient,
-		Assessments:                    &assessmentsClient,
-		AssessmentsMetadata:            &assessmentsMetadataClient,
-		DiscoveredSecuritySolutions:    &discoveredSecuritySolutionsClient,
-		ExternalSecuritySolutions:      &externalSecuritySolutionsClient,
-		JitNetworkAccessPolicies:       &jitNetworkAccessPoliciesClient,
-		SecureScore:                    &secureScoreClient,
-		SecureScoreControlDefinitions:  &secureScoreControlDefinitionsClient,
-		SecureScoreControls:            &secureScoreControlsClient,
-		SecuritySolutions:              &securitySolutionsClient,
-		SecuritySolutionsReferenceData: &securitySolutionsReferenceDataClient,
-		ServerVulnerabilityAssessment:  &serverVulnerabilityAssessmentClient,
-		ServerVulnerabilityAssessments: &serverVulnerabilityAssessmentsClient,
-		Topology:                       &topologyClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	adaptiveNetworkHardeningsClient, err := adaptivenetworkhardenings.NewAdaptiveNetworkHardeningsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AdaptiveNetworkHardenings client: %+v", err)
 	}
+	configureFunc(adaptiveNetworkHardeningsClient.Client)
+
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Alerts client: %+v", err)
+	}
+	configureFunc(alertsClient.Client)
+
+	allowedConnectionsClient, err := allowedconnections.NewAllowedConnectionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AllowedConnections client: %+v", err)
+	}
+	configureFunc(allowedConnectionsClient.Client)
+
+	applicationWhitelistingsClient, err := applicationwhitelistings.NewApplicationWhitelistingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ApplicationWhitelistings client: %+v", err)
+	}
+	configureFunc(applicationWhitelistingsClient.Client)
+
+	assessmentsClient, err := assessments.NewAssessmentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Assessments client: %+v", err)
+	}
+	configureFunc(assessmentsClient.Client)
+
+	assessmentsMetadataClient, err := assessmentsmetadata.NewAssessmentsMetadataClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AssessmentsMetadata client: %+v", err)
+	}
+	configureFunc(assessmentsMetadataClient.Client)
+
+	discoveredSecuritySolutionsClient, err := discoveredsecuritysolutions.NewDiscoveredSecuritySolutionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DiscoveredSecuritySolutions client: %+v", err)
+	}
+	configureFunc(discoveredSecuritySolutionsClient.Client)
+
+	externalSecuritySolutionsClient, err := externalsecuritysolutions.NewExternalSecuritySolutionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ExternalSecuritySolutions client: %+v", err)
+	}
+	configureFunc(externalSecuritySolutionsClient.Client)
+
+	jitNetworkAccessPoliciesClient, err := jitnetworkaccesspolicies.NewJitNetworkAccessPoliciesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building JitNetworkAccessPolicies client: %+v", err)
+	}
+	configureFunc(jitNetworkAccessPoliciesClient.Client)
+
+	secureScoreClient, err := securescore.NewSecureScoreClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecureScore client: %+v", err)
+	}
+	configureFunc(secureScoreClient.Client)
+
+	secureScoreControlDefinitionsClient, err := securescorecontroldefinitions.NewSecureScoreControlDefinitionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecureScoreControlDefinitions client: %+v", err)
+	}
+	configureFunc(secureScoreControlDefinitionsClient.Client)
+
+	secureScoreControlsClient, err := securescorecontrols.NewSecureScoreControlsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecureScoreControls client: %+v", err)
+	}
+	configureFunc(secureScoreControlsClient.Client)
+
+	securitySolutionsClient, err := securitysolutions.NewSecuritySolutionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecuritySolutions client: %+v", err)
+	}
+	configureFunc(securitySolutionsClient.Client)
+
+	securitySolutionsReferenceDataClient, err := securitysolutionsreferencedata.NewSecuritySolutionsReferenceDataClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecuritySolutionsReferenceData client: %+v", err)
+	}
+	configureFunc(securitySolutionsReferenceDataClient.Client)
+
+	serverVulnerabilityAssessmentClient, err := servervulnerabilityassessment.NewServerVulnerabilityAssessmentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerVulnerabilityAssessment client: %+v", err)
+	}
+	configureFunc(serverVulnerabilityAssessmentClient.Client)
+
+	serverVulnerabilityAssessmentsClient, err := servervulnerabilityassessments.NewServerVulnerabilityAssessmentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerVulnerabilityAssessments client: %+v", err)
+	}
+	configureFunc(serverVulnerabilityAssessmentsClient.Client)
+
+	topologyClient, err := topology.NewTopologyClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Topology client: %+v", err)
+	}
+	configureFunc(topologyClient.Client)
+
+	return &Client{
+		AdaptiveNetworkHardenings:      adaptiveNetworkHardeningsClient,
+		Alerts:                         alertsClient,
+		AllowedConnections:             allowedConnectionsClient,
+		ApplicationWhitelistings:       applicationWhitelistingsClient,
+		Assessments:                    assessmentsClient,
+		AssessmentsMetadata:            assessmentsMetadataClient,
+		DiscoveredSecuritySolutions:    discoveredSecuritySolutionsClient,
+		ExternalSecuritySolutions:      externalSecuritySolutionsClient,
+		JitNetworkAccessPolicies:       jitNetworkAccessPoliciesClient,
+		SecureScore:                    secureScoreClient,
+		SecureScoreControlDefinitions:  secureScoreControlDefinitionsClient,
+		SecureScoreControls:            secureScoreControlsClient,
+		SecuritySolutions:              securitySolutionsClient,
+		SecuritySolutionsReferenceData: securitySolutionsReferenceDataClient,
+		ServerVulnerabilityAssessment:  serverVulnerabilityAssessmentClient,
+		ServerVulnerabilityAssessments: serverVulnerabilityAssessmentsClient,
+		Topology:                       topologyClient,
+	}, nil
 }

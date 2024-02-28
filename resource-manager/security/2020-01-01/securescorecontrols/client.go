@@ -1,18 +1,26 @@
 package securescorecontrols
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SecureScoreControlsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewSecureScoreControlsClientWithBaseURI(endpoint string) SecureScoreControlsClient {
-	return SecureScoreControlsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewSecureScoreControlsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecureScoreControlsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securescorecontrols", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SecureScoreControlsClient: %+v", err)
 	}
+
+	return &SecureScoreControlsClient{
+		Client: client,
+	}, nil
 }

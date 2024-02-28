@@ -1,6 +1,10 @@
 package informationprotectionpolicies
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForInformationProtectionPolicyName() []string {
 		string(InformationProtectionPolicyNameCustom),
 		string(InformationProtectionPolicyNameEffective),
 	}
+}
+
+func (s *InformationProtectionPolicyName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInformationProtectionPolicyName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInformationProtectionPolicyName(input string) (*InformationProtectionPolicyName, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForRank() []string {
 		string(RankMedium),
 		string(RankNone),
 	}
+}
+
+func (s *Rank) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRank(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRank(input string) (*Rank, error) {

@@ -4,10 +4,13 @@ package v2021_06_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/assessments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/assessmentsmetadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/settings"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	Settings            *settings.SettingsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	assessmentsClient := assessments.NewAssessmentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&assessmentsClient.Client)
-
-	assessmentsMetadataClient := assessmentsmetadata.NewAssessmentsMetadataClientWithBaseURI(endpoint)
-	configureAuthFunc(&assessmentsMetadataClient.Client)
-
-	settingsClient := settings.NewSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&settingsClient.Client)
-
-	return Client{
-		Assessments:         &assessmentsClient,
-		AssessmentsMetadata: &assessmentsMetadataClient,
-		Settings:            &settingsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	assessmentsClient, err := assessments.NewAssessmentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Assessments client: %+v", err)
 	}
+	configureFunc(assessmentsClient.Client)
+
+	assessmentsMetadataClient, err := assessmentsmetadata.NewAssessmentsMetadataClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AssessmentsMetadata client: %+v", err)
+	}
+	configureFunc(assessmentsMetadataClient.Client)
+
+	settingsClient, err := settings.NewSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Settings client: %+v", err)
+	}
+	configureFunc(settingsClient.Client)
+
+	return &Client{
+		Assessments:         assessmentsClient,
+		AssessmentsMetadata: assessmentsMetadataClient,
+		Settings:            settingsClient,
+	}, nil
 }

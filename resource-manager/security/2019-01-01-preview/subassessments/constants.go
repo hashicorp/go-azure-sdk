@@ -1,6 +1,10 @@
 package subassessments
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAssessedResourceType() []string {
 		string(AssessedResourceTypeServerVulnerability),
 		string(AssessedResourceTypeSqlServerVulnerability),
 	}
+}
+
+func (s *AssessedResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssessedResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAssessedResourceType(input string) (*AssessedResourceType, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForSeverity() []string {
 	}
 }
 
+func (s *Severity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSeverity(input string) (*Severity, error) {
 	vals := map[string]Severity{
 		"high":   SeverityHigh,
@@ -83,6 +113,19 @@ func PossibleValuesForSource() []string {
 	}
 }
 
+func (s *Source) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSource(input string) (*Source, error) {
 	vals := map[string]Source{
 		"azure":        SourceAzure,
@@ -112,6 +155,19 @@ func PossibleValuesForSubAssessmentStatusCode() []string {
 		string(SubAssessmentStatusCodeNotApplicable),
 		string(SubAssessmentStatusCodeUnhealthy),
 	}
+}
+
+func (s *SubAssessmentStatusCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSubAssessmentStatusCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSubAssessmentStatusCode(input string) (*SubAssessmentStatusCode, error) {
