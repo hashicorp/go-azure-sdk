@@ -1,18 +1,26 @@
 package alertssuppressionrules
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AlertsSuppressionRulesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewAlertsSuppressionRulesClientWithBaseURI(endpoint string) AlertsSuppressionRulesClient {
-	return AlertsSuppressionRulesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewAlertsSuppressionRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*AlertsSuppressionRulesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "alertssuppressionrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AlertsSuppressionRulesClient: %+v", err)
 	}
+
+	return &AlertsSuppressionRulesClient{
+		Client: client,
+	}, nil
 }

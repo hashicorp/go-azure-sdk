@@ -1,18 +1,26 @@
 package securitysolutions
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SecuritySolutionsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewSecuritySolutionsClientWithBaseURI(endpoint string) SecuritySolutionsClient {
-	return SecuritySolutionsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewSecuritySolutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecuritySolutionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securitysolutions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SecuritySolutionsClient: %+v", err)
 	}
+
+	return &SecuritySolutionsClient{
+		Client: client,
+	}, nil
 }

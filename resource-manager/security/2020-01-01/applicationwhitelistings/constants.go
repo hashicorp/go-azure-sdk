@@ -1,6 +1,10 @@
 package applicationwhitelistings
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAction() []string {
 		string(ActionRecommended),
 		string(ActionRemove),
 	}
+}
+
+func (s *Action) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAction(input string) (*Action, error) {
@@ -56,6 +73,19 @@ func PossibleValuesForConfigurationStatus() []string {
 	}
 }
 
+func (s *ConfigurationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConfigurationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseConfigurationStatus(input string) (*ConfigurationStatus, error) {
 	vals := map[string]ConfigurationStatus{
 		"configured":    ConfigurationStatusConfigured,
@@ -89,6 +119,19 @@ func PossibleValuesForEnforcementMode() []string {
 	}
 }
 
+func (s *EnforcementMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnforcementMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEnforcementMode(input string) (*EnforcementMode, error) {
 	vals := map[string]EnforcementMode{
 		"audit":   EnforcementModeAudit,
@@ -118,6 +161,19 @@ func PossibleValuesForEnforcementSupport() []string {
 		string(EnforcementSupportSupported),
 		string(EnforcementSupportUnknown),
 	}
+}
+
+func (s *EnforcementSupport) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnforcementSupport(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEnforcementSupport(input string) (*EnforcementSupport, error) {
@@ -151,6 +207,19 @@ func PossibleValuesForExe() []string {
 	}
 }
 
+func (s *Exe) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExe(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExe(input string) (*Exe, error) {
 	vals := map[string]Exe{
 		"audit":   ExeAudit,
@@ -180,6 +249,19 @@ func PossibleValuesForExecutable() []string {
 		string(ExecutableEnforce),
 		string(ExecutableNone),
 	}
+}
+
+func (s *Executable) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExecutable(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseExecutable(input string) (*Executable, error) {
@@ -217,6 +299,19 @@ func PossibleValuesForFileType() []string {
 		string(FileTypeScript),
 		string(FileTypeUnknown),
 	}
+}
+
+func (s *FileType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFileType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFileType(input string) (*FileType, error) {
@@ -259,6 +354,19 @@ func PossibleValuesForIssue() []string {
 	}
 }
 
+func (s *Issue) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIssue(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIssue(input string) (*Issue, error) {
 	vals := map[string]Issue{
 		"executableviolationsaudited":   IssueExecutableViolationsAudited,
@@ -293,6 +401,19 @@ func PossibleValuesForMsi() []string {
 	}
 }
 
+func (s *Msi) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMsi(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMsi(input string) (*Msi, error) {
 	vals := map[string]Msi{
 		"audit":   MsiAudit,
@@ -322,6 +443,19 @@ func PossibleValuesForRecommendationAction() []string {
 		string(RecommendationActionRecommended),
 		string(RecommendationActionRemove),
 	}
+}
+
+func (s *RecommendationAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendationAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRecommendationAction(input string) (*RecommendationAction, error) {
@@ -357,6 +491,19 @@ func PossibleValuesForRecommendationStatus() []string {
 	}
 }
 
+func (s *RecommendationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRecommendationStatus(input string) (*RecommendationStatus, error) {
 	vals := map[string]RecommendationStatus{
 		"nostatus":       RecommendationStatusNoStatus,
@@ -387,6 +534,19 @@ func PossibleValuesForScript() []string {
 		string(ScriptEnforce),
 		string(ScriptNone),
 	}
+}
+
+func (s *Script) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScript(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScript(input string) (*Script, error) {
@@ -422,6 +582,19 @@ func PossibleValuesForSourceSystem() []string {
 		string(SourceSystemNonAzureAuditD),
 		string(SourceSystemNone),
 	}
+}
+
+func (s *SourceSystem) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSourceSystem(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSourceSystem(input string) (*SourceSystem, error) {
@@ -461,6 +634,19 @@ func PossibleValuesForType() []string {
 		string(TypePublisherSignature),
 		string(TypeVersionAndAboveSignature),
 	}
+}
+
+func (s *Type) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseType(input string) (*Type, error) {

@@ -4,10 +4,13 @@ package v2019_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01/advancedthreatprotection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01/alerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01/settings"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	Settings                 *settings.SettingsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	advancedThreatProtectionClient := advancedthreatprotection.NewAdvancedThreatProtectionClientWithBaseURI(endpoint)
-	configureAuthFunc(&advancedThreatProtectionClient.Client)
-
-	alertsClient := alerts.NewAlertsClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertsClient.Client)
-
-	settingsClient := settings.NewSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&settingsClient.Client)
-
-	return Client{
-		AdvancedThreatProtection: &advancedThreatProtectionClient,
-		Alerts:                   &alertsClient,
-		Settings:                 &settingsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	advancedThreatProtectionClient, err := advancedthreatprotection.NewAdvancedThreatProtectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AdvancedThreatProtection client: %+v", err)
 	}
+	configureFunc(advancedThreatProtectionClient.Client)
+
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Alerts client: %+v", err)
+	}
+	configureFunc(alertsClient.Client)
+
+	settingsClient, err := settings.NewSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Settings client: %+v", err)
+	}
+	configureFunc(settingsClient.Client)
+
+	return &Client{
+		AdvancedThreatProtection: advancedThreatProtectionClient,
+		Alerts:                   alertsClient,
+		Settings:                 settingsClient,
+	}, nil
 }

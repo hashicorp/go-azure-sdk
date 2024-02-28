@@ -1,6 +1,10 @@
 package assessments
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAssessmentStatusCode() []string {
 		string(AssessmentStatusCodeNotApplicable),
 		string(AssessmentStatusCodeUnhealthy),
 	}
+}
+
+func (s *AssessmentStatusCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssessmentStatusCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAssessmentStatusCode(input string) (*AssessmentStatusCode, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForExpandEnum() []string {
 	}
 }
 
+func (s *ExpandEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExpandEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExpandEnum(input string) (*ExpandEnum, error) {
 	vals := map[string]ExpandEnum{
 		"links":    ExpandEnumLinks,
@@ -78,6 +108,19 @@ func PossibleValuesForSource() []string {
 		string(SourceOnPremise),
 		string(SourceOnPremiseSql),
 	}
+}
+
+func (s *Source) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSource(input string) (*Source, error) {

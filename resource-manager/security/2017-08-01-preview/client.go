@@ -4,7 +4,8 @@ package v2017_08_01_preview
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/advancedthreatprotection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/autoprovisioningsettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/compliances"
@@ -16,6 +17,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/securitycontacts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/settings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2017-08-01-preview/workspacesettings"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -32,52 +35,84 @@ type Client struct {
 	WorkspaceSettings             *workspacesettings.WorkspaceSettingsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	advancedThreatProtectionClient := advancedthreatprotection.NewAdvancedThreatProtectionClientWithBaseURI(endpoint)
-	configureAuthFunc(&advancedThreatProtectionClient.Client)
-
-	autoProvisioningSettingsClient := autoprovisioningsettings.NewAutoProvisioningSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&autoProvisioningSettingsClient.Client)
-
-	compliancesClient := compliances.NewCompliancesClientWithBaseURI(endpoint)
-	configureAuthFunc(&compliancesClient.Client)
-
-	deviceSecurityGroupsClient := devicesecuritygroups.NewDeviceSecurityGroupsClientWithBaseURI(endpoint)
-	configureAuthFunc(&deviceSecurityGroupsClient.Client)
-
-	informationProtectionPoliciesClient := informationprotectionpolicies.NewInformationProtectionPoliciesClientWithBaseURI(endpoint)
-	configureAuthFunc(&informationProtectionPoliciesClient.Client)
-
-	ioTSecuritySolutionsAnalyticsClient := iotsecuritysolutionsanalytics.NewIoTSecuritySolutionsAnalyticsClientWithBaseURI(endpoint)
-	configureAuthFunc(&ioTSecuritySolutionsAnalyticsClient.Client)
-
-	iotSecuritySolutionsClient := iotsecuritysolutions.NewIotSecuritySolutionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&iotSecuritySolutionsClient.Client)
-
-	pricingsClient := pricings.NewPricingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&pricingsClient.Client)
-
-	securityContactsClient := securitycontacts.NewSecurityContactsClientWithBaseURI(endpoint)
-	configureAuthFunc(&securityContactsClient.Client)
-
-	settingsClient := settings.NewSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&settingsClient.Client)
-
-	workspaceSettingsClient := workspacesettings.NewWorkspaceSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workspaceSettingsClient.Client)
-
-	return Client{
-		AdvancedThreatProtection:      &advancedThreatProtectionClient,
-		AutoProvisioningSettings:      &autoProvisioningSettingsClient,
-		Compliances:                   &compliancesClient,
-		DeviceSecurityGroups:          &deviceSecurityGroupsClient,
-		InformationProtectionPolicies: &informationProtectionPoliciesClient,
-		IoTSecuritySolutionsAnalytics: &ioTSecuritySolutionsAnalyticsClient,
-		IotSecuritySolutions:          &iotSecuritySolutionsClient,
-		Pricings:                      &pricingsClient,
-		SecurityContacts:              &securityContactsClient,
-		Settings:                      &settingsClient,
-		WorkspaceSettings:             &workspaceSettingsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	advancedThreatProtectionClient, err := advancedthreatprotection.NewAdvancedThreatProtectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AdvancedThreatProtection client: %+v", err)
 	}
+	configureFunc(advancedThreatProtectionClient.Client)
+
+	autoProvisioningSettingsClient, err := autoprovisioningsettings.NewAutoProvisioningSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AutoProvisioningSettings client: %+v", err)
+	}
+	configureFunc(autoProvisioningSettingsClient.Client)
+
+	compliancesClient, err := compliances.NewCompliancesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Compliances client: %+v", err)
+	}
+	configureFunc(compliancesClient.Client)
+
+	deviceSecurityGroupsClient, err := devicesecuritygroups.NewDeviceSecurityGroupsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeviceSecurityGroups client: %+v", err)
+	}
+	configureFunc(deviceSecurityGroupsClient.Client)
+
+	informationProtectionPoliciesClient, err := informationprotectionpolicies.NewInformationProtectionPoliciesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building InformationProtectionPolicies client: %+v", err)
+	}
+	configureFunc(informationProtectionPoliciesClient.Client)
+
+	ioTSecuritySolutionsAnalyticsClient, err := iotsecuritysolutionsanalytics.NewIoTSecuritySolutionsAnalyticsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IoTSecuritySolutionsAnalytics client: %+v", err)
+	}
+	configureFunc(ioTSecuritySolutionsAnalyticsClient.Client)
+
+	iotSecuritySolutionsClient, err := iotsecuritysolutions.NewIotSecuritySolutionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IotSecuritySolutions client: %+v", err)
+	}
+	configureFunc(iotSecuritySolutionsClient.Client)
+
+	pricingsClient, err := pricings.NewPricingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Pricings client: %+v", err)
+	}
+	configureFunc(pricingsClient.Client)
+
+	securityContactsClient, err := securitycontacts.NewSecurityContactsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SecurityContacts client: %+v", err)
+	}
+	configureFunc(securityContactsClient.Client)
+
+	settingsClient, err := settings.NewSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Settings client: %+v", err)
+	}
+	configureFunc(settingsClient.Client)
+
+	workspaceSettingsClient, err := workspacesettings.NewWorkspaceSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkspaceSettings client: %+v", err)
+	}
+	configureFunc(workspaceSettingsClient.Client)
+
+	return &Client{
+		AdvancedThreatProtection:      advancedThreatProtectionClient,
+		AutoProvisioningSettings:      autoProvisioningSettingsClient,
+		Compliances:                   compliancesClient,
+		DeviceSecurityGroups:          deviceSecurityGroupsClient,
+		InformationProtectionPolicies: informationProtectionPoliciesClient,
+		IoTSecuritySolutionsAnalytics: ioTSecuritySolutionsAnalyticsClient,
+		IotSecuritySolutions:          iotSecuritySolutionsClient,
+		Pricings:                      pricingsClient,
+		SecurityContacts:              securityContactsClient,
+		Settings:                      settingsClient,
+		WorkspaceSettings:             workspaceSettingsClient,
+	}, nil
 }

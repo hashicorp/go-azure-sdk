@@ -1,6 +1,10 @@
 package alerts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
+}
+
+func (s *AlertSeverity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertSeverity(input string) (*AlertSeverity, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForAlertStatus() []string {
 		string(AlertStatusDismissed),
 		string(AlertStatusResolved),
 	}
+}
+
+func (s *AlertStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertStatus(input string) (*AlertStatus, error) {
@@ -112,6 +142,19 @@ func PossibleValuesForIntent() []string {
 	}
 }
 
+func (s *Intent) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntent(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIntent(input string) (*Intent, error) {
 	vals := map[string]Intent{
 		"collection":          IntentCollection,
@@ -152,6 +195,19 @@ func PossibleValuesForResourceIdentifierType() []string {
 		string(ResourceIdentifierTypeAzureResource),
 		string(ResourceIdentifierTypeLogAnalytics),
 	}
+}
+
+func (s *ResourceIdentifierType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceIdentifierType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourceIdentifierType(input string) (*ResourceIdentifierType, error) {

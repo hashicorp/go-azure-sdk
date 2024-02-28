@@ -1,6 +1,10 @@
 package assessments
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAssessmentStatusCode() []string {
 		string(AssessmentStatusCodeNotApplicable),
 		string(AssessmentStatusCodeUnhealthy),
 	}
+}
+
+func (s *AssessmentStatusCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssessmentStatusCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAssessmentStatusCode(input string) (*AssessmentStatusCode, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForAssessmentType() []string {
 		string(AssessmentTypeCustomerManaged),
 		string(AssessmentTypeVerifiedPartner),
 	}
+}
+
+func (s *AssessmentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssessmentType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAssessmentType(input string) (*AssessmentType, error) {
@@ -90,6 +120,19 @@ func PossibleValuesForCategories() []string {
 	}
 }
 
+func (s *Categories) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCategories(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCategories(input string) (*Categories, error) {
 	vals := map[string]Categories{
 		"compute":           CategoriesCompute,
@@ -121,6 +164,19 @@ func PossibleValuesForExpandEnum() []string {
 	}
 }
 
+func (s *ExpandEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExpandEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExpandEnum(input string) (*ExpandEnum, error) {
 	vals := map[string]ExpandEnum{
 		"links":    ExpandEnumLinks,
@@ -149,6 +205,19 @@ func PossibleValuesForImplementationEffort() []string {
 		string(ImplementationEffortLow),
 		string(ImplementationEffortModerate),
 	}
+}
+
+func (s *ImplementationEffort) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseImplementationEffort(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseImplementationEffort(input string) (*ImplementationEffort, error) {
@@ -182,6 +251,19 @@ func PossibleValuesForSeverity() []string {
 	}
 }
 
+func (s *Severity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSeverity(input string) (*Severity, error) {
 	vals := map[string]Severity{
 		"high":   SeverityHigh,
@@ -211,6 +293,19 @@ func PossibleValuesForSource() []string {
 		string(SourceOnPremise),
 		string(SourceOnPremiseSql),
 	}
+}
+
+func (s *Source) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSource(input string) (*Source, error) {
@@ -254,6 +349,19 @@ func PossibleValuesForThreats() []string {
 	}
 }
 
+func (s *Threats) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseThreats(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseThreats(input string) (*Threats, error) {
 	vals := map[string]Threats{
 		"accountbreach":        ThreatsAccountBreach,
@@ -288,6 +396,19 @@ func PossibleValuesForUserImpact() []string {
 		string(UserImpactLow),
 		string(UserImpactModerate),
 	}
+}
+
+func (s *UserImpact) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUserImpact(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUserImpact(input string) (*UserImpact, error) {

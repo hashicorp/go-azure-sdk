@@ -1,18 +1,26 @@
 package autoprovisioningsettings
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AutoProvisioningSettingsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewAutoProvisioningSettingsClientWithBaseURI(endpoint string) AutoProvisioningSettingsClient {
-	return AutoProvisioningSettingsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewAutoProvisioningSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*AutoProvisioningSettingsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "autoprovisioningsettings", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AutoProvisioningSettingsClient: %+v", err)
 	}
+
+	return &AutoProvisioningSettingsClient{
+		Client: client,
+	}, nil
 }

@@ -1,6 +1,10 @@
 package pricings
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForCode() []string {
 		string(CodeFailed),
 		string(CodeSucceeded),
 	}
+}
+
+func (s *Code) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCode(input string) (*Code, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForEnforce() []string {
 	}
 }
 
+func (s *Enforce) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnforce(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEnforce(input string) (*Enforce, error) {
 	vals := map[string]Enforce{
 		"false": EnforceFalse,
@@ -73,6 +103,19 @@ func PossibleValuesForInherited() []string {
 		string(InheritedFalse),
 		string(InheritedTrue),
 	}
+}
+
+func (s *Inherited) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInherited(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInherited(input string) (*Inherited, error) {
@@ -103,6 +146,19 @@ func PossibleValuesForIsEnabled() []string {
 	}
 }
 
+func (s *IsEnabled) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIsEnabled(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIsEnabled(input string) (*IsEnabled, error) {
 	vals := map[string]IsEnabled{
 		"false": IsEnabledFalse,
@@ -129,6 +185,19 @@ func PossibleValuesForPricingTier() []string {
 		string(PricingTierFree),
 		string(PricingTierStandard),
 	}
+}
+
+func (s *PricingTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePricingTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePricingTier(input string) (*PricingTier, error) {
@@ -159,6 +228,19 @@ func PossibleValuesForResourcesCoverageStatus() []string {
 		string(ResourcesCoverageStatusNotCovered),
 		string(ResourcesCoverageStatusPartiallyCovered),
 	}
+}
+
+func (s *ResourcesCoverageStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourcesCoverageStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourcesCoverageStatus(input string) (*ResourcesCoverageStatus, error) {
