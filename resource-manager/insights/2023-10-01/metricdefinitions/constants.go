@@ -1,6 +1,10 @@
 package metricdefinitions
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForAggregationType() []string {
 		string(AggregationTypeNone),
 		string(AggregationTypeTotal),
 	}
+}
+
+func (s *AggregationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAggregationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAggregationType(input string) (*AggregationType, error) {
@@ -67,6 +84,19 @@ func PossibleValuesForMetricAggregationType() []string {
 	}
 }
 
+func (s *MetricAggregationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricAggregationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMetricAggregationType(input string) (*MetricAggregationType, error) {
 	vals := map[string]MetricAggregationType{
 		"average": MetricAggregationTypeAverage,
@@ -103,6 +133,19 @@ func PossibleValuesForMetricClass() []string {
 		string(MetricClassSaturation),
 		string(MetricClassTransactions),
 	}
+}
+
+func (s *MetricClass) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricClass(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMetricClass(input string) (*MetricClass, error) {
@@ -156,6 +199,19 @@ func PossibleValuesForMetricUnit() []string {
 		string(MetricUnitSeconds),
 		string(MetricUnitUnspecified),
 	}
+}
+
+func (s *MetricUnit) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricUnit(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMetricUnit(input string) (*MetricUnit, error) {

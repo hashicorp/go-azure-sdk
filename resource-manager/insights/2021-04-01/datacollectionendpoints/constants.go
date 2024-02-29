@@ -1,6 +1,10 @@
 package datacollectionendpoints
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForKnownDataCollectionEndpointProvisioningState() []string {
 		string(KnownDataCollectionEndpointProvisioningStateSucceeded),
 		string(KnownDataCollectionEndpointProvisioningStateUpdating),
 	}
+}
+
+func (s *KnownDataCollectionEndpointProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownDataCollectionEndpointProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownDataCollectionEndpointProvisioningState(input string) (*KnownDataCollectionEndpointProvisioningState, error) {
@@ -56,6 +73,19 @@ func PossibleValuesForKnownDataCollectionEndpointResourceKind() []string {
 	}
 }
 
+func (s *KnownDataCollectionEndpointResourceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownDataCollectionEndpointResourceKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKnownDataCollectionEndpointResourceKind(input string) (*KnownDataCollectionEndpointResourceKind, error) {
 	vals := map[string]KnownDataCollectionEndpointResourceKind{
 		"linux":   KnownDataCollectionEndpointResourceKindLinux,
@@ -82,6 +112,19 @@ func PossibleValuesForKnownPublicNetworkAccessOptions() []string {
 		string(KnownPublicNetworkAccessOptionsDisabled),
 		string(KnownPublicNetworkAccessOptionsEnabled),
 	}
+}
+
+func (s *KnownPublicNetworkAccessOptions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownPublicNetworkAccessOptions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownPublicNetworkAccessOptions(input string) (*KnownPublicNetworkAccessOptions, error) {

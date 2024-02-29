@@ -1,6 +1,10 @@
 package datacollectionrules
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForKnownDataCollectionRuleProvisioningState() []string {
 		string(KnownDataCollectionRuleProvisioningStateSucceeded),
 		string(KnownDataCollectionRuleProvisioningStateUpdating),
 	}
+}
+
+func (s *KnownDataCollectionRuleProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownDataCollectionRuleProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownDataCollectionRuleProvisioningState(input string) (*KnownDataCollectionRuleProvisioningState, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForKnownDataCollectionRuleResourceKind() []string {
 		string(KnownDataCollectionRuleResourceKindLinux),
 		string(KnownDataCollectionRuleResourceKindWindows),
 	}
+}
+
+func (s *KnownDataCollectionRuleResourceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownDataCollectionRuleResourceKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownDataCollectionRuleResourceKind(input string) (*KnownDataCollectionRuleResourceKind, error) {
@@ -88,6 +118,19 @@ func PossibleValuesForKnownDataFlowStreams() []string {
 		string(KnownDataFlowStreamsMicrosoftNegativeSyslog),
 		string(KnownDataFlowStreamsMicrosoftNegativeWindowsEvent),
 	}
+}
+
+func (s *KnownDataFlowStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownDataFlowStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownDataFlowStreams(input string) (*KnownDataFlowStreams, error) {
@@ -127,6 +170,19 @@ func PossibleValuesForKnownExtensionDataSourceStreams() []string {
 	}
 }
 
+func (s *KnownExtensionDataSourceStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownExtensionDataSourceStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKnownExtensionDataSourceStreams(input string) (*KnownExtensionDataSourceStreams, error) {
 	vals := map[string]KnownExtensionDataSourceStreams{
 		"microsoft-event":           KnownExtensionDataSourceStreamsMicrosoftNegativeEvent,
@@ -156,6 +212,19 @@ func PossibleValuesForKnownPerfCounterDataSourceStreams() []string {
 		string(KnownPerfCounterDataSourceStreamsMicrosoftNegativeInsightsMetrics),
 		string(KnownPerfCounterDataSourceStreamsMicrosoftNegativePerf),
 	}
+}
+
+func (s *KnownPerfCounterDataSourceStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownPerfCounterDataSourceStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownPerfCounterDataSourceStreams(input string) (*KnownPerfCounterDataSourceStreams, error) {
@@ -236,6 +305,19 @@ func PossibleValuesForKnownSyslogDataSourceFacilityNames() []string {
 	}
 }
 
+func (s *KnownSyslogDataSourceFacilityNames) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownSyslogDataSourceFacilityNames(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKnownSyslogDataSourceFacilityNames(input string) (*KnownSyslogDataSourceFacilityNames, error) {
 	vals := map[string]KnownSyslogDataSourceFacilityNames{
 		"alert":    KnownSyslogDataSourceFacilityNamesAlert,
@@ -303,6 +385,19 @@ func PossibleValuesForKnownSyslogDataSourceLogLevels() []string {
 	}
 }
 
+func (s *KnownSyslogDataSourceLogLevels) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownSyslogDataSourceLogLevels(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKnownSyslogDataSourceLogLevels(input string) (*KnownSyslogDataSourceLogLevels, error) {
 	vals := map[string]KnownSyslogDataSourceLogLevels{
 		"alert":     KnownSyslogDataSourceLogLevelsAlert,
@@ -336,6 +431,19 @@ func PossibleValuesForKnownSyslogDataSourceStreams() []string {
 	}
 }
 
+func (s *KnownSyslogDataSourceStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownSyslogDataSourceStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKnownSyslogDataSourceStreams(input string) (*KnownSyslogDataSourceStreams, error) {
 	vals := map[string]KnownSyslogDataSourceStreams{
 		"microsoft-syslog": KnownSyslogDataSourceStreamsMicrosoftNegativeSyslog,
@@ -361,6 +469,19 @@ func PossibleValuesForKnownWindowsEventLogDataSourceStreams() []string {
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent),
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent),
 	}
+}
+
+func (s *KnownWindowsEventLogDataSourceStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownWindowsEventLogDataSourceStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKnownWindowsEventLogDataSourceStreams(input string) (*KnownWindowsEventLogDataSourceStreams, error) {
