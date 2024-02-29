@@ -1,6 +1,10 @@
 package alertrulesapis
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForConditionOperator() []string {
 		string(ConditionOperatorLessThan),
 		string(ConditionOperatorLessThanOrEqual),
 	}
+}
+
+func (s *ConditionOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConditionOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConditionOperator(input string) (*ConditionOperator, error) {
@@ -57,6 +74,19 @@ func PossibleValuesForTimeAggregationOperator() []string {
 		string(TimeAggregationOperatorMinimum),
 		string(TimeAggregationOperatorTotal),
 	}
+}
+
+func (s *TimeAggregationOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTimeAggregationOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTimeAggregationOperator(input string) (*TimeAggregationOperator, error) {

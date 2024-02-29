@@ -1,6 +1,10 @@
 package metrics
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForMetricResultType() []string {
 		string(MetricResultTypeData),
 		string(MetricResultTypeMetadata),
 	}
+}
+
+func (s *MetricResultType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricResultType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMetricResultType(input string) (*MetricResultType, error) {
@@ -69,6 +86,19 @@ func PossibleValuesForMetricUnit() []string {
 	}
 }
 
+func (s *MetricUnit) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricUnit(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMetricUnit(input string) (*MetricUnit, error) {
 	vals := map[string]MetricUnit{
 		"bitspersecond":  MetricUnitBitsPerSecond,
@@ -106,6 +136,19 @@ func PossibleValuesForResultType() []string {
 		string(ResultTypeData),
 		string(ResultTypeMetadata),
 	}
+}
+
+func (s *ResultType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResultType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResultType(input string) (*ResultType, error) {

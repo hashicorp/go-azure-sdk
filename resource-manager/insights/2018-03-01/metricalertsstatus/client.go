@@ -1,18 +1,26 @@
 package metricalertsstatus
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MetricAlertsStatusClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewMetricAlertsStatusClientWithBaseURI(endpoint string) MetricAlertsStatusClient {
-	return MetricAlertsStatusClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewMetricAlertsStatusClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricAlertsStatusClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "metricalertsstatus", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MetricAlertsStatusClient: %+v", err)
 	}
+
+	return &MetricAlertsStatusClient{
+		Client: client,
+	}, nil
 }
