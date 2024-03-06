@@ -1,6 +1,10 @@
 package managedcassandras
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAuthenticationMethod() []string {
 		string(AuthenticationMethodCassandra),
 		string(AuthenticationMethodNone),
 	}
+}
+
+func (s *AuthenticationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAuthenticationMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAuthenticationMethod(input string) (*AuthenticationMethod, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForConnectionState() []string {
 		string(ConnectionStateOperatorToDataCenterNetworkError),
 		string(ConnectionStateUnknown),
 	}
+}
+
+func (s *ConnectionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectionState(input string) (*ConnectionState, error) {
@@ -95,6 +125,19 @@ func PossibleValuesForManagedCassandraProvisioningState() []string {
 	}
 }
 
+func (s *ManagedCassandraProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedCassandraProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedCassandraProvisioningState(input string) (*ManagedCassandraProvisioningState, error) {
 	vals := map[string]ManagedCassandraProvisioningState{
 		"canceled":  ManagedCassandraProvisioningStateCanceled,
@@ -131,6 +174,19 @@ func PossibleValuesForNodeState() []string {
 		string(NodeStateNormal),
 		string(NodeStateStopped),
 	}
+}
+
+func (s *NodeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNodeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNodeState(input string) (*NodeState, error) {

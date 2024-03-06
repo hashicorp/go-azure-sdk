@@ -1,6 +1,10 @@
 package restorables
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForApiType() []string {
 		string(ApiTypeSql),
 		string(ApiTypeTable),
 	}
+}
+
+func (s *ApiType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApiType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseApiType(input string) (*ApiType, error) {
@@ -59,6 +76,19 @@ func PossibleValuesForCompositePathSortOrder() []string {
 	}
 }
 
+func (s *CompositePathSortOrder) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCompositePathSortOrder(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCompositePathSortOrder(input string) (*CompositePathSortOrder, error) {
 	vals := map[string]CompositePathSortOrder{
 		"ascending":  CompositePathSortOrderAscending,
@@ -85,6 +115,19 @@ func PossibleValuesForConflictResolutionMode() []string {
 		string(ConflictResolutionModeCustom),
 		string(ConflictResolutionModeLastWriterWins),
 	}
+}
+
+func (s *ConflictResolutionMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConflictResolutionMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConflictResolutionMode(input string) (*ConflictResolutionMode, error) {
@@ -123,6 +166,19 @@ func PossibleValuesForDataType() []string {
 	}
 }
 
+func (s *DataType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataType(input string) (*DataType, error) {
 	vals := map[string]DataType{
 		"linestring":   DataTypeLineString,
@@ -157,6 +213,19 @@ func PossibleValuesForIndexKind() []string {
 	}
 }
 
+func (s *IndexKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIndexKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIndexKind(input string) (*IndexKind, error) {
 	vals := map[string]IndexKind{
 		"hash":    IndexKindHash,
@@ -186,6 +255,19 @@ func PossibleValuesForIndexingMode() []string {
 		string(IndexingModeLazy),
 		string(IndexingModeNone),
 	}
+}
+
+func (s *IndexingMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIndexingMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIndexingMode(input string) (*IndexingMode, error) {
@@ -221,6 +303,19 @@ func PossibleValuesForOperationType() []string {
 	}
 }
 
+func (s *OperationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperationType(input string) (*OperationType, error) {
 	vals := map[string]OperationType{
 		"create":          OperationTypeCreate,
@@ -251,6 +346,19 @@ func PossibleValuesForPartitionKind() []string {
 		string(PartitionKindMultiHash),
 		string(PartitionKindRange),
 	}
+}
+
+func (s *PartitionKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePartitionKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePartitionKind(input string) (*PartitionKind, error) {
@@ -284,6 +392,19 @@ func PossibleValuesForSpatialType() []string {
 		string(SpatialTypePoint),
 		string(SpatialTypePolygon),
 	}
+}
+
+func (s *SpatialType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSpatialType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSpatialType(input string) (*SpatialType, error) {
