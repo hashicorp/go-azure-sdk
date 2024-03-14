@@ -93,14 +93,14 @@ type OData struct {
 	MetadataEtag *string `json:"@odata.metadataEtag"`
 	Type         *Type   `json:"@odata.type"`
 	Count        *int    `json:"@odata.count"`
-	NextLink     *Link   `json:"@odata.nextLink"`
 	Delta        *string `json:"@odata.delta"`
 	DeltaLink    *Link   `json:"@odata.deltaLink"`
 	Id           *Id     `json:"@odata.id"`
 	EditLink     *Link   `json:"@odata.editLink"`
 	Etag         *string `json:"@odata.etag"`
 
-	Error *Error `json:"-"`
+	Error    *Error `json:"-"`
+	NextLink *Link  `json:"-"`
 
 	Value interface{} `json:"value"`
 }
@@ -127,6 +127,18 @@ func (o *OData) UnmarshalJSON(data []byte) error {
 				return err
 			}
 			o.Error = &e2
+			break
+		}
+	}
+
+	for _, k := range []string{"nextLink", "@odata.nextlink"} {
+		if v, ok := e[k]; ok {
+			var l2 Link
+			if err := json.Unmarshal(v, &l2); err != nil {
+				return err
+			}
+
+			o.NextLink = &l2
 			break
 		}
 	}
