@@ -1,0 +1,12 @@
+package connectedresources
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ConnectedPartnerResourcesListFormatOperationPredicate struct {
+}
+
+func (p ConnectedPartnerResourcesListFormatOperationPredicate) Matches(input ConnectedPartnerResourcesListFormat) bool {
+
+	return true
+}
