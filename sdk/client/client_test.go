@@ -471,6 +471,38 @@ func TestUnmarshalXml(t *testing.T) {
 	}
 }
 
+func TestUnmarshalNilHeaders(t *testing.T) {
+	expected := []byte("any payload")
+	r := &Response{
+		Response: &http.Response{
+			Header: nil,
+			Body:   io.NopCloser(bytes.NewReader(expected)),
+		},
+	}
+	var unmarshaled []byte
+	if err := r.Unmarshal(&unmarshaled); err != nil {
+		if err.Error() != "could not determine Content-Type for response" {
+			t.Fatalf("unexpected error when unmarshaling: %+v", err)
+		}
+	} else {
+		t.Fatalf("expected an error but got no error")
+	}
+}
+
+func TestUnmarshalNilResponse(t *testing.T) {
+	r := &Response{
+		Response: nil,
+	}
+	var unmarshaled = make([]byte, 0)
+	if err := r.Unmarshal(&unmarshaled); err != nil {
+		if err.Error() != "could not unmarshal as the HTTP response was nil" {
+			t.Fatalf("unexpected error when unmarshaling: %+v", err)
+		}
+	} else {
+		t.Fatalf("expected an error but got no error")
+	}
+}
+
 func unmarshalResponse(body io.ReadCloser, unmarshal func(in []byte) error) error {
 	respBody, err := io.ReadAll(body)
 	if err != nil {
