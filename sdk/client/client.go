@@ -167,20 +167,31 @@ func (r *Response) Unmarshal(model interface{}) error {
 	if model == nil {
 		return fmt.Errorf("model was nil")
 	}
+	if r.Response == nil {
+		return fmt.Errorf("could not unmarshal as the HTTP response was nil")
+	}
 
-	contentType := strings.ToLower(r.Header.Get("Content-Type"))
-	if contentType == "" {
-		// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
-		acc, err := accept.FromString(r.Request.Header.Get("Accept"))
-		if err != nil {
-			if preferred := acc.FirstChoice(); preferred != nil {
-				contentType = preferred.ContentType
+	var contentType string
+	if r.Response.Header != nil {
+		contentType = strings.ToLower(r.Response.Header.Get("Content-Type"))
+
+		if contentType == "" {
+			// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
+			acc, err := accept.FromString(r.Request.Header.Get("Accept"))
+			if err != nil {
+				if preferred := acc.FirstChoice(); preferred != nil {
+					contentType = preferred.ContentType
+				}
+			}
+			if contentType == "" {
+				// fall back on request media type
+				contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
 			}
 		}
-		if contentType == "" {
-			// fall back on request media type
-			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
-		}
+	}
+
+	if contentType == "" {
+		return fmt.Errorf("could not determine Content-Type for response")
 	}
 
 	// Some APIs (e.g. Maintenance) return 200 without a body, don't unmarshal these
