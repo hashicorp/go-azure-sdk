@@ -9,6 +9,44 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type CheckNameAvailabilityParametersType string
+
+const (
+	CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeStoreAccounts CheckNameAvailabilityParametersType = "Microsoft.DataLakeStore/accounts"
+)
+
+func PossibleValuesForCheckNameAvailabilityParametersType() []string {
+	return []string{
+		string(CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeStoreAccounts),
+	}
+}
+
+func (s *CheckNameAvailabilityParametersType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameAvailabilityParametersType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseCheckNameAvailabilityParametersType(input string) (*CheckNameAvailabilityParametersType, error) {
+	vals := map[string]CheckNameAvailabilityParametersType{
+		"microsoft.datalakestore/accounts": CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeStoreAccounts,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CheckNameAvailabilityParametersType(input)
+	return &out, nil
+}
+
 type DataLakeStoreAccountState string
 
 const (
@@ -417,43 +455,5 @@ func parseTrustedIdProviderState(input string) (*TrustedIdProviderState, error) 
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := TrustedIdProviderState(input)
-	return &out, nil
-}
-
-type Type string
-
-const (
-	TypeMicrosoftPointDataLakeStoreAccounts Type = "Microsoft.DataLakeStore/accounts"
-)
-
-func PossibleValuesForType() []string {
-	return []string{
-		string(TypeMicrosoftPointDataLakeStoreAccounts),
-	}
-}
-
-func (s *Type) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.datalakestore/accounts": TypeMicrosoftPointDataLakeStoreAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
 	return &out, nil
 }

@@ -4,6 +4,6 @@ package accounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CheckNameAvailabilityParameters struct {
-	Name string `json:"name"`
-	Type Type   `json:"type"`
+	Name string                              `json:"name"`
+	Type CheckNameAvailabilityParametersType `json:"type"`
 }

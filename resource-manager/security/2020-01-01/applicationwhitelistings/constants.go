@@ -520,6 +520,59 @@ func parseRecommendationStatus(input string) (*RecommendationStatus, error) {
 	return &out, nil
 }
 
+type RecommendationType string
+
+const (
+	RecommendationTypeBinarySignature          RecommendationType = "BinarySignature"
+	RecommendationTypeFile                     RecommendationType = "File"
+	RecommendationTypeFileHash                 RecommendationType = "FileHash"
+	RecommendationTypeProductSignature         RecommendationType = "ProductSignature"
+	RecommendationTypePublisherSignature       RecommendationType = "PublisherSignature"
+	RecommendationTypeVersionAndAboveSignature RecommendationType = "VersionAndAboveSignature"
+)
+
+func PossibleValuesForRecommendationType() []string {
+	return []string{
+		string(RecommendationTypeBinarySignature),
+		string(RecommendationTypeFile),
+		string(RecommendationTypeFileHash),
+		string(RecommendationTypeProductSignature),
+		string(RecommendationTypePublisherSignature),
+		string(RecommendationTypeVersionAndAboveSignature),
+	}
+}
+
+func (s *RecommendationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRecommendationType(input string) (*RecommendationType, error) {
+	vals := map[string]RecommendationType{
+		"binarysignature":          RecommendationTypeBinarySignature,
+		"file":                     RecommendationTypeFile,
+		"filehash":                 RecommendationTypeFileHash,
+		"productsignature":         RecommendationTypeProductSignature,
+		"publishersignature":       RecommendationTypePublisherSignature,
+		"versionandabovesignature": RecommendationTypeVersionAndAboveSignature,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecommendationType(input)
+	return &out, nil
+}
+
 type Script string
 
 const (
@@ -611,58 +664,5 @@ func parseSourceSystem(input string) (*SourceSystem, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := SourceSystem(input)
-	return &out, nil
-}
-
-type Type string
-
-const (
-	TypeBinarySignature          Type = "BinarySignature"
-	TypeFile                     Type = "File"
-	TypeFileHash                 Type = "FileHash"
-	TypeProductSignature         Type = "ProductSignature"
-	TypePublisherSignature       Type = "PublisherSignature"
-	TypeVersionAndAboveSignature Type = "VersionAndAboveSignature"
-)
-
-func PossibleValuesForType() []string {
-	return []string{
-		string(TypeBinarySignature),
-		string(TypeFile),
-		string(TypeFileHash),
-		string(TypeProductSignature),
-		string(TypePublisherSignature),
-		string(TypeVersionAndAboveSignature),
-	}
-}
-
-func (s *Type) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"binarysignature":          TypeBinarySignature,
-		"file":                     TypeFile,
-		"filehash":                 TypeFileHash,
-		"productsignature":         TypeProductSignature,
-		"publishersignature":       TypePublisherSignature,
-		"versionandabovesignature": TypeVersionAndAboveSignature,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
 	return &out, nil
 }

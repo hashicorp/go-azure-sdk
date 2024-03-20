@@ -53,6 +53,44 @@ func parseAADObjectType(input string) (*AADObjectType, error) {
 	return &out, nil
 }
 
+type CheckNameAvailabilityParametersType string
+
+const (
+	CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeAnalyticsAccounts CheckNameAvailabilityParametersType = "Microsoft.DataLakeAnalytics/accounts"
+)
+
+func PossibleValuesForCheckNameAvailabilityParametersType() []string {
+	return []string{
+		string(CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeAnalyticsAccounts),
+	}
+}
+
+func (s *CheckNameAvailabilityParametersType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameAvailabilityParametersType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseCheckNameAvailabilityParametersType(input string) (*CheckNameAvailabilityParametersType, error) {
+	vals := map[string]CheckNameAvailabilityParametersType{
+		"microsoft.datalakeanalytics/accounts": CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeAnalyticsAccounts,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CheckNameAvailabilityParametersType(input)
+	return &out, nil
+}
+
 type DataLakeAnalyticsAccountState string
 
 const (
@@ -391,44 +429,6 @@ func parseTierType(input string) (*TierType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := TierType(input)
-	return &out, nil
-}
-
-type Type string
-
-const (
-	TypeMicrosoftPointDataLakeAnalyticsAccounts Type = "Microsoft.DataLakeAnalytics/accounts"
-)
-
-func PossibleValuesForType() []string {
-	return []string{
-		string(TypeMicrosoftPointDataLakeAnalyticsAccounts),
-	}
-}
-
-func (s *Type) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.datalakeanalytics/accounts": TypeMicrosoftPointDataLakeAnalyticsAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
 	return &out, nil
 }
 

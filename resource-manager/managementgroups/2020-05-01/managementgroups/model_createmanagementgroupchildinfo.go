@@ -8,5 +8,5 @@ type CreateManagementGroupChildInfo struct {
 	DisplayName *string                           `json:"displayName,omitempty"`
 	Id          *string                           `json:"id,omitempty"`
 	Name        *string                           `json:"name,omitempty"`
-	Type        *Type                             `json:"type,omitempty"`
+	Type        *ManagementGroupChildType         `json:"type,omitempty"`
 }
