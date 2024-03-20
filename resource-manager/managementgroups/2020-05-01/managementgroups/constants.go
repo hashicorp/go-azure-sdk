@@ -50,26 +50,26 @@ func parseExpand(input string) (*Expand, error) {
 	return &out, nil
 }
 
-type Type string
+type ManagementGroupChildType string
 
 const (
-	TypeMicrosoftPointManagementManagementGroups Type = "Microsoft.Management/managementGroups"
-	TypeSubscriptions                            Type = "/subscriptions"
+	ManagementGroupChildTypeMicrosoftPointManagementManagementGroups ManagementGroupChildType = "Microsoft.Management/managementGroups"
+	ManagementGroupChildTypeSubscriptions                            ManagementGroupChildType = "/subscriptions"
 )
 
-func PossibleValuesForType() []string {
+func PossibleValuesForManagementGroupChildType() []string {
 	return []string{
-		string(TypeMicrosoftPointManagementManagementGroups),
-		string(TypeSubscriptions),
+		string(ManagementGroupChildTypeMicrosoftPointManagementManagementGroups),
+		string(ManagementGroupChildTypeSubscriptions),
 	}
 }
 
-func (s *Type) UnmarshalJSON(bytes []byte) error {
+func (s *ManagementGroupChildType) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseType(decoded)
+	out, err := parseManagementGroupChildType(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -77,16 +77,16 @@ func (s *Type) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.management/managementgroups": TypeMicrosoftPointManagementManagementGroups,
-		"/subscriptions":                        TypeSubscriptions,
+func parseManagementGroupChildType(input string) (*ManagementGroupChildType, error) {
+	vals := map[string]ManagementGroupChildType{
+		"microsoft.management/managementgroups": ManagementGroupChildTypeMicrosoftPointManagementManagementGroups,
+		"/subscriptions":                        ManagementGroupChildTypeSubscriptions,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
+	out := ManagementGroupChildType(input)
 	return &out, nil
 }

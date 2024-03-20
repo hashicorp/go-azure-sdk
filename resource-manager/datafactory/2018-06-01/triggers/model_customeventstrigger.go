@@ -1,0 +1,13 @@
+package triggers
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CustomEventsTrigger struct {
+	Annotations    *[]interface{}                    `json:"annotations,omitempty"`
+	Description    *string                           `json:"description,omitempty"`
+	Pipelines      *[]TriggerPipelineReference       `json:"pipelines,omitempty"`
+	RuntimeState   *TriggerRuntimeState              `json:"runtimeState,omitempty"`
+	Type           string                            `json:"type"`
+	TypeProperties CustomEventsTriggerTypeProperties `json:"typeProperties"`
+}

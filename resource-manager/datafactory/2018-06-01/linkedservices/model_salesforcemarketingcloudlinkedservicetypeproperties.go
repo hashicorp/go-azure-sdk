@@ -1,0 +1,50 @@
+package linkedservices
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SalesforceMarketingCloudLinkedServiceTypeProperties struct {
+	ClientId              *interface{} `json:"clientId,omitempty"`
+	ClientSecret          SecretBase   `json:"clientSecret"`
+	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
+	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+}
+
+var _ json.Unmarshaler = &SalesforceMarketingCloudLinkedServiceTypeProperties{}
+
+func (s *SalesforceMarketingCloudLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
+	type alias SalesforceMarketingCloudLinkedServiceTypeProperties
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into SalesforceMarketingCloudLinkedServiceTypeProperties: %+v", err)
+	}
+
+	s.ClientId = decoded.ClientId
+	s.ConnectionProperties = decoded.ConnectionProperties
+	s.EncryptedCredential = decoded.EncryptedCredential
+	s.UseEncryptedEndpoints = decoded.UseEncryptedEndpoints
+	s.UseHostVerification = decoded.UseHostVerification
+	s.UsePeerVerification = decoded.UsePeerVerification
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SalesforceMarketingCloudLinkedServiceTypeProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["clientSecret"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'SalesforceMarketingCloudLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ClientSecret = impl
+	}
+	return nil
+}

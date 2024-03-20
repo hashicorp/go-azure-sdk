@@ -1,0 +1,50 @@
+package linkedservices
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MarketoLinkedServiceTypeProperties struct {
+	ClientId              interface{}  `json:"clientId"`
+	ClientSecret          SecretBase   `json:"clientSecret"`
+	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+	Endpoint              interface{}  `json:"endpoint"`
+	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+}
+
+var _ json.Unmarshaler = &MarketoLinkedServiceTypeProperties{}
+
+func (s *MarketoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
+	type alias MarketoLinkedServiceTypeProperties
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into MarketoLinkedServiceTypeProperties: %+v", err)
+	}
+
+	s.ClientId = decoded.ClientId
+	s.EncryptedCredential = decoded.EncryptedCredential
+	s.Endpoint = decoded.Endpoint
+	s.UseEncryptedEndpoints = decoded.UseEncryptedEndpoints
+	s.UseHostVerification = decoded.UseHostVerification
+	s.UsePeerVerification = decoded.UsePeerVerification
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MarketoLinkedServiceTypeProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["clientSecret"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'MarketoLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ClientSecret = impl
+	}
+	return nil
+}

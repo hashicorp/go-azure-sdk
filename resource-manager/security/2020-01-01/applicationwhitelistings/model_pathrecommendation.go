@@ -10,7 +10,7 @@ type PathRecommendation struct {
 	FileType            *FileType             `json:"fileType,omitempty"`
 	Path                *string               `json:"path,omitempty"`
 	PublisherInfo       *PublisherInfo        `json:"publisherInfo,omitempty"`
-	Type                *Type                 `json:"type,omitempty"`
+	Type                *RecommendationType   `json:"type,omitempty"`
 	UserSids            *[]string             `json:"userSids,omitempty"`
 	Usernames           *[]UserRecommendation `json:"usernames,omitempty"`
 }
