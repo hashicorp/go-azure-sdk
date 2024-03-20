@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := contentproducttemplates.NewContentproducttemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
+id := contentproducttemplates.NewContentProductTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
 
 read, err := client.ProductTemplateGet(ctx, id)
 if err != nil {
