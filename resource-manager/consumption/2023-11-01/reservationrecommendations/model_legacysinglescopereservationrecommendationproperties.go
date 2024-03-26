@@ -21,6 +21,7 @@ type LegacySingleScopeReservationRecommendationProperties struct {
 	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
 	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
 	InstanceFlexibilityRatio       *float64       `json:"instanceFlexibilityRatio,omitempty"`
+	LastUsageDate                  *string        `json:"lastUsageDate,omitempty"`
 	LookBackPeriod                 *string        `json:"lookBackPeriod,omitempty"`
 	MeterId                        *string        `json:"meterId,omitempty"`
 	NetSavings                     *float64       `json:"netSavings,omitempty"`
@@ -31,6 +32,7 @@ type LegacySingleScopeReservationRecommendationProperties struct {
 	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *float64       `json:"totalCostWithReservedInstances,omitempty"`
+	TotalHours                     *int64         `json:"totalHours,omitempty"`
 }
 
 func (o *LegacySingleScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
@@ -43,6 +45,18 @@ func (o *LegacySingleScopeReservationRecommendationProperties) GetFirstUsageDate
 func (o *LegacySingleScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
 	formatted := input.Format("2006-01-02T15:04:05Z07:00")
 	o.FirstUsageDate = &formatted
+}
+
+func (o *LegacySingleScopeReservationRecommendationProperties) GetLastUsageDateAsTime() (*time.Time, error) {
+	if o.LastUsageDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastUsageDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *LegacySingleScopeReservationRecommendationProperties) SetLastUsageDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUsageDate = &formatted
 }
 
 var _ json.Marshaler = LegacySingleScopeReservationRecommendationProperties{}

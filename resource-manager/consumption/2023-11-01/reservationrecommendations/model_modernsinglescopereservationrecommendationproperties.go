@@ -21,6 +21,7 @@ type ModernSingleScopeReservationRecommendationProperties struct {
 	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
 	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
 	InstanceFlexibilityRatio       *float64       `json:"instanceFlexibilityRatio,omitempty"`
+	LastUsageDate                  *string        `json:"lastUsageDate,omitempty"`
 	Location                       *string        `json:"location,omitempty"`
 	LookBackPeriod                 *int64         `json:"lookBackPeriod,omitempty"`
 	MeterId                        *string        `json:"meterId,omitempty"`
@@ -33,6 +34,7 @@ type ModernSingleScopeReservationRecommendationProperties struct {
 	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *Amount        `json:"totalCostWithReservedInstances,omitempty"`
+	TotalHours                     *int64         `json:"totalHours,omitempty"`
 }
 
 func (o *ModernSingleScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
@@ -45,6 +47,18 @@ func (o *ModernSingleScopeReservationRecommendationProperties) GetFirstUsageDate
 func (o *ModernSingleScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
 	formatted := input.Format("2006-01-02T15:04:05Z07:00")
 	o.FirstUsageDate = &formatted
+}
+
+func (o *ModernSingleScopeReservationRecommendationProperties) GetLastUsageDateAsTime() (*time.Time, error) {
+	if o.LastUsageDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastUsageDate, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *ModernSingleScopeReservationRecommendationProperties) SetLastUsageDateAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.LastUsageDate = &formatted
 }
 
 var _ json.Marshaler = ModernSingleScopeReservationRecommendationProperties{}
