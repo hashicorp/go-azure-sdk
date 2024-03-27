@@ -8,10 +8,37 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+var _ FormatReadSettings = DelimitedTextReadSettings{}
+
 type DelimitedTextReadSettings struct {
 	CompressionProperties CompressionReadSettings `json:"compressionProperties"`
 	SkipLineCount         *interface{}            `json:"skipLineCount,omitempty"`
-	Type                  string                  `json:"type"`
+
+	// Fields inherited from FormatReadSettings
+}
+
+var _ json.Marshaler = DelimitedTextReadSettings{}
+
+func (s DelimitedTextReadSettings) MarshalJSON() ([]byte, error) {
+	type wrapper DelimitedTextReadSettings
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DelimitedTextReadSettings: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DelimitedTextReadSettings: %+v", err)
+	}
+	decoded["type"] = "DelimitedTextReadSettings"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DelimitedTextReadSettings: %+v", err)
+	}
+
+	return encoded, nil
 }
 
 var _ json.Unmarshaler = &DelimitedTextReadSettings{}
@@ -24,7 +51,6 @@ func (s *DelimitedTextReadSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.SkipLineCount = decoded.SkipLineCount
-	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

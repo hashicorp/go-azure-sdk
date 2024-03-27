@@ -8,15 +8,42 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+var _ CopySource = ParquetSource{}
+
 type ParquetSource struct {
-	AdditionalColumns        *interface{}         `json:"additionalColumns,omitempty"`
-	DisableMetricsCollection *interface{}         `json:"disableMetricsCollection,omitempty"`
-	FormatSettings           *ParquetReadSettings `json:"formatSettings,omitempty"`
-	MaxConcurrentConnections *interface{}         `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{}         `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{}         `json:"sourceRetryWait,omitempty"`
-	StoreSettings            StoreReadSettings    `json:"storeSettings"`
-	Type                     string               `json:"type"`
+	AdditionalColumns *interface{}         `json:"additionalColumns,omitempty"`
+	FormatSettings    *ParquetReadSettings `json:"formatSettings,omitempty"`
+	StoreSettings     StoreReadSettings    `json:"storeSettings"`
+
+	// Fields inherited from CopySource
+	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+}
+
+var _ json.Marshaler = ParquetSource{}
+
+func (s ParquetSource) MarshalJSON() ([]byte, error) {
+	type wrapper ParquetSource
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ParquetSource: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ParquetSource: %+v", err)
+	}
+	decoded["type"] = "ParquetSource"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ParquetSource: %+v", err)
+	}
+
+	return encoded, nil
 }
 
 var _ json.Unmarshaler = &ParquetSource{}
@@ -34,7 +61,6 @@ func (s *ParquetSource) UnmarshalJSON(bytes []byte) error {
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SourceRetryCount = decoded.SourceRetryCount
 	s.SourceRetryWait = decoded.SourceRetryWait
-	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
