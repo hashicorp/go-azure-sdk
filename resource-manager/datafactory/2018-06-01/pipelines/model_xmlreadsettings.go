@@ -8,13 +8,40 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+var _ FormatReadSettings = XmlReadSettings{}
+
 type XmlReadSettings struct {
 	CompressionProperties CompressionReadSettings `json:"compressionProperties"`
 	DetectDataType        *interface{}            `json:"detectDataType,omitempty"`
 	NamespacePrefixes     *interface{}            `json:"namespacePrefixes,omitempty"`
 	Namespaces            *interface{}            `json:"namespaces,omitempty"`
-	Type                  string                  `json:"type"`
 	ValidationMode        *interface{}            `json:"validationMode,omitempty"`
+
+	// Fields inherited from FormatReadSettings
+}
+
+var _ json.Marshaler = XmlReadSettings{}
+
+func (s XmlReadSettings) MarshalJSON() ([]byte, error) {
+	type wrapper XmlReadSettings
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling XmlReadSettings: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling XmlReadSettings: %+v", err)
+	}
+	decoded["type"] = "XmlReadSettings"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling XmlReadSettings: %+v", err)
+	}
+
+	return encoded, nil
 }
 
 var _ json.Unmarshaler = &XmlReadSettings{}
@@ -29,7 +56,6 @@ func (s *XmlReadSettings) UnmarshalJSON(bytes []byte) error {
 	s.DetectDataType = decoded.DetectDataType
 	s.NamespacePrefixes = decoded.NamespacePrefixes
 	s.Namespaces = decoded.Namespaces
-	s.Type = decoded.Type
 	s.ValidationMode = decoded.ValidationMode
 
 	var temp map[string]json.RawMessage

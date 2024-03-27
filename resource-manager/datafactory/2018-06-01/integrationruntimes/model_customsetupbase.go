@@ -3,6 +3,7 @@ package integrationruntimes
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,38 @@ func unmarshalCustomSetupBaseImplementation(input []byte) (CustomSetupBase, erro
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "AzPowerShellSetup") {
+		var out AzPowerShellSetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzPowerShellSetup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CmdkeySetup") {
+		var out CmdkeySetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CmdkeySetup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ComponentSetup") {
+		var out ComponentSetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ComponentSetup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "EnvironmentVariableSetup") {
+		var out EnvironmentVariableSetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EnvironmentVariableSetup: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawCustomSetupBaseImpl{

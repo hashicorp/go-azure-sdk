@@ -3,6 +3,7 @@ package pipelines
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,118 @@ func unmarshalStoreReadSettingsImplementation(input []byte) (StoreReadSettings, 
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "AmazonS3CompatibleReadSettings") {
+		var out AmazonS3CompatibleReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AmazonS3CompatibleReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AmazonS3ReadSettings") {
+		var out AmazonS3ReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AmazonS3ReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureBlobFSReadSettings") {
+		var out AzureBlobFSReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBlobFSReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureBlobStorageReadSettings") {
+		var out AzureBlobStorageReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBlobStorageReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureDataLakeStoreReadSettings") {
+		var out AzureDataLakeStoreReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureDataLakeStoreReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureFileStorageReadSettings") {
+		var out AzureFileStorageReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureFileStorageReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "FileServerReadSettings") {
+		var out FileServerReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileServerReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "FtpReadSettings") {
+		var out FtpReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FtpReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GoogleCloudStorageReadSettings") {
+		var out GoogleCloudStorageReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GoogleCloudStorageReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "HttpReadSettings") {
+		var out HTTPReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HTTPReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "HdfsReadSettings") {
+		var out HdfsReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HdfsReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "LakeHouseReadSettings") {
+		var out LakeHouseReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LakeHouseReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OracleCloudStorageReadSettings") {
+		var out OracleCloudStorageReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OracleCloudStorageReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SftpReadSettings") {
+		var out SftpReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SftpReadSettings: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawStoreReadSettingsImpl{

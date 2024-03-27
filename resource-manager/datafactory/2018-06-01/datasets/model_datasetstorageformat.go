@@ -3,6 +3,7 @@ package datasets
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,46 @@ func unmarshalDatasetStorageFormatImplementation(input []byte) (DatasetStorageFo
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "AvroFormat") {
+		var out AvroFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AvroFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "JsonFormat") {
+		var out JsonFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OrcFormat") {
+		var out OrcFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OrcFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ParquetFormat") {
+		var out ParquetFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ParquetFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TextFormat") {
+		var out TextFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TextFormat: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawDatasetStorageFormatImpl{

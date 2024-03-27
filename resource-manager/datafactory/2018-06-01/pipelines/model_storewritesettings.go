@@ -3,6 +3,7 @@ package pipelines
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,62 @@ func unmarshalStoreWriteSettingsImplementation(input []byte) (StoreWriteSettings
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "AzureBlobFSWriteSettings") {
+		var out AzureBlobFSWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBlobFSWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureBlobStorageWriteSettings") {
+		var out AzureBlobStorageWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBlobStorageWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureDataLakeStoreWriteSettings") {
+		var out AzureDataLakeStoreWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureDataLakeStoreWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureFileStorageWriteSettings") {
+		var out AzureFileStorageWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureFileStorageWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "FileServerWriteSettings") {
+		var out FileServerWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileServerWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "LakeHouseWriteSettings") {
+		var out LakeHouseWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LakeHouseWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SftpWriteSettings") {
+		var out SftpWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SftpWriteSettings: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawStoreWriteSettingsImpl{

@@ -1,13 +1,45 @@
 package triggers
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+var _ Trigger = ChainingTrigger{}
+
 type ChainingTrigger struct {
-	Annotations    *[]interface{}                `json:"annotations,omitempty"`
-	Description    *string                       `json:"description,omitempty"`
 	Pipeline       TriggerPipelineReference      `json:"pipeline"`
-	RuntimeState   *TriggerRuntimeState          `json:"runtimeState,omitempty"`
-	Type           string                        `json:"type"`
 	TypeProperties ChainingTriggerTypeProperties `json:"typeProperties"`
+
+	// Fields inherited from Trigger
+	Annotations  *[]interface{}       `json:"annotations,omitempty"`
+	Description  *string              `json:"description,omitempty"`
+	RuntimeState *TriggerRuntimeState `json:"runtimeState,omitempty"`
+}
+
+var _ json.Marshaler = ChainingTrigger{}
+
+func (s ChainingTrigger) MarshalJSON() ([]byte, error) {
+	type wrapper ChainingTrigger
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ChainingTrigger: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ChainingTrigger: %+v", err)
+	}
+	decoded["type"] = "ChainingTrigger"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ChainingTrigger: %+v", err)
+	}
+
+	return encoded, nil
 }

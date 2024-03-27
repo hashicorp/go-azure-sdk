@@ -244,6 +244,14 @@ func unmarshalDatasetImplementation(input []byte) (Dataset, error) {
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "CustomDataset") {
+		var out CustomDataset
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomDataset: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "Db2Table") {
 		var out Db2TableDataset
 		if err := json.Unmarshal(input, &out); err != nil {

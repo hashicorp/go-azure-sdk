@@ -36,10 +36,66 @@ func unmarshalTriggerImplementation(input []byte) (Trigger, error) {
 		return nil, nil
 	}
 
+	if strings.EqualFold(value, "BlobEventsTrigger") {
+		var out BlobEventsTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobEventsTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "BlobTrigger") {
+		var out BlobTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ChainingTrigger") {
+		var out ChainingTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChainingTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CustomEventsTrigger") {
+		var out CustomEventsTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomEventsTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "MultiplePipelineTrigger") {
 		var out MultiplePipelineTrigger
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into MultiplePipelineTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "RerunTumblingWindowTrigger") {
+		var out RerunTumblingWindowTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RerunTumblingWindowTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ScheduleTrigger") {
+		var out ScheduleTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ScheduleTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TumblingWindowTrigger") {
+		var out TumblingWindowTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TumblingWindowTrigger: %+v", err)
 		}
 		return out, nil
 	}

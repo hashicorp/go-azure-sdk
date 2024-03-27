@@ -3,6 +3,7 @@ package pipelines
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,46 @@ func unmarshalFormatReadSettingsImplementation(input []byte) (FormatReadSettings
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "BinaryReadSettings") {
+		var out BinaryReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BinaryReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "DelimitedTextReadSettings") {
+		var out DelimitedTextReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DelimitedTextReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "JsonReadSettings") {
+		var out JsonReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ParquetReadSettings") {
+		var out ParquetReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ParquetReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "XmlReadSettings") {
+		var out XmlReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into XmlReadSettings: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawFormatReadSettingsImpl{

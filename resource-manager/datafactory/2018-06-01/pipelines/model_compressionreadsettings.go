@@ -3,6 +3,7 @@ package pipelines
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,30 @@ func unmarshalCompressionReadSettingsImplementation(input []byte) (CompressionRe
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "TarGZipReadSettings") {
+		var out TarGZipReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TarGZipReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TarReadSettings") {
+		var out TarReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TarReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ZipDeflateReadSettings") {
+		var out ZipDeflateReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ZipDeflateReadSettings: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawCompressionReadSettingsImpl{

@@ -3,6 +3,7 @@ package triggers
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,30 @@ func unmarshalDependencyReferenceImplementation(input []byte) (DependencyReferen
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "SelfDependencyTumblingWindowTriggerReference") {
+		var out SelfDependencyTumblingWindowTriggerReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SelfDependencyTumblingWindowTriggerReference: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TriggerDependencyReference") {
+		var out TriggerDependencyReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TriggerDependencyReference: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TumblingWindowTriggerDependencyReference") {
+		var out TumblingWindowTriggerDependencyReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TumblingWindowTriggerDependencyReference: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawDependencyReferenceImpl{
