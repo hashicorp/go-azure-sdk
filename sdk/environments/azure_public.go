@@ -3,7 +3,7 @@
 
 package environments
 
-const AzurePublicCloud = "Public"
+const AzurePublicCloud = "AzureCloud"
 
 func AzurePublic() *Environment {
 	env := baseEnvironmentWithName(AzurePublicCloud)

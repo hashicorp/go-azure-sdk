@@ -3,7 +3,7 @@
 
 package environments
 
-const AzureUSGovernmentCloud = "USGovernment"
+const AzureUSGovernmentCloud = "AzureUSGovernment"
 
 func AzureUSGovernment() *Environment {
 	env := baseEnvironmentWithName(AzureUSGovernmentCloud)
