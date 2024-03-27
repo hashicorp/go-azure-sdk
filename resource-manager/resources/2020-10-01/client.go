@@ -6,6 +6,7 @@ package v2020_10_01
 import (
 	"fmt"
 
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/providers"
@@ -17,15 +18,22 @@ import (
 )
 
 type Client struct {
-	DeploymentScripts *deploymentscripts.DeploymentScriptsClient
-	Deployments       *deployments.DeploymentsClient
-	Providers         *providers.ProvidersClient
-	ResourceGroups    *resourcegroups.ResourceGroupsClient
-	Resources         *resources.ResourcesClient
-	Tags              *tags.TagsClient
+	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
+	DeploymentScripts    *deploymentscripts.DeploymentScriptsClient
+	Deployments          *deployments.DeploymentsClient
+	Providers            *providers.ProvidersClient
+	ResourceGroups       *resourcegroups.ResourceGroupsClient
+	Resources            *resources.ResourcesClient
+	Tags                 *tags.TagsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	deploymentOperationsClient, err := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeploymentOperations client: %+v", err)
+	}
+	configureFunc(deploymentOperationsClient.Client)
+
 	deploymentScriptsClient, err := deploymentscripts.NewDeploymentScriptsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeploymentScripts client: %+v", err)
@@ -63,11 +71,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(tagsClient.Client)
 
 	return &Client{
-		DeploymentScripts: deploymentScriptsClient,
-		Deployments:       deploymentsClient,
-		Providers:         providersClient,
-		ResourceGroups:    resourceGroupsClient,
-		Resources:         resourcesClient,
-		Tags:              tagsClient,
+		DeploymentOperations: deploymentOperationsClient,
+		DeploymentScripts:    deploymentScriptsClient,
+		Deployments:          deploymentsClient,
+		Providers:            providersClient,
+		ResourceGroups:       resourceGroupsClient,
+		Resources:            resourcesClient,
+		Tags:                 tagsClient,
 	}, nil
 }

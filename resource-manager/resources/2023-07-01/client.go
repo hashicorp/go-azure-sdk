@@ -6,6 +6,7 @@ package v2023_07_01
 import (
 	"fmt"
 
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/resourcegroups"
@@ -16,14 +17,21 @@ import (
 )
 
 type Client struct {
-	Deployments    *deployments.DeploymentsClient
-	Providers      *providers.ProvidersClient
-	ResourceGroups *resourcegroups.ResourceGroupsClient
-	Resources      *resources.ResourcesClient
-	Tags           *tags.TagsClient
+	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
+	Deployments          *deployments.DeploymentsClient
+	Providers            *providers.ProvidersClient
+	ResourceGroups       *resourcegroups.ResourceGroupsClient
+	Resources            *resources.ResourcesClient
+	Tags                 *tags.TagsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	deploymentOperationsClient, err := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeploymentOperations client: %+v", err)
+	}
+	configureFunc(deploymentOperationsClient.Client)
+
 	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Deployments client: %+v", err)
@@ -55,10 +63,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(tagsClient.Client)
 
 	return &Client{
-		Deployments:    deploymentsClient,
-		Providers:      providersClient,
-		ResourceGroups: resourceGroupsClient,
-		Resources:      resourcesClient,
-		Tags:           tagsClient,
+		DeploymentOperations: deploymentOperationsClient,
+		Deployments:          deploymentsClient,
+		Providers:            providersClient,
+		ResourceGroups:       resourceGroupsClient,
+		Resources:            resourcesClient,
+		Tags:                 tagsClient,
 	}, nil
 }
