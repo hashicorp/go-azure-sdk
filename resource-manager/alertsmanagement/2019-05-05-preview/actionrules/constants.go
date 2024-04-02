@@ -311,3 +311,53 @@ func parseSeverity(input string) (*Severity, error) {
 	out := Severity(input)
 	return &out, nil
 }
+
+type SuppressionType string
+
+const (
+	SuppressionTypeAlways  SuppressionType = "Always"
+	SuppressionTypeDaily   SuppressionType = "Daily"
+	SuppressionTypeMonthly SuppressionType = "Monthly"
+	SuppressionTypeOnce    SuppressionType = "Once"
+	SuppressionTypeWeekly  SuppressionType = "Weekly"
+)
+
+func PossibleValuesForSuppressionType() []string {
+	return []string{
+		string(SuppressionTypeAlways),
+		string(SuppressionTypeDaily),
+		string(SuppressionTypeMonthly),
+		string(SuppressionTypeOnce),
+		string(SuppressionTypeWeekly),
+	}
+}
+
+func (s *SuppressionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSuppressionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSuppressionType(input string) (*SuppressionType, error) {
+	vals := map[string]SuppressionType{
+		"always":  SuppressionTypeAlways,
+		"daily":   SuppressionTypeDaily,
+		"monthly": SuppressionTypeMonthly,
+		"once":    SuppressionTypeOnce,
+		"weekly":  SuppressionTypeWeekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SuppressionType(input)
+	return &out, nil
+}

@@ -53,44 +53,6 @@ func parseDataFlowDebugCommandType(input string) (*DataFlowDebugCommandType, err
 	return &out, nil
 }
 
-type IntegrationRuntimeReferenceType string
-
-const (
-	IntegrationRuntimeReferenceTypeIntegrationRuntimeReference IntegrationRuntimeReferenceType = "IntegrationRuntimeReference"
-)
-
-func PossibleValuesForIntegrationRuntimeReferenceType() []string {
-	return []string{
-		string(IntegrationRuntimeReferenceTypeIntegrationRuntimeReference),
-	}
-}
-
-func (s *IntegrationRuntimeReferenceType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseIntegrationRuntimeReferenceType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseIntegrationRuntimeReferenceType(input string) (*IntegrationRuntimeReferenceType, error) {
-	vals := map[string]IntegrationRuntimeReferenceType{
-		"integrationruntimereference": IntegrationRuntimeReferenceTypeIntegrationRuntimeReference,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationRuntimeReferenceType(input)
-	return &out, nil
-}
-
 type IntegrationRuntimeType string
 
 const (
