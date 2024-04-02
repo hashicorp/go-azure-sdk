@@ -3,6 +3,7 @@ package actionrules
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,6 +34,30 @@ func unmarshalActionRulePropertiesImplementation(input []byte) (ActionRuleProper
 	value, ok := temp["type"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "ActionGroup") {
+		var out ActionGroup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ActionGroup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Diagnostics") {
+		var out Diagnostics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Diagnostics: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Suppression") {
+		var out Suppression
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Suppression: %+v", err)
+		}
+		return out, nil
 	}
 
 	out := RawActionRulePropertiesImpl{
