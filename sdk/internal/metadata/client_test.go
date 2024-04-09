@@ -49,22 +49,25 @@ func TestGetMetaData(t *testing.T) {
 			Tenant:           "common",
 		},
 		DnsSuffixes: metadata.DnsSuffixes{
-			Attestation: "attest.azure.net",
-			FrontDoor:   "azurefd.net",
-			KeyVault:    "vault.azure.net",
-			ManagedHSM:  "managedhsm.azure.net",
-			MariaDB:     "mariadb.database.azure.com",
-			MySql:       "mysql.database.azure.com",
-			Postgresql:  "postgres.database.azure.com",
-			SqlServer:   "database.windows.net",
-			Storage:     "core.windows.net",
-			StorageSync: "afs.azure.net",
-			Synapse:     "dev.azuresynapse.net",
+			Attestation:       "attest.azure.net",
+			ContainerRegistry: "azurecr.io",
+			DataLakeStore:     "azuredatalakestore.net",
+			FrontDoor:         "azurefd.net",
+			KeyVault:          "vault.azure.net",
+			ManagedHSM:        "managedhsm.azure.net",
+			MariaDB:           "mariadb.database.azure.com",
+			MySql:             "mysql.database.azure.com",
+			Postgresql:        "postgres.database.azure.com",
+			SqlServer:         "database.windows.net",
+			Storage:           "core.windows.net",
+			StorageSync:       "afs.azure.net",
+			Synapse:           "dev.azuresynapse.net",
 		},
 		Name: "AzureCloud",
 		ResourceIdentifiers: metadata.ResourceIdentifiers{
 			Attestation:    "https://attest.azure.net",
 			Batch:          "https://batch.core.windows.net",
+			DataLake:       "https://datalake.azure.net",
 			LogAnalytics:   "https://api.loganalytics.io",
 			Media:          "https://rest.media.azure.net",
 			MicrosoftGraph: "https://graph.microsoft.com",
@@ -74,7 +77,7 @@ func TestGetMetaData(t *testing.T) {
 		ResourceManagerEndpoint: "https://management.azure.com/",
 	}
 
-	m, err := client.GetMetaData(ctx, "")
+	m, err := client.GetMetaData(ctx)
 	if err != nil {
 		t.Fatalf("error received: %+v", err)
 	} else if m == nil {

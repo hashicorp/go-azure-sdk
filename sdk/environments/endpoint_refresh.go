@@ -17,7 +17,7 @@ func (e *Environment) RefreshMetaDataFromEndpoint(ctx context.Context) error {
 	}
 
 	client := metadata.NewClientWithEndpoint(*endpoint)
-	config, err := client.GetMetaData(ctx, e.Name)
+	config, err := client.GetMetaData(ctx)
 	if err != nil {
 		return fmt.Errorf("retrieving MetaData from endpoint: %+v", err)
 	}
