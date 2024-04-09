@@ -160,7 +160,7 @@ func NewApiEndpoint(name, endpoint string, appId *string) *ApiEndpoint {
 	}
 }
 
-func (e *ApiEndpoint) withResourceIdentifier(identifier string) *ApiEndpoint {
+func (e *ApiEndpoint) WithResourceIdentifier(identifier string) Api {
 	e.resourceIdentifier = pointer.To(identifier)
 	return e
 }

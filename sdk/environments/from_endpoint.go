@@ -35,7 +35,7 @@ func FromEndpoint(ctx context.Context, endpoint string) (*Environment, error) {
 	}
 	env.MicrosoftGraph = MicrosoftGraphAPI(config.ResourceIdentifiers.MicrosoftGraph)
 
-	if err := env.updateFromMetaData(config); err != nil {
+	if err = env.updateFromMetaData(config); err != nil {
 		return nil, fmt.Errorf("updating Environment from MetaData: %+v", err)
 	}
 
