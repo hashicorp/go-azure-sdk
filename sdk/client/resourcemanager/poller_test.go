@@ -52,6 +52,22 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 			valid: true,
 		},
 		{
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
+					},
+					Request: &http.Request{
+						URL: &url.URL{
+							Path: "/example",
+						},
+					},
+				},
+			},
+			valid: true,
+		},
+		{
 			// no LRO header, ergo this isn't acceptable
 			response: &client.Response{
 				Response: &http.Response{
@@ -116,6 +132,26 @@ func TestNewPoller_LongRunningOperationWithSelfReference(t *testing.T) {
 			response: &client.Response{
 				Response: &http.Response{
 					StatusCode: http.StatusAccepted,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+						http.CanonicalHeaderKey("Location"):     []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789?api-version=2020-01-01&asyncId=abc123&asyncCode=201"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPut,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+			valid: true,
+		},
+		{
+			// Seen in API Management - API and API Schema
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
 					Header: http.Header{
 						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
 						http.CanonicalHeaderKey("Location"):     []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789?api-version=2020-01-01&asyncId=abc123&asyncCode=201"},
