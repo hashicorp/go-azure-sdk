@@ -38,10 +38,6 @@ func AzureUSGovernment() *Environment {
 	env.TrafficManager = TrafficManagerAPI("usgovtrafficmanager.net")
 
 	// Services not currently available: Attestation, CDNFrontDoor, DataLake, IOTCentral
-	env.Attestation = applicationIdOnly("AttestationService", attestationServiceAppId)
-	env.CDNFrontDoor = applicationIdOnly("CDNFrontDoor", cdnFrontDoorAppId)
-	env.DataLake = applicationIdOnly("DataLake", dataLakeAppId)
-	env.IoTCentral = applicationIdOnly("IoTCentral", iotCentralAppId)
 
 	return &env
 }

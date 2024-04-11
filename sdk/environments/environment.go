@@ -161,8 +161,9 @@ func NewApiEndpoint(name, endpoint string, appId *string) *ApiEndpoint {
 }
 
 func (e *ApiEndpoint) WithResourceIdentifier(identifier string) Api {
-	e.resourceIdentifier = pointer.To(identifier)
-	return e
+	newApi := *e
+	newApi.resourceIdentifier = pointer.To(identifier)
+	return &newApi
 }
 
 func (e *ApiEndpoint) Available() bool {
