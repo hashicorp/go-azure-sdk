@@ -71,7 +71,11 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 // RetryableErrorHandler simply returns the resp and err, this is needed to make the Do() method
 // of retryablehttp client return early with the response body not drained.
 func RetryableErrorHandler(resp *http.Response, err error, _ int) (*http.Response, error) {
-	return resp, err
+	if resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
 
 // Request embeds *http.Request and adds useful metadata
