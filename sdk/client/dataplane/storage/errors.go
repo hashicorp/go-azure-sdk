@@ -28,6 +28,7 @@ func (e *storageError) Error() string {
 
 var _ client.ResponseErrorParser = &ErrorParser{}
 
+// ErrorParser is a custom error parse for Azure Storage errors
 type ErrorParser struct{}
 
 func (e *ErrorParser) FromResponse(resp *http.Response) error {
