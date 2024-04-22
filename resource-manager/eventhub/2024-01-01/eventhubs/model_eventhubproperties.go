@@ -18,6 +18,7 @@ type EventhubProperties struct {
 	RetentionDescription   *RetentionDescription `json:"retentionDescription,omitempty"`
 	Status                 *EntityStatus         `json:"status,omitempty"`
 	UpdatedAt              *string               `json:"updatedAt,omitempty"`
+	UserMetadata           *string               `json:"userMetadata,omitempty"`
 }
 
 func (o *EventhubProperties) GetCreatedAtAsTime() (*time.Time, error) {
