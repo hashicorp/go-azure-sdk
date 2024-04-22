@@ -1203,47 +1203,6 @@ func parseScriptActivityParameterType(input string) (*ScriptActivityParameterTyp
 	return &out, nil
 }
 
-type ScriptType string
-
-const (
-	ScriptTypeNonQuery ScriptType = "NonQuery"
-	ScriptTypeQuery    ScriptType = "Query"
-)
-
-func PossibleValuesForScriptType() []string {
-	return []string{
-		string(ScriptTypeNonQuery),
-		string(ScriptTypeQuery),
-	}
-}
-
-func (s *ScriptType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseScriptType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseScriptType(input string) (*ScriptType, error) {
-	vals := map[string]ScriptType{
-		"nonquery": ScriptTypeNonQuery,
-		"query":    ScriptTypeQuery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptType(input)
-	return &out, nil
-}
-
 type SparkConfigurationReferenceType string
 
 const (

@@ -19,7 +19,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersavailableclusterregions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersconfiguration"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersnamespace"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersupgrade"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespaces"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesnetworksecurityperimeterconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesprivateendpointconnections"
@@ -44,7 +43,6 @@ type Client struct {
 	EventHubsClustersAvailableClusterRegions         *eventhubsclustersavailableclusterregions.EventHubsClustersAvailableClusterRegionsClient
 	EventHubsClustersConfiguration                   *eventhubsclustersconfiguration.EventHubsClustersConfigurationClient
 	EventHubsClustersNamespace                       *eventhubsclustersnamespace.EventHubsClustersNamespaceClient
-	EventHubsClustersUpgrade                         *eventhubsclustersupgrade.EventHubsClustersUpgradeClient
 	Namespaces                                       *namespaces.NamespacesClient
 	NamespacesNetworkSecurityPerimeterConfigurations *namespacesnetworksecurityperimeterconfigurations.NamespacesNetworkSecurityPerimeterConfigurationsClient
 	NamespacesPrivateEndpointConnections             *namespacesprivateendpointconnections.NamespacesPrivateEndpointConnectionsClient
@@ -132,12 +130,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(eventHubsClustersNamespaceClient.Client)
 
-	eventHubsClustersUpgradeClient, err := eventhubsclustersupgrade.NewEventHubsClustersUpgradeClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventHubsClustersUpgrade client: %+v", err)
-	}
-	configureFunc(eventHubsClustersUpgradeClient.Client)
-
 	namespacesClient, err := namespaces.NewNamespacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Namespaces client: %+v", err)
@@ -188,7 +180,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		EventHubsClustersAvailableClusterRegions:         eventHubsClustersAvailableClusterRegionsClient,
 		EventHubsClustersConfiguration:                   eventHubsClustersConfigurationClient,
 		EventHubsClustersNamespace:                       eventHubsClustersNamespaceClient,
-		EventHubsClustersUpgrade:                         eventHubsClustersUpgradeClient,
 		Namespaces:                                       namespacesClient,
 		NamespacesNetworkSecurityPerimeterConfigurations: namespacesNetworkSecurityPerimeterConfigurationsClient,
 		NamespacesPrivateEndpointConnections:             namespacesPrivateEndpointConnectionsClient,
