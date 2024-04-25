@@ -9,6 +9,53 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AssignmentType string
+
+const (
+	AssignmentTypeCustom       AssignmentType = "Custom"
+	AssignmentTypeNotSpecified AssignmentType = "NotSpecified"
+	AssignmentTypeSystem       AssignmentType = "System"
+	AssignmentTypeSystemHidden AssignmentType = "SystemHidden"
+)
+
+func PossibleValuesForAssignmentType() []string {
+	return []string{
+		string(AssignmentTypeCustom),
+		string(AssignmentTypeNotSpecified),
+		string(AssignmentTypeSystem),
+		string(AssignmentTypeSystemHidden),
+	}
+}
+
+func (s *AssignmentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssignmentType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAssignmentType(input string) (*AssignmentType, error) {
+	vals := map[string]AssignmentType{
+		"custom":       AssignmentTypeCustom,
+		"notspecified": AssignmentTypeNotSpecified,
+		"system":       AssignmentTypeSystem,
+		"systemhidden": AssignmentTypeSystemHidden,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssignmentType(input)
+	return &out, nil
+}
+
 type EnforcementMode string
 
 const (

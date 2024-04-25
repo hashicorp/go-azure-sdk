@@ -4,10 +4,10 @@ package policyassignments
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PolicyAssignmentProperties struct {
+	AssignmentType        *AssignmentType                  `json:"assignmentType,omitempty"`
 	Description           *string                          `json:"description,omitempty"`
 	DisplayName           *string                          `json:"displayName,omitempty"`
 	EnforcementMode       *EnforcementMode                 `json:"enforcementMode,omitempty"`
-	IsSystemPolicy        *bool                            `json:"isSystemPolicy,omitempty"`
 	Metadata              *interface{}                     `json:"metadata,omitempty"`
 	NonComplianceMessages *[]NonComplianceMessage          `json:"nonComplianceMessages,omitempty"`
 	NotScopes             *[]string                        `json:"notScopes,omitempty"`
