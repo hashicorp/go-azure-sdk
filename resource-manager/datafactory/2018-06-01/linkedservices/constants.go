@@ -9,6 +9,188 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AmazonRdsForSqlAuthenticationType string
+
+const (
+	AmazonRdsForSqlAuthenticationTypeSQL     AmazonRdsForSqlAuthenticationType = "SQL"
+	AmazonRdsForSqlAuthenticationTypeWindows AmazonRdsForSqlAuthenticationType = "Windows"
+)
+
+func PossibleValuesForAmazonRdsForSqlAuthenticationType() []string {
+	return []string{
+		string(AmazonRdsForSqlAuthenticationTypeSQL),
+		string(AmazonRdsForSqlAuthenticationTypeWindows),
+	}
+}
+
+func (s *AmazonRdsForSqlAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAmazonRdsForSqlAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAmazonRdsForSqlAuthenticationType(input string) (*AmazonRdsForSqlAuthenticationType, error) {
+	vals := map[string]AmazonRdsForSqlAuthenticationType{
+		"sql":     AmazonRdsForSqlAuthenticationTypeSQL,
+		"windows": AmazonRdsForSqlAuthenticationTypeWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AmazonRdsForSqlAuthenticationType(input)
+	return &out, nil
+}
+
+type AzureSqlDWAuthenticationType string
+
+const (
+	AzureSqlDWAuthenticationTypeSQL                           AzureSqlDWAuthenticationType = "SQL"
+	AzureSqlDWAuthenticationTypeServicePrincipal              AzureSqlDWAuthenticationType = "ServicePrincipal"
+	AzureSqlDWAuthenticationTypeSystemAssignedManagedIdentity AzureSqlDWAuthenticationType = "SystemAssignedManagedIdentity"
+	AzureSqlDWAuthenticationTypeUserAssignedManagedIdentity   AzureSqlDWAuthenticationType = "UserAssignedManagedIdentity"
+)
+
+func PossibleValuesForAzureSqlDWAuthenticationType() []string {
+	return []string{
+		string(AzureSqlDWAuthenticationTypeSQL),
+		string(AzureSqlDWAuthenticationTypeServicePrincipal),
+		string(AzureSqlDWAuthenticationTypeSystemAssignedManagedIdentity),
+		string(AzureSqlDWAuthenticationTypeUserAssignedManagedIdentity),
+	}
+}
+
+func (s *AzureSqlDWAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureSqlDWAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAzureSqlDWAuthenticationType(input string) (*AzureSqlDWAuthenticationType, error) {
+	vals := map[string]AzureSqlDWAuthenticationType{
+		"sql":                           AzureSqlDWAuthenticationTypeSQL,
+		"serviceprincipal":              AzureSqlDWAuthenticationTypeServicePrincipal,
+		"systemassignedmanagedidentity": AzureSqlDWAuthenticationTypeSystemAssignedManagedIdentity,
+		"userassignedmanagedidentity":   AzureSqlDWAuthenticationTypeUserAssignedManagedIdentity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureSqlDWAuthenticationType(input)
+	return &out, nil
+}
+
+type AzureSqlDatabaseAuthenticationType string
+
+const (
+	AzureSqlDatabaseAuthenticationTypeSQL                           AzureSqlDatabaseAuthenticationType = "SQL"
+	AzureSqlDatabaseAuthenticationTypeServicePrincipal              AzureSqlDatabaseAuthenticationType = "ServicePrincipal"
+	AzureSqlDatabaseAuthenticationTypeSystemAssignedManagedIdentity AzureSqlDatabaseAuthenticationType = "SystemAssignedManagedIdentity"
+	AzureSqlDatabaseAuthenticationTypeUserAssignedManagedIdentity   AzureSqlDatabaseAuthenticationType = "UserAssignedManagedIdentity"
+)
+
+func PossibleValuesForAzureSqlDatabaseAuthenticationType() []string {
+	return []string{
+		string(AzureSqlDatabaseAuthenticationTypeSQL),
+		string(AzureSqlDatabaseAuthenticationTypeServicePrincipal),
+		string(AzureSqlDatabaseAuthenticationTypeSystemAssignedManagedIdentity),
+		string(AzureSqlDatabaseAuthenticationTypeUserAssignedManagedIdentity),
+	}
+}
+
+func (s *AzureSqlDatabaseAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureSqlDatabaseAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAzureSqlDatabaseAuthenticationType(input string) (*AzureSqlDatabaseAuthenticationType, error) {
+	vals := map[string]AzureSqlDatabaseAuthenticationType{
+		"sql":                           AzureSqlDatabaseAuthenticationTypeSQL,
+		"serviceprincipal":              AzureSqlDatabaseAuthenticationTypeServicePrincipal,
+		"systemassignedmanagedidentity": AzureSqlDatabaseAuthenticationTypeSystemAssignedManagedIdentity,
+		"userassignedmanagedidentity":   AzureSqlDatabaseAuthenticationTypeUserAssignedManagedIdentity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureSqlDatabaseAuthenticationType(input)
+	return &out, nil
+}
+
+type AzureSqlMIAuthenticationType string
+
+const (
+	AzureSqlMIAuthenticationTypeSQL                           AzureSqlMIAuthenticationType = "SQL"
+	AzureSqlMIAuthenticationTypeServicePrincipal              AzureSqlMIAuthenticationType = "ServicePrincipal"
+	AzureSqlMIAuthenticationTypeSystemAssignedManagedIdentity AzureSqlMIAuthenticationType = "SystemAssignedManagedIdentity"
+	AzureSqlMIAuthenticationTypeUserAssignedManagedIdentity   AzureSqlMIAuthenticationType = "UserAssignedManagedIdentity"
+)
+
+func PossibleValuesForAzureSqlMIAuthenticationType() []string {
+	return []string{
+		string(AzureSqlMIAuthenticationTypeSQL),
+		string(AzureSqlMIAuthenticationTypeServicePrincipal),
+		string(AzureSqlMIAuthenticationTypeSystemAssignedManagedIdentity),
+		string(AzureSqlMIAuthenticationTypeUserAssignedManagedIdentity),
+	}
+}
+
+func (s *AzureSqlMIAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureSqlMIAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAzureSqlMIAuthenticationType(input string) (*AzureSqlMIAuthenticationType, error) {
+	vals := map[string]AzureSqlMIAuthenticationType{
+		"sql":                           AzureSqlMIAuthenticationTypeSQL,
+		"serviceprincipal":              AzureSqlMIAuthenticationTypeServicePrincipal,
+		"systemassignedmanagedidentity": AzureSqlMIAuthenticationTypeSystemAssignedManagedIdentity,
+		"userassignedmanagedidentity":   AzureSqlMIAuthenticationTypeUserAssignedManagedIdentity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureSqlMIAuthenticationType(input)
+	return &out, nil
+}
+
 type AzureStorageAuthenticationType string
 
 const (
@@ -1358,6 +1540,47 @@ func parseSqlAlwaysEncryptedAkvAuthType(input string) (*SqlAlwaysEncryptedAkvAut
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := SqlAlwaysEncryptedAkvAuthType(input)
+	return &out, nil
+}
+
+type SqlServerAuthenticationType string
+
+const (
+	SqlServerAuthenticationTypeSQL     SqlServerAuthenticationType = "SQL"
+	SqlServerAuthenticationTypeWindows SqlServerAuthenticationType = "Windows"
+)
+
+func PossibleValuesForSqlServerAuthenticationType() []string {
+	return []string{
+		string(SqlServerAuthenticationTypeSQL),
+		string(SqlServerAuthenticationTypeWindows),
+	}
+}
+
+func (s *SqlServerAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSqlServerAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSqlServerAuthenticationType(input string) (*SqlServerAuthenticationType, error) {
+	vals := map[string]SqlServerAuthenticationType{
+		"sql":     SqlServerAuthenticationTypeSQL,
+		"windows": SqlServerAuthenticationTypeWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SqlServerAuthenticationType(input)
 	return &out, nil
 }
 
