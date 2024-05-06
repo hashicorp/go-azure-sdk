@@ -8,6 +8,7 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/deployments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/deploymentstacks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/resourcegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/resources"
@@ -18,6 +19,7 @@ import (
 
 type Client struct {
 	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
+	DeploymentStacks     *deploymentstacks.DeploymentStacksClient
 	Deployments          *deployments.DeploymentsClient
 	Providers            *providers.ProvidersClient
 	ResourceGroups       *resourcegroups.ResourceGroupsClient
@@ -31,6 +33,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building DeploymentOperations client: %+v", err)
 	}
 	configureFunc(deploymentOperationsClient.Client)
+
+	deploymentStacksClient, err := deploymentstacks.NewDeploymentStacksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeploymentStacks client: %+v", err)
+	}
+	configureFunc(deploymentStacksClient.Client)
 
 	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -64,6 +72,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 
 	return &Client{
 		DeploymentOperations: deploymentOperationsClient,
+		DeploymentStacks:     deploymentStacksClient,
 		Deployments:          deploymentsClient,
 		Providers:            providersClient,
 		ResourceGroups:       resourceGroupsClient,
