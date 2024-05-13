@@ -13,6 +13,7 @@ var _ CopySource = SalesforceServiceCloudV2Source{}
 type SalesforceServiceCloudV2Source struct {
 	AdditionalColumns     *interface{} `json:"additionalColumns,omitempty"`
 	IncludeDeletedObjects *interface{} `json:"includeDeletedObjects,omitempty"`
+	Query                 *interface{} `json:"query,omitempty"`
 	SOQLQuery             *interface{} `json:"SOQLQuery,omitempty"`
 
 	// Fields inherited from CopySource

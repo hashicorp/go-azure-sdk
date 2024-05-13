@@ -13,6 +13,7 @@ var _ CopySource = SalesforceV2Source{}
 type SalesforceV2Source struct {
 	AdditionalColumns     *interface{} `json:"additionalColumns,omitempty"`
 	IncludeDeletedObjects *interface{} `json:"includeDeletedObjects,omitempty"`
+	Query                 *interface{} `json:"query,omitempty"`
 	QueryTimeout          *interface{} `json:"queryTimeout,omitempty"`
 	SOQLQuery             *interface{} `json:"SOQLQuery,omitempty"`
 
