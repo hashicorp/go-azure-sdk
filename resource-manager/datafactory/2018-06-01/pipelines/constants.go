@@ -581,6 +581,7 @@ const (
 	ExpressionV2TypeBinary   ExpressionV2Type = "Binary"
 	ExpressionV2TypeConstant ExpressionV2Type = "Constant"
 	ExpressionV2TypeField    ExpressionV2Type = "Field"
+	ExpressionV2TypeNAry     ExpressionV2Type = "NAry"
 	ExpressionV2TypeUnary    ExpressionV2Type = "Unary"
 )
 
@@ -589,6 +590,7 @@ func PossibleValuesForExpressionV2Type() []string {
 		string(ExpressionV2TypeBinary),
 		string(ExpressionV2TypeConstant),
 		string(ExpressionV2TypeField),
+		string(ExpressionV2TypeNAry),
 		string(ExpressionV2TypeUnary),
 	}
 }
@@ -611,6 +613,7 @@ func parseExpressionV2Type(input string) (*ExpressionV2Type, error) {
 		"binary":   ExpressionV2TypeBinary,
 		"constant": ExpressionV2TypeConstant,
 		"field":    ExpressionV2TypeField,
+		"nary":     ExpressionV2TypeNAry,
 		"unary":    ExpressionV2TypeUnary,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
