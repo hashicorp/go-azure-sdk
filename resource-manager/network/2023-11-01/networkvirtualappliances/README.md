@@ -128,12 +128,8 @@ payload := networkvirtualappliances.NetworkVirtualApplianceInstanceIds{
 }
 
 
-read, err := client.Restart(ctx, id, payload)
-if err != nil {
+if err := client.RestartThenPoll(ctx, id, payload); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
 
