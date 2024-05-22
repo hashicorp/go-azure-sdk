@@ -72,6 +72,7 @@ func (c WorkloadNetworksClient) ListVirtualMachinesCompleteMatchingPredicate(ctx
 
 	resp, err := c.ListVirtualMachines(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

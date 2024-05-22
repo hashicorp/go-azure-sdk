@@ -72,6 +72,7 @@ func (c StandardOperationClient) ServicesListByResourceGroupCompleteMatchingPred
 
 	resp, err := c.ServicesListByResourceGroup(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

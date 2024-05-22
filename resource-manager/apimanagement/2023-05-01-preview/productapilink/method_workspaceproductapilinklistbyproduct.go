@@ -108,6 +108,7 @@ func (c ProductApiLinkClient) WorkspaceProductApiLinkListByProductCompleteMatchi
 
 	resp, err := c.WorkspaceProductApiLinkListByProduct(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

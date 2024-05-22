@@ -112,6 +112,7 @@ func (c ComponentVersionClient) ListCompleteMatchingPredicate(ctx context.Contex
 
 	resp, err := c.List(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

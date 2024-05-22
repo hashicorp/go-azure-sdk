@@ -127,6 +127,7 @@ func (c EntitiesClient) ListCompleteMatchingPredicate(ctx context.Context, optio
 
 	resp, err := c.List(ctx, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

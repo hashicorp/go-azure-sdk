@@ -72,6 +72,7 @@ func (c WorkloadNetworksClient) ListDhcpCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.ListDhcp(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c PrivateLinkHubsClient) PrivateEndpointConnectionsPrivateLinkHubListCompl
 
 	resp, err := c.PrivateEndpointConnectionsPrivateLinkHubList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

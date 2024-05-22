@@ -72,6 +72,7 @@ func (c SqlPoolsBlobAuditingClient) ExtendedSqlPoolBlobAuditingPoliciesListBySql
 
 	resp, err := c.ExtendedSqlPoolBlobAuditingPoliciesListBySqlPool(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

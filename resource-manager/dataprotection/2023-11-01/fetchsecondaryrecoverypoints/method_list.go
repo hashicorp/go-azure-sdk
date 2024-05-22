@@ -100,6 +100,7 @@ func (c FetchSecondaryRecoveryPointsClient) ListCompleteMatchingPredicate(ctx co
 
 	resp, err := c.List(ctx, id, input, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

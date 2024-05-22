@@ -100,6 +100,7 @@ func (c DatabaseTablesClient) ListBySchemaCompleteMatchingPredicate(ctx context.
 
 	resp, err := c.ListBySchema(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

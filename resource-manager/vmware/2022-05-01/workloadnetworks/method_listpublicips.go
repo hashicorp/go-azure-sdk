@@ -72,6 +72,7 @@ func (c WorkloadNetworksClient) ListPublicIPsCompleteMatchingPredicate(ctx conte
 
 	resp, err := c.ListPublicIPs(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

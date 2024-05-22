@@ -73,6 +73,7 @@ func (c SandboxCustomImagesClient) ListByClusterCompleteMatchingPredicate(ctx co
 
 	resp, err := c.ListByCluster(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -73,6 +73,7 @@ func (c NetworkcloudsClient) L2NetworksListByResourceGroupCompleteMatchingPredic
 
 	resp, err := c.L2NetworksListByResourceGroup(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

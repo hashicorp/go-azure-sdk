@@ -116,6 +116,7 @@ func (c DataSetMappingClient) ListByShareSubscriptionCompleteMatchingPredicate(c
 
 	resp, err := c.ListByShareSubscription(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

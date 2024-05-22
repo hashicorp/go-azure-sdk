@@ -73,6 +73,7 @@ func (c AdaptiveNetworkHardeningsClient) ListByExtendedResourceCompleteMatchingP
 
 	resp, err := c.ListByExtendedResource(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

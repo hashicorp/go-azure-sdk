@@ -100,6 +100,7 @@ func (c VideosClient) AccessPoliciesListCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.AccessPoliciesList(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

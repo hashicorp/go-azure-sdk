@@ -104,6 +104,7 @@ func (c ModelContainerClient) RegistryModelContainersListCompleteMatchingPredica
 
 	resp, err := c.RegistryModelContainersList(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

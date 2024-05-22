@@ -72,6 +72,7 @@ func (c HybridIdentityMetadataClient) ListByVMCompleteMatchingPredicate(ctx cont
 
 	resp, err := c.ListByVM(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

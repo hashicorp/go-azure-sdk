@@ -72,6 +72,7 @@ func (c HubsClient) NotificationHubsListAuthorizationRulesCompleteMatchingPredic
 
 	resp, err := c.NotificationHubsListAuthorizationRules(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c AttachedDataNetworksClient) ListByPacketCoreDataPlaneCompleteMatchingPre
 
 	resp, err := c.ListByPacketCoreDataPlane(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

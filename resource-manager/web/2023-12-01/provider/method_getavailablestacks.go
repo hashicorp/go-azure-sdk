@@ -100,6 +100,7 @@ func (c ProviderClient) GetAvailableStacksCompleteMatchingPredicate(ctx context.
 
 	resp, err := c.GetAvailableStacks(ctx, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

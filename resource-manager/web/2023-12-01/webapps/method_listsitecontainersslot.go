@@ -72,6 +72,7 @@ func (c WebAppsClient) ListSiteContainersSlotCompleteMatchingPredicate(ctx conte
 
 	resp, err := c.ListSiteContainersSlot(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

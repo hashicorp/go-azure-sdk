@@ -104,6 +104,7 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListCompleteMat
 
 	resp, err := c.WorkspaceConnectionsList(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

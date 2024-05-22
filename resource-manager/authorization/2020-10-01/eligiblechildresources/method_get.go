@@ -101,6 +101,7 @@ func (c EligibleChildResourcesClient) GetCompleteMatchingPredicate(ctx context.C
 
 	resp, err := c.Get(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

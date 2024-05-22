@@ -112,6 +112,7 @@ func (c ReportsClient) ListByOperationCompleteMatchingPredicate(ctx context.Cont
 
 	resp, err := c.ListByOperation(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c VMHostClient) MonitorListVMHostsCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.MonitorListVMHosts(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

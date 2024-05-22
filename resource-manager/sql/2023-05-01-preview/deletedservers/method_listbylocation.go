@@ -72,6 +72,7 @@ func (c DeletedServersClient) ListByLocationCompleteMatchingPredicate(ctx contex
 
 	resp, err := c.ListByLocation(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -100,6 +100,7 @@ func (c MarketplaceRegistrationDefinitionsClient) WithoutScopeListCompleteMatchi
 
 	resp, err := c.WithoutScopeList(ctx, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

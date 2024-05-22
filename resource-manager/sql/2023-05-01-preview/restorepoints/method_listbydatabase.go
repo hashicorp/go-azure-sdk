@@ -73,6 +73,7 @@ func (c RestorePointsClient) ListByDatabaseCompleteMatchingPredicate(ctx context
 
 	resp, err := c.ListByDatabase(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

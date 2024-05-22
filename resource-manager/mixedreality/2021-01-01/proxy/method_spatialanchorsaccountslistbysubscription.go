@@ -73,6 +73,7 @@ func (c ProxyClient) SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPre
 
 	resp, err := c.SpatialAnchorsAccountsListBySubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

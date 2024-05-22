@@ -72,6 +72,7 @@ func (c RaiBlocklistsClient) RaiBlocklistItemsListCompleteMatchingPredicate(ctx 
 
 	resp, err := c.RaiBlocklistItemsList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

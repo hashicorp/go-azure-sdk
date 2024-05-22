@@ -72,6 +72,7 @@ func (c DevOpsClient) AzureDevOpsReposListCompleteMatchingPredicate(ctx context.
 
 	resp, err := c.AzureDevOpsReposList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

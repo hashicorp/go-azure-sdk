@@ -73,6 +73,7 @@ func (c NetworkcloudsClient) BareMetalMachinesListBySubscriptionCompleteMatching
 
 	resp, err := c.BareMetalMachinesListBySubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

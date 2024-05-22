@@ -104,6 +104,7 @@ func (c ShareSubscriptionClient) ListSynchronizationDetailsCompleteMatchingPredi
 
 	resp, err := c.ListSynchronizationDetails(ctx, id, input, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

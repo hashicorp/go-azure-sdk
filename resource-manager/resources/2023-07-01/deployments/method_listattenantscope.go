@@ -104,6 +104,7 @@ func (c DeploymentsClient) ListAtTenantScopeCompleteMatchingPredicate(ctx contex
 
 	resp, err := c.ListAtTenantScope(ctx, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

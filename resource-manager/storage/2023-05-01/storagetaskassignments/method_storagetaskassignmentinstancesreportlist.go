@@ -104,6 +104,7 @@ func (c StorageTaskAssignmentsClient) StorageTaskAssignmentInstancesReportListCo
 
 	resp, err := c.StorageTaskAssignmentInstancesReportList(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c FlexibleServerCapabilitiesClient) ServerCapabilitiesListCompleteMatching
 
 	resp, err := c.ServerCapabilitiesList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

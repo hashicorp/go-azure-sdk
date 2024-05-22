@@ -105,6 +105,7 @@ func (c EventsClient) ListCompleteMatchingPredicate(ctx context.Context, id comm
 
 	resp, err := c.List(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

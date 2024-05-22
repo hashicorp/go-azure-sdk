@@ -72,6 +72,7 @@ func (c DevOpsClient) GitLabGroupsListAvailableCompleteMatchingPredicate(ctx con
 
 	resp, err := c.GitLabGroupsListAvailable(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

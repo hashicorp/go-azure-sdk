@@ -73,6 +73,7 @@ func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesListComple
 
 	resp, err := c.ProvisionedClusterInstancesList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

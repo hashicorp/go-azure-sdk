@@ -73,6 +73,7 @@ func (c FirewallRulesClient) ListByServerCompleteMatchingPredicate(ctx context.C
 
 	resp, err := c.ListByServer(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

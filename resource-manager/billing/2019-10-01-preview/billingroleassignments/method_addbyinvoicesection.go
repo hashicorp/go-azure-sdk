@@ -72,6 +72,7 @@ func (c BillingRoleAssignmentsClient) AddByInvoiceSectionCompleteMatchingPredica
 
 	resp, err := c.AddByInvoiceSection(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

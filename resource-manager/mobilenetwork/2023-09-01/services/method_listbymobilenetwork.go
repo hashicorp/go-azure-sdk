@@ -72,6 +72,7 @@ func (c ServicesClient) ListByMobileNetworkCompleteMatchingPredicate(ctx context
 
 	resp, err := c.ListByMobileNetwork(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

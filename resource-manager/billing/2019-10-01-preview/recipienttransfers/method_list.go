@@ -72,6 +72,7 @@ func (c RecipientTransfersClient) ListCompleteMatchingPredicate(ctx context.Cont
 
 	resp, err := c.List(ctx)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -100,6 +100,7 @@ func (c UsagesClient) GetCompleteMatchingPredicate(ctx context.Context, id Locat
 
 	resp, err := c.Get(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

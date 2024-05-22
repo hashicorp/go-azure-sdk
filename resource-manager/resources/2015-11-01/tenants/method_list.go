@@ -72,6 +72,7 @@ func (c TenantsClient) ListCompleteMatchingPredicate(ctx context.Context, predic
 
 	resp, err := c.List(ctx)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

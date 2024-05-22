@@ -108,6 +108,7 @@ func (c ReportsClient) ListByGeoCompleteMatchingPredicate(ctx context.Context, i
 
 	resp, err := c.ListByGeo(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}
