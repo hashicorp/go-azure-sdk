@@ -72,6 +72,7 @@ func (c VMwaresClient) WorkloadNetworksListPublicIPsCompleteMatchingPredicate(ct
 
 	resp, err := c.WorkloadNetworksListPublicIPs(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

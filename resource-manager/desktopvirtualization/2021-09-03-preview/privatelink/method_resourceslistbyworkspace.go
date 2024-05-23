@@ -72,6 +72,7 @@ func (c PrivateLinkClient) ResourcesListByWorkspaceCompleteMatchingPredicate(ctx
 
 	resp, err := c.ResourcesListByWorkspace(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

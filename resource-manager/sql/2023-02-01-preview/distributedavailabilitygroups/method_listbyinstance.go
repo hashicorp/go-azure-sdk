@@ -73,6 +73,7 @@ func (c DistributedAvailabilityGroupsClient) ListByInstanceCompleteMatchingPredi
 
 	resp, err := c.ListByInstance(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c PaymentMethodsClient) ListByUserCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.ListByUser(ctx)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

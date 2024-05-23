@@ -72,6 +72,7 @@ func (c SIMsClient) ListByGroupCompleteMatchingPredicate(ctx context.Context, id
 
 	resp, err := c.ListByGroup(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

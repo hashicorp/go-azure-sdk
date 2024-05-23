@@ -100,6 +100,7 @@ func (c DppJobClient) FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(c
 
 	resp, err := c.FetchCrossRegionRestoreJobsList(ctx, id, input, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

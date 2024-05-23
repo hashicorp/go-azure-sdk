@@ -101,6 +101,7 @@ func (c ManagementGroupsClient) GetDescendantsCompleteMatchingPredicate(ctx cont
 
 	resp, err := c.GetDescendants(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

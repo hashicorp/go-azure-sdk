@@ -72,6 +72,7 @@ func (c ApiPolicyClient) WorkspaceApiPolicyListByApiCompleteMatchingPredicate(ct
 
 	resp, err := c.WorkspaceApiPolicyListByApi(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

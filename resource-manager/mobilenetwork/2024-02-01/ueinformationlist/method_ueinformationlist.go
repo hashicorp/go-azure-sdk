@@ -72,6 +72,7 @@ func (c UeInformationListClient) UeInformationListCompleteMatchingPredicate(ctx 
 
 	resp, err := c.UeInformationList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

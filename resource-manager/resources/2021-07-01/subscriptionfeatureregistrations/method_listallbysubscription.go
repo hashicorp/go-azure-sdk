@@ -73,6 +73,7 @@ func (c SubscriptionFeatureRegistrationsClient) ListAllBySubscriptionCompleteMat
 
 	resp, err := c.ListAllBySubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -105,6 +105,7 @@ func (c DeploymentsClient) ListAtManagementGroupScopeCompleteMatchingPredicate(c
 
 	resp, err := c.ListAtManagementGroupScope(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

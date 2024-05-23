@@ -72,6 +72,7 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsListByClusterCompleteMatchin
 
 	resp, err := c.BareMetalMachineKeySetsListByCluster(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

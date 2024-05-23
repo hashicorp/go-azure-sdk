@@ -72,6 +72,7 @@ func (c ResourceHealthMetadataClient) ListBySiteSlotCompleteMatchingPredicate(ct
 
 	resp, err := c.ListBySiteSlot(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

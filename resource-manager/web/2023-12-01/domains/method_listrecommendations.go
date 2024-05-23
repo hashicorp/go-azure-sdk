@@ -73,6 +73,7 @@ func (c DomainsClient) ListRecommendationsCompleteMatchingPredicate(ctx context.
 
 	resp, err := c.ListRecommendations(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

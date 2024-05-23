@@ -72,6 +72,7 @@ func (c ConnectorClient) ListDryrunCompleteMatchingPredicate(ctx context.Context
 
 	resp, err := c.ListDryrun(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

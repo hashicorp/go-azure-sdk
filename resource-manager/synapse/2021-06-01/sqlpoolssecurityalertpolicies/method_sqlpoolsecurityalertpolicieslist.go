@@ -72,6 +72,7 @@ func (c SqlPoolsSecurityAlertPoliciesClient) SqlPoolSecurityAlertPoliciesListCom
 
 	resp, err := c.SqlPoolSecurityAlertPoliciesList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

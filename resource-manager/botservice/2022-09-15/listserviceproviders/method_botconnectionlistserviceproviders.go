@@ -73,6 +73,7 @@ func (c ListServiceProvidersClient) BotConnectionListServiceProvidersCompleteMat
 
 	resp, err := c.BotConnectionListServiceProviders(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

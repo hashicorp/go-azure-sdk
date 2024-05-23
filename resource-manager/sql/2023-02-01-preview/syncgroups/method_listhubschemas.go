@@ -72,6 +72,7 @@ func (c SyncGroupsClient) ListHubSchemasCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.ListHubSchemas(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

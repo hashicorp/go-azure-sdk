@@ -72,6 +72,7 @@ func (c WorkloadNetworksClient) ListGatewaysCompleteMatchingPredicate(ctx contex
 
 	resp, err := c.ListGateways(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

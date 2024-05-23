@@ -72,6 +72,7 @@ func (c ScriptsClient) ScriptExecutionsListCompleteMatchingPredicate(ctx context
 
 	resp, err := c.ScriptExecutionsList(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -108,6 +108,7 @@ func (c AuthorizationsClient) AuthorizationListByAuthorizationProviderCompleteMa
 
 	resp, err := c.AuthorizationListByAuthorizationProvider(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

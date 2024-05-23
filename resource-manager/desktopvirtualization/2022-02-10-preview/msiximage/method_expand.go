@@ -72,6 +72,7 @@ func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id
 
 	resp, err := c.Expand(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

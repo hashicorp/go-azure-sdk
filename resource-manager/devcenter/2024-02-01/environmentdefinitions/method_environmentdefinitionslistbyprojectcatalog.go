@@ -72,6 +72,7 @@ func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByProjectCatalog
 
 	resp, err := c.EnvironmentDefinitionsListByProjectCatalog(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -73,6 +73,7 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerCompleteMatchi
 
 	resp, err := c.ServerBlobAuditingPoliciesListByServer(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

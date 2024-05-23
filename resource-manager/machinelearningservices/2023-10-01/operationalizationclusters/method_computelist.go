@@ -100,6 +100,7 @@ func (c OperationalizationClustersClient) ComputeListCompleteMatchingPredicate(c
 
 	resp, err := c.ComputeList(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c IntegrationRuntimeObjectMetadataClient) GetCompleteMatchingPredicate(ctx
 
 	resp, err := c.Get(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

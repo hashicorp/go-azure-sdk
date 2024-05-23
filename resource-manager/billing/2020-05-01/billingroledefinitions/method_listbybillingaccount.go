@@ -72,6 +72,7 @@ func (c BillingRoleDefinitionsClient) ListByBillingAccountCompleteMatchingPredic
 
 	resp, err := c.ListByBillingAccount(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

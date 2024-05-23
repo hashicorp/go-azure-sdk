@@ -105,6 +105,7 @@ func (c RecommendationsClient) ListHistoryForWebAppCompleteMatchingPredicate(ctx
 
 	resp, err := c.ListHistoryForWebApp(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

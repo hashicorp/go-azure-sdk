@@ -105,6 +105,7 @@ func (c AttestationsClient) ListForResourceGroupCompleteMatchingPredicate(ctx co
 
 	resp, err := c.ListForResourceGroup(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

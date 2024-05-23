@@ -124,6 +124,7 @@ func (c JobTargetExecutionsClient) ListByStepCompleteMatchingPredicate(ctx conte
 
 	resp, err := c.ListByStep(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

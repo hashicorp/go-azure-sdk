@@ -73,6 +73,7 @@ func (c BotConnectionClient) ListByBotServiceCompleteMatchingPredicate(ctx conte
 
 	resp, err := c.ListByBotService(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

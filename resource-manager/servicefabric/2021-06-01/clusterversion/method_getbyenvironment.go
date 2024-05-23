@@ -72,6 +72,7 @@ func (c ClusterVersionClient) GetByEnvironmentCompleteMatchingPredicate(ctx cont
 
 	resp, err := c.GetByEnvironment(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

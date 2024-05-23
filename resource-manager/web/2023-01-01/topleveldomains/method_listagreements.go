@@ -72,6 +72,7 @@ func (c TopLevelDomainsClient) ListAgreementsCompleteMatchingPredicate(ctx conte
 
 	resp, err := c.ListAgreements(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

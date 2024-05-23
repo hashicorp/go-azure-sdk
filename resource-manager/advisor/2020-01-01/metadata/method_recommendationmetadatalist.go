@@ -72,6 +72,7 @@ func (c MetadataClient) RecommendationMetadataListCompleteMatchingPredicate(ctx 
 
 	resp, err := c.RecommendationMetadataList(ctx)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

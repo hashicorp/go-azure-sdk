@@ -72,6 +72,7 @@ func (c GrafanaPluginClient) GrafanaFetchAvailablePluginsCompleteMatchingPredica
 
 	resp, err := c.GrafanaFetchAvailablePlugins(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

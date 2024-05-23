@@ -72,6 +72,7 @@ func (c ManagedHsmKeysClient) ListVersionsCompleteMatchingPredicate(ctx context.
 
 	resp, err := c.ListVersions(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

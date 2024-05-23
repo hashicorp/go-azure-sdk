@@ -108,6 +108,7 @@ func (c ApiSchemaClient) WorkspaceApiSchemaListByApiCompleteMatchingPredicate(ct
 
 	resp, err := c.WorkspaceApiSchemaListByApi(ctx, id, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c StandardOperationClient) ServicesListSkusCompleteMatchingPredicate(ctx c
 
 	resp, err := c.ServicesListSkus(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

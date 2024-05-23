@@ -72,6 +72,7 @@ func (c CommitmentPlansClient) ListAssociationsCompleteMatchingPredicate(ctx con
 
 	resp, err := c.ListAssociations(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -84,6 +84,7 @@ func (c ExternalSecuritySolutionsClient) ListByHomeRegionCompleteMatchingPredica
 
 	resp, err := c.ListByHomeRegion(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

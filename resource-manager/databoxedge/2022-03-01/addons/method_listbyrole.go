@@ -84,6 +84,7 @@ func (c AddonsClient) ListByRoleCompleteMatchingPredicate(ctx context.Context, i
 
 	resp, err := c.ListByRole(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

@@ -72,6 +72,7 @@ func (c LotsClient) ListByBillingProfileCompleteMatchingPredicate(ctx context.Co
 
 	resp, err := c.ListByBillingProfile(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

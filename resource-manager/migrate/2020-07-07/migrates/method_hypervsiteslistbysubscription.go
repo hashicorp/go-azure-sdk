@@ -73,6 +73,7 @@ func (c MigratesClient) HyperVSitesListBySubscriptionCompleteMatchingPredicate(c
 
 	resp, err := c.HyperVSitesListBySubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

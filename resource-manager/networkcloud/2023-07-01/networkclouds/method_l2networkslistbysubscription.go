@@ -73,6 +73,7 @@ func (c NetworkcloudsClient) L2NetworksListBySubscriptionCompleteMatchingPredica
 
 	resp, err := c.L2NetworksListBySubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

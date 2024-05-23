@@ -72,6 +72,7 @@ func (c VMwaresClient) WorkloadNetworksListDhcpCompleteMatchingPredicate(ctx con
 
 	resp, err := c.WorkloadNetworksListDhcp(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

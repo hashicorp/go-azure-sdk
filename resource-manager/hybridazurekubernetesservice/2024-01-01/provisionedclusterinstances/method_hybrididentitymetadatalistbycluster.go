@@ -73,6 +73,7 @@ func (c ProvisionedClusterInstancesClient) HybridIdentityMetadataListByClusterCo
 
 	resp, err := c.HybridIdentityMetadataListByCluster(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

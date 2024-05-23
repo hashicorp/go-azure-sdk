@@ -100,6 +100,7 @@ func (c TemplateSpecsClient) ListBuiltInsCompleteMatchingPredicate(ctx context.C
 
 	resp, err := c.ListBuiltIns(ctx, options)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

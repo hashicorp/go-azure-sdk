@@ -72,6 +72,7 @@ func (c GuestAgentsClient) ListByVMCompleteMatchingPredicate(ctx context.Context
 
 	resp, err := c.ListByVM(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

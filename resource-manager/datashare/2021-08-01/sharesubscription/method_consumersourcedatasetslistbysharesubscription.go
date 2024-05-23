@@ -72,6 +72,7 @@ func (c ShareSubscriptionClient) ConsumerSourceDataSetsListByShareSubscriptionCo
 
 	resp, err := c.ConsumerSourceDataSetsListByShareSubscription(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

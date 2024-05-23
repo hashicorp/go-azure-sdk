@@ -72,6 +72,7 @@ func (c QuotaClient) UpdateCompleteMatchingPredicate(ctx context.Context, id Loc
 
 	resp, err := c.Update(ctx, id, input)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

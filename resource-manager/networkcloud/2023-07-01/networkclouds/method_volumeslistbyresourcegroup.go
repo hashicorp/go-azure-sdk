@@ -73,6 +73,7 @@ func (c NetworkcloudsClient) VolumesListByResourceGroupCompleteMatchingPredicate
 
 	resp, err := c.VolumesListByResourceGroup(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}

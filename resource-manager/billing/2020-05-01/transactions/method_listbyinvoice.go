@@ -72,6 +72,7 @@ func (c TransactionsClient) ListByInvoiceCompleteMatchingPredicate(ctx context.C
 
 	resp, err := c.ListByInvoice(ctx, id)
 	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
 		return
 	}
