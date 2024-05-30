@@ -22,6 +22,7 @@ type StorageAccountProperties struct {
 	CustomDomain                          *CustomDomain                          `json:"customDomain,omitempty"`
 	DefaultToOAuthAuthentication          *bool                                  `json:"defaultToOAuthAuthentication,omitempty"`
 	DnsEndpointType                       *DnsEndpointType                       `json:"dnsEndpointType,omitempty"`
+	EnableExtendedGroups                  *bool                                  `json:"enableExtendedGroups,omitempty"`
 	Encryption                            *Encryption                            `json:"encryption,omitempty"`
 	FailoverInProgress                    *bool                                  `json:"failoverInProgress,omitempty"`
 	GeoReplicationStats                   *GeoReplicationStats                   `json:"geoReplicationStats,omitempty"`

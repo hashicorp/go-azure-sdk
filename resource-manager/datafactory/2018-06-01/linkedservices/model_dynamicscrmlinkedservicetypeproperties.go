@@ -9,18 +9,19 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DynamicsCrmLinkedServiceTypeProperties struct {
-	AuthenticationType             interface{}  `json:"authenticationType"`
-	DeploymentType                 interface{}  `json:"deploymentType"`
-	EncryptedCredential            *string      `json:"encryptedCredential,omitempty"`
-	HostName                       *interface{} `json:"hostName,omitempty"`
-	OrganizationName               *interface{} `json:"organizationName,omitempty"`
-	Password                       SecretBase   `json:"password"`
-	Port                           *interface{} `json:"port,omitempty"`
-	ServicePrincipalCredential     SecretBase   `json:"servicePrincipalCredential"`
-	ServicePrincipalCredentialType *interface{} `json:"servicePrincipalCredentialType,omitempty"`
-	ServicePrincipalId             *interface{} `json:"servicePrincipalId,omitempty"`
-	ServiceUri                     *interface{} `json:"serviceUri,omitempty"`
-	Username                       *interface{} `json:"username,omitempty"`
+	AuthenticationType             interface{}          `json:"authenticationType"`
+	Credential                     *CredentialReference `json:"credential,omitempty"`
+	DeploymentType                 interface{}          `json:"deploymentType"`
+	EncryptedCredential            *string              `json:"encryptedCredential,omitempty"`
+	HostName                       *interface{}         `json:"hostName,omitempty"`
+	OrganizationName               *interface{}         `json:"organizationName,omitempty"`
+	Password                       SecretBase           `json:"password"`
+	Port                           *interface{}         `json:"port,omitempty"`
+	ServicePrincipalCredential     SecretBase           `json:"servicePrincipalCredential"`
+	ServicePrincipalCredentialType *interface{}         `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalId             *interface{}         `json:"servicePrincipalId,omitempty"`
+	ServiceUri                     *interface{}         `json:"serviceUri,omitempty"`
+	Username                       *interface{}         `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &DynamicsCrmLinkedServiceTypeProperties{}
@@ -33,6 +34,7 @@ func (s *DynamicsCrmLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
+	s.Credential = decoded.Credential
 	s.DeploymentType = decoded.DeploymentType
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.HostName = decoded.HostName

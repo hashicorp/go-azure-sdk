@@ -13,6 +13,7 @@ type StorageAccountPropertiesCreateParameters struct {
 	CustomDomain                          *CustomDomain                          `json:"customDomain,omitempty"`
 	DefaultToOAuthAuthentication          *bool                                  `json:"defaultToOAuthAuthentication,omitempty"`
 	DnsEndpointType                       *DnsEndpointType                       `json:"dnsEndpointType,omitempty"`
+	EnableExtendedGroups                  *bool                                  `json:"enableExtendedGroups,omitempty"`
 	Encryption                            *Encryption                            `json:"encryption,omitempty"`
 	ImmutableStorageWithVersioning        *ImmutableStorageAccount               `json:"immutableStorageWithVersioning,omitempty"`
 	IsHnsEnabled                          *bool                                  `json:"isHnsEnabled,omitempty"`
