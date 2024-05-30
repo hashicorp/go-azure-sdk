@@ -28,6 +28,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/machinelearningcomputes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/managednetwork"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/marketplacesubscription"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelcontainer"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelversion"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/onlinedeployment"
@@ -39,6 +40,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/quota"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/registrymanagement"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/serverlessendpoint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/v2workspaceconnectionresource"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/virtualmachinesizes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaceprivateendpointconnections"
@@ -71,6 +73,7 @@ type Client struct {
 	Job                                  *job.JobClient
 	MachineLearningComputes              *machinelearningcomputes.MachineLearningComputesClient
 	ManagedNetwork                       *managednetwork.ManagedNetworkClient
+	MarketplaceSubscription              *marketplacesubscription.MarketplaceSubscriptionClient
 	ModelContainer                       *modelcontainer.ModelContainerClient
 	ModelVersion                         *modelversion.ModelVersionClient
 	OnlineDeployment                     *onlinedeployment.OnlineDeploymentClient
@@ -82,6 +85,7 @@ type Client struct {
 	Quota                                *quota.QuotaClient
 	RegistryManagement                   *registrymanagement.RegistryManagementClient
 	Schedule                             *schedule.ScheduleClient
+	ServerlessEndpoint                   *serverlessendpoint.ServerlessEndpointClient
 	V2WorkspaceConnectionResource        *v2workspaceconnectionresource.V2WorkspaceConnectionResourceClient
 	VirtualMachineSizes                  *virtualmachinesizes.VirtualMachineSizesClient
 	WorkspacePrivateEndpointConnections  *workspaceprivateendpointconnections.WorkspacePrivateEndpointConnectionsClient
@@ -222,6 +226,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(managedNetworkClient.Client)
 
+	marketplaceSubscriptionClient, err := marketplacesubscription.NewMarketplaceSubscriptionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MarketplaceSubscription client: %+v", err)
+	}
+	configureFunc(marketplaceSubscriptionClient.Client)
+
 	modelContainerClient, err := modelcontainer.NewModelContainerClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ModelContainer client: %+v", err)
@@ -288,6 +298,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(scheduleClient.Client)
 
+	serverlessEndpointClient, err := serverlessendpoint.NewServerlessEndpointClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerlessEndpoint client: %+v", err)
+	}
+	configureFunc(serverlessEndpointClient.Client)
+
 	v2WorkspaceConnectionResourceClient, err := v2workspaceconnectionresource.NewV2WorkspaceConnectionResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building V2WorkspaceConnectionResource client: %+v", err)
@@ -341,6 +357,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		Job:                                  jobClient,
 		MachineLearningComputes:              machineLearningComputesClient,
 		ManagedNetwork:                       managedNetworkClient,
+		MarketplaceSubscription:              marketplaceSubscriptionClient,
 		ModelContainer:                       modelContainerClient,
 		ModelVersion:                         modelVersionClient,
 		OnlineDeployment:                     onlineDeploymentClient,
@@ -352,6 +369,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		Quota:                                quotaClient,
 		RegistryManagement:                   registryManagementClient,
 		Schedule:                             scheduleClient,
+		ServerlessEndpoint:                   serverlessEndpointClient,
 		V2WorkspaceConnectionResource:        v2WorkspaceConnectionResourceClient,
 		VirtualMachineSizes:                  virtualMachineSizesClient,
 		WorkspacePrivateEndpointConnections:  workspacePrivateEndpointConnectionsClient,
