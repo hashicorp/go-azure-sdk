@@ -21,6 +21,7 @@ type Credentials struct {
 
 	// EnableAuthenticatingUsingAzureCLI specifies whether Azure CLI authentication should be checked.
 	EnableAuthenticatingUsingAzureCLI bool
+	AzureCliSubscriptionIDHint        string
 
 	// EnableAuthenticatingUsingClientCertificate specifies whether Client Certificate authentication should be checked.
 	EnableAuthenticatingUsingClientCertificate bool

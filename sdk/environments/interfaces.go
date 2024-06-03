@@ -3,6 +3,10 @@
 
 package environments
 
+import (
+	"strings"
+)
+
 type Api interface {
 	// AppId is a GUID that identifies the application/API in the cloud environment
 	AppId() (*string, bool)
@@ -25,4 +29,19 @@ type Api interface {
 
 	// WithResourceIdentifier overrides the default resource ID for the API and is useful for APIs that offer multiple authorization scopes
 	WithResourceIdentifier(string) Api
+}
+
+func ApiIsKnown(api Api, apiName string) bool {
+	appId, ok := api.AppId()
+	if !ok || appId == nil {
+		return false
+	}
+	resourceManagerAppId, ok := PublishedApis[apiName]
+	if !ok {
+		return false
+	}
+	if !strings.EqualFold(*appId, resourceManagerAppId) {
+		return false
+	}
+	return true
 }

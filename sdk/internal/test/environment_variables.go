@@ -9,18 +9,19 @@ import (
 )
 
 var (
-	TenantId                      = os.Getenv("ARM_TENANT_ID")
 	AuxiliaryTenantIds            = strings.Split(os.Getenv("ARM_AUXILIARY_TENANT_IDS"), ";")
-	ClientId                      = os.Getenv("ARM_CLIENT_ID")
+	ClientCertPassword            = os.Getenv("ARM_CLIENT_CERTIFICATE_PASSWORD")
 	ClientCertificate             = os.Getenv("ARM_CLIENT_CERTIFICATE")
 	ClientCertificatePath         = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
-	ClientCertPassword            = os.Getenv("ARM_CLIENT_CERTIFICATE_PASSWORD")
+	ClientId                      = os.Getenv("ARM_CLIENT_ID")
 	ClientSecret                  = os.Getenv("ARM_CLIENT_SECRET")
-	Environment                   = envDefault("ARM_ENVIRONMENT", "global")
-	GitHubTokenURL                = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
-	GitHubToken                   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
-	IdToken                       = os.Getenv("ARM_OIDC_TOKEN")
 	CustomManagedIdentityEndpoint = os.Getenv("ARM_MSI_ENDPOINT")
+	Environment                   = envDefault("ARM_ENVIRONMENT", "global")
+	GitHubToken                   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
+	GitHubTokenURL                = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
+	IdToken                       = os.Getenv("ARM_OIDC_TOKEN")
+	SubscriptionId                = os.Getenv("ARM_SUBSCRIPTION_ID")
+	TenantId                      = os.Getenv("ARM_TENANT_ID")
 )
 
 func envDefault(key, def string) (ret string) {
