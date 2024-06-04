@@ -12,6 +12,7 @@ import (
 type AccessTier string
 
 const (
+	AccessTierCold    AccessTier = "Cold"
 	AccessTierCool    AccessTier = "Cool"
 	AccessTierHot     AccessTier = "Hot"
 	AccessTierPremium AccessTier = "Premium"
@@ -19,6 +20,7 @@ const (
 
 func PossibleValuesForAccessTier() []string {
 	return []string{
+		string(AccessTierCold),
 		string(AccessTierCool),
 		string(AccessTierHot),
 		string(AccessTierPremium),
@@ -40,6 +42,7 @@ func (s *AccessTier) UnmarshalJSON(bytes []byte) error {
 
 func parseAccessTier(input string) (*AccessTier, error) {
 	vals := map[string]AccessTier{
+		"cold":    AccessTierCold,
 		"cool":    AccessTierCool,
 		"hot":     AccessTierHot,
 		"premium": AccessTierPremium,
@@ -944,14 +947,16 @@ func parseListKeyExpand(input string) (*ListKeyExpand, error) {
 type MinimumTlsVersion string
 
 const (
-	MinimumTlsVersionTLSOneOne  MinimumTlsVersion = "TLS1_1"
-	MinimumTlsVersionTLSOneTwo  MinimumTlsVersion = "TLS1_2"
-	MinimumTlsVersionTLSOneZero MinimumTlsVersion = "TLS1_0"
+	MinimumTlsVersionTLSOneOne   MinimumTlsVersion = "TLS1_1"
+	MinimumTlsVersionTLSOneThree MinimumTlsVersion = "TLS1_3"
+	MinimumTlsVersionTLSOneTwo   MinimumTlsVersion = "TLS1_2"
+	MinimumTlsVersionTLSOneZero  MinimumTlsVersion = "TLS1_0"
 )
 
 func PossibleValuesForMinimumTlsVersion() []string {
 	return []string{
 		string(MinimumTlsVersionTLSOneOne),
+		string(MinimumTlsVersionTLSOneThree),
 		string(MinimumTlsVersionTLSOneTwo),
 		string(MinimumTlsVersionTLSOneZero),
 	}
@@ -973,6 +978,7 @@ func (s *MinimumTlsVersion) UnmarshalJSON(bytes []byte) error {
 func parseMinimumTlsVersion(input string) (*MinimumTlsVersion, error) {
 	vals := map[string]MinimumTlsVersion{
 		"tls1_1": MinimumTlsVersionTLSOneOne,
+		"tls1_3": MinimumTlsVersionTLSOneThree,
 		"tls1_2": MinimumTlsVersionTLSOneTwo,
 		"tls1_0": MinimumTlsVersionTLSOneZero,
 	}
