@@ -19,8 +19,8 @@ func TestPollerLRO_InProvisioningState_TerminalStates(t *testing.T) {
 	ctx := context.TODO()
 	for state, expected := range longRunningOperationCustomStatuses {
 		t.Run(fmt.Sprintf("%s/%s", string(state), string(expected)), func(t *testing.T) {
-			helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
-				responseWithStatus(state),
+			helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+				responseWithStatusInProvisioningState(state),
 			})
 			server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 			defer server.Close()
@@ -57,8 +57,8 @@ func TestPollerLRO_InStatus_TerminalStates(t *testing.T) {
 	ctx := context.TODO()
 	for state, expected := range longRunningOperationCustomStatuses {
 		t.Run(fmt.Sprintf("%s/%s", string(state), string(expected)), func(t *testing.T) {
-			helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
-				responseWithStatus(state),
+			helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+				responseWithStatusInStatusField(state),
 			})
 			server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 			defer server.Close()
@@ -92,8 +92,8 @@ func TestPollerLRO_InStatus_TerminalStates(t *testing.T) {
 
 func TestPollerLRO_InProvisioningState_ImmediateSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
-		responseWithStatus(statusSucceeded),
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithStatusInProvisioningState(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -125,8 +125,8 @@ func TestPollerLRO_InProvisioningState_ImmediateSuccess(t *testing.T) {
 
 func TestPollerLRO_InStatus_ImmediateSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
-		responseWithStatus(statusSucceeded),
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithStatusInStatusField(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -158,9 +158,9 @@ func TestPollerLRO_InStatus_ImmediateSuccess(t *testing.T) {
 
 func TestPollerLRO_InProvisioningState_AcceptedThenImmediateSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusAccepted),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInProvisioningState(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -194,9 +194,9 @@ func TestPollerLRO_InProvisioningState_AcceptedThenImmediateSuccess(t *testing.T
 
 func TestPollerLRO_InStatus_AcceptedThenImmediateSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusAccepted),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInStatusField(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -230,10 +230,10 @@ func TestPollerLRO_InStatus_AcceptedThenImmediateSuccess(t *testing.T) {
 
 func TestPollerLRO_InProvisioningState_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusAccepted),
-		responseWithStatus(statusInProgress),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInProvisioningState(statusInProgress),
+		responseWithStatusInProvisioningState(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -268,10 +268,10 @@ func TestPollerLRO_InProvisioningState_AcceptedThenInProgressThenSuccess(t *test
 
 func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusAccepted),
-		responseWithStatus(statusInProgress),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInStatusField(statusInProgress),
+		responseWithStatusInStatusField(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -304,15 +304,95 @@ func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	helpers.assertCalled(t, 3)
 }
 
+func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
+	ctx := context.TODO()
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithHttpStatusCode(http.StatusAccepted),
+		responseThatDropsTheConnection(),
+		responseWithStatusInProvisioningState(statusInProgress),
+		responseWithStatusInProvisioningState(statusSucceeded),
+	})
+	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+	defer server.Close()
+
+	response := &client.Response{
+		Response: helpers.response(),
+	}
+	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+	poller, err := longRunningOperationPollerFromResponse(response, client)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	expectedStatuses := []pollers.PollingStatus{
+		pollers.PollingStatusInProgress, // the 202 Accepted
+		// NOTE: the Dropped Connection will be ignored/silently retried
+		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusSucceeded,  // good
+	}
+	for i, expected := range expectedStatuses {
+		t.Logf("Poll %d..", i)
+		result, err := poller.Poll(ctx)
+		if err != nil {
+			t.Fatal(err.Error())
+		}
+		if result.Status != expected {
+			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+		}
+	}
+	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
+	helpers.assertCalled(t, 4)
+}
+
+func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
+	ctx := context.TODO()
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithHttpStatusCode(http.StatusAccepted),
+		responseThatDropsTheConnection(),
+		responseWithStatusInStatusField(statusInProgress),
+		responseWithStatusInStatusField(statusSucceeded),
+	})
+	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+	defer server.Close()
+
+	response := &client.Response{
+		Response: helpers.response(),
+	}
+	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+	poller, err := longRunningOperationPollerFromResponse(response, client)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	expectedStatuses := []pollers.PollingStatus{
+		pollers.PollingStatusInProgress, // the 202 Accepted
+		// NOTE: the Dropped Connection will be ignored/silently retried
+		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusSucceeded,  // good
+	}
+	for i, expected := range expectedStatuses {
+		t.Logf("Poll %d..", i)
+		result, err := poller.Poll(ctx)
+		if err != nil {
+			t.Fatal(err.Error())
+		}
+		if result.Status != expected {
+			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+		}
+	}
+	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
+	helpers.assertCalled(t, 4)
+}
+
 func TestPollerLRO_InProvisioningState_404ThenImmediateSuccess(t *testing.T) {
 	// This scenario handles the API returning a 404 initially, then succeeded
 	// This happens when there's an API bug, since we shouldn't get the initial 404 - and can be
 	// seen in this issue: https://github.com/hashicorp/go-azure-sdk/issues/886 (although this test
 	// assumes we've immediately passed)
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusNotFound),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInProvisioningState(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -350,9 +430,9 @@ func TestPollerLRO_InStatus_404ThenImmediateSuccess(t *testing.T) {
 	// seen in this issue: https://github.com/hashicorp/go-azure-sdk/issues/886 (although this test
 	// assumes we've immediately passed)
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusNotFound),
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInStatusField(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -389,11 +469,11 @@ func TestPollerLRO_InProvisioningState_404ThenInProgressThenSucceeded(t *testing
 	// This happens when there's an API bug, since we shouldn't get the initial 404 - and can be
 	// seen in this issue: https://github.com/hashicorp/go-azure-sdk/issues/886
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(true, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusNotFound),
-		responseWithStatus(statusInProgress),
+		responseWithStatusInProvisioningState(statusInProgress),
 		responseWithHttpStatusCode(http.StatusNotFound), // let's fake some eventual consistency
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInProvisioningState(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
@@ -432,11 +512,11 @@ func TestPollerLRO_InStatus_404ThenInProgressThenSucceeded(t *testing.T) {
 	// This happens when there's an API bug, since we shouldn't get the initial 404 - and can be
 	// seen in this issue: https://github.com/hashicorp/go-azure-sdk/issues/886
 	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint(false, []longRunningOperationsExpectedResponse{
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
 		responseWithHttpStatusCode(http.StatusNotFound),
-		responseWithStatus(statusInProgress),
+		responseWithStatusInStatusField(statusInProgress),
 		responseWithHttpStatusCode(http.StatusNotFound), // let's fake some eventual consistency
-		responseWithStatus(statusSucceeded),
+		responseWithStatusInStatusField(statusSucceeded),
 	})
 	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
 	defer server.Close()
