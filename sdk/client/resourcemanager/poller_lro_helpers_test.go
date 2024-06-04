@@ -7,8 +7,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"testing"
-
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 )
 
 // longRunningOperationsEndpoint is a test helper struct which makes testing the expected behaviour of the
@@ -16,33 +14,14 @@ import (
 // so much boilerplate, this helped make the tests more readable, so whilst this has some boilerplate I
 // suspect it's worth it for the tradeoff of having tests that are more understandable.
 type longRunningOperationsEndpoint struct {
-	numberOfTimesCalled  int
-	responses            []longRunningOperationsExpectedResponse
-	useProvisioningState bool
+	numberOfTimesCalled int
+	responses           []expectedResponse
 }
 
-type longRunningOperationsExpectedResponse struct {
-	status         *status
-	httpStatusCode *int
-}
-
-func responseWithStatus(input status) longRunningOperationsExpectedResponse {
-	return longRunningOperationsExpectedResponse{
-		status: pointer.To(input),
-	}
-}
-
-func responseWithHttpStatusCode(input int) longRunningOperationsExpectedResponse {
-	return longRunningOperationsExpectedResponse{
-		httpStatusCode: pointer.To(input),
-	}
-}
-
-func newLongRunningOperationsEndpoint(useProvisioningState bool, responses []longRunningOperationsExpectedResponse) longRunningOperationsEndpoint {
+func newLongRunningOperationsEndpoint(responses []expectedResponse) longRunningOperationsEndpoint {
 	return longRunningOperationsEndpoint{
-		useProvisioningState: useProvisioningState,
-		numberOfTimesCalled:  0,
-		responses:            responses,
+		numberOfTimesCalled: 0,
+		responses:           responses,
 	}
 }
 
@@ -60,6 +39,10 @@ func (e *longRunningOperationsEndpoint) endpoint(t *testing.T) func(w http.Respo
 			t.Fatal("called too many times")
 		}
 		response := e.responses[e.numberOfTimesCalled-1]
+		if response.dropsConnection {
+			dropConnection(t, w)
+			return
+		}
 		if response.httpStatusCode != nil {
 			w.WriteHeader(*response.httpStatusCode)
 			return
@@ -74,9 +57,10 @@ func (e *longRunningOperationsEndpoint) endpoint(t *testing.T) func(w http.Respo
 			},
 			Status: "",
 		}
-		if e.useProvisioningState {
+		if response.useProvisioningState {
 			payload.Properties.ProvisioningState = *response.status
-		} else {
+		}
+		if response.useStatus {
 			payload.Status = *response.status
 		}
 		w.Header().Set("Content-Type", "application/json")
