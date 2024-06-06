@@ -25,7 +25,6 @@ type ListCompleteResult struct {
 }
 
 type ListOperationOptions struct {
-	Filter      *string
 	Maxpagesize *string
 }
 
@@ -46,9 +45,6 @@ func (o ListOperationOptions) ToOData() *odata.Query {
 
 func (o ListOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
-	if o.Filter != nil {
-		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
-	}
 	if o.Maxpagesize != nil {
 		out.Append("$maxpagesize", fmt.Sprintf("%v", *o.Maxpagesize))
 	}

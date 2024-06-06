@@ -5,5 +5,5 @@ package storagetaskassignments
 
 type ExecutionTarget struct {
 	ExcludePrefix *[]string `json:"excludePrefix,omitempty"`
-	Prefix        []string  `json:"prefix"`
+	Prefix        *[]string `json:"prefix,omitempty"`
 }

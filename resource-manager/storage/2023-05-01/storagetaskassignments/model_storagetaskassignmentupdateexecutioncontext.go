@@ -4,6 +4,6 @@ package storagetaskassignments
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StorageTaskAssignmentUpdateExecutionContext struct {
-	Target  *ExecutionTargetUpdate  `json:"target,omitempty"`
+	Target  *ExecutionTarget        `json:"target,omitempty"`
 	Trigger *ExecutionTriggerUpdate `json:"trigger,omitempty"`
 }
