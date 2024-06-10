@@ -5,6 +5,6 @@ package appserviceenvironments
 
 type FunctionsDeploymentStorage struct {
 	Authentication *FunctionsDeploymentStorageAuthentication `json:"authentication,omitempty"`
-	Type           *StorageType                              `json:"type,omitempty"`
+	Type           *FunctionsDeploymentStorageType           `json:"type,omitempty"`
 	Value          *string                                   `json:"value,omitempty"`
 }
