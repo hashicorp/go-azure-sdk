@@ -1231,6 +1231,44 @@ func parseFtpsState(input string) (*FtpsState, error) {
 	return &out, nil
 }
 
+type FunctionsDeploymentStorageType string
+
+const (
+	FunctionsDeploymentStorageTypeBlobContainer FunctionsDeploymentStorageType = "blobContainer"
+)
+
+func PossibleValuesForFunctionsDeploymentStorageType() []string {
+	return []string{
+		string(FunctionsDeploymentStorageTypeBlobContainer),
+	}
+}
+
+func (s *FunctionsDeploymentStorageType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFunctionsDeploymentStorageType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseFunctionsDeploymentStorageType(input string) (*FunctionsDeploymentStorageType, error) {
+	vals := map[string]FunctionsDeploymentStorageType{
+		"blobcontainer": FunctionsDeploymentStorageTypeBlobContainer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FunctionsDeploymentStorageType(input)
+	return &out, nil
+}
+
 type HostNameType string
 
 const (
@@ -2236,44 +2274,6 @@ func parseSslState(input string) (*SslState, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := SslState(input)
-	return &out, nil
-}
-
-type StorageType string
-
-const (
-	StorageTypeBlobContainer StorageType = "blobContainer"
-)
-
-func PossibleValuesForStorageType() []string {
-	return []string{
-		string(StorageTypeBlobContainer),
-	}
-}
-
-func (s *StorageType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseStorageType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"blobcontainer": StorageTypeBlobContainer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
 	return &out, nil
 }
 
