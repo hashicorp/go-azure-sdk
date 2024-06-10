@@ -29,7 +29,7 @@ type AzureCliAuthorizerOptions struct {
 	AuxTenantIds []string
 
 	// SubscriptionIdHint is the subscription to target when selecting an account with which to obtain an access token
-	// Used to hint to Azure CLI which of its signed-in accounts it should select, based on access to the subscription.
+	// Used to hint to Azure CLI which of its signed-in accounts it should select, based on apparent access to the subscription.
 	SubscriptionIdHint string
 }
 
@@ -219,7 +219,7 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 	}
 
 	// validate subscriptionIdHint, if applicable (currently only for Resource Manager)
-	if environments.ApiIsKnown(api, "AzureResourceManager") {
+	if environments.ApiIsKnownPublished(api, "AzureResourceManager") {
 		if subscriptionIdHint != "" {
 			if availableSubscriptionIds, err := azurecli.ListAvailableSubscriptionIDs(); err != nil {
 				return nil, err
