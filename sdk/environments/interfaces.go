@@ -31,16 +31,17 @@ type Api interface {
 	WithResourceIdentifier(string) Api
 }
 
-func ApiIsKnown(api Api, apiName string) bool {
+// ApiIsKnownPublished determines whether the provided Api represents the specified known API as published in PublishedApis
+func ApiIsKnownPublished(api Api, apiName string) bool {
 	appId, ok := api.AppId()
 	if !ok || appId == nil {
 		return false
 	}
-	resourceManagerAppId, ok := PublishedApis[apiName]
+	knownApiAppId, ok := PublishedApis[apiName]
 	if !ok {
 		return false
 	}
-	if !strings.EqualFold(*appId, resourceManagerAppId) {
+	if !strings.EqualFold(*appId, knownApiAppId) {
 		return false
 	}
 	return true
