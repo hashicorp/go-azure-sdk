@@ -205,6 +205,7 @@ func TestAccNewAuthorizerFromCredentials(t *testing.T) {
 			credentials: func() (ret auth.Credentials) {
 				ret = credentials
 				ret.EnableAuthenticatingUsingAzureCLI = true
+				ret.AzureCliSubscriptionIDHint = test.SubscriptionId
 				return
 			},
 			check: func(a auth.Authorizer) error {
