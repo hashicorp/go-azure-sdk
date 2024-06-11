@@ -14,7 +14,7 @@ import (
 var _ WorkspaceConnectionPropertiesV2 = AccountKeyAuthTypeWorkspaceConnectionProperties{}
 
 type AccountKeyAuthTypeWorkspaceConnectionProperties struct {
-	Credentials *WorkspaceConnectionSharedAccessSignature `json:"credentials,omitempty"`
+	Credentials *WorkspaceConnectionAccountKey `json:"credentials,omitempty"`
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
 	Category                *ConnectionCategory `json:"category,omitempty"`
