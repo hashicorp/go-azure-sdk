@@ -12,6 +12,7 @@ type VolumePatchProperties struct {
 	DefaultUserQuotaInKiBs    *int64                               `json:"defaultUserQuotaInKiBs,omitempty"`
 	ExportPolicy              *VolumePatchPropertiesExportPolicy   `json:"exportPolicy,omitempty"`
 	IsDefaultQuotaEnabled     *bool                                `json:"isDefaultQuotaEnabled,omitempty"`
+	ProtocolTypes             *[]string                            `json:"protocolTypes,omitempty"`
 	ServiceLevel              *ServiceLevel                        `json:"serviceLevel,omitempty"`
 	SmbAccessBasedEnumeration *SmbAccessBasedEnumeration           `json:"smbAccessBasedEnumeration,omitempty"`
 	SmbNonBrowsable           *SmbNonBrowsable                     `json:"smbNonBrowsable,omitempty"`

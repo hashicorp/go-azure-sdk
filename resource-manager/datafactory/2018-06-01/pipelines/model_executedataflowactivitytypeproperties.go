@@ -5,6 +5,7 @@ package pipelines
 
 type ExecuteDataFlowActivityTypeProperties struct {
 	Compute                  *ExecuteDataFlowActivityTypePropertiesCompute `json:"compute,omitempty"`
+	ContinuationSettings     *ContinuationSettingsReference                `json:"continuationSettings,omitempty"`
 	ContinueOnError          *interface{}                                  `json:"continueOnError,omitempty"`
 	DataFlow                 DataFlowReference                             `json:"dataFlow"`
 	IntegrationRuntime       *IntegrationRuntimeReference                  `json:"integrationRuntime,omitempty"`
