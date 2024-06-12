@@ -17,6 +17,7 @@ type SqlServerLinkedServiceTypeProperties struct {
 	ConnectRetryInterval     *interface{}                  `json:"connectRetryInterval,omitempty"`
 	ConnectTimeout           *interface{}                  `json:"connectTimeout,omitempty"`
 	ConnectionString         *interface{}                  `json:"connectionString,omitempty"`
+	Credential               *CredentialReference          `json:"credential,omitempty"`
 	Database                 *interface{}                  `json:"database,omitempty"`
 	Encrypt                  *interface{}                  `json:"encrypt,omitempty"`
 	EncryptedCredential      *string                       `json:"encryptedCredential,omitempty"`
@@ -53,6 +54,7 @@ func (s *SqlServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 	s.ConnectRetryInterval = decoded.ConnectRetryInterval
 	s.ConnectTimeout = decoded.ConnectTimeout
 	s.ConnectionString = decoded.ConnectionString
+	s.Credential = decoded.Credential
 	s.Database = decoded.Database
 	s.Encrypt = decoded.Encrypt
 	s.EncryptedCredential = decoded.EncryptedCredential
