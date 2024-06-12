@@ -1546,13 +1546,15 @@ func parseSqlAlwaysEncryptedAkvAuthType(input string) (*SqlAlwaysEncryptedAkvAut
 type SqlServerAuthenticationType string
 
 const (
-	SqlServerAuthenticationTypeSQL     SqlServerAuthenticationType = "SQL"
-	SqlServerAuthenticationTypeWindows SqlServerAuthenticationType = "Windows"
+	SqlServerAuthenticationTypeSQL                         SqlServerAuthenticationType = "SQL"
+	SqlServerAuthenticationTypeUserAssignedManagedIdentity SqlServerAuthenticationType = "UserAssignedManagedIdentity"
+	SqlServerAuthenticationTypeWindows                     SqlServerAuthenticationType = "Windows"
 )
 
 func PossibleValuesForSqlServerAuthenticationType() []string {
 	return []string{
 		string(SqlServerAuthenticationTypeSQL),
+		string(SqlServerAuthenticationTypeUserAssignedManagedIdentity),
 		string(SqlServerAuthenticationTypeWindows),
 	}
 }
@@ -1572,8 +1574,9 @@ func (s *SqlServerAuthenticationType) UnmarshalJSON(bytes []byte) error {
 
 func parseSqlServerAuthenticationType(input string) (*SqlServerAuthenticationType, error) {
 	vals := map[string]SqlServerAuthenticationType{
-		"sql":     SqlServerAuthenticationTypeSQL,
-		"windows": SqlServerAuthenticationTypeWindows,
+		"sql":                         SqlServerAuthenticationTypeSQL,
+		"userassignedmanagedidentity": SqlServerAuthenticationTypeUserAssignedManagedIdentity,
+		"windows":                     SqlServerAuthenticationTypeWindows,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
