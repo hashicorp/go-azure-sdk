@@ -22,7 +22,7 @@ type WorkloadNetworksUpdateDnsServiceOperationResponse struct {
 }
 
 // WorkloadNetworksUpdateDnsService ...
-func (c VMwaresClient) WorkloadNetworksUpdateDnsService(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsServiceUpdate) (result WorkloadNetworksUpdateDnsServiceOperationResponse, err error) {
+func (c VMwaresClient) WorkloadNetworksUpdateDnsService(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) (result WorkloadNetworksUpdateDnsServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VMwaresClient) WorkloadNetworksUpdateDnsService(ctx context.Context, id 
 }
 
 // WorkloadNetworksUpdateDnsServiceThenPoll performs WorkloadNetworksUpdateDnsService then polls until it's completed
-func (c VMwaresClient) WorkloadNetworksUpdateDnsServiceThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsServiceUpdate) error {
+func (c VMwaresClient) WorkloadNetworksUpdateDnsServiceThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) error {
 	result, err := c.WorkloadNetworksUpdateDnsService(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateDnsService: %+v", err)

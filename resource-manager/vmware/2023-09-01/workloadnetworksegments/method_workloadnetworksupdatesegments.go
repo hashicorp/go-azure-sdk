@@ -22,7 +22,7 @@ type WorkloadNetworksUpdateSegmentsOperationResponse struct {
 }
 
 // WorkloadNetworksUpdateSegments ...
-func (c WorkloadNetworkSegmentsClient) WorkloadNetworksUpdateSegments(ctx context.Context, id SegmentId, input WorkloadNetworkSegmentUpdate) (result WorkloadNetworksUpdateSegmentsOperationResponse, err error) {
+func (c WorkloadNetworkSegmentsClient) WorkloadNetworksUpdateSegments(ctx context.Context, id SegmentId, input WorkloadNetworkSegment) (result WorkloadNetworksUpdateSegmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c WorkloadNetworkSegmentsClient) WorkloadNetworksUpdateSegments(ctx contex
 }
 
 // WorkloadNetworksUpdateSegmentsThenPoll performs WorkloadNetworksUpdateSegments then polls until it's completed
-func (c WorkloadNetworkSegmentsClient) WorkloadNetworksUpdateSegmentsThenPoll(ctx context.Context, id SegmentId, input WorkloadNetworkSegmentUpdate) error {
+func (c WorkloadNetworkSegmentsClient) WorkloadNetworksUpdateSegmentsThenPoll(ctx context.Context, id SegmentId, input WorkloadNetworkSegment) error {
 	result, err := c.WorkloadNetworksUpdateSegments(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateSegments: %+v", err)

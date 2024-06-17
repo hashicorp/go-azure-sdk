@@ -88,7 +88,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
 
-payload := workloadnetworksegments.WorkloadNetworkSegmentUpdate{
+payload := workloadnetworksegments.WorkloadNetworkSegment{
 	// ...
 }
 

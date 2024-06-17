@@ -22,7 +22,7 @@ type WorkloadNetworksUpdatePortMirroringOperationResponse struct {
 }
 
 // WorkloadNetworksUpdatePortMirroring ...
-func (c VMwaresClient) WorkloadNetworksUpdatePortMirroring(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroringUpdate) (result WorkloadNetworksUpdatePortMirroringOperationResponse, err error) {
+func (c VMwaresClient) WorkloadNetworksUpdatePortMirroring(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroring) (result WorkloadNetworksUpdatePortMirroringOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VMwaresClient) WorkloadNetworksUpdatePortMirroring(ctx context.Context, 
 }
 
 // WorkloadNetworksUpdatePortMirroringThenPoll performs WorkloadNetworksUpdatePortMirroring then polls until it's completed
-func (c VMwaresClient) WorkloadNetworksUpdatePortMirroringThenPoll(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroringUpdate) error {
+func (c VMwaresClient) WorkloadNetworksUpdatePortMirroringThenPoll(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroring) error {
 	result, err := c.WorkloadNetworksUpdatePortMirroring(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdatePortMirroring: %+v", err)

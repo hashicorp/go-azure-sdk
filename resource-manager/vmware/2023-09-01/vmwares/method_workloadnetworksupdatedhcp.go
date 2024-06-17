@@ -22,7 +22,7 @@ type WorkloadNetworksUpdateDhcpOperationResponse struct {
 }
 
 // WorkloadNetworksUpdateDhcp ...
-func (c VMwaresClient) WorkloadNetworksUpdateDhcp(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcpUpdate) (result WorkloadNetworksUpdateDhcpOperationResponse, err error) {
+func (c VMwaresClient) WorkloadNetworksUpdateDhcp(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp) (result WorkloadNetworksUpdateDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VMwaresClient) WorkloadNetworksUpdateDhcp(ctx context.Context, id DhcpCo
 }
 
 // WorkloadNetworksUpdateDhcpThenPoll performs WorkloadNetworksUpdateDhcp then polls until it's completed
-func (c VMwaresClient) WorkloadNetworksUpdateDhcpThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcpUpdate) error {
+func (c VMwaresClient) WorkloadNetworksUpdateDhcpThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp) error {
 	result, err := c.WorkloadNetworksUpdateDhcp(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateDhcp: %+v", err)
