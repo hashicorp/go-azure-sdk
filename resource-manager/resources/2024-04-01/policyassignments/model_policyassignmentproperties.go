@@ -5,6 +5,7 @@ package policyassignments
 
 type PolicyAssignmentProperties struct {
 	AssignmentType        *AssignmentType                  `json:"assignmentType,omitempty"`
+	DefinitionVersion     *string                          `json:"definitionVersion,omitempty"`
 	Description           *string                          `json:"description,omitempty"`
 	DisplayName           *string                          `json:"displayName,omitempty"`
 	EnforcementMode       *EnforcementMode                 `json:"enforcementMode,omitempty"`
