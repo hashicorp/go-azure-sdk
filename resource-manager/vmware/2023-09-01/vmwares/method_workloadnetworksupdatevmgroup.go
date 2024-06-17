@@ -22,7 +22,7 @@ type WorkloadNetworksUpdateVMGroupOperationResponse struct {
 }
 
 // WorkloadNetworksUpdateVMGroup ...
-func (c VMwaresClient) WorkloadNetworksUpdateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroupUpdate) (result WorkloadNetworksUpdateVMGroupOperationResponse, err error) {
+func (c VMwaresClient) WorkloadNetworksUpdateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (result WorkloadNetworksUpdateVMGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VMwaresClient) WorkloadNetworksUpdateVMGroup(ctx context.Context, id VMG
 }
 
 // WorkloadNetworksUpdateVMGroupThenPoll performs WorkloadNetworksUpdateVMGroup then polls until it's completed
-func (c VMwaresClient) WorkloadNetworksUpdateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroupUpdate) error {
+func (c VMwaresClient) WorkloadNetworksUpdateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) error {
 	result, err := c.WorkloadNetworksUpdateVMGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateVMGroup: %+v", err)

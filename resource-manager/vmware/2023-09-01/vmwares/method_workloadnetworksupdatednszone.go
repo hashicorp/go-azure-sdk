@@ -22,7 +22,7 @@ type WorkloadNetworksUpdateDnsZoneOperationResponse struct {
 }
 
 // WorkloadNetworksUpdateDnsZone ...
-func (c VMwaresClient) WorkloadNetworksUpdateDnsZone(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZoneUpdate) (result WorkloadNetworksUpdateDnsZoneOperationResponse, err error) {
+func (c VMwaresClient) WorkloadNetworksUpdateDnsZone(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone) (result WorkloadNetworksUpdateDnsZoneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VMwaresClient) WorkloadNetworksUpdateDnsZone(ctx context.Context, id Dns
 }
 
 // WorkloadNetworksUpdateDnsZoneThenPoll performs WorkloadNetworksUpdateDnsZone then polls until it's completed
-func (c VMwaresClient) WorkloadNetworksUpdateDnsZoneThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZoneUpdate) error {
+func (c VMwaresClient) WorkloadNetworksUpdateDnsZoneThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone) error {
 	result, err := c.WorkloadNetworksUpdateDnsZone(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateDnsZone: %+v", err)

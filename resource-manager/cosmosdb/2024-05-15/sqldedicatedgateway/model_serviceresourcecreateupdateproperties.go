@@ -37,33 +37,33 @@ func unmarshalServiceResourceCreateUpdatePropertiesImplementation(input []byte) 
 	}
 
 	if strings.EqualFold(value, "DataTransfer") {
-		var out DataTransferServiceResourceCreateUpdateParameters
+		var out DataTransferServiceResourceCreateUpdateProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into DataTransferServiceResourceCreateUpdateParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into DataTransferServiceResourceCreateUpdateProperties: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "GraphAPICompute") {
-		var out GraphAPIComputeServiceResourceCreateUpdateParameters
+		var out GraphAPIComputeServiceResourceCreateUpdateProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into GraphAPIComputeServiceResourceCreateUpdateParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into GraphAPIComputeServiceResourceCreateUpdateProperties: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "MaterializedViewsBuilder") {
-		var out MaterializedViewsBuilderServiceResourceCreateUpdateParameters
+		var out MaterializedViewsBuilderServiceResourceCreateUpdateProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into MaterializedViewsBuilderServiceResourceCreateUpdateParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into MaterializedViewsBuilderServiceResourceCreateUpdateProperties: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "SqlDedicatedGateway") {
-		var out SqlDedicatedGatewayServiceResourceCreateUpdateParameters
+		var out SqlDedicatedGatewayServiceResourceCreateUpdateProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into SqlDedicatedGatewayServiceResourceCreateUpdateParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
 		}
 		return out, nil
 	}

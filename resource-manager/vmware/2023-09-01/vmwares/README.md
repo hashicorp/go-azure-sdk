@@ -398,7 +398,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dhcpIdValue")
 
-payload := vmwares.WorkloadNetworkDhcpUpdate{
+payload := vmwares.WorkloadNetworkDhcp{
 	// ...
 }
 
@@ -415,7 +415,7 @@ if err := client.WorkloadNetworksUpdateDhcpThenPoll(ctx, id, payload); err != ni
 ctx := context.TODO()
 id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsServiceIdValue")
 
-payload := vmwares.WorkloadNetworkDnsServiceUpdate{
+payload := vmwares.WorkloadNetworkDnsService{
 	// ...
 }
 
@@ -432,7 +432,7 @@ if err := client.WorkloadNetworksUpdateDnsServiceThenPoll(ctx, id, payload); err
 ctx := context.TODO()
 id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsZoneIdValue")
 
-payload := vmwares.WorkloadNetworkDnsZoneUpdate{
+payload := vmwares.WorkloadNetworkDnsZone{
 	// ...
 }
 
@@ -449,7 +449,7 @@ if err := client.WorkloadNetworksUpdateDnsZoneThenPoll(ctx, id, payload); err !=
 ctx := context.TODO()
 id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "portMirroringIdValue")
 
-payload := vmwares.WorkloadNetworkPortMirroringUpdate{
+payload := vmwares.WorkloadNetworkPortMirroring{
 	// ...
 }
 
@@ -466,7 +466,7 @@ if err := client.WorkloadNetworksUpdatePortMirroringThenPoll(ctx, id, payload); 
 ctx := context.TODO()
 id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
-payload := vmwares.WorkloadNetworkVMGroupUpdate{
+payload := vmwares.WorkloadNetworkVMGroup{
 	// ...
 }
 
