@@ -1,11 +1,5 @@
 package marketplaces
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -36,28 +30,4 @@ type MarketplaceProperties struct {
 	UnitOfMeasure        *string  `json:"unitOfMeasure,omitempty"`
 	UsageEnd             *string  `json:"usageEnd,omitempty"`
 	UsageStart           *string  `json:"usageStart,omitempty"`
-}
-
-func (o *MarketplaceProperties) GetUsageEndAsTime() (*time.Time, error) {
-	if o.UsageEnd == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.UsageEnd, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MarketplaceProperties) SetUsageEndAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UsageEnd = &formatted
-}
-
-func (o *MarketplaceProperties) GetUsageStartAsTime() (*time.Time, error) {
-	if o.UsageStart == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.UsageStart, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MarketplaceProperties) SetUsageStartAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UsageStart = &formatted
 }

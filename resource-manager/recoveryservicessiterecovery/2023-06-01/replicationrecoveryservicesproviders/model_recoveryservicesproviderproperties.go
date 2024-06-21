@@ -1,11 +1,5 @@
 package replicationrecoveryservicesproviders
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -30,28 +24,4 @@ type RecoveryServicesProviderProperties struct {
 	ProviderVersionState                   *string                  `json:"providerVersionState,omitempty"`
 	ResourceAccessIdentityDetails          *IdentityProviderDetails `json:"resourceAccessIdentityDetails,omitempty"`
 	ServerVersion                          *string                  `json:"serverVersion,omitempty"`
-}
-
-func (o *RecoveryServicesProviderProperties) GetLastHeartBeatAsTime() (*time.Time, error) {
-	if o.LastHeartBeat == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastHeartBeat, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecoveryServicesProviderProperties) SetLastHeartBeatAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHeartBeat = &formatted
-}
-
-func (o *RecoveryServicesProviderProperties) GetProviderVersionExpiryDateAsTime() (*time.Time, error) {
-	if o.ProviderVersionExpiryDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ProviderVersionExpiryDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecoveryServicesProviderProperties) SetProviderVersionExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ProviderVersionExpiryDate = &formatted
 }

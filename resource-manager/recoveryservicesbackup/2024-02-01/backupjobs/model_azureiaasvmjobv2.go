@@ -3,9 +3,6 @@ package backupjobs
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -29,30 +26,6 @@ type AzureIaaSVMJobV2 struct {
 	Operation            *string               `json:"operation,omitempty"`
 	StartTime            *string               `json:"startTime,omitempty"`
 	Status               *string               `json:"status,omitempty"`
-}
-
-func (o *AzureIaaSVMJobV2) GetEndTimeAsTime() (*time.Time, error) {
-	if o.EndTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureIaaSVMJobV2) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
-func (o *AzureIaaSVMJobV2) GetStartTimeAsTime() (*time.Time, error) {
-	if o.StartTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureIaaSVMJobV2) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }
 
 var _ json.Marshaler = AzureIaaSVMJobV2{}

@@ -1,11 +1,5 @@
 package storageaccounts
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -28,28 +22,4 @@ type ServiceSasParameters struct {
 	SignedStart           *string         `json:"signedStart,omitempty"`
 	StartPk               *string         `json:"startPk,omitempty"`
 	StartRk               *string         `json:"startRk,omitempty"`
-}
-
-func (o *ServiceSasParameters) GetSignedExpiryAsTime() (*time.Time, error) {
-	if o.SignedExpiry == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SignedExpiry, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ServiceSasParameters) SetSignedExpiryAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SignedExpiry = &formatted
-}
-
-func (o *ServiceSasParameters) GetSignedStartAsTime() (*time.Time, error) {
-	if o.SignedStart == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SignedStart, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ServiceSasParameters) SetSignedStartAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SignedStart = &formatted
 }

@@ -1,11 +1,5 @@
 package importjobs
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -20,28 +14,4 @@ type ImportJobPropertiesStatus struct {
 	TotalBlobsWalked       *int64            `json:"totalBlobsWalked,omitempty"`
 	TotalConflicts         *int64            `json:"totalConflicts,omitempty"`
 	TotalErrors            *int64            `json:"totalErrors,omitempty"`
-}
-
-func (o *ImportJobPropertiesStatus) GetLastCompletionTimeAsTime() (*time.Time, error) {
-	if o.LastCompletionTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastCompletionTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ImportJobPropertiesStatus) SetLastCompletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastCompletionTime = &formatted
-}
-
-func (o *ImportJobPropertiesStatus) GetLastStartedTimeAsTime() (*time.Time, error) {
-	if o.LastStartedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastStartedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ImportJobPropertiesStatus) SetLastStartedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastStartedTime = &formatted
 }

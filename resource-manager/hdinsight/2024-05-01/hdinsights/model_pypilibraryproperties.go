@@ -3,9 +3,6 @@ package hdinsights
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,18 +19,6 @@ type PyPiLibraryProperties struct {
 	Remarks   *string `json:"remarks,omitempty"`
 	Status    *Status `json:"status,omitempty"`
 	Timestamp *string `json:"timestamp,omitempty"`
-}
-
-func (o *PyPiLibraryProperties) GetTimestampAsTime() (*time.Time, error) {
-	if o.Timestamp == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.Timestamp, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *PyPiLibraryProperties) SetTimestampAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Timestamp = &formatted
 }
 
 var _ json.Marshaler = PyPiLibraryProperties{}

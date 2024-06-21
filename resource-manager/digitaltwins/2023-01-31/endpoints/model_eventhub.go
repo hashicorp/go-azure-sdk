@@ -3,9 +3,6 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -26,18 +23,6 @@ type EventHub struct {
 	DeadLetterUri      *string                    `json:"deadLetterUri,omitempty"`
 	Identity           *ManagedIdentityReference  `json:"identity,omitempty"`
 	ProvisioningState  *EndpointProvisioningState `json:"provisioningState,omitempty"`
-}
-
-func (o *EventHub) GetCreatedTimeAsTime() (*time.Time, error) {
-	if o.CreatedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *EventHub) SetCreatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTime = &formatted
 }
 
 var _ json.Marshaler = EventHub{}

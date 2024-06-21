@@ -3,9 +3,6 @@ package metricalerts
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -25,18 +22,6 @@ type MetricAlertProperties struct {
 	TargetResourceRegion *string              `json:"targetResourceRegion,omitempty"`
 	TargetResourceType   *string              `json:"targetResourceType,omitempty"`
 	WindowSize           string               `json:"windowSize"`
-}
-
-func (o *MetricAlertProperties) GetLastUpdatedTimeAsTime() (*time.Time, error) {
-	if o.LastUpdatedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUpdatedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MetricAlertProperties) SetLastUpdatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedTime = &formatted
 }
 
 var _ json.Unmarshaler = &MetricAlertProperties{}

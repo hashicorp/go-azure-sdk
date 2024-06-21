@@ -3,9 +3,6 @@ package contentkeypolicies
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,30 +19,6 @@ type ContentKeyPolicyPlayReadyLicense struct {
 	PlayRight              *ContentKeyPolicyPlayReadyPlayRight         `json:"playRight,omitempty"`
 	RelativeBeginDate      *string                                     `json:"relativeBeginDate,omitempty"`
 	RelativeExpirationDate *string                                     `json:"relativeExpirationDate,omitempty"`
-}
-
-func (o *ContentKeyPolicyPlayReadyLicense) GetBeginDateAsTime() (*time.Time, error) {
-	if o.BeginDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.BeginDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ContentKeyPolicyPlayReadyLicense) SetBeginDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.BeginDate = &formatted
-}
-
-func (o *ContentKeyPolicyPlayReadyLicense) GetExpirationDateAsTime() (*time.Time, error) {
-	if o.ExpirationDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ExpirationDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ContentKeyPolicyPlayReadyLicense) SetExpirationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpirationDate = &formatted
 }
 
 var _ json.Unmarshaler = &ContentKeyPolicyPlayReadyLicense{}

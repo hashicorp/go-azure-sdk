@@ -3,9 +3,6 @@ package factories
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -20,18 +17,6 @@ type FactoryProperties struct {
 	PurviewConfiguration *PurviewConfiguration                    `json:"purviewConfiguration,omitempty"`
 	RepoConfiguration    FactoryRepoConfiguration                 `json:"repoConfiguration"`
 	Version              *string                                  `json:"version,omitempty"`
-}
-
-func (o *FactoryProperties) GetCreateTimeAsTime() (*time.Time, error) {
-	if o.CreateTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FactoryProperties) SetCreateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreateTime = &formatted
 }
 
 var _ json.Unmarshaler = &FactoryProperties{}

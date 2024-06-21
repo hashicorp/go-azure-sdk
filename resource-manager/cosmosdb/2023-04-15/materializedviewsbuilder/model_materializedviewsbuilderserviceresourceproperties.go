@@ -3,9 +3,6 @@ package materializedviewsbuilder
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -21,18 +18,6 @@ type MaterializedViewsBuilderServiceResourceProperties struct {
 	InstanceCount *int64         `json:"instanceCount,omitempty"`
 	InstanceSize  *ServiceSize   `json:"instanceSize,omitempty"`
 	Status        *ServiceStatus `json:"status,omitempty"`
-}
-
-func (o *MaterializedViewsBuilderServiceResourceProperties) GetCreationTimeAsTime() (*time.Time, error) {
-	if o.CreationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MaterializedViewsBuilderServiceResourceProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
 }
 
 var _ json.Marshaler = MaterializedViewsBuilderServiceResourceProperties{}

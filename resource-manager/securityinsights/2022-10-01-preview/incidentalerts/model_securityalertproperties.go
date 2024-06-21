@@ -1,11 +1,5 @@
 package incidentalerts
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -37,52 +31,4 @@ type SecurityAlertProperties struct {
 	Tactics               *[]AttackTactic                                    `json:"tactics,omitempty"`
 	TimeGenerated         *string                                            `json:"timeGenerated,omitempty"`
 	VendorName            *string                                            `json:"vendorName,omitempty"`
-}
-
-func (o *SecurityAlertProperties) GetEndTimeUtcAsTime() (*time.Time, error) {
-	if o.EndTimeUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EndTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecurityAlertProperties) SetEndTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTimeUtc = &formatted
-}
-
-func (o *SecurityAlertProperties) GetProcessingEndTimeAsTime() (*time.Time, error) {
-	if o.ProcessingEndTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ProcessingEndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecurityAlertProperties) SetProcessingEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ProcessingEndTime = &formatted
-}
-
-func (o *SecurityAlertProperties) GetStartTimeUtcAsTime() (*time.Time, error) {
-	if o.StartTimeUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.StartTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecurityAlertProperties) SetStartTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTimeUtc = &formatted
-}
-
-func (o *SecurityAlertProperties) GetTimeGeneratedAsTime() (*time.Time, error) {
-	if o.TimeGenerated == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.TimeGenerated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecurityAlertProperties) SetTimeGeneratedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeGenerated = &formatted
 }

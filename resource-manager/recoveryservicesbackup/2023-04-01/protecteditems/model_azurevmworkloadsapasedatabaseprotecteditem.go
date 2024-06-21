@@ -3,9 +3,6 @@ package protecteditems
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -48,30 +45,6 @@ type AzureVMWorkloadSAPAseDatabaseProtectedItem struct {
 	SourceResourceId                 *string               `json:"sourceResourceId,omitempty"`
 	VaultId                          *string               `json:"vaultId,omitempty"`
 	WorkloadType                     *DataSourceType       `json:"workloadType,omitempty"`
-}
-
-func (o *AzureVMWorkloadSAPAseDatabaseProtectedItem) GetDeferredDeleteTimeInUTCAsTime() (*time.Time, error) {
-	if o.DeferredDeleteTimeInUTC == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.DeferredDeleteTimeInUTC, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureVMWorkloadSAPAseDatabaseProtectedItem) SetDeferredDeleteTimeInUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeferredDeleteTimeInUTC = &formatted
-}
-
-func (o *AzureVMWorkloadSAPAseDatabaseProtectedItem) GetLastRecoveryPointAsTime() (*time.Time, error) {
-	if o.LastRecoveryPoint == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastRecoveryPoint, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureVMWorkloadSAPAseDatabaseProtectedItem) SetLastRecoveryPointAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastRecoveryPoint = &formatted
 }
 
 var _ json.Marshaler = AzureVMWorkloadSAPAseDatabaseProtectedItem{}

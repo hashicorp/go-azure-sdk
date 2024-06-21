@@ -1,11 +1,5 @@
 package webapps
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -22,16 +16,4 @@ type ProcessThreadInfoProperties struct {
 	TotalProcessorTime *string `json:"total_processor_time,omitempty"`
 	UserProcessorTime  *string `json:"user_processor_time,omitempty"`
 	WaitReason         *string `json:"wait_reason,omitempty"`
-}
-
-func (o *ProcessThreadInfoProperties) GetStartTimeAsTime() (*time.Time, error) {
-	if o.StartTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProcessThreadInfoProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

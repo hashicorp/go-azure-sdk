@@ -1,11 +1,5 @@
 package share
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -20,40 +14,4 @@ type ProviderShareSubscriptionProperties struct {
 	ShareSubscriptionObjectId *string                  `json:"shareSubscriptionObjectId,omitempty"`
 	ShareSubscriptionStatus   *ShareSubscriptionStatus `json:"shareSubscriptionStatus,omitempty"`
 	SharedAt                  *string                  `json:"sharedAt,omitempty"`
-}
-
-func (o *ProviderShareSubscriptionProperties) GetCreatedAtAsTime() (*time.Time, error) {
-	if o.CreatedAt == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreatedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProviderShareSubscriptionProperties) SetCreatedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedAt = &formatted
-}
-
-func (o *ProviderShareSubscriptionProperties) GetExpirationDateAsTime() (*time.Time, error) {
-	if o.ExpirationDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ExpirationDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProviderShareSubscriptionProperties) SetExpirationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpirationDate = &formatted
-}
-
-func (o *ProviderShareSubscriptionProperties) GetSharedAtAsTime() (*time.Time, error) {
-	if o.SharedAt == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SharedAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProviderShareSubscriptionProperties) SetSharedAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SharedAt = &formatted
 }

@@ -3,9 +3,6 @@ package replicationprotecteditems
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -42,30 +39,6 @@ type ReplicationProtectedItemProperties struct {
 	SwitchProviderStateDescription          *string                             `json:"switchProviderStateDescription,omitempty"`
 	TestFailoverState                       *string                             `json:"testFailoverState,omitempty"`
 	TestFailoverStateDescription            *string                             `json:"testFailoverStateDescription,omitempty"`
-}
-
-func (o *ReplicationProtectedItemProperties) GetLastSuccessfulFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastSuccessfulFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastSuccessfulFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ReplicationProtectedItemProperties) SetLastSuccessfulFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSuccessfulFailoverTime = &formatted
-}
-
-func (o *ReplicationProtectedItemProperties) GetLastSuccessfulTestFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastSuccessfulTestFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastSuccessfulTestFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ReplicationProtectedItemProperties) SetLastSuccessfulTestFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSuccessfulTestFailoverTime = &formatted
 }
 
 var _ json.Unmarshaler = &ReplicationProtectedItemProperties{}

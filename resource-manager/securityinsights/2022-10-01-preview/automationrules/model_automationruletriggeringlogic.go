@@ -3,9 +3,6 @@ package automationrules
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,18 +14,6 @@ type AutomationRuleTriggeringLogic struct {
 	IsEnabled         bool                       `json:"isEnabled"`
 	TriggersOn        TriggersOn                 `json:"triggersOn"`
 	TriggersWhen      TriggersWhen               `json:"triggersWhen"`
-}
-
-func (o *AutomationRuleTriggeringLogic) GetExpirationTimeUtcAsTime() (*time.Time, error) {
-	if o.ExpirationTimeUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ExpirationTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AutomationRuleTriggeringLogic) SetExpirationTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExpirationTimeUtc = &formatted
 }
 
 var _ json.Unmarshaler = &AutomationRuleTriggeringLogic{}

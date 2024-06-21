@@ -3,9 +3,6 @@ package benefitrecommendations
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -28,30 +25,6 @@ type SharedScopeBenefitRecommendationProperties struct {
 	Term                     *Term                       `json:"term,omitempty"`
 	TotalHours               *int64                      `json:"totalHours,omitempty"`
 	Usage                    *RecommendationUsageDetails `json:"usage,omitempty"`
-}
-
-func (o *SharedScopeBenefitRecommendationProperties) GetFirstConsumptionDateAsTime() (*time.Time, error) {
-	if o.FirstConsumptionDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.FirstConsumptionDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SharedScopeBenefitRecommendationProperties) SetFirstConsumptionDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirstConsumptionDate = &formatted
-}
-
-func (o *SharedScopeBenefitRecommendationProperties) GetLastConsumptionDateAsTime() (*time.Time, error) {
-	if o.LastConsumptionDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastConsumptionDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SharedScopeBenefitRecommendationProperties) SetLastConsumptionDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastConsumptionDate = &formatted
 }
 
 var _ json.Marshaler = SharedScopeBenefitRecommendationProperties{}

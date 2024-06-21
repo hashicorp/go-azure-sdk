@@ -3,9 +3,6 @@ package clusterrecoverypoint
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -15,18 +12,6 @@ type ClusterRecoveryPointProperties struct {
 	ProviderSpecificDetails ClusterProviderSpecificRecoveryPointDetails `json:"providerSpecificDetails"`
 	RecoveryPointTime       *string                                     `json:"recoveryPointTime,omitempty"`
 	RecoveryPointType       *ClusterRecoveryPointType                   `json:"recoveryPointType,omitempty"`
-}
-
-func (o *ClusterRecoveryPointProperties) GetRecoveryPointTimeAsTime() (*time.Time, error) {
-	if o.RecoveryPointTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.RecoveryPointTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ClusterRecoveryPointProperties) SetRecoveryPointTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.RecoveryPointTime = &formatted
 }
 
 var _ json.Unmarshaler = &ClusterRecoveryPointProperties{}

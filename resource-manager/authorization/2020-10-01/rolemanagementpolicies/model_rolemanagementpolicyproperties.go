@@ -3,9 +3,6 @@ package rolemanagementpolicies
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -21,18 +18,6 @@ type RoleManagementPolicyProperties struct {
 	PolicyProperties      *PolicyProperties           `json:"policyProperties,omitempty"`
 	Rules                 *[]RoleManagementPolicyRule `json:"rules,omitempty"`
 	Scope                 *string                     `json:"scope,omitempty"`
-}
-
-func (o *RoleManagementPolicyProperties) GetLastModifiedDateTimeAsTime() (*time.Time, error) {
-	if o.LastModifiedDateTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastModifiedDateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RoleManagementPolicyProperties) SetLastModifiedDateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedDateTime = &formatted
 }
 
 var _ json.Unmarshaler = &RoleManagementPolicyProperties{}

@@ -3,9 +3,6 @@ package extendedueinformation
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,18 +15,6 @@ type UeInfo4G struct {
 
 	// Fields inherited from ExtendedUeInfoProperties
 	LastReadAt *string `json:"lastReadAt,omitempty"`
-}
-
-func (o *UeInfo4G) GetLastReadAtAsTime() (*time.Time, error) {
-	if o.LastReadAt == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastReadAt, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *UeInfo4G) SetLastReadAtAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastReadAt = &formatted
 }
 
 var _ json.Marshaler = UeInfo4G{}

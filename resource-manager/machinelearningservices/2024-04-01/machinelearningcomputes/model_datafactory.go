@@ -3,9 +3,6 @@ package machinelearningcomputes
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -25,30 +22,6 @@ type DataFactory struct {
 	ProvisioningErrors *[]ErrorResponse   `json:"provisioningErrors,omitempty"`
 	ProvisioningState  *ProvisioningState `json:"provisioningState,omitempty"`
 	ResourceId         *string            `json:"resourceId,omitempty"`
-}
-
-func (o *DataFactory) GetCreatedOnAsTime() (*time.Time, error) {
-	if o.CreatedOn == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DataFactory) SetCreatedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedOn = &formatted
-}
-
-func (o *DataFactory) GetModifiedOnAsTime() (*time.Time, error) {
-	if o.ModifiedOn == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ModifiedOn, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DataFactory) SetModifiedOnAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ModifiedOn = &formatted
 }
 
 var _ json.Marshaler = DataFactory{}

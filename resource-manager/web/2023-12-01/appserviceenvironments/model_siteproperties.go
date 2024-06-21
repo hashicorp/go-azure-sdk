@@ -1,11 +1,5 @@
 package appserviceenvironments
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -62,28 +56,4 @@ type SiteProperties struct {
 	VnetImagePullEnabled        *bool                      `json:"vnetImagePullEnabled,omitempty"`
 	VnetRouteAllEnabled         *bool                      `json:"vnetRouteAllEnabled,omitempty"`
 	WorkloadProfileName         *string                    `json:"workloadProfileName,omitempty"`
-}
-
-func (o *SiteProperties) GetLastModifiedTimeUtcAsTime() (*time.Time, error) {
-	if o.LastModifiedTimeUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastModifiedTimeUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SiteProperties) SetLastModifiedTimeUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModifiedTimeUtc = &formatted
-}
-
-func (o *SiteProperties) GetSuspendedTillAsTime() (*time.Time, error) {
-	if o.SuspendedTill == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SuspendedTill, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SiteProperties) SetSuspendedTillAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SuspendedTill = &formatted
 }

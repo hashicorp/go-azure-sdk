@@ -3,9 +3,6 @@ package tasks
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -24,18 +21,6 @@ type TaskProperties struct {
 	Step               TaskStepProperties  `json:"step"`
 	Timeout            *int64              `json:"timeout,omitempty"`
 	Trigger            *TriggerProperties  `json:"trigger,omitempty"`
-}
-
-func (o *TaskProperties) GetCreationDateAsTime() (*time.Time, error) {
-	if o.CreationDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreationDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TaskProperties) SetCreationDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationDate = &formatted
 }
 
 var _ json.Unmarshaler = &TaskProperties{}

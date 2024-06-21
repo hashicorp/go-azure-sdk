@@ -3,9 +3,6 @@ package subassessments
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,18 +19,6 @@ type SecuritySubAssessmentProperties struct {
 	ResourceDetails *ResourceDetails     `json:"resourceDetails,omitempty"`
 	Status          *SubAssessmentStatus `json:"status,omitempty"`
 	TimeGenerated   *string              `json:"timeGenerated,omitempty"`
-}
-
-func (o *SecuritySubAssessmentProperties) GetTimeGeneratedAsTime() (*time.Time, error) {
-	if o.TimeGenerated == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.TimeGenerated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecuritySubAssessmentProperties) SetTimeGeneratedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeGenerated = &formatted
 }
 
 var _ json.Unmarshaler = &SecuritySubAssessmentProperties{}

@@ -3,9 +3,6 @@ package replicationrecoveryplans
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -28,42 +25,6 @@ type RecoveryPlanProperties struct {
 	RecoveryFabricFriendlyName       *string                                `json:"recoveryFabricFriendlyName,omitempty"`
 	RecoveryFabricId                 *string                                `json:"recoveryFabricId,omitempty"`
 	ReplicationProviders             *[]string                              `json:"replicationProviders,omitempty"`
-}
-
-func (o *RecoveryPlanProperties) GetLastPlannedFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastPlannedFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastPlannedFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecoveryPlanProperties) SetLastPlannedFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastPlannedFailoverTime = &formatted
-}
-
-func (o *RecoveryPlanProperties) GetLastTestFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastTestFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastTestFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecoveryPlanProperties) SetLastTestFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastTestFailoverTime = &formatted
-}
-
-func (o *RecoveryPlanProperties) GetLastUnplannedFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastUnplannedFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUnplannedFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecoveryPlanProperties) SetLastUnplannedFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUnplannedFailoverTime = &formatted
 }
 
 var _ json.Unmarshaler = &RecoveryPlanProperties{}

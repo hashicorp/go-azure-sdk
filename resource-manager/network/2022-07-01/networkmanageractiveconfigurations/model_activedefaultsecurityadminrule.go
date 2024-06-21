@@ -3,9 +3,6 @@ package networkmanageractiveconfigurations
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -24,18 +21,6 @@ type ActiveDefaultSecurityAdminRule struct {
 	RuleCollectionAppliesToGroups *[]NetworkManagerSecurityGroupItem `json:"ruleCollectionAppliesToGroups,omitempty"`
 	RuleCollectionDescription     *string                            `json:"ruleCollectionDescription,omitempty"`
 	RuleGroups                    *[]ConfigurationGroup              `json:"ruleGroups,omitempty"`
-}
-
-func (o *ActiveDefaultSecurityAdminRule) GetCommitTimeAsTime() (*time.Time, error) {
-	if o.CommitTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CommitTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ActiveDefaultSecurityAdminRule) SetCommitTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CommitTime = &formatted
 }
 
 var _ json.Marshaler = ActiveDefaultSecurityAdminRule{}
