@@ -1,11 +1,5 @@
 package sqlpoolsoperations
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -24,28 +18,4 @@ type SqlPoolOperationProperties struct {
 	ServerName              *string                   `json:"serverName,omitempty"`
 	StartTime               *string                   `json:"startTime,omitempty"`
 	State                   *ManagementOperationState `json:"state,omitempty"`
-}
-
-func (o *SqlPoolOperationProperties) GetEstimatedCompletionTimeAsTime() (*time.Time, error) {
-	if o.EstimatedCompletionTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EstimatedCompletionTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SqlPoolOperationProperties) SetEstimatedCompletionTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EstimatedCompletionTime = &formatted
-}
-
-func (o *SqlPoolOperationProperties) GetStartTimeAsTime() (*time.Time, error) {
-	if o.StartTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SqlPoolOperationProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }

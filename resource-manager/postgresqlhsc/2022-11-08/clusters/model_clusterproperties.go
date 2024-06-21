@@ -1,11 +1,5 @@
 package clusters
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -36,28 +30,4 @@ type ClusterProperties struct {
 	SourceLocation                  *string                            `json:"sourceLocation,omitempty"`
 	SourceResourceId                *string                            `json:"sourceResourceId,omitempty"`
 	State                           *string                            `json:"state,omitempty"`
-}
-
-func (o *ClusterProperties) GetEarliestRestoreTimeAsTime() (*time.Time, error) {
-	if o.EarliestRestoreTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EarliestRestoreTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ClusterProperties) SetEarliestRestoreTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EarliestRestoreTime = &formatted
-}
-
-func (o *ClusterProperties) GetPointInTimeUTCAsTime() (*time.Time, error) {
-	if o.PointInTimeUTC == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.PointInTimeUTC, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ClusterProperties) SetPointInTimeUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.PointInTimeUTC = &formatted
 }

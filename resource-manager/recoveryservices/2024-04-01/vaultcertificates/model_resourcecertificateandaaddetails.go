@@ -3,9 +3,6 @@ package vaultcertificates
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -31,30 +28,6 @@ type ResourceCertificateAndAadDetails struct {
 	Thumbprint   *string `json:"thumbprint,omitempty"`
 	ValidFrom    *string `json:"validFrom,omitempty"`
 	ValidTo      *string `json:"validTo,omitempty"`
-}
-
-func (o *ResourceCertificateAndAadDetails) GetValidFromAsTime() (*time.Time, error) {
-	if o.ValidFrom == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ValidFrom, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ResourceCertificateAndAadDetails) SetValidFromAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ValidFrom = &formatted
-}
-
-func (o *ResourceCertificateAndAadDetails) GetValidToAsTime() (*time.Time, error) {
-	if o.ValidTo == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ValidTo, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ResourceCertificateAndAadDetails) SetValidToAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ValidTo = &formatted
 }
 
 var _ json.Marshaler = ResourceCertificateAndAadDetails{}

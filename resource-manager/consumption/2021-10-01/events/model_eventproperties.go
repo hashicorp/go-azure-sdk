@@ -1,11 +1,5 @@
 package events
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,16 +27,4 @@ type EventProperties struct {
 	NewCreditInBillingCurrency     *AmountWithExchangeRate `json:"newCreditInBillingCurrency,omitempty"`
 	Reseller                       *Reseller               `json:"reseller,omitempty"`
 	TransactionDate                *string                 `json:"transactionDate,omitempty"`
-}
-
-func (o *EventProperties) GetTransactionDateAsTime() (*time.Time, error) {
-	if o.TransactionDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.TransactionDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *EventProperties) SetTransactionDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TransactionDate = &formatted
 }

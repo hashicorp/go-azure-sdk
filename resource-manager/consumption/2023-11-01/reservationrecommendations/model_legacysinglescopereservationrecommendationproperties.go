@@ -3,9 +3,6 @@ package reservationrecommendations
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,30 +30,6 @@ type LegacySingleScopeReservationRecommendationProperties struct {
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *float64       `json:"totalCostWithReservedInstances,omitempty"`
 	TotalHours                     *int64         `json:"totalHours,omitempty"`
-}
-
-func (o *LegacySingleScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
-	if o.FirstUsageDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *LegacySingleScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirstUsageDate = &formatted
-}
-
-func (o *LegacySingleScopeReservationRecommendationProperties) GetLastUsageDateAsTime() (*time.Time, error) {
-	if o.LastUsageDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUsageDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *LegacySingleScopeReservationRecommendationProperties) SetLastUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUsageDate = &formatted
 }
 
 var _ json.Marshaler = LegacySingleScopeReservationRecommendationProperties{}

@@ -1,11 +1,5 @@
 package cluster
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -42,28 +36,4 @@ type ClusterProperties struct {
 	VMSSZonalUpgradeMode                 *VMSSZonalUpgradeMode                 `json:"vmssZonalUpgradeMode,omitempty"`
 	VmImage                              *string                               `json:"vmImage,omitempty"`
 	WaveUpgradePaused                    *bool                                 `json:"waveUpgradePaused,omitempty"`
-}
-
-func (o *ClusterProperties) GetUpgradePauseEndTimestampUtcAsTime() (*time.Time, error) {
-	if o.UpgradePauseEndTimestampUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.UpgradePauseEndTimestampUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ClusterProperties) SetUpgradePauseEndTimestampUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UpgradePauseEndTimestampUtc = &formatted
-}
-
-func (o *ClusterProperties) GetUpgradePauseStartTimestampUtcAsTime() (*time.Time, error) {
-	if o.UpgradePauseStartTimestampUtc == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.UpgradePauseStartTimestampUtc, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ClusterProperties) SetUpgradePauseStartTimestampUtcAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.UpgradePauseStartTimestampUtc = &formatted
 }

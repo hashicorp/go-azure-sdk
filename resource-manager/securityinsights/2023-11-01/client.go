@@ -16,7 +16,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/contentproducttemplates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/contenttemplates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/dataconnectors"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/entitytypes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/incidentalerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/incidentbookmarks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/incidentcomments"
@@ -46,7 +45,6 @@ type Client struct {
 	ContentProductTemplates     *contentproducttemplates.ContentProductTemplatesClient
 	ContentTemplates            *contenttemplates.ContentTemplatesClient
 	DataConnectors              *dataconnectors.DataConnectorsClient
-	EntityTypes                 *entitytypes.EntityTypesClient
 	IncidentAlerts              *incidentalerts.IncidentAlertsClient
 	IncidentBookmarks           *incidentbookmarks.IncidentBookmarksClient
 	IncidentComments            *incidentcomments.IncidentCommentsClient
@@ -123,12 +121,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building DataConnectors client: %+v", err)
 	}
 	configureFunc(dataConnectorsClient.Client)
-
-	entityTypesClient, err := entitytypes.NewEntityTypesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EntityTypes client: %+v", err)
-	}
-	configureFunc(entityTypesClient.Client)
 
 	incidentAlertsClient, err := incidentalerts.NewIncidentAlertsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -225,7 +217,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		ContentProductTemplates:     contentProductTemplatesClient,
 		ContentTemplates:            contentTemplatesClient,
 		DataConnectors:              dataConnectorsClient,
-		EntityTypes:                 entityTypesClient,
 		IncidentAlerts:              incidentAlertsClient,
 		IncidentBookmarks:           incidentBookmarksClient,
 		IncidentComments:            incidentCommentsClient,

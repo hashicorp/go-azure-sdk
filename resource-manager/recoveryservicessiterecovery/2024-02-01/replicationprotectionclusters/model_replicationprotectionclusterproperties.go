@@ -3,9 +3,6 @@ package replicationprotectionclusters
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -42,30 +39,6 @@ type ReplicationProtectionClusterProperties struct {
 	SharedDiskProperties                    *SharedDiskReplicationItemProperties       `json:"sharedDiskProperties,omitempty"`
 	TestFailoverState                       *string                                    `json:"testFailoverState,omitempty"`
 	TestFailoverStateDescription            *string                                    `json:"testFailoverStateDescription,omitempty"`
-}
-
-func (o *ReplicationProtectionClusterProperties) GetLastSuccessfulFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastSuccessfulFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastSuccessfulFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ReplicationProtectionClusterProperties) SetLastSuccessfulFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSuccessfulFailoverTime = &formatted
-}
-
-func (o *ReplicationProtectionClusterProperties) GetLastSuccessfulTestFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastSuccessfulTestFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastSuccessfulTestFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ReplicationProtectionClusterProperties) SetLastSuccessfulTestFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastSuccessfulTestFailoverTime = &formatted
 }
 
 var _ json.Unmarshaler = &ReplicationProtectionClusterProperties{}

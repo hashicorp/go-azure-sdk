@@ -3,9 +3,6 @@ package securityconnectors
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,18 +14,6 @@ type SecurityConnectorProperties struct {
 	HierarchyIdentifier             *string          `json:"hierarchyIdentifier,omitempty"`
 	HierarchyIdentifierTrialEndDate *string          `json:"hierarchyIdentifierTrialEndDate,omitempty"`
 	Offerings                       *[]CloudOffering `json:"offerings,omitempty"`
-}
-
-func (o *SecurityConnectorProperties) GetHierarchyIdentifierTrialEndDateAsTime() (*time.Time, error) {
-	if o.HierarchyIdentifierTrialEndDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.HierarchyIdentifierTrialEndDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *SecurityConnectorProperties) SetHierarchyIdentifierTrialEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.HierarchyIdentifierTrialEndDate = &formatted
 }
 
 var _ json.Unmarshaler = &SecurityConnectorProperties{}

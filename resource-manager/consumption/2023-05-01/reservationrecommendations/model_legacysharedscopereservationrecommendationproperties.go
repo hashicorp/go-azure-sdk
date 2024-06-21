@@ -3,9 +3,6 @@ package reservationrecommendations
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,18 +27,6 @@ type LegacySharedScopeReservationRecommendationProperties struct {
 	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *float64       `json:"totalCostWithReservedInstances,omitempty"`
-}
-
-func (o *LegacySharedScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
-	if o.FirstUsageDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *LegacySharedScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirstUsageDate = &formatted
 }
 
 var _ json.Marshaler = LegacySharedScopeReservationRecommendationProperties{}

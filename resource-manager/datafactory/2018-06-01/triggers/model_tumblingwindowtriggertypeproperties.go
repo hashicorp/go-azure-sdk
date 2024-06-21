@@ -3,9 +3,6 @@ package triggers
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -20,27 +17,6 @@ type TumblingWindowTriggerTypeProperties struct {
 	MaxConcurrency int64                   `json:"maxConcurrency"`
 	RetryPolicy    *RetryPolicy            `json:"retryPolicy,omitempty"`
 	StartTime      string                  `json:"startTime"`
-}
-
-func (o *TumblingWindowTriggerTypeProperties) GetEndTimeAsTime() (*time.Time, error) {
-	if o.EndTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TumblingWindowTriggerTypeProperties) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
-func (o *TumblingWindowTriggerTypeProperties) GetStartTimeAsTime() (*time.Time, error) {
-	return dates.ParseAsFormat(&o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TumblingWindowTriggerTypeProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = formatted
 }
 
 var _ json.Unmarshaler = &TumblingWindowTriggerTypeProperties{}

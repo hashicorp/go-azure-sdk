@@ -1,11 +1,5 @@
 package replicationfabrics
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -28,40 +22,4 @@ type MasterTargetServer struct {
 	RetentionVolumes        *[]RetentionVolume `json:"retentionVolumes,omitempty"`
 	ValidationErrors        *[]HealthError     `json:"validationErrors,omitempty"`
 	VersionStatus           *string            `json:"versionStatus,omitempty"`
-}
-
-func (o *MasterTargetServer) GetAgentExpiryDateAsTime() (*time.Time, error) {
-	if o.AgentExpiryDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.AgentExpiryDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MasterTargetServer) SetAgentExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AgentExpiryDate = &formatted
-}
-
-func (o *MasterTargetServer) GetLastHeartbeatAsTime() (*time.Time, error) {
-	if o.LastHeartbeat == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastHeartbeat, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MasterTargetServer) SetLastHeartbeatAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHeartbeat = &formatted
-}
-
-func (o *MasterTargetServer) GetMarsAgentExpiryDateAsTime() (*time.Time, error) {
-	if o.MarsAgentExpiryDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.MarsAgentExpiryDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MasterTargetServer) SetMarsAgentExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.MarsAgentExpiryDate = &formatted
 }

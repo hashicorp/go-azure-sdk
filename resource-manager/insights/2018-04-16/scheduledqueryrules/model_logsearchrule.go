@@ -3,9 +3,6 @@ package scheduledqueryrules
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,18 +20,6 @@ type LogSearchRule struct {
 	ProvisioningState        *ProvisioningState `json:"provisioningState,omitempty"`
 	Schedule                 *Schedule          `json:"schedule,omitempty"`
 	Source                   Source             `json:"source"`
-}
-
-func (o *LogSearchRule) GetLastUpdatedTimeAsTime() (*time.Time, error) {
-	if o.LastUpdatedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUpdatedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *LogSearchRule) SetLastUpdatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdatedTime = &formatted
 }
 
 var _ json.Unmarshaler = &LogSearchRule{}

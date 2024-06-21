@@ -3,9 +3,6 @@ package replicationevents
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,18 +20,6 @@ type EventProperties struct {
 	ProviderSpecificDetails     EventProviderSpecificDetails `json:"providerSpecificDetails"`
 	Severity                    *string                      `json:"severity,omitempty"`
 	TimeOfOccurrence            *string                      `json:"timeOfOccurrence,omitempty"`
-}
-
-func (o *EventProperties) GetTimeOfOccurrenceAsTime() (*time.Time, error) {
-	if o.TimeOfOccurrence == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.TimeOfOccurrence, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *EventProperties) SetTimeOfOccurrenceAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeOfOccurrence = &formatted
 }
 
 var _ json.Unmarshaler = &EventProperties{}

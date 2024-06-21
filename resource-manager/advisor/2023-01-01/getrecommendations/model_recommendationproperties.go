@@ -1,11 +1,5 @@
 package getrecommendations
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,16 +23,4 @@ type RecommendationProperties struct {
 	Risk                      *Risk                     `json:"risk,omitempty"`
 	ShortDescription          *ShortDescription         `json:"shortDescription,omitempty"`
 	SuppressionIds            *[]string                 `json:"suppressionIds,omitempty"`
-}
-
-func (o *RecommendationProperties) GetLastUpdatedAsTime() (*time.Time, error) {
-	if o.LastUpdated == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUpdated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *RecommendationProperties) SetLastUpdatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUpdated = &formatted
 }

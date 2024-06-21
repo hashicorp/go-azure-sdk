@@ -1,11 +1,5 @@
 package jobruns
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -38,40 +32,4 @@ type JobRunProperties struct {
 	TargetName              *string            `json:"targetName,omitempty"`
 	TargetProperties        *interface{}       `json:"targetProperties,omitempty"`
 	TargetResourceId        *string            `json:"targetResourceId,omitempty"`
-}
-
-func (o *JobRunProperties) GetExecutionEndTimeAsTime() (*time.Time, error) {
-	if o.ExecutionEndTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ExecutionEndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobRunProperties) SetExecutionEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExecutionEndTime = &formatted
-}
-
-func (o *JobRunProperties) GetExecutionStartTimeAsTime() (*time.Time, error) {
-	if o.ExecutionStartTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ExecutionStartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobRunProperties) SetExecutionStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ExecutionStartTime = &formatted
-}
-
-func (o *JobRunProperties) GetLastStatusUpdateAsTime() (*time.Time, error) {
-	if o.LastStatusUpdate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastStatusUpdate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobRunProperties) SetLastStatusUpdateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastStatusUpdate = &formatted
 }

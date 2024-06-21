@@ -3,9 +3,6 @@ package backupprotecteditems
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -46,30 +43,6 @@ type AzureVMWorkloadSAPHanaDatabaseProtectedItem struct {
 	SoftDeleteRetentionPeriodInDays  *int64                `json:"softDeleteRetentionPeriodInDays,omitempty"`
 	SourceResourceId                 *string               `json:"sourceResourceId,omitempty"`
 	WorkloadType                     *DataSourceType       `json:"workloadType,omitempty"`
-}
-
-func (o *AzureVMWorkloadSAPHanaDatabaseProtectedItem) GetDeferredDeleteTimeInUTCAsTime() (*time.Time, error) {
-	if o.DeferredDeleteTimeInUTC == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.DeferredDeleteTimeInUTC, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureVMWorkloadSAPHanaDatabaseProtectedItem) SetDeferredDeleteTimeInUTCAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeferredDeleteTimeInUTC = &formatted
-}
-
-func (o *AzureVMWorkloadSAPHanaDatabaseProtectedItem) GetLastRecoveryPointAsTime() (*time.Time, error) {
-	if o.LastRecoveryPoint == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastRecoveryPoint, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AzureVMWorkloadSAPHanaDatabaseProtectedItem) SetLastRecoveryPointAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastRecoveryPoint = &formatted
 }
 
 var _ json.Marshaler = AzureVMWorkloadSAPHanaDatabaseProtectedItem{}

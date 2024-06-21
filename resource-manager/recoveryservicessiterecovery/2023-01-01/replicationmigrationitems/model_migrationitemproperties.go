@@ -3,9 +3,6 @@ package replicationmigrationitems
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -32,30 +29,6 @@ type MigrationItemProperties struct {
 	ReplicationStatus           *string                           `json:"replicationStatus,omitempty"`
 	TestMigrateState            *TestMigrationState               `json:"testMigrateState,omitempty"`
 	TestMigrateStateDescription *string                           `json:"testMigrateStateDescription,omitempty"`
-}
-
-func (o *MigrationItemProperties) GetLastMigrationTimeAsTime() (*time.Time, error) {
-	if o.LastMigrationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastMigrationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MigrationItemProperties) SetLastMigrationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastMigrationTime = &formatted
-}
-
-func (o *MigrationItemProperties) GetLastTestMigrationTimeAsTime() (*time.Time, error) {
-	if o.LastTestMigrationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastTestMigrationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *MigrationItemProperties) SetLastTestMigrationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastTestMigrationTime = &formatted
 }
 
 var _ json.Unmarshaler = &MigrationItemProperties{}

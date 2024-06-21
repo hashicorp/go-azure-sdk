@@ -3,9 +3,6 @@ package reservationrecommendations
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,30 +32,6 @@ type ModernSingleScopeReservationRecommendationProperties struct {
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *Amount        `json:"totalCostWithReservedInstances,omitempty"`
 	TotalHours                     *int64         `json:"totalHours,omitempty"`
-}
-
-func (o *ModernSingleScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
-	if o.FirstUsageDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ModernSingleScopeReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirstUsageDate = &formatted
-}
-
-func (o *ModernSingleScopeReservationRecommendationProperties) GetLastUsageDateAsTime() (*time.Time, error) {
-	if o.LastUsageDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastUsageDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ModernSingleScopeReservationRecommendationProperties) SetLastUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastUsageDate = &formatted
 }
 
 var _ json.Marshaler = ModernSingleScopeReservationRecommendationProperties{}

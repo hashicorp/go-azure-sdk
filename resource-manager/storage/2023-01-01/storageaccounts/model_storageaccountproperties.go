@@ -1,11 +1,5 @@
 package storageaccounts
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -50,28 +44,4 @@ type StorageAccountProperties struct {
 	StatusOfSecondary                     *AccountStatus                         `json:"statusOfSecondary,omitempty"`
 	StorageAccountSkuConversionStatus     *StorageAccountSkuConversionStatus     `json:"storageAccountSkuConversionStatus,omitempty"`
 	SupportsHTTPSTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
-}
-
-func (o *StorageAccountProperties) GetCreationTimeAsTime() (*time.Time, error) {
-	if o.CreationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *StorageAccountProperties) SetCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreationTime = &formatted
-}
-
-func (o *StorageAccountProperties) GetLastGeoFailoverTimeAsTime() (*time.Time, error) {
-	if o.LastGeoFailoverTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastGeoFailoverTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *StorageAccountProperties) SetLastGeoFailoverTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastGeoFailoverTime = &formatted
 }

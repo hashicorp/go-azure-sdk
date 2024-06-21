@@ -1,9 +1,6 @@
 package resources
 
 import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
 )
 
@@ -25,28 +22,4 @@ type GenericResourceExpanded struct {
 	Sku               *Sku                               `json:"sku,omitempty"`
 	Tags              *map[string]string                 `json:"tags,omitempty"`
 	Type              *string                            `json:"type,omitempty"`
-}
-
-func (o *GenericResourceExpanded) GetChangedTimeAsTime() (*time.Time, error) {
-	if o.ChangedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ChangedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *GenericResourceExpanded) SetChangedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ChangedTime = &formatted
-}
-
-func (o *GenericResourceExpanded) GetCreatedTimeAsTime() (*time.Time, error) {
-	if o.CreatedTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *GenericResourceExpanded) SetCreatedTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.CreatedTime = &formatted
 }

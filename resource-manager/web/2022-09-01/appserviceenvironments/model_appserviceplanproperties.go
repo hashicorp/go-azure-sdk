@@ -1,11 +1,5 @@
 package appserviceenvironments
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,28 +27,4 @@ type AppServicePlanProperties struct {
 	TargetWorkerSizeId        *int64                     `json:"targetWorkerSizeId,omitempty"`
 	WorkerTierName            *string                    `json:"workerTierName,omitempty"`
 	ZoneRedundant             *bool                      `json:"zoneRedundant,omitempty"`
-}
-
-func (o *AppServicePlanProperties) GetFreeOfferExpirationTimeAsTime() (*time.Time, error) {
-	if o.FreeOfferExpirationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.FreeOfferExpirationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AppServicePlanProperties) SetFreeOfferExpirationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FreeOfferExpirationTime = &formatted
-}
-
-func (o *AppServicePlanProperties) GetSpotExpirationTimeAsTime() (*time.Time, error) {
-	if o.SpotExpirationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SpotExpirationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *AppServicePlanProperties) SetSpotExpirationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SpotExpirationTime = &formatted
 }

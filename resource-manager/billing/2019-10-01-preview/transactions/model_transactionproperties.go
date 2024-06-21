@@ -1,11 +1,5 @@
 package transactions
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -44,40 +38,4 @@ type TransactionProperties struct {
 	UnitOfMeasure             *string              `json:"unitOfMeasure,omitempty"`
 	UnitType                  *string              `json:"unitType,omitempty"`
 	Units                     *float64             `json:"units,omitempty"`
-}
-
-func (o *TransactionProperties) GetDateAsTime() (*time.Time, error) {
-	if o.Date == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.Date, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TransactionProperties) SetDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Date = &formatted
-}
-
-func (o *TransactionProperties) GetServicePeriodEndDateAsTime() (*time.Time, error) {
-	if o.ServicePeriodEndDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ServicePeriodEndDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TransactionProperties) SetServicePeriodEndDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ServicePeriodEndDate = &formatted
-}
-
-func (o *TransactionProperties) GetServicePeriodStartDateAsTime() (*time.Time, error) {
-	if o.ServicePeriodStartDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.ServicePeriodStartDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *TransactionProperties) SetServicePeriodStartDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.ServicePeriodStartDate = &formatted
 }

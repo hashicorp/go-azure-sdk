@@ -1,11 +1,5 @@
 package updates
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -30,28 +24,4 @@ type UpdateProperties struct {
 	State                 *State                 `json:"state,omitempty"`
 	UpdateStateProperties *UpdateStateProperties `json:"updateStateProperties,omitempty"`
 	Version               *string                `json:"version,omitempty"`
-}
-
-func (o *UpdateProperties) GetHealthCheckDateAsTime() (*time.Time, error) {
-	if o.HealthCheckDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.HealthCheckDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *UpdateProperties) SetHealthCheckDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.HealthCheckDate = &formatted
-}
-
-func (o *UpdateProperties) GetInstalledDateAsTime() (*time.Time, error) {
-	if o.InstalledDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.InstalledDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *UpdateProperties) SetInstalledDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.InstalledDate = &formatted
 }

@@ -1,11 +1,5 @@
 package disks
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -42,40 +36,4 @@ type DiskProperties struct {
 	Tier                         *string                       `json:"tier,omitempty"`
 	TimeCreated                  *string                       `json:"timeCreated,omitempty"`
 	UniqueId                     *string                       `json:"uniqueId,omitempty"`
-}
-
-func (o *DiskProperties) GetBurstingEnabledTimeAsTime() (*time.Time, error) {
-	if o.BurstingEnabledTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.BurstingEnabledTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DiskProperties) SetBurstingEnabledTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.BurstingEnabledTime = &formatted
-}
-
-func (o *DiskProperties) GetLastOwnershipUpdateTimeAsTime() (*time.Time, error) {
-	if o.LastOwnershipUpdateTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastOwnershipUpdateTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DiskProperties) SetLastOwnershipUpdateTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastOwnershipUpdateTime = &formatted
-}
-
-func (o *DiskProperties) GetTimeCreatedAsTime() (*time.Time, error) {
-	if o.TimeCreated == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.TimeCreated, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *DiskProperties) SetTimeCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.TimeCreated = &formatted
 }

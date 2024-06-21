@@ -3,9 +3,6 @@ package encodings
 import (
 	"encoding/json"
 	"fmt"
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,54 +19,6 @@ type JobProperties struct {
 	Priority        *Priority          `json:"priority,omitempty"`
 	StartTime       *string            `json:"startTime,omitempty"`
 	State           *JobState          `json:"state,omitempty"`
-}
-
-func (o *JobProperties) GetCreatedAsTime() (*time.Time, error) {
-	if o.Created == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.Created, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobProperties) SetCreatedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.Created = &formatted
-}
-
-func (o *JobProperties) GetEndTimeAsTime() (*time.Time, error) {
-	if o.EndTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobProperties) SetEndTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.EndTime = &formatted
-}
-
-func (o *JobProperties) GetLastModifiedAsTime() (*time.Time, error) {
-	if o.LastModified == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastModified, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobProperties) SetLastModifiedAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastModified = &formatted
-}
-
-func (o *JobProperties) GetStartTimeAsTime() (*time.Time, error) {
-	if o.StartTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *JobProperties) SetStartTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StartTime = &formatted
 }
 
 var _ json.Unmarshaler = &JobProperties{}

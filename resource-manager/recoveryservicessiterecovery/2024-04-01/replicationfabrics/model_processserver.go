@@ -1,11 +1,5 @@
 package replicationfabrics
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -46,52 +40,4 @@ type ProcessServer struct {
 	TotalMemoryInBytes                 *int64                   `json:"totalMemoryInBytes,omitempty"`
 	TotalSpaceInBytes                  *int64                   `json:"totalSpaceInBytes,omitempty"`
 	VersionStatus                      *string                  `json:"versionStatus,omitempty"`
-}
-
-func (o *ProcessServer) GetAgentExpiryDateAsTime() (*time.Time, error) {
-	if o.AgentExpiryDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.AgentExpiryDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProcessServer) SetAgentExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.AgentExpiryDate = &formatted
-}
-
-func (o *ProcessServer) GetLastHeartbeatAsTime() (*time.Time, error) {
-	if o.LastHeartbeat == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.LastHeartbeat, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProcessServer) SetLastHeartbeatAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.LastHeartbeat = &formatted
-}
-
-func (o *ProcessServer) GetPsStatsRefreshTimeAsTime() (*time.Time, error) {
-	if o.PsStatsRefreshTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.PsStatsRefreshTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProcessServer) SetPsStatsRefreshTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.PsStatsRefreshTime = &formatted
-}
-
-func (o *ProcessServer) GetSslCertExpiryDateAsTime() (*time.Time, error) {
-	if o.SslCertExpiryDate == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.SslCertExpiryDate, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *ProcessServer) SetSslCertExpiryDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.SslCertExpiryDate = &formatted
 }
