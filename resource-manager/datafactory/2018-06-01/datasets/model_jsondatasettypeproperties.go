@@ -10,7 +10,7 @@ import (
 
 type JsonDatasetTypeProperties struct {
 	Compression  *DatasetCompression `json:"compression,omitempty"`
-	EncodingName *interface{}        `json:"encodingName,omitempty"`
+	EncodingName *string             `json:"encodingName,omitempty"`
 	Location     DatasetLocation     `json:"location"`
 }
 

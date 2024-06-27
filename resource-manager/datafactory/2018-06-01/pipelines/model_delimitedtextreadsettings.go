@@ -12,7 +12,7 @@ var _ FormatReadSettings = DelimitedTextReadSettings{}
 
 type DelimitedTextReadSettings struct {
 	CompressionProperties CompressionReadSettings `json:"compressionProperties"`
-	SkipLineCount         *interface{}            `json:"skipLineCount,omitempty"`
+	SkipLineCount         *int64                  `json:"skipLineCount,omitempty"`
 
 	// Fields inherited from FormatReadSettings
 }

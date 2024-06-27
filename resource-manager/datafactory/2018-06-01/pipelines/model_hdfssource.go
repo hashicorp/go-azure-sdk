@@ -12,13 +12,13 @@ var _ CopySource = HdfsSource{}
 
 type HdfsSource struct {
 	DistcpSettings *DistcpSettings `json:"distcpSettings,omitempty"`
-	Recursive      *interface{}    `json:"recursive,omitempty"`
+	Recursive      *bool           `json:"recursive,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = HdfsSource{}

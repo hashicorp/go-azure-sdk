@@ -9,10 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OracleCloudStorageLinkedServiceTypeProperties struct {
-	AccessKeyId         *interface{} `json:"accessKeyId,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	SecretAccessKey     SecretBase   `json:"secretAccessKey"`
-	ServiceUrl          *interface{} `json:"serviceUrl,omitempty"`
+	AccessKeyId         *string    `json:"accessKeyId,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	SecretAccessKey     SecretBase `json:"secretAccessKey"`
+	ServiceUrl          *string    `json:"serviceUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &OracleCloudStorageLinkedServiceTypeProperties{}

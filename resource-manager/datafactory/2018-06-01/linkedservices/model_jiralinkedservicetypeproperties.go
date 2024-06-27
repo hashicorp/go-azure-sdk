@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type JiraLinkedServiceTypeProperties struct {
-	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Host                  interface{}  `json:"host"`
-	Password              SecretBase   `json:"password"`
-	Port                  *interface{} `json:"port,omitempty"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
-	Username              interface{}  `json:"username"`
+	EncryptedCredential   *string    `json:"encryptedCredential,omitempty"`
+	Host                  string     `json:"host"`
+	Password              SecretBase `json:"password"`
+	Port                  *int64     `json:"port,omitempty"`
+	UseEncryptedEndpoints *bool      `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool      `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool      `json:"usePeerVerification,omitempty"`
+	Username              string     `json:"username"`
 }
 
 var _ json.Unmarshaler = &JiraLinkedServiceTypeProperties{}

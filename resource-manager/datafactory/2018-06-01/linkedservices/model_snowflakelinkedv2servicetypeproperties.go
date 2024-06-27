@@ -9,19 +9,19 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SnowflakeLinkedV2ServiceTypeProperties struct {
-	AccountIdentifier    interface{}                  `json:"accountIdentifier"`
+	AccountIdentifier    string                       `json:"accountIdentifier"`
 	AuthenticationType   *SnowflakeAuthenticationType `json:"authenticationType,omitempty"`
-	ClientId             *interface{}                 `json:"clientId,omitempty"`
+	ClientId             *string                      `json:"clientId,omitempty"`
 	ClientSecret         SecretBase                   `json:"clientSecret"`
-	Database             interface{}                  `json:"database"`
+	Database             string                       `json:"database"`
 	EncryptedCredential  *string                      `json:"encryptedCredential,omitempty"`
 	Password             SecretBase                   `json:"password"`
 	PrivateKey           SecretBase                   `json:"privateKey"`
 	PrivateKeyPassphrase SecretBase                   `json:"privateKeyPassphrase"`
-	Scope                *interface{}                 `json:"scope,omitempty"`
-	TenantId             *interface{}                 `json:"tenantId,omitempty"`
-	User                 *interface{}                 `json:"user,omitempty"`
-	Warehouse            interface{}                  `json:"warehouse"`
+	Scope                *string                      `json:"scope,omitempty"`
+	TenantId             *string                      `json:"tenantId,omitempty"`
+	User                 *string                      `json:"user,omitempty"`
+	Warehouse            string                       `json:"warehouse"`
 }
 
 var _ json.Unmarshaler = &SnowflakeLinkedV2ServiceTypeProperties{}

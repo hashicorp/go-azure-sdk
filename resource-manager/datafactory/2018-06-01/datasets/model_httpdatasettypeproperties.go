@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HTTPDatasetTypeProperties struct {
-	AdditionalHeaders *interface{}         `json:"additionalHeaders,omitempty"`
+	AdditionalHeaders *string              `json:"additionalHeaders,omitempty"`
 	Compression       *DatasetCompression  `json:"compression,omitempty"`
 	Format            DatasetStorageFormat `json:"format"`
-	RelativeUrl       *interface{}         `json:"relativeUrl,omitempty"`
-	RequestBody       *interface{}         `json:"requestBody,omitempty"`
-	RequestMethod     *interface{}         `json:"requestMethod,omitempty"`
+	RelativeUrl       *string              `json:"relativeUrl,omitempty"`
+	RequestBody       *string              `json:"requestBody,omitempty"`
+	RequestMethod     *string              `json:"requestMethod,omitempty"`
 }
 
 var _ json.Unmarshaler = &HTTPDatasetTypeProperties{}

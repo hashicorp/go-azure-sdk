@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureSearchLinkedServiceTypeProperties struct {
-	EncryptedCredential *string     `json:"encryptedCredential,omitempty"`
-	Key                 SecretBase  `json:"key"`
-	Url                 interface{} `json:"url"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Key                 SecretBase `json:"key"`
+	Url                 string     `json:"url"`
 }
 
 var _ json.Unmarshaler = &AzureSearchLinkedServiceTypeProperties{}

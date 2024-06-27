@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConcurLinkedServiceTypeProperties struct {
-	ClientId              interface{}  `json:"clientId"`
+	ClientId              string       `json:"clientId"`
 	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
 	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
 	Password              SecretBase   `json:"password"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
-	Username              interface{}  `json:"username"`
+	UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
+	Username              string       `json:"username"`
 }
 
 var _ json.Unmarshaler = &ConcurLinkedServiceTypeProperties{}

@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CmdkeySetupTypeProperties struct {
-	Password   SecretBase  `json:"password"`
-	TargetName interface{} `json:"targetName"`
-	UserName   interface{} `json:"userName"`
+	Password   SecretBase `json:"password"`
+	TargetName string     `json:"targetName"`
+	UserName   string     `json:"userName"`
 }
 
 var _ json.Unmarshaler = &CmdkeySetupTypeProperties{}

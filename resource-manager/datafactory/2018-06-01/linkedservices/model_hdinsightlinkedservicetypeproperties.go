@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HDInsightLinkedServiceTypeProperties struct {
-	ClusterUri                interface{}             `json:"clusterUri"`
+	ClusterUri                string                  `json:"clusterUri"`
 	EncryptedCredential       *string                 `json:"encryptedCredential,omitempty"`
-	FileSystem                *interface{}            `json:"fileSystem,omitempty"`
+	FileSystem                *string                 `json:"fileSystem,omitempty"`
 	HcatalogLinkedServiceName *LinkedServiceReference `json:"hcatalogLinkedServiceName,omitempty"`
-	IsEspEnabled              *interface{}            `json:"isEspEnabled,omitempty"`
+	IsEspEnabled              *bool                   `json:"isEspEnabled,omitempty"`
 	LinkedServiceName         *LinkedServiceReference `json:"linkedServiceName,omitempty"`
 	Password                  SecretBase              `json:"password"`
-	UserName                  *interface{}            `json:"userName,omitempty"`
+	UserName                  *string                 `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &HDInsightLinkedServiceTypeProperties{}

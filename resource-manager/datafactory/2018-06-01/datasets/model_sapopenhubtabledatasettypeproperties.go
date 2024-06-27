@@ -4,7 +4,7 @@ package datasets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SapOpenHubTableDatasetTypeProperties struct {
-	BaseRequestId          *interface{} `json:"baseRequestId,omitempty"`
-	ExcludeLastRequest     *interface{} `json:"excludeLastRequest,omitempty"`
-	OpenHubDestinationName interface{}  `json:"openHubDestinationName"`
+	BaseRequestId          *int64 `json:"baseRequestId,omitempty"`
+	ExcludeLastRequest     *bool  `json:"excludeLastRequest,omitempty"`
+	OpenHubDestinationName string `json:"openHubDestinationName"`
 }

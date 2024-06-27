@@ -11,7 +11,7 @@ import (
 type SqlAlwaysEncryptedProperties struct {
 	AlwaysEncryptedAkvAuthType SqlAlwaysEncryptedAkvAuthType `json:"alwaysEncryptedAkvAuthType"`
 	Credential                 *CredentialReference          `json:"credential,omitempty"`
-	ServicePrincipalId         *interface{}                  `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalId         *string                       `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey        SecretBase                    `json:"servicePrincipalKey"`
 }
 

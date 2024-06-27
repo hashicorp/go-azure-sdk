@@ -5,10 +5,10 @@ package pipelines
 
 type WebHookActivityTypeProperties struct {
 	Authentication         *WebActivityAuthentication `json:"authentication,omitempty"`
-	Body                   *interface{}               `json:"body,omitempty"`
-	Headers                *map[string]interface{}    `json:"headers,omitempty"`
+	Body                   *string                    `json:"body,omitempty"`
+	Headers                *map[string]string         `json:"headers,omitempty"`
 	Method                 WebHookActivityMethod      `json:"method"`
-	ReportStatusOnCallBack *interface{}               `json:"reportStatusOnCallBack,omitempty"`
+	ReportStatusOnCallBack *bool                      `json:"reportStatusOnCallBack,omitempty"`
 	Timeout                *string                    `json:"timeout,omitempty"`
-	Url                    interface{}                `json:"url"`
+	Url                    string                     `json:"url"`
 }

@@ -11,15 +11,15 @@ import (
 var _ DatasetStorageFormat = JsonFormat{}
 
 type JsonFormat struct {
-	EncodingName       *interface{} `json:"encodingName,omitempty"`
+	EncodingName       *string      `json:"encodingName,omitempty"`
 	FilePattern        *interface{} `json:"filePattern,omitempty"`
-	JsonNodeReference  *interface{} `json:"jsonNodeReference,omitempty"`
+	JsonNodeReference  *string      `json:"jsonNodeReference,omitempty"`
 	JsonPathDefinition *interface{} `json:"jsonPathDefinition,omitempty"`
-	NestingSeparator   *interface{} `json:"nestingSeparator,omitempty"`
+	NestingSeparator   *string      `json:"nestingSeparator,omitempty"`
 
 	// Fields inherited from DatasetStorageFormat
-	Deserializer *interface{} `json:"deserializer,omitempty"`
-	Serializer   *interface{} `json:"serializer,omitempty"`
+	Deserializer *string `json:"deserializer,omitempty"`
+	Serializer   *string `json:"serializer,omitempty"`
 }
 
 var _ json.Marshaler = JsonFormat{}

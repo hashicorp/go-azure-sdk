@@ -4,6 +4,6 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RedshiftUnloadSettings struct {
-	BucketName          interface{}            `json:"bucketName"`
+	BucketName          string                 `json:"bucketName"`
 	S3LinkedServiceName LinkedServiceReference `json:"s3LinkedServiceName"`
 }

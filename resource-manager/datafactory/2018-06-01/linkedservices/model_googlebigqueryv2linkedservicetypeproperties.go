@@ -10,11 +10,11 @@ import (
 
 type GoogleBigQueryV2LinkedServiceTypeProperties struct {
 	AuthenticationType  GoogleBigQueryV2AuthenticationType `json:"authenticationType"`
-	ClientId            *interface{}                       `json:"clientId,omitempty"`
+	ClientId            *string                            `json:"clientId,omitempty"`
 	ClientSecret        SecretBase                         `json:"clientSecret"`
 	EncryptedCredential *string                            `json:"encryptedCredential,omitempty"`
 	KeyFileContent      SecretBase                         `json:"keyFileContent"`
-	ProjectId           interface{}                        `json:"projectId"`
+	ProjectId           string                             `json:"projectId"`
 	RefreshToken        SecretBase                         `json:"refreshToken"`
 }
 

@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HdfsLinkedServiceTypeProperties struct {
-	AuthenticationType  *interface{} `json:"authenticationType,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Password            SecretBase   `json:"password"`
-	Url                 interface{}  `json:"url"`
-	UserName            *interface{} `json:"userName,omitempty"`
+	AuthenticationType  *string    `json:"authenticationType,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Password            SecretBase `json:"password"`
+	Url                 string     `json:"url"`
+	UserName            *string    `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &HdfsLinkedServiceTypeProperties{}

@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AmazonS3LinkedServiceTypeProperties struct {
-	AccessKeyId         *interface{} `json:"accessKeyId,omitempty"`
-	AuthenticationType  *interface{} `json:"authenticationType,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	SecretAccessKey     SecretBase   `json:"secretAccessKey"`
-	ServiceUrl          *interface{} `json:"serviceUrl,omitempty"`
-	SessionToken        SecretBase   `json:"sessionToken"`
+	AccessKeyId         *string    `json:"accessKeyId,omitempty"`
+	AuthenticationType  *string    `json:"authenticationType,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	SecretAccessKey     SecretBase `json:"secretAccessKey"`
+	ServiceUrl          *string    `json:"serviceUrl,omitempty"`
+	SessionToken        SecretBase `json:"sessionToken"`
 }
 
 var _ json.Unmarshaler = &AmazonS3LinkedServiceTypeProperties{}

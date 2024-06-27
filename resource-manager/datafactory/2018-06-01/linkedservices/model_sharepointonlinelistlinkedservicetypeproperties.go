@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SharePointOnlineListLinkedServiceTypeProperties struct {
-	EncryptedCredential *string     `json:"encryptedCredential,omitempty"`
-	ServicePrincipalId  interface{} `json:"servicePrincipalId"`
-	ServicePrincipalKey SecretBase  `json:"servicePrincipalKey"`
-	SiteUrl             interface{} `json:"siteUrl"`
-	TenantId            interface{} `json:"tenantId"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	ServicePrincipalId  string     `json:"servicePrincipalId"`
+	ServicePrincipalKey SecretBase `json:"servicePrincipalKey"`
+	SiteUrl             string     `json:"siteUrl"`
+	TenantId            string     `json:"tenantId"`
 }
 
 var _ json.Unmarshaler = &SharePointOnlineListLinkedServiceTypeProperties{}

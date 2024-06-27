@@ -10,31 +10,31 @@ import (
 
 type SqlServerLinkedServiceTypeProperties struct {
 	AlwaysEncryptedSettings  *SqlAlwaysEncryptedProperties `json:"alwaysEncryptedSettings,omitempty"`
-	ApplicationIntent        *interface{}                  `json:"applicationIntent,omitempty"`
+	ApplicationIntent        *string                       `json:"applicationIntent,omitempty"`
 	AuthenticationType       *SqlServerAuthenticationType  `json:"authenticationType,omitempty"`
-	CommandTimeout           *interface{}                  `json:"commandTimeout,omitempty"`
-	ConnectRetryCount        *interface{}                  `json:"connectRetryCount,omitempty"`
-	ConnectRetryInterval     *interface{}                  `json:"connectRetryInterval,omitempty"`
-	ConnectTimeout           *interface{}                  `json:"connectTimeout,omitempty"`
-	ConnectionString         *interface{}                  `json:"connectionString,omitempty"`
+	CommandTimeout           *int64                        `json:"commandTimeout,omitempty"`
+	ConnectRetryCount        *int64                        `json:"connectRetryCount,omitempty"`
+	ConnectRetryInterval     *int64                        `json:"connectRetryInterval,omitempty"`
+	ConnectTimeout           *int64                        `json:"connectTimeout,omitempty"`
+	ConnectionString         *string                       `json:"connectionString,omitempty"`
 	Credential               *CredentialReference          `json:"credential,omitempty"`
-	Database                 *interface{}                  `json:"database,omitempty"`
-	Encrypt                  *interface{}                  `json:"encrypt,omitempty"`
+	Database                 *string                       `json:"database,omitempty"`
+	Encrypt                  *string                       `json:"encrypt,omitempty"`
 	EncryptedCredential      *string                       `json:"encryptedCredential,omitempty"`
-	FailoverPartner          *interface{}                  `json:"failoverPartner,omitempty"`
-	HostNameInCertificate    *interface{}                  `json:"hostNameInCertificate,omitempty"`
-	IntegratedSecurity       *interface{}                  `json:"integratedSecurity,omitempty"`
-	LoadBalanceTimeout       *interface{}                  `json:"loadBalanceTimeout,omitempty"`
-	MaxPoolSize              *interface{}                  `json:"maxPoolSize,omitempty"`
-	MinPoolSize              *interface{}                  `json:"minPoolSize,omitempty"`
-	MultiSubnetFailover      *interface{}                  `json:"multiSubnetFailover,omitempty"`
-	MultipleActiveResultSets *interface{}                  `json:"multipleActiveResultSets,omitempty"`
-	PacketSize               *interface{}                  `json:"packetSize,omitempty"`
+	FailoverPartner          *string                       `json:"failoverPartner,omitempty"`
+	HostNameInCertificate    *string                       `json:"hostNameInCertificate,omitempty"`
+	IntegratedSecurity       *bool                         `json:"integratedSecurity,omitempty"`
+	LoadBalanceTimeout       *int64                        `json:"loadBalanceTimeout,omitempty"`
+	MaxPoolSize              *int64                        `json:"maxPoolSize,omitempty"`
+	MinPoolSize              *int64                        `json:"minPoolSize,omitempty"`
+	MultiSubnetFailover      *bool                         `json:"multiSubnetFailover,omitempty"`
+	MultipleActiveResultSets *bool                         `json:"multipleActiveResultSets,omitempty"`
+	PacketSize               *int64                        `json:"packetSize,omitempty"`
 	Password                 SecretBase                    `json:"password"`
-	Pooling                  *interface{}                  `json:"pooling,omitempty"`
-	Server                   *interface{}                  `json:"server,omitempty"`
-	TrustServerCertificate   *interface{}                  `json:"trustServerCertificate,omitempty"`
-	UserName                 *interface{}                  `json:"userName,omitempty"`
+	Pooling                  *bool                         `json:"pooling,omitempty"`
+	Server                   *string                       `json:"server,omitempty"`
+	TrustServerCertificate   *bool                         `json:"trustServerCertificate,omitempty"`
+	UserName                 *string                       `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &SqlServerLinkedServiceTypeProperties{}

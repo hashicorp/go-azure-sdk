@@ -9,15 +9,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WarehouseLinkedServiceTypeProperties struct {
-	ArtifactId                     interface{}  `json:"artifactId"`
-	EncryptedCredential            *string      `json:"encryptedCredential,omitempty"`
-	Endpoint                       interface{}  `json:"endpoint"`
-	ServicePrincipalCredential     SecretBase   `json:"servicePrincipalCredential"`
-	ServicePrincipalCredentialType *interface{} `json:"servicePrincipalCredentialType,omitempty"`
-	ServicePrincipalId             *interface{} `json:"servicePrincipalId,omitempty"`
-	ServicePrincipalKey            SecretBase   `json:"servicePrincipalKey"`
-	Tenant                         *interface{} `json:"tenant,omitempty"`
-	WorkspaceId                    *interface{} `json:"workspaceId,omitempty"`
+	ArtifactId                     string     `json:"artifactId"`
+	EncryptedCredential            *string    `json:"encryptedCredential,omitempty"`
+	Endpoint                       string     `json:"endpoint"`
+	ServicePrincipalCredential     SecretBase `json:"servicePrincipalCredential"`
+	ServicePrincipalCredentialType *string    `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalId             *string    `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalKey            SecretBase `json:"servicePrincipalKey"`
+	Tenant                         *string    `json:"tenant,omitempty"`
+	WorkspaceId                    *string    `json:"workspaceId,omitempty"`
 }
 
 var _ json.Unmarshaler = &WarehouseLinkedServiceTypeProperties{}

@@ -9,18 +9,18 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GoogleBigQueryLinkedServiceTypeProperties struct {
-	AdditionalProjects      *interface{}                     `json:"additionalProjects,omitempty"`
+	AdditionalProjects      *string                          `json:"additionalProjects,omitempty"`
 	AuthenticationType      GoogleBigQueryAuthenticationType `json:"authenticationType"`
-	ClientId                *interface{}                     `json:"clientId,omitempty"`
+	ClientId                *string                          `json:"clientId,omitempty"`
 	ClientSecret            SecretBase                       `json:"clientSecret"`
-	Email                   *interface{}                     `json:"email,omitempty"`
+	Email                   *string                          `json:"email,omitempty"`
 	EncryptedCredential     *string                          `json:"encryptedCredential,omitempty"`
-	KeyFilePath             *interface{}                     `json:"keyFilePath,omitempty"`
-	Project                 interface{}                      `json:"project"`
+	KeyFilePath             *string                          `json:"keyFilePath,omitempty"`
+	Project                 string                           `json:"project"`
 	RefreshToken            SecretBase                       `json:"refreshToken"`
-	RequestGoogleDriveScope *interface{}                     `json:"requestGoogleDriveScope,omitempty"`
-	TrustedCertPath         *interface{}                     `json:"trustedCertPath,omitempty"`
-	UseSystemTrustStore     *interface{}                     `json:"useSystemTrustStore,omitempty"`
+	RequestGoogleDriveScope *bool                            `json:"requestGoogleDriveScope,omitempty"`
+	TrustedCertPath         *string                          `json:"trustedCertPath,omitempty"`
+	UseSystemTrustStore     *bool                            `json:"useSystemTrustStore,omitempty"`
 }
 
 var _ json.Unmarshaler = &GoogleBigQueryLinkedServiceTypeProperties{}

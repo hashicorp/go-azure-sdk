@@ -12,10 +12,10 @@ type ZohoLinkedServiceTypeProperties struct {
 	AccessToken           SecretBase   `json:"accessToken"`
 	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
 	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Endpoint              *interface{} `json:"endpoint,omitempty"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+	Endpoint              *string      `json:"endpoint,omitempty"`
+	UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
 }
 
 var _ json.Unmarshaler = &ZohoLinkedServiceTypeProperties{}

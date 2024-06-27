@@ -9,15 +9,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SquareLinkedServiceTypeProperties struct {
-	ClientId              *interface{} `json:"clientId,omitempty"`
+	ClientId              *string      `json:"clientId,omitempty"`
 	ClientSecret          SecretBase   `json:"clientSecret"`
 	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
 	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Host                  *interface{} `json:"host,omitempty"`
-	RedirectUri           *interface{} `json:"redirectUri,omitempty"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+	Host                  *string      `json:"host,omitempty"`
+	RedirectUri           *string      `json:"redirectUri,omitempty"`
+	UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
 }
 
 var _ json.Unmarshaler = &SquareLinkedServiceTypeProperties{}

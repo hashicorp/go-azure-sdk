@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SSISAccessCredential struct {
-	Domain   interface{} `json:"domain"`
-	Password SecretBase  `json:"password"`
-	UserName interface{} `json:"userName"`
+	Domain   string     `json:"domain"`
+	Password SecretBase `json:"password"`
+	UserName string     `json:"userName"`
 }
 
 var _ json.Unmarshaler = &SSISAccessCredential{}

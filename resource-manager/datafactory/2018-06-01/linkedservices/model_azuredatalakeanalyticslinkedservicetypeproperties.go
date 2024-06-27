@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureDataLakeAnalyticsLinkedServiceTypeProperties struct {
-	AccountName          interface{}  `json:"accountName"`
-	DataLakeAnalyticsUri *interface{} `json:"dataLakeAnalyticsUri,omitempty"`
-	EncryptedCredential  *string      `json:"encryptedCredential,omitempty"`
-	ResourceGroupName    *interface{} `json:"resourceGroupName,omitempty"`
-	ServicePrincipalId   *interface{} `json:"servicePrincipalId,omitempty"`
-	ServicePrincipalKey  SecretBase   `json:"servicePrincipalKey"`
-	SubscriptionId       *interface{} `json:"subscriptionId,omitempty"`
-	Tenant               interface{}  `json:"tenant"`
+	AccountName          string     `json:"accountName"`
+	DataLakeAnalyticsUri *string    `json:"dataLakeAnalyticsUri,omitempty"`
+	EncryptedCredential  *string    `json:"encryptedCredential,omitempty"`
+	ResourceGroupName    *string    `json:"resourceGroupName,omitempty"`
+	ServicePrincipalId   *string    `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalKey  SecretBase `json:"servicePrincipalKey"`
+	SubscriptionId       *string    `json:"subscriptionId,omitempty"`
+	Tenant               string     `json:"tenant"`
 }
 
 var _ json.Unmarshaler = &AzureDataLakeAnalyticsLinkedServiceTypeProperties{}

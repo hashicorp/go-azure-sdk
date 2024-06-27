@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SalesforceServiceCloudLinkedServiceTypeProperties struct {
-	ApiVersion          *interface{} `json:"apiVersion,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	EnvironmentUrl      *interface{} `json:"environmentUrl,omitempty"`
-	ExtendedProperties  *interface{} `json:"extendedProperties,omitempty"`
-	Password            SecretBase   `json:"password"`
-	SecurityToken       SecretBase   `json:"securityToken"`
-	Username            *interface{} `json:"username,omitempty"`
+	ApiVersion          *string    `json:"apiVersion,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	EnvironmentUrl      *string    `json:"environmentUrl,omitempty"`
+	ExtendedProperties  *string    `json:"extendedProperties,omitempty"`
+	Password            SecretBase `json:"password"`
+	SecurityToken       SecretBase `json:"securityToken"`
+	Username            *string    `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &SalesforceServiceCloudLinkedServiceTypeProperties{}

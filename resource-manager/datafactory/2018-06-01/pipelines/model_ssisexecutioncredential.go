@@ -4,7 +4,7 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SSISExecutionCredential struct {
-	Domain   interface{}  `json:"domain"`
+	Domain   string       `json:"domain"`
 	Password SecureString `json:"password"`
-	UserName interface{}  `json:"userName"`
+	UserName string       `json:"userName"`
 }

@@ -9,10 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FileServerLinkedServiceTypeProperties struct {
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Host                interface{}  `json:"host"`
-	Password            SecretBase   `json:"password"`
-	UserId              *interface{} `json:"userId,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Host                string     `json:"host"`
+	Password            SecretBase `json:"password"`
+	UserId              *string    `json:"userId,omitempty"`
 }
 
 var _ json.Unmarshaler = &FileServerLinkedServiceTypeProperties{}

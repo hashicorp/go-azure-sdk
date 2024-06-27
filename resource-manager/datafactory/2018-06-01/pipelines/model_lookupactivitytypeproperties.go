@@ -10,7 +10,7 @@ import (
 
 type LookupActivityTypeProperties struct {
 	Dataset      DatasetReference `json:"dataset"`
-	FirstRowOnly *interface{}     `json:"firstRowOnly,omitempty"`
+	FirstRowOnly *bool            `json:"firstRowOnly,omitempty"`
 	Source       CopySource       `json:"source"`
 }
 

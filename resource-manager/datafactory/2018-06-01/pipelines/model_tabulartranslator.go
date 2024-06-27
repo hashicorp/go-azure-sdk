@@ -12,11 +12,11 @@ var _ CopyTranslator = TabularTranslator{}
 
 type TabularTranslator struct {
 	CollectionReference      *interface{}            `json:"collectionReference,omitempty"`
-	ColumnMappings           *interface{}            `json:"columnMappings,omitempty"`
-	MapComplexValuesToString *interface{}            `json:"mapComplexValuesToString,omitempty"`
+	ColumnMappings           *string                 `json:"columnMappings,omitempty"`
+	MapComplexValuesToString *bool                   `json:"mapComplexValuesToString,omitempty"`
 	Mappings                 *interface{}            `json:"mappings,omitempty"`
 	SchemaMapping            *interface{}            `json:"schemaMapping,omitempty"`
-	TypeConversion           *interface{}            `json:"typeConversion,omitempty"`
+	TypeConversion           *bool                   `json:"typeConversion,omitempty"`
 	TypeConversionSettings   *TypeConversionSettings `json:"typeConversionSettings,omitempty"`
 
 	// Fields inherited from CopyTranslator

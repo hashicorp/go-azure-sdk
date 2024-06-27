@@ -13,9 +13,9 @@ var _ StoreWriteSettings = LakeHouseWriteSettings{}
 type LakeHouseWriteSettings struct {
 
 	// Fields inherited from StoreWriteSettings
-	CopyBehavior             *interface{}    `json:"copyBehavior,omitempty"`
-	DisableMetricsCollection *interface{}    `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{}    `json:"maxConcurrentConnections,omitempty"`
+	CopyBehavior             *string         `json:"copyBehavior,omitempty"`
+	DisableMetricsCollection *bool           `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64          `json:"maxConcurrentConnections,omitempty"`
 	Metadata                 *[]MetadataItem `json:"metadata,omitempty"`
 }
 

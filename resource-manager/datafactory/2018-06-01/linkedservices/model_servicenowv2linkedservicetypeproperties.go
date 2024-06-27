@@ -10,13 +10,13 @@ import (
 
 type ServiceNowV2LinkedServiceTypeProperties struct {
 	AuthenticationType  ServiceNowV2AuthenticationType `json:"authenticationType"`
-	ClientId            *interface{}                   `json:"clientId,omitempty"`
+	ClientId            *string                        `json:"clientId,omitempty"`
 	ClientSecret        SecretBase                     `json:"clientSecret"`
 	EncryptedCredential *string                        `json:"encryptedCredential,omitempty"`
-	Endpoint            interface{}                    `json:"endpoint"`
-	GrantType           *interface{}                   `json:"grantType,omitempty"`
+	Endpoint            string                         `json:"endpoint"`
+	GrantType           *string                        `json:"grantType,omitempty"`
 	Password            SecretBase                     `json:"password"`
-	Username            *interface{}                   `json:"username,omitempty"`
+	Username            *string                        `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &ServiceNowV2LinkedServiceTypeProperties{}

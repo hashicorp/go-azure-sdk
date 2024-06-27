@@ -11,11 +11,11 @@ import (
 var _ WebLinkedServiceTypeProperties = WebBasicAuthentication{}
 
 type WebBasicAuthentication struct {
-	Password SecretBase  `json:"password"`
-	Username interface{} `json:"username"`
+	Password SecretBase `json:"password"`
+	Username string     `json:"username"`
 
 	// Fields inherited from WebLinkedServiceTypeProperties
-	Url interface{} `json:"url"`
+	Url string `json:"url"`
 }
 
 var _ json.Marshaler = WebBasicAuthentication{}

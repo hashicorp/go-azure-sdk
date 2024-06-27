@@ -9,21 +9,21 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CopyActivityTypeProperties struct {
-	DataIntegrationUnits            *interface{}                     `json:"dataIntegrationUnits,omitempty"`
-	EnableSkipIncompatibleRow       *interface{}                     `json:"enableSkipIncompatibleRow,omitempty"`
-	EnableStaging                   *interface{}                     `json:"enableStaging,omitempty"`
+	DataIntegrationUnits            *int64                           `json:"dataIntegrationUnits,omitempty"`
+	EnableSkipIncompatibleRow       *bool                            `json:"enableSkipIncompatibleRow,omitempty"`
+	EnableStaging                   *bool                            `json:"enableStaging,omitempty"`
 	LogSettings                     *LogSettings                     `json:"logSettings,omitempty"`
 	LogStorageSettings              *LogStorageSettings              `json:"logStorageSettings,omitempty"`
-	ParallelCopies                  *interface{}                     `json:"parallelCopies,omitempty"`
-	Preserve                        *[]interface{}                   `json:"preserve,omitempty"`
-	PreserveRules                   *[]interface{}                   `json:"preserveRules,omitempty"`
+	ParallelCopies                  *int64                           `json:"parallelCopies,omitempty"`
+	Preserve                        *[]string                        `json:"preserve,omitempty"`
+	PreserveRules                   *[]string                        `json:"preserveRules,omitempty"`
 	RedirectIncompatibleRowSettings *RedirectIncompatibleRowSettings `json:"redirectIncompatibleRowSettings,omitempty"`
 	Sink                            CopySink                         `json:"sink"`
 	SkipErrorFile                   *SkipErrorFile                   `json:"skipErrorFile,omitempty"`
 	Source                          CopySource                       `json:"source"`
 	StagingSettings                 *StagingSettings                 `json:"stagingSettings,omitempty"`
 	Translator                      *interface{}                     `json:"translator,omitempty"`
-	ValidateDataConsistency         *interface{}                     `json:"validateDataConsistency,omitempty"`
+	ValidateDataConsistency         *bool                            `json:"validateDataConsistency,omitempty"`
 }
 
 var _ json.Unmarshaler = &CopyActivityTypeProperties{}

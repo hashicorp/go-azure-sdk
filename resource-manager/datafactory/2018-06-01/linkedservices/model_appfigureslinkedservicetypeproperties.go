@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AppFiguresLinkedServiceTypeProperties struct {
-	ClientKey SecretBase  `json:"clientKey"`
-	Password  SecretBase  `json:"password"`
-	UserName  interface{} `json:"userName"`
+	ClientKey SecretBase `json:"clientKey"`
+	Password  SecretBase `json:"password"`
+	UserName  string     `json:"userName"`
 }
 
 var _ json.Unmarshaler = &AppFiguresLinkedServiceTypeProperties{}

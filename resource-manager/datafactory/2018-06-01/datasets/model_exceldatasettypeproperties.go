@@ -10,12 +10,12 @@ import (
 
 type ExcelDatasetTypeProperties struct {
 	Compression      *DatasetCompression `json:"compression,omitempty"`
-	FirstRowAsHeader *interface{}        `json:"firstRowAsHeader,omitempty"`
+	FirstRowAsHeader *bool               `json:"firstRowAsHeader,omitempty"`
 	Location         DatasetLocation     `json:"location"`
-	NullValue        *interface{}        `json:"nullValue,omitempty"`
-	Range            *interface{}        `json:"range,omitempty"`
-	SheetIndex       *interface{}        `json:"sheetIndex,omitempty"`
-	SheetName        *interface{}        `json:"sheetName,omitempty"`
+	NullValue        *string             `json:"nullValue,omitempty"`
+	Range            *string             `json:"range,omitempty"`
+	SheetIndex       *int64              `json:"sheetIndex,omitempty"`
+	SheetName        *string             `json:"sheetName,omitempty"`
 }
 
 var _ json.Unmarshaler = &ExcelDatasetTypeProperties{}

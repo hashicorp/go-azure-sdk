@@ -5,5 +5,5 @@ package pipelines
 
 type NotebookParameter struct {
 	Type  *NotebookParameterType `json:"type,omitempty"`
-	Value *interface{}           `json:"value,omitempty"`
+	Value *string                `json:"value,omitempty"`
 }

@@ -9,10 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SapEccLinkedServiceTypeProperties struct {
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Password            SecretBase   `json:"password"`
-	Url                 interface{}  `json:"url"`
-	Username            *interface{} `json:"username,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Password            SecretBase `json:"password"`
+	Url                 string     `json:"url"`
+	Username            *string    `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &SapEccLinkedServiceTypeProperties{}

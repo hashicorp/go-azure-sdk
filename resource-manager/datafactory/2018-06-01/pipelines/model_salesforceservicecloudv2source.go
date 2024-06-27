@@ -12,15 +12,15 @@ var _ CopySource = SalesforceServiceCloudV2Source{}
 
 type SalesforceServiceCloudV2Source struct {
 	AdditionalColumns     *interface{} `json:"additionalColumns,omitempty"`
-	IncludeDeletedObjects *interface{} `json:"includeDeletedObjects,omitempty"`
-	Query                 *interface{} `json:"query,omitempty"`
-	SOQLQuery             *interface{} `json:"SOQLQuery,omitempty"`
+	IncludeDeletedObjects *bool        `json:"includeDeletedObjects,omitempty"`
+	Query                 *string      `json:"query,omitempty"`
+	SOQLQuery             *string      `json:"SOQLQuery,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = SalesforceServiceCloudV2Source{}

@@ -13,7 +13,7 @@ var _ WebLinkedServiceTypeProperties = WebAnonymousAuthentication{}
 type WebAnonymousAuthentication struct {
 
 	// Fields inherited from WebLinkedServiceTypeProperties
-	Url interface{} `json:"url"`
+	Url string `json:"url"`
 }
 
 var _ json.Marshaler = WebAnonymousAuthentication{}

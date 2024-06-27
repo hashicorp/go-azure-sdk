@@ -10,8 +10,8 @@ import (
 
 type AzureBlobFSDatasetTypeProperties struct {
 	Compression *DatasetCompression  `json:"compression,omitempty"`
-	FileName    *interface{}         `json:"fileName,omitempty"`
-	FolderPath  *interface{}         `json:"folderPath,omitempty"`
+	FileName    *string              `json:"fileName,omitempty"`
+	FolderPath  *string              `json:"folderPath,omitempty"`
 	Format      DatasetStorageFormat `json:"format"`
 }
 

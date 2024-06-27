@@ -4,6 +4,6 @@ package triggers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RetryPolicy struct {
-	Count             *interface{} `json:"count,omitempty"`
-	IntervalInSeconds *int64       `json:"intervalInSeconds,omitempty"`
+	Count             *int64 `json:"count,omitempty"`
+	IntervalInSeconds *int64 `json:"intervalInSeconds,omitempty"`
 }

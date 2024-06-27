@@ -12,17 +12,17 @@ var _ CopySource = SapOdpSource{}
 
 type SapOdpSource struct {
 	AdditionalColumns *interface{} `json:"additionalColumns,omitempty"`
-	ExtractionMode    *interface{} `json:"extractionMode,omitempty"`
+	ExtractionMode    *string      `json:"extractionMode,omitempty"`
 	Projection        *interface{} `json:"projection,omitempty"`
-	QueryTimeout      *interface{} `json:"queryTimeout,omitempty"`
+	QueryTimeout      *string      `json:"queryTimeout,omitempty"`
 	Selection         *interface{} `json:"selection,omitempty"`
-	SubscriberProcess *interface{} `json:"subscriberProcess,omitempty"`
+	SubscriberProcess *string      `json:"subscriberProcess,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = SapOdpSource{}

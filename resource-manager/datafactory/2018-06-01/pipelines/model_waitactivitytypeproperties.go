@@ -4,5 +4,5 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WaitActivityTypeProperties struct {
-	WaitTimeInSeconds interface{} `json:"waitTimeInSeconds"`
+	WaitTimeInSeconds int64 `json:"waitTimeInSeconds"`
 }

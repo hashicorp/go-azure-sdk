@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type QuickbaseLinkedServiceTypeProperties struct {
-	EncryptedCredential *string     `json:"encryptedCredential,omitempty"`
-	Url                 interface{} `json:"url"`
-	UserToken           SecretBase  `json:"userToken"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Url                 string     `json:"url"`
+	UserToken           SecretBase `json:"userToken"`
 }
 
 var _ json.Unmarshaler = &QuickbaseLinkedServiceTypeProperties{}

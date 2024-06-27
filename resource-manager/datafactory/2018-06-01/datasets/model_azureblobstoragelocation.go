@@ -11,11 +11,11 @@ import (
 var _ DatasetLocation = AzureBlobStorageLocation{}
 
 type AzureBlobStorageLocation struct {
-	Container *interface{} `json:"container,omitempty"`
+	Container *string `json:"container,omitempty"`
 
 	// Fields inherited from DatasetLocation
-	FileName   *interface{} `json:"fileName,omitempty"`
-	FolderPath *interface{} `json:"folderPath,omitempty"`
+	FileName   *string `json:"fileName,omitempty"`
+	FolderPath *string `json:"folderPath,omitempty"`
 }
 
 var _ json.Marshaler = AzureBlobStorageLocation{}

@@ -4,7 +4,7 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureMLUpdateResourceActivityTypeProperties struct {
-	TrainedModelFilePath          interface{}            `json:"trainedModelFilePath"`
+	TrainedModelFilePath          string                 `json:"trainedModelFilePath"`
 	TrainedModelLinkedServiceName LinkedServiceReference `json:"trainedModelLinkedServiceName"`
-	TrainedModelName              interface{}            `json:"trainedModelName"`
+	TrainedModelName              string                 `json:"trainedModelName"`
 }

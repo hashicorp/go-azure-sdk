@@ -12,8 +12,8 @@ type SSISPackageLocationTypeProperties struct {
 	AccessCredential              *SSISAccessCredential `json:"accessCredential,omitempty"`
 	ChildPackages                 *[]SSISChildPackage   `json:"childPackages,omitempty"`
 	ConfigurationAccessCredential *SSISAccessCredential `json:"configurationAccessCredential,omitempty"`
-	ConfigurationPath             *interface{}          `json:"configurationPath,omitempty"`
-	PackageContent                *interface{}          `json:"packageContent,omitempty"`
+	ConfigurationPath             *string               `json:"configurationPath,omitempty"`
+	PackageContent                *string               `json:"packageContent,omitempty"`
 	PackageLastModifiedDate       *string               `json:"packageLastModifiedDate,omitempty"`
 	PackageName                   *string               `json:"packageName,omitempty"`
 	PackagePassword               SecretBase            `json:"packagePassword"`

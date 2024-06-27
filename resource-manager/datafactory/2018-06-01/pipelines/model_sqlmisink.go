@@ -11,23 +11,23 @@ import (
 var _ CopySink = SqlMISink{}
 
 type SqlMISink struct {
-	PreCopyScript                         *interface{}       `json:"preCopyScript,omitempty"`
-	SqlWriterStoredProcedureName          *interface{}       `json:"sqlWriterStoredProcedureName,omitempty"`
-	SqlWriterTableType                    *interface{}       `json:"sqlWriterTableType,omitempty"`
-	SqlWriterUseTableLock                 *interface{}       `json:"sqlWriterUseTableLock,omitempty"`
+	PreCopyScript                         *string            `json:"preCopyScript,omitempty"`
+	SqlWriterStoredProcedureName          *string            `json:"sqlWriterStoredProcedureName,omitempty"`
+	SqlWriterTableType                    *string            `json:"sqlWriterTableType,omitempty"`
+	SqlWriterUseTableLock                 *bool              `json:"sqlWriterUseTableLock,omitempty"`
 	StoredProcedureParameters             *interface{}       `json:"storedProcedureParameters,omitempty"`
-	StoredProcedureTableTypeParameterName *interface{}       `json:"storedProcedureTableTypeParameterName,omitempty"`
-	TableOption                           *interface{}       `json:"tableOption,omitempty"`
+	StoredProcedureTableTypeParameterName *string            `json:"storedProcedureTableTypeParameterName,omitempty"`
+	TableOption                           *string            `json:"tableOption,omitempty"`
 	UpsertSettings                        *SqlUpsertSettings `json:"upsertSettings,omitempty"`
-	WriteBehavior                         *interface{}       `json:"writeBehavior,omitempty"`
+	WriteBehavior                         *string            `json:"writeBehavior,omitempty"`
 
 	// Fields inherited from CopySink
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *interface{} `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
-	WriteBatchSize           *interface{} `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
 }
 
 var _ json.Marshaler = SqlMISink{}

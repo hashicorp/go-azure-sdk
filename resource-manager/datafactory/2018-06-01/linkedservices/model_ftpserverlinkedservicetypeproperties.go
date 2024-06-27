@@ -10,13 +10,13 @@ import (
 
 type FtpServerLinkedServiceTypeProperties struct {
 	AuthenticationType                *FtpAuthenticationType `json:"authenticationType,omitempty"`
-	EnableServerCertificateValidation *interface{}           `json:"enableServerCertificateValidation,omitempty"`
-	EnableSsl                         *interface{}           `json:"enableSsl,omitempty"`
+	EnableServerCertificateValidation *bool                  `json:"enableServerCertificateValidation,omitempty"`
+	EnableSsl                         *bool                  `json:"enableSsl,omitempty"`
 	EncryptedCredential               *string                `json:"encryptedCredential,omitempty"`
-	Host                              interface{}            `json:"host"`
+	Host                              string                 `json:"host"`
 	Password                          SecretBase             `json:"password"`
-	Port                              *interface{}           `json:"port,omitempty"`
-	UserName                          *interface{}           `json:"userName,omitempty"`
+	Port                              *int64                 `json:"port,omitempty"`
+	UserName                          *string                `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &FtpServerLinkedServiceTypeProperties{}

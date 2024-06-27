@@ -10,15 +10,15 @@ import (
 
 type AzureFileStorageLinkedServiceTypeProperties struct {
 	AccountKey          *AzureKeyVaultSecretReference `json:"accountKey,omitempty"`
-	ConnectionString    *interface{}                  `json:"connectionString,omitempty"`
+	ConnectionString    *string                       `json:"connectionString,omitempty"`
 	EncryptedCredential *string                       `json:"encryptedCredential,omitempty"`
-	FileShare           *interface{}                  `json:"fileShare,omitempty"`
-	Host                *interface{}                  `json:"host,omitempty"`
+	FileShare           *string                       `json:"fileShare,omitempty"`
+	Host                *string                       `json:"host,omitempty"`
 	Password            SecretBase                    `json:"password"`
 	SasToken            *AzureKeyVaultSecretReference `json:"sasToken,omitempty"`
-	SasUri              *interface{}                  `json:"sasUri,omitempty"`
-	Snapshot            *interface{}                  `json:"snapshot,omitempty"`
-	UserId              *interface{}                  `json:"userId,omitempty"`
+	SasUri              *string                       `json:"sasUri,omitempty"`
+	Snapshot            *string                       `json:"snapshot,omitempty"`
+	UserId              *string                       `json:"userId,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureFileStorageLinkedServiceTypeProperties{}

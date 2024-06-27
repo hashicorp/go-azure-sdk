@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AmazonRdsForLinkedServiceTypeProperties struct {
-	ConnectionString    interface{} `json:"connectionString"`
-	EncryptedCredential *string     `json:"encryptedCredential,omitempty"`
-	Password            SecretBase  `json:"password"`
+	ConnectionString    string     `json:"connectionString"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Password            SecretBase `json:"password"`
 }
 
 var _ json.Unmarshaler = &AmazonRdsForLinkedServiceTypeProperties{}

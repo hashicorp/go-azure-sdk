@@ -10,11 +10,11 @@ import (
 
 type AzureDataExplorerLinkedServiceTypeProperties struct {
 	Credential          *CredentialReference `json:"credential,omitempty"`
-	Database            interface{}          `json:"database"`
-	Endpoint            interface{}          `json:"endpoint"`
-	ServicePrincipalId  *interface{}         `json:"servicePrincipalId,omitempty"`
+	Database            string               `json:"database"`
+	Endpoint            string               `json:"endpoint"`
+	ServicePrincipalId  *string              `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey SecretBase           `json:"servicePrincipalKey"`
-	Tenant              *interface{}         `json:"tenant,omitempty"`
+	Tenant              *string              `json:"tenant,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureDataExplorerLinkedServiceTypeProperties{}

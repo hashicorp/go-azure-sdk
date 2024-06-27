@@ -12,15 +12,15 @@ var _ CopySource = AzureTableSource{}
 
 type AzureTableSource struct {
 	AdditionalColumns                   *interface{} `json:"additionalColumns,omitempty"`
-	AzureTableSourceIgnoreTableNotFound *interface{} `json:"azureTableSourceIgnoreTableNotFound,omitempty"`
-	AzureTableSourceQuery               *interface{} `json:"azureTableSourceQuery,omitempty"`
-	QueryTimeout                        *interface{} `json:"queryTimeout,omitempty"`
+	AzureTableSourceIgnoreTableNotFound *bool        `json:"azureTableSourceIgnoreTableNotFound,omitempty"`
+	AzureTableSourceQuery               *string      `json:"azureTableSourceQuery,omitempty"`
+	QueryTimeout                        *string      `json:"queryTimeout,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = AzureTableSource{}

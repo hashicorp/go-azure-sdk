@@ -4,8 +4,8 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PolybaseSettings struct {
-	RejectSampleValue *interface{}                `json:"rejectSampleValue,omitempty"`
+	RejectSampleValue *int64                      `json:"rejectSampleValue,omitempty"`
 	RejectType        *PolybaseSettingsRejectType `json:"rejectType,omitempty"`
-	RejectValue       *interface{}                `json:"rejectValue,omitempty"`
-	UseTypeDefault    *interface{}                `json:"useTypeDefault,omitempty"`
+	RejectValue       *int64                      `json:"rejectValue,omitempty"`
+	UseTypeDefault    *bool                       `json:"useTypeDefault,omitempty"`
 }

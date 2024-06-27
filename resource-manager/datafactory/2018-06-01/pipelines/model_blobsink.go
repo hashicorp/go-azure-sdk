@@ -11,19 +11,19 @@ import (
 var _ CopySink = BlobSink{}
 
 type BlobSink struct {
-	BlobWriterAddHeader      *interface{}    `json:"blobWriterAddHeader,omitempty"`
-	BlobWriterDateTimeFormat *interface{}    `json:"blobWriterDateTimeFormat,omitempty"`
-	BlobWriterOverwriteFiles *interface{}    `json:"blobWriterOverwriteFiles,omitempty"`
+	BlobWriterAddHeader      *bool           `json:"blobWriterAddHeader,omitempty"`
+	BlobWriterDateTimeFormat *string         `json:"blobWriterDateTimeFormat,omitempty"`
+	BlobWriterOverwriteFiles *bool           `json:"blobWriterOverwriteFiles,omitempty"`
 	CopyBehavior             *interface{}    `json:"copyBehavior,omitempty"`
 	Metadata                 *[]MetadataItem `json:"metadata,omitempty"`
 
 	// Fields inherited from CopySink
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *interface{} `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
-	WriteBatchSize           *interface{} `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
 }
 
 var _ json.Marshaler = BlobSink{}

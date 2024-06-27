@@ -5,8 +5,8 @@ package linkedservices
 
 type AzureStorageLinkedServiceTypeProperties struct {
 	AccountKey          *AzureKeyVaultSecretReference `json:"accountKey,omitempty"`
-	ConnectionString    *interface{}                  `json:"connectionString,omitempty"`
+	ConnectionString    *string                       `json:"connectionString,omitempty"`
 	EncryptedCredential *string                       `json:"encryptedCredential,omitempty"`
 	SasToken            *AzureKeyVaultSecretReference `json:"sasToken,omitempty"`
-	SasUri              *interface{}                  `json:"sasUri,omitempty"`
+	SasUri              *string                       `json:"sasUri,omitempty"`
 }

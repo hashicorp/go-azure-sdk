@@ -9,24 +9,24 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestServiceLinkedServiceTypeProperties struct {
-	AadResourceId                     *interface{}                  `json:"aadResourceId,omitempty"`
+	AadResourceId                     *string                       `json:"aadResourceId,omitempty"`
 	AuthHeaders                       *interface{}                  `json:"authHeaders,omitempty"`
 	AuthenticationType                RestServiceAuthenticationType `json:"authenticationType"`
-	AzureCloudType                    *interface{}                  `json:"azureCloudType,omitempty"`
-	ClientId                          *interface{}                  `json:"clientId,omitempty"`
+	AzureCloudType                    *string                       `json:"azureCloudType,omitempty"`
+	ClientId                          *string                       `json:"clientId,omitempty"`
 	ClientSecret                      SecretBase                    `json:"clientSecret"`
 	Credential                        *CredentialReference          `json:"credential,omitempty"`
-	EnableServerCertificateValidation *interface{}                  `json:"enableServerCertificateValidation,omitempty"`
+	EnableServerCertificateValidation *bool                         `json:"enableServerCertificateValidation,omitempty"`
 	EncryptedCredential               *string                       `json:"encryptedCredential,omitempty"`
 	Password                          SecretBase                    `json:"password"`
-	Resource                          *interface{}                  `json:"resource,omitempty"`
-	Scope                             *interface{}                  `json:"scope,omitempty"`
-	ServicePrincipalId                *interface{}                  `json:"servicePrincipalId,omitempty"`
+	Resource                          *string                       `json:"resource,omitempty"`
+	Scope                             *string                       `json:"scope,omitempty"`
+	ServicePrincipalId                *string                       `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey               SecretBase                    `json:"servicePrincipalKey"`
-	Tenant                            *interface{}                  `json:"tenant,omitempty"`
-	TokenEndpoint                     *interface{}                  `json:"tokenEndpoint,omitempty"`
-	Url                               interface{}                   `json:"url"`
-	UserName                          *interface{}                  `json:"userName,omitempty"`
+	Tenant                            *string                       `json:"tenant,omitempty"`
+	TokenEndpoint                     *string                       `json:"tokenEndpoint,omitempty"`
+	Url                               string                        `json:"url"`
+	UserName                          *string                       `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &RestServiceLinkedServiceTypeProperties{}

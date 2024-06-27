@@ -10,11 +10,11 @@ import (
 
 type SapHanaLinkedServiceProperties struct {
 	AuthenticationType  *SapHanaAuthenticationType `json:"authenticationType,omitempty"`
-	ConnectionString    *interface{}               `json:"connectionString,omitempty"`
+	ConnectionString    *string                    `json:"connectionString,omitempty"`
 	EncryptedCredential *string                    `json:"encryptedCredential,omitempty"`
 	Password            SecretBase                 `json:"password"`
-	Server              *interface{}               `json:"server,omitempty"`
-	UserName            *interface{}               `json:"userName,omitempty"`
+	Server              *string                    `json:"server,omitempty"`
+	UserName            *string                    `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &SapHanaLinkedServiceProperties{}

@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ParquetDatasetTypeProperties struct {
-	CompressionCodec *interface{}    `json:"compressionCodec,omitempty"`
+	CompressionCodec *string         `json:"compressionCodec,omitempty"`
 	Location         DatasetLocation `json:"location"`
 }
 

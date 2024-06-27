@@ -11,11 +11,11 @@ import (
 var _ DatasetLocation = HTTPServerLocation{}
 
 type HTTPServerLocation struct {
-	RelativeUrl *interface{} `json:"relativeUrl,omitempty"`
+	RelativeUrl *string `json:"relativeUrl,omitempty"`
 
 	// Fields inherited from DatasetLocation
-	FileName   *interface{} `json:"fileName,omitempty"`
-	FolderPath *interface{} `json:"folderPath,omitempty"`
+	FileName   *string `json:"fileName,omitempty"`
+	FolderPath *string `json:"folderPath,omitempty"`
 }
 
 var _ json.Marshaler = HTTPServerLocation{}

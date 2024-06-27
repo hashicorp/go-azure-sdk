@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AmazonS3DatasetTypeProperties struct {
-	BucketName            interface{}          `json:"bucketName"`
+	BucketName            string               `json:"bucketName"`
 	Compression           *DatasetCompression  `json:"compression,omitempty"`
 	Format                DatasetStorageFormat `json:"format"`
-	Key                   *interface{}         `json:"key,omitempty"`
-	ModifiedDatetimeEnd   *interface{}         `json:"modifiedDatetimeEnd,omitempty"`
-	ModifiedDatetimeStart *interface{}         `json:"modifiedDatetimeStart,omitempty"`
-	Prefix                *interface{}         `json:"prefix,omitempty"`
-	Version               *interface{}         `json:"version,omitempty"`
+	Key                   *string              `json:"key,omitempty"`
+	ModifiedDatetimeEnd   *string              `json:"modifiedDatetimeEnd,omitempty"`
+	ModifiedDatetimeStart *string              `json:"modifiedDatetimeStart,omitempty"`
+	Prefix                *string              `json:"prefix,omitempty"`
+	Version               *string              `json:"version,omitempty"`
 }
 
 var _ json.Unmarshaler = &AmazonS3DatasetTypeProperties{}

@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DynamicsAXLinkedServiceTypeProperties struct {
-	AadResourceId       interface{} `json:"aadResourceId"`
-	EncryptedCredential *string     `json:"encryptedCredential,omitempty"`
-	ServicePrincipalId  interface{} `json:"servicePrincipalId"`
-	ServicePrincipalKey SecretBase  `json:"servicePrincipalKey"`
-	Tenant              interface{} `json:"tenant"`
-	Url                 interface{} `json:"url"`
+	AadResourceId       string     `json:"aadResourceId"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	ServicePrincipalId  string     `json:"servicePrincipalId"`
+	ServicePrincipalKey SecretBase `json:"servicePrincipalKey"`
+	Tenant              string     `json:"tenant"`
+	Url                 string     `json:"url"`
 }
 
 var _ json.Unmarshaler = &DynamicsAXLinkedServiceTypeProperties{}
