@@ -25,7 +25,7 @@ type StorageTaskAssignmentInstancesReportListCompleteResult struct {
 
 type StorageTaskAssignmentInstancesReportListOperationOptions struct {
 	Filter      *string
-	Maxpagesize *string
+	Maxpagesize *int64
 }
 
 func DefaultStorageTaskAssignmentInstancesReportListOperationOptions() StorageTaskAssignmentInstancesReportListOperationOptions {

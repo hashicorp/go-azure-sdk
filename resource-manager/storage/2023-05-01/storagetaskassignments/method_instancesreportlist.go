@@ -26,7 +26,7 @@ type InstancesReportListCompleteResult struct {
 
 type InstancesReportListOperationOptions struct {
 	Filter      *string
-	Maxpagesize *string
+	Maxpagesize *int64
 }
 
 func DefaultInstancesReportListOperationOptions() InstancesReportListOperationOptions {
