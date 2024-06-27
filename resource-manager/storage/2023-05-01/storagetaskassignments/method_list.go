@@ -25,7 +25,7 @@ type ListCompleteResult struct {
 }
 
 type ListOperationOptions struct {
-	Maxpagesize *string
+	Maxpagesize *int64
 }
 
 func DefaultListOperationOptions() ListOperationOptions {
