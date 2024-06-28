@@ -25,7 +25,8 @@ func (c PricingsClient) Delete(ctx context.Context, id PricingId) (result Delete
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

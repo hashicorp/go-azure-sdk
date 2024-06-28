@@ -30,7 +30,8 @@ func (c ServicesClient) ExportMetadataSchema(ctx context.Context, id ServiceId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/exportMetadataSchema", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportMetadataSchema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

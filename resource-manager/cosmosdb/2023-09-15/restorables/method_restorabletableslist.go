@@ -56,7 +56,8 @@ func (c RestorablesClient) RestorableTablesList(ctx context.Context, id Restorab
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/restorableTables", id.ID()),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c DatabasesClient) ListPrincipals(ctx context.Context, id commonids.KustoD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listPrincipals", id.ID()),
+
+		Path: fmt.Sprintf("%s/listPrincipals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

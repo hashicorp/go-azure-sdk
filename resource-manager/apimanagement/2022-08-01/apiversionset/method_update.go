@@ -52,7 +52,8 @@ func (c ApiVersionSetClient) Update(ctx context.Context, id ApiVersionSetId, inp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

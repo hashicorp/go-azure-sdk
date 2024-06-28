@@ -26,7 +26,8 @@ func (c MonitorsClient) GetSSODetails(ctx context.Context, id MonitorId, input S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getSSODetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/getSSODetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

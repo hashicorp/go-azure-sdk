@@ -30,7 +30,8 @@ func (c DeploymentsClient) WhatIf(ctx context.Context, id ResourceGroupProviderD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/whatIf", id.ID()),
+
+		Path: fmt.Sprintf("%s/whatIf", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

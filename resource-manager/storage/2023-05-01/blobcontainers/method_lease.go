@@ -27,7 +27,8 @@ func (c BlobContainersClient) Lease(ctx context.Context, id commonids.StorageCon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/lease", id.ID()),
+
+		Path: fmt.Sprintf("%s/lease", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

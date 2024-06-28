@@ -27,7 +27,8 @@ func (c ManagedClustersClient) GetUpgradeProfile(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/upgradeProfiles/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgradeProfiles/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ShareClient) ProviderShareSubscriptionsRevoke(ctx context.Context, id Pr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/revoke", id.ID()),
+
+		Path: fmt.Sprintf("%s/revoke", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

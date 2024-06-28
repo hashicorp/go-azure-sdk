@@ -23,6 +23,18 @@ type GetAllRunAsAccountsInSiteCompleteResult struct {
 	Items              []HyperVRunAsAccount
 }
 
+type GetAllRunAsAccountsInSiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllRunAsAccountsInSiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAllRunAsAccountsInSite ...
 func (c HyperVRunAsAccountsClient) GetAllRunAsAccountsInSite(ctx context.Context, id HyperVSiteId) (result GetAllRunAsAccountsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c HyperVRunAsAccountsClient) GetAllRunAsAccountsInSite(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GetAllRunAsAccountsInSiteCustomPager{},
 		Path:       fmt.Sprintf("%s/runAsAccounts", id.ID()),
 	}
 

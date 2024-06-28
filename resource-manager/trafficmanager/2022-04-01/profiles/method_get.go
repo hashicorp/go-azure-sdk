@@ -25,7 +25,8 @@ func (c ProfilesClient) Get(ctx context.Context, id TrafficManagerProfileId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

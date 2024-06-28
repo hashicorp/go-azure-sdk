@@ -30,7 +30,8 @@ func (c ReplicationProtectionContainersClient) SwitchClusterProtection(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/switchClusterProtection", id.ID()),
+
+		Path: fmt.Sprintf("%s/switchClusterProtection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

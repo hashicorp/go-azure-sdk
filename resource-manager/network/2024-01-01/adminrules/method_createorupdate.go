@@ -27,7 +27,8 @@ func (c AdminRulesClient) CreateOrUpdate(ctx context.Context, id RuleId, input B
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

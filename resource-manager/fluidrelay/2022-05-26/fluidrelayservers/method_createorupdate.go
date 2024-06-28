@@ -25,7 +25,8 @@ func (c FluidRelayServersClient) CreateOrUpdate(ctx context.Context, id FluidRel
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ArcSettingsClient) CreateIdentity(ctx context.Context, id ArcSettingId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createArcIdentity", id.ID()),
+
+		Path: fmt.Sprintf("%s/createArcIdentity", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

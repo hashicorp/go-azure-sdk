@@ -61,7 +61,8 @@ func (c DnsForwardingRulesetsClient) CreateOrUpdate(ctx context.Context, id DnsF
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

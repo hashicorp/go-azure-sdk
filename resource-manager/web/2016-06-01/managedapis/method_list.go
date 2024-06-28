@@ -26,7 +26,8 @@ func (c ManagedAPIsClient) List(ctx context.Context, id LocationId) (result List
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/managedApis", id.ID()),
+
+		Path: fmt.Sprintf("%s/managedApis", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

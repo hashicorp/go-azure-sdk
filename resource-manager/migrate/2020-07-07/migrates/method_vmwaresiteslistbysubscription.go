@@ -24,6 +24,18 @@ type VMwareSitesListBySubscriptionCompleteResult struct {
 	Items              []VMwareSite
 }
 
+type VMwareSitesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *VMwareSitesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VMwareSitesListBySubscription ...
 func (c MigratesClient) VMwareSitesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result VMwareSitesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c MigratesClient) VMwareSitesListBySubscription(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &VMwareSitesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.OffAzure/vmwareSites", id.ID()),
 	}
 

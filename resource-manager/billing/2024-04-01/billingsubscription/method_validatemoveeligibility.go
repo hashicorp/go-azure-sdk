@@ -26,7 +26,8 @@ func (c BillingSubscriptionClient) ValidateMoveEligibility(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateMoveEligibility", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateMoveEligibility", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c SnapshotsClient) RevokeAccess(ctx context.Context, id SnapshotId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endGetAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/endGetAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

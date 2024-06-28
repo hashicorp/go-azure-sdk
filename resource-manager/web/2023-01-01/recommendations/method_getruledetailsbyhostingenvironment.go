@@ -56,7 +56,8 @@ func (c RecommendationsClient) GetRuleDetailsByHostingEnvironment(ctx context.Co
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -61,7 +61,8 @@ func (c WorkbooksAPIsClient) WorkbooksListByResourceGroup(ctx context.Context, i
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/workbooks", id.ID()),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c AzureFirewallsClient) AzureFirewallsListLearnedPrefixes(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/learnedIPPrefixes", id.ID()),
+
+		Path: fmt.Sprintf("%s/learnedIPPrefixes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

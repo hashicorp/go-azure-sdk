@@ -25,7 +25,8 @@ func (c EntityQueriesClient) Delete(ctx context.Context, id EntityQueryId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

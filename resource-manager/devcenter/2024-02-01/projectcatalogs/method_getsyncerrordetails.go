@@ -26,7 +26,8 @@ func (c ProjectCatalogsClient) GetSyncErrorDetails(ctx context.Context, id Catal
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getSyncErrorDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/getSyncErrorDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

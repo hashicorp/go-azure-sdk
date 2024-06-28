@@ -25,7 +25,8 @@ func (c CachesClient) Get(ctx context.Context, id CacheId) (result GetOperationR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

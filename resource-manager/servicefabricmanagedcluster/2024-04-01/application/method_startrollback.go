@@ -28,7 +28,8 @@ func (c ApplicationClient) StartRollback(ctx context.Context, id ApplicationId) 
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startRollback", id.ID()),
+
+		Path: fmt.Sprintf("%s/startRollback", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

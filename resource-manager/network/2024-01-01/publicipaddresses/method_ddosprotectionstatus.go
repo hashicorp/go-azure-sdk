@@ -31,7 +31,8 @@ func (c PublicIPAddressesClient) DdosProtectionStatus(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ddosProtectionStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/ddosProtectionStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

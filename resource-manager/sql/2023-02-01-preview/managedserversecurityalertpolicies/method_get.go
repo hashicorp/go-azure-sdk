@@ -27,7 +27,8 @@ func (c ManagedServerSecurityAlertPoliciesClient) Get(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

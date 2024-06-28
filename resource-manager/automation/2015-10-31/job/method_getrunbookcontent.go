@@ -26,7 +26,8 @@ func (c JobClient) GetRunbookContent(ctx context.Context, id JobId) (result GetR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/runbookContent", id.ID()),
+
+		Path: fmt.Sprintf("%s/runbookContent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

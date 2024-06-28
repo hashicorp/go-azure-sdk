@@ -28,7 +28,8 @@ func (c ExperimentsClient) Start(ctx context.Context, id ExperimentId) (result S
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

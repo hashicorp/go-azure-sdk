@@ -29,7 +29,8 @@ func (c DevicesClient) InstallUpdates(ctx context.Context, id DataBoxEdgeDeviceI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/installUpdates", id.ID()),
+
+		Path: fmt.Sprintf("%s/installUpdates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

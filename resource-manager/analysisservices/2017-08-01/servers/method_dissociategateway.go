@@ -25,7 +25,8 @@ func (c ServersClient) DissociateGateway(ctx context.Context, id ServerId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dissociateGateway", id.ID()),
+
+		Path: fmt.Sprintf("%s/dissociateGateway", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

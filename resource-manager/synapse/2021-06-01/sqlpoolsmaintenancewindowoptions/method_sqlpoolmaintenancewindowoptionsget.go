@@ -52,7 +52,8 @@ func (c SqlPoolsMaintenanceWindowOptionsClient) SqlPoolMaintenanceWindowOptionsG
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c IntegrationAccountMapsClient) Delete(ctx context.Context, id MapId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

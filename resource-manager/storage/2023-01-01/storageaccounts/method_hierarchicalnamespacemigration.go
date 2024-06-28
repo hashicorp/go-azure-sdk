@@ -56,7 +56,8 @@ func (c StorageAccountsClient) HierarchicalNamespaceMigration(ctx context.Contex
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/hnsonmigration", id.ID()),
 		OptionsObject: options,
 	}

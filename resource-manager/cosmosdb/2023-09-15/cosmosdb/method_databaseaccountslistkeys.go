@@ -26,7 +26,8 @@ func (c CosmosDBClient) DatabaseAccountsListKeys(ctx context.Context, id Databas
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

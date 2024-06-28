@@ -54,7 +54,8 @@ func (c RoleAssignmentsClient) DeleteById(ctx context.Context, id commonids.Scop
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

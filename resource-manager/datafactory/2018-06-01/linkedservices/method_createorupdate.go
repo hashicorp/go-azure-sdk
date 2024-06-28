@@ -52,7 +52,8 @@ func (c LinkedServicesClient) CreateOrUpdate(ctx context.Context, id LinkedServi
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

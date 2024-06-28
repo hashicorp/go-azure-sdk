@@ -55,6 +55,18 @@ func (o ListForResourceGroupOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListForResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListForResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListForResourceGroup ...
 func (c AttestationsClient) ListForResourceGroup(ctx context.Context, id commonids.ResourceGroupId, options ListForResourceGroupOperationOptions) (result ListForResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c AttestationsClient) ListForResourceGroup(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListForResourceGroupCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.PolicyInsights/attestations", id.ID()),
 		OptionsObject: options,
 	}

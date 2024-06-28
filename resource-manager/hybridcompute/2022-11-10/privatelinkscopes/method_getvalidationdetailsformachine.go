@@ -26,7 +26,8 @@ func (c PrivateLinkScopesClient) GetValidationDetailsForMachine(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/privateLinkScopes/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateLinkScopes/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

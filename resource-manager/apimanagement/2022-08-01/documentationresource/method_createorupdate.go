@@ -53,7 +53,8 @@ func (c DocumentationResourceClient) CreateOrUpdate(ctx context.Context, id Docu
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

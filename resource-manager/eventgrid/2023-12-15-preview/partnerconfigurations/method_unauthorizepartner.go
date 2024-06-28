@@ -27,7 +27,8 @@ func (c PartnerConfigurationsClient) UnauthorizePartner(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default/unauthorizePartner", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default/unauthorizePartner", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

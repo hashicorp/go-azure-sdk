@@ -29,7 +29,8 @@ func (c VipSwapClient) Create(ctx context.Context, id CloudServiceId, input Swap
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/cloudServiceSlots/swap", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/cloudServiceSlots/swap", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

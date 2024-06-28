@@ -26,7 +26,8 @@ func (c SmartGroupsClient) GetHistory(ctx context.Context, id SmartGroupId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/history", id.ID()),
+
+		Path: fmt.Sprintf("%s/history", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

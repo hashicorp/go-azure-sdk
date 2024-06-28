@@ -26,7 +26,8 @@ func (c NamespacesClient) GetNetworkRuleSet(ctx context.Context, id NamespaceId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/networkRuleSets/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkRuleSets/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

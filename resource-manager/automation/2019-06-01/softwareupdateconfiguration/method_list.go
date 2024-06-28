@@ -55,7 +55,8 @@ func (c SoftwareUpdateConfigurationClient) List(ctx context.Context, id Automati
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/softwareUpdateConfigurations", id.ID()),
 		OptionsObject: options,
 	}

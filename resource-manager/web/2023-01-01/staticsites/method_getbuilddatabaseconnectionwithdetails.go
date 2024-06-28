@@ -26,7 +26,8 @@ func (c StaticSitesClient) GetBuildDatabaseConnectionWithDetails(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/show", id.ID()),
+
+		Path: fmt.Sprintf("%s/show", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

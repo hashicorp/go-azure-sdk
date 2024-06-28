@@ -30,7 +30,8 @@ func (c OrdersClient) CreateOrUpdate(ctx context.Context, id DataBoxEdgeDeviceId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/orders/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/orders/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

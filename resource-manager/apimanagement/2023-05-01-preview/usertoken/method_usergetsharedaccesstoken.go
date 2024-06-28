@@ -26,7 +26,8 @@ func (c UserTokenClient) UserGetSharedAccessToken(ctx context.Context, id UserId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/token", id.ID()),
+
+		Path: fmt.Sprintf("%s/token", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

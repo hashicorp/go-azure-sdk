@@ -26,7 +26,8 @@ func (c WebAppsClient) CreateOrUpdateHostSecret(ctx context.Context, id DefaultI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

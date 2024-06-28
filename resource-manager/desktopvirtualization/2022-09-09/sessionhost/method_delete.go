@@ -52,7 +52,8 @@ func (c SessionHostClient) Delete(ctx context.Context, id SessionHostId, options
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

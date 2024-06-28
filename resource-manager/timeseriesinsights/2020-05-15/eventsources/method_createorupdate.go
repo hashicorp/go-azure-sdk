@@ -27,7 +27,8 @@ func (c EventSourcesClient) CreateOrUpdate(ctx context.Context, id EventSourceId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

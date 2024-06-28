@@ -25,7 +25,8 @@ func (c GlobalReachConnectionsClient) Get(ctx context.Context, id GlobalReachCon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

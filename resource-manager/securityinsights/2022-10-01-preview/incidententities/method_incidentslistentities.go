@@ -26,7 +26,8 @@ func (c IncidentEntitiesClient) IncidentsListEntities(ctx context.Context, id In
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/entities", id.ID()),
+
+		Path: fmt.Sprintf("%s/entities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

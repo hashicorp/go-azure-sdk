@@ -26,7 +26,8 @@ func (c SyncAgentsClient) GenerateKey(ctx context.Context, id SyncAgentId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

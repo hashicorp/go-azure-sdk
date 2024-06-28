@@ -25,7 +25,8 @@ func (c DataNetworkClient) UpdateTags(ctx context.Context, id DataNetworkId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c OperationsClient) WithScopeList(ctx context.Context, id commonids.ScopeI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ManagedServices/operations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ManagedServices/operations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

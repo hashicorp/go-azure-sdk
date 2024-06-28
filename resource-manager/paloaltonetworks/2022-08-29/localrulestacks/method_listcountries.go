@@ -54,6 +54,18 @@ func (o ListCountriesOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListCountriesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCountriesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListCountries ...
 func (c LocalRulestacksClient) ListCountries(ctx context.Context, id LocalRulestackId, options ListCountriesOperationOptions) (result ListCountriesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c LocalRulestacksClient) ListCountries(ctx context.Context, id LocalRulest
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &ListCountriesCustomPager{},
 		Path:          fmt.Sprintf("%s/listCountries", id.ID()),
 		OptionsObject: options,
 	}

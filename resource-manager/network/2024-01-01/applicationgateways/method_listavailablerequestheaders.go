@@ -27,7 +27,8 @@ func (c ApplicationGatewaysClient) ListAvailableRequestHeaders(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableRequestHeaders", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableRequestHeaders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

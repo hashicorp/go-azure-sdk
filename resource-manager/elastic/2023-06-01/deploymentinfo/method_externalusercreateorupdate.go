@@ -26,7 +26,8 @@ func (c DeploymentInfoClient) ExternalUserCreateOrUpdate(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createOrUpdateExternalUser", id.ID()),
+
+		Path: fmt.Sprintf("%s/createOrUpdateExternalUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

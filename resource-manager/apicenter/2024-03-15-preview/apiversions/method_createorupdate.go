@@ -26,7 +26,8 @@ func (c ApiVersionsClient) CreateOrUpdate(ctx context.Context, id VersionId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

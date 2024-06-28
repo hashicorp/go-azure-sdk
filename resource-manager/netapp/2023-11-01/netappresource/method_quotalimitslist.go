@@ -26,7 +26,8 @@ func (c NetAppResourceClient) QuotaLimitsList(ctx context.Context, id LocationId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/quotaLimits", id.ID()),
+
+		Path: fmt.Sprintf("%s/quotaLimits", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

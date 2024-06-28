@@ -30,7 +30,8 @@ func (c ProvisionedClusterInstancesClient) DeleteKubernetesVersions(ctx context.
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/kubernetesVersions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/kubernetesVersions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

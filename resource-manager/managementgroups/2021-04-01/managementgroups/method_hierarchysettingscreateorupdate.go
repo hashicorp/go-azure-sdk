@@ -27,7 +27,8 @@ func (c ManagementGroupsClient) HierarchySettingsCreateOrUpdate(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/settings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/settings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

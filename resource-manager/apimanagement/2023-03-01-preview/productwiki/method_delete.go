@@ -52,7 +52,8 @@ func (c ProductWikiClient) Delete(ctx context.Context, id ProductId, options Del
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
 	}

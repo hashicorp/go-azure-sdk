@@ -24,7 +24,8 @@ func (c HyperVHostClient) PutHost(ctx context.Context, id HostId, input HyperVHo
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

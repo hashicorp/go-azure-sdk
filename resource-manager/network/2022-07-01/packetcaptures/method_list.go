@@ -26,7 +26,8 @@ func (c PacketCapturesClient) List(ctx context.Context, id NetworkWatcherId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/packetCaptures", id.ID()),
+
+		Path: fmt.Sprintf("%s/packetCaptures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

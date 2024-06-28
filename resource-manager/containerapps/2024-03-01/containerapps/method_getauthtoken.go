@@ -26,7 +26,8 @@ func (c ContainerAppsClient) GetAuthToken(ctx context.Context, id ContainerAppId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getAuthtoken", id.ID()),
+
+		Path: fmt.Sprintf("%s/getAuthtoken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c GatewayListDebugCredentialsClient) GatewayListDebugCredentials(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listDebugCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/listDebugCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VMwaresClient) WorkloadNetworksCreateDhcp(ctx context.Context, id DhcpCo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

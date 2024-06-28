@@ -52,7 +52,8 @@ func (c DELETEClient) ServiceTasksDelete(ctx context.Context, id ServiceTaskId, 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

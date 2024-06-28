@@ -52,7 +52,8 @@ func (c BackendClient) Update(ctx context.Context, id BackendId, input BackendUp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

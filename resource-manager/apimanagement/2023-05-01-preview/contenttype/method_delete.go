@@ -52,7 +52,8 @@ func (c ContentTypeClient) Delete(ctx context.Context, id ContentTypeId, options
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

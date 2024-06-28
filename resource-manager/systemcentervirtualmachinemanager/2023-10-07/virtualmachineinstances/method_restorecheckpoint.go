@@ -29,7 +29,8 @@ func (c VirtualMachineInstancesClient) RestoreCheckpoint(ctx context.Context, id
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ScVmm/virtualMachineInstances/default/restoreCheckpoint", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ScVmm/virtualMachineInstances/default/restoreCheckpoint", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

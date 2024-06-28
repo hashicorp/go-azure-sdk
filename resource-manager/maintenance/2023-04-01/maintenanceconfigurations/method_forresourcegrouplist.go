@@ -27,7 +27,8 @@ func (c MaintenanceConfigurationsClient) ForResourceGroupList(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Maintenance/maintenanceConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Maintenance/maintenanceConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

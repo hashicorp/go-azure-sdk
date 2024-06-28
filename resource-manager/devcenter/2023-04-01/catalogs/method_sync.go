@@ -28,7 +28,8 @@ func (c CatalogsClient) Sync(ctx context.Context, id CatalogId) (result SyncOper
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sync", id.ID()),
+
+		Path: fmt.Sprintf("%s/sync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

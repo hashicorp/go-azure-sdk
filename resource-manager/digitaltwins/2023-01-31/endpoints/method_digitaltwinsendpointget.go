@@ -25,7 +25,8 @@ func (c EndpointsClient) DigitalTwinsEndpointGet(ctx context.Context, id Endpoin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

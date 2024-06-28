@@ -26,7 +26,8 @@ func (c FirewallsClient) GetGlobalRulestack(ctx context.Context, id FirewallId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getGlobalRulestack", id.ID()),
+
+		Path: fmt.Sprintf("%s/getGlobalRulestack", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

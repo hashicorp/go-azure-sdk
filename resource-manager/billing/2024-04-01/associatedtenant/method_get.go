@@ -25,7 +25,8 @@ func (c AssociatedTenantClient) Get(ctx context.Context, id AssociatedTenantId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

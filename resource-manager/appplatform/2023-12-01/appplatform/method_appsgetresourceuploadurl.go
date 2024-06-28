@@ -26,7 +26,8 @@ func (c AppPlatformClient) AppsGetResourceUploadUrl(ctx context.Context, id AppI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getResourceUploadUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/getResourceUploadUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

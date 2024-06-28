@@ -30,7 +30,8 @@ func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRev
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/encryptionProtector/current/revert", id.ID()),
+
+		Path: fmt.Sprintf("%s/encryptionProtector/current/revert", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

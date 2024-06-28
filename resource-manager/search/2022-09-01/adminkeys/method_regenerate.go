@@ -52,7 +52,8 @@ func (c AdminKeysClient) Regenerate(ctx context.Context, id KeyKindId, options R
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

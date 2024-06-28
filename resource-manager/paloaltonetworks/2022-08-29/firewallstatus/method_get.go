@@ -26,7 +26,8 @@ func (c FirewallStatusClient) Get(ctx context.Context, id FirewallId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/statuses/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/statuses/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

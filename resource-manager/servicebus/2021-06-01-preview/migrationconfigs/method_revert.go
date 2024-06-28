@@ -25,7 +25,8 @@ func (c MigrationConfigsClient) Revert(ctx context.Context, id NamespaceId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrationConfigurations/$default/revert", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrationConfigurations/$default/revert", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

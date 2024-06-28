@@ -27,7 +27,8 @@ func (c ResourceProvidersClient) VerifyHostingEnvironmentVnet(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/verifyHostingEnvironmentVnet", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/verifyHostingEnvironmentVnet", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

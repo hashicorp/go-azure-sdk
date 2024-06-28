@@ -24,7 +24,8 @@ func (c SchemaClient) GlobalSchemaGetEntityTag(ctx context.Context, id SchemaId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c ApiPolicyClient) Delete(ctx context.Context, id ApiId, options DeleteOpe
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

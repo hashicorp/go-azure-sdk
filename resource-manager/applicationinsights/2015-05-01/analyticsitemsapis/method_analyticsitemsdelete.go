@@ -55,7 +55,8 @@ func (c AnalyticsItemsAPIsClient) AnalyticsItemsDelete(ctx context.Context, id P
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/item", id.ID()),
 		OptionsObject: options,
 	}

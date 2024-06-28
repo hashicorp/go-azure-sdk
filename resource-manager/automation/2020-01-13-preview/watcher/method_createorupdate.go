@@ -26,7 +26,8 @@ func (c WatcherClient) CreateOrUpdate(ctx context.Context, id WatcherId, input W
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

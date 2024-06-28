@@ -25,7 +25,8 @@ func (c ServerDnsAliasesClient) Get(ctx context.Context, id DnsAliasId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

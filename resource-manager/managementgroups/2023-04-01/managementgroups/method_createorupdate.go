@@ -57,7 +57,8 @@ func (c ManagementGroupsClient) CreateOrUpdate(ctx context.Context, id commonids
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

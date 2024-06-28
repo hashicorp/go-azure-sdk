@@ -51,6 +51,18 @@ func (o StandardsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type StandardsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *StandardsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StandardsList ...
 func (c RegulatoryComplianceClient) StandardsList(ctx context.Context, id commonids.SubscriptionId, options StandardsListOperationOptions) (result StandardsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c RegulatoryComplianceClient) StandardsList(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &StandardsListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Security/regulatoryComplianceStandards", id.ID()),
 		OptionsObject: options,
 	}

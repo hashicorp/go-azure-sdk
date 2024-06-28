@@ -29,7 +29,8 @@ func (c DedicatedHostClient) Restart(ctx context.Context, id commonids.Dedicated
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

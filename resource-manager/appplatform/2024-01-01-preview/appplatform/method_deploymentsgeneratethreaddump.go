@@ -29,7 +29,8 @@ func (c AppPlatformClient) DeploymentsGenerateThreadDump(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateThreadDump", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateThreadDump", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

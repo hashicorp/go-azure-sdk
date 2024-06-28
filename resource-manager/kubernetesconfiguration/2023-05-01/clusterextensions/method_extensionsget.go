@@ -25,7 +25,8 @@ func (c ClusterExtensionsClient) ExtensionsGet(ctx context.Context, id ScopedExt
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

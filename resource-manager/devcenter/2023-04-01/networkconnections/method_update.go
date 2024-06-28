@@ -30,7 +30,8 @@ func (c NetworkConnectionsClient) Update(ctx context.Context, id NetworkConnecti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) ClustersGet(ctx context.Context, id ClusterId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c OperationalizationClustersClient) ComputeGet(ctx context.Context, id Com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

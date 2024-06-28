@@ -56,7 +56,8 @@ func (c VirtualMachineScaleSetVMsClient) Delete(ctx context.Context, id VirtualM
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

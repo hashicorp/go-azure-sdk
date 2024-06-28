@@ -26,7 +26,8 @@ func (c BillingProfilesClient) GetEligibilityToDetachPaymentMethod(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/validateDetachPaymentMethodEligibility", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateDetachPaymentMethodEligibility", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

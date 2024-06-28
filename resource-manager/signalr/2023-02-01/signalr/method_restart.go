@@ -29,7 +29,8 @@ func (c SignalRClient) Restart(ctx context.Context, id SignalRId) (result Restar
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

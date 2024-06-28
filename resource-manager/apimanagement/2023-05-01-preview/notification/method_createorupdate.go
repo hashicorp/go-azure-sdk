@@ -52,7 +52,8 @@ func (c NotificationClient) CreateOrUpdate(ctx context.Context, id NotificationI
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

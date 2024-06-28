@@ -26,7 +26,8 @@ func (c RunbookDraftClient) UndoEdit(ctx context.Context, id RunbookId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/draft/undoEdit", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/undoEdit", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c AvailabilitySetsClient) ListAvailableSizes(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/vmSizes", id.ID()),
+
+		Path: fmt.Sprintf("%s/vmSizes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

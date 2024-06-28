@@ -53,7 +53,8 @@ func (c ManagedClustersClient) ListClusterMonitoringUserCredentials(ctx context.
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listClusterMonitoringUserCredential", id.ID()),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c ClustersClient) RemoveLanguageExtensions(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeLanguageExtensions", id.ID()),
+
+		Path: fmt.Sprintf("%s/removeLanguageExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

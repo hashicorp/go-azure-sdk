@@ -55,7 +55,8 @@ func (c FileSharesClient) Get(ctx context.Context, id ShareId, options GetOperat
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

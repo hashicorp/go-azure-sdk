@@ -52,7 +52,8 @@ func (c PolicyDescriptionClient) ListByService(ctx context.Context, id ServiceId
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/policyDescriptions", id.ID()),
 		OptionsObject: options,
 	}

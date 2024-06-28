@@ -28,7 +28,8 @@ func (c VolumesReplicationClient) VolumesReestablishReplication(ctx context.Cont
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reestablishReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/reestablishReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

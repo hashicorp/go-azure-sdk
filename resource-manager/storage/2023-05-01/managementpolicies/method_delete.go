@@ -27,7 +27,8 @@ func (c ManagementPoliciesClient) Delete(ctx context.Context, id commonids.Stora
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/managementPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/managementPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

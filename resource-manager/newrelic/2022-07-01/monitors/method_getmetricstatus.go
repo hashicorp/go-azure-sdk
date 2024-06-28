@@ -26,7 +26,8 @@ func (c MonitorsClient) GetMetricStatus(ctx context.Context, id MonitorId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getMetricStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/getMetricStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

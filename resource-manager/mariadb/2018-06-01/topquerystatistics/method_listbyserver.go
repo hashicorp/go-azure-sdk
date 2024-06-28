@@ -23,6 +23,18 @@ type ListByServerCompleteResult struct {
 	Items              []QueryStatistic
 }
 
+type ListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByServer ...
 func (c TopQueryStatisticsClient) ListByServer(ctx context.Context, id ServerId, input TopQueryStatisticsInput) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c TopQueryStatisticsClient) ListByServer(ctx context.Context, id ServerId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/topQueryStatistics", id.ID()),
 	}
 

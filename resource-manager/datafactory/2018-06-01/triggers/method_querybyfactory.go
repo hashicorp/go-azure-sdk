@@ -26,7 +26,8 @@ func (c TriggersClient) QueryByFactory(ctx context.Context, id FactoryId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/querytriggers", id.ID()),
+
+		Path: fmt.Sprintf("%s/querytriggers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

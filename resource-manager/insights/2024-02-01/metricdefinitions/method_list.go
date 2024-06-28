@@ -53,7 +53,8 @@ func (c MetricDefinitionsClient) List(ctx context.Context, id commonids.ScopeId,
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 		OptionsObject: options,
 	}

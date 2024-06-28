@@ -52,7 +52,8 @@ func (c ApiReleaseClient) WorkspaceApiReleaseUpdate(ctx context.Context, id ApiR
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c AppPlatformClient) AppsSetActiveDeployments(ctx context.Context, id AppI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setActiveDeployments", id.ID()),
+
+		Path: fmt.Sprintf("%s/setActiveDeployments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

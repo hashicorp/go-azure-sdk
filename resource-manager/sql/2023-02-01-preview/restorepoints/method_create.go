@@ -32,7 +32,8 @@ func (c RestorePointsClient) Create(ctx context.Context, id commonids.SqlDatabas
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restorePoints", id.ID()),
+
+		Path: fmt.Sprintf("%s/restorePoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

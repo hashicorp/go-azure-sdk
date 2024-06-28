@@ -53,7 +53,8 @@ func (c AuthorizationClient) CreateOrUpdate(ctx context.Context, id Authorizatio
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

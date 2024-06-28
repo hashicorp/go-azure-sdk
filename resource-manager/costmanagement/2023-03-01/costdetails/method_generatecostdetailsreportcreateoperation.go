@@ -32,7 +32,8 @@ func (c CostDetailsClient) GenerateCostDetailsReportCreateOperation(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateCostDetailsReport", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateCostDetailsReport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

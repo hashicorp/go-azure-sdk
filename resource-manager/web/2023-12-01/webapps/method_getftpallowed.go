@@ -27,7 +27,8 @@ func (c WebAppsClient) GetFtpAllowed(ctx context.Context, id commonids.AppServic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/basicPublishingCredentialsPolicies/ftp", id.ID()),
+
+		Path: fmt.Sprintf("%s/basicPublishingCredentialsPolicies/ftp", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

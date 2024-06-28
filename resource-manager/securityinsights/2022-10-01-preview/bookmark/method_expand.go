@@ -26,7 +26,8 @@ func (c BookmarkClient) Expand(ctx context.Context, id BookmarkId, input Bookmar
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/expand", id.ID()),
+
+		Path: fmt.Sprintf("%s/expand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

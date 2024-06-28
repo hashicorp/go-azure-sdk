@@ -26,7 +26,8 @@ func (c AppServiceCertificateOrdersClient) ValidatePurchaseInformation(ctx conte
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CertificateRegistration/validateCertificateRegistrationInformation", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CertificateRegistration/validateCertificateRegistrationInformation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

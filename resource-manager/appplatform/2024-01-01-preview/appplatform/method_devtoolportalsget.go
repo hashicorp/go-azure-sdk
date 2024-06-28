@@ -25,7 +25,8 @@ func (c AppPlatformClient) DevToolPortalsGet(ctx context.Context, id DevToolPort
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

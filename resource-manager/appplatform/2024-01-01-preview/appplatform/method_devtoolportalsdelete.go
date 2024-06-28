@@ -29,7 +29,8 @@ func (c AppPlatformClient) DevToolPortalsDelete(ctx context.Context, id DevToolP
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

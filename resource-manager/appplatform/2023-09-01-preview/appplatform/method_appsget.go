@@ -52,7 +52,8 @@ func (c AppPlatformClient) AppsGet(ctx context.Context, id AppId, options AppsGe
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -24,6 +24,18 @@ type ServerBlobAuditingPoliciesListByServerCompleteResult struct {
 	Items              []ServerBlobAuditingPolicy
 }
 
+type ServerBlobAuditingPoliciesListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ServerBlobAuditingPoliciesListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ServerBlobAuditingPoliciesListByServer ...
 func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServer(ctx context.Context, id commonids.SqlServerId) (result ServerBlobAuditingPoliciesListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServer(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ServerBlobAuditingPoliciesListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/auditingSettings", id.ID()),
 	}
 

@@ -29,7 +29,8 @@ func (c RegisteredServerResourceClient) RegisteredServerstriggerRollover(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/triggerRollover", id.ID()),
+
+		Path: fmt.Sprintf("%s/triggerRollover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

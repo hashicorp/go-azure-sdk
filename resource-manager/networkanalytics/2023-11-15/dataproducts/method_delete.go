@@ -29,7 +29,8 @@ func (c DataProductsClient) Delete(ctx context.Context, id DataProductId) (resul
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

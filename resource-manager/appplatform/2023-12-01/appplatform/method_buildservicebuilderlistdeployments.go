@@ -26,7 +26,8 @@ func (c AppPlatformClient) BuildServiceBuilderListDeployments(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listUsingDeployments", id.ID()),
+
+		Path: fmt.Sprintf("%s/listUsingDeployments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c PipelineRunsClient) Delete(ctx context.Context, id PipelineRunId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

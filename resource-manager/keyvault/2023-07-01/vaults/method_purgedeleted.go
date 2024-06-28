@@ -29,7 +29,8 @@ func (c VaultsClient) PurgeDeleted(ctx context.Context, id DeletedVaultId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/purge", id.ID()),
+
+		Path: fmt.Sprintf("%s/purge", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

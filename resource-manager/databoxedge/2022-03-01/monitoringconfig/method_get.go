@@ -26,7 +26,8 @@ func (c MonitoringConfigClient) Get(ctx context.Context, id RoleId) (result GetO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/monitoringConfig/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoringConfig/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

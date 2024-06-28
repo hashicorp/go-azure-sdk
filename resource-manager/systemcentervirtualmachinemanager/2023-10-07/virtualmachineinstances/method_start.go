@@ -29,7 +29,8 @@ func (c VirtualMachineInstancesClient) Start(ctx context.Context, id commonids.S
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ScVmm/virtualMachineInstances/default/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ScVmm/virtualMachineInstances/default/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

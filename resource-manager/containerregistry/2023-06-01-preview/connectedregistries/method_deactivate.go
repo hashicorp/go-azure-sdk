@@ -29,7 +29,8 @@ func (c ConnectedRegistriesClient) Deactivate(ctx context.Context, id ConnectedR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deactivate", id.ID()),
+
+		Path: fmt.Sprintf("%s/deactivate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

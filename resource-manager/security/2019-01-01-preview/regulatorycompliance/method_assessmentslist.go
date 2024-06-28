@@ -50,6 +50,18 @@ func (o AssessmentsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type AssessmentsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AssessmentsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AssessmentsList ...
 func (c RegulatoryComplianceClient) AssessmentsList(ctx context.Context, id RegulatoryComplianceControlId, options AssessmentsListOperationOptions) (result AssessmentsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c RegulatoryComplianceClient) AssessmentsList(ctx context.Context, id Regu
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AssessmentsListCustomPager{},
 		Path:          fmt.Sprintf("%s/regulatoryComplianceAssessments", id.ID()),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) UpdateAseCustomDnsSuffixConfiguration(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/configurations/customdnssuffix", id.ID()),
+
+		Path: fmt.Sprintf("%s/configurations/customdnssuffix", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

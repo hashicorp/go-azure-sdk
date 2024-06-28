@@ -27,7 +27,8 @@ func (c BlobInventoryPoliciesClient) CreateOrUpdate(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

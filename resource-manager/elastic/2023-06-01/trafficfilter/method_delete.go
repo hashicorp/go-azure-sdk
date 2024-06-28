@@ -51,7 +51,8 @@ func (c TrafficFilterClient) Delete(ctx context.Context, id MonitorId, options D
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/deleteTrafficFilter", id.ID()),
 		OptionsObject: options,
 	}

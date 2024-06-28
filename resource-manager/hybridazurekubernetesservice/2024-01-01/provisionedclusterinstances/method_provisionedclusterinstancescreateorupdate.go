@@ -31,7 +31,8 @@ func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesCreateOrUp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

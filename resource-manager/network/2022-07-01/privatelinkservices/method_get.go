@@ -52,7 +52,8 @@ func (c PrivateLinkServicesClient) Get(ctx context.Context, id PrivateLinkServic
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c IPGroupsClient) Delete(ctx context.Context, id IPGroupId) (result Delete
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

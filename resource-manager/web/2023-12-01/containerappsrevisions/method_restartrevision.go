@@ -25,7 +25,8 @@ func (c ContainerAppsRevisionsClient) RestartRevision(ctx context.Context, id Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

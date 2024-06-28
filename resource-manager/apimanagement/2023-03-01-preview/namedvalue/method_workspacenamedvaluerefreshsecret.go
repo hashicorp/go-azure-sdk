@@ -30,7 +30,8 @@ func (c NamedValueClient) WorkspaceNamedValueRefreshSecret(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshSecret", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshSecret", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c DelegationSettingsClient) ListSecrets(ctx context.Context, id ServiceId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/portalsettings/delegation/listSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/portalsettings/delegation/listSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

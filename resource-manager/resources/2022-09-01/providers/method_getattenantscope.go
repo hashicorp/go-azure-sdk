@@ -52,7 +52,8 @@ func (c ProvidersClient) GetAtTenantScope(ctx context.Context, id ProviderId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

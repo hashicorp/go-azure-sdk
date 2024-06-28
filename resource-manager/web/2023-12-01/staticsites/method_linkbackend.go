@@ -29,7 +29,8 @@ func (c StaticSitesClient) LinkBackend(ctx context.Context, id LinkedBackendId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

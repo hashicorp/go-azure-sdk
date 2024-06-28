@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) CheckConnectivity(ctx context.Context, id Network
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/connectivityCheck", id.ID()),
+
+		Path: fmt.Sprintf("%s/connectivityCheck", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ConfigurationProfilesClient) ListByResourceGroup(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AutoManage/configurationProfiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AutoManage/configurationProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

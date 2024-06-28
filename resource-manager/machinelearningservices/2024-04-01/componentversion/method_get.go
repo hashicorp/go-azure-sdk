@@ -25,7 +25,8 @@ func (c ComponentVersionClient) Get(ctx context.Context, id ComponentVersionId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

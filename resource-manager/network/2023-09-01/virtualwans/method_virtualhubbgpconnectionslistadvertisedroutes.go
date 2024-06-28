@@ -31,7 +31,8 @@ func (c VirtualWANsClient) VirtualHubBgpConnectionsListAdvertisedRoutes(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/advertisedRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/advertisedRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

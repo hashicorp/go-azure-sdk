@@ -25,7 +25,8 @@ func (c VirtualMachinesClient) Generalize(ctx context.Context, id VirtualMachine
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generalize", id.ID()),
+
+		Path: fmt.Sprintf("%s/generalize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

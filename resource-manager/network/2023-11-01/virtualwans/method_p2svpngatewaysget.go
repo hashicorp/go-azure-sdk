@@ -26,7 +26,8 @@ func (c VirtualWANsClient) P2sVpnGatewaysGet(ctx context.Context, id commonids.V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

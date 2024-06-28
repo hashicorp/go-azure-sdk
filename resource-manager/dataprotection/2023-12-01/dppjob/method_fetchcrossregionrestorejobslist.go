@@ -50,6 +50,18 @@ func (o FetchCrossRegionRestoreJobsListOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
+type FetchCrossRegionRestoreJobsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *FetchCrossRegionRestoreJobsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // FetchCrossRegionRestoreJobsList ...
 func (c DppJobClient) FetchCrossRegionRestoreJobsList(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreJobsRequest, options FetchCrossRegionRestoreJobsListOperationOptions) (result FetchCrossRegionRestoreJobsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c DppJobClient) FetchCrossRegionRestoreJobsList(ctx context.Context, id Pr
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &FetchCrossRegionRestoreJobsListCustomPager{},
 		Path:          fmt.Sprintf("%s/fetchCrossRegionRestoreJobs", id.ID()),
 		OptionsObject: options,
 	}

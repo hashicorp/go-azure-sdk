@@ -30,7 +30,8 @@ func (c VpnGatewaysClient) Reset(ctx context.Context, id VpnGatewayId) (result R
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

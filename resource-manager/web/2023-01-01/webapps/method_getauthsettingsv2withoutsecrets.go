@@ -27,7 +27,8 @@ func (c WebAppsClient) GetAuthSettingsV2WithoutSecrets(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/config/authsettingsV2", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/authsettingsV2", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

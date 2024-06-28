@@ -26,7 +26,8 @@ func (c DiagnosticsClient) ContainerAppsDiagnosticsGetRoot(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/detectorProperties/rootApi", id.ID()),
+
+		Path: fmt.Sprintf("%s/detectorProperties/rootApi", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

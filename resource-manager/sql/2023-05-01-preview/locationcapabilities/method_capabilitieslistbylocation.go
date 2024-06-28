@@ -52,7 +52,8 @@ func (c LocationCapabilitiesClient) CapabilitiesListByLocation(ctx context.Conte
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/capabilities", id.ID()),
 		OptionsObject: options,
 	}

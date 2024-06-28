@@ -26,7 +26,8 @@ func (c AlertsManagementsClient) AlertsGetHistory(ctx context.Context, id AlertI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/history", id.ID()),
+
+		Path: fmt.Sprintf("%s/history", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

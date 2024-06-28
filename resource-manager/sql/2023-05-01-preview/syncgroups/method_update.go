@@ -30,7 +30,8 @@ func (c SyncGroupsClient) Update(ctx context.Context, id SyncGroupId, input Sync
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

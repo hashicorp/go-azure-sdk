@@ -26,7 +26,8 @@ func (c AgreementsClient) MarketplaceAgreementsSign(ctx context.Context, id Plan
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sign", id.ID()),
+
+		Path: fmt.Sprintf("%s/sign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c DomainsClient) GetControlCenterSsoRequest(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DomainRegistration/generateSsoRequest", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DomainRegistration/generateSsoRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

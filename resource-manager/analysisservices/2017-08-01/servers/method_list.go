@@ -27,7 +27,8 @@ func (c ServersClient) List(ctx context.Context, id commonids.SubscriptionId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AnalysisServices/servers", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AnalysisServices/servers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

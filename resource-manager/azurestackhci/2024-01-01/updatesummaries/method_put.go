@@ -26,7 +26,8 @@ func (c UpdateSummariesClient) Put(ctx context.Context, id ClusterId, input Upda
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/updateSummaries/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateSummaries/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

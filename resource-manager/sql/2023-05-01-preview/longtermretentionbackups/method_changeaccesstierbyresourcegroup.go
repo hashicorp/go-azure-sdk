@@ -30,7 +30,8 @@ func (c LongTermRetentionBackupsClient) ChangeAccessTierByResourceGroup(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/changeAccessTier", id.ID()),
+
+		Path: fmt.Sprintf("%s/changeAccessTier", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

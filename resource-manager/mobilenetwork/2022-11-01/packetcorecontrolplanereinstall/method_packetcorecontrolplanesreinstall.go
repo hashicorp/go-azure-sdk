@@ -30,7 +30,8 @@ func (c PacketCoreControlPlaneReinstallClient) PacketCoreControlPlanesReinstall(
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reinstall", id.ID()),
+
+		Path: fmt.Sprintf("%s/reinstall", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

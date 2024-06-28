@@ -23,6 +23,18 @@ type ListByReplicationProtectedItemsCompleteResult struct {
 	Items              []RecoveryPoint
 }
 
+type ListByReplicationProtectedItemsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReplicationProtectedItemsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReplicationProtectedItems ...
 func (c RecoveryPointsClient) ListByReplicationProtectedItems(ctx context.Context, id ReplicationProtectedItemId) (result ListByReplicationProtectedItemsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c RecoveryPointsClient) ListByReplicationProtectedItems(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByReplicationProtectedItemsCustomPager{},
 		Path:       fmt.Sprintf("%s/recoveryPoints", id.ID()),
 	}
 

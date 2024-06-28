@@ -52,7 +52,8 @@ func (c CredentialsClient) CredentialOperationsGet(ctx context.Context, id Crede
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

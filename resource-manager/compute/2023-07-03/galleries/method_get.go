@@ -57,7 +57,8 @@ func (c GalleriesClient) Get(ctx context.Context, id commonids.SharedImageGaller
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

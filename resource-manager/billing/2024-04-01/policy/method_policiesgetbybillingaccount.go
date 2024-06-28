@@ -26,7 +26,8 @@ func (c PolicyClient) PoliciesGetByBillingAccount(ctx context.Context, id Billin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/policies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/policies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

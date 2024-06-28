@@ -29,7 +29,8 @@ func (c ServerRestartClient) ServersRestart(ctx context.Context, id FlexibleServ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

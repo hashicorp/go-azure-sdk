@@ -26,7 +26,8 @@ func (c ConfigurationStoresClient) RegenerateKey(ctx context.Context, id Configu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c WebAppsClient) CreateFunction(ctx context.Context, id FunctionId, input 
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

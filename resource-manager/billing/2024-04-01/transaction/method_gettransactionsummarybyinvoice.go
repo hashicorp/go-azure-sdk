@@ -56,7 +56,8 @@ func (c TransactionClient) GetTransactionSummaryByInvoice(ctx context.Context, i
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/transactionSummary", id.ID()),
 		OptionsObject: options,
 	}

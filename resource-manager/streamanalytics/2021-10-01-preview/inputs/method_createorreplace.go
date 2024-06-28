@@ -57,7 +57,8 @@ func (c InputsClient) CreateOrReplace(ctx context.Context, id InputId, input Inp
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

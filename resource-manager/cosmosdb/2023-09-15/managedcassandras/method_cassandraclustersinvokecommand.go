@@ -29,7 +29,8 @@ func (c ManagedCassandrasClient) CassandraClustersInvokeCommand(ctx context.Cont
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/invokeCommand", id.ID()),
+
+		Path: fmt.Sprintf("%s/invokeCommand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

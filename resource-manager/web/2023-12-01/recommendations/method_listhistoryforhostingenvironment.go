@@ -55,6 +55,18 @@ func (o ListHistoryForHostingEnvironmentOperationOptions) ToQuery() *client.Quer
 	return &out
 }
 
+type ListHistoryForHostingEnvironmentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListHistoryForHostingEnvironmentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListHistoryForHostingEnvironment ...
 func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (result ListHistoryForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListHistoryForHostingEnvironmentCustomPager{},
 		Path:          fmt.Sprintf("%s/recommendationHistory", id.ID()),
 		OptionsObject: options,
 	}

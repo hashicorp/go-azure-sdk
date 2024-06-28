@@ -27,7 +27,8 @@ func (c ManagementGroupsClient) HierarchySettingsList(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+
+		Path: fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

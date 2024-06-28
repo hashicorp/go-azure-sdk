@@ -50,6 +50,18 @@ func (o ListUpgradeNotificationsOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
+type ListUpgradeNotificationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListUpgradeNotificationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListUpgradeNotifications ...
 func (c RedisClient) ListUpgradeNotifications(ctx context.Context, id RediId, options ListUpgradeNotificationsOperationOptions) (result ListUpgradeNotificationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c RedisClient) ListUpgradeNotifications(ctx context.Context, id RediId, op
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListUpgradeNotificationsCustomPager{},
 		Path:          fmt.Sprintf("%s/listUpgradeNotifications", id.ID()),
 		OptionsObject: options,
 	}

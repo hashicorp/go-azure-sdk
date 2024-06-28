@@ -26,7 +26,8 @@ func (c ExtensionsClient) ExtensionMetadataList(ctx context.Context, id Extensio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/versions", id.ID()),
+
+		Path: fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

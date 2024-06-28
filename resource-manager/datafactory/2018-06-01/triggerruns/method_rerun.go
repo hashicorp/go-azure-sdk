@@ -25,7 +25,8 @@ func (c TriggerrunsClient) Rerun(ctx context.Context, id TriggerRunId) (result R
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rerun", id.ID()),
+
+		Path: fmt.Sprintf("%s/rerun", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

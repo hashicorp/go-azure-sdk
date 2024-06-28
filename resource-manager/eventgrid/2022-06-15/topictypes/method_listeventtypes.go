@@ -26,7 +26,8 @@ func (c TopicTypesClient) ListEventTypes(ctx context.Context, id TopicTypeId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/eventTypes", id.ID()),
+
+		Path: fmt.Sprintf("%s/eventTypes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

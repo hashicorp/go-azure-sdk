@@ -23,6 +23,18 @@ type GetSiteHealthSummaryCompleteResult struct {
 	Items              []SiteHealthSummary
 }
 
+type GetSiteHealthSummaryCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetSiteHealthSummaryCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetSiteHealthSummary ...
 func (c HyperVSitesClient) GetSiteHealthSummary(ctx context.Context, id HyperVSiteId) (result GetSiteHealthSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c HyperVSitesClient) GetSiteHealthSummary(ctx context.Context, id HyperVSi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &GetSiteHealthSummaryCustomPager{},
 		Path:       fmt.Sprintf("%s/healthSummary", id.ID()),
 	}
 

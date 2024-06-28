@@ -26,7 +26,8 @@ func (c IntegrationAccountsClient) ListKeyVaultKeys(ctx context.Context, id Inte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeyVaultKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeyVaultKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

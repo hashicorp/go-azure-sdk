@@ -25,7 +25,8 @@ func (c AppPlatformClient) GatewayCustomDomainsGet(ctx context.Context, id Gatew
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

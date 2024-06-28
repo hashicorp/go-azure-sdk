@@ -26,7 +26,8 @@ func (c VolumeQuotaRulesClient) ListByVolume(ctx context.Context, id VolumeId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/volumeQuotaRules", id.ID()),
+
+		Path: fmt.Sprintf("%s/volumeQuotaRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

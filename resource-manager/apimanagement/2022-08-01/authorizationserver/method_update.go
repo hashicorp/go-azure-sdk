@@ -52,7 +52,8 @@ func (c AuthorizationServerClient) Update(ctx context.Context, id AuthorizationS
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

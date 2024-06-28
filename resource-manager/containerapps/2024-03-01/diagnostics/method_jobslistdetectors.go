@@ -23,6 +23,18 @@ type JobsListDetectorsCompleteResult struct {
 	Items              []Diagnostics
 }
 
+type JobsListDetectorsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *JobsListDetectorsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // JobsListDetectors ...
 func (c DiagnosticsClient) JobsListDetectors(ctx context.Context, id JobId) (result JobsListDetectorsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DiagnosticsClient) JobsListDetectors(ctx context.Context, id JobId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &JobsListDetectorsCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

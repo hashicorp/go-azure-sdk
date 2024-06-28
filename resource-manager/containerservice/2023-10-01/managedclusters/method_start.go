@@ -30,7 +30,8 @@ func (c ManagedClustersClient) Start(ctx context.Context, id commonids.Kubernete
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

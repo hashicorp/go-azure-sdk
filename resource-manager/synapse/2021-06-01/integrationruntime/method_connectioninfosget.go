@@ -26,7 +26,8 @@ func (c IntegrationRuntimeClient) ConnectionInfosGet(ctx context.Context, id Int
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getConnectionInfo", id.ID()),
+
+		Path: fmt.Sprintf("%s/getConnectionInfo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

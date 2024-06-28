@@ -30,7 +30,8 @@ func (c ReplicationProtectionClustersClient) RepairReplication(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/repairReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/repairReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

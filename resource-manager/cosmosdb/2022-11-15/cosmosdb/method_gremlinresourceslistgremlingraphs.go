@@ -26,7 +26,8 @@ func (c CosmosDBClient) GremlinResourcesListGremlinGraphs(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/graphs", id.ID()),
+
+		Path: fmt.Sprintf("%s/graphs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

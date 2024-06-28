@@ -52,7 +52,8 @@ func (c PostRulesClient) ResetCounters(ctx context.Context, id PostRuleId, optio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/resetCounters", id.ID()),
 		OptionsObject: options,
 	}

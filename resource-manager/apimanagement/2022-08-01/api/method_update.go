@@ -52,7 +52,8 @@ func (c ApiClient) Update(ctx context.Context, id ApiId, input ApiUpdateContract
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

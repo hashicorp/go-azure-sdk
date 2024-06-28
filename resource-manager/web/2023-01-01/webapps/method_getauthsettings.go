@@ -27,7 +27,8 @@ func (c WebAppsClient) GetAuthSettings(ctx context.Context, id commonids.AppServ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/config/authsettings/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/authsettings/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SyncMembersClient) Get(ctx context.Context, id SyncMemberId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c SIMsClient) Move(ctx context.Context, id SimGroupId, input SimMove) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/moveSims", id.ID()),
+
+		Path: fmt.Sprintf("%s/moveSims", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

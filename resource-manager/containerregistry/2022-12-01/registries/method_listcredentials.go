@@ -26,7 +26,8 @@ func (c RegistriesClient) ListCredentials(ctx context.Context, id RegistryId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/listCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

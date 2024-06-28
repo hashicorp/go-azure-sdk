@@ -26,7 +26,8 @@ func (c CosmosDBClient) DatabaseAccountsGetReadOnlyKeys(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/readonlykeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/readonlykeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

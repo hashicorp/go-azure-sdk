@@ -30,7 +30,8 @@ func (c TasksClient) Update(ctx context.Context, id TaskId, input TaskUpdatePara
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VirtualHardDisksClient) Update(ctx context.Context, id VirtualHardDiskId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

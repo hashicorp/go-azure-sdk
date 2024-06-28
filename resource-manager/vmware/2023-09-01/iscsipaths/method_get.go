@@ -26,7 +26,8 @@ func (c IscsiPathsClient) Get(ctx context.Context, id PrivateCloudId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

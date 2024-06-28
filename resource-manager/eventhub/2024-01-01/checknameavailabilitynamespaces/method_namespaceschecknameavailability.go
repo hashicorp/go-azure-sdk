@@ -27,7 +27,8 @@ func (c CheckNameAvailabilityNamespacesClient) NamespacesCheckNameAvailability(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventHub/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventHub/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

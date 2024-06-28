@@ -26,7 +26,8 @@ func (c ResourcesClient) GetById(ctx context.Context, id commonids.ScopeId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

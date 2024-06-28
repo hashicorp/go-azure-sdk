@@ -52,7 +52,8 @@ func (c IntegrationRuntimesClient) CreateOrUpdate(ctx context.Context, id Integr
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -54,7 +54,8 @@ func (c TrafficFilterClient) AssociateTrafficFilterAssociate(ctx context.Context
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/associateTrafficFilter", id.ID()),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c AppPlatformClient) DeploymentsEnableRemoteDebugging(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableRemoteDebugging", id.ID()),
+
+		Path: fmt.Sprintf("%s/enableRemoteDebugging", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

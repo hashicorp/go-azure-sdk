@@ -26,7 +26,8 @@ func (c GlobalClient) GetDeletedWebAppSnapshots(ctx context.Context, id DeletedS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/snapshots", id.ID()),
+
+		Path: fmt.Sprintf("%s/snapshots", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

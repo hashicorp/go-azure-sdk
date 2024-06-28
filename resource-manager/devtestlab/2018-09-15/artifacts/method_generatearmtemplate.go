@@ -26,7 +26,8 @@ func (c ArtifactsClient) GenerateArmTemplate(ctx context.Context, id ArtifactId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateArmTemplate", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateArmTemplate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

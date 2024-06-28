@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) GetAseV3NetworkingConfiguration(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/configurations/networking", id.ID()),
+
+		Path: fmt.Sprintf("%s/configurations/networking", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

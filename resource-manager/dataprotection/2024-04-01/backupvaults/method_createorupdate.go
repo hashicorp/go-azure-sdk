@@ -56,7 +56,8 @@ func (c BackupVaultsClient) CreateOrUpdate(ctx context.Context, id BackupVaultId
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

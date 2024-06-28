@@ -30,7 +30,8 @@ func (c ReplicationRecoveryPlansClient) PlannedFailover(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/plannedFailover", id.ID()),
+
+		Path: fmt.Sprintf("%s/plannedFailover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

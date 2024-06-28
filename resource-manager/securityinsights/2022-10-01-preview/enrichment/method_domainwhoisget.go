@@ -53,7 +53,8 @@ func (c EnrichmentClient) DomainWhoisGet(ctx context.Context, id commonids.Resou
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/enrichment/domain/whois", id.ID()),
 		OptionsObject: options,
 	}

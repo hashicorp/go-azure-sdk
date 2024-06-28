@@ -52,7 +52,8 @@ func (c RecordSetsClient) Update(ctx context.Context, id RecordTypeId, input Rec
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

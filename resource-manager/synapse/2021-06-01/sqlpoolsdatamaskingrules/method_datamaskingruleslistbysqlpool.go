@@ -26,7 +26,8 @@ func (c SqlPoolsDataMaskingRulesClient) DataMaskingRulesListBySqlPool(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/dataMaskingPolicies/default/rules", id.ID()),
+
+		Path: fmt.Sprintf("%s/dataMaskingPolicies/default/rules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

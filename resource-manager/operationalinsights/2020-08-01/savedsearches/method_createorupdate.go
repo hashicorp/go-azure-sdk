@@ -25,7 +25,8 @@ func (c SavedSearchesClient) CreateOrUpdate(ctx context.Context, id SavedSearchI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

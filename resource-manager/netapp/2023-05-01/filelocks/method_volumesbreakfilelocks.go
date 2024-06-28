@@ -29,7 +29,8 @@ func (c FileLocksClient) VolumesBreakFileLocks(ctx context.Context, id VolumeId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/breakFileLocks", id.ID()),
+
+		Path: fmt.Sprintf("%s/breakFileLocks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

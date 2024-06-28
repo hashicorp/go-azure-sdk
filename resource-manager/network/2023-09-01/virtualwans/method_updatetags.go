@@ -25,7 +25,8 @@ func (c VirtualWANsClient) UpdateTags(ctx context.Context, id VirtualWANId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

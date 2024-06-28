@@ -29,7 +29,8 @@ func (c SyncMembersClient) RefreshMemberSchema(ctx context.Context, id SyncMembe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshSchema", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshSchema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

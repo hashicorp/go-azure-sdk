@@ -52,7 +52,8 @@ func (c ManagedPrivateEndpointsClient) CreateOrUpdate(ctx context.Context, id Ma
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

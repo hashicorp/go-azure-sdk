@@ -25,7 +25,8 @@ func (c ApiOperationTagClient) TagDetachFromOperation(ctx context.Context, id Op
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

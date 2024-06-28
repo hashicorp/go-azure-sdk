@@ -24,7 +24,8 @@ func (c ProductClient) GetEntityTag(ctx context.Context, id ProductId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

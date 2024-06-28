@@ -56,7 +56,8 @@ func (c WebAppsClient) DeleteSlot(ctx context.Context, id SlotId, options Delete
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

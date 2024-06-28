@@ -52,7 +52,8 @@ func (c CosmosDBClient) CollectionListMetrics(ctx context.Context, id Collection
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/metrics", id.ID()),
 		OptionsObject: options,
 	}

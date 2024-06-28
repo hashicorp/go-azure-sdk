@@ -25,7 +25,8 @@ func (c IntegrationAccountSchemasClient) Delete(ctx context.Context, id SchemaId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

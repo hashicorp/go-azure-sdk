@@ -52,7 +52,8 @@ func (c ServicesClient) Update(ctx context.Context, id SearchServiceId, input Se
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

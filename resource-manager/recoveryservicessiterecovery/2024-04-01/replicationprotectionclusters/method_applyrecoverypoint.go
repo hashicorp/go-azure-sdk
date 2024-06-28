@@ -30,7 +30,8 @@ func (c ReplicationProtectionClustersClient) ApplyRecoveryPoint(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applyRecoveryPoint", id.ID()),
+
+		Path: fmt.Sprintf("%s/applyRecoveryPoint", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

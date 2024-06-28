@@ -28,7 +28,8 @@ func (c ContainerInstanceClient) ContainerGroupsRestart(ctx context.Context, id 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

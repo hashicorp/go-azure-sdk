@@ -29,7 +29,8 @@ func (c DisksClient) Attach(ctx context.Context, id DiskId, input AttachDiskProp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attach", id.ID()),
+
+		Path: fmt.Sprintf("%s/attach", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

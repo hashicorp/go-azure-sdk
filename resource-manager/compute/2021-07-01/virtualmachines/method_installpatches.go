@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) InstallPatches(ctx context.Context, id VirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/installPatches", id.ID()),
+
+		Path: fmt.Sprintf("%s/installPatches", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c AzureBackupJobClient) ExportJobsTrigger(ctx context.Context, id BackupVa
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/exportBackupJobs", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportBackupJobs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

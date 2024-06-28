@@ -26,7 +26,8 @@ func (c ServerEndpointResourceClient) ServerEndpointsListBySyncGroup(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/serverEndpoints", id.ID()),
+
+		Path: fmt.Sprintf("%s/serverEndpoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

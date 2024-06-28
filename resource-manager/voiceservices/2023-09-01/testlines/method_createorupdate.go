@@ -30,7 +30,8 @@ func (c TestLinesClient) CreateOrUpdate(ctx context.Context, id TestLineId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

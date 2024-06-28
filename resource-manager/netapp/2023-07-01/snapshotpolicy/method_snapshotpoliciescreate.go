@@ -26,7 +26,8 @@ func (c SnapshotPolicyClient) SnapshotPoliciesCreate(ctx context.Context, id Sna
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

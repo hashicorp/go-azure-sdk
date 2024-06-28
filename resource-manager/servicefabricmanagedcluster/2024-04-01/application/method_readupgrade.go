@@ -28,7 +28,8 @@ func (c ApplicationClient) ReadUpgrade(ctx context.Context, id ApplicationId) (r
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/fetchUpgradeStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/fetchUpgradeStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

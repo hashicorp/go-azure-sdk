@@ -61,7 +61,8 @@ func (c InboundEndpointsClient) CreateOrUpdate(ctx context.Context, id InboundEn
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

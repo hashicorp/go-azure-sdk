@@ -30,7 +30,8 @@ func (c AppPlatformClient) DeploymentsUpdate(ctx context.Context, id DeploymentI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

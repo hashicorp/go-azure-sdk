@@ -27,7 +27,8 @@ func (c ExtensionsClient) GetAzureMonitorStatus(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

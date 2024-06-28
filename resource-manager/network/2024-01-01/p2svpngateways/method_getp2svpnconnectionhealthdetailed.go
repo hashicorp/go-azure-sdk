@@ -31,7 +31,8 @@ func (c P2sVpnGatewaysClient) GetP2sVpnConnectionHealthDetailed(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getP2sVpnConnectionHealthDetailed", id.ID()),
+
+		Path: fmt.Sprintf("%s/getP2sVpnConnectionHealthDetailed", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c NetworkcloudsClient) BmcKeySetsUpdate(ctx context.Context, id BmcKeySetI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

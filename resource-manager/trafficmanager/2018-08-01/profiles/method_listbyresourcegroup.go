@@ -27,7 +27,8 @@ func (c ProfilesClient) ListByResourceGroup(ctx context.Context, id commonids.Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerProfiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

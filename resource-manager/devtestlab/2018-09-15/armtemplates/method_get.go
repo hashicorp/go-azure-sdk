@@ -52,7 +52,8 @@ func (c ArmTemplatesClient) Get(ctx context.Context, id ArmTemplateId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

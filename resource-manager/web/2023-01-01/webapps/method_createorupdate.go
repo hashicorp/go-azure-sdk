@@ -31,7 +31,8 @@ func (c WebAppsClient) CreateOrUpdate(ctx context.Context, id commonids.AppServi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c AdaptiveNetworkHardeningsClient) Get(ctx context.Context, id ScopedAdapt
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

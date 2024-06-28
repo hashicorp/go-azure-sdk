@@ -30,7 +30,8 @@ func (c ResourcesClient) MoveResources(ctx context.Context, id commonids.Resourc
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/moveResources", id.ID()),
+
+		Path: fmt.Sprintf("%s/moveResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ReplicationProtectionClustersClient) UnplannedFailover(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unplannedFailover", id.ID()),
+
+		Path: fmt.Sprintf("%s/unplannedFailover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c TenantsClient) CheckResourceName(ctx context.Context, input ResourceName
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Resources/checkResourceName",
+
+		Path: "/providers/Microsoft.Resources/checkResourceName",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

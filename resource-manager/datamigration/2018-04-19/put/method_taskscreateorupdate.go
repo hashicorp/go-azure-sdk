@@ -26,7 +26,8 @@ func (c PUTClient) TasksCreateOrUpdate(ctx context.Context, id TaskId, input Pro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

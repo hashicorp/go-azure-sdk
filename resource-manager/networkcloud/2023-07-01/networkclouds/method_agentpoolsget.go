@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) AgentPoolsGet(ctx context.Context, id AgentPoolId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

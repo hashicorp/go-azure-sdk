@@ -26,7 +26,8 @@ func (c CosmosDBClient) CassandraResourcesListCassandraKeyspaces(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/cassandraKeyspaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/cassandraKeyspaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

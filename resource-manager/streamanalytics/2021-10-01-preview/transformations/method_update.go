@@ -52,7 +52,8 @@ func (c TransformationsClient) Update(ctx context.Context, id TransformationId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

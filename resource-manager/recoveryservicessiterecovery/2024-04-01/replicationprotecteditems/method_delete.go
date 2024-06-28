@@ -29,7 +29,8 @@ func (c ReplicationProtectedItemsClient) Delete(ctx context.Context, id Replicat
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remove", id.ID()),
+
+		Path: fmt.Sprintf("%s/remove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

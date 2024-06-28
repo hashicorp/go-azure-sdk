@@ -27,7 +27,8 @@ func (c BlobContainersClient) Create(ctx context.Context, id commonids.StorageCo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

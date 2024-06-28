@@ -30,7 +30,8 @@ func (c InvoiceClient) DownloadSummaryByBillingAccount(ctx context.Context, id B
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/downloadSummary", id.ID()),
+
+		Path: fmt.Sprintf("%s/downloadSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

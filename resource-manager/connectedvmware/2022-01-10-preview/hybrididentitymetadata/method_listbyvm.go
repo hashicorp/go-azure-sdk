@@ -23,6 +23,18 @@ type ListByVMCompleteResult struct {
 	Items              []HybridIdentityMetadata
 }
 
+type ListByVMCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVMCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVM ...
 func (c HybridIdentityMetadataClient) ListByVM(ctx context.Context, id VirtualMachineId) (result ListByVMOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c HybridIdentityMetadataClient) ListByVM(ctx context.Context, id VirtualMa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByVMCustomPager{},
 		Path:       fmt.Sprintf("%s/hybridIdentityMetadata", id.ID()),
 	}
 

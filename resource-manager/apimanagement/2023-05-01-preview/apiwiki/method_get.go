@@ -26,7 +26,8 @@ func (c ApiWikiClient) Get(ctx context.Context, id ApiId) (result GetOperationRe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/wikis/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

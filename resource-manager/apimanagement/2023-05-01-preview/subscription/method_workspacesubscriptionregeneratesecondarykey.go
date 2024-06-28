@@ -25,7 +25,8 @@ func (c SubscriptionClient) WorkspaceSubscriptionRegenerateSecondaryKey(ctx cont
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateSecondaryKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateSecondaryKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,7 +56,8 @@ func (c DnsForwardingRulesetsClient) Delete(ctx context.Context, id DnsForwardin
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

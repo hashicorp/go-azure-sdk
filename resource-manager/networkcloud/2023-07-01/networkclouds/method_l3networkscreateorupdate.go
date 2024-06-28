@@ -30,7 +30,8 @@ func (c NetworkcloudsClient) L3NetworksCreateOrUpdate(ctx context.Context, id L3
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

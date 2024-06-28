@@ -25,7 +25,8 @@ func (c ResourceGroupsClient) CheckExistence(ctx context.Context, id commonids.R
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

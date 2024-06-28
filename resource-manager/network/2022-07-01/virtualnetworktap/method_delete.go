@@ -30,7 +30,8 @@ func (c VirtualNetworkTapClient) Delete(ctx context.Context, id VirtualNetworkTa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

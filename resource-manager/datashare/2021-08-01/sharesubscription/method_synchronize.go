@@ -30,7 +30,8 @@ func (c ShareSubscriptionClient) Synchronize(ctx context.Context, id ShareSubscr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/synchronize", id.ID()),
+
+		Path: fmt.Sprintf("%s/synchronize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c WebAppsClient) IsCloneableSlot(ctx context.Context, id SlotId) (result I
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/iscloneable", id.ID()),
+
+		Path: fmt.Sprintf("%s/iscloneable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

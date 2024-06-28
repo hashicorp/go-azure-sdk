@@ -30,7 +30,8 @@ func (c BillingAccountClient) AddPaymentTerms(ctx context.Context, id BillingAcc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addPaymentTerms", id.ID()),
+
+		Path: fmt.Sprintf("%s/addPaymentTerms", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

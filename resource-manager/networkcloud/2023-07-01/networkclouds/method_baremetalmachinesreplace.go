@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) BareMetalMachinesReplace(ctx context.Context, id Ba
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replace", id.ID()),
+
+		Path: fmt.Sprintf("%s/replace", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

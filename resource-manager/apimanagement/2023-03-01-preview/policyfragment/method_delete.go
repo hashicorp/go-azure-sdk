@@ -52,7 +52,8 @@ func (c PolicyFragmentClient) Delete(ctx context.Context, id PolicyFragmentId, o
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

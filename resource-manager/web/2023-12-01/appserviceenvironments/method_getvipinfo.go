@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) GetVipInfo(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/capacities/virtualip", id.ID()),
+
+		Path: fmt.Sprintf("%s/capacities/virtualip", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

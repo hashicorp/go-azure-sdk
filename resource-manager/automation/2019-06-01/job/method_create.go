@@ -52,7 +52,8 @@ func (c JobClient) Create(ctx context.Context, id JobId, input JobCreateParamete
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

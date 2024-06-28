@@ -31,7 +31,8 @@ func (c SAPApplicationServerInstancesClient) Delete(ctx context.Context, id Appl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

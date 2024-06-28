@@ -56,7 +56,8 @@ func (c VirtualNetworkPeeringsClient) CreateOrUpdate(ctx context.Context, id Vir
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

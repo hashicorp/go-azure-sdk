@@ -51,7 +51,8 @@ func (c JobClient) Stop(ctx context.Context, id JobId, options StopOperationOpti
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/stop", id.ID()),
 		OptionsObject: options,
 	}

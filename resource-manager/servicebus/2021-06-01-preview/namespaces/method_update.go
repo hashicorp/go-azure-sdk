@@ -27,7 +27,8 @@ func (c NamespacesClient) Update(ctx context.Context, id NamespaceId, input SBNa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

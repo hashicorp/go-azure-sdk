@@ -25,7 +25,8 @@ func (c CustomAPIsClient) Move(ctx context.Context, id CustomApiId, input Custom
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/move", id.ID()),
+
+		Path: fmt.Sprintf("%s/move", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

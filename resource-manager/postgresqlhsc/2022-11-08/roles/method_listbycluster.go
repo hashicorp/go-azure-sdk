@@ -26,7 +26,8 @@ func (c RolesClient) ListByCluster(ctx context.Context, id ServerGroupsv2Id) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/roles", id.ID()),
+
+		Path: fmt.Sprintf("%s/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

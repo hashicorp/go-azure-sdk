@@ -26,7 +26,8 @@ func (c ListKeysClient) KeysListByAutomationAccount(ctx context.Context, id Auto
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

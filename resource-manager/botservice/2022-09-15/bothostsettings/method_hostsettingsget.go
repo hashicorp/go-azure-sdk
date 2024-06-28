@@ -27,7 +27,8 @@ func (c BotHostSettingsClient) HostSettingsGet(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.BotService/hostSettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.BotService/hostSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c EmailTemplatesClient) EmailTemplateUpdate(ctx context.Context, id Templa
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

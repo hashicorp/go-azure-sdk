@@ -26,7 +26,8 @@ func (c RolesClient) Get(ctx context.Context, id RoleId) (result GetOperationRes
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type AgentPoolListByProvisionedClusterCompleteResult struct {
 	Items              []AgentPool
 }
 
+type AgentPoolListByProvisionedClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AgentPoolListByProvisionedClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AgentPoolListByProvisionedCluster ...
 func (c ProvisionedClusterInstancesClient) AgentPoolListByProvisionedCluster(ctx context.Context, id commonids.ScopeId) (result AgentPoolListByProvisionedClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ProvisionedClusterInstancesClient) AgentPoolListByProvisionedCluster(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AgentPoolListByProvisionedClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools", id.ID()),
 	}
 

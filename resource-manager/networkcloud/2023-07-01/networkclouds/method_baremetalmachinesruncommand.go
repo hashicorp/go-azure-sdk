@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) BareMetalMachinesRunCommand(ctx context.Context, id
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runCommand", id.ID()),
+
+		Path: fmt.Sprintf("%s/runCommand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

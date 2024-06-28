@@ -59,6 +59,18 @@ func (o ListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c EncryptionScopesClient) List(ctx context.Context, id commonids.StorageAccountId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -67,6 +79,7 @@ func (c EncryptionScopesClient) List(ctx context.Context, id commonids.StorageAc
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListCustomPager{},
 		Path:          fmt.Sprintf("%s/encryptionScopes", id.ID()),
 		OptionsObject: options,
 	}

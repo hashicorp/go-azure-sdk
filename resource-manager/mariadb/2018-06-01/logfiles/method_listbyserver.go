@@ -26,7 +26,8 @@ func (c LogFilesClient) ListByServer(ctx context.Context, id ServerId) (result L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/logFiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/logFiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

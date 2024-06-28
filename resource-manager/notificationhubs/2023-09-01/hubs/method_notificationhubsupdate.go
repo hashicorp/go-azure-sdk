@@ -25,7 +25,8 @@ func (c HubsClient) NotificationHubsUpdate(ctx context.Context, id NotificationH
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

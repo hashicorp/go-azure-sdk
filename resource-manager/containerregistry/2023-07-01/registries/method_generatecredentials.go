@@ -30,7 +30,8 @@ func (c RegistriesClient) GenerateCredentials(ctx context.Context, id RegistryId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

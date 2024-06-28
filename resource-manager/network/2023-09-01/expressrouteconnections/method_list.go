@@ -26,7 +26,8 @@ func (c ExpressRouteConnectionsClient) List(ctx context.Context, id ExpressRoute
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/expressRouteConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/expressRouteConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

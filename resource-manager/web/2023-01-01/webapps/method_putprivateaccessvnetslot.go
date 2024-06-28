@@ -26,7 +26,8 @@ func (c WebAppsClient) PutPrivateAccessVnetSlot(ctx context.Context, id SlotId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/privateAccess/virtualNetworks", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateAccess/virtualNetworks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

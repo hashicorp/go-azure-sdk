@@ -56,7 +56,8 @@ func (c DnsResolversClient) Delete(ctx context.Context, id DnsResolverId, option
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c RestorablesClient) RestorableSqlDatabasesList(ctx context.Context, id Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/restorableSqlDatabases", id.ID()),
+
+		Path: fmt.Sprintf("%s/restorableSqlDatabases", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

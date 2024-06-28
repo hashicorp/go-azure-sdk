@@ -26,7 +26,8 @@ func (c EventSourcesClient) Get(ctx context.Context, id EventSourceId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

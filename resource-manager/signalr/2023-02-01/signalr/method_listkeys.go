@@ -26,7 +26,8 @@ func (c SignalRClient) ListKeys(ctx context.Context, id SignalRId) (result ListK
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c KeysClient) CreateOrUpdate(ctx context.Context, id KeyId, input Key) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

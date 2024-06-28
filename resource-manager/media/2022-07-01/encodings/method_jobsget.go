@@ -25,7 +25,8 @@ func (c EncodingsClient) JobsGet(ctx context.Context, id JobId) (result JobsGetO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

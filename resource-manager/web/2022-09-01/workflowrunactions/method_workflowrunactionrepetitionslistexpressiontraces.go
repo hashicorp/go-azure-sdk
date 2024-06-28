@@ -23,6 +23,18 @@ type WorkflowRunActionRepetitionsListExpressionTracesCompleteResult struct {
 	Items              []interface{}
 }
 
+type WorkflowRunActionRepetitionsListExpressionTracesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkflowRunActionRepetitionsListExpressionTracesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkflowRunActionRepetitionsListExpressionTraces ...
 func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTraces(ctx context.Context, id RepetitionId) (result WorkflowRunActionRepetitionsListExpressionTracesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &WorkflowRunActionRepetitionsListExpressionTracesCustomPager{},
 		Path:       fmt.Sprintf("%s/listExpressionTraces", id.ID()),
 	}
 

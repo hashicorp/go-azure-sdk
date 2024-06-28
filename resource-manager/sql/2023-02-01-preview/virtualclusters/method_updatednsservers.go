@@ -30,7 +30,8 @@ func (c VirtualClustersClient) UpdateDnsServers(ctx context.Context, id VirtualC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateManagedInstanceDnsServers", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateManagedInstanceDnsServers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

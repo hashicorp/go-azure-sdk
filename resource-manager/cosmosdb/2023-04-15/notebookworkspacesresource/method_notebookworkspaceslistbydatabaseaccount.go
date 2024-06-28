@@ -26,7 +26,8 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesListByDatabaseAccoun
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/notebookWorkspaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/notebookWorkspaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c CheckScopedNameAvailabilityClient) Execute(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DevCenter/checkScopedNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DevCenter/checkScopedNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

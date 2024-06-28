@@ -24,7 +24,8 @@ func (c DeploymentsClient) CheckExistenceAtTenantScope(ctx context.Context, id D
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c MonitoredSubscriptionsClient) Update(ctx context.Context, id MonitorId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ResourceManagementPrivateLinkClient) Put(ctx context.Context, id Resourc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

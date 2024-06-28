@@ -25,7 +25,8 @@ func (c PrivateLinkScopedResourcesClient) Get(ctx context.Context, id ScopedReso
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

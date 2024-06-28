@@ -25,7 +25,8 @@ func (c IntegrationAccountSchemasClient) Get(ctx context.Context, id SchemaId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

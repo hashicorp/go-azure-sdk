@@ -30,7 +30,8 @@ func (c VirtualWANsClient) VpnServerConfigurationsAssociatedWithVirtualWanList(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vpnServerConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/vpnServerConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c FeaturesClient) Register(ctx context.Context, id FeatureId) (result Regi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/register", id.ID()),
+
+		Path: fmt.Sprintf("%s/register", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

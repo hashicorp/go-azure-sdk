@@ -56,7 +56,8 @@ func (c ApiClient) CreateOrUpdate(ctx context.Context, id ApiId, input ApiCreate
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

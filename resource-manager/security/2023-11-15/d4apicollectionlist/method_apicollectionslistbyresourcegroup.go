@@ -24,6 +24,18 @@ type APICollectionsListByResourceGroupCompleteResult struct {
 	Items              []ApiCollection
 }
 
+type APICollectionsListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *APICollectionsListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // APICollectionsListByResourceGroup ...
 func (c D4APICollectionListClient) APICollectionsListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result APICollectionsListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c D4APICollectionListClient) APICollectionsListByResourceGroup(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &APICollectionsListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Security/apiCollections", id.ID()),
 	}
 

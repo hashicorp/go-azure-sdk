@@ -29,7 +29,8 @@ func (c VirtualWANsClient) VpnSitesConfigurationDownload(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vpnConfiguration", id.ID()),
+
+		Path: fmt.Sprintf("%s/vpnConfiguration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

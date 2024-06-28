@@ -30,7 +30,8 @@ func (c ManagedClustersClient) ResetAADProfile(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetAADProfile", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetAADProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

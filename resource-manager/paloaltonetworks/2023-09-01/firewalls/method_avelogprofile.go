@@ -25,7 +25,8 @@ func (c FirewallsClient) AveLogProfile(ctx context.Context, id FirewallId, input
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/saveLogProfile", id.ID()),
+
+		Path: fmt.Sprintf("%s/saveLogProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

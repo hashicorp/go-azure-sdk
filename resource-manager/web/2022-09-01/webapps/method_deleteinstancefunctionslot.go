@@ -24,7 +24,8 @@ func (c WebAppsClient) DeleteInstanceFunctionSlot(ctx context.Context, id SlotFu
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

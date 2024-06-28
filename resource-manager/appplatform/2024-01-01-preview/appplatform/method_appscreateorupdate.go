@@ -31,7 +31,8 @@ func (c AppPlatformClient) AppsCreateOrUpdate(ctx context.Context, id AppId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

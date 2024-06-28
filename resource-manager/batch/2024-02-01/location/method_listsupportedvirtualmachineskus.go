@@ -54,6 +54,18 @@ func (o ListSupportedVirtualMachineSkusOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
+type ListSupportedVirtualMachineSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSupportedVirtualMachineSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSupportedVirtualMachineSkus ...
 func (c LocationClient) ListSupportedVirtualMachineSkus(ctx context.Context, id LocationId, options ListSupportedVirtualMachineSkusOperationOptions) (result ListSupportedVirtualMachineSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c LocationClient) ListSupportedVirtualMachineSkus(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListSupportedVirtualMachineSkusCustomPager{},
 		Path:          fmt.Sprintf("%s/virtualMachineSkus", id.ID()),
 		OptionsObject: options,
 	}

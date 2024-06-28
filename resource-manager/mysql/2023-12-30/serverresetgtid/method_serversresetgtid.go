@@ -29,7 +29,8 @@ func (c ServerResetGtidClient) ServersResetGtid(ctx context.Context, id Flexible
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetGtid", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetGtid", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

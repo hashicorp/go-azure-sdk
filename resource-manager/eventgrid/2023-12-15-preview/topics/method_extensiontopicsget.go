@@ -27,7 +27,8 @@ func (c TopicsClient) ExtensionTopicsGet(ctx context.Context, id commonids.Scope
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventGrid/extensionTopics/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventGrid/extensionTopics/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c WebAppsClient) ListBackupStatusSecretsSlot(ctx context.Context, id SlotB
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c AutoScaleVCoresClient) ListBySubscription(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/autoScaleVCores", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/autoScaleVCores", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

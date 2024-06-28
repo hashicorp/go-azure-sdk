@@ -53,7 +53,8 @@ func (c ApiReleaseClient) CreateOrUpdate(ctx context.Context, id ReleaseId, inpu
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

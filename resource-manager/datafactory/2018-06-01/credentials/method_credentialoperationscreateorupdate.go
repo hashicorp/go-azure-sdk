@@ -52,7 +52,8 @@ func (c CredentialsClient) CredentialOperationsCreateOrUpdate(ctx context.Contex
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c WebAppsClient) ListWorkflowsConnectionsSlot(ctx context.Context, id Slot
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listWorkflowsConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/listWorkflowsConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

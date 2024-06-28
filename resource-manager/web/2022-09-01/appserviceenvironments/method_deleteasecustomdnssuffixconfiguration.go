@@ -28,7 +28,8 @@ func (c AppServiceEnvironmentsClient) DeleteAseCustomDnsSuffixConfiguration(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/configurations/customdnssuffix", id.ID()),
+
+		Path: fmt.Sprintf("%s/configurations/customdnssuffix", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

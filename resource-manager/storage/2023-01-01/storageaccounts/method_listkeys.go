@@ -53,7 +53,8 @@ func (c StorageAccountsClient) ListKeys(ctx context.Context, id commonids.Storag
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listKeys", id.ID()),
 		OptionsObject: options,
 	}

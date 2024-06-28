@@ -25,7 +25,8 @@ func (c RestorePointCollectionsClient) Update(ctx context.Context, id RestorePoi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

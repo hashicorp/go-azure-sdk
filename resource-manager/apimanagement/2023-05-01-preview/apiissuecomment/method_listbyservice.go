@@ -58,6 +58,18 @@ func (o ListByServiceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByService ...
 func (c ApiIssueCommentClient) ListByService(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (result ListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c ApiIssueCommentClient) ListByService(ctx context.Context, id ApiIssueId,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/comments", id.ID()),
 		OptionsObject: options,
 	}

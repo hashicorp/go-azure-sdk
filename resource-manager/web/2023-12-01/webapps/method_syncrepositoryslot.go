@@ -25,7 +25,8 @@ func (c WebAppsClient) SyncRepositorySlot(ctx context.Context, id SlotId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sync", id.ID()),
+
+		Path: fmt.Sprintf("%s/sync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

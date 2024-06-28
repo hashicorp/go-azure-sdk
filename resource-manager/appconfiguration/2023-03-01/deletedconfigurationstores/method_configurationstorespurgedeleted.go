@@ -30,7 +30,8 @@ func (c DeletedConfigurationStoresClient) ConfigurationStoresPurgeDeleted(ctx co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/purge", id.ID()),
+
+		Path: fmt.Sprintf("%s/purge", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

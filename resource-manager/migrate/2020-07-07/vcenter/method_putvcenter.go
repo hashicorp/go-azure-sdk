@@ -24,7 +24,8 @@ func (c VCenterClient) PutVCenter(ctx context.Context, id VCenterId, input VCent
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

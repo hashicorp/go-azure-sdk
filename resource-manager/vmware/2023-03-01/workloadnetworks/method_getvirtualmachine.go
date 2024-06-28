@@ -25,7 +25,8 @@ func (c WorkloadNetworksClient) GetVirtualMachine(ctx context.Context, id Defaul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

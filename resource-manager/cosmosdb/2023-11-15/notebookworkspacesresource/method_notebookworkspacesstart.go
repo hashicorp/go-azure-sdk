@@ -29,7 +29,8 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesStart(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/notebookWorkspaces/default/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/notebookWorkspaces/default/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c SqlVirtualMachinesClient) Get(ctx context.Context, id SqlVirtualMachineI
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

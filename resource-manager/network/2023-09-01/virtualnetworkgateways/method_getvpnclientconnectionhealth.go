@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) GetVpnclientConnectionHealth(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getVpnClientConnectionHealth", id.ID()),
+
+		Path: fmt.Sprintf("%s/getVpnClientConnectionHealth", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

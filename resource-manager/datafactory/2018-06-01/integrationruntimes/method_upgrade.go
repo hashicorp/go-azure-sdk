@@ -25,7 +25,8 @@ func (c IntegrationRuntimesClient) Upgrade(ctx context.Context, id IntegrationRu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

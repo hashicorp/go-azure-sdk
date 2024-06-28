@@ -26,7 +26,8 @@ func (c WebAppsClient) UpdateScmAllowedSlot(ctx context.Context, id SlotId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/basicPublishingCredentialsPolicies/scm", id.ID()),
+
+		Path: fmt.Sprintf("%s/basicPublishingCredentialsPolicies/scm", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

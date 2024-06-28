@@ -27,7 +27,8 @@ func (c ServerConfigurationOptionsClient) Get(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/serverConfigurationOptions/allowPolybaseExport", id.ID()),
+
+		Path: fmt.Sprintf("%s/serverConfigurationOptions/allowPolybaseExport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c WebAppsClient) UpdateSourceControl(ctx context.Context, id commonids.App
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/sourceControls/web", id.ID()),
+
+		Path: fmt.Sprintf("%s/sourceControls/web", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

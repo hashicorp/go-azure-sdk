@@ -50,6 +50,18 @@ func (o ListByTableOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByTableCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByTableCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByTable ...
 func (c ManagedDatabaseColumnsClient) ListByTable(ctx context.Context, id SchemaTableId, options ListByTableOperationOptions) (result ListByTableOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c ManagedDatabaseColumnsClient) ListByTable(ctx context.Context, id Schema
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByTableCustomPager{},
 		Path:          fmt.Sprintf("%s/columns", id.ID()),
 		OptionsObject: options,
 	}

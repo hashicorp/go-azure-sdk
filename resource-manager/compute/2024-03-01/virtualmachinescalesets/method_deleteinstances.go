@@ -55,7 +55,8 @@ func (c VirtualMachineScaleSetsClient) DeleteInstances(ctx context.Context, id V
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/delete", id.ID()),
 		OptionsObject: options,
 	}

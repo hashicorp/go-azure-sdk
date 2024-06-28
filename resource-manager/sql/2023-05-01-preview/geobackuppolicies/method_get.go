@@ -27,7 +27,8 @@ func (c GeoBackupPoliciesClient) Get(ctx context.Context, id commonids.SqlDataba
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/geoBackupPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/geoBackupPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

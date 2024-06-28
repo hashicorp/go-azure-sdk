@@ -29,7 +29,8 @@ func (c UpdatesClient) Post(ctx context.Context, id UpdateId) (result PostOperat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/apply", id.ID()),
+
+		Path: fmt.Sprintf("%s/apply", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

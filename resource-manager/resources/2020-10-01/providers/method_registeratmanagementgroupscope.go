@@ -25,7 +25,8 @@ func (c ProvidersClient) RegisterAtManagementGroupScope(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/register", id.ID()),
+
+		Path: fmt.Sprintf("%s/register", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

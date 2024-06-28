@@ -54,6 +54,18 @@ func (o StorageTaskAssignmentInstancesReportListOperationOptions) ToQuery() *cli
 	return &out
 }
 
+type StorageTaskAssignmentInstancesReportListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *StorageTaskAssignmentInstancesReportListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StorageTaskAssignmentInstancesReportList ...
 func (c StorageTaskAssignmentsClient) StorageTaskAssignmentInstancesReportList(ctx context.Context, id StorageTaskAssignmentId, options StorageTaskAssignmentInstancesReportListOperationOptions) (result StorageTaskAssignmentInstancesReportListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c StorageTaskAssignmentsClient) StorageTaskAssignmentInstancesReportList(c
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &StorageTaskAssignmentInstancesReportListCustomPager{},
 		Path:          fmt.Sprintf("%s/reports", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c ManagedClustersClient) GetCommandResult(ctx context.Context, id CommandR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

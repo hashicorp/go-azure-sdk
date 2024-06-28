@@ -27,7 +27,8 @@ func (c WorkbookTemplatesAPIsClient) WorkbookTemplatesListByResourceGroup(ctx co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Insights/workbookTemplates", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Insights/workbookTemplates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

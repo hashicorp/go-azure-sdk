@@ -52,7 +52,8 @@ func (c DocumentationResourceClient) Update(ctx context.Context, id Documentatio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

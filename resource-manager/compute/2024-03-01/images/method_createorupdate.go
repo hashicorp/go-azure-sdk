@@ -30,7 +30,8 @@ func (c ImagesClient) CreateOrUpdate(ctx context.Context, id ImageId, input Imag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

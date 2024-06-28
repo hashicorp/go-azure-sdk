@@ -26,7 +26,8 @@ func (c PUTClient) ProjectsCreateOrUpdate(ctx context.Context, id ProjectId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

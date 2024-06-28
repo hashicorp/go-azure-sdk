@@ -29,7 +29,8 @@ func (c BackupInstancesClient) TriggerRehydrate(ctx context.Context, id BackupIn
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rehydrate", id.ID()),
+
+		Path: fmt.Sprintf("%s/rehydrate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

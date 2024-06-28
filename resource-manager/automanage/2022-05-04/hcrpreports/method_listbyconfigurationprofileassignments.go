@@ -26,7 +26,8 @@ func (c HCRPReportsClient) ListByConfigurationProfileAssignments(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/reports", id.ID()),
+
+		Path: fmt.Sprintf("%s/reports", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

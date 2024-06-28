@@ -26,7 +26,8 @@ func (c WebAppsClient) GetMigrateMySqlStatusSlot(ctx context.Context, id SlotId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/migrateMySql/status", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrateMySql/status", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

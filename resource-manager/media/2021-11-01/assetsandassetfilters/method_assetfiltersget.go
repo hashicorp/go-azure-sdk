@@ -25,7 +25,8 @@ func (c AssetsAndAssetFiltersClient) AssetFiltersGet(ctx context.Context, id Ass
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

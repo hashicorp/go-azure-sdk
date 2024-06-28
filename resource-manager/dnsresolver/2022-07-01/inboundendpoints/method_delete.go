@@ -56,7 +56,8 @@ func (c InboundEndpointsClient) Delete(ctx context.Context, id InboundEndpointId
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

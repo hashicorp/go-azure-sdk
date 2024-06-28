@@ -26,7 +26,8 @@ func (c PartnerNamespacesClient) RegenerateKey(ctx context.Context, id PartnerNa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

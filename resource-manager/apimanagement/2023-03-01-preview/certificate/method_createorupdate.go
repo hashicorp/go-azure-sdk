@@ -53,7 +53,8 @@ func (c CertificateClient) CreateOrUpdate(ctx context.Context, id CertificateId,
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

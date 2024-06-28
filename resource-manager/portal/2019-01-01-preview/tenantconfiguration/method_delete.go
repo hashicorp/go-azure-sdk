@@ -25,7 +25,8 @@ func (c TenantConfigurationClient) Delete(ctx context.Context) (result DeleteOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       "/providers/Microsoft.Portal/tenantConfigurations/default",
+
+		Path: "/providers/Microsoft.Portal/tenantConfigurations/default",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

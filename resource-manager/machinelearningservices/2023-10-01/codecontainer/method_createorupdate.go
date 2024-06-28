@@ -26,7 +26,8 @@ func (c CodeContainerClient) CreateOrUpdate(ctx context.Context, id CodeId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

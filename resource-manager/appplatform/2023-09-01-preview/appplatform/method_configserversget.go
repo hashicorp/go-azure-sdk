@@ -27,7 +27,8 @@ func (c AppPlatformClient) ConfigServersGet(ctx context.Context, id commonids.Sp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/configServers/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/configServers/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

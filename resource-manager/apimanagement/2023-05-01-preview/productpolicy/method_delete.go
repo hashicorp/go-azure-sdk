@@ -52,7 +52,8 @@ func (c ProductPolicyClient) Delete(ctx context.Context, id ProductId, options D
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

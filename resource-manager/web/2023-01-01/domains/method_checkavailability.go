@@ -27,7 +27,8 @@ func (c DomainsClient) CheckAvailability(ctx context.Context, id commonids.Subsc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DomainRegistration/checkDomainAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DomainRegistration/checkDomainAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

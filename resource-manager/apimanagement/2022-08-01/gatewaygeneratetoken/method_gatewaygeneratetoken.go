@@ -26,7 +26,8 @@ func (c GatewayGenerateTokenClient) GatewayGenerateToken(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

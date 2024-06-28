@@ -30,7 +30,8 @@ func (c ReplicationMigrationItemsClient) Resync(ctx context.Context, id Replicat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resync", id.ID()),
+
+		Path: fmt.Sprintf("%s/resync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

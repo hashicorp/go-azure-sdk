@@ -25,7 +25,8 @@ func (c VCenterClient) GetVCenter(ctx context.Context, id VCenterId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

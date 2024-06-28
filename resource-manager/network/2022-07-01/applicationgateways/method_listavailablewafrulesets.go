@@ -27,7 +27,8 @@ func (c ApplicationGatewaysClient) ListAvailableWafRuleSets(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableWafRuleSets", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableWafRuleSets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -50,6 +50,18 @@ func (o ListByTargetServerOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByTargetServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByTargetServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByTargetServer ...
 func (c MigrationsClient) ListByTargetServer(ctx context.Context, id FlexibleServerId, options ListByTargetServerOperationOptions) (result ListByTargetServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c MigrationsClient) ListByTargetServer(ctx context.Context, id FlexibleSer
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByTargetServerCustomPager{},
 		Path:          fmt.Sprintf("%s/migrations", id.ID()),
 		OptionsObject: options,
 	}

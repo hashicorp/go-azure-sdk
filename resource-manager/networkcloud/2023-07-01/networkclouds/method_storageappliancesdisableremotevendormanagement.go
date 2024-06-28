@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) StorageAppliancesDisableRemoteVendorManagement(ctx 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableRemoteVendorManagement", id.ID()),
+
+		Path: fmt.Sprintf("%s/disableRemoteVendorManagement", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

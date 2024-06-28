@@ -29,7 +29,8 @@ func (c LabClient) SyncGroup(ctx context.Context, id LabId) (result SyncGroupOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncGroup", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncGroup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

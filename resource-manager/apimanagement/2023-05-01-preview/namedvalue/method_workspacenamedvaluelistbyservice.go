@@ -62,6 +62,18 @@ func (o WorkspaceNamedValueListByServiceOperationOptions) ToQuery() *client.Quer
 	return &out
 }
 
+type WorkspaceNamedValueListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceNamedValueListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceNamedValueListByService ...
 func (c NamedValueClient) WorkspaceNamedValueListByService(ctx context.Context, id WorkspaceId, options WorkspaceNamedValueListByServiceOperationOptions) (result WorkspaceNamedValueListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,6 +82,7 @@ func (c NamedValueClient) WorkspaceNamedValueListByService(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceNamedValueListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/namedValues", id.ID()),
 		OptionsObject: options,
 	}

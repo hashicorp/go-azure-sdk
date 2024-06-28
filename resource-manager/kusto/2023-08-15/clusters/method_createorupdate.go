@@ -61,7 +61,8 @@ func (c ClustersClient) CreateOrUpdate(ctx context.Context, id commonids.KustoCl
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

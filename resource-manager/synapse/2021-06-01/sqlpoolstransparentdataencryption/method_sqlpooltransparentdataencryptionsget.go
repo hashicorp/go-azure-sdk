@@ -26,7 +26,8 @@ func (c SqlPoolsTransparentDataEncryptionClient) SqlPoolTransparentDataEncryptio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/transparentDataEncryption/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/transparentDataEncryption/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

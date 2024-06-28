@@ -30,7 +30,8 @@ func (c LinksClient) LinkerValidate(ctx context.Context, id ScopedLinkerId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateLinker", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateLinker", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

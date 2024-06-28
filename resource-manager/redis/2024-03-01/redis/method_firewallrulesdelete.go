@@ -25,7 +25,8 @@ func (c RedisClient) FirewallRulesDelete(ctx context.Context, id FirewallRuleId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

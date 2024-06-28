@@ -60,7 +60,8 @@ func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id Ex
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/dimensions", id.ID()),
 		OptionsObject: options,
 	}

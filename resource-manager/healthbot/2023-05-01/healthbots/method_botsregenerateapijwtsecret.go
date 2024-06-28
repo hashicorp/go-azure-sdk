@@ -26,7 +26,8 @@ func (c HealthbotsClient) BotsRegenerateApiJwtSecret(ctx context.Context, id Hea
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateApiJwtSecret", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateApiJwtSecret", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

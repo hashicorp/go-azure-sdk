@@ -30,7 +30,8 @@ func (c ClustersClient) UpdateAutoScaleConfiguration(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roles/workernode/autoscale", id.ID()),
+
+		Path: fmt.Sprintf("%s/roles/workernode/autoscale", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

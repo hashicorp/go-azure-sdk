@@ -26,7 +26,8 @@ func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/networkSecurityPerimeterConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkSecurityPerimeterConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

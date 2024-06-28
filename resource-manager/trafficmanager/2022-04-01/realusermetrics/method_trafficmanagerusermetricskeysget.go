@@ -27,7 +27,8 @@ func (c RealUserMetricsClient) TrafficManagerUserMetricsKeysGet(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerUserMetricsKeys/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerUserMetricsKeys/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

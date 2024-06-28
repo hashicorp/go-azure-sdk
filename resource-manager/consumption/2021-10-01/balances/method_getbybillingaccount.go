@@ -26,7 +26,8 @@ func (c BalancesClient) GetByBillingAccount(ctx context.Context, id BillingAccou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Consumption/balances", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Consumption/balances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

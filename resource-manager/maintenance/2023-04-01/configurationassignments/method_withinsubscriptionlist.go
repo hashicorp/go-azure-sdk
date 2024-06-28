@@ -27,7 +27,8 @@ func (c ConfigurationAssignmentsClient) WithinSubscriptionList(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Maintenance/configurationAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Maintenance/configurationAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

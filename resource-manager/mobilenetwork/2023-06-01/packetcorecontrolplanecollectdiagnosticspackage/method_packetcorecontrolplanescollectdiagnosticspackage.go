@@ -30,7 +30,8 @@ func (c PacketCoreControlPlaneCollectDiagnosticsPackageClient) PacketCoreControl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/collectDiagnosticsPackage", id.ID()),
+
+		Path: fmt.Sprintf("%s/collectDiagnosticsPackage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

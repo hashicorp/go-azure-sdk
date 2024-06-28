@@ -25,7 +25,8 @@ func (c ScalingPlanClient) Get(ctx context.Context, id ScalingPlanId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

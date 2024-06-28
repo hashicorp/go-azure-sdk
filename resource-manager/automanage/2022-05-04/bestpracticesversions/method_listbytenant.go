@@ -26,7 +26,8 @@ func (c BestPracticesVersionsClient) ListByTenant(ctx context.Context, id BestPr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/versions", id.ID()),
+
+		Path: fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ProxyClient) ServicesCheckNameAvailability(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HealthcareApis/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HealthcareApis/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

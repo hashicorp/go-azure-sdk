@@ -28,7 +28,8 @@ func (c StartStopManagedInstanceSchedulesClient) CreateOrUpdate(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/startStopSchedules/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/startStopSchedules/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

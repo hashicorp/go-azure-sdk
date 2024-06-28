@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateApplicationSettings(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/appSettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/appSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

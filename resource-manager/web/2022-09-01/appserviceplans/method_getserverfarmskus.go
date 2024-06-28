@@ -27,7 +27,8 @@ func (c AppServicePlansClient) GetServerFarmSkus(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

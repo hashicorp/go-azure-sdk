@@ -30,7 +30,8 @@ func (c TasksClient) Create(ctx context.Context, id TaskId, input Task) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

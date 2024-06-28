@@ -25,7 +25,8 @@ func (c AppServicePlansClient) RebootWorker(ctx context.Context, id WorkerId) (r
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reboot", id.ID()),
+
+		Path: fmt.Sprintf("%s/reboot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

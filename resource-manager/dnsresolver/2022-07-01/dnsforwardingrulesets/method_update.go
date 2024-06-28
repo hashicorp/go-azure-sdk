@@ -56,7 +56,8 @@ func (c DnsForwardingRulesetsClient) Update(ctx context.Context, id DnsForwardin
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

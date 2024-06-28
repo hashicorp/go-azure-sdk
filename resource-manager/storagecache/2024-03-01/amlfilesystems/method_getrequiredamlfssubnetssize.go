@@ -27,7 +27,8 @@ func (c AmlFilesystemsClient) GetRequiredAmlFSSubnetsSize(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.StorageCache/getRequiredAmlFSSubnetsSize", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.StorageCache/getRequiredAmlFSSubnetsSize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

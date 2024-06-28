@@ -25,7 +25,8 @@ func (c StorageAccountsClient) Get(ctx context.Context, id StorageAccountId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

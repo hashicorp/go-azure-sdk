@@ -24,7 +24,8 @@ func (c DataLakeStoreAccountsClient) Add(ctx context.Context, id DataLakeStoreAc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -63,7 +63,8 @@ func (c TrafficFilterClient) CreateAndAssociatePLFilterCreate(ctx context.Contex
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/createAndAssociatePLFilter", id.ID()),
 		OptionsObject: options,
 	}

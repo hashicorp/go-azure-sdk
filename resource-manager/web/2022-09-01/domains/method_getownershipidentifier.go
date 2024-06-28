@@ -25,7 +25,8 @@ func (c DomainsClient) GetOwnershipIdentifier(ctx context.Context, id DomainOwne
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

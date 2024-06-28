@@ -58,6 +58,18 @@ func (o WorkspaceTagProductLinkListByProductOperationOptions) ToQuery() *client.
 	return &out
 }
 
+type WorkspaceTagProductLinkListByProductCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceTagProductLinkListByProductCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceTagProductLinkListByProduct ...
 func (c TagProductLinkClient) WorkspaceTagProductLinkListByProduct(ctx context.Context, id WorkspaceTagId, options WorkspaceTagProductLinkListByProductOperationOptions) (result WorkspaceTagProductLinkListByProductOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c TagProductLinkClient) WorkspaceTagProductLinkListByProduct(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceTagProductLinkListByProductCustomPager{},
 		Path:          fmt.Sprintf("%s/productLinks", id.ID()),
 		OptionsObject: options,
 	}

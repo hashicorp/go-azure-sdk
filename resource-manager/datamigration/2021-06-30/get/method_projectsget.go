@@ -25,7 +25,8 @@ func (c GETClient) ProjectsGet(ctx context.Context, id ProjectId) (result Projec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

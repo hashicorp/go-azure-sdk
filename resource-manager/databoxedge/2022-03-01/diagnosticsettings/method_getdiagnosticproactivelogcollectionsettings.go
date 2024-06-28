@@ -26,7 +26,8 @@ func (c DiagnosticSettingsClient) GetDiagnosticProactiveLogCollectionSettings(ct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/diagnosticProactiveLogCollectionSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/diagnosticProactiveLogCollectionSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

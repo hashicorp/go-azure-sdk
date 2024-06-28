@@ -24,7 +24,8 @@ func (c ApiOperationClient) WorkspaceApiOperationGetEntityTag(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

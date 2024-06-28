@@ -30,7 +30,8 @@ func (c TriggersClient) CreateOrUpdate(ctx context.Context, id TriggerId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

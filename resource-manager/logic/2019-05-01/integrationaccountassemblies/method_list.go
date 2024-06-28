@@ -26,7 +26,8 @@ func (c IntegrationAccountAssembliesClient) List(ctx context.Context, id Integra
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/assemblies", id.ID()),
+
+		Path: fmt.Sprintf("%s/assemblies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ServerValidateEstimateHighAvailabilityClient) ServersValidateEstimateHig
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateEstimateHighAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateEstimateHighAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

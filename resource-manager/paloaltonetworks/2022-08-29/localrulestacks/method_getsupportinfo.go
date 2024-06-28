@@ -52,7 +52,8 @@ func (c LocalRulestacksClient) GetSupportInfo(ctx context.Context, id LocalRules
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/getSupportInfo", id.ID()),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c EnvironmentsClient) ListByResourceGroup(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.TimeSeriesInsights/environments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.TimeSeriesInsights/environments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

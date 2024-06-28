@@ -25,7 +25,8 @@ func (c ProductWikiClient) GetEntityTag(ctx context.Context, id ProductId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       fmt.Sprintf("%s/wikis/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

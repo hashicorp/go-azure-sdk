@@ -25,7 +25,8 @@ func (c NetworkGroupsClient) Get(ctx context.Context, id NetworkGroupId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

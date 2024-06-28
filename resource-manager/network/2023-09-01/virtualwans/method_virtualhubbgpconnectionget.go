@@ -26,7 +26,8 @@ func (c VirtualWANsClient) VirtualHubBgpConnectionGet(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

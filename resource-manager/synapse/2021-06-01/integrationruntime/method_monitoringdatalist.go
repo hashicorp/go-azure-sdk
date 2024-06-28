@@ -26,7 +26,8 @@ func (c IntegrationRuntimeClient) MonitoringDataList(ctx context.Context, id Int
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/monitoringData", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoringData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

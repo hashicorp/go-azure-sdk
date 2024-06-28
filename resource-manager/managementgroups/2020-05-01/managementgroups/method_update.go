@@ -53,7 +53,8 @@ func (c ManagementGroupsClient) Update(ctx context.Context, id commonids.Managem
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

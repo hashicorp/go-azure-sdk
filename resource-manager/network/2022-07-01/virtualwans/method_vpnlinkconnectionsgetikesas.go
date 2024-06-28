@@ -30,7 +30,8 @@ func (c VirtualWANsClient) VpnLinkConnectionsGetIkeSas(ctx context.Context, id V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getikesas", id.ID()),
+
+		Path: fmt.Sprintf("%s/getikesas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

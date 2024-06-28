@@ -28,7 +28,8 @@ func (c DefenderForStorageClient) Create(ctx context.Context, id commonids.Scope
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Security/defenderForStorageSettings/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Security/defenderForStorageSettings/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) ClustersDeploy(ctx context.Context, id ClusterId, i
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/deploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SqlPoolsRestorePointsClient) SqlPoolRestorePointsDelete(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

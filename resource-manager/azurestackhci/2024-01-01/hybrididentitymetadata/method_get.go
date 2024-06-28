@@ -27,7 +27,8 @@ func (c HybridIdentityMetadataClient) Get(ctx context.Context, id commonids.Scop
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/hybridIdentityMetadata/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/hybridIdentityMetadata/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

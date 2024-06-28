@@ -23,6 +23,18 @@ type AzureADOnlyAuthenticationsListCompleteResult struct {
 	Items              []AzureADOnlyAuthentication
 }
 
+type AzureADOnlyAuthenticationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AzureADOnlyAuthenticationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AzureADOnlyAuthenticationsList ...
 func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsList(ctx context.Context, id WorkspaceId) (result AzureADOnlyAuthenticationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsLis
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AzureADOnlyAuthenticationsListCustomPager{},
 		Path:       fmt.Sprintf("%s/azureADOnlyAuthentications", id.ID()),
 	}
 

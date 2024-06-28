@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateSwiftVirtualNetworkConnectionWithCheck(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

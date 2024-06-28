@@ -26,7 +26,8 @@ func (c WebAppsClient) ResetProductionSlotConfig(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetSlotConfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetSlotConfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

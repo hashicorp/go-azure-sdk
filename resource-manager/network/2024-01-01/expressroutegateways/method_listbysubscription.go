@@ -27,7 +27,8 @@ func (c ExpressRouteGatewaysClient) ListBySubscription(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/expressRouteGateways", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/expressRouteGateways", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

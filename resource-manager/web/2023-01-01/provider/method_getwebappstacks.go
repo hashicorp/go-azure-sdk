@@ -50,6 +50,18 @@ func (o GetWebAppStacksOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetWebAppStacksCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetWebAppStacksCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetWebAppStacks ...
 func (c ProviderClient) GetWebAppStacks(ctx context.Context, options GetWebAppStacksOperationOptions) (result GetWebAppStacksOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c ProviderClient) GetWebAppStacks(ctx context.Context, options GetWebAppSt
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &GetWebAppStacksCustomPager{},
 		Path:          "/providers/Microsoft.Web/webAppStacks",
 		OptionsObject: options,
 	}

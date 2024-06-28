@@ -27,7 +27,8 @@ func (c LocalUsersClient) List(ctx context.Context, id commonids.StorageAccountI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/localUsers", id.ID()),
+
+		Path: fmt.Sprintf("%s/localUsers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

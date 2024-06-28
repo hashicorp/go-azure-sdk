@@ -25,7 +25,8 @@ func (c ResourceGuardsClient) Get(ctx context.Context, id ResourceGuardId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

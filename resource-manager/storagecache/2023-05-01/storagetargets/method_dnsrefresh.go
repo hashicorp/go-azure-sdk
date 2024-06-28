@@ -29,7 +29,8 @@ func (c StorageTargetsClient) DnsRefresh(ctx context.Context, id StorageTargetId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dnsRefresh", id.ID()),
+
+		Path: fmt.Sprintf("%s/dnsRefresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

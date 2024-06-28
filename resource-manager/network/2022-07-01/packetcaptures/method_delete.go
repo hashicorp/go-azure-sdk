@@ -29,7 +29,8 @@ func (c PacketCapturesClient) Delete(ctx context.Context, id PacketCaptureId) (r
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

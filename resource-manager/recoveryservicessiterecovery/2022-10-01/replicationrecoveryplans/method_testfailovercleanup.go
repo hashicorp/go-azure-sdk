@@ -30,7 +30,8 @@ func (c ReplicationRecoveryPlansClient) TestFailoverCleanup(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/testFailoverCleanup", id.ID()),
+
+		Path: fmt.Sprintf("%s/testFailoverCleanup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -32,7 +32,8 @@ func (c ManagedInstanceAdministratorsClient) CreateOrUpdate(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

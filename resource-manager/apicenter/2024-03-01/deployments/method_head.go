@@ -24,7 +24,8 @@ func (c DeploymentsClient) Head(ctx context.Context, id DeploymentId) (result He
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

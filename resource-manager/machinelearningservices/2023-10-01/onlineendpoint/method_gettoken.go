@@ -26,7 +26,8 @@ func (c OnlineEndpointClient) GetToken(ctx context.Context, id OnlineEndpointId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/token", id.ID()),
+
+		Path: fmt.Sprintf("%s/token", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

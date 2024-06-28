@@ -56,7 +56,8 @@ func (c ContainerInstanceClient) ContainersListLogs(ctx context.Context, id Cont
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/logs", id.ID()),
 		OptionsObject: options,
 	}

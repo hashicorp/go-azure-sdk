@@ -26,7 +26,8 @@ func (c PartnerDestinationsClient) Activate(ctx context.Context, id PartnerDesti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activate", id.ID()),
+
+		Path: fmt.Sprintf("%s/activate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

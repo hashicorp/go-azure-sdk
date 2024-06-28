@@ -26,7 +26,8 @@ func (c RecommendationsClient) ResetAllFilters(ctx context.Context, id commonids
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/recommendations/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/recommendations/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

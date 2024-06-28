@@ -25,7 +25,8 @@ func (c DeviceupdatesClient) InstancesUpdate(ctx context.Context, id InstanceId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c PolicyClient) PoliciesCreateOrUpdateByBillingProfile(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/policies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/policies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

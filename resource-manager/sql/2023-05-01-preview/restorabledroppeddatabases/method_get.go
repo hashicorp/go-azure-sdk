@@ -56,7 +56,8 @@ func (c RestorableDroppedDatabasesClient) Get(ctx context.Context, id Restorable
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

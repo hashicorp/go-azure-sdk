@@ -30,7 +30,8 @@ func (c ManagedClustersClient) RotateClusterCertificates(ctx context.Context, id
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateClusterCertificates", id.ID()),
+
+		Path: fmt.Sprintf("%s/rotateClusterCertificates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

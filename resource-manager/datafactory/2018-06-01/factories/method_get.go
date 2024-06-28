@@ -52,7 +52,8 @@ func (c FactoriesClient) Get(ctx context.Context, id FactoryId, options GetOpera
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c WorkflowResourceClient) WorkflowsAbort(ctx context.Context, id WorkflowI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/abort", id.ID()),
+
+		Path: fmt.Sprintf("%s/abort", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

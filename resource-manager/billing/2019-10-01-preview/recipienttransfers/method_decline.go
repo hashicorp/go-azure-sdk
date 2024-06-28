@@ -26,7 +26,8 @@ func (c RecipientTransfersClient) Decline(ctx context.Context, id TransferId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/declineTransfer", id.ID()),
+
+		Path: fmt.Sprintf("%s/declineTransfer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

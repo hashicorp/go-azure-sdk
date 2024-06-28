@@ -25,7 +25,8 @@ func (c PrivateLinkResourceClient) Get(ctx context.Context, id PrivateLinkResour
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

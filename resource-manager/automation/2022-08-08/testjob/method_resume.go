@@ -25,7 +25,8 @@ func (c TestJobClient) Resume(ctx context.Context, id RunbookId) (result ResumeO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/draft/testJob/resume", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/testJob/resume", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

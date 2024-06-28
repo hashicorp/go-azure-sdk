@@ -26,7 +26,8 @@ func (c POSTClient) FilesRead(ctx context.Context, id FileId) (result FilesReadO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/read", id.ID()),
+
+		Path: fmt.Sprintf("%s/read", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

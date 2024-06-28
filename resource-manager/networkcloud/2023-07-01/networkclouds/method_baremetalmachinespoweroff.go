@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) BareMetalMachinesPowerOff(ctx context.Context, id B
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/powerOff", id.ID()),
+
+		Path: fmt.Sprintf("%s/powerOff", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

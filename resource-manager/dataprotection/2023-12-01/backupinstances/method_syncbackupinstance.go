@@ -29,7 +29,8 @@ func (c BackupInstancesClient) SyncBackupInstance(ctx context.Context, id Backup
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sync", id.ID()),
+
+		Path: fmt.Sprintf("%s/sync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

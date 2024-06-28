@@ -29,7 +29,8 @@ func (c AgentPoolsClient) Delete(ctx context.Context, id AgentPoolId) (result De
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

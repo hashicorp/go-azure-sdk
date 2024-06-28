@@ -26,7 +26,8 @@ func (c SAPSupportedSkuClient) SAPSupportedSku(ctx context.Context, id LocationI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getSapSupportedSku", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getSapSupportedSku", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

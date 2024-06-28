@@ -52,7 +52,8 @@ func (c ServicesClient) Delete(ctx context.Context, id SearchServiceId, options 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

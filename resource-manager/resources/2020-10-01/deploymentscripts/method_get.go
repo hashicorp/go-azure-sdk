@@ -26,7 +26,8 @@ func (c DeploymentScriptsClient) Get(ctx context.Context, id DeploymentScriptId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c PrivateEndpointConnectionsClient) Get(ctx context.Context, id PrivateEnd
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

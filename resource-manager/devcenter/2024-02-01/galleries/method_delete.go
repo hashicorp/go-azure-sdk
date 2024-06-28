@@ -29,7 +29,8 @@ func (c GalleriesClient) Delete(ctx context.Context, id GalleryId) (result Delet
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

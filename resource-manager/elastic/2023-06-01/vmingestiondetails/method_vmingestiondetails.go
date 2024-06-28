@@ -26,7 +26,8 @@ func (c VMIngestionDetailsClient) VMIngestionDetails(ctx context.Context, id Mon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vmIngestionDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/vmIngestionDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c CreditsClient) Get(ctx context.Context, id BillingProfileId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Consumption/credits/balanceSummary", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Consumption/credits/balanceSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

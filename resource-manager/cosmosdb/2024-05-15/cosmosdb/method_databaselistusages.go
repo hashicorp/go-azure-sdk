@@ -52,7 +52,8 @@ func (c CosmosDBClient) DatabaseListUsages(ctx context.Context, id DatabaseId, o
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/usages", id.ID()),
 		OptionsObject: options,
 	}

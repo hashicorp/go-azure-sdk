@@ -52,7 +52,8 @@ func (c PolicyRestrictionClient) Update(ctx context.Context, id PolicyRestrictio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

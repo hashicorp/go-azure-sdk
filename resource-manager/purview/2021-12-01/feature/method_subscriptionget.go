@@ -26,7 +26,8 @@ func (c FeatureClient) SubscriptionGet(ctx context.Context, id LocationId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listFeatures", id.ID()),
+
+		Path: fmt.Sprintf("%s/listFeatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

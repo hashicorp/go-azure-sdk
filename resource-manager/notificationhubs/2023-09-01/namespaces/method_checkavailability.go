@@ -27,7 +27,8 @@ func (c NamespacesClient) CheckAvailability(ctx context.Context, id commonids.Su
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.NotificationHubs/checkNamespaceAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.NotificationHubs/checkNamespaceAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

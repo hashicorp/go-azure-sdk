@@ -101,7 +101,8 @@ func (c MetricsClient) ListAtSubscriptionScope(ctx context.Context, id commonids
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metrics", id.ID()),
 		OptionsObject: options,
 	}

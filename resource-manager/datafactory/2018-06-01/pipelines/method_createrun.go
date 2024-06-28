@@ -64,7 +64,8 @@ func (c PipelinesClient) CreateRun(ctx context.Context, id PipelineId, input map
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/createRun", id.ID()),
 		OptionsObject: options,
 	}

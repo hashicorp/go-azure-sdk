@@ -27,7 +27,8 @@ func (c ManagedInstanceEncryptionProtectorsClient) Get(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/encryptionProtector/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/encryptionProtector/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

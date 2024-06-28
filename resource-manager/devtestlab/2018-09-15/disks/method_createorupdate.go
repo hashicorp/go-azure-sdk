@@ -30,7 +30,8 @@ func (c DisksClient) CreateOrUpdate(ctx context.Context, id DiskId, input Disk) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

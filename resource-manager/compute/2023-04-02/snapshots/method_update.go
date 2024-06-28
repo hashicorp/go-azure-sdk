@@ -30,7 +30,8 @@ func (c SnapshotsClient) Update(ctx context.Context, id SnapshotId, input Snapsh
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

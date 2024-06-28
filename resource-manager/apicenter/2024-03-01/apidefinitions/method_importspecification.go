@@ -29,7 +29,8 @@ func (c ApiDefinitionsClient) ImportSpecification(ctx context.Context, id Defini
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importSpecification", id.ID()),
+
+		Path: fmt.Sprintf("%s/importSpecification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

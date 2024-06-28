@@ -28,7 +28,8 @@ func (c WebAppsClient) GetSourceControlSlot(ctx context.Context, id SlotId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/sourceControls/web", id.ID()),
+
+		Path: fmt.Sprintf("%s/sourceControls/web", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

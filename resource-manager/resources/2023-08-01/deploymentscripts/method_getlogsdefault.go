@@ -52,7 +52,8 @@ func (c DeploymentScriptsClient) GetLogsDefault(ctx context.Context, id Deployme
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/logs/default", id.ID()),
 		OptionsObject: options,
 	}

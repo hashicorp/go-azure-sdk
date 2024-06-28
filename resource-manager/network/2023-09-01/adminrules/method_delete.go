@@ -56,7 +56,8 @@ func (c AdminRulesClient) Delete(ctx context.Context, id RuleId, options DeleteO
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

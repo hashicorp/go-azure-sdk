@@ -52,7 +52,8 @@ func (c TriggersClient) CreateOrUpdate(ctx context.Context, id TriggerId, input 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

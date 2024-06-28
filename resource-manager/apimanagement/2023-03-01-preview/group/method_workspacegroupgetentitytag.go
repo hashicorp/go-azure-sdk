@@ -24,7 +24,8 @@ func (c GroupClient) WorkspaceGroupGetEntityTag(ctx context.Context, id Workspac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

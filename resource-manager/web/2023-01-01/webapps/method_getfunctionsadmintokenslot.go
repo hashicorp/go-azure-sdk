@@ -26,7 +26,8 @@ func (c WebAppsClient) GetFunctionsAdminTokenSlot(ctx context.Context, id SlotId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/functions/admin/token", id.ID()),
+
+		Path: fmt.Sprintf("%s/functions/admin/token", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -54,6 +54,18 @@ func (o WorkspaceConnectionsListOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
+type WorkspaceConnectionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceConnectionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceConnectionsList ...
 func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsList(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions) (result WorkspaceConnectionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsList(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceConnectionsListCustomPager{},
 		Path:          fmt.Sprintf("%s/connections", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c CheckDataConnectorRequirementsClient) DataConnectorsCheckRequirementsPos
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/dataConnectorsCheckRequirements", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/dataConnectorsCheckRequirements", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

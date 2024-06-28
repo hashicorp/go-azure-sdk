@@ -26,7 +26,8 @@ func (c DeploymentStacksClient) ExportTemplateAtResourceGroup(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/exportTemplate", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportTemplate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

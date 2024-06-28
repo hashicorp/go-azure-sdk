@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) BareMetalMachinesReimage(ctx context.Context, id Ba
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reimage", id.ID()),
+
+		Path: fmt.Sprintf("%s/reimage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c LinkedServicesClient) ListByWorkspace(ctx context.Context, id WorkspaceI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/linkedServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/linkedServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

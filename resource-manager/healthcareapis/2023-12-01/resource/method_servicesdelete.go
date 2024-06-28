@@ -29,7 +29,8 @@ func (c ResourceClient) ServicesDelete(ctx context.Context, id ServiceId) (resul
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

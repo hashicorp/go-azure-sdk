@@ -26,7 +26,8 @@ func (c LoadBalancersClient) MigrateToIPBased(ctx context.Context, id LoadBalanc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrateToIpBased", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrateToIpBased", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

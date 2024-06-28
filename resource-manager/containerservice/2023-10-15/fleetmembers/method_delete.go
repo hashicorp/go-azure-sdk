@@ -56,7 +56,8 @@ func (c FleetMembersClient) Delete(ctx context.Context, id MemberId, options Del
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

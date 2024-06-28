@@ -26,7 +26,8 @@ func (c WorkflowResourceClient) WorkflowsListByStorageSyncService(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/workflows", id.ID()),
+
+		Path: fmt.Sprintf("%s/workflows", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

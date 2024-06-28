@@ -25,7 +25,8 @@ func (c ResourceProvidersClient) GetPublishingUser(ctx context.Context) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.Web/publishingUsers/web",
+
+		Path: "/providers/Microsoft.Web/publishingUsers/web",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

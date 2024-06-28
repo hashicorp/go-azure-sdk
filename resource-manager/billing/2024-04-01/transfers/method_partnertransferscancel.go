@@ -26,7 +26,8 @@ func (c TransfersClient) PartnerTransfersCancel(ctx context.Context, id Customer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

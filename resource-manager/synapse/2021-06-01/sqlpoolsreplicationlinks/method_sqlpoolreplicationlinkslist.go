@@ -23,6 +23,18 @@ type SqlPoolReplicationLinksListCompleteResult struct {
 	Items              []ReplicationLink
 }
 
+type SqlPoolReplicationLinksListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolReplicationLinksListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolReplicationLinksList ...
 func (c SqlPoolsReplicationLinksClient) SqlPoolReplicationLinksList(ctx context.Context, id SqlPoolId) (result SqlPoolReplicationLinksListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsReplicationLinksClient) SqlPoolReplicationLinksList(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolReplicationLinksListCustomPager{},
 		Path:       fmt.Sprintf("%s/replicationLinks", id.ID()),
 	}
 

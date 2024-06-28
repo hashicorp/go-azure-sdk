@@ -26,7 +26,8 @@ func (c TenantConfigurationSyncStateClient) TenantConfigurationGetSyncState(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tenant/configuration/syncState", id.ID()),
+
+		Path: fmt.Sprintf("%s/tenant/configuration/syncState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

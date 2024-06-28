@@ -56,7 +56,8 @@ func (c RestorablesClient) RestorableGremlinResourcesList(ctx context.Context, i
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/restorableGremlinResources", id.ID()),
 		OptionsObject: options,
 	}

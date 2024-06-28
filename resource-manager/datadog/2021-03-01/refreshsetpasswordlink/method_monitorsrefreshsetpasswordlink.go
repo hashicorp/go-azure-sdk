@@ -26,7 +26,8 @@ func (c RefreshSetPasswordLinkClient) MonitorsRefreshSetPasswordLink(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshSetPasswordLink", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshSetPasswordLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

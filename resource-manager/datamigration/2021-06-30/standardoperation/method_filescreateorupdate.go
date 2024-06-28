@@ -26,7 +26,8 @@ func (c StandardOperationClient) FilesCreateOrUpdate(ctx context.Context, id Fil
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

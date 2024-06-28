@@ -60,7 +60,8 @@ func (c DefaultAccountClient) Get(ctx context.Context, options GetOperationOptio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          "/providers/Microsoft.Purview/getDefaultAccount",
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c MonitoredSubscriptionsClient) Get(ctx context.Context, id MonitorId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c WorkspacePolicyClient) Delete(ctx context.Context, id WorkspaceId, optio
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c WorkspacesClient) SharedKeysGetSharedKeys(ctx context.Context, id Worksp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sharedKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/sharedKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

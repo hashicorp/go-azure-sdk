@@ -55,7 +55,8 @@ func (c BackupInstancesClient) SuspendBackups(ctx context.Context, id BackupInst
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/suspendBackups", id.ID()),
 		OptionsObject: options,
 	}

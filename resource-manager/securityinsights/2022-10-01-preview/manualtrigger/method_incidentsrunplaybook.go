@@ -26,7 +26,8 @@ func (c ManualTriggerClient) IncidentsRunPlaybook(ctx context.Context, id Incide
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runPlaybook", id.ID()),
+
+		Path: fmt.Sprintf("%s/runPlaybook", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

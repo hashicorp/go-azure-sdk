@@ -23,6 +23,18 @@ type FilesListCompleteResult struct {
 	Items              []ProjectFile
 }
 
+type FilesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *FilesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // FilesList ...
 func (c FileResourceClient) FilesList(ctx context.Context, id ProjectId) (result FilesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c FileResourceClient) FilesList(ctx context.Context, id ProjectId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &FilesListCustomPager{},
 		Path:       fmt.Sprintf("%s/files", id.ID()),
 	}
 

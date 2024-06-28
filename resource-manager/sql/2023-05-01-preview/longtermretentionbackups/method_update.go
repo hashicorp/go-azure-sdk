@@ -30,7 +30,8 @@ func (c LongTermRetentionBackupsClient) Update(ctx context.Context, id LongTermR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/update", id.ID()),
+
+		Path: fmt.Sprintf("%s/update", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SpacecraftClient) Get(ctx context.Context, id SpacecraftId) (result GetO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

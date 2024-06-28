@@ -27,7 +27,8 @@ func (c SubscriptionsClient) GetCustomDomainVerificationId(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.App/getCustomDomainVerificationId", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.App/getCustomDomainVerificationId", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,7 +24,8 @@ func (c NamedValueClient) WorkspaceNamedValueGetEntityTag(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

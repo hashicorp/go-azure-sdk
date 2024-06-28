@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) FailoverCommit(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/failoverCommit", id.ID()),
+
+		Path: fmt.Sprintf("%s/failoverCommit", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

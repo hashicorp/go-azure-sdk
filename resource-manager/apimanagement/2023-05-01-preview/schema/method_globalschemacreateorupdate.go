@@ -56,7 +56,8 @@ func (c SchemaClient) GlobalSchemaCreateOrUpdate(ctx context.Context, id SchemaI
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

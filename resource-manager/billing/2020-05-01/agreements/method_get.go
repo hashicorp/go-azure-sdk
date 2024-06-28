@@ -52,7 +52,8 @@ func (c AgreementsClient) Get(ctx context.Context, id AgreementId, options GetOp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

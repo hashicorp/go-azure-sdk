@@ -30,7 +30,8 @@ func (c ReplicationJobsClient) Export(ctx context.Context, id VaultId, input Job
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replicationJobs/export", id.ID()),
+
+		Path: fmt.Sprintf("%s/replicationJobs/export", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

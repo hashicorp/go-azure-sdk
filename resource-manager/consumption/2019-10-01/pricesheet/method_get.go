@@ -57,7 +57,8 @@ func (c PriceSheetClient) Get(ctx context.Context, id commonids.SubscriptionId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/pricesheets/default", id.ID()),
 		OptionsObject: options,
 	}

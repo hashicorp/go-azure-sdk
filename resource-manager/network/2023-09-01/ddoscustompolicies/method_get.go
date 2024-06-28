@@ -25,7 +25,8 @@ func (c DdosCustomPoliciesClient) Get(ctx context.Context, id DdosCustomPolicyId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

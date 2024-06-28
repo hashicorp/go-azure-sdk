@@ -30,7 +30,8 @@ func (c BackupAndExportClient) Create(ctx context.Context, id FlexibleServerId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backupAndExport", id.ID()),
+
+		Path: fmt.Sprintf("%s/backupAndExport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

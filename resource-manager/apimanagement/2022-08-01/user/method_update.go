@@ -52,7 +52,8 @@ func (c UserClient) Update(ctx context.Context, id UserId, input UserUpdateParam
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

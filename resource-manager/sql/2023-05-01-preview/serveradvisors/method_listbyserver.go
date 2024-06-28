@@ -53,7 +53,8 @@ func (c ServerAdvisorsClient) ListByServer(ctx context.Context, id commonids.Sql
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/advisors", id.ID()),
 		OptionsObject: options,
 	}

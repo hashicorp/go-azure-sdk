@@ -27,7 +27,8 @@ func (c LogProfilesClient) List(ctx context.Context, id commonids.SubscriptionId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Insights/logProfiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Insights/logProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

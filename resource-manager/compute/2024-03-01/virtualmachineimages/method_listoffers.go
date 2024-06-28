@@ -26,7 +26,8 @@ func (c VirtualMachineImagesClient) ListOffers(ctx context.Context, id Publisher
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/artifactTypes/vmImage/offers", id.ID()),
+
+		Path: fmt.Sprintf("%s/artifactTypes/vmImage/offers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

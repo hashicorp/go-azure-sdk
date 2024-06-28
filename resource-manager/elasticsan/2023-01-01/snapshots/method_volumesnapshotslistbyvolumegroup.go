@@ -50,6 +50,18 @@ func (o VolumeSnapshotsListByVolumeGroupOperationOptions) ToQuery() *client.Quer
 	return &out
 }
 
+type VolumeSnapshotsListByVolumeGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *VolumeSnapshotsListByVolumeGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VolumeSnapshotsListByVolumeGroup ...
 func (c SnapshotsClient) VolumeSnapshotsListByVolumeGroup(ctx context.Context, id VolumeGroupId, options VolumeSnapshotsListByVolumeGroupOperationOptions) (result VolumeSnapshotsListByVolumeGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c SnapshotsClient) VolumeSnapshotsListByVolumeGroup(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &VolumeSnapshotsListByVolumeGroupCustomPager{},
 		Path:          fmt.Sprintf("%s/snapshots", id.ID()),
 		OptionsObject: options,
 	}

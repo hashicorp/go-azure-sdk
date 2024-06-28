@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetsClient) UpdateInstances(ctx context.Context, id V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/manualupgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/manualupgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c NotificationClient) WorkspaceNotificationGet(ctx context.Context, id Not
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

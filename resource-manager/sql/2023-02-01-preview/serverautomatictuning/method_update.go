@@ -27,7 +27,8 @@ func (c ServerAutomaticTuningClient) Update(ctx context.Context, id commonids.Sq
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/automaticTuning/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/automaticTuning/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

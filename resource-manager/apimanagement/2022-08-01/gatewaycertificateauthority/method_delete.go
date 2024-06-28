@@ -52,7 +52,8 @@ func (c GatewayCertificateAuthorityClient) Delete(ctx context.Context, id Certif
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

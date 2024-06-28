@@ -26,7 +26,8 @@ func (c SettingsClient) Update(ctx context.Context, id SettingId, input Setting)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

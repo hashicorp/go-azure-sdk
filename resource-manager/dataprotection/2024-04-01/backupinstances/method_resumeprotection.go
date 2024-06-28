@@ -29,7 +29,8 @@ func (c BackupInstancesClient) ResumeProtection(ctx context.Context, id BackupIn
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resumeProtection", id.ID()),
+
+		Path: fmt.Sprintf("%s/resumeProtection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

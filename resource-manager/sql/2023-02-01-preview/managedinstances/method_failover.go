@@ -56,7 +56,8 @@ func (c ManagedInstancesClient) Failover(ctx context.Context, id commonids.SqlMa
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/failover", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c FileResourceClient) FilesDelete(ctx context.Context, id FileId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

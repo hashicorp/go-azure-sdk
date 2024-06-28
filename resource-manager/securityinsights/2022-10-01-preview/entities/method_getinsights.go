@@ -26,7 +26,8 @@ func (c EntitiesClient) GetInsights(ctx context.Context, id EntityId, input Enti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getInsights", id.ID()),
+
+		Path: fmt.Sprintf("%s/getInsights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c StorageSyncServicesResourceClient) StorageSyncServicesListByResourceGrou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.StorageSync/storageSyncServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.StorageSync/storageSyncServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

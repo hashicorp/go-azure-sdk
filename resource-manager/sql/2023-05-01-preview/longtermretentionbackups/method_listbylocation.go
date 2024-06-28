@@ -54,6 +54,18 @@ func (o ListByLocationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByLocationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByLocationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByLocation ...
 func (c LongTermRetentionBackupsClient) ListByLocation(ctx context.Context, id LocationId, options ListByLocationOperationOptions) (result ListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c LongTermRetentionBackupsClient) ListByLocation(ctx context.Context, id L
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByLocationCustomPager{},
 		Path:          fmt.Sprintf("%s/longTermRetentionBackups", id.ID()),
 		OptionsObject: options,
 	}

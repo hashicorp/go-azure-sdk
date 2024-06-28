@@ -60,7 +60,8 @@ func (c VirtualMachineScaleSetVMsClient) Update(ctx context.Context, id VirtualM
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

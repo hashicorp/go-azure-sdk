@@ -26,7 +26,8 @@ func (c BillingMetersClient) Get(ctx context.Context, id LocationId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/billingMeters", id.ID()),
+
+		Path: fmt.Sprintf("%s/billingMeters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

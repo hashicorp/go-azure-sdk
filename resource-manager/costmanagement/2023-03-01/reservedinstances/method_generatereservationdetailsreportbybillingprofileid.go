@@ -60,7 +60,8 @@ func (c ReservedInstancesClient) GenerateReservationDetailsReportByBillingProfil
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateReservationDetailsReport", id.ID()),
 		OptionsObject: options,
 	}

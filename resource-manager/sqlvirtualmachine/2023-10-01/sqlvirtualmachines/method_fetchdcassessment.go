@@ -28,7 +28,8 @@ func (c SqlVirtualMachinesClient) FetchDCAssessment(ctx context.Context, id SqlV
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/fetchDCAssessment", id.ID()),
+
+		Path: fmt.Sprintf("%s/fetchDCAssessment", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

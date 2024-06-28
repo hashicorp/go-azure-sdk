@@ -31,7 +31,8 @@ func (c WorkspacesClient) CreateOrUpdate(ctx context.Context, id WorkspaceId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

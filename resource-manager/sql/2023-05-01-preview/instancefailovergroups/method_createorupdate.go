@@ -31,7 +31,8 @@ func (c InstanceFailoverGroupsClient) CreateOrUpdate(ctx context.Context, id Ins
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

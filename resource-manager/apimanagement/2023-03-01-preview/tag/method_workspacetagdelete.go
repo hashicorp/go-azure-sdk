@@ -52,7 +52,8 @@ func (c TagClient) WorkspaceTagDelete(ctx context.Context, id WorkspaceTagId, op
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

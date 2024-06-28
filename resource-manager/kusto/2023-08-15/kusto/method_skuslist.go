@@ -26,7 +26,8 @@ func (c KustoClient) SkusList(ctx context.Context, id LocationId) (result SkusLi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

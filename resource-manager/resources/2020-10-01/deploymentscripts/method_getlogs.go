@@ -26,7 +26,8 @@ func (c DeploymentScriptsClient) GetLogs(ctx context.Context, id DeploymentScrip
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/logs", id.ID()),
+
+		Path: fmt.Sprintf("%s/logs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c BackupInstancesClient) ValidateForBackup(ctx context.Context, id BackupV
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateForBackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateForBackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

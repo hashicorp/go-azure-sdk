@@ -26,7 +26,8 @@ func (c AppPlatformClient) ApmsListSecretKeys(ctx context.Context, id ApmId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSecretKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSecretKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

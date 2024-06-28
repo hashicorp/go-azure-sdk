@@ -29,7 +29,8 @@ func (c ReplicationFabricsClient) MigrateToAad(ctx context.Context, id Replicati
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migratetoaad", id.ID()),
+
+		Path: fmt.Sprintf("%s/migratetoaad", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

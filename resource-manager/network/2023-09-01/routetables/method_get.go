@@ -52,7 +52,8 @@ func (c RouteTablesClient) Get(ctx context.Context, id RouteTableId, options Get
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

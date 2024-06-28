@@ -52,7 +52,8 @@ func (c ArtifactsClient) Get(ctx context.Context, id ArtifactId, options GetOper
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

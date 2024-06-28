@@ -25,7 +25,8 @@ func (c AppPlatformClient) ContainerRegistriesGet(ctx context.Context, id Contai
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

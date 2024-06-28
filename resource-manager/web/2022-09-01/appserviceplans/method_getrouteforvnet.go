@@ -25,7 +25,8 @@ func (c AppServicePlansClient) GetRouteForVnet(ctx context.Context, id RouteId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

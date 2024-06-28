@@ -26,7 +26,8 @@ func (c RegionsClient) LocationsListBillingSpecs(ctx context.Context, id Locatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/billingSpecs", id.ID()),
+
+		Path: fmt.Sprintf("%s/billingSpecs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

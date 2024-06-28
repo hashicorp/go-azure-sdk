@@ -30,7 +30,8 @@ func (c AddonsClient) Delete(ctx context.Context, id AddonId) (result DeleteOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

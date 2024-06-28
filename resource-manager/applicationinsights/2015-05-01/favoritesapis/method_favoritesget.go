@@ -25,7 +25,8 @@ func (c FavoritesAPIsClient) FavoritesGet(ctx context.Context, id FavoriteId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

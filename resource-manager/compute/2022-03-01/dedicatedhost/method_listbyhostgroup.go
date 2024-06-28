@@ -24,6 +24,18 @@ type ListByHostGroupCompleteResult struct {
 	Items              []DedicatedHost
 }
 
+type ListByHostGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByHostGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByHostGroup ...
 func (c DedicatedHostClient) ListByHostGroup(ctx context.Context, id commonids.DedicatedHostGroupId) (result ListByHostGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DedicatedHostClient) ListByHostGroup(ctx context.Context, id commonids.D
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByHostGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/hosts", id.ID()),
 	}
 

@@ -27,7 +27,8 @@ func (c WebAppsClient) ListApplicationSettings(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/config/appSettings/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/appSettings/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c UserOrganizationClient) OrganizationsGetElasticToAzureSubscriptionMappin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Elastic/getElasticOrganizationToAzureSubscriptionMapping", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Elastic/getElasticOrganizationToAzureSubscriptionMapping", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

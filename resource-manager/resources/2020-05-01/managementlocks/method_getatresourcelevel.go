@@ -25,7 +25,8 @@ func (c ManagementLocksClient) GetAtResourceLevel(ctx context.Context, id Scoped
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

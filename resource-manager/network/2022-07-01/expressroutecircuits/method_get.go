@@ -25,7 +25,8 @@ func (c ExpressRouteCircuitsClient) Get(ctx context.Context, id ExpressRouteCirc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

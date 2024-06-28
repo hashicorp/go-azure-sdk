@@ -29,7 +29,8 @@ func (c PrivateCloudsClient) RotateNsxtPassword(ctx context.Context, id PrivateC
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateNsxtPassword", id.ID()),
+
+		Path: fmt.Sprintf("%s/rotateNsxtPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

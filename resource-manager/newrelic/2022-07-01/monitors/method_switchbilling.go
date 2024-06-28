@@ -28,7 +28,8 @@ func (c MonitorsClient) SwitchBilling(ctx context.Context, id MonitorId, input S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/switchBilling", id.ID()),
+
+		Path: fmt.Sprintf("%s/switchBilling", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

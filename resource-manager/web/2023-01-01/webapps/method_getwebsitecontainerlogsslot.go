@@ -27,7 +27,8 @@ func (c WebAppsClient) GetWebSiteContainerLogsSlot(ctx context.Context, id SlotI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/containerlogs", id.ID()),
+
+		Path: fmt.Sprintf("%s/containerlogs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

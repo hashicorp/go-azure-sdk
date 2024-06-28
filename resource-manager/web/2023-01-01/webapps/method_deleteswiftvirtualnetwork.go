@@ -26,7 +26,8 @@ func (c WebAppsClient) DeleteSwiftVirtualNetwork(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

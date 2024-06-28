@@ -52,7 +52,8 @@ func (c CosmosDBClient) CollectionPartitionListUsages(ctx context.Context, id Co
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/partitions/usages", id.ID()),
 		OptionsObject: options,
 	}

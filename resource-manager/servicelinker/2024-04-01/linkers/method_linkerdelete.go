@@ -30,7 +30,8 @@ func (c LinkersClient) LinkerDelete(ctx context.Context, id ScopedLinkerId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

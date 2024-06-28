@@ -25,7 +25,8 @@ func (c FileResourceClient) FilesUpdate(ctx context.Context, id FileId, input Pr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

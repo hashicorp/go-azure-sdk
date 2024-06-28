@@ -31,7 +31,8 @@ func (c VirtualWANsClient) VirtualHubBgpConnectionsListLearnedRoutes(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/learnedRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/learnedRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

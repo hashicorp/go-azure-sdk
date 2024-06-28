@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) GetNetworkConfigurationDiagnostic(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/networkConfigurationDiagnostic", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkConfigurationDiagnostic", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

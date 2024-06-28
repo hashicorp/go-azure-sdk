@@ -30,7 +30,8 @@ func (c TaskRunsClient) Delete(ctx context.Context, id TaskRunId) (result Delete
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

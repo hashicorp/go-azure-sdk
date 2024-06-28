@@ -30,7 +30,8 @@ func (c StorageTargetsClient) StorageTargetInvalidate(ctx context.Context, id St
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/invalidate", id.ID()),
+
+		Path: fmt.Sprintf("%s/invalidate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

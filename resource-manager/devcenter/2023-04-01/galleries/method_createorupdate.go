@@ -29,7 +29,8 @@ func (c GalleriesClient) CreateOrUpdate(ctx context.Context, id GalleryId, input
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

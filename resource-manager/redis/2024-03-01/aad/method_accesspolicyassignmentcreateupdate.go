@@ -30,7 +30,8 @@ func (c AADClient) AccessPolicyAssignmentCreateUpdate(ctx context.Context, id Ac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

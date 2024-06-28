@@ -52,7 +52,8 @@ func (c CacheClient) Delete(ctx context.Context, id CacheId, options DeleteOpera
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

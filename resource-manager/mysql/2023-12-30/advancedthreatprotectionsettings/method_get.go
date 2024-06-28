@@ -26,7 +26,8 @@ func (c AdvancedThreatProtectionSettingsClient) Get(ctx context.Context, id Flex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c RedisClient) FirewallRulesCreateOrUpdate(ctx context.Context, id Firewal
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c LongTermRetentionBackupClient) FlexibleServerTriggerLtrPreBackup(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ltrPreBackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/ltrPreBackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

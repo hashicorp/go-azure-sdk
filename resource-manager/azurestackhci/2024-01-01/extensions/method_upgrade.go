@@ -28,7 +28,8 @@ func (c ExtensionsClient) Upgrade(ctx context.Context, id ExtensionId, input Ext
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

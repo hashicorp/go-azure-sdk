@@ -52,7 +52,8 @@ func (c QueryKeysClient) Create(ctx context.Context, id CreateQueryKeyId, option
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

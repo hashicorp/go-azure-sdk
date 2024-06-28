@@ -27,7 +27,8 @@ func (c VaultsClient) CheckNameAvailability(ctx context.Context, id commonids.Su
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.KeyVault/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.KeyVault/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

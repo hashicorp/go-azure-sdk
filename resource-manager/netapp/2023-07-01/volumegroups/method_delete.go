@@ -30,7 +30,8 @@ func (c VolumeGroupsClient) Delete(ctx context.Context, id VolumeGroupId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

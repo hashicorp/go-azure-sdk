@@ -25,7 +25,8 @@ func (c ApiOperationClient) WorkspaceApiOperationGet(ctx context.Context, id Api
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

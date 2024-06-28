@@ -27,7 +27,8 @@ func (c CapacitiesClient) ListByResourceGroup(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/capacities", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/capacities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c NamedValueClient) WorkspaceNamedValueListValue(ctx context.Context, id W
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listValue", id.ID()),
+
+		Path: fmt.Sprintf("%s/listValue", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) GetLearnedRoutes(ctx context.Context, id V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getLearnedRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/getLearnedRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

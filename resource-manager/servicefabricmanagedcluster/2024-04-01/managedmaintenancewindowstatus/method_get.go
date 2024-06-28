@@ -26,7 +26,8 @@ func (c ManagedMaintenanceWindowStatusClient) Get(ctx context.Context, id Manage
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getMaintenanceWindowStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/getMaintenanceWindowStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

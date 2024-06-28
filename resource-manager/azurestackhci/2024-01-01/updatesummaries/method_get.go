@@ -26,7 +26,8 @@ func (c UpdateSummariesClient) Get(ctx context.Context, id ClusterId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/updateSummaries/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateSummaries/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

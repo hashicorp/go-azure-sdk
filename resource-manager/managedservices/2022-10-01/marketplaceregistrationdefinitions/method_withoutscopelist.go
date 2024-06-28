@@ -50,6 +50,18 @@ func (o WithoutScopeListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type WithoutScopeListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WithoutScopeListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WithoutScopeList ...
 func (c MarketplaceRegistrationDefinitionsClient) WithoutScopeList(ctx context.Context, options WithoutScopeListOperationOptions) (result WithoutScopeListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c MarketplaceRegistrationDefinitionsClient) WithoutScopeList(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WithoutScopeListCustomPager{},
 		Path:          "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions",
 		OptionsObject: options,
 	}

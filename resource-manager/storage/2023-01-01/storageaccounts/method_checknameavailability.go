@@ -27,7 +27,8 @@ func (c StorageAccountsClient) CheckNameAvailability(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Storage/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Storage/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

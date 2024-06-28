@@ -26,7 +26,8 @@ func (c AgentRegistrationInformationClient) RegenerateKey(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/agentRegistrationInformation/regenerateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/agentRegistrationInformation/regenerateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

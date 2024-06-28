@@ -26,7 +26,8 @@ func (c TablesClient) ListByWorkspace(ctx context.Context, id WorkspaceId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tables", id.ID()),
+
+		Path: fmt.Sprintf("%s/tables", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

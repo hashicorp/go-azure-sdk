@@ -29,7 +29,8 @@ func (c BackupInstancesClient) SuspendBackups(ctx context.Context, id BackupInst
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/suspendBackups", id.ID()),
+
+		Path: fmt.Sprintf("%s/suspendBackups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

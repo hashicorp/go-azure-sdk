@@ -30,7 +30,8 @@ func (c ReplicationRecoveryPlansClient) Update(ctx context.Context, id Replicati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

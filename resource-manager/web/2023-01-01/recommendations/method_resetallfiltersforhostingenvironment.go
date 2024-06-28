@@ -52,7 +52,8 @@ func (c RecommendationsClient) ResetAllFiltersForHostingEnvironment(ctx context.
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/recommendations/reset", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c JobDefinitionsClient) Update(ctx context.Context, id JobDefinitionId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

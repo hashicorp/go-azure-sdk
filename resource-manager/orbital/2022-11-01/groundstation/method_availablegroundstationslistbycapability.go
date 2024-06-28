@@ -51,6 +51,18 @@ func (o AvailableGroundStationsListByCapabilityOperationOptions) ToQuery() *clie
 	return &out
 }
 
+type AvailableGroundStationsListByCapabilityCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AvailableGroundStationsListByCapabilityCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AvailableGroundStationsListByCapability ...
 func (c GroundStationClient) AvailableGroundStationsListByCapability(ctx context.Context, id commonids.SubscriptionId, options AvailableGroundStationsListByCapabilityOperationOptions) (result AvailableGroundStationsListByCapabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c GroundStationClient) AvailableGroundStationsListByCapability(ctx context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AvailableGroundStationsListByCapabilityCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Orbital/availableGroundStations", id.ID()),
 		OptionsObject: options,
 	}

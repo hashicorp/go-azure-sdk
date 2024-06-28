@@ -26,7 +26,8 @@ func (c WebHooksClient) GetCallbackConfig(ctx context.Context, id WebHookId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getCallbackConfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/getCallbackConfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

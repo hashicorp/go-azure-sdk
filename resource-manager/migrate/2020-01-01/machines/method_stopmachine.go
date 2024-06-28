@@ -26,7 +26,8 @@ func (c MachinesClient) StopMachine(ctx context.Context, id commonids.VMwareSite
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+
+		Path: fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

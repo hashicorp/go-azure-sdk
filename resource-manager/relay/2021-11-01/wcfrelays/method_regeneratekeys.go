@@ -26,7 +26,8 @@ func (c WCFRelaysClient) RegenerateKeys(ctx context.Context, id WcfRelayAuthoriz
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

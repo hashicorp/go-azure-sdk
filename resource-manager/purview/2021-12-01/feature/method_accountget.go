@@ -26,7 +26,8 @@ func (c FeatureClient) AccountGet(ctx context.Context, id AccountId, input Batch
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listFeatures", id.ID()),
+
+		Path: fmt.Sprintf("%s/listFeatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

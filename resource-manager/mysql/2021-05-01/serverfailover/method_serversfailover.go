@@ -29,7 +29,8 @@ func (c ServerFailoverClient) ServersFailover(ctx context.Context, id FlexibleSe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/failover", id.ID()),
+
+		Path: fmt.Sprintf("%s/failover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type JobsListCompleteResult struct {
 	Items              []AzureBackupJobResource
 }
 
+type JobsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *JobsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // JobsList ...
 func (c AzureBackupJobsClient) JobsList(ctx context.Context, id BackupVaultId) (result JobsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AzureBackupJobsClient) JobsList(ctx context.Context, id BackupVaultId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &JobsListCustomPager{},
 		Path:       fmt.Sprintf("%s/backupJobs", id.ID()),
 	}
 

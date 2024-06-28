@@ -25,7 +25,8 @@ func (c AppPlatformClient) ApmsGet(ctx context.Context, id ApmId) (result ApmsGe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

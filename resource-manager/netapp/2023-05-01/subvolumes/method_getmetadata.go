@@ -30,7 +30,8 @@ func (c SubVolumesClient) GetMetadata(ctx context.Context, id SubVolumeId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getMetadata", id.ID()),
+
+		Path: fmt.Sprintf("%s/getMetadata", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

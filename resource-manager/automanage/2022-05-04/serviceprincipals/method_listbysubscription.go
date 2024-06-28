@@ -27,7 +27,8 @@ func (c ServicePrincipalsClient) ListBySubscription(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AutoManage/servicePrincipals", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AutoManage/servicePrincipals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

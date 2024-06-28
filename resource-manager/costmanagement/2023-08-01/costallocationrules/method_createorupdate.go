@@ -26,7 +26,8 @@ func (c CostAllocationRulesClient) CreateOrUpdate(ctx context.Context, id CostAl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SitesClient) RefreshSite(ctx context.Context, id VMwareSiteId) (result R
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refresh", id.ID()),
+
+		Path: fmt.Sprintf("%s/refresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

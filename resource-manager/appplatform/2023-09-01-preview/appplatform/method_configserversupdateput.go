@@ -31,7 +31,8 @@ func (c AppPlatformClient) ConfigServersUpdatePut(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/configServers/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/configServers/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

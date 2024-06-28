@@ -29,7 +29,8 @@ func (c LabsClient) ExportResourceUsage(ctx context.Context, id LabId, input Exp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/exportResourceUsage", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportResourceUsage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

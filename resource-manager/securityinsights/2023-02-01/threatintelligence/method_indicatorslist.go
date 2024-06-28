@@ -59,6 +59,18 @@ func (o IndicatorsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type IndicatorsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *IndicatorsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // IndicatorsList ...
 func (c ThreatIntelligenceClient) IndicatorsList(ctx context.Context, id WorkspaceId, options IndicatorsListOperationOptions) (result IndicatorsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -67,6 +79,7 @@ func (c ThreatIntelligenceClient) IndicatorsList(ctx context.Context, id Workspa
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &IndicatorsListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators", id.ID()),
 		OptionsObject: options,
 	}

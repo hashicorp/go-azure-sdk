@@ -26,7 +26,8 @@ func (c VirtualMachineScaleSetVMsClient) GetInstanceView(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/instanceView", id.ID()),
+
+		Path: fmt.Sprintf("%s/instanceView", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

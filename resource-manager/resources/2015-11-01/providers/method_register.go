@@ -26,7 +26,8 @@ func (c ProvidersClient) Register(ctx context.Context, id ProviderId) (result Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/register", id.ID()),
+
+		Path: fmt.Sprintf("%s/register", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c DatabaseSecurityAlertPoliciesClient) CreateOrUpdate(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

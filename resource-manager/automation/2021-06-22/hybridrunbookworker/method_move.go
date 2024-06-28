@@ -25,7 +25,8 @@ func (c HybridRunbookWorkerClient) Move(ctx context.Context, id HybridRunbookWor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/move", id.ID()),
+
+		Path: fmt.Sprintf("%s/move", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

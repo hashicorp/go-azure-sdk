@@ -68,7 +68,8 @@ func (c DeploymentStacksClient) DeleteAtSubscription(ctx context.Context, id Dep
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

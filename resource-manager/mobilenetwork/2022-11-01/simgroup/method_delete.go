@@ -30,7 +30,8 @@ func (c SIMGroupClient) Delete(ctx context.Context, id SimGroupId) (result Delet
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

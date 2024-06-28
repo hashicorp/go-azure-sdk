@@ -27,7 +27,8 @@ func (c CheckNameAvailabilityClient) WithoutLocationExecute(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DBforMySQL/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DBforMySQL/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c RouteFilterRulesClient) Get(ctx context.Context, id RouteFilterRuleId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

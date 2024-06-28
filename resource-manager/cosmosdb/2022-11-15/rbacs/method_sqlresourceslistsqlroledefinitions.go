@@ -26,7 +26,8 @@ func (c RbacsClient) SqlResourcesListSqlRoleDefinitions(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/sqlRoleDefinitions", id.ID()),
+
+		Path: fmt.Sprintf("%s/sqlRoleDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

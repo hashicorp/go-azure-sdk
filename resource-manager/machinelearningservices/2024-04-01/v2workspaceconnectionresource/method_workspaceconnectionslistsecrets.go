@@ -26,7 +26,8 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListSecrets(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listsecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listsecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

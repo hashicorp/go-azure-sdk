@@ -30,7 +30,8 @@ func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesDelete(ctx
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c DomainsClient) RegenerateKey(ctx context.Context, id DomainId, input Dom
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

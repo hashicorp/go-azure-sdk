@@ -29,7 +29,8 @@ func (c CodeVersionClient) Publish(ctx context.Context, id CodeVersionId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publish", id.ID()),
+
+		Path: fmt.Sprintf("%s/publish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

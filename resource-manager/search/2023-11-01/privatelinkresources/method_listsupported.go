@@ -52,7 +52,8 @@ func (c PrivateLinkResourcesClient) ListSupported(ctx context.Context, id Search
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 		OptionsObject: options,
 	}

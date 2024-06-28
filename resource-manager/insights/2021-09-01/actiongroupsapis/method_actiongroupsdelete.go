@@ -25,7 +25,8 @@ func (c ActionGroupsAPIsClient) ActionGroupsDelete(ctx context.Context, id Actio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

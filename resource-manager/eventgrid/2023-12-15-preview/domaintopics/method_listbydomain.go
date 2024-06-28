@@ -54,6 +54,18 @@ func (o ListByDomainOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDomainCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDomainCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDomain ...
 func (c DomainTopicsClient) ListByDomain(ctx context.Context, id DomainId, options ListByDomainOperationOptions) (result ListByDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c DomainTopicsClient) ListByDomain(ctx context.Context, id DomainId, optio
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByDomainCustomPager{},
 		Path:          fmt.Sprintf("%s/topics", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c InvoiceSectionClient) Get(ctx context.Context, id InvoiceSectionId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

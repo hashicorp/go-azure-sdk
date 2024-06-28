@@ -30,7 +30,8 @@ func (c VirtualMachineTemplatesClient) Create(ctx context.Context, id VirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

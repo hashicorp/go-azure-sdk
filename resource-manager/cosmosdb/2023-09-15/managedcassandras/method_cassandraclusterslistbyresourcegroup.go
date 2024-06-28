@@ -27,7 +27,8 @@ func (c ManagedCassandrasClient) CassandraClustersListByResourceGroup(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DocumentDB/cassandraClusters", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DocumentDB/cassandraClusters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c GatewayRegenerateKeyClient) GatewayRegenerateKey(ctx context.Context, id
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

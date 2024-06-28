@@ -30,7 +30,8 @@ func (c DiskAccessesClient) Update(ctx context.Context, id DiskAccessId, input D
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

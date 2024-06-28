@@ -61,7 +61,8 @@ func (c DnsResolversClient) CreateOrUpdate(ctx context.Context, id DnsResolverId
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

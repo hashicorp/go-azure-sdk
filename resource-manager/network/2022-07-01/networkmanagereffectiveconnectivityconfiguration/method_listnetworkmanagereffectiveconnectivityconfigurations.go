@@ -27,7 +27,8 @@ func (c NetworkManagerEffectiveConnectivityConfigurationClient) ListNetworkManag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listNetworkManagerEffectiveConnectivityConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/listNetworkManagerEffectiveConnectivityConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

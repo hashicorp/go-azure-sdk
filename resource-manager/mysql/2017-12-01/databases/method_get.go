@@ -25,7 +25,8 @@ func (c DatabasesClient) Get(ctx context.Context, id DatabaseId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

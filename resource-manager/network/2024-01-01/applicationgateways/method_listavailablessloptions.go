@@ -27,7 +27,8 @@ func (c ApplicationGatewaysClient) ListAvailableSslOptions(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

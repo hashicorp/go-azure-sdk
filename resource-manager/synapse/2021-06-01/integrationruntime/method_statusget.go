@@ -26,7 +26,8 @@ func (c IntegrationRuntimeClient) StatusGet(ctx context.Context, id IntegrationR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/getStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SliceClient) UpdateTags(ctx context.Context, id SliceId, input TagsObjec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

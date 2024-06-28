@@ -26,7 +26,8 @@ func (c EventHubsClustersConfigurationClient) ConfigurationGet(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/quotaConfiguration/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/quotaConfiguration/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

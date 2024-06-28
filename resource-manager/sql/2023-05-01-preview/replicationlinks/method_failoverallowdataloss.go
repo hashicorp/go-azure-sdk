@@ -30,7 +30,8 @@ func (c ReplicationLinksClient) FailoverAllowDataLoss(ctx context.Context, id Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forceFailoverAllowDataLoss", id.ID()),
+
+		Path: fmt.Sprintf("%s/forceFailoverAllowDataLoss", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

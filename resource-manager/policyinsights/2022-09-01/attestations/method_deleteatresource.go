@@ -25,7 +25,8 @@ func (c AttestationsClient) DeleteAtResource(ctx context.Context, id ScopedAttes
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

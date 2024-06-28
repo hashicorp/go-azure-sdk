@@ -25,7 +25,8 @@ func (c AzureFirewallsClient) Get(ctx context.Context, id AzureFirewallId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

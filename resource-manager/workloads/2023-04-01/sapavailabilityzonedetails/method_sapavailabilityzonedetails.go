@@ -26,7 +26,8 @@ func (c SAPAvailabilityZoneDetailsClient) SAPAvailabilityZoneDetails(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getAvailabilityZoneDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getAvailabilityZoneDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

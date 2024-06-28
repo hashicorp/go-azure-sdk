@@ -54,6 +54,18 @@ func (o ListByAccountOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAccount ...
 func (c ShareClient) ListByAccount(ctx context.Context, id AccountId, options ListByAccountOperationOptions) (result ListByAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c ShareClient) ListByAccount(ctx context.Context, id AccountId, options Li
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByAccountCustomPager{},
 		Path:          fmt.Sprintf("%s/shares", id.ID()),
 		OptionsObject: options,
 	}

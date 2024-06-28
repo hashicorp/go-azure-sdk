@@ -30,7 +30,8 @@ func (c SnapshotsClient) GrantAccess(ctx context.Context, id SnapshotId, input G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/beginGetAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/beginGetAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

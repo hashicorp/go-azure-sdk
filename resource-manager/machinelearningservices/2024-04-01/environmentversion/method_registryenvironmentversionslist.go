@@ -62,6 +62,18 @@ func (o RegistryEnvironmentVersionsListOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
+type RegistryEnvironmentVersionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegistryEnvironmentVersionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegistryEnvironmentVersionsList ...
 func (c EnvironmentVersionClient) RegistryEnvironmentVersionsList(ctx context.Context, id RegistryEnvironmentId, options RegistryEnvironmentVersionsListOperationOptions) (result RegistryEnvironmentVersionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,6 +82,7 @@ func (c EnvironmentVersionClient) RegistryEnvironmentVersionsList(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &RegistryEnvironmentVersionsListCustomPager{},
 		Path:          fmt.Sprintf("%s/versions", id.ID()),
 		OptionsObject: options,
 	}

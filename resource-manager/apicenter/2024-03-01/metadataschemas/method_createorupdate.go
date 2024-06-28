@@ -26,7 +26,8 @@ func (c MetadataSchemasClient) CreateOrUpdate(ctx context.Context, id MetadataSc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

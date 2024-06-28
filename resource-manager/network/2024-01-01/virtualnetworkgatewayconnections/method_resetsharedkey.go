@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewayConnectionsClient) ResetSharedKey(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sharedkey/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/sharedkey/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

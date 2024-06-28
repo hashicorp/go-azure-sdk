@@ -25,7 +25,8 @@ func (c ReplicationProtectionIntentsClient) Create(ctx context.Context, id Repli
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

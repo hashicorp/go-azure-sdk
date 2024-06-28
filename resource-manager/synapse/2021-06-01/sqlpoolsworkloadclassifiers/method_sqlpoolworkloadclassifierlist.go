@@ -23,6 +23,18 @@ type SqlPoolWorkloadClassifierListCompleteResult struct {
 	Items              []WorkloadClassifier
 }
 
+type SqlPoolWorkloadClassifierListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolWorkloadClassifierListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolWorkloadClassifierList ...
 func (c SqlPoolsWorkloadClassifiersClient) SqlPoolWorkloadClassifierList(ctx context.Context, id WorkloadGroupId) (result SqlPoolWorkloadClassifierListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsWorkloadClassifiersClient) SqlPoolWorkloadClassifierList(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolWorkloadClassifierListCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadClassifiers", id.ID()),
 	}
 

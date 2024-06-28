@@ -30,7 +30,8 @@ func (c ConnectorClient) UpdateDryrun(ctx context.Context, id DryrunId, input Dr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c TenantConfigurationClient) Create(ctx context.Context, input Configurati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       "/providers/Microsoft.Portal/tenantConfigurations/default",
+
+		Path: "/providers/Microsoft.Portal/tenantConfigurations/default",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

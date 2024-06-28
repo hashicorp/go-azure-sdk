@@ -25,7 +25,8 @@ func (c FactoriesClient) Update(ctx context.Context, id FactoryId, input Factory
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

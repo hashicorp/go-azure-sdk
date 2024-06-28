@@ -26,7 +26,8 @@ func (c DevicesClient) UpdateExtendedInformation(ctx context.Context, id DataBox
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateExtendedInformation", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateExtendedInformation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

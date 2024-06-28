@@ -25,7 +25,8 @@ func (c VideosClient) AccessPoliciesDelete(ctx context.Context, id AccessPolicyI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

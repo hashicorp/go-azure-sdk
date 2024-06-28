@@ -27,7 +27,8 @@ func (c PartnerConfigurationsClient) Get(ctx context.Context, id commonids.Resou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

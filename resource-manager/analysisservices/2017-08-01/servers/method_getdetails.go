@@ -25,7 +25,8 @@ func (c ServersClient) GetDetails(ctx context.Context, id ServerId) (result GetD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

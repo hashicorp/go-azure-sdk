@@ -55,6 +55,18 @@ func (o DeploymentsListForClusterOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type DeploymentsListForClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *DeploymentsListForClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // DeploymentsListForCluster ...
 func (c AppPlatformClient) DeploymentsListForCluster(ctx context.Context, id commonids.SpringCloudServiceId, options DeploymentsListForClusterOperationOptions) (result DeploymentsListForClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c AppPlatformClient) DeploymentsListForCluster(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &DeploymentsListForClusterCustomPager{},
 		Path:          fmt.Sprintf("%s/deployments", id.ID()),
 		OptionsObject: options,
 	}

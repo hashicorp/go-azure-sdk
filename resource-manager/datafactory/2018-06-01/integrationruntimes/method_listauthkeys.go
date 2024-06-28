@@ -26,7 +26,8 @@ func (c IntegrationRuntimesClient) ListAuthKeys(ctx context.Context, id Integrat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listAuthKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listAuthKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

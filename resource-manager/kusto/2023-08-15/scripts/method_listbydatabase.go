@@ -27,7 +27,8 @@ func (c ScriptsClient) ListByDatabase(ctx context.Context, id commonids.KustoDat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/scripts", id.ID()),
+
+		Path: fmt.Sprintf("%s/scripts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

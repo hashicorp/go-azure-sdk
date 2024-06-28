@@ -32,7 +32,8 @@ func (c GalleriesClient) CreateOrUpdate(ctx context.Context, id commonids.Shared
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

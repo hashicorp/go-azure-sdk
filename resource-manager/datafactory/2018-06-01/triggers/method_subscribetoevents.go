@@ -30,7 +30,8 @@ func (c TriggersClient) SubscribeToEvents(ctx context.Context, id TriggerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/subscribeToEvents", id.ID()),
+
+		Path: fmt.Sprintf("%s/subscribeToEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

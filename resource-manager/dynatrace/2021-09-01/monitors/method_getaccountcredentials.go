@@ -26,7 +26,8 @@ func (c MonitorsClient) GetAccountCredentials(ctx context.Context, id MonitorId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getAccountCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/getAccountCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

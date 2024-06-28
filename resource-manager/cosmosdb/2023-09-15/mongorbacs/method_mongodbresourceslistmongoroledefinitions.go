@@ -26,7 +26,8 @@ func (c MongorbacsClient) MongoDBResourcesListMongoRoleDefinitions(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/mongodbRoleDefinitions", id.ID()),
+
+		Path: fmt.Sprintf("%s/mongodbRoleDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

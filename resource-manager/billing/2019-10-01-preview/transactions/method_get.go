@@ -56,7 +56,8 @@ func (c TransactionsClient) Get(ctx context.Context, id TransactionId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

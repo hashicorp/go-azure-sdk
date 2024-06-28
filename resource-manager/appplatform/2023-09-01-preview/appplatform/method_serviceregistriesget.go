@@ -25,7 +25,8 @@ func (c AppPlatformClient) ServiceRegistriesGet(ctx context.Context, id ServiceR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

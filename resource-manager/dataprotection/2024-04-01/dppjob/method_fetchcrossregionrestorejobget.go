@@ -26,7 +26,8 @@ func (c DppJobClient) FetchCrossRegionRestoreJobGet(ctx context.Context, id Prov
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/fetchCrossRegionRestoreJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/fetchCrossRegionRestoreJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

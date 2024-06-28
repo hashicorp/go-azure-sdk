@@ -54,6 +54,18 @@ func (o ListPredefinedUrlCategoriesOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type ListPredefinedUrlCategoriesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListPredefinedUrlCategoriesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListPredefinedUrlCategories ...
 func (c GlobalRulestackClient) ListPredefinedUrlCategories(ctx context.Context, id GlobalRulestackId, options ListPredefinedUrlCategoriesOperationOptions) (result ListPredefinedUrlCategoriesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c GlobalRulestackClient) ListPredefinedUrlCategories(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &ListPredefinedUrlCategoriesCustomPager{},
 		Path:          fmt.Sprintf("%s/listPredefinedUrlCategories", id.ID()),
 		OptionsObject: options,
 	}

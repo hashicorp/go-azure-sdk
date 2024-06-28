@@ -26,7 +26,8 @@ func (c FirewallsClient) GetLogProfile(ctx context.Context, id FirewallId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getLogProfile", id.ID()),
+
+		Path: fmt.Sprintf("%s/getLogProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

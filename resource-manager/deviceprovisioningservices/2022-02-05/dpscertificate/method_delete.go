@@ -83,7 +83,8 @@ func (c DpsCertificateClient) Delete(ctx context.Context, id CertificateId, opti
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

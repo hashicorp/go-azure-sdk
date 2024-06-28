@@ -29,7 +29,8 @@ func (c ReplicationRecoveryPlansClient) Delete(ctx context.Context, id Replicati
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

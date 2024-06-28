@@ -30,7 +30,8 @@ func (c ActionGroupsAPIsClient) ActionGroupsCreateNotificationsAtActionGroupReso
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createNotifications", id.ID()),
+
+		Path: fmt.Sprintf("%s/createNotifications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

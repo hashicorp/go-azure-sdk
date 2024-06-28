@@ -54,7 +54,8 @@ func (c ForecastClient) Usage(ctx context.Context, id commonids.ScopeId, input F
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/forecast", id.ID()),
 		OptionsObject: options,
 	}

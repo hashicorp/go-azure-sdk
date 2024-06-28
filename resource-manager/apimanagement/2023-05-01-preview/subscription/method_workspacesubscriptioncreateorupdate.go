@@ -60,7 +60,8 @@ func (c SubscriptionClient) WorkspaceSubscriptionCreateOrUpdate(ctx context.Cont
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

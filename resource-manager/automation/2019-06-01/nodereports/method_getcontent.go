@@ -26,7 +26,8 @@ func (c NodeReportsClient) GetContent(ctx context.Context, id ReportId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+
+		Path: fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c DatabasesClient) Export(ctx context.Context, id commonids.SqlDatabaseId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/export", id.ID()),
+
+		Path: fmt.Sprintf("%s/export", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

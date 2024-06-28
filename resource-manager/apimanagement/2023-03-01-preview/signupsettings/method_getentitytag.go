@@ -25,7 +25,8 @@ func (c SignUpSettingsClient) GetEntityTag(ctx context.Context, id ServiceId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       fmt.Sprintf("%s/portalsettings/signup", id.ID()),
+
+		Path: fmt.Sprintf("%s/portalsettings/signup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

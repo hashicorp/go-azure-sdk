@@ -29,7 +29,8 @@ func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id ScopedP
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

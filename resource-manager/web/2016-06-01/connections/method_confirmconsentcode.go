@@ -26,7 +26,8 @@ func (c ConnectionsClient) ConfirmConsentCode(ctx context.Context, id Connection
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/confirmConsentCode", id.ID()),
+
+		Path: fmt.Sprintf("%s/confirmConsentCode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

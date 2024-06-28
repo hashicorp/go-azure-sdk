@@ -27,7 +27,8 @@ func (c DatabasesClient) AddPrincipals(ctx context.Context, id commonids.KustoDa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addPrincipals", id.ID()),
+
+		Path: fmt.Sprintf("%s/addPrincipals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

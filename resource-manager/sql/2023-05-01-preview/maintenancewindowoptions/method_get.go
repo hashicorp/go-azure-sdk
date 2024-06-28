@@ -53,7 +53,8 @@ func (c MaintenanceWindowOptionsClient) Get(ctx context.Context, id commonids.Sq
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 		OptionsObject: options,
 	}

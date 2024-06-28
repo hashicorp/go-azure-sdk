@@ -25,7 +25,8 @@ func (c ResourceGuardsClient) Delete(ctx context.Context, id ResourceGuardId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

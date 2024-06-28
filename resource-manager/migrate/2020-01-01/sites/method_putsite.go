@@ -26,7 +26,8 @@ func (c SitesClient) PutSite(ctx context.Context, id VMwareSiteId, input VMwareS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

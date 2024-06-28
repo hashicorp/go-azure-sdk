@@ -26,7 +26,8 @@ func (c DataFlowDebugSessionClient) AddDataFlow(ctx context.Context, id FactoryI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addDataFlowToDebugSession", id.ID()),
+
+		Path: fmt.Sprintf("%s/addDataFlowToDebugSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

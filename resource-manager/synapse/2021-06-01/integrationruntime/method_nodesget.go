@@ -25,7 +25,8 @@ func (c IntegrationRuntimeClient) NodesGet(ctx context.Context, id NodeId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

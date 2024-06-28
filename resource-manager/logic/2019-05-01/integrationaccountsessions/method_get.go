@@ -25,7 +25,8 @@ func (c IntegrationAccountSessionsClient) Get(ctx context.Context, id SessionId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ExpressRouteCircuitStatsClient) ExpressRouteCircuitsGetPeeringStats(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/stats", id.ID()),
+
+		Path: fmt.Sprintf("%s/stats", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

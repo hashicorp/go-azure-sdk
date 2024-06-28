@@ -59,6 +59,18 @@ func (o ListAllOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListAllCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAllCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAll ...
 func (c VirtualMachinesClient) ListAll(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions) (result ListAllOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -67,6 +79,7 @@ func (c VirtualMachinesClient) ListAll(ctx context.Context, id commonids.Subscri
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListAllCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Compute/virtualMachines", id.ID()),
 		OptionsObject: options,
 	}

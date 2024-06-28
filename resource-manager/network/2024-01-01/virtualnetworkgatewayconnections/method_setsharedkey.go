@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewayConnectionsClient) SetSharedKey(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/sharedkey", id.ID()),
+
+		Path: fmt.Sprintf("%s/sharedkey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c NetworkConnectionClient) RunHealthChecks(ctx context.Context, id Network
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runHealthChecks", id.ID()),
+
+		Path: fmt.Sprintf("%s/runHealthChecks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

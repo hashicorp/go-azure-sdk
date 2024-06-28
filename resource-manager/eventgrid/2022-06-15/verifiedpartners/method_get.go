@@ -25,7 +25,8 @@ func (c VerifiedPartnersClient) Get(ctx context.Context, id VerifiedPartnerId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

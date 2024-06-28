@@ -24,7 +24,8 @@ func (c TagClient) GetEntityState(ctx context.Context, id TagId) (result GetEnti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

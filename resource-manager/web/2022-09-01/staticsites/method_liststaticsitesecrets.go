@@ -26,7 +26,8 @@ func (c StaticSitesClient) ListStaticSiteSecrets(ctx context.Context, id StaticS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

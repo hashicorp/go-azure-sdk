@@ -52,7 +52,8 @@ func (c TemplateSpecsClient) Get(ctx context.Context, id TemplateSpecId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

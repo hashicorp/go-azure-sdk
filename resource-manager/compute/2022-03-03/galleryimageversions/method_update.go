@@ -29,7 +29,8 @@ func (c GalleryImageVersionsClient) Update(ctx context.Context, id ImageVersionI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

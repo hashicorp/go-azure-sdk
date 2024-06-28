@@ -53,7 +53,8 @@ func (c ApiIssueCommentClient) CreateOrUpdate(ctx context.Context, id CommentId,
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

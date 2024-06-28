@@ -56,7 +56,8 @@ func (c StreamingEndpointsClient) Create(ctx context.Context, id StreamingEndpoi
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -53,7 +53,8 @@ func (c DatabaseAdvisorsClient) ListByDatabase(ctx context.Context, id commonids
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/advisors", id.ID()),
 		OptionsObject: options,
 	}

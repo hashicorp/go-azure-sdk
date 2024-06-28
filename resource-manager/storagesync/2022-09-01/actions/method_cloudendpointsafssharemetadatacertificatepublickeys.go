@@ -26,7 +26,8 @@ func (c ActionsClient) CloudEndpointsAfsShareMetadataCertificatePublicKeys(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/afsShareMetadataCertificatePublicKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/afsShareMetadataCertificatePublicKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

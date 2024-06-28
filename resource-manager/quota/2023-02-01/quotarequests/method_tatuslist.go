@@ -55,6 +55,18 @@ func (o TatusListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type TatusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *TatusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // TatusList ...
 func (c QuotaRequestsClient) TatusList(ctx context.Context, id commonids.ScopeId, options TatusListOperationOptions) (result TatusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c QuotaRequestsClient) TatusList(ctx context.Context, id commonids.ScopeId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &TatusListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Quota/quotaRequests", id.ID()),
 		OptionsObject: options,
 	}

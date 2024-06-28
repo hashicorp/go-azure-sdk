@@ -26,7 +26,8 @@ func (c AgentPoolsClient) GetQueueStatus(ctx context.Context, id AgentPoolId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listQueueStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/listQueueStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

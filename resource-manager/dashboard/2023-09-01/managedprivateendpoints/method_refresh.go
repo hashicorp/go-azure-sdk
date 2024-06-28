@@ -29,7 +29,8 @@ func (c ManagedPrivateEndpointsClient) Refresh(ctx context.Context, id GrafanaId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshManagedPrivateEndpoints", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshManagedPrivateEndpoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

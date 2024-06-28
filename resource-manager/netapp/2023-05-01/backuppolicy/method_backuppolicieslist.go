@@ -26,7 +26,8 @@ func (c BackupPolicyClient) BackupPoliciesList(ctx context.Context, id NetAppAcc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/backupPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/backupPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

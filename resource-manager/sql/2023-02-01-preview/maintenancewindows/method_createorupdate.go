@@ -52,7 +52,8 @@ func (c MaintenanceWindowsClient) CreateOrUpdate(ctx context.Context, id commoni
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/maintenanceWindows/current", id.ID()),
 		OptionsObject: options,
 	}

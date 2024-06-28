@@ -26,7 +26,8 @@ func (c AppPlatformClient) ServicesGet(ctx context.Context, id commonids.SpringC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

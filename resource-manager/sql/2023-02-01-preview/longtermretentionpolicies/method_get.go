@@ -27,7 +27,8 @@ func (c LongTermRetentionPoliciesClient) Get(ctx context.Context, id commonids.S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

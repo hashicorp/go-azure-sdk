@@ -26,7 +26,8 @@ func (c HyperVSitesClient) GetSiteUsage(ctx context.Context, id HyperVSiteId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/summary", id.ID()),
+
+		Path: fmt.Sprintf("%s/summary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

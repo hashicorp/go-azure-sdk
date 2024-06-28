@@ -26,7 +26,8 @@ func (c AttestationProvidersClient) GetDefaultByLocation(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/defaultProvider", id.ID()),
+
+		Path: fmt.Sprintf("%s/defaultProvider", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

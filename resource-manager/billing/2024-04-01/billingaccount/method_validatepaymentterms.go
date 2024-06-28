@@ -26,7 +26,8 @@ func (c BillingAccountClient) ValidatePaymentTerms(ctx context.Context, id Billi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validatePaymentTerms", id.ID()),
+
+		Path: fmt.Sprintf("%s/validatePaymentTerms", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

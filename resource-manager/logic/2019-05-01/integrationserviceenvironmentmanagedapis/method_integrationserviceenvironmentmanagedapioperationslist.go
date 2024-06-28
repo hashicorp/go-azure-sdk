@@ -23,6 +23,18 @@ type IntegrationServiceEnvironmentManagedApiOperationsListCompleteResult struct 
 	Items              []ApiOperation
 }
 
+type IntegrationServiceEnvironmentManagedApiOperationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *IntegrationServiceEnvironmentManagedApiOperationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // IntegrationServiceEnvironmentManagedApiOperationsList ...
 func (c IntegrationServiceEnvironmentManagedApisClient) IntegrationServiceEnvironmentManagedApiOperationsList(ctx context.Context, id ManagedApiId) (result IntegrationServiceEnvironmentManagedApiOperationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IntegrationServiceEnvironmentManagedApisClient) IntegrationServiceEnviro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &IntegrationServiceEnvironmentManagedApiOperationsListCustomPager{},
 		Path:       fmt.Sprintf("%s/apiOperations", id.ID()),
 	}
 

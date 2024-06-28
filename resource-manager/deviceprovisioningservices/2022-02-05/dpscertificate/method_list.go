@@ -27,7 +27,8 @@ func (c DpsCertificateClient) List(ctx context.Context, id commonids.Provisionin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/certificates", id.ID()),
+
+		Path: fmt.Sprintf("%s/certificates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

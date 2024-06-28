@@ -57,7 +57,8 @@ func (c OutputsClient) CreateOrReplace(ctx context.Context, id OutputId, input O
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

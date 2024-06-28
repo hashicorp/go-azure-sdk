@@ -51,6 +51,18 @@ func (o ListByDatabaseOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDatabase ...
 func (c ManagedDatabaseSensitivityLabelsClient) ListByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, options ListByDatabaseOperationOptions) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ManagedDatabaseSensitivityLabelsClient) ListByDatabase(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByDatabaseCustomPager{},
 		Path:          fmt.Sprintf("%s/sensitivityLabels", id.ID()),
 		OptionsObject: options,
 	}

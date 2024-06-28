@@ -26,7 +26,8 @@ func (c NetworkStatusClient) ListByLocation(ctx context.Context, id LocationId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/networkstatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkstatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

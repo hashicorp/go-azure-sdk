@@ -26,7 +26,8 @@ func (c WebAppsClient) ListFunctionSecretsSlot(ctx context.Context, id SlotFunct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listsecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listsecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

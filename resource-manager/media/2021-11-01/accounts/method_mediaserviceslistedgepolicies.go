@@ -26,7 +26,8 @@ func (c AccountsClient) MediaservicesListEdgePolicies(ctx context.Context, id Me
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listEdgePolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/listEdgePolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

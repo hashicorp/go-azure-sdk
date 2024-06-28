@@ -25,7 +25,8 @@ func (c ManagedApplyMaintenanceWindowClient) Post(ctx context.Context, id Manage
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applyMaintenanceWindow", id.ID()),
+
+		Path: fmt.Sprintf("%s/applyMaintenanceWindow", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

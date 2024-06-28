@@ -25,7 +25,8 @@ func (c InvoiceSectionsClient) ElevateToBillingProfile(ctx context.Context, id I
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/elevate", id.ID()),
+
+		Path: fmt.Sprintf("%s/elevate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

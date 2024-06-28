@@ -25,7 +25,8 @@ func (c PolicyClient) GetEntityTag(ctx context.Context, id ServiceId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       fmt.Sprintf("%s/policies/policy", id.ID()),
+
+		Path: fmt.Sprintf("%s/policies/policy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

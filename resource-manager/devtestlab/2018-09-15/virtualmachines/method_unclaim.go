@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) UnClaim(ctx context.Context, id VirtualMachineId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unClaim", id.ID()),
+
+		Path: fmt.Sprintf("%s/unClaim", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

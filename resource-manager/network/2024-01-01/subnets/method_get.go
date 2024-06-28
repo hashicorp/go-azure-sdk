@@ -53,7 +53,8 @@ func (c SubnetsClient) Get(ctx context.Context, id commonids.SubnetId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

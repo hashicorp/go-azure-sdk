@@ -52,7 +52,8 @@ func (c LocalRulesClient) GetCounters(ctx context.Context, id LocalRuleId, optio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/getCounters", id.ID()),
 		OptionsObject: options,
 	}

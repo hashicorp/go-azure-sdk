@@ -25,7 +25,8 @@ func (c AmlFilesystemsClient) Archive(ctx context.Context, id AmlFilesystemId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/archive", id.ID()),
+
+		Path: fmt.Sprintf("%s/archive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

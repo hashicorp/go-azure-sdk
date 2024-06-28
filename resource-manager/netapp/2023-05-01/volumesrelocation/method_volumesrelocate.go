@@ -29,7 +29,8 @@ func (c VolumesRelocationClient) VolumesRelocate(ctx context.Context, id VolumeI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/relocate", id.ID()),
+
+		Path: fmt.Sprintf("%s/relocate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

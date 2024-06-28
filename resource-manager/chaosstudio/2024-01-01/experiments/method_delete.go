@@ -28,7 +28,8 @@ func (c ExperimentsClient) Delete(ctx context.Context, id ExperimentId) (result 
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

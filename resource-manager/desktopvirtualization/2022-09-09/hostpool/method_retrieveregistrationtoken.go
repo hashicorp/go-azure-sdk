@@ -26,7 +26,8 @@ func (c HostPoolClient) RetrieveRegistrationToken(ctx context.Context, id HostPo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveRegistrationToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveRegistrationToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

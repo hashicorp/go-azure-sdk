@@ -29,7 +29,8 @@ func (c ReplicationFabricsClient) Delete(ctx context.Context, id ReplicationFabr
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remove", id.ID()),
+
+		Path: fmt.Sprintf("%s/remove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

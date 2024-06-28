@@ -30,7 +30,8 @@ func (c ServerConfigurationOptionsClient) CreateOrUpdate(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/serverConfigurationOptions/allowPolybaseExport", id.ID()),
+
+		Path: fmt.Sprintf("%s/serverConfigurationOptions/allowPolybaseExport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VirtualWANsClient) VpnSitesGet(ctx context.Context, id VpnSiteId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c PrometheusRuleGroupsClient) Update(ctx context.Context, id PrometheusRul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

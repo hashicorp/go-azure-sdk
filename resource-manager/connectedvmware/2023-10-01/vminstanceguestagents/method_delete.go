@@ -30,7 +30,8 @@ func (c VMInstanceGuestAgentsClient) Delete(ctx context.Context, id commonids.Sc
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/guestAgents/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/guestAgents/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

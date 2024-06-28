@@ -27,7 +27,8 @@ func (c PrivateLinkResourcesClient) ListByCluster(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

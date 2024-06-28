@@ -52,7 +52,8 @@ func (c UsersClient) Get(ctx context.Context, id UserId, options GetOperationOpt
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c ManualTriggerClient) EntitiesRunPlaybook(ctx context.Context, id EntityI
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runPlaybook", id.ID()),
+
+		Path: fmt.Sprintf("%s/runPlaybook", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

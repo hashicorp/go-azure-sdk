@@ -27,7 +27,8 @@ func (c AppServicePlansClient) ListVnets(ctx context.Context, id commonids.AppSe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/virtualNetworkConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/virtualNetworkConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

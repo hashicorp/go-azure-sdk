@@ -30,7 +30,8 @@ func (c ReplicationProtectionClustersClient) TestFailover(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/testFailover", id.ID()),
+
+		Path: fmt.Sprintf("%s/testFailover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

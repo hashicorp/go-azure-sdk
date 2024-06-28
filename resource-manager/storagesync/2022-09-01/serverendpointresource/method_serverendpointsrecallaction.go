@@ -29,7 +29,8 @@ func (c ServerEndpointResourceClient) ServerEndpointsrecallAction(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recallAction", id.ID()),
+
+		Path: fmt.Sprintf("%s/recallAction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

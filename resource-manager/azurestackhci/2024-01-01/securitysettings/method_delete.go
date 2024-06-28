@@ -29,7 +29,8 @@ func (c SecuritySettingsClient) Delete(ctx context.Context, id SecuritySettingId
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c BackupsClient) Delete(ctx context.Context, id BackupId) (result DeleteOp
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

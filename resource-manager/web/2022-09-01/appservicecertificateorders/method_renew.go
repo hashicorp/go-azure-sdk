@@ -25,7 +25,8 @@ func (c AppServiceCertificateOrdersClient) Renew(ctx context.Context, id Certifi
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/renew", id.ID()),
+
+		Path: fmt.Sprintf("%s/renew", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

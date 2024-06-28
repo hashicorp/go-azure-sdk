@@ -50,6 +50,18 @@ func (o GetFunctionAppStacksForLocationOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
+type GetFunctionAppStacksForLocationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetFunctionAppStacksForLocationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetFunctionAppStacksForLocation ...
 func (c ProviderClient) GetFunctionAppStacksForLocation(ctx context.Context, id LocationId, options GetFunctionAppStacksForLocationOperationOptions) (result GetFunctionAppStacksForLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c ProviderClient) GetFunctionAppStacksForLocation(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &GetFunctionAppStacksForLocationCustomPager{},
 		Path:          fmt.Sprintf("%s/functionAppStacks", id.ID()),
 		OptionsObject: options,
 	}

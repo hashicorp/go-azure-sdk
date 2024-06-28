@@ -27,7 +27,8 @@ func (c SynchronizationSettingClient) Create(ctx context.Context, id Synchroniza
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

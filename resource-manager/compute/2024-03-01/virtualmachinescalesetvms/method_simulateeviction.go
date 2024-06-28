@@ -25,7 +25,8 @@ func (c VirtualMachineScaleSetVMsClient) SimulateEviction(ctx context.Context, i
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/simulateEviction", id.ID()),
+
+		Path: fmt.Sprintf("%s/simulateEviction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

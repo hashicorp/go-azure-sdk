@@ -56,7 +56,8 @@ func (c ManagedClustersClient) Delete(ctx context.Context, id commonids.Kubernet
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c PaymentMethodsClient) GetByBillingProfile(ctx context.Context, id Paymen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

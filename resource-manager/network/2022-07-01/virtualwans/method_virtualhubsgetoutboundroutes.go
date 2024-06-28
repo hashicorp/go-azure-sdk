@@ -29,7 +29,8 @@ func (c VirtualWANsClient) VirtualHubsGetOutboundRoutes(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/outboundRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/outboundRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

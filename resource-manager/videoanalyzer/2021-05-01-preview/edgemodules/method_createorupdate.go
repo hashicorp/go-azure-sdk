@@ -26,7 +26,8 @@ func (c EdgeModulesClient) CreateOrUpdate(ctx context.Context, id EdgeModuleId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

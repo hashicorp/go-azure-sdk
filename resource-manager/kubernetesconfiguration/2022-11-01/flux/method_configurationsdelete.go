@@ -56,7 +56,8 @@ func (c FluxClient) ConfigurationsDelete(ctx context.Context, id ScopedFluxConfi
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

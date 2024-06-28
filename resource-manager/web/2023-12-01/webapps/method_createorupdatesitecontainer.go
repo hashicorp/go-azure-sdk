@@ -26,7 +26,8 @@ func (c WebAppsClient) CreateOrUpdateSiteContainer(ctx context.Context, id Sitec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

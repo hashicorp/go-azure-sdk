@@ -30,7 +30,8 @@ func (c WorkspacesClient) QlAadAdminsDelete(ctx context.Context, id WorkspaceId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

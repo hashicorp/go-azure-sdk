@@ -25,7 +25,8 @@ func (c DefaultAccountClient) Set(ctx context.Context, input DefaultAccountPaylo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Purview/setDefaultAccount",
+
+		Path: "/providers/Microsoft.Purview/setDefaultAccount",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

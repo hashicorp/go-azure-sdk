@@ -27,7 +27,8 @@ func (c ManagedInstanceAzureADOnlyAuthenticationsClient) Get(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/azureADOnlyAuthentications/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/azureADOnlyAuthentications/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

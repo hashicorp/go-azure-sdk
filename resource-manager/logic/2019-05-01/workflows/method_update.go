@@ -25,7 +25,8 @@ func (c WorkflowsClient) Update(ctx context.Context, id WorkflowId) (result Upda
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

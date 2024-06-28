@@ -30,7 +30,8 @@ func (c ClustersClient) Update(ctx context.Context, id ServerGroupsv2Id, input C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

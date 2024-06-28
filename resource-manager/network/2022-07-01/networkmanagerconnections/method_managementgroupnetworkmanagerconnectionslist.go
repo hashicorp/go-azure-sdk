@@ -51,6 +51,18 @@ func (o ManagementGroupNetworkManagerConnectionsListOperationOptions) ToQuery() 
 	return &out
 }
 
+type ManagementGroupNetworkManagerConnectionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ManagementGroupNetworkManagerConnectionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ManagementGroupNetworkManagerConnectionsList ...
 func (c NetworkManagerConnectionsClient) ManagementGroupNetworkManagerConnectionsList(ctx context.Context, id commonids.ManagementGroupId, options ManagementGroupNetworkManagerConnectionsListOperationOptions) (result ManagementGroupNetworkManagerConnectionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c NetworkManagerConnectionsClient) ManagementGroupNetworkManagerConnection
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ManagementGroupNetworkManagerConnectionsListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Network/networkManagerConnections", id.ID()),
 		OptionsObject: options,
 	}

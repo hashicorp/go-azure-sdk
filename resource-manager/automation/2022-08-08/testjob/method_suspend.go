@@ -25,7 +25,8 @@ func (c TestJobClient) Suspend(ctx context.Context, id RunbookId) (result Suspen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/draft/testJob/suspend", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/testJob/suspend", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

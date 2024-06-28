@@ -24,7 +24,8 @@ func (c GroupUserClient) CheckEntityExists(ctx context.Context, id GroupUserId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

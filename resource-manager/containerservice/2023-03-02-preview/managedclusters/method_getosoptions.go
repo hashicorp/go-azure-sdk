@@ -52,7 +52,8 @@ func (c ManagedClustersClient) GetOSOptions(ctx context.Context, id LocationId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/osOptions/default", id.ID()),
 		OptionsObject: options,
 	}

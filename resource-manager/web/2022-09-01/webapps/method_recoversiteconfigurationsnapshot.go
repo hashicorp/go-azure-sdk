@@ -25,7 +25,8 @@ func (c WebAppsClient) RecoverSiteConfigurationSnapshot(ctx context.Context, id 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recover", id.ID()),
+
+		Path: fmt.Sprintf("%s/recover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c ClusterOperationsClient) ClustersPromoteReadReplica(ctx context.Context,
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/promote", id.ID()),
+
+		Path: fmt.Sprintf("%s/promote", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

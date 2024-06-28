@@ -23,6 +23,18 @@ type ListSyncDatabaseIdsCompleteResult struct {
 	Items              []SyncDatabaseIdProperties
 }
 
+type ListSyncDatabaseIdsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSyncDatabaseIdsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSyncDatabaseIds ...
 func (c SyncGroupsClient) ListSyncDatabaseIds(ctx context.Context, id LocationId) (result ListSyncDatabaseIdsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SyncGroupsClient) ListSyncDatabaseIds(ctx context.Context, id LocationId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListSyncDatabaseIdsCustomPager{},
 		Path:       fmt.Sprintf("%s/syncDatabaseIds", id.ID()),
 	}
 

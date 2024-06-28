@@ -27,7 +27,8 @@ func (c WebAppsClient) ListHybridConnections(ctx context.Context, id commonids.A
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/hybridConnectionRelays", id.ID()),
+
+		Path: fmt.Sprintf("%s/hybridConnectionRelays", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

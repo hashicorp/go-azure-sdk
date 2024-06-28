@@ -26,7 +26,8 @@ func (c ComponentWorkItemConfigsAPIsClient) WorkItemConfigurationsCreate(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/workItemConfigs", id.ID()),
+
+		Path: fmt.Sprintf("%s/workItemConfigs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

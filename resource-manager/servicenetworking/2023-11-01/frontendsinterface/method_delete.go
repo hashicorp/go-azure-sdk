@@ -29,7 +29,8 @@ func (c FrontendsInterfaceClient) Delete(ctx context.Context, id FrontendId) (re
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

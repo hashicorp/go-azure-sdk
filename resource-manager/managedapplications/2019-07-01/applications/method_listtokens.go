@@ -26,7 +26,8 @@ func (c ApplicationsClient) ListTokens(ctx context.Context, id ApplicationId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listTokens", id.ID()),
+
+		Path: fmt.Sprintf("%s/listTokens", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c CosmosDBClient) GremlinResourcesUpdateGremlinGraphThroughput(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/throughputSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/throughputSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

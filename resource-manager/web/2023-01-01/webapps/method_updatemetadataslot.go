@@ -26,7 +26,8 @@ func (c WebAppsClient) UpdateMetadataSlot(ctx context.Context, id SlotId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/metadata", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/metadata", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

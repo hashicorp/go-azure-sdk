@@ -53,7 +53,8 @@ func (c NetworkInterfacesClient) GetVirtualMachineScaleSetNetworkInterface(ctx c
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

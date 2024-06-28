@@ -26,7 +26,8 @@ func (c ExtendedUeInformationClient) Get(ctx context.Context, id UeId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extendedInformation/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/extendedInformation/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c VirtualWANsClient) VpnConnectionsStopPacketCapture(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stoppacketcapture", id.ID()),
+
+		Path: fmt.Sprintf("%s/stoppacketcapture", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

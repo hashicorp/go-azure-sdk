@@ -26,7 +26,8 @@ func (c GenerateRecommendationsClient) RecommendationsGenerate(ctx context.Conte
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Advisor/generateRecommendations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Advisor/generateRecommendations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

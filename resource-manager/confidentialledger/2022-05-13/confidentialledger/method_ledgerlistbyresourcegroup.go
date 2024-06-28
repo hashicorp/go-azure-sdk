@@ -51,6 +51,18 @@ func (o LedgerListByResourceGroupOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type LedgerListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *LedgerListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // LedgerListByResourceGroup ...
 func (c ConfidentialLedgerClient) LedgerListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId, options LedgerListByResourceGroupOperationOptions) (result LedgerListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ConfidentialLedgerClient) LedgerListByResourceGroup(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &LedgerListByResourceGroupCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.ConfidentialLedger/ledgers", id.ID()),
 		OptionsObject: options,
 	}

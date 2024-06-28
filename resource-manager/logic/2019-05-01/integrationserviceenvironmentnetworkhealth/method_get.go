@@ -26,7 +26,8 @@ func (c IntegrationServiceEnvironmentNetworkHealthClient) Get(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/health/network", id.ID()),
+
+		Path: fmt.Sprintf("%s/health/network", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

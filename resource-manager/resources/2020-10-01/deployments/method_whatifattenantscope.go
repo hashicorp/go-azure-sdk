@@ -30,7 +30,8 @@ func (c DeploymentsClient) WhatIfAtTenantScope(ctx context.Context, id Deploymen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/whatIf", id.ID()),
+
+		Path: fmt.Sprintf("%s/whatIf", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

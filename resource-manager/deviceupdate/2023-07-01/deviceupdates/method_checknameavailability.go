@@ -27,7 +27,8 @@ func (c DeviceupdatesClient) CheckNameAvailability(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DeviceUpdate/checknameavailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DeviceUpdate/checknameavailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

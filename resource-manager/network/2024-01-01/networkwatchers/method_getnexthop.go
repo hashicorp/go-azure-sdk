@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) GetNextHop(ctx context.Context, id NetworkWatcher
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/nextHop", id.ID()),
+
+		Path: fmt.Sprintf("%s/nextHop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

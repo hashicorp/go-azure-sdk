@@ -26,7 +26,8 @@ func (c IntegrationAccountsClient) RegenerateAccessKey(ctx context.Context, id I
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateAccessKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateAccessKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

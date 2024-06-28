@@ -27,7 +27,8 @@ func (c RealUserMetricsClient) TrafficManagerUserMetricsKeysDelete(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerUserMetricsKeys/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerUserMetricsKeys/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c StaticSitesClient) ResetStaticSiteApiKey(ctx context.Context, id StaticS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetapikey", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetapikey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

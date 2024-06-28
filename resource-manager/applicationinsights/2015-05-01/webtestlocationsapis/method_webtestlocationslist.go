@@ -26,7 +26,8 @@ func (c WebTestLocationsAPIsClient) WebTestLocationsList(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/syntheticmonitorlocations", id.ID()),
+
+		Path: fmt.Sprintf("%s/syntheticmonitorlocations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

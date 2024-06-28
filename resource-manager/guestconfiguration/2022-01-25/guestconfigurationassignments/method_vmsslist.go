@@ -26,7 +26,8 @@ func (c GuestConfigurationAssignmentsClient) VMSSList(ctx context.Context, id Vi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

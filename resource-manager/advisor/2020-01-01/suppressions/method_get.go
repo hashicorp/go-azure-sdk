@@ -25,7 +25,8 @@ func (c SuppressionsClient) Get(ctx context.Context, id ScopedSuppressionId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

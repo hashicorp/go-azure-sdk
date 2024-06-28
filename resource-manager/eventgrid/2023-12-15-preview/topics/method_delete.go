@@ -29,7 +29,8 @@ func (c TopicsClient) Delete(ctx context.Context, id TopicId) (result DeleteOper
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

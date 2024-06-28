@@ -27,7 +27,8 @@ func (c ProvisionedClusterInstancesClient) GetUpgradeProfile(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/upgradeProfiles/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/upgradeProfiles/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

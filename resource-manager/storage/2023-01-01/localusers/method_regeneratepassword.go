@@ -26,7 +26,8 @@ func (c LocalUsersClient) RegeneratePassword(ctx context.Context, id LocalUserId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regeneratePassword", id.ID()),
+
+		Path: fmt.Sprintf("%s/regeneratePassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

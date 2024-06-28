@@ -27,7 +27,8 @@ func (c StorageAccountsClient) ListServiceSAS(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listServiceSas", id.ID()),
+
+		Path: fmt.Sprintf("%s/listServiceSas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

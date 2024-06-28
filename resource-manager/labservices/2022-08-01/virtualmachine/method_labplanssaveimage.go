@@ -29,7 +29,8 @@ func (c VirtualMachineClient) LabPlansSaveImage(ctx context.Context, id LabPlanI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/saveImage", id.ID()),
+
+		Path: fmt.Sprintf("%s/saveImage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByServiceCompleteResult struct {
 	Items              []QuotaCounterContract
 }
 
+type ListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByService ...
 func (c QuotaByCounterKeysClient) ListByService(ctx context.Context, id QuotaId) (result ListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c QuotaByCounterKeysClient) ListByService(ctx context.Context, id QuotaId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByServiceCustomPager{},
 		Path:       id.ID(),
 	}
 

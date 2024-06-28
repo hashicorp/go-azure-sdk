@@ -30,7 +30,8 @@ func (c VMwaresClient) WorkloadNetworksCreatePublicIP(ctx context.Context, id Pu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

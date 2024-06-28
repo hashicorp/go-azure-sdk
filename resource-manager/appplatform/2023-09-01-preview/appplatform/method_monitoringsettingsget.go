@@ -27,7 +27,8 @@ func (c AppPlatformClient) MonitoringSettingsGet(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/monitoringSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoringSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

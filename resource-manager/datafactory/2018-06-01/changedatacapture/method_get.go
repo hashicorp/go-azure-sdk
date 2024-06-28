@@ -52,7 +52,8 @@ func (c ChangeDataCaptureClient) Get(ctx context.Context, id AdfcdcId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

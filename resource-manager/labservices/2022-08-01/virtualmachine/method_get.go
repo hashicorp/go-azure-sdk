@@ -25,7 +25,8 @@ func (c VirtualMachineClient) Get(ctx context.Context, id VirtualMachineId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

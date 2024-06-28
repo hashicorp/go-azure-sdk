@@ -30,7 +30,8 @@ func (c DevOpsClient) AzureDevOpsReposUpdate(ctx context.Context, id ProjectRepo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c UpdateSummariesClient) Delete(ctx context.Context, id ClusterId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/updateSummaries/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateSummaries/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

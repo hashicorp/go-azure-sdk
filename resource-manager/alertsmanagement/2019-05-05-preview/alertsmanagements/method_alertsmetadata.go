@@ -52,7 +52,8 @@ func (c AlertsManagementsClient) AlertsMetaData(ctx context.Context, options Ale
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          "/providers/Microsoft.AlertsManagement/alertsMetaData",
 		OptionsObject: options,
 	}

@@ -56,7 +56,8 @@ func (c ClusterExtensionsClient) ExtensionsDelete(ctx context.Context, id Scoped
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

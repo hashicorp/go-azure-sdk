@@ -30,7 +30,8 @@ func (c ReplicationMigrationItemsClient) ResumeReplication(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resumeReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/resumeReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

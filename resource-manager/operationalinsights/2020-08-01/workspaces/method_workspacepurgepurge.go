@@ -26,7 +26,8 @@ func (c WorkspacesClient) WorkspacePurgePurge(ctx context.Context, id WorkspaceI
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/purge", id.ID()),
+
+		Path: fmt.Sprintf("%s/purge", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

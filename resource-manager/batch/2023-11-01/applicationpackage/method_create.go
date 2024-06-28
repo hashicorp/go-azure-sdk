@@ -25,7 +25,8 @@ func (c ApplicationPackageClient) Create(ctx context.Context, id VersionId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

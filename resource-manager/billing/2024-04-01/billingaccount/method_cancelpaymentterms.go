@@ -30,7 +30,8 @@ func (c BillingAccountClient) CancelPaymentTerms(ctx context.Context, id Billing
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelPaymentTerms", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelPaymentTerms", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

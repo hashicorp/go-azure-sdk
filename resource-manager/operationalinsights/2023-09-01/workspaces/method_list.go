@@ -27,7 +27,8 @@ func (c WorkspacesClient) List(ctx context.Context, id commonids.SubscriptionId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/workspaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/workspaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

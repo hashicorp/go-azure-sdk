@@ -30,7 +30,8 @@ func (c ManagedDatabasesClient) CompleteRestore(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/completeRestore", id.ID()),
+
+		Path: fmt.Sprintf("%s/completeRestore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c AzureADAdministratorsClient) CreateOrUpdate(ctx context.Context, id Flex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

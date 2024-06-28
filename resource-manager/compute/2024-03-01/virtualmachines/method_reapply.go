@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) Reapply(ctx context.Context, id VirtualMachineId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reapply", id.ID()),
+
+		Path: fmt.Sprintf("%s/reapply", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

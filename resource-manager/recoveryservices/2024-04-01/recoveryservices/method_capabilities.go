@@ -26,7 +26,8 @@ func (c RecoveryServicesClient) Capabilities(ctx context.Context, id LocationId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/capabilities", id.ID()),
+
+		Path: fmt.Sprintf("%s/capabilities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

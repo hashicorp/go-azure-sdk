@@ -26,7 +26,8 @@ func (c AvailabilitySetsClient) Delete(ctx context.Context, id commonids.Availab
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

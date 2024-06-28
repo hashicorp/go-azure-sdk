@@ -25,7 +25,8 @@ func (c RedisClient) LinkedServerGet(ctx context.Context, id LinkedServerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

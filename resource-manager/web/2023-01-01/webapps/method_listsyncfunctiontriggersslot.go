@@ -26,7 +26,8 @@ func (c WebAppsClient) ListSyncFunctionTriggersSlot(ctx context.Context, id Slot
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listsyncfunctiontriggerstatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/listsyncfunctiontriggerstatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

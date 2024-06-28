@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) AttachDetachDataDisks(ctx context.Context, id Vir
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachDetachDataDisks", id.ID()),
+
+		Path: fmt.Sprintf("%s/attachDetachDataDisks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

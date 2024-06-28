@@ -26,7 +26,8 @@ func (c ManagedClusterVersionClient) ListByEnvironment(ctx context.Context, id L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/environments/Windows/managedClusterVersions", id.ID()),
+
+		Path: fmt.Sprintf("%s/environments/Windows/managedClusterVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

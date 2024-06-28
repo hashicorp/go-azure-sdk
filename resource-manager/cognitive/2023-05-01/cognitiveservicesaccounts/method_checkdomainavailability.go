@@ -27,7 +27,8 @@ func (c CognitiveServicesAccountsClient) CheckDomainAvailability(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CognitiveServices/checkDomainAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CognitiveServices/checkDomainAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

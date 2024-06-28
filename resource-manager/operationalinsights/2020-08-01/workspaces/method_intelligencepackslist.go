@@ -26,7 +26,8 @@ func (c WorkspacesClient) IntelligencePacksList(ctx context.Context, id Workspac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/intelligencePacks", id.ID()),
+
+		Path: fmt.Sprintf("%s/intelligencePacks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

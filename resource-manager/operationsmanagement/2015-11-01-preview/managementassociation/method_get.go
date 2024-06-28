@@ -25,7 +25,8 @@ func (c ManagementAssociationClient) Get(ctx context.Context, id ScopedManagemen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

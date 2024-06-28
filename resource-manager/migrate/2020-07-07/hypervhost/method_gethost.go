@@ -25,7 +25,8 @@ func (c HyperVHostClient) GetHost(ctx context.Context, id HostId) (result GetHos
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

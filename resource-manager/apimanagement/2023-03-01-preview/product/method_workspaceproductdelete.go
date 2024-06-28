@@ -55,7 +55,8 @@ func (c ProductClient) WorkspaceProductDelete(ctx context.Context, id WorkspaceP
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

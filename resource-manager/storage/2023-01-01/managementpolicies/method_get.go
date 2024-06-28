@@ -27,7 +27,8 @@ func (c ManagementPoliciesClient) Get(ctx context.Context, id commonids.StorageA
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/managementPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/managementPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

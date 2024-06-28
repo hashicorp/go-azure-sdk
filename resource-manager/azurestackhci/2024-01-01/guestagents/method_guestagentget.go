@@ -27,7 +27,8 @@ func (c GuestAgentsClient) GuestAgentGet(ctx context.Context, id commonids.Scope
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

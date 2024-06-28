@@ -25,7 +25,8 @@ func (c IntegrationAccountsClient) LogTrackingEvents(ctx context.Context, id Int
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logTrackingEvents", id.ID()),
+
+		Path: fmt.Sprintf("%s/logTrackingEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

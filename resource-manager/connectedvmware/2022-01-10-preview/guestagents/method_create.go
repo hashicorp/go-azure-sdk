@@ -30,7 +30,8 @@ func (c GuestAgentsClient) Create(ctx context.Context, id GuestAgentId, input Gu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

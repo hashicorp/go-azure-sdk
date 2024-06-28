@@ -53,7 +53,8 @@ func (c ApiVersionSetClient) WorkspaceApiVersionSetCreateOrUpdate(ctx context.Co
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

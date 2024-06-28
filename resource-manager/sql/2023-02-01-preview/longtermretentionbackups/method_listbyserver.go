@@ -54,6 +54,18 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByServer ...
 func (c LongTermRetentionBackupsClient) ListByServer(ctx context.Context, id LongTermRetentionServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c LongTermRetentionBackupsClient) ListByServer(ctx context.Context, id Lon
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByServerCustomPager{},
 		Path:          fmt.Sprintf("%s/longTermRetentionBackups", id.ID()),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c FunctionsClient) Test(ctx context.Context, id FunctionId, input Function
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/test", id.ID()),
+
+		Path: fmt.Sprintf("%s/test", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

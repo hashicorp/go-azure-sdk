@@ -25,7 +25,8 @@ func (c ViewsClient) Get(ctx context.Context, id ViewId) (result GetOperationRes
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

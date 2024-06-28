@@ -25,7 +25,8 @@ func (c ResourceGuardsClient) Patch(ctx context.Context, id ResourceGuardId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

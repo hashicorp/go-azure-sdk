@@ -27,7 +27,8 @@ func (c DatabasesClient) RemovePrincipals(ctx context.Context, id commonids.Kust
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removePrincipals", id.ID()),
+
+		Path: fmt.Sprintf("%s/removePrincipals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

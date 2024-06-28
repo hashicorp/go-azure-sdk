@@ -25,7 +25,8 @@ func (c ProductGroupLinkClient) Get(ctx context.Context, id GroupLinkId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

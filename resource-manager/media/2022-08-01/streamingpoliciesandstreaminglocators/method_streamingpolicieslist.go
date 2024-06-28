@@ -58,6 +58,18 @@ func (o StreamingPoliciesListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type StreamingPoliciesListCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *StreamingPoliciesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StreamingPoliciesList ...
 func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesList(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions) (result StreamingPoliciesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesList(ctx c
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &StreamingPoliciesListCustomPager{},
 		Path:          fmt.Sprintf("%s/streamingPolicies", id.ID()),
 		OptionsObject: options,
 	}

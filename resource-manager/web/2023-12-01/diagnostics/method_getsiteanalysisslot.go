@@ -25,7 +25,8 @@ func (c DiagnosticsClient) GetSiteAnalysisSlot(ctx context.Context, id Diagnosti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

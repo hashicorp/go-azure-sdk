@@ -29,7 +29,8 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesDelete(ctx context.C
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/notebookWorkspaces/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/notebookWorkspaces/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c AlertRulesAPIsClient) AlertRulesUpdate(ctx context.Context, id AlertRule
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

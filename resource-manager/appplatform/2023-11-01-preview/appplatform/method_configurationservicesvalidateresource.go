@@ -30,7 +30,8 @@ func (c AppPlatformClient) ConfigurationServicesValidateResource(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateResource", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateResource", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

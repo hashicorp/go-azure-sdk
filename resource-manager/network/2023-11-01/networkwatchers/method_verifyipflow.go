@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) VerifyIPFlow(ctx context.Context, id NetworkWatch
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ipFlowVerify", id.ID()),
+
+		Path: fmt.Sprintf("%s/ipFlowVerify", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

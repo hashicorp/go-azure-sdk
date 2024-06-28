@@ -26,7 +26,8 @@ func (c PortalSettingsClient) ListByService(ctx context.Context, id ServiceId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/portalsettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/portalsettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c QueryClient) Usage(ctx context.Context, id commonids.ScopeId, input Quer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/query", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/query", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c InputsClient) Delete(ctx context.Context, id InputId) (result DeleteOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

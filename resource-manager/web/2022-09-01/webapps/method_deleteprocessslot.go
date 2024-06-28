@@ -24,7 +24,8 @@ func (c WebAppsClient) DeleteProcessSlot(ctx context.Context, id SlotProcessId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

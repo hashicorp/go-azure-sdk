@@ -50,6 +50,18 @@ func (o VideosListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type VideosListCustomPager struct {
+	NextLink *odata.Link `json:"@nextLink"`
+}
+
+func (p *VideosListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VideosList ...
 func (c VideosClient) VideosList(ctx context.Context, id VideoAnalyzerId, options VideosListOperationOptions) (result VideosListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c VideosClient) VideosList(ctx context.Context, id VideoAnalyzerId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &VideosListCustomPager{},
 		Path:          fmt.Sprintf("%s/videos", id.ID()),
 		OptionsObject: options,
 	}

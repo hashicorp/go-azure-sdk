@@ -29,7 +29,8 @@ func (c VolumesRevertClient) VolumesRevert(ctx context.Context, id VolumeId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/revert", id.ID()),
+
+		Path: fmt.Sprintf("%s/revert", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

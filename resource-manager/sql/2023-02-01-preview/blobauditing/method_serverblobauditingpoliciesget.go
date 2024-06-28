@@ -27,7 +27,8 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesGet(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/auditingSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/auditingSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

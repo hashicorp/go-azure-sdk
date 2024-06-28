@@ -25,7 +25,8 @@ func (c TenantBackfillClient) Status(ctx context.Context) (result StatusOperatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Management/tenantBackfillStatus",
+
+		Path: "/providers/Microsoft.Management/tenantBackfillStatus",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

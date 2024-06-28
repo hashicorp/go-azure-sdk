@@ -26,7 +26,8 @@ func (c ServersClient) ListSkusForExisting(ctx context.Context, id ServerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

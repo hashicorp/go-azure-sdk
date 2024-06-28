@@ -30,7 +30,8 @@ func (c PacketCapturesClient) GetStatus(ctx context.Context, id PacketCaptureId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

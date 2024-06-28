@@ -25,7 +25,8 @@ func (c ClusterClient) Delete(ctx context.Context, id ClusterId) (result DeleteO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

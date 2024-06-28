@@ -24,7 +24,8 @@ func (c DeviceupdatesClient) AccountsHead(ctx context.Context, id AccountId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

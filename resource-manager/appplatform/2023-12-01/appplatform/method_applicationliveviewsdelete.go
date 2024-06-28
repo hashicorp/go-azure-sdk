@@ -29,7 +29,8 @@ func (c AppPlatformClient) ApplicationLiveViewsDelete(ctx context.Context, id Ap
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

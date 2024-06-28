@@ -27,7 +27,8 @@ func (c AttachedDatabaseConfigurationsClient) ListByCluster(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/attachedDatabaseConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/attachedDatabaseConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

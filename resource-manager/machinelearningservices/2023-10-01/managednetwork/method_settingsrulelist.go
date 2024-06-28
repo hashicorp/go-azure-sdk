@@ -23,6 +23,18 @@ type SettingsRuleListCompleteResult struct {
 	Items              []OutboundRuleBasicResource
 }
 
+type SettingsRuleListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SettingsRuleListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SettingsRuleList ...
 func (c ManagedNetworkClient) SettingsRuleList(ctx context.Context, id WorkspaceId) (result SettingsRuleListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ManagedNetworkClient) SettingsRuleList(ctx context.Context, id Workspace
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SettingsRuleListCustomPager{},
 		Path:       fmt.Sprintf("%s/outboundRules", id.ID()),
 	}
 

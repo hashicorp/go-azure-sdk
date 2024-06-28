@@ -25,7 +25,8 @@ func (c AppPlatformClient) RuntimeVersionsListRuntimeVersions(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.AppPlatform/runtimeVersions",
+
+		Path: "/providers/Microsoft.AppPlatform/runtimeVersions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

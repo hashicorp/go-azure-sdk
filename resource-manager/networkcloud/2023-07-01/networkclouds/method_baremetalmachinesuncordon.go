@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) BareMetalMachinesUncordon(ctx context.Context, id B
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uncordon", id.ID()),
+
+		Path: fmt.Sprintf("%s/uncordon", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

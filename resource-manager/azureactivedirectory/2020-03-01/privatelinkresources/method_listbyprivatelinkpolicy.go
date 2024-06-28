@@ -23,6 +23,18 @@ type ListByPrivateLinkPolicyCompleteResult struct {
 	Items              []PrivateLinkResource
 }
 
+type ListByPrivateLinkPolicyCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPrivateLinkPolicyCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPrivateLinkPolicy ...
 func (c PrivateLinkResourcesClient) ListByPrivateLinkPolicy(ctx context.Context, id PrivateLinkForAzureAdId) (result ListByPrivateLinkPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkResourcesClient) ListByPrivateLinkPolicy(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPrivateLinkPolicyCustomPager{},
 		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 

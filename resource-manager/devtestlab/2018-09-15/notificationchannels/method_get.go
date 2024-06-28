@@ -52,7 +52,8 @@ func (c NotificationChannelsClient) Get(ctx context.Context, id NotificationChan
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

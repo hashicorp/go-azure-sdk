@@ -56,7 +56,8 @@ func (c FleetsClient) Update(ctx context.Context, id FleetId, input FleetPatch, 
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

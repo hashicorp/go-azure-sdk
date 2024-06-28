@@ -56,7 +56,8 @@ func (c StaticSitesClient) RegisterUserProvidedFunctionAppWithStaticSiteBuild(ct
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

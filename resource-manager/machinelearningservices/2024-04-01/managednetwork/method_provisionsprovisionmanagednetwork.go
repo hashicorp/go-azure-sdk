@@ -30,7 +30,8 @@ func (c ManagedNetworkClient) ProvisionsProvisionManagedNetwork(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/provisionManagedNetwork", id.ID()),
+
+		Path: fmt.Sprintf("%s/provisionManagedNetwork", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ClustersClient) GetGatewaySettings(ctx context.Context, id commonids.HDI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getGatewaySettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/getGatewaySettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

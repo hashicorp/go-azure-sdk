@@ -25,7 +25,8 @@ func (c ManagedDatabaseSensitivityLabelsClient) EnableRecommendation(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sensitivityLabels/recommended/enable", id.ID()),
+
+		Path: fmt.Sprintf("%s/sensitivityLabels/recommended/enable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

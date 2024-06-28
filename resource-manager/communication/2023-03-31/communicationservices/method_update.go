@@ -25,7 +25,8 @@ func (c CommunicationServicesClient) Update(ctx context.Context, id Communicatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

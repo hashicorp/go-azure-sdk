@@ -29,7 +29,8 @@ func (c NodeTypeClient) DeleteNode(ctx context.Context, id NodeTypeId, input Nod
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteNode", id.ID()),
+
+		Path: fmt.Sprintf("%s/deleteNode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

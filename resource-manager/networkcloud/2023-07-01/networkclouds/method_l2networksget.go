@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) L2NetworksGet(ctx context.Context, id L2NetworkId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

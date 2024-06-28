@@ -50,6 +50,18 @@ func (o ListByDevCenterOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDevCenterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDevCenterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDevCenter ...
 func (c GalleriesClient) ListByDevCenter(ctx context.Context, id DevCenterId, options ListByDevCenterOperationOptions) (result ListByDevCenterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c GalleriesClient) ListByDevCenter(ctx context.Context, id DevCenterId, op
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByDevCenterCustomPager{},
 		Path:          fmt.Sprintf("%s/galleries", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c ConfigurationProfilesVersionsClient) Get(ctx context.Context, id Configu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

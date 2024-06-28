@@ -63,7 +63,8 @@ func (c UserClient) Delete(ctx context.Context, id UserId, options DeleteOperati
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

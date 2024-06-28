@@ -25,7 +25,8 @@ func (c ScalingPlanPooledScheduleClient) Delete(ctx context.Context, id PooledSc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

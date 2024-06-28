@@ -30,7 +30,8 @@ func (c CosmosDBClient) GremlinResourcesMigrateGremlinDatabaseToAutoscale(ctx co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/throughputSettings/default/migrateToAutoscale", id.ID()),
+
+		Path: fmt.Sprintf("%s/throughputSettings/default/migrateToAutoscale", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

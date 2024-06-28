@@ -26,7 +26,8 @@ func (c CustomAPIsClient) ExtractApiDefinitionFromWsdl(ctx context.Context, id L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extractApiDefinitionFromWsdl", id.ID()),
+
+		Path: fmt.Sprintf("%s/extractApiDefinitionFromWsdl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

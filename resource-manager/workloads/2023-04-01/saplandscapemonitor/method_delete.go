@@ -26,7 +26,8 @@ func (c SapLandscapeMonitorClient) Delete(ctx context.Context, id MonitorId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/sapLandscapeMonitor/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapLandscapeMonitor/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

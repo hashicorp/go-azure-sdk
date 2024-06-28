@@ -26,7 +26,8 @@ func (c WorkflowsClient) GenerateUpgradedDefinition(ctx context.Context, id Work
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateUpgradedDefinition", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateUpgradedDefinition", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

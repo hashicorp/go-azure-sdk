@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) DetachDataDisk(ctx context.Context, id VirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/detachDataDisk", id.ID()),
+
+		Path: fmt.Sprintf("%s/detachDataDisk", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

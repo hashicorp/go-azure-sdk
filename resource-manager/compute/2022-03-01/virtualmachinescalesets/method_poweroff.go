@@ -55,7 +55,8 @@ func (c VirtualMachineScaleSetsClient) PowerOff(ctx context.Context, id VirtualM
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/poweroff", id.ID()),
 		OptionsObject: options,
 	}

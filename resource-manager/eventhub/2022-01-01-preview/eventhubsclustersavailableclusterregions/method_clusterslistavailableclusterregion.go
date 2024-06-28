@@ -27,7 +27,8 @@ func (c EventHubsClustersAvailableClusterRegionsClient) ClustersListAvailableClu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventHub/availableClusterRegions", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventHub/availableClusterRegions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

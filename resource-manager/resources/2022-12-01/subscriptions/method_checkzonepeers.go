@@ -27,7 +27,8 @@ func (c SubscriptionsClient) CheckZonePeers(ctx context.Context, id commonids.Su
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/checkZonePeers", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Resources/checkZonePeers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c AttestationsClient) GetAtResourceGroup(ctx context.Context, id ProviderA
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

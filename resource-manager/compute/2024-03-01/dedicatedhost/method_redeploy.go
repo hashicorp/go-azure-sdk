@@ -29,7 +29,8 @@ func (c DedicatedHostClient) Redeploy(ctx context.Context, id commonids.Dedicate
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/redeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/redeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

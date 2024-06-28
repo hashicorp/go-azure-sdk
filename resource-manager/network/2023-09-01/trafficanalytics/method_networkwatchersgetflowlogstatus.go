@@ -30,7 +30,8 @@ func (c TrafficAnalyticsClient) NetworkWatchersGetFlowLogStatus(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryFlowLogStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryFlowLogStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

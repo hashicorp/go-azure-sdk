@@ -55,7 +55,8 @@ func (c ApiClient) WorkspaceApiDelete(ctx context.Context, id WorkspaceApiId, op
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

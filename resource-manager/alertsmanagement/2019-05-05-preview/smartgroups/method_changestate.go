@@ -52,7 +52,8 @@ func (c SmartGroupsClient) ChangeState(ctx context.Context, id SmartGroupId, opt
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/changeState", id.ID()),
 		OptionsObject: options,
 	}

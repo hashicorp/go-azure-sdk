@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) UpdateAseNetworkingConfiguration(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/configurations/networking", id.ID()),
+
+		Path: fmt.Sprintf("%s/configurations/networking", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

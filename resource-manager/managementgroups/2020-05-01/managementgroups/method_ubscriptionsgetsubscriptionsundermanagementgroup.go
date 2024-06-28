@@ -24,6 +24,18 @@ type UbscriptionsGetSubscriptionsUnderManagementGroupCompleteResult struct {
 	Items              []SubscriptionUnderManagementGroup
 }
 
+type UbscriptionsGetSubscriptionsUnderManagementGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *UbscriptionsGetSubscriptionsUnderManagementGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // UbscriptionsGetSubscriptionsUnderManagementGroup ...
 func (c ManagementGroupsClient) UbscriptionsGetSubscriptionsUnderManagementGroup(ctx context.Context, id commonids.ManagementGroupId) (result UbscriptionsGetSubscriptionsUnderManagementGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ManagementGroupsClient) UbscriptionsGetSubscriptionsUnderManagementGroup
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &UbscriptionsGetSubscriptionsUnderManagementGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/subscriptions", id.ID()),
 	}
 

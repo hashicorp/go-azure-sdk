@@ -26,7 +26,8 @@ func (c AuthorizationServerClient) ListSecrets(ctx context.Context, id Authoriza
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -51,7 +51,8 @@ func (c PostRulesClient) RefreshCounters(ctx context.Context, id PostRuleId, opt
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/refreshCounters", id.ID()),
 		OptionsObject: options,
 	}

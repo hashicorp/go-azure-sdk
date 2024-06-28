@@ -52,7 +52,8 @@ func (c OutputsClient) Update(ctx context.Context, id OutputId, input Output, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

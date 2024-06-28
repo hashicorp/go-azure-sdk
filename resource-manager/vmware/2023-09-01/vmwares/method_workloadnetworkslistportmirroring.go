@@ -23,6 +23,18 @@ type WorkloadNetworksListPortMirroringCompleteResult struct {
 	Items              []WorkloadNetworkPortMirroring
 }
 
+type WorkloadNetworksListPortMirroringCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkloadNetworksListPortMirroringCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkloadNetworksListPortMirroring ...
 func (c VMwaresClient) WorkloadNetworksListPortMirroring(ctx context.Context, id PrivateCloudId) (result WorkloadNetworksListPortMirroringOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c VMwaresClient) WorkloadNetworksListPortMirroring(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkloadNetworksListPortMirroringCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/portMirroringProfiles", id.ID()),
 	}
 

@@ -30,7 +30,8 @@ func (c Python3PackageClient) CreateOrUpdate(ctx context.Context, id Python3Pack
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

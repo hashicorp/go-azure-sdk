@@ -52,7 +52,8 @@ func (c TaskResourceClient) TasksDelete(ctx context.Context, id TaskId, options 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

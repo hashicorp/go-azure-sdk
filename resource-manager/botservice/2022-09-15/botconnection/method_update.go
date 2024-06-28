@@ -26,7 +26,8 @@ func (c BotConnectionClient) Update(ctx context.Context, id ConnectionId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

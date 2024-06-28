@@ -58,6 +58,18 @@ func (o ListByBatchAccountOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByBatchAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBatchAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBatchAccount ...
 func (c PoolClient) ListByBatchAccount(ctx context.Context, id BatchAccountId, options ListByBatchAccountOperationOptions) (result ListByBatchAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c PoolClient) ListByBatchAccount(ctx context.Context, id BatchAccountId, o
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByBatchAccountCustomPager{},
 		Path:          fmt.Sprintf("%s/pools", id.ID()),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c ClustersClient) ExecuteScriptActions(ctx context.Context, id commonids.H
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/executeScriptActions", id.ID()),
+
+		Path: fmt.Sprintf("%s/executeScriptActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

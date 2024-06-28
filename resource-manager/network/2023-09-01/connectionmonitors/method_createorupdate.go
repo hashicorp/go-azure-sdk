@@ -56,7 +56,8 @@ func (c ConnectionMonitorsClient) CreateOrUpdate(ctx context.Context, id Connect
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

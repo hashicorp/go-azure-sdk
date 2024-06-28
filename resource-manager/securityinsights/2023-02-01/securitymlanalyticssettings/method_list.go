@@ -24,6 +24,18 @@ type ListCompleteResult struct {
 	Items              []SecurityMLAnalyticsSetting
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c SecurityMLAnalyticsSettingsClient) List(ctx context.Context, id WorkspaceId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c SecurityMLAnalyticsSettingsClient) List(ctx context.Context, id Workspac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings", id.ID()),
 	}
 

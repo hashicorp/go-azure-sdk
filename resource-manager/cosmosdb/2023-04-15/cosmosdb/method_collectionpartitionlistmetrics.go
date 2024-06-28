@@ -52,7 +52,8 @@ func (c CosmosDBClient) CollectionPartitionListMetrics(ctx context.Context, id C
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/partitions/metrics", id.ID()),
 		OptionsObject: options,
 	}

@@ -52,7 +52,8 @@ func (c ApiVersionSetsClient) ApiVersionSetDelete(ctx context.Context, id ApiVer
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

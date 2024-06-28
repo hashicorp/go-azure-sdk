@@ -29,7 +29,8 @@ func (c WebAppsClient) SwapSlotSlot(ctx context.Context, id SlotId, input CsmSlo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/slotsswap", id.ID()),
+
+		Path: fmt.Sprintf("%s/slotsswap", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

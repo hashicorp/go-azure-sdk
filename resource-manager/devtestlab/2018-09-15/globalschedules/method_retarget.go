@@ -29,7 +29,8 @@ func (c GlobalSchedulesClient) Retarget(ctx context.Context, id ScheduleId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retarget", id.ID()),
+
+		Path: fmt.Sprintf("%s/retarget", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

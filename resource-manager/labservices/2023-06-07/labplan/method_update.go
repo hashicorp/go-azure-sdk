@@ -30,7 +30,8 @@ func (c LabPlanClient) Update(ctx context.Context, id LabPlanId, input LabPlanUp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

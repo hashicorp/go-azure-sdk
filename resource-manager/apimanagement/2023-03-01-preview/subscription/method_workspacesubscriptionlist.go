@@ -58,6 +58,18 @@ func (o WorkspaceSubscriptionListOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type WorkspaceSubscriptionListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceSubscriptionListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceSubscriptionList ...
 func (c SubscriptionClient) WorkspaceSubscriptionList(ctx context.Context, id WorkspaceId, options WorkspaceSubscriptionListOperationOptions) (result WorkspaceSubscriptionListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c SubscriptionClient) WorkspaceSubscriptionList(ctx context.Context, id Wo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceSubscriptionListCustomPager{},
 		Path:          fmt.Sprintf("%s/subscriptions", id.ID()),
 		OptionsObject: options,
 	}

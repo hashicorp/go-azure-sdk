@@ -52,7 +52,8 @@ func (c StatisticsClient) ListByAutomationAccount(ctx context.Context, id Automa
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/statistics", id.ID()),
 		OptionsObject: options,
 	}

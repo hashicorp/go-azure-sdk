@@ -26,7 +26,8 @@ func (c WorkspacesClient) QlAadAdminsGet(ctx context.Context, id WorkspaceId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

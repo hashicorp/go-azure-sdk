@@ -52,7 +52,8 @@ func (c FileSharesClient) Lease(ctx context.Context, id ShareId, input LeaseShar
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/lease", id.ID()),
 		OptionsObject: options,
 	}

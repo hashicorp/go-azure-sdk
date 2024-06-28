@@ -57,7 +57,8 @@ func (c BackupInstancesClient) CreateOrUpdate(ctx context.Context, id BackupInst
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

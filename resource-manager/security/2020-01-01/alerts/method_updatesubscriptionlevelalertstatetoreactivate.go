@@ -25,7 +25,8 @@ func (c AlertsClient) UpdateSubscriptionLevelAlertStateToReactivate(ctx context.
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activate", id.ID()),
+
+		Path: fmt.Sprintf("%s/activate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c JobDefinitionsClient) StopJob(ctx context.Context, id JobDefinitionId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stopJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/stopJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

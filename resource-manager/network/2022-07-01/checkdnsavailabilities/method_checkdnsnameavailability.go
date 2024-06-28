@@ -52,7 +52,8 @@ func (c CheckDnsAvailabilitiesClient) CheckDnsNameAvailability(ctx context.Conte
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/checkDnsNameAvailability", id.ID()),
 		OptionsObject: options,
 	}

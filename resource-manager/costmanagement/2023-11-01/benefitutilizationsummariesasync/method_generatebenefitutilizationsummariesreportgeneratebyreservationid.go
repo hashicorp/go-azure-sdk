@@ -30,7 +30,8 @@ func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummar
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateBenefitUtilizationSummariesReport", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/generateBenefitUtilizationSummariesReport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ApiKeyClient) MonitorsGetDefaultKey(ctx context.Context, id MonitorId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getDefaultKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/getDefaultKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VirtualMachineSchedulesClient) Delete(ctx context.Context, id VirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

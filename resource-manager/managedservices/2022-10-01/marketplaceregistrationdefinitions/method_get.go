@@ -25,7 +25,8 @@ func (c MarketplaceRegistrationDefinitionsClient) Get(ctx context.Context, id Sc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

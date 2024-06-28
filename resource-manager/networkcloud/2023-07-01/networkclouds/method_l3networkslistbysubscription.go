@@ -24,6 +24,18 @@ type L3NetworksListBySubscriptionCompleteResult struct {
 	Items              []L3Network
 }
 
+type L3NetworksListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *L3NetworksListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // L3NetworksListBySubscription ...
 func (c NetworkcloudsClient) L3NetworksListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result L3NetworksListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) L3NetworksListBySubscription(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &L3NetworksListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/l3Networks", id.ID()),
 	}
 

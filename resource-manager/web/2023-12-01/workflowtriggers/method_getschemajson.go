@@ -26,7 +26,8 @@ func (c WorkflowTriggersClient) GetSchemaJson(ctx context.Context, id TriggerId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/schemas/json", id.ID()),
+
+		Path: fmt.Sprintf("%s/schemas/json", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

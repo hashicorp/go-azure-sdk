@@ -30,7 +30,8 @@ func (c WebPubSubClient) HubsDelete(ctx context.Context, id HubId) (result HubsD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c DicomServicesClient) Delete(ctx context.Context, id DicomServiceId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

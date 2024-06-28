@@ -52,7 +52,8 @@ func (c DpsCertificateClient) CreateOrUpdate(ctx context.Context, id Certificate
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

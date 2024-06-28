@@ -29,7 +29,8 @@ func (c StorageTargetsClient) RestoreDefaults(ctx context.Context, id StorageTar
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreDefaults", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreDefaults", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

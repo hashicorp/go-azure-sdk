@@ -27,7 +27,8 @@ func (c ResourceProvidersClient) ListSkus(ctx context.Context, id commonids.Subs
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c GeographicHierarchiesClient) GetDefault(ctx context.Context) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.Network/trafficManagerGeographicHierarchies/default",
+
+		Path: "/providers/Microsoft.Network/trafficManagerGeographicHierarchies/default",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

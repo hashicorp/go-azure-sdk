@@ -52,7 +52,8 @@ func (c SchemaClient) WorkspaceGlobalSchemaDelete(ctx context.Context, id Worksp
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

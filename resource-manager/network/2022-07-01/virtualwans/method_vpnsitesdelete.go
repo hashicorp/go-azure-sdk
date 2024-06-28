@@ -30,7 +30,8 @@ func (c VirtualWANsClient) VpnSitesDelete(ctx context.Context, id VpnSiteId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

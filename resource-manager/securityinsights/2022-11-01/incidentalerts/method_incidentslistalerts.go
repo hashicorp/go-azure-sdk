@@ -26,7 +26,8 @@ func (c IncidentAlertsClient) IncidentsListAlerts(ctx context.Context, id Incide
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/alerts", id.ID()),
+
+		Path: fmt.Sprintf("%s/alerts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

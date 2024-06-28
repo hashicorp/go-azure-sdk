@@ -30,7 +30,8 @@ func (c RedisClient) FlushCache(ctx context.Context, id RediId) (result FlushCac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/flush", id.ID()),
+
+		Path: fmt.Sprintf("%s/flush", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c BatchDeploymentClient) Delete(ctx context.Context, id DeploymentId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

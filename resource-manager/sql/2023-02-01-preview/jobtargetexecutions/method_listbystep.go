@@ -74,6 +74,18 @@ func (o ListByStepOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByStepCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByStepCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByStep ...
 func (c JobTargetExecutionsClient) ListByStep(ctx context.Context, id ExecutionStepId, options ListByStepOperationOptions) (result ListByStepOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -82,6 +94,7 @@ func (c JobTargetExecutionsClient) ListByStep(ctx context.Context, id ExecutionS
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByStepCustomPager{},
 		Path:          fmt.Sprintf("%s/targets", id.ID()),
 		OptionsObject: options,
 	}

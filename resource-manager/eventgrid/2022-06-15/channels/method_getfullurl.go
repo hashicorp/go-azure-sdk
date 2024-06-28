@@ -26,7 +26,8 @@ func (c ChannelsClient) GetFullUrl(ctx context.Context, id ChannelId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getFullUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/getFullUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

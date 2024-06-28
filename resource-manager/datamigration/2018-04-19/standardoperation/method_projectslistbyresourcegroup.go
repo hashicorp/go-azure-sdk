@@ -23,6 +23,18 @@ type ProjectsListByResourceGroupCompleteResult struct {
 	Items              []Project
 }
 
+type ProjectsListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ProjectsListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ProjectsListByResourceGroup ...
 func (c StandardOperationClient) ProjectsListByResourceGroup(ctx context.Context, id ServiceId) (result ProjectsListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c StandardOperationClient) ProjectsListByResourceGroup(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ProjectsListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/projects", id.ID()),
 	}
 

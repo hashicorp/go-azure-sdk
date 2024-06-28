@@ -26,7 +26,8 @@ func (c DataProductsClient) ListRolesAssignments(ctx context.Context, id DataPro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listRolesAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/listRolesAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

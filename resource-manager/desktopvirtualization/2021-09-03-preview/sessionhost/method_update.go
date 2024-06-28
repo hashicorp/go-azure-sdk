@@ -52,7 +52,8 @@ func (c SessionHostClient) Update(ctx context.Context, id SessionHostId, input S
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

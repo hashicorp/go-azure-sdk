@@ -26,7 +26,8 @@ func (c RedisClient) PatchSchedulesDelete(ctx context.Context, id RediId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/patchSchedules/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/patchSchedules/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c SubscriptionClient) Get(ctx context.Context, id Subscriptions2Id) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

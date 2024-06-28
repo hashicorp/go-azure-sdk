@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) RunCommand(ctx context.Context, id VirtualMachine
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runCommand", id.ID()),
+
+		Path: fmt.Sprintf("%s/runCommand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

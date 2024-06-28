@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) StartPacketCapture(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startPacketCapture", id.ID()),
+
+		Path: fmt.Sprintf("%s/startPacketCapture", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

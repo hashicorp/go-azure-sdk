@@ -64,7 +64,8 @@ func (c FavoritesAPIsClient) FavoritesList(ctx context.Context, id ComponentId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/favorites", id.ID()),
 		OptionsObject: options,
 	}

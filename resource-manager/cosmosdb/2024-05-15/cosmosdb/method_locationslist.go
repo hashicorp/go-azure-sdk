@@ -27,7 +27,8 @@ func (c CosmosDBClient) LocationsList(ctx context.Context, id commonids.Subscrip
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DocumentDB/locations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DocumentDB/locations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c DomainsClient) CancelVerification(ctx context.Context, id DomainId, inpu
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelVerification", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelVerification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

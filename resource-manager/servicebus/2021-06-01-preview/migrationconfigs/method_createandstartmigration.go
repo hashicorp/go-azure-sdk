@@ -30,7 +30,8 @@ func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

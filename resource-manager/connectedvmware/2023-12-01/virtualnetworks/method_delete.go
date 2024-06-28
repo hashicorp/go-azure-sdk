@@ -56,7 +56,8 @@ func (c VirtualNetworksClient) Delete(ctx context.Context, id VirtualNetworkId, 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

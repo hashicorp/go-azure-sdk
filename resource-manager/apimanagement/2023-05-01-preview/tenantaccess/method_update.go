@@ -52,7 +52,8 @@ func (c TenantAccessClient) Update(ctx context.Context, id AccessId, input Acces
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

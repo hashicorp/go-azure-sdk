@@ -56,7 +56,8 @@ func (c NamedValueClient) WorkspaceNamedValueUpdate(ctx context.Context, id Work
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

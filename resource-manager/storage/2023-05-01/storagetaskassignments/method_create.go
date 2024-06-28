@@ -31,7 +31,8 @@ func (c StorageTaskAssignmentsClient) Create(ctx context.Context, id StorageTask
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

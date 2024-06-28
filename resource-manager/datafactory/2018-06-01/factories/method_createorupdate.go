@@ -52,7 +52,8 @@ func (c FactoriesClient) CreateOrUpdate(ctx context.Context, id FactoryId, input
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

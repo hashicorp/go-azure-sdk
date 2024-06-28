@@ -26,7 +26,8 @@ func (c VirtualMachineImagesClient) EdgeZoneListOffers(ctx context.Context, id E
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/artifactTypes/vmImage/offers", id.ID()),
+
+		Path: fmt.Sprintf("%s/artifactTypes/vmImage/offers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

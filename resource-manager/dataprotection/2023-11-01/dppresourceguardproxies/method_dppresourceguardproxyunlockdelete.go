@@ -26,7 +26,8 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyUnlockDelete(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unlockDelete", id.ID()),
+
+		Path: fmt.Sprintf("%s/unlockDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

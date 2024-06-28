@@ -28,7 +28,8 @@ func (c ProjectCatalogsClient) Connect(ctx context.Context, id CatalogId) (resul
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/connect", id.ID()),
+
+		Path: fmt.Sprintf("%s/connect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

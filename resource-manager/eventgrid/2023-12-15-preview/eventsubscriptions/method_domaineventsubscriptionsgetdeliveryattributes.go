@@ -26,7 +26,8 @@ func (c EventSubscriptionsClient) DomainEventSubscriptionsGetDeliveryAttributes(
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getDeliveryAttributes", id.ID()),
+
+		Path: fmt.Sprintf("%s/getDeliveryAttributes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

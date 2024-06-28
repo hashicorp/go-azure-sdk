@@ -25,7 +25,8 @@ func (c TagRulesClient) SubAccountTagRulesGet(ctx context.Context, id AccountTag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

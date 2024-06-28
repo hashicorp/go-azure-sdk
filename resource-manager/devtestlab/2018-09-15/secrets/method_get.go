@@ -52,7 +52,8 @@ func (c SecretsClient) Get(ctx context.Context, id SecretId, options GetOperatio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

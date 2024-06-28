@@ -27,7 +27,8 @@ func (c VideoAnalyzersClient) VideoAnalyzersList(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Media/videoAnalyzers", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Media/videoAnalyzers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VMwaresClient) WorkloadNetworksGetDnsZone(ctx context.Context, id DnsZon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

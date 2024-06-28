@@ -26,7 +26,8 @@ func (c VirtualMachineImagesClient) ListSkus(ctx context.Context, id OfferId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

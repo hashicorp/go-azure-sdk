@@ -31,7 +31,8 @@ func (c ManagedInstanceAzureADOnlyAuthenticationsClient) Delete(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/azureADOnlyAuthentications/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/azureADOnlyAuthentications/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c DisasterRecoveryConfigsClient) BreakPairing(ctx context.Context, id Disa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/breakPairing", id.ID()),
+
+		Path: fmt.Sprintf("%s/breakPairing", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

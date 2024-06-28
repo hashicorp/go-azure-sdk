@@ -52,7 +52,8 @@ func (c VirtualMachineScaleSetVMExtensionsClient) List(ctx context.Context, id V
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 		OptionsObject: options,
 	}

@@ -53,7 +53,8 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Datadog/subscriptionStatuses", id.ID()),
 		OptionsObject: options,
 	}

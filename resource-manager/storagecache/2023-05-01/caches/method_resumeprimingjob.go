@@ -29,7 +29,8 @@ func (c CachesClient) ResumePrimingJob(ctx context.Context, id CacheId, input Pr
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resumePrimingJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/resumePrimingJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

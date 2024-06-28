@@ -26,7 +26,8 @@ func (c KeysClient) Delete(ctx context.Context, id KeyId) (result DeleteOperatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

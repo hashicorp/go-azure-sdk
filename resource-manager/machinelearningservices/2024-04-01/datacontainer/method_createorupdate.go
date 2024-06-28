@@ -26,7 +26,8 @@ func (c DataContainerClient) CreateOrUpdate(ctx context.Context, id WorkspaceDat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

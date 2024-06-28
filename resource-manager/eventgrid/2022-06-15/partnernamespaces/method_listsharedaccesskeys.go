@@ -26,7 +26,8 @@ func (c PartnerNamespacesClient) ListSharedAccessKeys(ctx context.Context, id Pa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

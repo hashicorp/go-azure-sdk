@@ -27,7 +27,8 @@ func (c AppliancesClient) GetTelemetryConfig(ctx context.Context, id commonids.S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ResourceConnector/telemetryconfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ResourceConnector/telemetryconfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

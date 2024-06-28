@@ -25,7 +25,8 @@ func (c SyncGroupResourceClient) SyncGroupsCreate(ctx context.Context, id SyncGr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ApplicationsClient) UpdateById(ctx context.Context, id ApplicationIdId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

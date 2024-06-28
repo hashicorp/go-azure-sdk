@@ -23,6 +23,18 @@ type GetCompleteResult struct {
 	Items              []ClusterCodeVersionsResult
 }
 
+type GetCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Get ...
 func (c ClusterVersionClient) Get(ctx context.Context, id ClusterVersionId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ClusterVersionClient) Get(ctx context.Context, id ClusterVersionId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GetCustomPager{},
 		Path:       id.ID(),
 	}
 

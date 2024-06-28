@@ -27,7 +27,8 @@ func (c ServersClient) ListByResourceGroup(ctx context.Context, id commonids.Res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DBforMariaDB/servers", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DBforMariaDB/servers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

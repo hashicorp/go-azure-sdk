@@ -53,7 +53,8 @@ func (c ApiPolicyClient) CreateOrUpdate(ctx context.Context, id ApiId, input Pol
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

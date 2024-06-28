@@ -30,7 +30,8 @@ func (c ApiManagementServiceClient) Restore(ctx context.Context, id ServiceId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+
+		Path: fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

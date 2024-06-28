@@ -25,7 +25,8 @@ func (c PromoteClient) ScriptExecutionHistoryPromote(ctx context.Context, id Scr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/promote", id.ID()),
+
+		Path: fmt.Sprintf("%s/promote", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByBillingAccountCompleteResult struct {
 	Items              []BillingRoleAssignment
 }
 
+type ListByBillingAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBillingAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBillingAccount ...
 func (c BillingRoleAssignmentsClient) ListByBillingAccount(ctx context.Context, id BillingAccountId) (result ListByBillingAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingRoleAssignmentsClient) ListByBillingAccount(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByBillingAccountCustomPager{},
 		Path:       fmt.Sprintf("%s/billingRoleAssignments", id.ID()),
 	}
 

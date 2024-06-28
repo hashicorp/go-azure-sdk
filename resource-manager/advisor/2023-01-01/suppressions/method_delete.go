@@ -24,7 +24,8 @@ func (c SuppressionsClient) Delete(ctx context.Context, id ScopedSuppressionId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

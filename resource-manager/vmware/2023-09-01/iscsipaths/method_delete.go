@@ -30,7 +30,8 @@ func (c IscsiPathsClient) Delete(ctx context.Context, id PrivateCloudId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

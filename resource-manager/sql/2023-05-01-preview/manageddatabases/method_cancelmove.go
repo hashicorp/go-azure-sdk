@@ -30,7 +30,8 @@ func (c ManagedDatabasesClient) CancelMove(ctx context.Context, id commonids.Sql
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelMove", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelMove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

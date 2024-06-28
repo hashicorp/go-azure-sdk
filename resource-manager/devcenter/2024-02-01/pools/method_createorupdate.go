@@ -30,7 +30,8 @@ func (c PoolsClient) CreateOrUpdate(ctx context.Context, id PoolId, input Pool) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c DeploymentsClient) DeleteAtTenantScope(ctx context.Context, id Deploymen
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

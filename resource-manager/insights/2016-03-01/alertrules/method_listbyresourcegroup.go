@@ -27,7 +27,8 @@ func (c AlertRulesClient) ListByResourceGroup(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Insights/alertRules", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Insights/alertRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

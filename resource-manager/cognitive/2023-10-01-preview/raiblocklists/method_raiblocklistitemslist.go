@@ -23,6 +23,18 @@ type RaiBlocklistItemsListCompleteResult struct {
 	Items              []RaiBlocklistItem
 }
 
+type RaiBlocklistItemsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RaiBlocklistItemsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RaiBlocklistItemsList ...
 func (c RaiBlocklistsClient) RaiBlocklistItemsList(ctx context.Context, id RaiBlocklistId) (result RaiBlocklistItemsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c RaiBlocklistsClient) RaiBlocklistItemsList(ctx context.Context, id RaiBl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RaiBlocklistItemsListCustomPager{},
 		Path:       fmt.Sprintf("%s/raiBlocklistItems", id.ID()),
 	}
 

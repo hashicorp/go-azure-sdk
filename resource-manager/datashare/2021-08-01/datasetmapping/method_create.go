@@ -27,7 +27,8 @@ func (c DataSetMappingClient) Create(ctx context.Context, id DataSetMappingId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

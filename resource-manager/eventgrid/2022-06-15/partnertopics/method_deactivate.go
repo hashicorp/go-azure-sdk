@@ -26,7 +26,8 @@ func (c PartnerTopicsClient) Deactivate(ctx context.Context, id PartnerTopicId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deactivate", id.ID()),
+
+		Path: fmt.Sprintf("%s/deactivate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

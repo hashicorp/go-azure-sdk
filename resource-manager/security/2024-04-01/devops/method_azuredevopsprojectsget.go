@@ -25,7 +25,8 @@ func (c DevOpsClient) AzureDevOpsProjectsGet(ctx context.Context, id ProjectId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c AutomationAccountClient) Update(ctx context.Context, id AutomationAccoun
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

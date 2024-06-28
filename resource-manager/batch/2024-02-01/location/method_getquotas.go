@@ -26,7 +26,8 @@ func (c LocationClient) GetQuotas(ctx context.Context, id LocationId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/quotas", id.ID()),
+
+		Path: fmt.Sprintf("%s/quotas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c AgentPoolsClient) UpgradeNodeImageVersion(ctx context.Context, id AgentP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgradeNodeImageVersion", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgradeNodeImageVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

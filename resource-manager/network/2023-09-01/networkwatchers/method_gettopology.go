@@ -26,7 +26,8 @@ func (c NetworkWatchersClient) GetTopology(ctx context.Context, id NetworkWatche
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/topology", id.ID()),
+
+		Path: fmt.Sprintf("%s/topology", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

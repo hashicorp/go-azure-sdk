@@ -52,7 +52,8 @@ func (c VirtualMachineScaleSetVMExtensionsClient) Get(ctx context.Context, id Vi
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -52,7 +52,8 @@ func (c GatewayClient) Delete(ctx context.Context, id GatewayId, options DeleteO
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

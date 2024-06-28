@@ -26,7 +26,8 @@ func (c ThreatIntelligenceClient) IndicatorMetricsList(ctx context.Context, id W
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/threatIntelligence/main/metrics", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/threatIntelligence/main/metrics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

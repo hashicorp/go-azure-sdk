@@ -27,7 +27,8 @@ func (c SAPRecommendationsClient) SAPSizingRecommendations(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getSizingRecommendations", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getSizingRecommendations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

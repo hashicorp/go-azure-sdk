@@ -25,7 +25,8 @@ func (c TopicsClient) Get(ctx context.Context, id TopicId) (result GetOperationR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

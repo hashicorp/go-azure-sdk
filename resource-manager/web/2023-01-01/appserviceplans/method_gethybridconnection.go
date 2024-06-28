@@ -25,7 +25,8 @@ func (c AppServicePlansClient) GetHybridConnection(ctx context.Context, id Hybri
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

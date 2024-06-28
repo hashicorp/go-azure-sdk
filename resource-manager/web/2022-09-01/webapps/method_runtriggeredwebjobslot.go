@@ -25,7 +25,8 @@ func (c WebAppsClient) RunTriggeredWebJobSlot(ctx context.Context, id SlotTrigge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/run", id.ID()),
+
+		Path: fmt.Sprintf("%s/run", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

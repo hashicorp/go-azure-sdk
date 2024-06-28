@@ -25,7 +25,8 @@ func (c GuestConfigurationAssignmentsClient) VMSSGet(ctx context.Context, id Gue
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

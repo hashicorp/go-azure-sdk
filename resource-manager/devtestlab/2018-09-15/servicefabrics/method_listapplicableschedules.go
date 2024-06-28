@@ -26,7 +26,8 @@ func (c ServiceFabricsClient) ListApplicableSchedules(ctx context.Context, id Se
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listApplicableSchedules", id.ID()),
+
+		Path: fmt.Sprintf("%s/listApplicableSchedules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

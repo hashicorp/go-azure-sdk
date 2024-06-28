@@ -26,7 +26,8 @@ func (c AzureADAdministratorsClient) Get(ctx context.Context, id FlexibleServerI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ComponentApiKeysAPIsClient) APIKeysCreate(ctx context.Context, id Compon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/apiKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/apiKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

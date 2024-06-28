@@ -26,7 +26,8 @@ func (c TransfersClient) Initiate(ctx context.Context, id InvoiceSectionId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateTransfer", id.ID()),
+
+		Path: fmt.Sprintf("%s/initiateTransfer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

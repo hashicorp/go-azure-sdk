@@ -26,7 +26,8 @@ func (c ContainerInstanceClient) ContainersAttach(ctx context.Context, id Contai
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attach", id.ID()),
+
+		Path: fmt.Sprintf("%s/attach", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -50,6 +50,18 @@ func (o ProviderResourceTypesListOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type ProviderResourceTypesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ProviderResourceTypesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ProviderResourceTypesList ...
 func (c ProvidersClient) ProviderResourceTypesList(ctx context.Context, id SubscriptionProviderId, options ProviderResourceTypesListOperationOptions) (result ProviderResourceTypesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c ProvidersClient) ProviderResourceTypesList(ctx context.Context, id Subsc
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ProviderResourceTypesListCustomPager{},
 		Path:          fmt.Sprintf("%s/resourceTypes", id.ID()),
 		OptionsObject: options,
 	}

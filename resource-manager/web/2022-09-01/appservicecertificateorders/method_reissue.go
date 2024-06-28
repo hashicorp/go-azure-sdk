@@ -25,7 +25,8 @@ func (c AppServiceCertificateOrdersClient) Reissue(ctx context.Context, id Certi
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reissue", id.ID()),
+
+		Path: fmt.Sprintf("%s/reissue", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

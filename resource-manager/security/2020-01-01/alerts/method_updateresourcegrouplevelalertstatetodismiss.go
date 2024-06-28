@@ -25,7 +25,8 @@ func (c AlertsClient) UpdateResourceGroupLevelAlertStateToDismiss(ctx context.Co
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismiss", id.ID()),
+
+		Path: fmt.Sprintf("%s/dismiss", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

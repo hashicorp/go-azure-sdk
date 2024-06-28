@@ -27,7 +27,8 @@ func (c ManagedHsmsClient) CheckMhsmNameAvailability(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.KeyVault/checkMhsmNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.KeyVault/checkMhsmNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

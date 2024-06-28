@@ -26,7 +26,8 @@ func (c IncidentTeamClient) IncidentsCreateTeam(ctx context.Context, id Incident
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createTeam", id.ID()),
+
+		Path: fmt.Sprintf("%s/createTeam", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

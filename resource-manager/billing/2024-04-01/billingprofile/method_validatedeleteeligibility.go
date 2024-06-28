@@ -26,7 +26,8 @@ func (c BillingProfileClient) ValidateDeleteEligibility(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateDeleteEligibility", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateDeleteEligibility", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

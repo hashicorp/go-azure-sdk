@@ -28,7 +28,8 @@ func (c ManagedCassandrasClient) CassandraClustersDeallocate(ctx context.Context
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deallocate", id.ID()),
+
+		Path: fmt.Sprintf("%s/deallocate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

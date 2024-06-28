@@ -26,7 +26,8 @@ func (c ManagedClustersClient) GetAccessProfile(ctx context.Context, id AccessPr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listCredential", id.ID()),
+
+		Path: fmt.Sprintf("%s/listCredential", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c JobClient) GetRunbookContent(ctx context.Context, id JobId, options GetR
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/runbookContent", id.ID()),
 		OptionsObject: options,
 	}

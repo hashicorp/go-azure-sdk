@@ -26,7 +26,8 @@ func (c HybridRunbookWorkerGroupClient) Create(ctx context.Context, id HybridRun
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c SAPDiskConfigurationsClient) SAPDiskConfigurations(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getDiskConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapVirtualInstanceMetadata/default/getDiskConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

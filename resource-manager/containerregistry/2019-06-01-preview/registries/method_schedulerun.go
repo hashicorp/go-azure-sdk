@@ -30,7 +30,8 @@ func (c RegistriesClient) ScheduleRun(ctx context.Context, id RegistryId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scheduleRun", id.ID()),
+
+		Path: fmt.Sprintf("%s/scheduleRun", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c GatewayListTraceClient) GatewayListTrace(ctx context.Context, id Gateway
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listTrace", id.ID()),
+
+		Path: fmt.Sprintf("%s/listTrace", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

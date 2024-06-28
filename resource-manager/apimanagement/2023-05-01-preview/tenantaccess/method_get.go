@@ -25,7 +25,8 @@ func (c TenantAccessClient) Get(ctx context.Context, id AccessId) (result GetOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

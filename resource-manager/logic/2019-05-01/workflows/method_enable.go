@@ -25,7 +25,8 @@ func (c WorkflowsClient) Enable(ctx context.Context, id WorkflowId) (result Enab
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enable", id.ID()),
+
+		Path: fmt.Sprintf("%s/enable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

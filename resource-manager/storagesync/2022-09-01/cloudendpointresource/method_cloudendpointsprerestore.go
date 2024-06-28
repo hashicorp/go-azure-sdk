@@ -29,7 +29,8 @@ func (c CloudEndpointResourceClient) CloudEndpointsPreRestore(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/prerestore", id.ID()),
+
+		Path: fmt.Sprintf("%s/prerestore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

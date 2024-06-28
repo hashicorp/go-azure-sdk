@@ -26,7 +26,8 @@ func (c ResetQueryPerformanceInsightDataClient) ResetQueryPerformanceInsightData
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetQueryPerformanceInsightData", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetQueryPerformanceInsightData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) KubernetesClustersRestartNode(ctx context.Context, 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restartNode", id.ID()),
+
+		Path: fmt.Sprintf("%s/restartNode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

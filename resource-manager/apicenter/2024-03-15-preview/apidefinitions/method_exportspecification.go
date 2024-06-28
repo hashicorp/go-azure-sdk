@@ -30,7 +30,8 @@ func (c ApiDefinitionsClient) ExportSpecification(ctx context.Context, id Defini
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/exportSpecification", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportSpecification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

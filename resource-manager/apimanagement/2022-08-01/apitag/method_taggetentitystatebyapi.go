@@ -24,7 +24,8 @@ func (c ApiTagClient) TagGetEntityStateByApi(ctx context.Context, id ApiTagId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

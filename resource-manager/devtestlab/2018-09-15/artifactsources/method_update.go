@@ -25,7 +25,8 @@ func (c ArtifactSourcesClient) Update(ctx context.Context, id ArtifactSourceId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

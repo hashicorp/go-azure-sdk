@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []StartMenuItem
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c StartMenuItemClient) List(ctx context.Context, id ApplicationGroupId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c StartMenuItemClient) List(ctx context.Context, id ApplicationGroupId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/startMenuItems", id.ID()),
 	}
 

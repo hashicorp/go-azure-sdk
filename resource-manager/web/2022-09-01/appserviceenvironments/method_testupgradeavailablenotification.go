@@ -26,7 +26,8 @@ func (c AppServiceEnvironmentsClient) TestUpgradeAvailableNotification(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/testUpgradeAvailableNotification", id.ID()),
+
+		Path: fmt.Sprintf("%s/testUpgradeAvailableNotification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

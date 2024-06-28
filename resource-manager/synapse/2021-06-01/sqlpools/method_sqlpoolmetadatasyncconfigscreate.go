@@ -26,7 +26,8 @@ func (c SqlPoolsClient) SqlPoolMetadataSyncConfigsCreate(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/metadataSync/config", id.ID()),
+
+		Path: fmt.Sprintf("%s/metadataSync/config", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

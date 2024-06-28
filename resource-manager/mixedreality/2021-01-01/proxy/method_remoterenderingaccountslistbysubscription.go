@@ -24,6 +24,18 @@ type RemoteRenderingAccountsListBySubscriptionCompleteResult struct {
 	Items              []RemoteRenderingAccount
 }
 
+type RemoteRenderingAccountsListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RemoteRenderingAccountsListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RemoteRenderingAccountsListBySubscription ...
 func (c ProxyClient) RemoteRenderingAccountsListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result RemoteRenderingAccountsListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ProxyClient) RemoteRenderingAccountsListBySubscription(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RemoteRenderingAccountsListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.MixedReality/remoteRenderingAccounts", id.ID()),
 	}
 

@@ -26,7 +26,8 @@ func (c JobsClient) ListSecrets(ctx context.Context, id JobId) (result ListSecre
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c GuestConfigurationHCRPAssignmentsClient) List(ctx context.Context, id Ma
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

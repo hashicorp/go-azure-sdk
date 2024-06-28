@@ -68,7 +68,8 @@ func (c MetricsClient) PredictiveMetricGet(ctx context.Context, id AutoScaleSett
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/predictiveMetrics", id.ID()),
 		OptionsObject: options,
 	}

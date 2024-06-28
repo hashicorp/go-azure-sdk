@@ -26,7 +26,8 @@ func (c UsersClient) UserGenerateSsoUrl(ctx context.Context, id UserId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateSsoUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateSsoUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

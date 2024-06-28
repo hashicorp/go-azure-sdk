@@ -26,7 +26,8 @@ func (c ScriptExecutionsClient) GetExecutionLogs(ctx context.Context, id ScriptE
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getExecutionLogs", id.ID()),
+
+		Path: fmt.Sprintf("%s/getExecutionLogs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

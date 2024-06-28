@@ -30,7 +30,8 @@ func (c ServerDnsAliasesClient) Delete(ctx context.Context, id DnsAliasId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

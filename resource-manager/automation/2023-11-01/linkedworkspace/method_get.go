@@ -26,7 +26,8 @@ func (c LinkedWorkspaceClient) Get(ctx context.Context, id AutomationAccountId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/linkedWorkspace", id.ID()),
+
+		Path: fmt.Sprintf("%s/linkedWorkspace", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

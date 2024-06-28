@@ -29,7 +29,8 @@ func (c POSTClient) ServicesStart(ctx context.Context, id ServiceId) (result Ser
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

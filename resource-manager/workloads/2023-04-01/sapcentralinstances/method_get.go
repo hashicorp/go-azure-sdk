@@ -25,7 +25,8 @@ func (c SAPCentralInstancesClient) Get(ctx context.Context, id CentralInstanceId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

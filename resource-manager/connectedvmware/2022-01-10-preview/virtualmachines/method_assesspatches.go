@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) AssessPatches(ctx context.Context, id VirtualMach
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assessPatches", id.ID()),
+
+		Path: fmt.Sprintf("%s/assessPatches", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

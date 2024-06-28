@@ -26,7 +26,8 @@ func (c TagsClient) DeleteAtScope(ctx context.Context, id commonids.ScopeId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

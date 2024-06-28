@@ -25,7 +25,8 @@ func (c WatchlistsClient) Get(ctx context.Context, id WatchlistId) (result GetOp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

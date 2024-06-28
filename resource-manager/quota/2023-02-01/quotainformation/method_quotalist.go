@@ -24,6 +24,18 @@ type QuotaListCompleteResult struct {
 	Items              []CurrentQuotaLimitBase
 }
 
+type QuotaListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *QuotaListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // QuotaList ...
 func (c QuotaInformationClient) QuotaList(ctx context.Context, id commonids.ScopeId) (result QuotaListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c QuotaInformationClient) QuotaList(ctx context.Context, id commonids.Scop
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &QuotaListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Quota/quotas", id.ID()),
 	}
 

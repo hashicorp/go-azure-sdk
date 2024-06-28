@@ -26,7 +26,8 @@ func (c RunsClient) GetLogSasUrl(ctx context.Context, id RunId) (result GetLogSa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listLogSasUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/listLogSasUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c BillingPropertiesClient) BillingPropertyUpdate(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Billing/billingProperty/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Billing/billingProperty/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

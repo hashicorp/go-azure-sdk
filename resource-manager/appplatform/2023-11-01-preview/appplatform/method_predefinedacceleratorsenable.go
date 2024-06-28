@@ -29,7 +29,8 @@ func (c AppPlatformClient) PredefinedAcceleratorsEnable(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enable", id.ID()),
+
+		Path: fmt.Sprintf("%s/enable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

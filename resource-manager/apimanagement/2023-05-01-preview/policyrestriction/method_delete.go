@@ -52,7 +52,8 @@ func (c PolicyRestrictionClient) Delete(ctx context.Context, id PolicyRestrictio
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

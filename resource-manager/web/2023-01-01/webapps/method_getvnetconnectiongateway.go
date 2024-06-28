@@ -25,7 +25,8 @@ func (c WebAppsClient) GetVnetConnectionGateway(ctx context.Context, id GatewayI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

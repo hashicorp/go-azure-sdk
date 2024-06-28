@@ -31,7 +31,8 @@ func (c DatabasesClient) Pause(ctx context.Context, id commonids.SqlDatabaseId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pause", id.ID()),
+
+		Path: fmt.Sprintf("%s/pause", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -53,7 +53,8 @@ func (c IdentityProviderClient) CreateOrUpdate(ctx context.Context, id IdentityP
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

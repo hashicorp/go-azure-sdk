@@ -50,6 +50,18 @@ func (o AccessPoliciesListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type AccessPoliciesListCustomPager struct {
+	NextLink *odata.Link `json:"@nextLink"`
+}
+
+func (p *AccessPoliciesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AccessPoliciesList ...
 func (c VideosClient) AccessPoliciesList(ctx context.Context, id VideoAnalyzerId, options AccessPoliciesListOperationOptions) (result AccessPoliciesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c VideosClient) AccessPoliciesList(ctx context.Context, id VideoAnalyzerId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AccessPoliciesListCustomPager{},
 		Path:          fmt.Sprintf("%s/accessPolicies", id.ID()),
 		OptionsObject: options,
 	}

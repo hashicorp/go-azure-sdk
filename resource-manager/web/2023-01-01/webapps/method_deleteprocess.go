@@ -24,7 +24,8 @@ func (c WebAppsClient) DeleteProcess(ctx context.Context, id ProcessId) (result 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

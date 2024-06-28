@@ -26,7 +26,8 @@ func (c AppPlatformClient) GatewaysValidateDomain(ctx context.Context, id Gatewa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateDomain", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateDomain", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

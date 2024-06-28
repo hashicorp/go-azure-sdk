@@ -26,7 +26,8 @@ func (c WorkspacesClient) SchemaGet(ctx context.Context, id WorkspaceId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schema", id.ID()),
+
+		Path: fmt.Sprintf("%s/schema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

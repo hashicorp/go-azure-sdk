@@ -26,7 +26,8 @@ func (c SecretsClient) CreateOrUpdate(ctx context.Context, id SecretId, input Se
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

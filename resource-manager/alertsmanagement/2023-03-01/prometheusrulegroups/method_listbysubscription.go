@@ -27,7 +27,8 @@ func (c PrometheusRuleGroupsClient) ListBySubscription(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/prometheusRuleGroups", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/prometheusRuleGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

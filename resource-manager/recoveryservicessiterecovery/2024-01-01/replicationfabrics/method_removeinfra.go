@@ -28,7 +28,8 @@ func (c ReplicationFabricsClient) RemoveInfra(ctx context.Context, id Replicatio
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeInfra", id.ID()),
+
+		Path: fmt.Sprintf("%s/removeInfra", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,7 +56,8 @@ func (c StorageTargetsClient) Delete(ctx context.Context, id StorageTargetId, op
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

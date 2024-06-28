@@ -25,7 +25,8 @@ func (c SubscriptionClient) RegeneratePrimaryKey(ctx context.Context, id Subscri
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regeneratePrimaryKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regeneratePrimaryKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

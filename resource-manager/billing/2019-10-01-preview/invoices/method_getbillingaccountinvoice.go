@@ -25,7 +25,8 @@ func (c InvoicesClient) GetBillingAccountInvoice(ctx context.Context, id Invoice
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

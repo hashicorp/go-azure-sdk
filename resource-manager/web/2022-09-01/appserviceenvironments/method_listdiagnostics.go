@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) ListDiagnostics(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/diagnostics", id.ID()),
+
+		Path: fmt.Sprintf("%s/diagnostics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

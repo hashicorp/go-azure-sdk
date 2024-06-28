@@ -24,6 +24,18 @@ type VirtualMachinesListByResourceGroupCompleteResult struct {
 	Items              []VirtualMachine
 }
 
+type VirtualMachinesListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *VirtualMachinesListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VirtualMachinesListByResourceGroup ...
 func (c NetworkcloudsClient) VirtualMachinesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result VirtualMachinesListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) VirtualMachinesListByResourceGroup(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &VirtualMachinesListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/virtualMachines", id.ID()),
 	}
 

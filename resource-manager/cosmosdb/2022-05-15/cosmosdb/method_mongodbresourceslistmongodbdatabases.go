@@ -26,7 +26,8 @@ func (c CosmosDBClient) MongoDBResourcesListMongoDBDatabases(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/mongodbDatabases", id.ID()),
+
+		Path: fmt.Sprintf("%s/mongodbDatabases", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

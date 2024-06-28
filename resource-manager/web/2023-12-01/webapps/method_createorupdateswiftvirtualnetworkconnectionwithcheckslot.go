@@ -26,7 +26,8 @@ func (c WebAppsClient) CreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkConfig/virtualNetwork", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

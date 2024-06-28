@@ -26,7 +26,8 @@ func (c WorkspacesClient) WorkspaceManagedIdentitySqlControlSettingsGet(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/managedIdentitySqlControlSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/managedIdentitySqlControlSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ResourceProvidersClient) UpdatePublishingUser(ctx context.Context, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       "/providers/Microsoft.Web/publishingUsers/web",
+
+		Path: "/providers/Microsoft.Web/publishingUsers/web",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

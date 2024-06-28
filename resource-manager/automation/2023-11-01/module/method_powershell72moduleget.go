@@ -25,7 +25,8 @@ func (c ModuleClient) PowerShell72ModuleGet(ctx context.Context, id PowerShell72
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

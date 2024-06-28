@@ -26,7 +26,8 @@ func (c NetAppResourceClient) RegionInfosGet(ctx context.Context, id LocationId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/regionInfos/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/regionInfos/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

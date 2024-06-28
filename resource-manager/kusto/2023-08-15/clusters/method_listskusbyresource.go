@@ -27,7 +27,8 @@ func (c ClustersClient) ListSkusByResource(ctx context.Context, id commonids.Kus
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

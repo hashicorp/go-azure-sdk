@@ -26,7 +26,8 @@ func (c ViewsClient) CreateOrUpdate(ctx context.Context, id ViewId, input View) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

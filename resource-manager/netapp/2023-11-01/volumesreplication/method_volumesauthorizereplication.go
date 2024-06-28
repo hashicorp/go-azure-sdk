@@ -29,7 +29,8 @@ func (c VolumesReplicationClient) VolumesAuthorizeReplication(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authorizeReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/authorizeReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

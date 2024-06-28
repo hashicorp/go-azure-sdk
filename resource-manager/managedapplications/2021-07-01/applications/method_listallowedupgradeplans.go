@@ -26,7 +26,8 @@ func (c ApplicationsClient) ListAllowedUpgradePlans(ctx context.Context, id Appl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listAllowedUpgradePlans", id.ID()),
+
+		Path: fmt.Sprintf("%s/listAllowedUpgradePlans", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

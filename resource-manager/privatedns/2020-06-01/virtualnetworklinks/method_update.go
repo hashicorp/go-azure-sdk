@@ -56,7 +56,8 @@ func (c VirtualNetworkLinksClient) Update(ctx context.Context, id VirtualNetwork
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

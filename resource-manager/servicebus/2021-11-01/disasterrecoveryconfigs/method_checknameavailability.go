@@ -26,7 +26,8 @@ func (c DisasterRecoveryConfigsClient) CheckNameAvailability(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disasterRecoveryConfigs/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/disasterRecoveryConfigs/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

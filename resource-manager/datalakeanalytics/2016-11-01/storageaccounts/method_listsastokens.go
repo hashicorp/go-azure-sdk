@@ -23,6 +23,18 @@ type ListSasTokensCompleteResult struct {
 	Items              []SasTokenInformation
 }
 
+type ListSasTokensCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSasTokensCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSasTokens ...
 func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId) (result ListSasTokensOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListSasTokensCustomPager{},
 		Path:       fmt.Sprintf("%s/listSasTokens", id.ID()),
 	}
 

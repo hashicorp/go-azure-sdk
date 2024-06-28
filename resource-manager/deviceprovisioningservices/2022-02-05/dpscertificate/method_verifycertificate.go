@@ -83,7 +83,8 @@ func (c DpsCertificateClient) VerifyCertificate(ctx context.Context, id Certific
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/verify", id.ID()),
 		OptionsObject: options,
 	}

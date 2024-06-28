@@ -26,7 +26,8 @@ func (c AlertRuleTemplatesClient) Get(ctx context.Context, id AlertRuleTemplateI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VirtualWANsClient) Generatevirtualwanvpnserverconfigurationvpnprofile(ct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateVpnProfile", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateVpnProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c VMHostClient) SubAccountVMHostPayload(ctx context.Context, id AccountId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vmHostPayload", id.ID()),
+
+		Path: fmt.Sprintf("%s/vmHostPayload", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

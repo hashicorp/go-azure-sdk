@@ -23,6 +23,18 @@ type ListBySubscriptionCompleteResult struct {
 	Items              []SubscriptionFeatureRegistration
 }
 
+type ListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySubscription ...
 func (c SubscriptionFeatureRegistrationsClient) ListBySubscription(ctx context.Context, id FeatureProviderId) (result ListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SubscriptionFeatureRegistrationsClient) ListBySubscription(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/subscriptionFeatureRegistrations", id.ID()),
 	}
 

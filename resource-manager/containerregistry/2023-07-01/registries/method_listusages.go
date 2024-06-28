@@ -26,7 +26,8 @@ func (c RegistriesClient) ListUsages(ctx context.Context, id RegistryId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/listUsages", id.ID()),
+
+		Path: fmt.Sprintf("%s/listUsages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

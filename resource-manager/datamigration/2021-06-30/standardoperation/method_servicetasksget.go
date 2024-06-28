@@ -52,7 +52,8 @@ func (c StandardOperationClient) ServiceTasksGet(ctx context.Context, id Service
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

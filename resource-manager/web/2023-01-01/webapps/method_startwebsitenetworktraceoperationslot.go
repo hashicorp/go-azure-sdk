@@ -64,7 +64,8 @@ func (c WebAppsClient) StartWebSiteNetworkTraceOperationSlot(ctx context.Context
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/networkTrace/startOperation", id.ID()),
 		OptionsObject: options,
 	}

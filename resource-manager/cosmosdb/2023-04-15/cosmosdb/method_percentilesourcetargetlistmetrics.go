@@ -52,7 +52,8 @@ func (c CosmosDBClient) PercentileSourceTargetListMetrics(ctx context.Context, i
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/percentile/metrics", id.ID()),
 		OptionsObject: options,
 	}

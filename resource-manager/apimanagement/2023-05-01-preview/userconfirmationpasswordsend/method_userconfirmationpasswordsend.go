@@ -51,7 +51,8 @@ func (c UserConfirmationPasswordSendClient) UserConfirmationPasswordSend(ctx con
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/confirmations/password/send", id.ID()),
 		OptionsObject: options,
 	}

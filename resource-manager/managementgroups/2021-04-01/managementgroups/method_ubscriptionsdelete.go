@@ -52,7 +52,8 @@ func (c ManagementGroupsClient) UbscriptionsDelete(ctx context.Context, id Subsc
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

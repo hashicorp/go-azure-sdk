@@ -31,7 +31,8 @@ func (c WebAppsClient) CreateOrUpdateSourceControlSlot(ctx context.Context, id S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/sourceControls/web", id.ID()),
+
+		Path: fmt.Sprintf("%s/sourceControls/web", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

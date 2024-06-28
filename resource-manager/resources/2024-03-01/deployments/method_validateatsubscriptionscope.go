@@ -30,7 +30,8 @@ func (c DeploymentsClient) ValidateAtSubscriptionScope(ctx context.Context, id P
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

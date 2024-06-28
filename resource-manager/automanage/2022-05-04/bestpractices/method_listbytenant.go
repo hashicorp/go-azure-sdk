@@ -25,7 +25,8 @@ func (c BestPracticesClient) ListByTenant(ctx context.Context) (result ListByTen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.AutoManage/bestPractices",
+
+		Path: "/providers/Microsoft.AutoManage/bestPractices",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

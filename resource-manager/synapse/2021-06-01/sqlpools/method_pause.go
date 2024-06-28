@@ -30,7 +30,8 @@ func (c SqlPoolsClient) Pause(ctx context.Context, id SqlPoolId) (result PauseOp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pause", id.ID()),
+
+		Path: fmt.Sprintf("%s/pause", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

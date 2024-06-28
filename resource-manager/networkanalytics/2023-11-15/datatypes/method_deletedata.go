@@ -29,7 +29,8 @@ func (c DataTypesClient) DeleteData(ctx context.Context, id DataTypeId, input in
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteData", id.ID()),
+
+		Path: fmt.Sprintf("%s/deleteData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

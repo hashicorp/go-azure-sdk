@@ -52,7 +52,8 @@ func (c PolicyFragmentClient) Get(ctx context.Context, id PolicyFragmentId, opti
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

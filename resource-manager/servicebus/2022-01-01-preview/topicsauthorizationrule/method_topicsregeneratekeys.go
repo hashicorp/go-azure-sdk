@@ -26,7 +26,8 @@ func (c TopicsAuthorizationRuleClient) TopicsRegenerateKeys(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

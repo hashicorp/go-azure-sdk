@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) Capture(ctx context.Context, id VirtualMachineId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/capture", id.ID()),
+
+		Path: fmt.Sprintf("%s/capture", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

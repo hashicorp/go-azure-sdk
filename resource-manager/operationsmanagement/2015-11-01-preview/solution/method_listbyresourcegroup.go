@@ -27,7 +27,8 @@ func (c SolutionClient) ListByResourceGroup(ctx context.Context, id commonids.Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/solutions", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/solutions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c BlobInventoryPoliciesClient) Get(ctx context.Context, id commonids.Stora
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

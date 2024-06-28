@@ -25,7 +25,8 @@ func (c DataConnectorsConnectClient) DataConnectorsConnect(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/connect", id.ID()),
+
+		Path: fmt.Sprintf("%s/connect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

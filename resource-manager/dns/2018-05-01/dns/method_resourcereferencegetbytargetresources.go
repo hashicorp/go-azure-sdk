@@ -27,7 +27,8 @@ func (c DnsClient) ResourceReferenceGetByTargetResources(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/getDnsResourceReference", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/getDnsResourceReference", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

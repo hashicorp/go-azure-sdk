@@ -31,7 +31,8 @@ func (c ActionGroupsAPIsClient) ActionGroupsCreateNotificationsAtResourceGroupLe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Insights/createNotifications", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Insights/createNotifications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

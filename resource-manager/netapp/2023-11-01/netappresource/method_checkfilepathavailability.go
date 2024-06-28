@@ -26,7 +26,8 @@ func (c NetAppResourceClient) CheckFilePathAvailability(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkFilePathAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkFilePathAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

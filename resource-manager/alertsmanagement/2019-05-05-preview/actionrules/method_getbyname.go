@@ -25,7 +25,8 @@ func (c ActionRulesClient) GetByName(ctx context.Context, id ActionRuleId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

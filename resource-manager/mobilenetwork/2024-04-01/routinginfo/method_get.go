@@ -26,7 +26,8 @@ func (c RoutingInfoClient) Get(ctx context.Context, id PacketCoreControlPlaneId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/routingInfo/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/routingInfo/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

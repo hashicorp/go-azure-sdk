@@ -30,7 +30,8 @@ func (c DatabasesClient) Update(ctx context.Context, id DatabaseId, input Databa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

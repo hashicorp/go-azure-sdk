@@ -26,7 +26,8 @@ func (c CosmosDBClient) SqlResourcesListSqlContainers(ctx context.Context, id Sq
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/containers", id.ID()),
+
+		Path: fmt.Sprintf("%s/containers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

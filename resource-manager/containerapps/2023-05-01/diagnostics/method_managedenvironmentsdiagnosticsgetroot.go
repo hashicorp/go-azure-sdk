@@ -26,7 +26,8 @@ func (c DiagnosticsClient) ManagedEnvironmentsDiagnosticsGetRoot(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/detectorProperties/rootApi", id.ID()),
+
+		Path: fmt.Sprintf("%s/detectorProperties/rootApi", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

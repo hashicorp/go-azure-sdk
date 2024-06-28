@@ -26,7 +26,8 @@ func (c EntitiesClient) Expand(ctx context.Context, id EntityId, input EntityExp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/expand", id.ID()),
+
+		Path: fmt.Sprintf("%s/expand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

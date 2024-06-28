@@ -52,7 +52,8 @@ func (c ForecastClient) ExternalCloudProviderUsage(ctx context.Context, id Exter
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/forecast", id.ID()),
 		OptionsObject: options,
 	}

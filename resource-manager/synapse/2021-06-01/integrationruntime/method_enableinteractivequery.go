@@ -29,7 +29,8 @@ func (c IntegrationRuntimeClient) EnableInteractiveQuery(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableInteractiveQuery", id.ID()),
+
+		Path: fmt.Sprintf("%s/enableInteractiveQuery", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

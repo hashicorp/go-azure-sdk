@@ -27,7 +27,8 @@ func (c AdvisorScoreClient) List(ctx context.Context, id commonids.SubscriptionI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Advisor/advisorScore", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Advisor/advisorScore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

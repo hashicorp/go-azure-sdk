@@ -25,7 +25,8 @@ func (c ThreatIntelligenceClient) IndicatorAppendTags(ctx context.Context, id In
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appendTags", id.ID()),
+
+		Path: fmt.Sprintf("%s/appendTags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

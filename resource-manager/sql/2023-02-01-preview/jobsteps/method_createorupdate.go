@@ -26,7 +26,8 @@ func (c JobStepsClient) CreateOrUpdate(ctx context.Context, id StepId, input Job
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

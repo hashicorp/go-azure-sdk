@@ -56,7 +56,8 @@ func (c PriceSheetClient) GetByBillingPeriod(ctx context.Context, id BillingPeri
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/pricesheets/default", id.ID()),
 		OptionsObject: options,
 	}

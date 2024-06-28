@@ -26,7 +26,8 @@ func (c AssetsAndAssetFiltersClient) AssetsGetEncryptionKey(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getEncryptionKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/getEncryptionKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

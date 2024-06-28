@@ -26,7 +26,8 @@ func (c StaticSitesClient) ListStaticSiteBuildFunctionAppSettings(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listFunctionAppSettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/listFunctionAppSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

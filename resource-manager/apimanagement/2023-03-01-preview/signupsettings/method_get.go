@@ -26,7 +26,8 @@ func (c SignUpSettingsClient) Get(ctx context.Context, id ServiceId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/portalsettings/signup", id.ID()),
+
+		Path: fmt.Sprintf("%s/portalsettings/signup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

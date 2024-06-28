@@ -52,7 +52,8 @@ func (c ApiIssueClient) Get(ctx context.Context, id ApiIssueId, options GetOpera
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

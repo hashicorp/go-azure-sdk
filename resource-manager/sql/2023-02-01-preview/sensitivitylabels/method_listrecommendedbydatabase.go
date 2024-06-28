@@ -55,6 +55,18 @@ func (o ListRecommendedByDatabaseOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type ListRecommendedByDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListRecommendedByDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListRecommendedByDatabase ...
 func (c SensitivityLabelsClient) ListRecommendedByDatabase(ctx context.Context, id commonids.SqlDatabaseId, options ListRecommendedByDatabaseOperationOptions) (result ListRecommendedByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c SensitivityLabelsClient) ListRecommendedByDatabase(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListRecommendedByDatabaseCustomPager{},
 		Path:          fmt.Sprintf("%s/recommendedSensitivityLabels", id.ID()),
 		OptionsObject: options,
 	}

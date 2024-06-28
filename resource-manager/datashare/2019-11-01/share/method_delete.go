@@ -31,7 +31,8 @@ func (c ShareClient) Delete(ctx context.Context, id ShareId) (result DeleteOpera
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

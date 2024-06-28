@@ -27,7 +27,8 @@ func (c WebAppsClient) GetMSDeployLog(ctx context.Context, id commonids.AppServi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extensions/mSDeploy/log", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/mSDeploy/log", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

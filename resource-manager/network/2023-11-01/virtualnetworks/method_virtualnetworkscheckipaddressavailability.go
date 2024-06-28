@@ -53,7 +53,8 @@ func (c VirtualNetworksClient) VirtualNetworksCheckIPAddressAvailability(ctx con
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/checkIPAddressAvailability", id.ID()),
 		OptionsObject: options,
 	}

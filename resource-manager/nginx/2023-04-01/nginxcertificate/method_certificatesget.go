@@ -25,7 +25,8 @@ func (c NginxCertificateClient) CertificatesGet(ctx context.Context, id Certific
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

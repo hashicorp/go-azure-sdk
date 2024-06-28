@@ -25,7 +25,8 @@ func (c SIMGroupClient) UpdateTags(ctx context.Context, id SimGroupId, input Ide
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

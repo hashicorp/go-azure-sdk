@@ -25,7 +25,8 @@ func (c DiagnosticSettingsClient) List(ctx context.Context) (result ListOperatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.AADIAM/diagnosticSettings",
+
+		Path: "/providers/Microsoft.AADIAM/diagnosticSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c RegionsClient) LocationsValidateClusterCreateRequest(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateCreateRequest", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateCreateRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

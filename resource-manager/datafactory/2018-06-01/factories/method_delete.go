@@ -25,7 +25,8 @@ func (c FactoriesClient) Delete(ctx context.Context, id FactoryId) (result Delet
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

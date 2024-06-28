@@ -25,7 +25,8 @@ func (c StaticSitesClient) GetDatabaseConnection(ctx context.Context, id Databas
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

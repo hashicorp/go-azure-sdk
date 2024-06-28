@@ -55,6 +55,18 @@ func (o ListByResourceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByResource ...
 func (c PrivateLinkResourcesClient) ListByResource(ctx context.Context, id commonids.ScopeId, options ListByResourceOperationOptions) (result ListByResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c PrivateLinkResourcesClient) ListByResource(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByResourceCustomPager{},
 		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 		OptionsObject: options,
 	}

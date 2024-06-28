@@ -31,7 +31,8 @@ func (c DataConnectionsClient) DataConnectionValidation(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dataConnectionValidation", id.ID()),
+
+		Path: fmt.Sprintf("%s/dataConnectionValidation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c CreditsClient) Get(ctx context.Context, id commonids.ScopeId) (result Ge
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Consumption/credits/balanceSummary", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Consumption/credits/balanceSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

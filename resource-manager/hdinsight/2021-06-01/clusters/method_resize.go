@@ -30,7 +30,8 @@ func (c ClustersClient) Resize(ctx context.Context, id commonids.HDInsightCluste
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roles/workernode/resize", id.ID()),
+
+		Path: fmt.Sprintf("%s/roles/workernode/resize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

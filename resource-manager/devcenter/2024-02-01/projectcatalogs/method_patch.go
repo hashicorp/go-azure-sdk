@@ -30,7 +30,8 @@ func (c ProjectCatalogsClient) Patch(ctx context.Context, id CatalogId, input Ca
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

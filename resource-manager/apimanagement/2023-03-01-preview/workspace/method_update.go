@@ -52,7 +52,8 @@ func (c WorkspaceClient) Update(ctx context.Context, id WorkspaceId, input Works
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

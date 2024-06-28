@@ -26,7 +26,8 @@ func (c VideosClient) VideosListStreamingToken(ctx context.Context, id VideoId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listStreamingToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/listStreamingToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,7 +56,8 @@ func (c PrivateEndpointConnectionClient) Update(ctx context.Context, id PrivateE
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

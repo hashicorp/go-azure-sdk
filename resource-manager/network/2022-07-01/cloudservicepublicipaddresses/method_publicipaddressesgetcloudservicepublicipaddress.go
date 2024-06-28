@@ -53,7 +53,8 @@ func (c CloudServicePublicIPAddressesClient) PublicIPAddressesGetCloudServicePub
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

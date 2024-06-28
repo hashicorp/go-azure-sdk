@@ -31,7 +31,8 @@ func (c SignalRClient) CreateOrUpdate(ctx context.Context, id SignalRId, input S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

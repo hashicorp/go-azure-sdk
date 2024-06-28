@@ -26,7 +26,8 @@ func (c CosmosDBClient) SqlResourcesListSqlTriggers(ctx context.Context, id Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/triggers", id.ID()),
+
+		Path: fmt.Sprintf("%s/triggers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,7 +24,8 @@ func (c WebAppsClient) DeleteVnetConnection(ctx context.Context, id VirtualNetwo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ManagedClusterSnapshotsClient) UpdateTags(ctx context.Context, id Manage
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c VirtualMachineScaleSetRollingUpgradesClient) GetLatest(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/rollingUpgrades/latest", id.ID()),
+
+		Path: fmt.Sprintf("%s/rollingUpgrades/latest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

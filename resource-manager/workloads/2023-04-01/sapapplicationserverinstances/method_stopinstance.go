@@ -30,7 +30,8 @@ func (c SAPApplicationServerInstancesClient) StopInstance(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+
+		Path: fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

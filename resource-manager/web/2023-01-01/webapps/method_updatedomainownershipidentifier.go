@@ -25,7 +25,8 @@ func (c WebAppsClient) UpdateDomainOwnershipIdentifier(ctx context.Context, id D
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

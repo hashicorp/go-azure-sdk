@@ -26,7 +26,8 @@ func (c WebAppsClient) ListDeploymentLog(ctx context.Context, id DeploymentId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/log", id.ID()),
+
+		Path: fmt.Sprintf("%s/log", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

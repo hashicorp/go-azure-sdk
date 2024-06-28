@@ -30,7 +30,8 @@ func (c VirtualWANsClient) VirtualHubsGetInboundRoutes(ctx context.Context, id V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inboundRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/inboundRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c RestoreClient) BackupsGetVolumeRestoreStatus(ctx context.Context, id Vol
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/restoreStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c BastionHostsClient) UpdateTags(ctx context.Context, id BastionHostId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

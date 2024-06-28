@@ -50,6 +50,18 @@ func (o ListByVirtualMachineOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByVirtualMachineCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVirtualMachineCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVirtualMachine ...
 func (c VirtualMachineRunCommandsClient) ListByVirtualMachine(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions) (result ListByVirtualMachineOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c VirtualMachineRunCommandsClient) ListByVirtualMachine(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByVirtualMachineCustomPager{},
 		Path:          fmt.Sprintf("%s/runCommands", id.ID()),
 		OptionsObject: options,
 	}

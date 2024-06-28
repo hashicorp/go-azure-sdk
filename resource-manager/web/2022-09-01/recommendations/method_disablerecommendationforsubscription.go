@@ -25,7 +25,8 @@ func (c RecommendationsClient) DisableRecommendationForSubscription(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disable", id.ID()),
+
+		Path: fmt.Sprintf("%s/disable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

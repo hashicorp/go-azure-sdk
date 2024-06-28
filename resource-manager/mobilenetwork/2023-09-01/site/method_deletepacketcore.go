@@ -29,7 +29,8 @@ func (c SiteClient) DeletePacketCore(ctx context.Context, id SiteId, input SiteD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deletePacketCore", id.ID()),
+
+		Path: fmt.Sprintf("%s/deletePacketCore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

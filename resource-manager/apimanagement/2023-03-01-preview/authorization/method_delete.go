@@ -52,7 +52,8 @@ func (c AuthorizationClient) Delete(ctx context.Context, id AuthorizationId, opt
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

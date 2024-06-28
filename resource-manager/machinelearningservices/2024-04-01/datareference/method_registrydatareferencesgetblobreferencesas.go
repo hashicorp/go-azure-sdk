@@ -25,7 +25,8 @@ func (c DataReferenceClient) RegistryDataReferencesGetBlobReferenceSAS(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

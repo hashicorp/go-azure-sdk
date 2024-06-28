@@ -26,7 +26,8 @@ func (c SnapshotsClient) CreateOrUpdate(ctx context.Context, id SnapshotId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

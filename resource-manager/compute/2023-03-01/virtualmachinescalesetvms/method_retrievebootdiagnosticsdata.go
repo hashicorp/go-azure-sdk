@@ -52,7 +52,8 @@ func (c VirtualMachineScaleSetVMsClient) RetrieveBootDiagnosticsData(ctx context
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/retrieveBootDiagnosticsData", id.ID()),
 		OptionsObject: options,
 	}

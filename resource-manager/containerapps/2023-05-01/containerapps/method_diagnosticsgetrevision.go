@@ -25,7 +25,8 @@ func (c ContainerAppsClient) DiagnosticsGetRevision(ctx context.Context, id Revi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

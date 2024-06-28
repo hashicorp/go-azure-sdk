@@ -27,7 +27,8 @@ func (c WebAppsClient) PutPrivateAccessVnet(ctx context.Context, id commonids.Ap
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/privateAccess/virtualNetworks", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateAccess/virtualNetworks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

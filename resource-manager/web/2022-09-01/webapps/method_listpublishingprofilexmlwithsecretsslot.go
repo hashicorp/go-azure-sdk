@@ -26,7 +26,8 @@ func (c WebAppsClient) ListPublishingProfileXmlWithSecretsSlot(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publishxml", id.ID()),
+
+		Path: fmt.Sprintf("%s/publishxml", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c AccessPoliciesClient) ListByEnvironment(ctx context.Context, id Environm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/accessPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/accessPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

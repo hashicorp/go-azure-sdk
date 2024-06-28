@@ -25,7 +25,8 @@ func (c WebAppsClient) DeleteContinuousWebJob(ctx context.Context, id Continuous
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

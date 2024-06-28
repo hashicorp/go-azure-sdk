@@ -27,7 +27,8 @@ func (c BlobInventoryPoliciesClient) Delete(ctx context.Context, id commonids.St
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/inventoryPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

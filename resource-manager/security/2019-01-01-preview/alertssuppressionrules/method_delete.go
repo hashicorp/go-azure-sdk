@@ -24,7 +24,8 @@ func (c AlertsSuppressionRulesClient) Delete(ctx context.Context, id AlertsSuppr
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

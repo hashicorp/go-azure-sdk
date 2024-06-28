@@ -55,7 +55,8 @@ func (c RecommendedActionSessionsClient) CreateRecommendedActionSession(ctx cont
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/createRecommendedActionSession", id.ID()),
 		OptionsObject: options,
 	}

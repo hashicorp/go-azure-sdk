@@ -31,7 +31,8 @@ func (c ManagedInstanceLongTermRetentionPoliciesClient) Delete(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

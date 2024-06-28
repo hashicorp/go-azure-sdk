@@ -56,7 +56,8 @@ func (c UpdateRunsClient) Stop(ctx context.Context, id UpdateRunId, options Stop
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/stop", id.ID()),
 		OptionsObject: options,
 	}

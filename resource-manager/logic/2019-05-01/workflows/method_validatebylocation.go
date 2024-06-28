@@ -25,7 +25,8 @@ func (c WorkflowsClient) ValidateByLocation(ctx context.Context, id LocationWork
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

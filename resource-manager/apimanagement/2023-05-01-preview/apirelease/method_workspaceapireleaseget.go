@@ -25,7 +25,8 @@ func (c ApiReleaseClient) WorkspaceApiReleaseGet(ctx context.Context, id ApiRele
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

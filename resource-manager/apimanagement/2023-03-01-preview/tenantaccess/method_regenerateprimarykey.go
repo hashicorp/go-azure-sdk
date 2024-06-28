@@ -25,7 +25,8 @@ func (c TenantAccessClient) RegeneratePrimaryKey(ctx context.Context, id AccessI
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regeneratePrimaryKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regeneratePrimaryKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

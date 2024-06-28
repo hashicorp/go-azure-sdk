@@ -25,7 +25,8 @@ func (c ConfigurationsClient) GetCoordinator(ctx context.Context, id Coordinator
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

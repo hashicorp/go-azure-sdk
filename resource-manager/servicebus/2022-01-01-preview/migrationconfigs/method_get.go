@@ -26,7 +26,8 @@ func (c MigrationConfigsClient) Get(ctx context.Context, id NamespaceId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

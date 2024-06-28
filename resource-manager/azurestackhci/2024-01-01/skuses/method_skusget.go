@@ -52,7 +52,8 @@ func (c SkusesClient) SkusGet(ctx context.Context, id SkuId, options SkusGetOper
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c ClusterPrincipalAssignmentsClient) CheckNameAvailability(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkPrincipalAssignmentNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkPrincipalAssignmentNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

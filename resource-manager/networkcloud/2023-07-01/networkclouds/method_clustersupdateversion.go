@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) ClustersUpdateVersion(ctx context.Context, id Clust
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateVersion", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

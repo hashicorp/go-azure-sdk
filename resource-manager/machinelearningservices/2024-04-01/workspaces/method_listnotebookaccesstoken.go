@@ -26,7 +26,8 @@ func (c WorkspacesClient) ListNotebookAccessToken(ctx context.Context, id Worksp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listNotebookAccessToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/listNotebookAccessToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

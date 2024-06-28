@@ -26,7 +26,8 @@ func (c ServersClient) ListGatewayStatus(ctx context.Context, id ServerId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listGatewayStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/listGatewayStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

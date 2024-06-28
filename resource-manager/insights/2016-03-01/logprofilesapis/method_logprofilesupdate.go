@@ -25,7 +25,8 @@ func (c LogProfilesAPIsClient) LogProfilesUpdate(ctx context.Context, id LogProf
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

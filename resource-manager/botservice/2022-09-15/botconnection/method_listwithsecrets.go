@@ -26,7 +26,8 @@ func (c BotConnectionClient) ListWithSecrets(ctx context.Context, id ConnectionI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listWithSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listWithSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

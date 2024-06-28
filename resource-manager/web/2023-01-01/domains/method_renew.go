@@ -27,7 +27,8 @@ func (c DomainsClient) Renew(ctx context.Context, id DomainId) (result RenewOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/renew", id.ID()),
+
+		Path: fmt.Sprintf("%s/renew", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

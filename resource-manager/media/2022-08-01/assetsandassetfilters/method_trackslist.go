@@ -26,7 +26,8 @@ func (c AssetsAndAssetFiltersClient) TracksList(ctx context.Context, id AssetId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tracks", id.ID()),
+
+		Path: fmt.Sprintf("%s/tracks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

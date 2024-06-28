@@ -51,6 +51,18 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByServer ...
 func (c ElasticPoolsClient) ListByServer(ctx context.Context, id commonids.SqlServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ElasticPoolsClient) ListByServer(ctx context.Context, id commonids.SqlSe
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByServerCustomPager{},
 		Path:          fmt.Sprintf("%s/elasticPools", id.ID()),
 		OptionsObject: options,
 	}

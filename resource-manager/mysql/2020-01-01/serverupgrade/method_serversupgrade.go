@@ -29,7 +29,8 @@ func (c ServerUpgradeClient) ServersUpgrade(ctx context.Context, id ServerId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

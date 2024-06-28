@@ -26,7 +26,8 @@ func (c ComponentFeaturesAndPricingAPIsClient) ComponentCurrentBillingFeaturesUp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/currentbillingfeatures", id.ID()),
+
+		Path: fmt.Sprintf("%s/currentbillingfeatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

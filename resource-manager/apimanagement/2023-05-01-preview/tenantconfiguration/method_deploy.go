@@ -30,7 +30,8 @@ func (c TenantConfigurationClient) Deploy(ctx context.Context, id ServiceId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tenant/configuration/deploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/tenant/configuration/deploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

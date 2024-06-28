@@ -25,7 +25,8 @@ func (c WorkflowRunsClient) Cancel(ctx context.Context, id RunId) (result Cancel
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

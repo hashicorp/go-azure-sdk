@@ -26,7 +26,8 @@ func (c QuotasClient) CheckAvailability(ctx context.Context, id QuotaId, input Q
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

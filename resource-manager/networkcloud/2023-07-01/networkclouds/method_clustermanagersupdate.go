@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) ClusterManagersUpdate(ctx context.Context, id Clust
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

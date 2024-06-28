@@ -30,7 +30,8 @@ func (c WorkspacesClient) WorkspaceAadAdminsCreateOrUpdate(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/administrators/activeDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/activeDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ResolvePrivateLinkServiceIdClient) POST(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resolvePrivateLinkServiceId", id.ID()),
+
+		Path: fmt.Sprintf("%s/resolvePrivateLinkServiceId", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

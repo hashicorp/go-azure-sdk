@@ -52,7 +52,8 @@ func (c GalleryApplicationVersionsClient) Get(ctx context.Context, id Applicatio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

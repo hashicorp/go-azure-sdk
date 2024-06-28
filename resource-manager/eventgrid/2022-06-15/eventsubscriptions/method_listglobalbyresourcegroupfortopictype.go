@@ -54,6 +54,18 @@ func (o ListGlobalByResourceGroupForTopicTypeOperationOptions) ToQuery() *client
 	return &out
 }
 
+type ListGlobalByResourceGroupForTopicTypeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListGlobalByResourceGroupForTopicTypeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListGlobalByResourceGroupForTopicType ...
 func (c EventSubscriptionsClient) ListGlobalByResourceGroupForTopicType(ctx context.Context, id ResourceGroupProviderTopicTypeId, options ListGlobalByResourceGroupForTopicTypeOperationOptions) (result ListGlobalByResourceGroupForTopicTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c EventSubscriptionsClient) ListGlobalByResourceGroupForTopicType(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListGlobalByResourceGroupForTopicTypeCustomPager{},
 		Path:          fmt.Sprintf("%s/eventSubscriptions", id.ID()),
 		OptionsObject: options,
 	}

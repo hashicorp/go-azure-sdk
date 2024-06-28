@@ -29,7 +29,8 @@ func (c RegistriesClient) ImportImage(ctx context.Context, id RegistryId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importImage", id.ID()),
+
+		Path: fmt.Sprintf("%s/importImage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

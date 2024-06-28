@@ -51,7 +51,8 @@ func (c LocalRulesClient) RefreshCounters(ctx context.Context, id LocalRuleId, o
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/refreshCounters", id.ID()),
 		OptionsObject: options,
 	}

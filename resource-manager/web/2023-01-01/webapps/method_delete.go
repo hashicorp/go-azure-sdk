@@ -57,7 +57,8 @@ func (c WebAppsClient) Delete(ctx context.Context, id commonids.AppServiceId, op
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

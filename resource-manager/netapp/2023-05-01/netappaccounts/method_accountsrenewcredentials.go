@@ -29,7 +29,8 @@ func (c NetAppAccountsClient) AccountsRenewCredentials(ctx context.Context, id N
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/renewCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/renewCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

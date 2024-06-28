@@ -52,7 +52,8 @@ func (c TagClient) WorkspaceTagUpdate(ctx context.Context, id WorkspaceTagId, in
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

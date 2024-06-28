@@ -53,7 +53,8 @@ func (c GroupClient) CreateOrUpdate(ctx context.Context, id GroupId, input Group
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

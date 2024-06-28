@@ -26,7 +26,8 @@ func (c VolumeGroupsClient) ListByNetAppAccount(ctx context.Context, id NetAppAc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/volumeGroups", id.ID()),
+
+		Path: fmt.Sprintf("%s/volumeGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

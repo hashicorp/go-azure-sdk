@@ -25,7 +25,8 @@ func (c ReplicationProtectedItemsClient) Get(ctx context.Context, id Replication
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

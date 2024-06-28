@@ -27,7 +27,8 @@ func (c ManagedPrivateEndpointsClient) CheckNameAvailability(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedPrivateEndpointsCheckNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/managedPrivateEndpointsCheckNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

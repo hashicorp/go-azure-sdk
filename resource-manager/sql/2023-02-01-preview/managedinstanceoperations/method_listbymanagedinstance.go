@@ -24,6 +24,18 @@ type ListByManagedInstanceCompleteResult struct {
 	Items              []ManagedInstanceOperation
 }
 
+type ListByManagedInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByManagedInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByManagedInstance ...
 func (c ManagedInstanceOperationsClient) ListByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ManagedInstanceOperationsClient) ListByManagedInstance(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByManagedInstanceCustomPager{},
 		Path:       fmt.Sprintf("%s/operations", id.ID()),
 	}
 

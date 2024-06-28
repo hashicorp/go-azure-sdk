@@ -24,7 +24,8 @@ func (c WebAppsClient) DeleteRelayServiceConnection(ctx context.Context, id Hybr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

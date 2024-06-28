@@ -26,7 +26,8 @@ func (c DelegationSettingsClient) Get(ctx context.Context, id ServiceId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/portalsettings/delegation", id.ID()),
+
+		Path: fmt.Sprintf("%s/portalsettings/delegation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c TdeCertificatesClient) Create(ctx context.Context, id commonids.SqlServe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tdeCertificates", id.ID()),
+
+		Path: fmt.Sprintf("%s/tdeCertificates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c MetadataClient) Update(ctx context.Context, id MetadataId, input Metadat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

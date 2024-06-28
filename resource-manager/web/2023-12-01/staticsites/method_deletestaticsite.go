@@ -29,7 +29,8 @@ func (c StaticSitesClient) DeleteStaticSite(ctx context.Context, id StaticSiteId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

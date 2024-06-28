@@ -52,7 +52,8 @@ func (c GatewayClient) Update(ctx context.Context, id GatewayId, input GatewayCo
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

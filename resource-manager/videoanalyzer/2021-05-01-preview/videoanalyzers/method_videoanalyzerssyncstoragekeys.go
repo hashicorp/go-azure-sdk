@@ -25,7 +25,8 @@ func (c VideoAnalyzersClient) VideoAnalyzersSyncStorageKeys(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncStorageKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncStorageKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

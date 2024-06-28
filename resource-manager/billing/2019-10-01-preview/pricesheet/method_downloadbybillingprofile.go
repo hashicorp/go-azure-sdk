@@ -30,7 +30,8 @@ func (c PriceSheetClient) DownloadByBillingProfile(ctx context.Context, id Billi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pricesheet/default/download", id.ID()),
+
+		Path: fmt.Sprintf("%s/pricesheet/default/download", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c CustomLocationsClient) CreateOrUpdate(ctx context.Context, id CustomLoca
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

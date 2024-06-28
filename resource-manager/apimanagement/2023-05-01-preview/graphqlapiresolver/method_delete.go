@@ -52,7 +52,8 @@ func (c GraphQLApiResolverClient) Delete(ctx context.Context, id ResolverId, opt
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

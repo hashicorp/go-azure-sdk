@@ -23,6 +23,18 @@ type ListByDepartmentCompleteResult struct {
 	Items              []BillingRoleDefinition
 }
 
+type ListByDepartmentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDepartmentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDepartment ...
 func (c BillingRoleDefinitionsClient) ListByDepartment(ctx context.Context, id DepartmentId) (result ListByDepartmentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingRoleDefinitionsClient) ListByDepartment(ctx context.Context, id D
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByDepartmentCustomPager{},
 		Path:       fmt.Sprintf("%s/billingRoleDefinitions", id.ID()),
 	}
 

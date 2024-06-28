@@ -30,7 +30,8 @@ func (c BillingSubscriptionClient) Split(ctx context.Context, id BillingAccountB
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/split", id.ID()),
+
+		Path: fmt.Sprintf("%s/split", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

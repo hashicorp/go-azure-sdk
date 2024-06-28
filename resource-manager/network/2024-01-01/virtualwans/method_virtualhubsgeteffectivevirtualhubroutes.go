@@ -30,7 +30,8 @@ func (c VirtualWANsClient) VirtualHubsGetEffectiveVirtualHubRoutes(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/effectiveRoutes", id.ID()),
+
+		Path: fmt.Sprintf("%s/effectiveRoutes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

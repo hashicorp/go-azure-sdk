@@ -30,7 +30,8 @@ func (c PrivateLinkServicesClient) CheckPrivateLinkServiceVisibilityByResourceGr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkPrivateLinkServiceVisibility", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkPrivateLinkServiceVisibility", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

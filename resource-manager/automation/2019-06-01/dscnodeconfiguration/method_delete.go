@@ -24,7 +24,8 @@ func (c DscNodeConfigurationClient) Delete(ctx context.Context, id NodeConfigura
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

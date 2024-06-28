@@ -29,7 +29,8 @@ func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/encryptionProtector/current/revalidate", id.ID()),
+
+		Path: fmt.Sprintf("%s/encryptionProtector/current/revalidate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

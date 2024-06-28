@@ -26,7 +26,8 @@ func (c AutomationsClient) CreateOrUpdate(ctx context.Context, id AutomationId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

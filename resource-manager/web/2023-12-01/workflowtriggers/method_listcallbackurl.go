@@ -26,7 +26,8 @@ func (c WorkflowTriggersClient) ListCallbackUrl(ctx context.Context, id TriggerI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listCallbackUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/listCallbackUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

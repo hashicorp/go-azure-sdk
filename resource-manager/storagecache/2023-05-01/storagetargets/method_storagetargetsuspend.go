@@ -30,7 +30,8 @@ func (c StorageTargetsClient) StorageTargetSuspend(ctx context.Context, id Stora
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/suspend", id.ID()),
+
+		Path: fmt.Sprintf("%s/suspend", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

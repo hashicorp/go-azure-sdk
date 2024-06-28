@@ -25,7 +25,8 @@ func (c VMwaresClient) WorkloadNetworksGetVMGroup(ctx context.Context, id VMGrou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

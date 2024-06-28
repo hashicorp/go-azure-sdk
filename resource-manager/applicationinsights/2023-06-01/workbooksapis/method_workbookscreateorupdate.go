@@ -53,7 +53,8 @@ func (c WorkbooksAPIsClient) WorkbooksCreateOrUpdate(ctx context.Context, id Wor
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

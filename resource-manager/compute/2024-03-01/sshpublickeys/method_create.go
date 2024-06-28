@@ -26,7 +26,8 @@ func (c SshPublicKeysClient) Create(ctx context.Context, id SshPublicKeyId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

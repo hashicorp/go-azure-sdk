@@ -26,7 +26,8 @@ func (c DscConfigurationClient) GetContent(ctx context.Context, id Configuration
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+
+		Path: fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

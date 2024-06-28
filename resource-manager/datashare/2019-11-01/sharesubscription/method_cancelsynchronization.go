@@ -30,7 +30,8 @@ func (c ShareSubscriptionClient) CancelSynchronization(ctx context.Context, id S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelSynchronization", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelSynchronization", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c EncryptionProtectorsClient) CreateOrUpdate(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/encryptionProtector/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/encryptionProtector/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

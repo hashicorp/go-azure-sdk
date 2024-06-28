@@ -28,7 +28,8 @@ func (c BillingSubscriptionClient) Cancel(ctx context.Context, id BillingAccount
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

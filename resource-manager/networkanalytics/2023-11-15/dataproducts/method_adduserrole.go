@@ -26,7 +26,8 @@ func (c DataProductsClient) AddUserRole(ctx context.Context, id DataProductId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addUserRole", id.ID()),
+
+		Path: fmt.Sprintf("%s/addUserRole", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

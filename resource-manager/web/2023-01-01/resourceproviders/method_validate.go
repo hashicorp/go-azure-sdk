@@ -27,7 +27,8 @@ func (c ResourceProvidersClient) Validate(ctx context.Context, id commonids.Reso
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

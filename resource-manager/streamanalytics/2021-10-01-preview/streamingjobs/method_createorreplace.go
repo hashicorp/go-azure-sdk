@@ -60,7 +60,8 @@ func (c StreamingJobsClient) CreateOrReplace(ctx context.Context, id StreamingJo
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

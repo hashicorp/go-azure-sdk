@@ -29,7 +29,8 @@ func (c MonitoredSubscriptionsClient) Delete(ctx context.Context, id MonitorId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoredSubscriptions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

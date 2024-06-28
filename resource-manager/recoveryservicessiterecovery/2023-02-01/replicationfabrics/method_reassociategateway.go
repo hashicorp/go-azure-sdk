@@ -30,7 +30,8 @@ func (c ReplicationFabricsClient) ReassociateGateway(ctx context.Context, id Rep
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reassociateGateway", id.ID()),
+
+		Path: fmt.Sprintf("%s/reassociateGateway", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

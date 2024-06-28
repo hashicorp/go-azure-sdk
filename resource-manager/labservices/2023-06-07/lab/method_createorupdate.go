@@ -31,7 +31,8 @@ func (c LabClient) CreateOrUpdate(ctx context.Context, id LabId, input Lab) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

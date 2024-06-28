@@ -66,6 +66,18 @@ func (o ListByTimeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByTimeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByTimeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByTime ...
 func (c ReportsClient) ListByTime(ctx context.Context, id ServiceId, options ListByTimeOperationOptions) (result ListByTimeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -74,6 +86,7 @@ func (c ReportsClient) ListByTime(ctx context.Context, id ServiceId, options Lis
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByTimeCustomPager{},
 		Path:          fmt.Sprintf("%s/reports/byTime", id.ID()),
 		OptionsObject: options,
 	}

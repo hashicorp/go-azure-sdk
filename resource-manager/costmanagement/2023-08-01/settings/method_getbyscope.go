@@ -28,7 +28,8 @@ func (c SettingsClient) GetByScope(ctx context.Context, id commonids.ScopeId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings/taginheritance", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings/taginheritance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

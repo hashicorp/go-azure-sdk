@@ -27,7 +27,8 @@ func (c AppPlatformClient) ServicesListTestKeys(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listTestKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listTestKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

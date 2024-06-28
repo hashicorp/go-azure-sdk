@@ -29,7 +29,8 @@ func (c RedisEnterpriseClient) DatabasesFlush(ctx context.Context, id DatabaseId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/flush", id.ID()),
+
+		Path: fmt.Sprintf("%s/flush", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

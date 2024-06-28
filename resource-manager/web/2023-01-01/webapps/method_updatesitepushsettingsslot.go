@@ -26,7 +26,8 @@ func (c WebAppsClient) UpdateSitePushSettingsSlot(ctx context.Context, id SlotId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/pushsettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/pushsettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

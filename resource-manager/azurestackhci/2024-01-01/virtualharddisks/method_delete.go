@@ -29,7 +29,8 @@ func (c VirtualHardDisksClient) Delete(ctx context.Context, id VirtualHardDiskId
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

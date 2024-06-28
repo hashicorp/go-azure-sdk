@@ -23,6 +23,18 @@ type MHSMRegionsListByResourceCompleteResult struct {
 	Items              []MHSMGeoReplicatedRegion
 }
 
+type MHSMRegionsListByResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *MHSMRegionsListByResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // MHSMRegionsListByResource ...
 func (c MHSMListRegionsClient) MHSMRegionsListByResource(ctx context.Context, id ManagedHSMId) (result MHSMRegionsListByResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MHSMListRegionsClient) MHSMRegionsListByResource(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &MHSMRegionsListByResourceCustomPager{},
 		Path:       fmt.Sprintf("%s/regions", id.ID()),
 	}
 

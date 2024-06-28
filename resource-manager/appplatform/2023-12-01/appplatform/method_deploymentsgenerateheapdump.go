@@ -29,7 +29,8 @@ func (c AppPlatformClient) DeploymentsGenerateHeapDump(ctx context.Context, id D
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateHeapDump", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateHeapDump", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

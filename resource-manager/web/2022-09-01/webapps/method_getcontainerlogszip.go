@@ -28,7 +28,8 @@ func (c WebAppsClient) GetContainerLogsZip(ctx context.Context, id commonids.App
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/containerlogs/zip/download", id.ID()),
+
+		Path: fmt.Sprintf("%s/containerlogs/zip/download", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

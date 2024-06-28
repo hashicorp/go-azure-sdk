@@ -31,7 +31,8 @@ func (c P2sVpnGatewaysClient) GenerateVpnProfile(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generatevpnprofile", id.ID()),
+
+		Path: fmt.Sprintf("%s/generatevpnprofile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

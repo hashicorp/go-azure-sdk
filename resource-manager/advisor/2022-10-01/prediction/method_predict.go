@@ -27,7 +27,8 @@ func (c PredictionClient) Predict(ctx context.Context, id commonids.Subscription
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Advisor/predict", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Advisor/predict", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

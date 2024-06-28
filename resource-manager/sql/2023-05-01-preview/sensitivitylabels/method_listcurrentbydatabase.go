@@ -55,6 +55,18 @@ func (o ListCurrentByDatabaseOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListCurrentByDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCurrentByDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListCurrentByDatabase ...
 func (c SensitivityLabelsClient) ListCurrentByDatabase(ctx context.Context, id commonids.SqlDatabaseId, options ListCurrentByDatabaseOperationOptions) (result ListCurrentByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c SensitivityLabelsClient) ListCurrentByDatabase(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListCurrentByDatabaseCustomPager{},
 		Path:          fmt.Sprintf("%s/currentSensitivityLabels", id.ID()),
 		OptionsObject: options,
 	}

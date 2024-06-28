@@ -52,7 +52,8 @@ func (c LoggerClient) Delete(ctx context.Context, id LoggerId, options DeleteOpe
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

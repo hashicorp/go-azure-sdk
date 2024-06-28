@@ -54,6 +54,18 @@ func (o WorkspacePolicyFragmentListReferencesOperationOptions) ToQuery() *client
 	return &out
 }
 
+type WorkspacePolicyFragmentListReferencesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspacePolicyFragmentListReferencesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspacePolicyFragmentListReferences ...
 func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferences(ctx context.Context, id WorkspacePolicyFragmentId, options WorkspacePolicyFragmentListReferencesOperationOptions) (result WorkspacePolicyFragmentListReferencesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentListReferences(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &WorkspacePolicyFragmentListReferencesCustomPager{},
 		Path:          fmt.Sprintf("%s/listReferences", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c ProvidersClient) Get(ctx context.Context, id ProviderId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

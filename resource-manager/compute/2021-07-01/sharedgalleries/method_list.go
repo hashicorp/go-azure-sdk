@@ -50,6 +50,18 @@ func (o ListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c SharedGalleriesClient) List(ctx context.Context, id LocationId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c SharedGalleriesClient) List(ctx context.Context, id LocationId, options 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListCustomPager{},
 		Path:          fmt.Sprintf("%s/sharedGalleries", id.ID()),
 		OptionsObject: options,
 	}

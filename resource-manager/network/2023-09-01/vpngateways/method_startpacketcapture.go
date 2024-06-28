@@ -30,7 +30,8 @@ func (c VpnGatewaysClient) StartPacketCapture(ctx context.Context, id VpnGateway
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startpacketcapture", id.ID()),
+
+		Path: fmt.Sprintf("%s/startpacketcapture", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) Delete(ctx context.Context, id VirtualNetw
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

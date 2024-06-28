@@ -24,6 +24,18 @@ type OperationStatusListCompleteResult struct {
 	Items              []OperationStatusResult
 }
 
+type OperationStatusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *OperationStatusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // OperationStatusList ...
 func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id commonids.ScopeId) (result OperationStatusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &OperationStatusListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.KubernetesConfiguration/operations", id.ID()),
 	}
 

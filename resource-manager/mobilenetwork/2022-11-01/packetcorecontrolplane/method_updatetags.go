@@ -25,7 +25,8 @@ func (c PacketCoreControlPlaneClient) UpdateTags(ctx context.Context, id PacketC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

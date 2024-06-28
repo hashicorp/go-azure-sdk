@@ -28,7 +28,8 @@ func (c VirtualMachineScaleSetVMsClient) ApproveRollingUpgrade(ctx context.Conte
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/approveRollingUpgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/approveRollingUpgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

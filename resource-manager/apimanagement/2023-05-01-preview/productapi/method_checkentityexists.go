@@ -24,7 +24,8 @@ func (c ProductApiClient) CheckEntityExists(ctx context.Context, id ProductApiId
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

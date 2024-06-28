@@ -30,7 +30,8 @@ func (c PacketCoreControlPlaneClient) CreateOrUpdate(ctx context.Context, id Pac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

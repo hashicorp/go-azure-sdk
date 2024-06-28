@@ -52,7 +52,8 @@ func (c JobClient) GetOutput(ctx context.Context, id JobId, options GetOutputOpe
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/output", id.ID()),
 		OptionsObject: options,
 	}

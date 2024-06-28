@@ -29,7 +29,8 @@ func (c ArcSettingsClient) InitializeDisableProcess(ctx context.Context, id ArcS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initializeDisableProcess", id.ID()),
+
+		Path: fmt.Sprintf("%s/initializeDisableProcess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ResourcesClient) Resources(ctx context.Context, input QueryRequest) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.ResourceGraph/resources",
+
+		Path: "/providers/Microsoft.ResourceGraph/resources",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ServiceFabricsClient) Update(ctx context.Context, id ServiceFabricId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

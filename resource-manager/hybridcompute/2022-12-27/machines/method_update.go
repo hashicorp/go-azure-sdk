@@ -25,7 +25,8 @@ func (c MachinesClient) Update(ctx context.Context, id MachineId, input MachineU
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

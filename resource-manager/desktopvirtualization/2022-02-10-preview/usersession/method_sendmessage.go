@@ -25,7 +25,8 @@ func (c UserSessionClient) SendMessage(ctx context.Context, id UserSessionId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendMessage", id.ID()),
+
+		Path: fmt.Sprintf("%s/sendMessage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

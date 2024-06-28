@@ -26,7 +26,8 @@ func (c FactoriesClient) GetDataPlaneAccess(ctx context.Context, id FactoryId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getDataPlaneAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/getDataPlaneAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

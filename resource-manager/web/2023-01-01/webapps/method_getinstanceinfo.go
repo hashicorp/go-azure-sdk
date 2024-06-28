@@ -25,7 +25,8 @@ func (c WebAppsClient) GetInstanceInfo(ctx context.Context, id InstanceId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

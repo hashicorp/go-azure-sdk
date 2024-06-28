@@ -29,7 +29,8 @@ func (c TopicsClient) CreateOrUpdate(ctx context.Context, id TopicId, input Topi
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c QueueServicePropertiesClient) QueueServicesList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/queueServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/queueServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

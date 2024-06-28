@@ -26,7 +26,8 @@ func (c AzureMonitorWorkspacesClient) Create(ctx context.Context, id AccountId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

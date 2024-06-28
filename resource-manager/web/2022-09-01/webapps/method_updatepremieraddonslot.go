@@ -25,7 +25,8 @@ func (c WebAppsClient) UpdatePremierAddOnSlot(ctx context.Context, id SlotPremie
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

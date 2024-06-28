@@ -26,7 +26,8 @@ func (c MonitorUpgradableVersionsClient) UpgradableVersionsDetails(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listUpgradableVersions", id.ID()),
+
+		Path: fmt.Sprintf("%s/listUpgradableVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

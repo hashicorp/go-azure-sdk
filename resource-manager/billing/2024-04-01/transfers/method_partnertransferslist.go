@@ -23,6 +23,18 @@ type PartnerTransfersListCompleteResult struct {
 	Items              []PartnerTransferDetails
 }
 
+type PartnerTransfersListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *PartnerTransfersListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // PartnerTransfersList ...
 func (c TransfersClient) PartnerTransfersList(ctx context.Context, id BillingProfileCustomerId) (result PartnerTransfersListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c TransfersClient) PartnerTransfersList(ctx context.Context, id BillingPro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &PartnerTransfersListCustomPager{},
 		Path:       fmt.Sprintf("%s/transfers", id.ID()),
 	}
 

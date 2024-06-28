@@ -26,7 +26,8 @@ func (c ConfigurationProfileAssignmentsClient) ListByVirtualMachines(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AutoManage/configurationProfileAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AutoManage/configurationProfileAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

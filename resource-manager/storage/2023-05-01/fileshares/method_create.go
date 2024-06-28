@@ -53,7 +53,8 @@ func (c FileSharesClient) Create(ctx context.Context, id ShareId, input FileShar
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

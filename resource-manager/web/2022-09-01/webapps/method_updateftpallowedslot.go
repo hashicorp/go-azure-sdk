@@ -26,7 +26,8 @@ func (c WebAppsClient) UpdateFtpAllowedSlot(ctx context.Context, id SlotId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/basicPublishingCredentialsPolicies/ftp", id.ID()),
+
+		Path: fmt.Sprintf("%s/basicPublishingCredentialsPolicies/ftp", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

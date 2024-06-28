@@ -52,7 +52,8 @@ func (c PricingsClient) List(ctx context.Context, id ScopeIdId, options ListOper
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Security/pricings", id.ID()),
 		OptionsObject: options,
 	}

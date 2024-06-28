@@ -26,7 +26,8 @@ func (c PUTClient) FilesCreateOrUpdate(ctx context.Context, id FileId, input Pro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

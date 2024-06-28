@@ -29,7 +29,8 @@ func (c StaticSitesClient) DetachStaticSite(ctx context.Context, id StaticSiteId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/detach", id.ID()),
+
+		Path: fmt.Sprintf("%s/detach", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

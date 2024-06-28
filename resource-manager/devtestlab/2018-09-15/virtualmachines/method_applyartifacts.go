@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) ApplyArtifacts(ctx context.Context, id VirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applyArtifacts", id.ID()),
+
+		Path: fmt.Sprintf("%s/applyArtifacts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

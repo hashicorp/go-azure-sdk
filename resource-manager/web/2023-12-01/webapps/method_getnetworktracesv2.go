@@ -25,7 +25,8 @@ func (c WebAppsClient) GetNetworkTracesV2(ctx context.Context, id SiteNetworkTra
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

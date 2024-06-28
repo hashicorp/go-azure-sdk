@@ -28,7 +28,8 @@ func (c BackupsClient) UnderAccountMigrateBackups(ctx context.Context, id NetApp
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrateBackups", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrateBackups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c OpenShiftClustersClient) ListAdminCredentials(ctx context.Context, id Pr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listAdminCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/listAdminCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

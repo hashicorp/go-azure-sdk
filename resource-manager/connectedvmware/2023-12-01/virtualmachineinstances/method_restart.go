@@ -29,7 +29,8 @@ func (c VirtualMachineInstancesClient) Restart(ctx context.Context, id commonids
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

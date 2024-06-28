@@ -25,7 +25,8 @@ func (c StaticSitesClient) DeleteDatabaseConnection(ctx context.Context, id Data
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

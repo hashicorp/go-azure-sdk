@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) GenerateVpnProfile(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generatevpnprofile", id.ID()),
+
+		Path: fmt.Sprintf("%s/generatevpnprofile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c EnvironmentContainerClient) Get(ctx context.Context, id EnvironmentId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

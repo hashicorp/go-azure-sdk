@@ -56,7 +56,8 @@ func (c ClustersClient) Delete(ctx context.Context, id ClusterId, options Delete
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

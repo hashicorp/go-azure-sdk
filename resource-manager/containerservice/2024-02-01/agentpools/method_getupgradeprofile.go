@@ -26,7 +26,8 @@ func (c AgentPoolsClient) GetUpgradeProfile(ctx context.Context, id AgentPoolId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/upgradeProfiles/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgradeProfiles/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

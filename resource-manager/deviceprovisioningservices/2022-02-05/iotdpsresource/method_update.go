@@ -30,7 +30,8 @@ func (c IotDpsResourceClient) Update(ctx context.Context, id commonids.Provision
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

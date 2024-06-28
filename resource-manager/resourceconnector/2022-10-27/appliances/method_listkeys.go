@@ -52,7 +52,8 @@ func (c AppliancesClient) ListKeys(ctx context.Context, id ApplianceId, options 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listKeys", id.ID()),
 		OptionsObject: options,
 	}

@@ -31,7 +31,8 @@ func (c AppPlatformClient) CertificatesCreateOrUpdate(ctx context.Context, id Ce
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

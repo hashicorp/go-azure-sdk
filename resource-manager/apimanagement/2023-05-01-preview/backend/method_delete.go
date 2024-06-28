@@ -52,7 +52,8 @@ func (c BackendClient) Delete(ctx context.Context, id BackendId, options DeleteO
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

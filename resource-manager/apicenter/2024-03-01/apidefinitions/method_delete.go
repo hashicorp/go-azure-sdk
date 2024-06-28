@@ -25,7 +25,8 @@ func (c ApiDefinitionsClient) Delete(ctx context.Context, id DefinitionId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

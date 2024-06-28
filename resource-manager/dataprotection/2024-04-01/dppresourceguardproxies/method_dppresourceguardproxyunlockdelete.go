@@ -52,7 +52,8 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyUnlockDelete(ctx con
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/unlockDelete", id.ID()),
 		OptionsObject: options,
 	}

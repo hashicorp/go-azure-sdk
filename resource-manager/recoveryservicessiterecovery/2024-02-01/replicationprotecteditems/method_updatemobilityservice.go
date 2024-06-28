@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) UpdateMobilityService(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateMobilityService", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateMobilityService", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c LinkersClient) LinkerListConfigurations(ctx context.Context, id ScopedLi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/listConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

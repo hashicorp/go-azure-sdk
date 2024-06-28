@@ -53,7 +53,8 @@ func (c MaintenanceWindowsClient) Get(ctx context.Context, id commonids.SqlDatab
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/maintenanceWindows/current", id.ID()),
 		OptionsObject: options,
 	}

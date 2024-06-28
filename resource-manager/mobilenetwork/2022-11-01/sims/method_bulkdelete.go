@@ -31,7 +31,8 @@ func (c SIMsClient) BulkDelete(ctx context.Context, id SimGroupId, input SimDele
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteSims", id.ID()),
+
+		Path: fmt.Sprintf("%s/deleteSims", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

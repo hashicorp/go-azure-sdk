@@ -58,6 +58,18 @@ func (o WorkspaceGroupListByServiceOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type WorkspaceGroupListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceGroupListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceGroupListByService ...
 func (c GroupClient) WorkspaceGroupListByService(ctx context.Context, id WorkspaceId, options WorkspaceGroupListByServiceOperationOptions) (result WorkspaceGroupListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c GroupClient) WorkspaceGroupListByService(ctx context.Context, id Workspa
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceGroupListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/groups", id.ID()),
 		OptionsObject: options,
 	}

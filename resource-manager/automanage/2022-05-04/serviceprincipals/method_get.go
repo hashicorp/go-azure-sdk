@@ -27,7 +27,8 @@ func (c ServicePrincipalsClient) Get(ctx context.Context, id commonids.Subscript
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AutoManage/servicePrincipals/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AutoManage/servicePrincipals/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

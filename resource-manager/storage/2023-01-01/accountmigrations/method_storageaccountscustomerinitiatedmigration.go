@@ -30,7 +30,8 @@ func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigration(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startAccountMigration", id.ID()),
+
+		Path: fmt.Sprintf("%s/startAccountMigration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

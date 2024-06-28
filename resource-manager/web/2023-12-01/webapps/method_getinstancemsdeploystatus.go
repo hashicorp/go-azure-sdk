@@ -26,7 +26,8 @@ func (c WebAppsClient) GetInstanceMsDeployStatus(ctx context.Context, id Instanc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extensions/mSDeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/mSDeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c MigrationConfigsClient) Delete(ctx context.Context, id NamespaceId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrationConfigurations/$default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

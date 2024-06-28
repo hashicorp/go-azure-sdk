@@ -30,7 +30,8 @@ func (c NetworkcloudsClient) KubernetesClustersUpdate(ctx context.Context, id Ku
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

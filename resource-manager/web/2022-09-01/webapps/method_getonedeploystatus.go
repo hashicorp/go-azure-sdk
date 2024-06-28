@@ -27,7 +27,8 @@ func (c WebAppsClient) GetOneDeployStatus(ctx context.Context, id commonids.AppS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extensions/onedeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/onedeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

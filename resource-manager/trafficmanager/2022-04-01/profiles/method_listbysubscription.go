@@ -27,7 +27,8 @@ func (c ProfilesClient) ListBySubscription(ctx context.Context, id commonids.Sub
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerProfiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/trafficManagerProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

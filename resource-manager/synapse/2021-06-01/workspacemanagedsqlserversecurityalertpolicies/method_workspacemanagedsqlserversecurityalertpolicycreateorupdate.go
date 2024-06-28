@@ -30,7 +30,8 @@ func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSq
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/securityAlertPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

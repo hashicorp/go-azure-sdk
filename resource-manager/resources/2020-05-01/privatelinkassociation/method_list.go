@@ -27,7 +27,8 @@ func (c PrivateLinkAssociationClient) List(ctx context.Context, id commonids.Man
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Authorization/privateLinkAssociations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Authorization/privateLinkAssociations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c ServersClient) Delete(ctx context.Context, id commonids.SqlServerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ArcSettingsClient) ArcSettingsGet(ctx context.Context, id ArcSettingId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

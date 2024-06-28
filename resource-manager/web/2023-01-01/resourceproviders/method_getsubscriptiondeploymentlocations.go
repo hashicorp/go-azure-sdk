@@ -27,7 +27,8 @@ func (c ResourceProvidersClient) GetSubscriptionDeploymentLocations(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/deploymentLocations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/deploymentLocations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

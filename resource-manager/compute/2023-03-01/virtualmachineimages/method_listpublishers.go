@@ -26,7 +26,8 @@ func (c VirtualMachineImagesClient) ListPublishers(ctx context.Context, id Locat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/publishers", id.ID()),
+
+		Path: fmt.Sprintf("%s/publishers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

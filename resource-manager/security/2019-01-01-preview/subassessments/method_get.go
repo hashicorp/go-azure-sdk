@@ -25,7 +25,8 @@ func (c SubAssessmentsClient) Get(ctx context.Context, id ScopedSubAssessmentId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

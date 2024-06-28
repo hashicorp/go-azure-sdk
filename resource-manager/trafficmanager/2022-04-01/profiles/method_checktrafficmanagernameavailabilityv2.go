@@ -27,7 +27,8 @@ func (c ProfilesClient) CheckTrafficManagerNameAvailabilityV2(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/checkTrafficManagerNameAvailabilityV2", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/checkTrafficManagerNameAvailabilityV2", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

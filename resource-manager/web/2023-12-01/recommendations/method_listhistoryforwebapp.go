@@ -55,6 +55,18 @@ func (o ListHistoryForWebAppOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListHistoryForWebAppCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListHistoryForWebAppCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListHistoryForWebApp ...
 func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id commonids.AppServiceId, options ListHistoryForWebAppOperationOptions) (result ListHistoryForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListHistoryForWebAppCustomPager{},
 		Path:          fmt.Sprintf("%s/recommendationHistory", id.ID()),
 		OptionsObject: options,
 	}

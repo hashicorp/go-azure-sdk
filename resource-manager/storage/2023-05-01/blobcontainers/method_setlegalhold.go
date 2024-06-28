@@ -27,7 +27,8 @@ func (c BlobContainersClient) SetLegalHold(ctx context.Context, id commonids.Sto
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setLegalHold", id.ID()),
+
+		Path: fmt.Sprintf("%s/setLegalHold", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

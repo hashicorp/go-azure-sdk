@@ -30,7 +30,8 @@ func (c BillingsClient) BillingSubscriptionsTransfer(ctx context.Context, id Inv
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/transfer", id.ID()),
+
+		Path: fmt.Sprintf("%s/transfer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

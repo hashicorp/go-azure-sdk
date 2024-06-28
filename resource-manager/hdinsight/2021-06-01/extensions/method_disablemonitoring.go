@@ -31,7 +31,8 @@ func (c ExtensionsClient) DisableMonitoring(ctx context.Context, id commonids.HD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/extensions/clustermonitoring", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/clustermonitoring", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

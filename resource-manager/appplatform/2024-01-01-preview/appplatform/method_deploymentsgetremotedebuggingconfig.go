@@ -26,7 +26,8 @@ func (c AppPlatformClient) DeploymentsGetRemoteDebuggingConfig(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getRemoteDebuggingConfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/getRemoteDebuggingConfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ListHostingEnvironmentDetectorResponsesCompleteResult struct {
 	Items              []DetectorResponse
 }
 
+type ListHostingEnvironmentDetectorResponsesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListHostingEnvironmentDetectorResponsesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListHostingEnvironmentDetectorResponses ...
 func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListHostingEnvironmentDetectorResponsesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListHostingEnvironmentDetectorResponsesCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

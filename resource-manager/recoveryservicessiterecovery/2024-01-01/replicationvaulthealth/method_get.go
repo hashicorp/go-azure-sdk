@@ -26,7 +26,8 @@ func (c ReplicationVaultHealthClient) Get(ctx context.Context, id VaultId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/replicationVaultHealth", id.ID()),
+
+		Path: fmt.Sprintf("%s/replicationVaultHealth", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

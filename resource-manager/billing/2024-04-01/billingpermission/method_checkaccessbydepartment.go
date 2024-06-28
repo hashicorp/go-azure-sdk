@@ -26,7 +26,8 @@ func (c BillingPermissionClient) CheckAccessByDepartment(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

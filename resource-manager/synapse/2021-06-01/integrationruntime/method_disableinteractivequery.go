@@ -29,7 +29,8 @@ func (c IntegrationRuntimeClient) DisableInteractiveQuery(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableInteractiveQuery", id.ID()),
+
+		Path: fmt.Sprintf("%s/disableInteractiveQuery", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

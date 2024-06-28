@@ -25,7 +25,8 @@ func (c DataProductsClient) RemoveUserRole(ctx context.Context, id DataProductId
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeUserRole", id.ID()),
+
+		Path: fmt.Sprintf("%s/removeUserRole", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

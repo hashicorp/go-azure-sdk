@@ -30,7 +30,8 @@ func (c ClustersClient) RotateDiskEncryptionKey(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotatediskencryptionkey", id.ID()),
+
+		Path: fmt.Sprintf("%s/rotatediskencryptionkey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

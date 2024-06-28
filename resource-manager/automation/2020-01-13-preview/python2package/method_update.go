@@ -25,7 +25,8 @@ func (c Python2PackageClient) Update(ctx context.Context, id Python2PackageId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

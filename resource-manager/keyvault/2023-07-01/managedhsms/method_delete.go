@@ -30,7 +30,8 @@ func (c ManagedHsmsClient) Delete(ctx context.Context, id ManagedHSMId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

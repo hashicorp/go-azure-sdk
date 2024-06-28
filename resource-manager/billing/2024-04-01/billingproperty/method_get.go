@@ -57,7 +57,8 @@ func (c BillingPropertyClient) Get(ctx context.Context, id commonids.Subscriptio
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Billing/billingProperty/default", id.ID()),
 		OptionsObject: options,
 	}

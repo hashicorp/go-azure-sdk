@@ -26,7 +26,8 @@ func (c WebAppsClient) SyncFunctions(ctx context.Context, id commonids.AppServic
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/host/default/sync", id.ID()),
+
+		Path: fmt.Sprintf("%s/host/default/sync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

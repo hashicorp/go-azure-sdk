@@ -29,7 +29,8 @@ func (c ProjectsClient) Delete(ctx context.Context, id ProjectId) (result Delete
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

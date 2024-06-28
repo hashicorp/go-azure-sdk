@@ -30,7 +30,8 @@ func (c NetworkcloudsClient) ConsolesDelete(ctx context.Context, id ConsoleId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

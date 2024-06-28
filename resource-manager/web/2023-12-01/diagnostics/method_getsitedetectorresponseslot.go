@@ -60,7 +60,8 @@ func (c DiagnosticsClient) GetSiteDetectorResponseSlot(ctx context.Context, id S
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

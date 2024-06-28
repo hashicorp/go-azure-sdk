@@ -30,7 +30,8 @@ func (c WebAppsClient) RestoreFromDeletedApp(ctx context.Context, id commonids.A
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreFromDeletedApp", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreFromDeletedApp", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

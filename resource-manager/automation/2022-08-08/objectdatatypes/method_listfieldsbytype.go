@@ -26,7 +26,8 @@ func (c ObjectDataTypesClient) ListFieldsByType(ctx context.Context, id ObjectDa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+
+		Path: fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

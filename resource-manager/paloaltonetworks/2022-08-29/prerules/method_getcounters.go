@@ -52,7 +52,8 @@ func (c PreRulesClient) GetCounters(ctx context.Context, id PreRuleId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/getCounters", id.ID()),
 		OptionsObject: options,
 	}

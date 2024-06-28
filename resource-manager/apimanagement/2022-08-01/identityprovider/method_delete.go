@@ -52,7 +52,8 @@ func (c IdentityProviderClient) Delete(ctx context.Context, id IdentityProviderI
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

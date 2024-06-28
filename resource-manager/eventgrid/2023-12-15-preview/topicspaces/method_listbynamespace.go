@@ -54,6 +54,18 @@ func (o ListByNamespaceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByNamespaceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByNamespaceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByNamespace ...
 func (c TopicSpacesClient) ListByNamespace(ctx context.Context, id NamespaceId, options ListByNamespaceOperationOptions) (result ListByNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c TopicSpacesClient) ListByNamespace(ctx context.Context, id NamespaceId, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByNamespaceCustomPager{},
 		Path:          fmt.Sprintf("%s/topicSpaces", id.ID()),
 		OptionsObject: options,
 	}

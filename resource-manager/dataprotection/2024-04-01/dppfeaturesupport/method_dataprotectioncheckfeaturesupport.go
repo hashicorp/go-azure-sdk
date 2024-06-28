@@ -27,7 +27,8 @@ func (c DppFeatureSupportClient) DataProtectionCheckFeatureSupport(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkFeatureSupport", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkFeatureSupport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

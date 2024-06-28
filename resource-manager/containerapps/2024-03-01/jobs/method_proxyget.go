@@ -25,7 +25,8 @@ func (c JobsClient) ProxyGet(ctx context.Context, id DetectorPropertyId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

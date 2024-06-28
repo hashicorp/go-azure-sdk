@@ -60,7 +60,8 @@ func (c AnalyticsItemsAPIsClient) AnalyticsItemsList(ctx context.Context, id Pro
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

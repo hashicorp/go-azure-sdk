@@ -31,7 +31,8 @@ func (c TagsClient) UpdateAtScope(ctx context.Context, id commonids.ScopeId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

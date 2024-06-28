@@ -57,7 +57,8 @@ func (c PrivateEndpointsClient) CreateOrUpdate(ctx context.Context, id PrivateEn
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

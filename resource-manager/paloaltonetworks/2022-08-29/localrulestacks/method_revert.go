@@ -25,7 +25,8 @@ func (c LocalRulestacksClient) Revert(ctx context.Context, id LocalRulestackId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/revert", id.ID()),
+
+		Path: fmt.Sprintf("%s/revert", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

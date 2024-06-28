@@ -25,7 +25,8 @@ func (c ScriptsClient) ScriptExecutionsGet(ctx context.Context, id ScriptExecuti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

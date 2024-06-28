@@ -55,6 +55,18 @@ func (o ResourceSkusListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ResourceSkusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ResourceSkusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ResourceSkusList ...
 func (c SkusClient) ResourceSkusList(ctx context.Context, id commonids.SubscriptionId, options ResourceSkusListOperationOptions) (result ResourceSkusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c SkusClient) ResourceSkusList(ctx context.Context, id commonids.Subscript
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ResourceSkusListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Compute/skus", id.ID()),
 		OptionsObject: options,
 	}

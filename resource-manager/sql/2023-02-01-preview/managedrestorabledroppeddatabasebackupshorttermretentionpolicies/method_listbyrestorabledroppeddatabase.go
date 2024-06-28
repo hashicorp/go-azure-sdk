@@ -23,6 +23,18 @@ type ListByRestorableDroppedDatabaseCompleteResult struct {
 	Items              []ManagedBackupShortTermRetentionPolicy
 }
 
+type ListByRestorableDroppedDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByRestorableDroppedDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByRestorableDroppedDatabase ...
 func (c ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient) ListByRestorableDroppedDatabase(ctx context.Context, id ManagedInstanceRestorableDroppedDatabaseId) (result ListByRestorableDroppedDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByRestorableDroppedDatabaseCustomPager{},
 		Path:       fmt.Sprintf("%s/backupShortTermRetentionPolicies", id.ID()),
 	}
 

@@ -26,7 +26,8 @@ func (c WebhookClient) GenerateUri(ctx context.Context, id AutomationAccountId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/webHooks/generateUri", id.ID()),
+
+		Path: fmt.Sprintf("%s/webHooks/generateUri", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c MonitoredSubscriptionsClient) List(ctx context.Context, id MonitorId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/monitoredSubscriptions", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoredSubscriptions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

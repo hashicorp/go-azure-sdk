@@ -27,7 +27,8 @@ func (c WebAppsClient) IsCloneable(ctx context.Context, id commonids.AppServiceI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/iscloneable", id.ID()),
+
+		Path: fmt.Sprintf("%s/iscloneable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

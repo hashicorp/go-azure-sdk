@@ -25,7 +25,8 @@ func (c DataProductsClient) RotateKey(ctx context.Context, id DataProductId, inp
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/rotateKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

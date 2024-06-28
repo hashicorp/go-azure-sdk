@@ -27,7 +27,8 @@ func (c ChannelClient) EmailCreateSignInUrl(ctx context.Context, id commonids.Bo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createEmailSignInUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/createEmailSignInUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c GroupIdListForLDAPUserClient) VolumesListGetGroupIdListForLdapUser(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getGroupIdListForLdapUser", id.ID()),
+
+		Path: fmt.Sprintf("%s/getGroupIdListForLdapUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

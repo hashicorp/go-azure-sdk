@@ -26,7 +26,8 @@ func (c AppServiceCertificateOrdersClient) RetrieveCertificateEmailHistory(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveEmailHistory", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveEmailHistory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

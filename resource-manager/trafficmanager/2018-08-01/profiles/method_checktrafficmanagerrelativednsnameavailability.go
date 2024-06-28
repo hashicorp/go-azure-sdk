@@ -25,7 +25,8 @@ func (c ProfilesClient) CheckTrafficManagerRelativeDnsNameAvailability(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Network/checkTrafficManagerNameAvailability",
+
+		Path: "/providers/Microsoft.Network/checkTrafficManagerNameAvailability",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c IntegrationRuntimesClient) ListOutboundNetworkDependenciesEndpoints(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/outboundNetworkDependenciesEndpoints", id.ID()),
+
+		Path: fmt.Sprintf("%s/outboundNetworkDependenciesEndpoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

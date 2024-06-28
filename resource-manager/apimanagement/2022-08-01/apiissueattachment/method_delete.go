@@ -52,7 +52,8 @@ func (c ApiIssueAttachmentClient) Delete(ctx context.Context, id AttachmentId, o
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

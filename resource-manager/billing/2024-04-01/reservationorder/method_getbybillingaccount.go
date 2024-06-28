@@ -52,7 +52,8 @@ func (c ReservationOrderClient) GetByBillingAccount(ctx context.Context, id Rese
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

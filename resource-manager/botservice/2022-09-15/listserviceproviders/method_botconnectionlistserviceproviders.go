@@ -24,6 +24,18 @@ type BotConnectionListServiceProvidersCompleteResult struct {
 	Items              []ServiceProvider
 }
 
+type BotConnectionListServiceProvidersCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BotConnectionListServiceProvidersCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BotConnectionListServiceProviders ...
 func (c ListServiceProvidersClient) BotConnectionListServiceProviders(ctx context.Context, id commonids.SubscriptionId) (result BotConnectionListServiceProvidersOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ListServiceProvidersClient) BotConnectionListServiceProviders(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &BotConnectionListServiceProvidersCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.BotService/listAuthServiceProviders", id.ID()),
 	}
 

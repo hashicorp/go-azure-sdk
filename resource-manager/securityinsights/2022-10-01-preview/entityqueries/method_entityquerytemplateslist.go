@@ -51,6 +51,18 @@ func (o EntityQueryTemplatesListOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
+type EntityQueryTemplatesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *EntityQueryTemplatesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // EntityQueryTemplatesList ...
 func (c EntityQueriesClient) EntityQueryTemplatesList(ctx context.Context, id WorkspaceId, options EntityQueryTemplatesListOperationOptions) (result EntityQueryTemplatesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c EntityQueriesClient) EntityQueryTemplatesList(ctx context.Context, id Wo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &EntityQueryTemplatesListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/entityQueryTemplates", id.ID()),
 		OptionsObject: options,
 	}

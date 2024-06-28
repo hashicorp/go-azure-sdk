@@ -23,6 +23,18 @@ type ListByCustomerCompleteResult struct {
 	Items              []BillingPermission
 }
 
+type ListByCustomerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByCustomerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByCustomer ...
 func (c BillingPermissionClient) ListByCustomer(ctx context.Context, id BillingProfileCustomerId) (result ListByCustomerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingPermissionClient) ListByCustomer(ctx context.Context, id BillingP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByCustomerCustomPager{},
 		Path:       fmt.Sprintf("%s/billingPermissions", id.ID()),
 	}
 

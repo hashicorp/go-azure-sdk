@@ -26,7 +26,8 @@ func (c FirewallPoliciesClient) FirewallPolicyIdpsSignaturesList(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listIdpsSignatures", id.ID()),
+
+		Path: fmt.Sprintf("%s/listIdpsSignatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c PostRulesClient) Get(ctx context.Context, id PostRuleId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ClusterClient) ExtendSoftwareAssuranceBenefit(ctx context.Context, id Cl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extendSoftwareAssuranceBenefit", id.ID()),
+
+		Path: fmt.Sprintf("%s/extendSoftwareAssuranceBenefit", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

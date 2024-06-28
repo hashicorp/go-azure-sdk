@@ -25,7 +25,8 @@ func (c TenantBackfillClient) StartTenantBackfill(ctx context.Context) (result S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Management/startTenantBackfill",
+
+		Path: "/providers/Microsoft.Management/startTenantBackfill",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

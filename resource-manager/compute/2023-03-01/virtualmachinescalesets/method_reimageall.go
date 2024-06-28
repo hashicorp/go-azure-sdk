@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetsClient) ReimageAll(ctx context.Context, id Virtua
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reimageall", id.ID()),
+
+		Path: fmt.Sprintf("%s/reimageall", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

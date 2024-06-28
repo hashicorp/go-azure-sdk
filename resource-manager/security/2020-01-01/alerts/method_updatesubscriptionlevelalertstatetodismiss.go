@@ -25,7 +25,8 @@ func (c AlertsClient) UpdateSubscriptionLevelAlertStateToDismiss(ctx context.Con
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismiss", id.ID()),
+
+		Path: fmt.Sprintf("%s/dismiss", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

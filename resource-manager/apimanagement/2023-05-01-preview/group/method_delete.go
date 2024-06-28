@@ -52,7 +52,8 @@ func (c GroupClient) Delete(ctx context.Context, id GroupId, options DeleteOpera
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

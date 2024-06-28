@@ -26,7 +26,8 @@ func (c VolumesReplicationClient) VolumesListReplications(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listReplications", id.ID()),
+
+		Path: fmt.Sprintf("%s/listReplications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

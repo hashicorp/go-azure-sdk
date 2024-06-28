@@ -23,6 +23,18 @@ type ListByMobileNetworkCompleteResult struct {
 	Items              []DataNetwork
 }
 
+type ListByMobileNetworkCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByMobileNetworkCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByMobileNetwork ...
 func (c DataNetworksClient) ListByMobileNetwork(ctx context.Context, id MobileNetworkId) (result ListByMobileNetworkOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DataNetworksClient) ListByMobileNetwork(ctx context.Context, id MobileNe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByMobileNetworkCustomPager{},
 		Path:       fmt.Sprintf("%s/dataNetworks", id.ID()),
 	}
 

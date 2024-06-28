@@ -25,7 +25,8 @@ func (c DataFlowDebugSessionClient) Delete(ctx context.Context, id FactoryId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteDataFlowDebugSession", id.ID()),
+
+		Path: fmt.Sprintf("%s/deleteDataFlowDebugSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingLocatorsListConten
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listContentKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listContentKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

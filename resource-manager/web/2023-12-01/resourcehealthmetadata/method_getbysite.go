@@ -27,7 +27,8 @@ func (c ResourceHealthMetadataClient) GetBySite(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/resourceHealthMetadata/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/resourceHealthMetadata/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

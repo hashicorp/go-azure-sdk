@@ -28,7 +28,8 @@ func (c ResetCifsPasswordClient) VolumesResetCifsPassword(ctx context.Context, i
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetCifsPassword", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetCifsPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

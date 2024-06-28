@@ -23,6 +23,18 @@ type WorkloadNetworksListSegmentsCompleteResult struct {
 	Items              []WorkloadNetworkSegment
 }
 
+type WorkloadNetworksListSegmentsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkloadNetworksListSegmentsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkloadNetworksListSegments ...
 func (c WorkloadNetworkSegmentsClient) WorkloadNetworksListSegments(ctx context.Context, id PrivateCloudId) (result WorkloadNetworksListSegmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworkSegmentsClient) WorkloadNetworksListSegments(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkloadNetworksListSegmentsCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/segments", id.ID()),
 	}
 

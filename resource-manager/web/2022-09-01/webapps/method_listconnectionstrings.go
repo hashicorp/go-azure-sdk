@@ -27,7 +27,8 @@ func (c WebAppsClient) ListConnectionStrings(ctx context.Context, id commonids.A
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/config/connectionStrings/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/connectionStrings/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ExpandCompleteResult struct {
 	Items              []ExpandMsixImage
 }
 
+type ExpandCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ExpandCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Expand ...
 func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXImageURI) (result ExpandOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXIm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ExpandCustomPager{},
 		Path:       fmt.Sprintf("%s/expandMsixImage", id.ID()),
 	}
 

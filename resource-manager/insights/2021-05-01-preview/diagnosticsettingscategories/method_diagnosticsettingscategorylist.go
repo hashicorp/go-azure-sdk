@@ -27,7 +27,8 @@ func (c DiagnosticSettingsCategoriesClient) DiagnosticSettingsCategoryList(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Insights/diagnosticSettingsCategories", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Insights/diagnosticSettingsCategories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

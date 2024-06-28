@@ -52,7 +52,8 @@ func (c ContainerAppsClient) ListCustomHostNameAnalysis(ctx context.Context, id 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listCustomHostNameAnalysis", id.ID()),
 		OptionsObject: options,
 	}

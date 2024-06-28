@@ -51,6 +51,18 @@ func (o GetAvailableStacksOnPremOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
+type GetAvailableStacksOnPremCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAvailableStacksOnPremCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAvailableStacksOnPrem ...
 func (c ProviderClient) GetAvailableStacksOnPrem(ctx context.Context, id commonids.SubscriptionId, options GetAvailableStacksOnPremOperationOptions) (result GetAvailableStacksOnPremOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ProviderClient) GetAvailableStacksOnPrem(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &GetAvailableStacksOnPremCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Web/availableStacks", id.ID()),
 		OptionsObject: options,
 	}

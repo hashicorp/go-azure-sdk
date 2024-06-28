@@ -31,7 +31,8 @@ func (c MonitoredSubscriptionsClient) CreateorUpdate(ctx context.Context, id Mon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

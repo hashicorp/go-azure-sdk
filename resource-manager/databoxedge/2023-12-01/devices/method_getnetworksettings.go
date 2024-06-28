@@ -26,7 +26,8 @@ func (c DevicesClient) GetNetworkSettings(ctx context.Context, id DataBoxEdgeDev
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/networkSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

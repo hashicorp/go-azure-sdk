@@ -31,7 +31,8 @@ func (c ProvisionedClusterInstancesClient) PutVMSkus(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/skus/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/skus/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

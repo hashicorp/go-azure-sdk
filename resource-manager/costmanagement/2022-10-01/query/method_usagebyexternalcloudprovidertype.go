@@ -26,7 +26,8 @@ func (c QueryClient) UsageByExternalCloudProviderType(ctx context.Context, id Ex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/query", id.ID()),
+
+		Path: fmt.Sprintf("%s/query", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,7 +56,8 @@ func (c VaultsClient) Update(ctx context.Context, id VaultId, input PatchVault, 
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

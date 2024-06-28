@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateAzureStorageAccounts(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/azurestorageaccounts", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/azurestorageaccounts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

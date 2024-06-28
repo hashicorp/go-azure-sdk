@@ -30,7 +30,8 @@ func (c AccessConnectorClient) CreateOrUpdate(ctx context.Context, id AccessConn
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

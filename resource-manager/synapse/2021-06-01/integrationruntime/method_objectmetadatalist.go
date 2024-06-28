@@ -24,6 +24,18 @@ type ObjectMetadataListCompleteResult struct {
 	Items              []SsisObjectMetadata
 }
 
+type ObjectMetadataListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ObjectMetadataListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ObjectMetadataList ...
 func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (result ObjectMetadataListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id Int
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ObjectMetadataListCustomPager{},
 		Path:       fmt.Sprintf("%s/getObjectMetadata", id.ID()),
 	}
 

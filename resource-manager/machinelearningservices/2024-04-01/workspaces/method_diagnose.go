@@ -30,7 +30,8 @@ func (c WorkspacesClient) Diagnose(ctx context.Context, id WorkspaceId, input Di
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/diagnose", id.ID()),
+
+		Path: fmt.Sprintf("%s/diagnose", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

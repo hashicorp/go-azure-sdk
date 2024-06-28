@@ -26,7 +26,8 @@ func (c SyncGroupResourceClient) SyncGroupsListByStorageSyncService(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/syncGroups", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

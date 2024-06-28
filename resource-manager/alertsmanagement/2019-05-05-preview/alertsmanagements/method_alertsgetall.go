@@ -115,6 +115,18 @@ func (o AlertsGetAllOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type AlertsGetAllCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AlertsGetAllCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AlertsGetAll ...
 func (c AlertsManagementsClient) AlertsGetAll(ctx context.Context, id commonids.SubscriptionId, options AlertsGetAllOperationOptions) (result AlertsGetAllOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -123,6 +135,7 @@ func (c AlertsManagementsClient) AlertsGetAll(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AlertsGetAllCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/alerts", id.ID()),
 		OptionsObject: options,
 	}

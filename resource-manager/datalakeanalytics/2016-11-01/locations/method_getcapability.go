@@ -26,7 +26,8 @@ func (c LocationsClient) GetCapability(ctx context.Context, id LocationId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/capability", id.ID()),
+
+		Path: fmt.Sprintf("%s/capability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

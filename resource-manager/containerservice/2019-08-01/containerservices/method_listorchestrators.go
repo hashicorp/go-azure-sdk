@@ -52,7 +52,8 @@ func (c ContainerServicesClient) ListOrchestrators(ctx context.Context, id Locat
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/orchestrators", id.ID()),
 		OptionsObject: options,
 	}

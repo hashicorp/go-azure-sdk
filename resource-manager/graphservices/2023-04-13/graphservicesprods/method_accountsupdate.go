@@ -25,7 +25,8 @@ func (c GraphservicesprodsClient) AccountsUpdate(ctx context.Context, id Account
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

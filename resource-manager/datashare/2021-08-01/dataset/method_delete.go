@@ -30,7 +30,8 @@ func (c DataSetClient) Delete(ctx context.Context, id DataSetId) (result DeleteO
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c LocationBasedCapabilityClient) SetGet(ctx context.Context, id Capability
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

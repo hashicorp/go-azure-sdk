@@ -26,7 +26,8 @@ func (c DeviceCapacityInfoClient) GetDeviceCapacityInfo(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/deviceCapacityInfo/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/deviceCapacityInfo/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

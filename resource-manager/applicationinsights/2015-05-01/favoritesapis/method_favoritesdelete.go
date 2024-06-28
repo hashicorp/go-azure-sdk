@@ -24,7 +24,8 @@ func (c FavoritesAPIsClient) FavoritesDelete(ctx context.Context, id FavoriteId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

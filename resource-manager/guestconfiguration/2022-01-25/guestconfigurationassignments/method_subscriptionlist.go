@@ -28,7 +28,8 @@ func (c GuestConfigurationAssignmentsClient) SubscriptionList(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

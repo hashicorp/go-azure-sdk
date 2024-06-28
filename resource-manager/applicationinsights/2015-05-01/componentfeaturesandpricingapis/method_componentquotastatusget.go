@@ -26,7 +26,8 @@ func (c ComponentFeaturesAndPricingAPIsClient) ComponentQuotaStatusGet(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/quotastatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/quotastatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

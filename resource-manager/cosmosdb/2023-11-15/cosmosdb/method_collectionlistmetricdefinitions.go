@@ -26,7 +26,8 @@ func (c CosmosDBClient) CollectionListMetricDefinitions(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/metricDefinitions", id.ID()),
+
+		Path: fmt.Sprintf("%s/metricDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c TopicTypesClient) List(ctx context.Context) (result ListOperationRespons
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.EventGrid/topicTypes",
+
+		Path: "/providers/Microsoft.EventGrid/topicTypes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

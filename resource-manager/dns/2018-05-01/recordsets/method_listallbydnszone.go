@@ -54,6 +54,18 @@ func (o ListAllByDnsZoneOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListAllByDnsZoneCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAllByDnsZoneCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAllByDnsZone ...
 func (c RecordSetsClient) ListAllByDnsZone(ctx context.Context, id DnsZoneId, options ListAllByDnsZoneOperationOptions) (result ListAllByDnsZoneOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c RecordSetsClient) ListAllByDnsZone(ctx context.Context, id DnsZoneId, op
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListAllByDnsZoneCustomPager{},
 		Path:          fmt.Sprintf("%s/all", id.ID()),
 		OptionsObject: options,
 	}

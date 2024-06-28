@@ -30,7 +30,8 @@ func (c PerformConnectivityCheckClient) Async(ctx context.Context, id ServiceId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/connectivityCheck", id.ID()),
+
+		Path: fmt.Sprintf("%s/connectivityCheck", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

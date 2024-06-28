@@ -31,7 +31,8 @@ func (c ExtensionsClient) DisableAzureMonitor(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

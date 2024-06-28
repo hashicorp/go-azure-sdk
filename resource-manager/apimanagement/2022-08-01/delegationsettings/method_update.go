@@ -51,7 +51,8 @@ func (c DelegationSettingsClient) Update(ctx context.Context, id ServiceId, inpu
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          fmt.Sprintf("%s/portalsettings/delegation", id.ID()),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c AppPlatformClient) ServicesRegenerateTestKey(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateTestKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateTestKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

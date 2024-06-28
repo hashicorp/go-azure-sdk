@@ -29,7 +29,8 @@ func (c ReplicationRecoveryServicesProvidersClient) Delete(ctx context.Context, 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remove", id.ID()),
+
+		Path: fmt.Sprintf("%s/remove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

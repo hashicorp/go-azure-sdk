@@ -29,7 +29,8 @@ func (c SyncGroupsClient) RefreshHubSchema(ctx context.Context, id SyncGroupId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshHubSchema", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshHubSchema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

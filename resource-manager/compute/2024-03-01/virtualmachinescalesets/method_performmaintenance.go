@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetsClient) PerformMaintenance(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/performMaintenance", id.ID()),
+
+		Path: fmt.Sprintf("%s/performMaintenance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

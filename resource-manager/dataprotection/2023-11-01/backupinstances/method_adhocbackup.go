@@ -30,7 +30,8 @@ func (c BackupInstancesClient) AdhocBackup(ctx context.Context, id BackupInstanc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backup", id.ID()),
+
+		Path: fmt.Sprintf("%s/backup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ApiManagementServiceClient) MigrateToStv2(ctx context.Context, id Servic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrateToStv2", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrateToStv2", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

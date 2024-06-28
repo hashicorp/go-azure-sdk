@@ -23,6 +23,18 @@ type ListExternalCompleteResult struct {
 	Items              []Alert
 }
 
+type ListExternalCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListExternalCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListExternal ...
 func (c AlertsClient) ListExternal(ctx context.Context, id ExternalCloudProviderTypeId) (result ListExternalOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AlertsClient) ListExternal(ctx context.Context, id ExternalCloudProvider
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListExternalCustomPager{},
 		Path:       fmt.Sprintf("%s/alerts", id.ID()),
 	}
 

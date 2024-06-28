@@ -53,7 +53,8 @@ func (c WebAppsClient) DeleteSourceControl(ctx context.Context, id commonids.App
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/sourceControls/web", id.ID()),
 		OptionsObject: options,
 	}

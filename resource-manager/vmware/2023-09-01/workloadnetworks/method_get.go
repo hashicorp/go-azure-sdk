@@ -26,7 +26,8 @@ func (c WorkloadNetworksClient) Get(ctx context.Context, id PrivateCloudId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/workloadNetworks/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/workloadNetworks/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

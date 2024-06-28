@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) RacksGet(ctx context.Context, id RackId) (result Ra
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

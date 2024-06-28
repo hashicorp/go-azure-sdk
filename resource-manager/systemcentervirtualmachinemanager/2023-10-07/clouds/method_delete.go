@@ -55,7 +55,8 @@ func (c CloudsClient) Delete(ctx context.Context, id CloudId, options DeleteOper
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

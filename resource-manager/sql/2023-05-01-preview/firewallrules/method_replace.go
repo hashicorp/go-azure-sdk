@@ -28,7 +28,8 @@ func (c FirewallRulesClient) Replace(ctx context.Context, id commonids.SqlServer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/firewallRules", id.ID()),
+
+		Path: fmt.Sprintf("%s/firewallRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

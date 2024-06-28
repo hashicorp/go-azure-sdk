@@ -23,6 +23,18 @@ type ListByReplicationStorageClassificationsCompleteResult struct {
 	Items              []StorageClassificationMapping
 }
 
+type ListByReplicationStorageClassificationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReplicationStorageClassificationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReplicationStorageClassifications ...
 func (c ReplicationStorageClassificationMappingsClient) ListByReplicationStorageClassifications(ctx context.Context, id ReplicationStorageClassificationId) (result ListByReplicationStorageClassificationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ReplicationStorageClassificationMappingsClient) ListByReplicationStorage
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByReplicationStorageClassificationsCustomPager{},
 		Path:       fmt.Sprintf("%s/replicationStorageClassificationMappings", id.ID()),
 	}
 

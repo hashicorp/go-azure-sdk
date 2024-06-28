@@ -25,7 +25,8 @@ func (c WebAppsClient) ListSyncStatusSlot(ctx context.Context, id SlotId) (resul
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/host/default/listsyncstatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/host/default/listsyncstatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

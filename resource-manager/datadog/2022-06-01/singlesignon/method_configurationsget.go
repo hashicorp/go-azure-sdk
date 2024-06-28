@@ -25,7 +25,8 @@ func (c SingleSignOnClient) ConfigurationsGet(ctx context.Context, id SingleSign
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

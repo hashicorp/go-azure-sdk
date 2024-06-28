@@ -26,7 +26,8 @@ func (c TestJobClient) Create(ctx context.Context, id RunbookId, input TestJobCr
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/draft/testJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/testJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

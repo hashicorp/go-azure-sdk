@@ -25,7 +25,8 @@ func (c SqlPoolsSensitivityLabelsClient) SqlPoolSensitivityLabelsUpdate(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/currentSensitivityLabels", id.ID()),
+
+		Path: fmt.Sprintf("%s/currentSensitivityLabels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

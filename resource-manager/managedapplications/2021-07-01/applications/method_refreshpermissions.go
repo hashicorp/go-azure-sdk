@@ -29,7 +29,8 @@ func (c ApplicationsClient) RefreshPermissions(ctx context.Context, id Applicati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshPermissions", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshPermissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

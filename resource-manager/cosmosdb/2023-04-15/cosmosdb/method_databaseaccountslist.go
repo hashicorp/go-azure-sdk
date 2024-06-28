@@ -27,7 +27,8 @@ func (c CosmosDBClient) DatabaseAccountsList(ctx context.Context, id commonids.S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.DocumentDB/databaseAccounts", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.DocumentDB/databaseAccounts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VirtualWANsClient) VirtualHubRouteTableV2sGet(ctx context.Context, id Vi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

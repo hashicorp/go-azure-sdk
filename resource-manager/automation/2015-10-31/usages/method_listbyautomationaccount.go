@@ -26,7 +26,8 @@ func (c UsagesClient) ListByAutomationAccount(ctx context.Context, id Automation
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/usages", id.ID()),
+
+		Path: fmt.Sprintf("%s/usages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

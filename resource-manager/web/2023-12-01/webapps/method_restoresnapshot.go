@@ -30,7 +30,8 @@ func (c WebAppsClient) RestoreSnapshot(ctx context.Context, id commonids.AppServ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreSnapshot", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreSnapshot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

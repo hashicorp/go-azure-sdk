@@ -29,7 +29,8 @@ func (c AssetsAndAssetFiltersClient) TracksDelete(ctx context.Context, id TrackI
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ComponentsAPIsClient) ComponentsPurge(ctx context.Context, id ComponentI
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/purge", id.ID()),
+
+		Path: fmt.Sprintf("%s/purge", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

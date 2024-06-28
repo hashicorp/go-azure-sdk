@@ -26,7 +26,8 @@ func (c TransfersClient) PartnerTransfersInitiate(ctx context.Context, id Custom
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

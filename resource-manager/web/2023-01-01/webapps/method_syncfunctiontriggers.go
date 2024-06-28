@@ -26,7 +26,8 @@ func (c WebAppsClient) SyncFunctionTriggers(ctx context.Context, id commonids.Ap
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncfunctiontriggers", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncfunctiontriggers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

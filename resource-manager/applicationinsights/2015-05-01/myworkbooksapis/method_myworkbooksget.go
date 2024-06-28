@@ -25,7 +25,8 @@ func (c MyworkbooksAPIsClient) MyWorkbooksGet(ctx context.Context, id MyWorkbook
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

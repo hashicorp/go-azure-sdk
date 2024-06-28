@@ -27,7 +27,8 @@ func (c WebAppsClient) GetConfiguration(ctx context.Context, id commonids.AppSer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/config/web", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/web", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

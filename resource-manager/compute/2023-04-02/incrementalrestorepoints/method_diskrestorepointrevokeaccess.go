@@ -29,7 +29,8 @@ func (c IncrementalRestorePointsClient) DiskRestorePointRevokeAccess(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endGetAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/endGetAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c LiveEventsClient) Update(ctx context.Context, id LiveEventId, input Live
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

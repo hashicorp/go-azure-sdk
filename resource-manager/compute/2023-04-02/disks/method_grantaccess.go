@@ -31,7 +31,8 @@ func (c DisksClient) GrantAccess(ctx context.Context, id commonids.ManagedDiskId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/beginGetAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/beginGetAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

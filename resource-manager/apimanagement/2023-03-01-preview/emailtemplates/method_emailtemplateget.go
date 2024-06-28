@@ -25,7 +25,8 @@ func (c EmailTemplatesClient) EmailTemplateGet(ctx context.Context, id TemplateI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c TriggerClient) Get(ctx context.Context, id TriggerId, options GetOperati
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

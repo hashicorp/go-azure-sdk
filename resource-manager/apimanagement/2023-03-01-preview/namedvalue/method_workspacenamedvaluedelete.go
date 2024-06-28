@@ -52,7 +52,8 @@ func (c NamedValueClient) WorkspaceNamedValueDelete(ctx context.Context, id Work
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

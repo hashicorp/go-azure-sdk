@@ -25,7 +25,8 @@ func (c CodeContainerClient) Get(ctx context.Context, id CodeId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

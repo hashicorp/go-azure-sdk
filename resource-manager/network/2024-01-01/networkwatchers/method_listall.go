@@ -27,7 +27,8 @@ func (c NetworkWatchersClient) ListAll(ctx context.Context, id commonids.Subscri
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Network/networkWatchers", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Network/networkWatchers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

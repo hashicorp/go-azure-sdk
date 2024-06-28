@@ -26,7 +26,8 @@ func (c SqlPoolsDataMaskingPoliciesClient) DataMaskingPoliciesCreateOrUpdate(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/dataMaskingPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/dataMaskingPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

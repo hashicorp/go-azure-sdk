@@ -27,7 +27,8 @@ func (c SqlAgentClient) CreateOrUpdate(ctx context.Context, id commonids.SqlMana
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/sqlAgent/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/sqlAgent/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

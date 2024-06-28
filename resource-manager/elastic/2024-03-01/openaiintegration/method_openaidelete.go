@@ -25,7 +25,8 @@ func (c OpenAIIntegrationClient) OpenAIDelete(ctx context.Context, id OpenAIInte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

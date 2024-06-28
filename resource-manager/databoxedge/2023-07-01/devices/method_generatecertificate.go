@@ -26,7 +26,8 @@ func (c DevicesClient) GenerateCertificate(ctx context.Context, id DataBoxEdgeDe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateCertificate", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c SqlPoolsConnectionPoliciesClient) SqlPoolConnectionPoliciesGet(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/connectionPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/connectionPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

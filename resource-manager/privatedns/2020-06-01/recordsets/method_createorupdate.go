@@ -57,7 +57,8 @@ func (c RecordSetsClient) CreateOrUpdate(ctx context.Context, id RecordTypeId, i
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

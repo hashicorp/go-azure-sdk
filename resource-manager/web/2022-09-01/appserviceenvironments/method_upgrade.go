@@ -29,7 +29,8 @@ func (c AppServiceEnvironmentsClient) Upgrade(ctx context.Context, id commonids.
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c SnapshotPolicyListVolumesClient) SnapshotPoliciesListVolumes(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/volumes", id.ID()),
+
+		Path: fmt.Sprintf("%s/volumes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

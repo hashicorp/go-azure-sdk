@@ -26,7 +26,8 @@ func (c FirewallPoliciesClient) FirewallPolicyIdpsSignaturesOverridesPatch(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/signatureOverrides/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/signatureOverrides/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VideosClient) VideosUpdate(ctx context.Context, id VideoId, input VideoE
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

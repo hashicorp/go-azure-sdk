@@ -26,7 +26,8 @@ func (c GuestConfigurationHCRPAssignmentsClient) CreateOrUpdate(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

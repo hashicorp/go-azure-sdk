@@ -27,7 +27,8 @@ func (c ThreatIntelligenceClient) IndicatorReplaceTags(ctx context.Context, id I
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replaceTags", id.ID()),
+
+		Path: fmt.Sprintf("%s/replaceTags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

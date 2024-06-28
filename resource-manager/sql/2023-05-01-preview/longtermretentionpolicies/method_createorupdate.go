@@ -31,7 +31,8 @@ func (c LongTermRetentionPoliciesClient) CreateOrUpdate(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/backupLongTermRetentionPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

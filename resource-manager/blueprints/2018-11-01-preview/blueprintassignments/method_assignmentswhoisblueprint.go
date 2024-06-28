@@ -26,7 +26,8 @@ func (c BlueprintAssignmentsClient) AssignmentsWhoIsBlueprint(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/whoIsBlueprint", id.ID()),
+
+		Path: fmt.Sprintf("%s/whoIsBlueprint", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

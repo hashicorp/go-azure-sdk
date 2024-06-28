@@ -57,7 +57,8 @@ func (c ZonesClient) CreateOrUpdate(ctx context.Context, id DnsZoneId, input Zon
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

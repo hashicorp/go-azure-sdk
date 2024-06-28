@@ -26,7 +26,8 @@ func (c EntitiesClient) GetTimelinelist(ctx context.Context, id EntityId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getTimeline", id.ID()),
+
+		Path: fmt.Sprintf("%s/getTimeline", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c BackupInstancesClient) StopProtection(ctx context.Context, id BackupInst
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stopProtection", id.ID()),
+
+		Path: fmt.Sprintf("%s/stopProtection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

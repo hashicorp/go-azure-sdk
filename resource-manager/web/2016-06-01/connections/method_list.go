@@ -57,7 +57,8 @@ func (c ConnectionsClient) List(ctx context.Context, id commonids.ResourceGroupI
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Web/connections", id.ID()),
 		OptionsObject: options,
 	}

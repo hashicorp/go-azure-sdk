@@ -25,7 +25,8 @@ func (c AzureMonitorWorkspacesClient) Update(ctx context.Context, id AccountId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

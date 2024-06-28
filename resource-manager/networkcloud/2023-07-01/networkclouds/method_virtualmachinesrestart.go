@@ -29,7 +29,8 @@ func (c NetworkcloudsClient) VirtualMachinesRestart(ctx context.Context, id Virt
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

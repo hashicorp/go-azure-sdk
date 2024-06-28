@@ -30,7 +30,8 @@ func (c BillingSubscriptionsClient) BillingSubscriptionsMerge(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/merge", id.ID()),
+
+		Path: fmt.Sprintf("%s/merge", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

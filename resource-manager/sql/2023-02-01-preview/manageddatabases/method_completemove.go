@@ -30,7 +30,8 @@ func (c ManagedDatabasesClient) CompleteMove(ctx context.Context, id commonids.S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/completeMove", id.ID()),
+
+		Path: fmt.Sprintf("%s/completeMove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

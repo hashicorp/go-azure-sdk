@@ -53,7 +53,8 @@ func (c SubscriptionsClient) ListLocations(ctx context.Context, id commonids.Sub
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/locations", id.ID()),
 		OptionsObject: options,
 	}

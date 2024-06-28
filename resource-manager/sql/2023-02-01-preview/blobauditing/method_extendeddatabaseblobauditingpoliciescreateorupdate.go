@@ -28,7 +28,8 @@ func (c BlobAuditingClient) ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdate(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/extendedAuditingSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/extendedAuditingSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c JitNetworkAccessPoliciesClient) Initiate(ctx context.Context, id JitNetw
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiate", id.ID()),
+
+		Path: fmt.Sprintf("%s/initiate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

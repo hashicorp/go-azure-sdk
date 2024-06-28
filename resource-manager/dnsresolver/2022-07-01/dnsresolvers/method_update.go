@@ -56,7 +56,8 @@ func (c DnsResolversClient) Update(ctx context.Context, id DnsResolverId, input 
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

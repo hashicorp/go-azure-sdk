@@ -25,7 +25,8 @@ func (c JitRequestsClient) Update(ctx context.Context, id JitRequestId, input Ji
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

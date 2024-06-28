@@ -25,7 +25,8 @@ func (c PipelineRunsClient) Get(ctx context.Context, id PipelineRunId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

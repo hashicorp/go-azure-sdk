@@ -51,6 +51,18 @@ func (o LocationListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type LocationListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *LocationListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // LocationList ...
 func (c ExpressRouteProviderPortsClient) LocationList(ctx context.Context, id commonids.SubscriptionId, options LocationListOperationOptions) (result LocationListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ExpressRouteProviderPortsClient) LocationList(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &LocationListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Network/expressRouteProviderPorts", id.ID()),
 		OptionsObject: options,
 	}

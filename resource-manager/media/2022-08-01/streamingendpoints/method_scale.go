@@ -29,7 +29,8 @@ func (c StreamingEndpointsClient) Scale(ctx context.Context, id StreamingEndpoin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scale", id.ID()),
+
+		Path: fmt.Sprintf("%s/scale", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

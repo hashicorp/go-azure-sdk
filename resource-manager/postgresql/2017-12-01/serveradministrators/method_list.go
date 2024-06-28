@@ -26,7 +26,8 @@ func (c ServerAdministratorsClient) List(ctx context.Context, id ServerId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/administrators", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) SwitchProvider(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/switchProvider", id.ID()),
+
+		Path: fmt.Sprintf("%s/switchProvider", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

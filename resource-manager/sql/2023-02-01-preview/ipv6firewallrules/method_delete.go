@@ -25,7 +25,8 @@ func (c IPv6FirewallRulesClient) Delete(ctx context.Context, id IPv6FirewallRule
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

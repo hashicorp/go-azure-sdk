@@ -53,7 +53,8 @@ func (c BlobContainersClient) ExtendImmutabilityPolicy(ctx context.Context, id c
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/immutabilityPolicies/default/extend", id.ID()),
 		OptionsObject: options,
 	}

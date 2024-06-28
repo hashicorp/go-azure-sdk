@@ -50,6 +50,18 @@ func (o SqlPoolSchemasListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type SqlPoolSchemasListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolSchemasListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolSchemasList ...
 func (c SqlPoolsSchemasClient) SqlPoolSchemasList(ctx context.Context, id SqlPoolId, options SqlPoolSchemasListOperationOptions) (result SqlPoolSchemasListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c SqlPoolsSchemasClient) SqlPoolSchemasList(ctx context.Context, id SqlPoo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &SqlPoolSchemasListCustomPager{},
 		Path:          fmt.Sprintf("%s/schemas", id.ID()),
 		OptionsObject: options,
 	}

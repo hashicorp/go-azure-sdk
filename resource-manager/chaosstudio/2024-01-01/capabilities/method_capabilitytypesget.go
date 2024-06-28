@@ -25,7 +25,8 @@ func (c CapabilitiesClient) CapabilityTypesGet(ctx context.Context, id Capabilit
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

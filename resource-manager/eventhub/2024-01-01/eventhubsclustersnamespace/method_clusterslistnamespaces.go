@@ -26,7 +26,8 @@ func (c EventHubsClustersNamespaceClient) ClustersListNamespaces(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/namespaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/namespaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

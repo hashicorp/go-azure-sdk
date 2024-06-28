@@ -57,7 +57,8 @@ func (c ManagedClustersClient) ListClusterUserCredentials(ctx context.Context, i
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listClusterUserCredential", id.ID()),
 		OptionsObject: options,
 	}

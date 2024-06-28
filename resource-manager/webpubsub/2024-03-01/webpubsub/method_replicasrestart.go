@@ -29,7 +29,8 @@ func (c WebPubSubClient) ReplicasRestart(ctx context.Context, id ReplicaId) (res
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

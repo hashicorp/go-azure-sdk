@@ -26,7 +26,8 @@ func (c VirtualMachinesClient) GetRdpFileContents(ctx context.Context, id Virtua
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getRdpFileContents", id.ID()),
+
+		Path: fmt.Sprintf("%s/getRdpFileContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

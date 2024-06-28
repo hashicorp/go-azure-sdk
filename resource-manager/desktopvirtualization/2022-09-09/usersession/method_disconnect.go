@@ -25,7 +25,8 @@ func (c UserSessionClient) Disconnect(ctx context.Context, id UserSessionId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disconnect", id.ID()),
+
+		Path: fmt.Sprintf("%s/disconnect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

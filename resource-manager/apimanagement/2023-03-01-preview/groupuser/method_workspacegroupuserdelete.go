@@ -25,7 +25,8 @@ func (c GroupUserClient) WorkspaceGroupUserDelete(ctx context.Context, id Worksp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

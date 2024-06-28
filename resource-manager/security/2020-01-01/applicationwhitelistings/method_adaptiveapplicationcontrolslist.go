@@ -57,7 +57,8 @@ func (c ApplicationWhitelistingsClient) AdaptiveApplicationControlsList(ctx cont
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Security/applicationWhitelistings", id.ID()),
 		OptionsObject: options,
 	}

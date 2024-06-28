@@ -26,7 +26,8 @@ func (c WorkflowsClient) ListSwagger(ctx context.Context, id WorkflowId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSwagger", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSwagger", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

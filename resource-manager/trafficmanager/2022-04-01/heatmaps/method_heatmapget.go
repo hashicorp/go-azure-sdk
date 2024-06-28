@@ -56,7 +56,8 @@ func (c HeatMapsClient) HeatMapGet(ctx context.Context, id TrafficManagerProfile
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/heatMaps/default", id.ID()),
 		OptionsObject: options,
 	}

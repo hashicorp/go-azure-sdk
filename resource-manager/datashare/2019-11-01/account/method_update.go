@@ -25,7 +25,8 @@ func (c AccountClient) Update(ctx context.Context, id AccountId, input AccountUp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

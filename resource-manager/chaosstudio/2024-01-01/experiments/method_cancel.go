@@ -28,7 +28,8 @@ func (c ExperimentsClient) Cancel(ctx context.Context, id ExperimentId) (result 
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

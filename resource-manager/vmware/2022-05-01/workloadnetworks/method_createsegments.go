@@ -30,7 +30,8 @@ func (c WorkloadNetworksClient) CreateSegments(ctx context.Context, id SegmentId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

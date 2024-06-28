@@ -26,7 +26,8 @@ func (c POSTClient) CheckMigrationNameAvailability(ctx context.Context, id Flexi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkMigrationNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkMigrationNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

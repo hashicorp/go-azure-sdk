@@ -52,7 +52,8 @@ func (c ApiOperationClient) WorkspaceApiOperationUpdate(ctx context.Context, id 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

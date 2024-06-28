@@ -26,7 +26,8 @@ func (c WebAppsClient) CreateOrUpdateFunctionSecret(ctx context.Context, id KeyI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

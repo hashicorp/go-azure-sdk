@@ -25,7 +25,8 @@ func (c GenerateRecommendationsClient) RecommendationsGetGenerateStatus(ctx cont
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

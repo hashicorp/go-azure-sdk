@@ -26,7 +26,8 @@ func (c NamedValueClient) ListValue(ctx context.Context, id NamedValueId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listValue", id.ID()),
+
+		Path: fmt.Sprintf("%s/listValue", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ManagedEnvironmentsStoragesClient) List(ctx context.Context, id ManagedE
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/storages", id.ID()),
+
+		Path: fmt.Sprintf("%s/storages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

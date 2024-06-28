@@ -56,7 +56,8 @@ func (c ServicesClient) CreateOrUpdate(ctx context.Context, id SearchServiceId, 
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c WebAppsClient) UpdateHybridConnection(ctx context.Context, id RelayId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

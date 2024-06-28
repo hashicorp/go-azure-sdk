@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) Resize(ctx context.Context, id VirtualMachineId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resize", id.ID()),
+
+		Path: fmt.Sprintf("%s/resize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

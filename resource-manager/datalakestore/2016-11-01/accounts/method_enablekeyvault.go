@@ -25,7 +25,8 @@ func (c AccountsClient) EnableKeyVault(ctx context.Context, id AccountId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableKeyVault", id.ID()),
+
+		Path: fmt.Sprintf("%s/enableKeyVault", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

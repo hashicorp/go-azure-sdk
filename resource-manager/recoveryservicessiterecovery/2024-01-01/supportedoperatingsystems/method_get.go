@@ -52,7 +52,8 @@ func (c SupportedOperatingSystemsClient) Get(ctx context.Context, id VaultId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/replicationSupportedOperatingSystems", id.ID()),
 		OptionsObject: options,
 	}

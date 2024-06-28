@@ -25,7 +25,8 @@ func (c DashboardClient) Get(ctx context.Context, id DashboardId) (result GetOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

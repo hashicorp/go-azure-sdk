@@ -25,7 +25,8 @@ func (c ActionsClient) CloudEndpointsrestoreheartbeat(ctx context.Context, id Cl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreheartbeat", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreheartbeat", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

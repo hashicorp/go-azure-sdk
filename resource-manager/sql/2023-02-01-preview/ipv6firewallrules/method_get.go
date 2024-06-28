@@ -25,7 +25,8 @@ func (c IPv6FirewallRulesClient) Get(ctx context.Context, id IPv6FirewallRuleId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

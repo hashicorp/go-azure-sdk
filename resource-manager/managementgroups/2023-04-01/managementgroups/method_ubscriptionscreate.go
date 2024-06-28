@@ -52,7 +52,8 @@ func (c ManagementGroupsClient) UbscriptionsCreate(ctx context.Context, id Subsc
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

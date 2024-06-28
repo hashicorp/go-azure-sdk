@@ -53,7 +53,8 @@ func (c AggregatedCostClient) GetByManagementGroup(ctx context.Context, id commo
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/aggregatedcost", id.ID()),
 		OptionsObject: options,
 	}

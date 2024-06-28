@@ -26,7 +26,8 @@ func (c ConnectedResourcesClient) BillingInfoGet(ctx context.Context, id Monitor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getBillingInfo", id.ID()),
+
+		Path: fmt.Sprintf("%s/getBillingInfo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

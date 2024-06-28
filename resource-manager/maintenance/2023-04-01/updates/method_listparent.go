@@ -27,7 +27,8 @@ func (c UpdatesClient) ListParent(ctx context.Context, id commonids.ScopeId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Maintenance/updates", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Maintenance/updates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

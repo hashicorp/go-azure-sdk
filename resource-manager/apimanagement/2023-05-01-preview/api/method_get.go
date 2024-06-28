@@ -25,7 +25,8 @@ func (c ApiClient) Get(ctx context.Context, id ApiId) (result GetOperationRespon
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

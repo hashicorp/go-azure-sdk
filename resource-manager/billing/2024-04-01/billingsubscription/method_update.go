@@ -30,7 +30,8 @@ func (c BillingSubscriptionClient) Update(ctx context.Context, id BillingAccount
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

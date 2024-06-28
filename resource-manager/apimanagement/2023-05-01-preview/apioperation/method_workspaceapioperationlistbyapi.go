@@ -62,6 +62,18 @@ func (o WorkspaceApiOperationListByApiOperationOptions) ToQuery() *client.QueryP
 	return &out
 }
 
+type WorkspaceApiOperationListByApiCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiOperationListByApiCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiOperationListByApi ...
 func (c ApiOperationClient) WorkspaceApiOperationListByApi(ctx context.Context, id WorkspaceApiId, options WorkspaceApiOperationListByApiOperationOptions) (result WorkspaceApiOperationListByApiOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,6 +82,7 @@ func (c ApiOperationClient) WorkspaceApiOperationListByApi(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceApiOperationListByApiCustomPager{},
 		Path:          fmt.Sprintf("%s/operations", id.ID()),
 		OptionsObject: options,
 	}

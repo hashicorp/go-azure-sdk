@@ -25,7 +25,8 @@ func (c IotDpsResourceClient) GetPrivateLinkResources(ctx context.Context, id Pr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

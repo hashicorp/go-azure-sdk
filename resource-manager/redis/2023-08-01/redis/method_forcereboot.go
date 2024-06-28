@@ -26,7 +26,8 @@ func (c RedisClient) ForceReboot(ctx context.Context, id RediId, input RedisRebo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forceReboot", id.ID()),
+
+		Path: fmt.Sprintf("%s/forceReboot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

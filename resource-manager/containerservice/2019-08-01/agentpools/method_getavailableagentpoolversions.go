@@ -27,7 +27,8 @@ func (c AgentPoolsClient) GetAvailableAgentPoolVersions(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/availableAgentPoolVersions", id.ID()),
+
+		Path: fmt.Sprintf("%s/availableAgentPoolVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

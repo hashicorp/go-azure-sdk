@@ -25,7 +25,8 @@ func (c DiagnosticSettingsCategoriesClient) DiagnosticSettingsCategoryList(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.AADIAM/diagnosticSettingsCategories",
+
+		Path: "/providers/Microsoft.AADIAM/diagnosticSettingsCategories",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

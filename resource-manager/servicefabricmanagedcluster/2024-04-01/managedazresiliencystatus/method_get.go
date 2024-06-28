@@ -26,7 +26,8 @@ func (c ManagedAzResiliencyStatusClient) Get(ctx context.Context, id ManagedClus
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getazresiliencystatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/getazresiliencystatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ConnectionMonitorsClient) List(ctx context.Context, id NetworkWatcherId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/connectionMonitors", id.ID()),
+
+		Path: fmt.Sprintf("%s/connectionMonitors", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

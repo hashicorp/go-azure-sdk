@@ -26,7 +26,8 @@ func (c SnapshotPolicyClient) SnapshotPoliciesList(ctx context.Context, id NetAp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/snapshotPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/snapshotPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

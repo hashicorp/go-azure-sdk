@@ -25,7 +25,8 @@ func (c AccountClient) AddRootCollectionAdmin(ctx context.Context, id AccountId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addRootCollectionAdmin", id.ID()),
+
+		Path: fmt.Sprintf("%s/addRootCollectionAdmin", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

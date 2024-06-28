@@ -27,7 +27,8 @@ func (c WebAppsClient) GetPrivateLinkResources(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

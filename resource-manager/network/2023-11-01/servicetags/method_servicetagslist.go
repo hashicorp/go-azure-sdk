@@ -26,7 +26,8 @@ func (c ServiceTagsClient) ServiceTagsList(ctx context.Context, id LocationId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/serviceTags", id.ID()),
+
+		Path: fmt.Sprintf("%s/serviceTags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

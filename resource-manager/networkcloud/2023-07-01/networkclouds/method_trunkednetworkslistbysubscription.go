@@ -24,6 +24,18 @@ type TrunkedNetworksListBySubscriptionCompleteResult struct {
 	Items              []TrunkedNetwork
 }
 
+type TrunkedNetworksListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *TrunkedNetworksListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // TrunkedNetworksListBySubscription ...
 func (c NetworkcloudsClient) TrunkedNetworksListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result TrunkedNetworksListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) TrunkedNetworksListBySubscription(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &TrunkedNetworksListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/trunkedNetworks", id.ID()),
 	}
 

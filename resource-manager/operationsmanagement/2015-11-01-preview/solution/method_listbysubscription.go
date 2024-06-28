@@ -27,7 +27,8 @@ func (c SolutionClient) ListBySubscription(ctx context.Context, id commonids.Sub
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/solutions", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/solutions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

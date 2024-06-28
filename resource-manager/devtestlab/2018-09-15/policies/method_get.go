@@ -52,7 +52,8 @@ func (c PoliciesClient) Get(ctx context.Context, id PolicyId, options GetOperati
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

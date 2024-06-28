@@ -30,7 +30,8 @@ func (c ClustersClient) Create(ctx context.Context, id ClusterId, input Cluster)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

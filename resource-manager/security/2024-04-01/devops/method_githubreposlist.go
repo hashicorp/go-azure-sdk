@@ -23,6 +23,18 @@ type GitHubReposListCompleteResult struct {
 	Items              []GitHubRepository
 }
 
+type GitHubReposListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GitHubReposListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GitHubReposList ...
 func (c DevOpsClient) GitHubReposList(ctx context.Context, id GitHubOwnerId) (result GitHubReposListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) GitHubReposList(ctx context.Context, id GitHubOwnerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GitHubReposListCustomPager{},
 		Path:       fmt.Sprintf("%s/repos", id.ID()),
 	}
 

@@ -25,7 +25,8 @@ func (c HealthbotsClient) BotsGet(ctx context.Context, id HealthBotId) (result B
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

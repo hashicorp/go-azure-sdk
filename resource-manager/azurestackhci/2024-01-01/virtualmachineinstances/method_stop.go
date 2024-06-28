@@ -31,7 +31,8 @@ func (c VirtualMachineInstancesClient) Stop(ctx context.Context, id commonids.Sc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/stop", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c TagsClient) GetAtScope(ctx context.Context, id commonids.ScopeId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Resources/tags/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

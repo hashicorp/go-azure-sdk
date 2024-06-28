@@ -29,7 +29,8 @@ func (c DevicesClient) CreateOrUpdateSecuritySettings(ctx context.Context, id Da
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/securitySettings/default/update", id.ID()),
+
+		Path: fmt.Sprintf("%s/securitySettings/default/update", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

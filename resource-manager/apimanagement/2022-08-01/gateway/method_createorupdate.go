@@ -53,7 +53,8 @@ func (c GatewayClient) CreateOrUpdate(ctx context.Context, id GatewayId, input G
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

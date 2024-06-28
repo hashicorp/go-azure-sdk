@@ -26,7 +26,8 @@ func (c MachineNetworkProfileClient) NetworkProfileGet(ctx context.Context, id M
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/networkProfile", id.ID()),
+
+		Path: fmt.Sprintf("%s/networkProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

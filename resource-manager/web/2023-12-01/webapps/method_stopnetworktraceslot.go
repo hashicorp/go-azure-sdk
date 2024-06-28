@@ -26,7 +26,8 @@ func (c WebAppsClient) StopNetworkTraceSlot(ctx context.Context, id SlotId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stopNetworkTrace", id.ID()),
+
+		Path: fmt.Sprintf("%s/stopNetworkTrace", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

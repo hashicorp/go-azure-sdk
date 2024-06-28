@@ -29,7 +29,8 @@ func (c PoolsClient) RunHealthChecks(ctx context.Context, id PoolId) (result Run
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runHealthChecks", id.ID()),
+
+		Path: fmt.Sprintf("%s/runHealthChecks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

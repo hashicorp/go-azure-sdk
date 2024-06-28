@@ -30,7 +30,8 @@ func (c SIMsClient) Clone(ctx context.Context, id SimGroupId, input SimClone) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cloneSims", id.ID()),
+
+		Path: fmt.Sprintf("%s/cloneSims", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

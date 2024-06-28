@@ -52,7 +52,8 @@ func (c EntitiesClient) Queries(ctx context.Context, id EntityId, options Querie
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/queries", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c TenantAccessClient) ListSecrets(ctx context.Context, id AccessId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

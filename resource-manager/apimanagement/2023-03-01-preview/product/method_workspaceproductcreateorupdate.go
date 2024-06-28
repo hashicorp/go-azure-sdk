@@ -53,7 +53,8 @@ func (c ProductClient) WorkspaceProductCreateOrUpdate(ctx context.Context, id Wo
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

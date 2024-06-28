@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) AddDataDisk(ctx context.Context, id VirtualMachin
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addDataDisk", id.ID()),
+
+		Path: fmt.Sprintf("%s/addDataDisk", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

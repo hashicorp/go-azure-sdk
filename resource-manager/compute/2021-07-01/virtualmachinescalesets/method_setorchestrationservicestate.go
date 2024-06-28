@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetsClient) SetOrchestrationServiceState(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setOrchestrationServiceState", id.ID()),
+
+		Path: fmt.Sprintf("%s/setOrchestrationServiceState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

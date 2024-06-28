@@ -30,7 +30,8 @@ func (c NetworkcloudsClient) ClustersCreateOrUpdate(ctx context.Context, id Clus
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

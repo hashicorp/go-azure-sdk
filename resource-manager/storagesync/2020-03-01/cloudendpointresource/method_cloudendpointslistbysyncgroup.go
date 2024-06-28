@@ -26,7 +26,8 @@ func (c CloudEndpointResourceClient) CloudEndpointsListBySyncGroup(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/cloudEndpoints", id.ID()),
+
+		Path: fmt.Sprintf("%s/cloudEndpoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

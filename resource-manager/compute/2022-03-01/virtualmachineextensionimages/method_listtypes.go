@@ -26,7 +26,8 @@ func (c VirtualMachineExtensionImagesClient) ListTypes(ctx context.Context, id P
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/artifactTypes/vmExtension/types", id.ID()),
+
+		Path: fmt.Sprintf("%s/artifactTypes/vmExtension/types", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

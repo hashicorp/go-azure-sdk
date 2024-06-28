@@ -26,7 +26,8 @@ func (c DatabasesClient) ListByServer(ctx context.Context, id ServerId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/databases", id.ID()),
+
+		Path: fmt.Sprintf("%s/databases", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

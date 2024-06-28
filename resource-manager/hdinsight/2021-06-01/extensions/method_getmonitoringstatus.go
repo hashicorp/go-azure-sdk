@@ -27,7 +27,8 @@ func (c ExtensionsClient) GetMonitoringStatus(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/extensions/clustermonitoring", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/clustermonitoring", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c RunbookClient) Publish(ctx context.Context, id RunbookId) (result Publis
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publish", id.ID()),
+
+		Path: fmt.Sprintf("%s/publish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

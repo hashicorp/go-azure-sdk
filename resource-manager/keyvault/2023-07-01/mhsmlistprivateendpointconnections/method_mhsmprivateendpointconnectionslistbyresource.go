@@ -23,6 +23,18 @@ type MHSMPrivateEndpointConnectionsListByResourceCompleteResult struct {
 	Items              []MHSMPrivateEndpointConnection
 }
 
+type MHSMPrivateEndpointConnectionsListByResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *MHSMPrivateEndpointConnectionsListByResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // MHSMPrivateEndpointConnectionsListByResource ...
 func (c MHSMListPrivateEndpointConnectionsClient) MHSMPrivateEndpointConnectionsListByResource(ctx context.Context, id ManagedHSMId) (result MHSMPrivateEndpointConnectionsListByResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MHSMListPrivateEndpointConnectionsClient) MHSMPrivateEndpointConnections
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &MHSMPrivateEndpointConnectionsListByResourceCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

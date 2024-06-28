@@ -29,7 +29,8 @@ func (c VirtualNetworkGatewaysClient) ResetVpnClientSharedKey(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetvpnclientsharedkey", id.ID()),
+
+		Path: fmt.Sprintf("%s/resetvpnclientsharedkey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

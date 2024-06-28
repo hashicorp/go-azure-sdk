@@ -26,7 +26,8 @@ func (c NetworkManagerActiveConfigurationsClient) ListActiveSecurityAdminRules(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listActiveSecurityAdminRules", id.ID()),
+
+		Path: fmt.Sprintf("%s/listActiveSecurityAdminRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

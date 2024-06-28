@@ -26,7 +26,8 @@ func (c SubscriptionsClient) ListQuotas(ctx context.Context, id LocationId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/quotas", id.ID()),
+
+		Path: fmt.Sprintf("%s/quotas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

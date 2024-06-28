@@ -25,7 +25,8 @@ func (c UsersClient) Update(ctx context.Context, id UserId, input UpdateResource
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

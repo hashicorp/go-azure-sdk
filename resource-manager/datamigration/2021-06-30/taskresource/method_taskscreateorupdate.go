@@ -26,7 +26,8 @@ func (c TaskResourceClient) TasksCreateOrUpdate(ctx context.Context, id TaskId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

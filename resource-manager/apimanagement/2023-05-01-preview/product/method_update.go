@@ -52,7 +52,8 @@ func (c ProductClient) Update(ctx context.Context, id ProductId, input ProductUp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c CosmosDBClient) CassandraResourcesListCassandraTables(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tables", id.ID()),
+
+		Path: fmt.Sprintf("%s/tables", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

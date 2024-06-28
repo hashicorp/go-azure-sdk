@@ -27,7 +27,8 @@ func (c ApiManagementServiceClient) GetDomainOwnershipIdentifier(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ApiManagement/getDomainOwnershipIdentifier", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ApiManagement/getDomainOwnershipIdentifier", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c WebPubSubClient) CustomDomainsCreateOrUpdate(ctx context.Context, id Cus
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

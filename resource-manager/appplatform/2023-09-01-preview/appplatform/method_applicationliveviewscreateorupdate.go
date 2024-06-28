@@ -30,7 +30,8 @@ func (c AppPlatformClient) ApplicationLiveViewsCreateOrUpdate(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

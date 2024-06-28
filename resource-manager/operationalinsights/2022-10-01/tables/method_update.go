@@ -30,7 +30,8 @@ func (c TablesClient) Update(ctx context.Context, id TableId, input Table) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

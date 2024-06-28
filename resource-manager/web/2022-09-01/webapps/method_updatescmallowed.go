@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateScmAllowed(ctx context.Context, id commonids.AppSer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/basicPublishingCredentialsPolicies/scm", id.ID()),
+
+		Path: fmt.Sprintf("%s/basicPublishingCredentialsPolicies/scm", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

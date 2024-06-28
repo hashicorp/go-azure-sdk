@@ -26,7 +26,8 @@ func (c RestorableDroppedSqlPoolsClient) ListByWorkspace(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/restorableDroppedSqlPools", id.ID()),
+
+		Path: fmt.Sprintf("%s/restorableDroppedSqlPools", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

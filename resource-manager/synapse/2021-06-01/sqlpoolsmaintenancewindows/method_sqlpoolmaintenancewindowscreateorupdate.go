@@ -51,7 +51,8 @@ func (c SqlPoolsMaintenanceWindowsClient) SqlPoolMaintenanceWindowsCreateOrUpdat
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/maintenancewindows/current", id.ID()),
 		OptionsObject: options,
 	}

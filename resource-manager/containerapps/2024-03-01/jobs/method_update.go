@@ -30,7 +30,8 @@ func (c JobsClient) Update(ctx context.Context, id JobId, input JobPatchProperti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

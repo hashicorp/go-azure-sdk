@@ -25,7 +25,8 @@ func (c AssignmentClient) CreateOrUpdate(ctx context.Context, id ScopedBlueprint
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

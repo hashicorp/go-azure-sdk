@@ -52,7 +52,8 @@ func (c RecordSetsClient) Delete(ctx context.Context, id RecordTypeId, options D
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

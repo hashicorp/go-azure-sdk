@@ -25,7 +25,8 @@ func (c WebAppsClient) UpdateRelayServiceConnection(ctx context.Context, id Hybr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

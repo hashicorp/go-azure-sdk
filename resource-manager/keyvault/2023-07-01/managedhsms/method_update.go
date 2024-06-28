@@ -30,7 +30,8 @@ func (c ManagedHsmsClient) Update(ctx context.Context, id ManagedHSMId, input Ma
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

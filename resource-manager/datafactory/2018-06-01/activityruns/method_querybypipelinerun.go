@@ -26,7 +26,8 @@ func (c ActivityrunsClient) QueryByPipelineRun(ctx context.Context, id PipelineR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryActivityruns", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryActivityruns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

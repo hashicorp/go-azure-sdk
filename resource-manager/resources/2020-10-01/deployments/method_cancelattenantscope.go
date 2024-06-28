@@ -25,7 +25,8 @@ func (c DeploymentsClient) CancelAtTenantScope(ctx context.Context, id Deploymen
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

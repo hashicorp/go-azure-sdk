@@ -26,7 +26,8 @@ func (c RecoverableServersClient) Get(ctx context.Context, id ServerId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/recoverableServers", id.ID()),
+
+		Path: fmt.Sprintf("%s/recoverableServers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

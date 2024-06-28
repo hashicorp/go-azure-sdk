@@ -24,6 +24,18 @@ type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseCompleteResult struct {
 	Items              []ExtendedDatabaseBlobAuditingPolicy
 }
 
+type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ExtendedDatabaseBlobAuditingPoliciesListByDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ExtendedDatabaseBlobAuditingPoliciesListByDatabase ...
 func (c BlobAuditingClient) ExtendedDatabaseBlobAuditingPoliciesListByDatabase(ctx context.Context, id commonids.SqlDatabaseId) (result ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c BlobAuditingClient) ExtendedDatabaseBlobAuditingPoliciesListByDatabase(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ExtendedDatabaseBlobAuditingPoliciesListByDatabaseCustomPager{},
 		Path:       fmt.Sprintf("%s/extendedAuditingSettings", id.ID()),
 	}
 

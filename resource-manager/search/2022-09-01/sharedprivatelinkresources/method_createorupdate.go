@@ -56,7 +56,8 @@ func (c SharedPrivateLinkResourcesClient) CreateOrUpdate(ctx context.Context, id
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

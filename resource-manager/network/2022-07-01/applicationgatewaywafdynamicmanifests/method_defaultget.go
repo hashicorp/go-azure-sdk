@@ -26,7 +26,8 @@ func (c ApplicationGatewayWafDynamicManifestsClient) DefaultGet(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/applicationGatewayWafDynamicManifests/dafault", id.ID()),
+
+		Path: fmt.Sprintf("%s/applicationGatewayWafDynamicManifests/dafault", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

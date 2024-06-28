@@ -29,7 +29,8 @@ func (c DevicesClient) ScanForUpdates(ctx context.Context, id DataBoxEdgeDeviceI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scanForUpdates", id.ID()),
+
+		Path: fmt.Sprintf("%s/scanForUpdates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

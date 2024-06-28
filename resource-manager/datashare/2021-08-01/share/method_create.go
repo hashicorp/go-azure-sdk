@@ -26,7 +26,8 @@ func (c ShareClient) Create(ctx context.Context, id ShareId, input Share) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

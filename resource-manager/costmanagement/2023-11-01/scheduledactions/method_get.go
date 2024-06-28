@@ -25,7 +25,8 @@ func (c ScheduledActionsClient) Get(ctx context.Context, id ScheduledActionId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

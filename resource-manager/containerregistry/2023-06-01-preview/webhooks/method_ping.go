@@ -26,7 +26,8 @@ func (c WebHooksClient) Ping(ctx context.Context, id WebHookId) (result PingOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ping", id.ID()),
+
+		Path: fmt.Sprintf("%s/ping", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

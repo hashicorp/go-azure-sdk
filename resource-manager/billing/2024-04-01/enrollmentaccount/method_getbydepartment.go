@@ -25,7 +25,8 @@ func (c EnrollmentAccountClient) GetByDepartment(ctx context.Context, id Departm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

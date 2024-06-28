@@ -30,7 +30,8 @@ func (c BackupRestoreClient) CloudEndpointsPostBackup(ctx context.Context, id Cl
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/postbackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/postbackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

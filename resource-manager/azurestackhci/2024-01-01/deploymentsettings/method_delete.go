@@ -29,7 +29,8 @@ func (c DeploymentSettingsClient) Delete(ctx context.Context, id DeploymentSetti
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

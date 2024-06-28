@@ -27,7 +27,8 @@ func (c ManagementConfigurationClient) ListBySubscription(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/managementConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationsManagement/managementConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

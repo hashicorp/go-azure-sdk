@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) Claim(ctx context.Context, id VirtualMachineId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/claim", id.ID()),
+
+		Path: fmt.Sprintf("%s/claim", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ApplicationsClient) UpdateAccess(ctx context.Context, id ApplicationId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

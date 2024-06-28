@@ -52,7 +52,8 @@ func (c BillingProfilesClient) Get(ctx context.Context, id BillingProfileId, opt
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

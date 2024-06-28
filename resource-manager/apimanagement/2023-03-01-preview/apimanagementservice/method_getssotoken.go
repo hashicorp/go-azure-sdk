@@ -26,7 +26,8 @@ func (c ApiManagementServiceClient) GetSsoToken(ctx context.Context, id ServiceI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getssotoken", id.ID()),
+
+		Path: fmt.Sprintf("%s/getssotoken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c FlowLogsClient) Delete(ctx context.Context, id FlowLogId) (result Delete
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

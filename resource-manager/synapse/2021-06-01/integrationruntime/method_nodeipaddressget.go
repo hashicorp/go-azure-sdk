@@ -26,7 +26,8 @@ func (c IntegrationRuntimeClient) NodeIPAddressGet(ctx context.Context, id NodeI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ipAddress", id.ID()),
+
+		Path: fmt.Sprintf("%s/ipAddress", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

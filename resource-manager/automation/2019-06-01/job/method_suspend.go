@@ -51,7 +51,8 @@ func (c JobClient) Suspend(ctx context.Context, id JobId, options SuspendOperati
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/suspend", id.ID()),
 		OptionsObject: options,
 	}

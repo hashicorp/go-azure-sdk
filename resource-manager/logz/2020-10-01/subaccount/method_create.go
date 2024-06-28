@@ -30,7 +30,8 @@ func (c SubAccountClient) Create(ctx context.Context, id AccountId, input LogzMo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

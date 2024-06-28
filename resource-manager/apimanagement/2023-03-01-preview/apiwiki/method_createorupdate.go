@@ -53,7 +53,8 @@ func (c ApiWikiClient) CreateOrUpdate(ctx context.Context, id ApiId, input WikiC
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
 	}

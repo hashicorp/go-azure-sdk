@@ -23,6 +23,18 @@ type ReplicaSharedPrivateLinkResourcesListCompleteResult struct {
 	Items              []SharedPrivateLinkResource
 }
 
+type ReplicaSharedPrivateLinkResourcesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ReplicaSharedPrivateLinkResourcesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ReplicaSharedPrivateLinkResourcesList ...
 func (c SignalRClient) ReplicaSharedPrivateLinkResourcesList(ctx context.Context, id ReplicaId) (result ReplicaSharedPrivateLinkResourcesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SignalRClient) ReplicaSharedPrivateLinkResourcesList(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ReplicaSharedPrivateLinkResourcesListCustomPager{},
 		Path:       fmt.Sprintf("%s/sharedPrivateLinkResources", id.ID()),
 	}
 

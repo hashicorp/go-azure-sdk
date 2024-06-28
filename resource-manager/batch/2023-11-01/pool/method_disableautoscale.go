@@ -26,7 +26,8 @@ func (c PoolClient) DisableAutoScale(ctx context.Context, id PoolId) (result Dis
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableAutoScale", id.ID()),
+
+		Path: fmt.Sprintf("%s/disableAutoScale", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

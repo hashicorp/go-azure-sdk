@@ -55,7 +55,8 @@ func (c VolumesClient) Delete(ctx context.Context, id VolumeId, options DeleteOp
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

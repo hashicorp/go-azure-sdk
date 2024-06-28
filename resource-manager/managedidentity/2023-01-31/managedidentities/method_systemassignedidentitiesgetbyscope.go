@@ -27,7 +27,8 @@ func (c ManagedIdentitiesClient) SystemAssignedIdentitiesGetByScope(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ManagedIdentity/identities/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ManagedIdentity/identities/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

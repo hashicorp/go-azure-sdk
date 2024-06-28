@@ -26,7 +26,8 @@ func (c AgentRegistrationInformationClient) Get(ctx context.Context, id Automati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/agentRegistrationInformation", id.ID()),
+
+		Path: fmt.Sprintf("%s/agentRegistrationInformation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c RaiBlocklistsClient) Delete(ctx context.Context, id RaiBlocklistId) (res
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

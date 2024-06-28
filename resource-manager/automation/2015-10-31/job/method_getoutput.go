@@ -26,7 +26,8 @@ func (c JobClient) GetOutput(ctx context.Context, id JobId) (result GetOutputOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/output", id.ID()),
+
+		Path: fmt.Sprintf("%s/output", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

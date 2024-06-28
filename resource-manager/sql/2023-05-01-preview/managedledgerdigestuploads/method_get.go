@@ -27,7 +27,8 @@ func (c ManagedLedgerDigestUploadsClient) Get(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/ledgerDigestUploads/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/ledgerDigestUploads/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

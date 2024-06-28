@@ -31,7 +31,8 @@ func (c ProvisionedClusterInstancesClient) ListAdminKubeconfig(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listAdminKubeconfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listAdminKubeconfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

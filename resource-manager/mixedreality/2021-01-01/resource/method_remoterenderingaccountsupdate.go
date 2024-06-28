@@ -25,7 +25,8 @@ func (c ResourceClient) RemoteRenderingAccountsUpdate(ctx context.Context, id Re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

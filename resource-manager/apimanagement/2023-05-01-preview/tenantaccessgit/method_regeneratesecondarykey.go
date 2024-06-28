@@ -25,7 +25,8 @@ func (c TenantAccessGitClient) RegenerateSecondaryKey(ctx context.Context, id Ac
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/git/regenerateSecondaryKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/git/regenerateSecondaryKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

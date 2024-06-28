@@ -26,7 +26,8 @@ func (c NetworkConnectionsClient) GetHealthDetails(ctx context.Context, id Netwo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/healthChecks/latest", id.ID()),
+
+		Path: fmt.Sprintf("%s/healthChecks/latest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

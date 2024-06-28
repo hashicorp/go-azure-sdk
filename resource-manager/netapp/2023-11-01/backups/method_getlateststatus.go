@@ -26,7 +26,8 @@ func (c BackupsClient) GetLatestStatus(ctx context.Context, id VolumeId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/latestBackupStatus/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/latestBackupStatus/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

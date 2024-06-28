@@ -25,7 +25,8 @@ func (c NetworkcloudsClient) L3NetworksUpdate(ctx context.Context, id L3NetworkI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

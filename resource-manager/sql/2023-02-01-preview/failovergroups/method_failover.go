@@ -30,7 +30,8 @@ func (c FailoverGroupsClient) Failover(ctx context.Context, id FailoverGroupId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/failover", id.ID()),
+
+		Path: fmt.Sprintf("%s/failover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c StorageAccountsNetworkSecurityPerimeterConfigurationsClient) NetworkSecu
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reconcile", id.ID()),
+
+		Path: fmt.Sprintf("%s/reconcile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c AdaptiveNetworkHardeningsClient) Enforce(ctx context.Context, id ScopedA
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enforce", id.ID()),
+
+		Path: fmt.Sprintf("%s/enforce", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

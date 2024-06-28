@@ -60,7 +60,8 @@ func (c VirtualMachineImagesClient) EdgeZoneList(ctx context.Context, id OfferSk
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/versions", id.ID()),
 		OptionsObject: options,
 	}

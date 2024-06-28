@@ -24,7 +24,8 @@ func (c DeploymentsClient) CheckExistence(ctx context.Context, id ProviderDeploy
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

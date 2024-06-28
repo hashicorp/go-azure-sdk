@@ -29,7 +29,8 @@ func (c CloudEndpointResourceClient) CloudEndpointsTriggerChangeDetection(ctx co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/triggerChangeDetection", id.ID()),
+
+		Path: fmt.Sprintf("%s/triggerChangeDetection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,7 +56,8 @@ func (c BackupInstancesClient) Delete(ctx context.Context, id BackupInstanceId, 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

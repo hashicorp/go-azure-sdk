@@ -52,7 +52,8 @@ func (c OpenidConnectProviderClient) Update(ctx context.Context, id OpenidConnec
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -57,6 +57,18 @@ func (o ResolveByInvoiceSectionOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ResolveByInvoiceSectionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ResolveByInvoiceSectionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ResolveByInvoiceSection ...
 func (c BillingRoleAssignmentClient) ResolveByInvoiceSection(ctx context.Context, id InvoiceSectionId, options ResolveByInvoiceSectionOperationOptions) (result ResolveByInvoiceSectionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c BillingRoleAssignmentClient) ResolveByInvoiceSection(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &ResolveByInvoiceSectionCustomPager{},
 		Path:          fmt.Sprintf("%s/resolveBillingRoleAssignments", id.ID()),
 		OptionsObject: options,
 	}

@@ -23,6 +23,18 @@ type ConsolesListByVirtualMachineCompleteResult struct {
 	Items              []Console
 }
 
+type ConsolesListByVirtualMachineCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ConsolesListByVirtualMachineCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ConsolesListByVirtualMachine ...
 func (c NetworkcloudsClient) ConsolesListByVirtualMachine(ctx context.Context, id VirtualMachineId) (result ConsolesListByVirtualMachineOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetworkcloudsClient) ConsolesListByVirtualMachine(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ConsolesListByVirtualMachineCustomPager{},
 		Path:       fmt.Sprintf("%s/consoles", id.ID()),
 	}
 

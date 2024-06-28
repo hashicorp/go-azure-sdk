@@ -26,7 +26,8 @@ func (c EmailRegistrationClient) RegisterEmail(ctx context.Context, id LocationI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/registerEmail", id.ID()),
+
+		Path: fmt.Sprintf("%s/registerEmail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

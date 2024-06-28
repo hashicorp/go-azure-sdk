@@ -52,7 +52,8 @@ func (c RoleAssignmentsClient) Get(ctx context.Context, id ScopedRoleAssignmentI
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

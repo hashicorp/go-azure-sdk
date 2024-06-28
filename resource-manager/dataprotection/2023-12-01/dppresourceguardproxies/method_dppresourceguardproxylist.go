@@ -23,6 +23,18 @@ type DppResourceGuardProxyListCompleteResult struct {
 	Items              []ResourceGuardProxyBaseResource
 }
 
+type DppResourceGuardProxyListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *DppResourceGuardProxyListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // DppResourceGuardProxyList ...
 func (c DppResourceGuardProxiesClient) DppResourceGuardProxyList(ctx context.Context, id BackupVaultId) (result DppResourceGuardProxyListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DppResourceGuardProxiesClient) DppResourceGuardProxyList(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &DppResourceGuardProxyListCustomPager{},
 		Path:       fmt.Sprintf("%s/backupResourceGuardProxies", id.ID()),
 	}
 

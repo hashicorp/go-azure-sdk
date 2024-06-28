@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateMetadata(ctx context.Context, id commonids.AppServi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/metadata", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/metadata", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

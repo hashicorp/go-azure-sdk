@@ -27,7 +27,8 @@ func (c WebAppsClient) ListSlotConfigurationNames(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/config/slotConfigNames", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/slotConfigNames", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

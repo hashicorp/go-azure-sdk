@@ -58,6 +58,18 @@ func (o ListAdvancedSecurityObjectsOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type ListAdvancedSecurityObjectsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAdvancedSecurityObjectsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAdvancedSecurityObjects ...
 func (c GlobalRulestackClient) ListAdvancedSecurityObjects(ctx context.Context, id GlobalRulestackId, options ListAdvancedSecurityObjectsOperationOptions) (result ListAdvancedSecurityObjectsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c GlobalRulestackClient) ListAdvancedSecurityObjects(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &ListAdvancedSecurityObjectsCustomPager{},
 		Path:          fmt.Sprintf("%s/listAdvancedSecurityObjects", id.ID()),
 		OptionsObject: options,
 	}

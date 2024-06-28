@@ -26,7 +26,8 @@ func (c HCIReportsClient) ListByConfigurationProfileAssignments(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/reports", id.ID()),
+
+		Path: fmt.Sprintf("%s/reports", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -53,7 +53,8 @@ func (c NetworkGroupsClient) CreateOrUpdate(ctx context.Context, id NetworkGroup
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

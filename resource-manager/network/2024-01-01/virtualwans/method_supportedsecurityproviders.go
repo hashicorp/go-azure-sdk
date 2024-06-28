@@ -26,7 +26,8 @@ func (c VirtualWANsClient) SupportedSecurityProviders(ctx context.Context, id Vi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/supportedSecurityProviders", id.ID()),
+
+		Path: fmt.Sprintf("%s/supportedSecurityProviders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

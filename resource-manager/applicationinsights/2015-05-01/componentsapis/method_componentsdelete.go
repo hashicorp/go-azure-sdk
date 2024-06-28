@@ -25,7 +25,8 @@ func (c ComponentsAPIsClient) ComponentsDelete(ctx context.Context, id Component
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

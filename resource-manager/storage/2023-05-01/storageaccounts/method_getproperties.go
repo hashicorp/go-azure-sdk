@@ -53,7 +53,8 @@ func (c StorageAccountsClient) GetProperties(ctx context.Context, id commonids.S
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

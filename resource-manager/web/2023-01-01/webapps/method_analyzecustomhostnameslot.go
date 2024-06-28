@@ -52,7 +52,8 @@ func (c WebAppsClient) AnalyzeCustomHostnameSlot(ctx context.Context, id SlotId,
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/analyzeCustomHostname", id.ID()),
 		OptionsObject: options,
 	}

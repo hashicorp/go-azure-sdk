@@ -29,7 +29,8 @@ func (c SupportPackagesClient) TriggerSupportPackage(ctx context.Context, id Dat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/triggerSupportPackage", id.ID()),
+
+		Path: fmt.Sprintf("%s/triggerSupportPackage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

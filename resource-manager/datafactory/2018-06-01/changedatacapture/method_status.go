@@ -26,7 +26,8 @@ func (c ChangeDataCaptureClient) Status(ctx context.Context, id AdfcdcId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/status", id.ID()),
+
+		Path: fmt.Sprintf("%s/status", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

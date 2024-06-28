@@ -57,7 +57,8 @@ func (c ApiSchemaClient) WorkspaceApiSchemaCreateOrUpdate(ctx context.Context, i
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

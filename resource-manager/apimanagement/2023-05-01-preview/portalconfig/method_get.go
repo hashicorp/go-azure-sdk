@@ -25,7 +25,8 @@ func (c PortalConfigClient) Get(ctx context.Context, id PortalConfigId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

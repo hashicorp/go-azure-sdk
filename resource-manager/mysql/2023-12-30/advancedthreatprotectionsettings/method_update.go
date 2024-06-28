@@ -30,7 +30,8 @@ func (c AdvancedThreatProtectionSettingsClient) Update(ctx context.Context, id F
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/advancedThreatProtectionSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

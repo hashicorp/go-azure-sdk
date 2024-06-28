@@ -31,7 +31,8 @@ func (c GuestAgentsClient) GuestAgentCreate(ctx context.Context, id commonids.Sc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

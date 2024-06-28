@@ -30,7 +30,8 @@ func (c ProxyOperationsClient) WorkspacesPrepareNotebook(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/prepareNotebook", id.ID()),
+
+		Path: fmt.Sprintf("%s/prepareNotebook", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

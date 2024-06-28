@@ -26,7 +26,8 @@ func (c DataCollectionEndpointsClient) Create(ctx context.Context, id DataCollec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

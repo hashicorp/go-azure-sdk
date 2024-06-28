@@ -25,7 +25,8 @@ func (c AppServicePlansClient) UpdateVnetGateway(ctx context.Context, id Virtual
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

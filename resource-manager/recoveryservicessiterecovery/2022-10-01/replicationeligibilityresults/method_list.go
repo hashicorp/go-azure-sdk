@@ -26,7 +26,8 @@ func (c ReplicationEligibilityResultsClient) List(ctx context.Context, id Virtua
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.RecoveryServices/replicationEligibilityResults", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.RecoveryServices/replicationEligibilityResults", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

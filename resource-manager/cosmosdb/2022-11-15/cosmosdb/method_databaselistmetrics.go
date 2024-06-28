@@ -52,7 +52,8 @@ func (c CosmosDBClient) DatabaseListMetrics(ctx context.Context, id DatabaseId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/metrics", id.ID()),
 		OptionsObject: options,
 	}

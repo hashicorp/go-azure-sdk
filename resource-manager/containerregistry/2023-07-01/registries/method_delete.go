@@ -30,7 +30,8 @@ func (c RegistriesClient) Delete(ctx context.Context, id RegistryId) (result Del
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

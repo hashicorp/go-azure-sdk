@@ -25,7 +25,8 @@ func (c TablesClient) CancelSearch(ctx context.Context, id TableId) (result Canc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelSearch", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelSearch", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

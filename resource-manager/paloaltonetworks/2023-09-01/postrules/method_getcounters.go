@@ -52,7 +52,8 @@ func (c PostRulesClient) GetCounters(ctx context.Context, id PostRuleId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/getCounters", id.ID()),
 		OptionsObject: options,
 	}

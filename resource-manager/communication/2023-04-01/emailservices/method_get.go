@@ -25,7 +25,8 @@ func (c EmailServicesClient) Get(ctx context.Context, id EmailServiceId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

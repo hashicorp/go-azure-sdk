@@ -26,7 +26,8 @@ func (c ExposureControlClient) GetFeatureValueByFactory(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getFeatureValue", id.ID()),
+
+		Path: fmt.Sprintf("%s/getFeatureValue", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

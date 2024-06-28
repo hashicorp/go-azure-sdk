@@ -25,7 +25,8 @@ func (c ThreatIntelligenceClient) IndicatorDelete(ctx context.Context, id Indica
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

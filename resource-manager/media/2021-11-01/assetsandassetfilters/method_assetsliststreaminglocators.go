@@ -26,7 +26,8 @@ func (c AssetsAndAssetFiltersClient) AssetsListStreamingLocators(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listStreamingLocators", id.ID()),
+
+		Path: fmt.Sprintf("%s/listStreamingLocators", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

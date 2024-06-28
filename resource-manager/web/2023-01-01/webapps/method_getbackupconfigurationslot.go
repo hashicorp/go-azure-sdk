@@ -26,7 +26,8 @@ func (c WebAppsClient) GetBackupConfigurationSlot(ctx context.Context, id SlotId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/config/backup/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/backup/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

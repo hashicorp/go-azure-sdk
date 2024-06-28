@@ -30,7 +30,8 @@ func (c AppPlatformClient) AppsUpdate(ctx context.Context, id AppId, input AppRe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

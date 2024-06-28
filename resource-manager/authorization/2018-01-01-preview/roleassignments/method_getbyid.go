@@ -25,7 +25,8 @@ func (c RoleAssignmentsClient) GetById(ctx context.Context, id RoleIdId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

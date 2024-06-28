@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetVMsClient) Redeploy(ctx context.Context, id Virtua
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/redeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/redeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

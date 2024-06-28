@@ -23,6 +23,18 @@ type ListDnsZonesCompleteResult struct {
 	Items              []WorkloadNetworkDnsZone
 }
 
+type ListDnsZonesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListDnsZonesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListDnsZones ...
 func (c WorkloadNetworksClient) ListDnsZones(ctx context.Context, id PrivateCloudId) (result ListDnsZonesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworksClient) ListDnsZones(ctx context.Context, id PrivateClou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListDnsZonesCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/dnsZones", id.ID()),
 	}
 

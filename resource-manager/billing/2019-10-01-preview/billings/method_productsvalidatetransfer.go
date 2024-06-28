@@ -26,7 +26,8 @@ func (c BillingsClient) ProductsValidateTransfer(ctx context.Context, id Invoice
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateTransferEligibility", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateTransferEligibility", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

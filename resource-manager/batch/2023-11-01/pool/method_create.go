@@ -56,7 +56,8 @@ func (c PoolClient) Create(ctx context.Context, id PoolId, input Pool, options C
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

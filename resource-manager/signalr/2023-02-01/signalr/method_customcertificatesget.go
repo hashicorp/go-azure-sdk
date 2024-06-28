@@ -25,7 +25,8 @@ func (c SignalRClient) CustomCertificatesGet(ctx context.Context, id CustomCerti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

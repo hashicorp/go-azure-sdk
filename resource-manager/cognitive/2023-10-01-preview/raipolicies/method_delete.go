@@ -29,7 +29,8 @@ func (c RaiPoliciesClient) Delete(ctx context.Context, id RaiPolicyId) (result D
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

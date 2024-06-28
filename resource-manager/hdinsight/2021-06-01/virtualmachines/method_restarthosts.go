@@ -30,7 +30,8 @@ func (c VirtualMachinesClient) RestartHosts(ctx context.Context, id commonids.HD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restartHosts", id.ID()),
+
+		Path: fmt.Sprintf("%s/restartHosts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

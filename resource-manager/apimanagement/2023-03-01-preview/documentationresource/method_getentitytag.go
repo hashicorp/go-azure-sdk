@@ -24,7 +24,8 @@ func (c DocumentationResourceClient) GetEntityTag(ctx context.Context, id Docume
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c TestJobClient) Get(ctx context.Context, id RunbookId) (result GetOperati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/draft/testJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/testJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

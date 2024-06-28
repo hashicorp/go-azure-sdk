@@ -23,6 +23,18 @@ type SkusListCompleteResult struct {
 	Items              []NodeTypeAvailableSku
 }
 
+type SkusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SkusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SkusList ...
 func (c NodeTypeClient) SkusList(ctx context.Context, id NodeTypeId) (result SkusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NodeTypeClient) SkusList(ctx context.Context, id NodeTypeId) (result Sku
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SkusListCustomPager{},
 		Path:       fmt.Sprintf("%s/skus", id.ID()),
 	}
 

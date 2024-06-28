@@ -25,7 +25,8 @@ func (c QueryPackQueriesClient) QueriesUpdate(ctx context.Context, id QueryId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

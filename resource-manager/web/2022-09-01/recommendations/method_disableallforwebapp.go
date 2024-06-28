@@ -26,7 +26,8 @@ func (c RecommendationsClient) DisableAllForWebApp(ctx context.Context, id commo
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recommendations/disable", id.ID()),
+
+		Path: fmt.Sprintf("%s/recommendations/disable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

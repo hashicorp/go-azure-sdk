@@ -25,7 +25,8 @@ func (c LinkedStorageAccountsClient) Get(ctx context.Context, id DataSourceTypeI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

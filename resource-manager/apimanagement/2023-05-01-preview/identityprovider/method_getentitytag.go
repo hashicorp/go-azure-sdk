@@ -24,7 +24,8 @@ func (c IdentityProviderClient) GetEntityTag(ctx context.Context, id IdentityPro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

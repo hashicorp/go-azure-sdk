@@ -25,7 +25,8 @@ func (c DaprComponentsClient) Delete(ctx context.Context, id DaprComponentId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c VolumesReplicationClient) VolumesResyncReplication(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resyncReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/resyncReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

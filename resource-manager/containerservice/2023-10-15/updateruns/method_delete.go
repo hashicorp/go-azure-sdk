@@ -56,7 +56,8 @@ func (c UpdateRunsClient) Delete(ctx context.Context, id UpdateRunId, options De
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

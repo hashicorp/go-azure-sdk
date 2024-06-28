@@ -23,6 +23,18 @@ type ListLinkedDatabasesCompleteResult struct {
 	Items              []SyncAgentLinkedDatabase
 }
 
+type ListLinkedDatabasesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListLinkedDatabasesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListLinkedDatabases ...
 func (c SyncAgentsClient) ListLinkedDatabases(ctx context.Context, id SyncAgentId) (result ListLinkedDatabasesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SyncAgentsClient) ListLinkedDatabases(ctx context.Context, id SyncAgentI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListLinkedDatabasesCustomPager{},
 		Path:       fmt.Sprintf("%s/linkedDatabases", id.ID()),
 	}
 

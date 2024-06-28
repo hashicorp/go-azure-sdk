@@ -53,7 +53,8 @@ func (c ExportsClient) List(ctx context.Context, id commonids.ScopeId, options L
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/exports", id.ID()),
 		OptionsObject: options,
 	}

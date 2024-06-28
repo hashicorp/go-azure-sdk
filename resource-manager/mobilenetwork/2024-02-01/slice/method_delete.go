@@ -30,7 +30,8 @@ func (c SliceClient) Delete(ctx context.Context, id SliceId) (result DeleteOpera
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

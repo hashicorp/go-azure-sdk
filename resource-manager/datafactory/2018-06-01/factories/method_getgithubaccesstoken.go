@@ -26,7 +26,8 @@ func (c FactoriesClient) GetGitHubAccessToken(ctx context.Context, id FactoryId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getGitHubAccessToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/getGitHubAccessToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

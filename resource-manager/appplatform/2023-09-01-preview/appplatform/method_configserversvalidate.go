@@ -31,7 +31,8 @@ func (c AppPlatformClient) ConfigServersValidate(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/configServers/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/configServers/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

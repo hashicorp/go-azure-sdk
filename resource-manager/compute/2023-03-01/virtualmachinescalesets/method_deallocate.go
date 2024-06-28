@@ -55,7 +55,8 @@ func (c VirtualMachineScaleSetsClient) Deallocate(ctx context.Context, id Virtua
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/deallocate", id.ID()),
 		OptionsObject: options,
 	}

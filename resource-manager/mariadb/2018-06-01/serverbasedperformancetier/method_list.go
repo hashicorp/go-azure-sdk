@@ -26,7 +26,8 @@ func (c ServerBasedPerformanceTierClient) List(ctx context.Context, id ServerId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/performanceTiers", id.ID()),
+
+		Path: fmt.Sprintf("%s/performanceTiers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

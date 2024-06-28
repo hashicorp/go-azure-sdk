@@ -26,7 +26,8 @@ func (c DevicesClient) UploadCertificate(ctx context.Context, id DataBoxEdgeDevi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadCertificate", id.ID()),
+
+		Path: fmt.Sprintf("%s/uploadCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

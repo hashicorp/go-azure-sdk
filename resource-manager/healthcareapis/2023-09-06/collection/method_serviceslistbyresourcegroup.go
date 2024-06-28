@@ -24,6 +24,18 @@ type ServicesListByResourceGroupCompleteResult struct {
 	Items              []ServicesDescription
 }
 
+type ServicesListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ServicesListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ServicesListByResourceGroup ...
 func (c CollectionClient) ServicesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result ServicesListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c CollectionClient) ServicesListByResourceGroup(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ServicesListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.HealthcareApis/services", id.ID()),
 	}
 

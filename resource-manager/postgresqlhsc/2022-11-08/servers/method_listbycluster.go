@@ -26,7 +26,8 @@ func (c ServersClient) ListByCluster(ctx context.Context, id ServerGroupsv2Id) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/servers", id.ID()),
+
+		Path: fmt.Sprintf("%s/servers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c BackendReconnectClient) BackendReconnect(ctx context.Context, id Backend
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reconnect", id.ID()),
+
+		Path: fmt.Sprintf("%s/reconnect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

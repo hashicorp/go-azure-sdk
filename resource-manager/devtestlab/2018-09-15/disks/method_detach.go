@@ -29,7 +29,8 @@ func (c DisksClient) Detach(ctx context.Context, id DiskId, input DetachDiskProp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/detach", id.ID()),
+
+		Path: fmt.Sprintf("%s/detach", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c VaultExtendedInfoClient) CreateOrUpdate(ctx context.Context, id VaultId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/extendedInformation/vaultExtendedInfo", id.ID()),
+
+		Path: fmt.Sprintf("%s/extendedInformation/vaultExtendedInfo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

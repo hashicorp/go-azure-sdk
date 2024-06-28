@@ -24,7 +24,8 @@ func (c LinkedStorageAccountsClient) Delete(ctx context.Context, id DataSourceTy
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

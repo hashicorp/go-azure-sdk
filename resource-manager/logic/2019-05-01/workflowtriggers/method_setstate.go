@@ -25,7 +25,8 @@ func (c WorkflowTriggersClient) SetState(ctx context.Context, id TriggerId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setState", id.ID()),
+
+		Path: fmt.Sprintf("%s/setState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

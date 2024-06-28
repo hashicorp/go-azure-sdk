@@ -27,7 +27,8 @@ func (c DeletedWorkspacesClient) ListByResourceGroup(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/deletedWorkspaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/deletedWorkspaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

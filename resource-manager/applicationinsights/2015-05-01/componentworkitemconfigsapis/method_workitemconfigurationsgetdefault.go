@@ -26,7 +26,8 @@ func (c ComponentWorkItemConfigsAPIsClient) WorkItemConfigurationsGetDefault(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/defaultWorkItemConfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/defaultWorkItemConfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

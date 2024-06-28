@@ -25,7 +25,8 @@ func (c DataStoresClient) Update(ctx context.Context, id DataStoreId, input Reso
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

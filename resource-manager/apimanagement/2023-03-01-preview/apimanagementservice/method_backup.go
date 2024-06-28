@@ -30,7 +30,8 @@ func (c ApiManagementServiceClient) Backup(ctx context.Context, id ServiceId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backup", id.ID()),
+
+		Path: fmt.Sprintf("%s/backup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c CertificateClient) RefreshSecret(ctx context.Context, id CertificateId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshSecret", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshSecret", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c LogicalNetworksClient) Delete(ctx context.Context, id LogicalNetworkId) 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

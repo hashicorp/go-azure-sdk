@@ -27,7 +27,8 @@ func (c AppServicePlansClient) GetHybridConnectionPlanLimit(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/hybridConnectionPlanLimits/limit", id.ID()),
+
+		Path: fmt.Sprintf("%s/hybridConnectionPlanLimits/limit", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

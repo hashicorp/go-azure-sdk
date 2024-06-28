@@ -25,7 +25,8 @@ func (c LinkedStorageAccountsClient) CreateOrUpdate(ctx context.Context, id Data
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

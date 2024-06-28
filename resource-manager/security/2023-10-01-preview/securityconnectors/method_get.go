@@ -25,7 +25,8 @@ func (c SecurityConnectorsClient) Get(ctx context.Context, id SecurityConnectorI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

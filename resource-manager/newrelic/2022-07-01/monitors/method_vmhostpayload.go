@@ -26,7 +26,8 @@ func (c MonitorsClient) VMHostPayload(ctx context.Context, id MonitorId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vmHostPayloads", id.ID()),
+
+		Path: fmt.Sprintf("%s/vmHostPayloads", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

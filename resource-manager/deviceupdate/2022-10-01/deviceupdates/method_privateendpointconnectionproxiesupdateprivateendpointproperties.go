@@ -25,7 +25,8 @@ func (c DeviceupdatesClient) PrivateEndpointConnectionProxiesUpdatePrivateEndpoi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updatePrivateEndpointProperties", id.ID()),
+
+		Path: fmt.Sprintf("%s/updatePrivateEndpointProperties", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,7 +24,8 @@ func (c WorkspacesClient) GatewaysDelete(ctx context.Context, id GatewayId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

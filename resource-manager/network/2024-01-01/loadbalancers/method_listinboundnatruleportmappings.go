@@ -30,7 +30,8 @@ func (c LoadBalancersClient) ListInboundNatRulePortMappings(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryInboundNatRulePortMapping", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryInboundNatRulePortMapping", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

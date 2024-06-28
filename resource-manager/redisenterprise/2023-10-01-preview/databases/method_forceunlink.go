@@ -29,7 +29,8 @@ func (c DatabasesClient) ForceUnlink(ctx context.Context, id DatabaseId, input F
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forceUnlink", id.ID()),
+
+		Path: fmt.Sprintf("%s/forceUnlink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

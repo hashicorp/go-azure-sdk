@@ -26,7 +26,8 @@ func (c ServiceResourceClient) ServicesCheckStatus(ctx context.Context, id Servi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

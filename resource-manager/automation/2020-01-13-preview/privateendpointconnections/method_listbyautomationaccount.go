@@ -26,7 +26,8 @@ func (c PrivateEndpointConnectionsClient) ListByAutomationAccount(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

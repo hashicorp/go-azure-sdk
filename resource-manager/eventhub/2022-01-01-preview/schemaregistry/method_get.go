@@ -25,7 +25,8 @@ func (c SchemaRegistryClient) Get(ctx context.Context, id SchemaGroupId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

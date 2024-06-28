@@ -25,7 +25,8 @@ func (c Python2PackageClient) Get(ctx context.Context, id Python2PackageId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

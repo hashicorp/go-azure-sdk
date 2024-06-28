@@ -30,7 +30,8 @@ func (c RedisClient) Update(ctx context.Context, id RediId, input RedisUpdatePar
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

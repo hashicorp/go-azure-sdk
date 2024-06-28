@@ -27,7 +27,8 @@ func (c ManagementPoliciesClient) CreateOrUpdate(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/managementPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/managementPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

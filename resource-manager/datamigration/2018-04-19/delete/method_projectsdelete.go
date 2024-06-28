@@ -52,7 +52,8 @@ func (c DELETEClient) ProjectsDelete(ctx context.Context, id ProjectId, options 
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

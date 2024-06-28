@@ -30,7 +30,8 @@ func (c TriggersClient) UnsubscribeFromEvents(ctx context.Context, id TriggerId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsubscribeFromEvents", id.ID()),
+
+		Path: fmt.Sprintf("%s/unsubscribeFromEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

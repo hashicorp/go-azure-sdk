@@ -25,7 +25,8 @@ func (c AppServiceCertificateOrdersClient) ResendEmail(ctx context.Context, id C
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resendEmail", id.ID()),
+
+		Path: fmt.Sprintf("%s/resendEmail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

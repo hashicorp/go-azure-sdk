@@ -30,7 +30,8 @@ func (c CloudLinksClient) CreateOrUpdate(ctx context.Context, id CloudLinkId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

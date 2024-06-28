@@ -52,6 +52,18 @@ func (o ListByClusterOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByCluster ...
 func (c DatabasesClient) ListByCluster(ctx context.Context, id commonids.KustoClusterId, options ListByClusterOperationOptions) (result ListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -60,6 +72,7 @@ func (c DatabasesClient) ListByCluster(ctx context.Context, id commonids.KustoCl
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByClusterCustomPager{},
 		Path:          fmt.Sprintf("%s/databases", id.ID()),
 		OptionsObject: options,
 	}

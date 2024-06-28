@@ -25,7 +25,8 @@ func (c AmlFilesystemsClient) CancelArchive(ctx context.Context, id AmlFilesyste
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelArchive", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelArchive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

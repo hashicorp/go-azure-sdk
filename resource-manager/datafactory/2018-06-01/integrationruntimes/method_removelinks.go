@@ -25,7 +25,8 @@ func (c IntegrationRuntimesClient) RemoveLinks(ctx context.Context, id Integrati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeLinks", id.ID()),
+
+		Path: fmt.Sprintf("%s/removeLinks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

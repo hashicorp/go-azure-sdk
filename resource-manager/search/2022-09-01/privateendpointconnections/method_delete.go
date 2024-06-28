@@ -52,7 +52,8 @@ func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id Private
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

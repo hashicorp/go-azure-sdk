@@ -52,7 +52,8 @@ func (c ApiDiagnosticClient) Update(ctx context.Context, id ApiDiagnosticId, inp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

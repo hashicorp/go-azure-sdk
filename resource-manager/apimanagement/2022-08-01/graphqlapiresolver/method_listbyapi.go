@@ -58,6 +58,18 @@ func (o ListByApiOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByApiCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByApiCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByApi ...
 func (c GraphQLApiResolverClient) ListByApi(ctx context.Context, id ApiId, options ListByApiOperationOptions) (result ListByApiOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c GraphQLApiResolverClient) ListByApi(ctx context.Context, id ApiId, optio
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByApiCustomPager{},
 		Path:          fmt.Sprintf("%s/resolvers", id.ID()),
 		OptionsObject: options,
 	}

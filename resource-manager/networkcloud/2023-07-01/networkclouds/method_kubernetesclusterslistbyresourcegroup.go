@@ -24,6 +24,18 @@ type KubernetesClustersListByResourceGroupCompleteResult struct {
 	Items              []KubernetesCluster
 }
 
+type KubernetesClustersListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *KubernetesClustersListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // KubernetesClustersListByResourceGroup ...
 func (c NetworkcloudsClient) KubernetesClustersListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result KubernetesClustersListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) KubernetesClustersListByResourceGroup(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &KubernetesClustersListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/kubernetesClusters", id.ID()),
 	}
 

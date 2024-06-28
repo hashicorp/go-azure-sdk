@@ -25,7 +25,8 @@ func (c JobsClient) GetDetector(ctx context.Context, id DetectorId) (result GetD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

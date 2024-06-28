@@ -25,7 +25,8 @@ func (c BatchAccountClient) SynchronizeAutoStorageKeys(ctx context.Context, id B
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncAutoStorageKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncAutoStorageKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

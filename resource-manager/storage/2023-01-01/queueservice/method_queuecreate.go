@@ -25,7 +25,8 @@ func (c QueueServiceClient) QueueCreate(ctx context.Context, id QueueId, input S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

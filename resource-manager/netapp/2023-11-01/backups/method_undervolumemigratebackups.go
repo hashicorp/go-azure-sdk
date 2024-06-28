@@ -28,7 +28,8 @@ func (c BackupsClient) UnderVolumeMigrateBackups(ctx context.Context, id VolumeI
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrateBackups", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrateBackups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

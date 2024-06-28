@@ -56,7 +56,8 @@ func (c UpdateRunsClient) Start(ctx context.Context, id UpdateRunId, options Sta
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/start", id.ID()),
 		OptionsObject: options,
 	}

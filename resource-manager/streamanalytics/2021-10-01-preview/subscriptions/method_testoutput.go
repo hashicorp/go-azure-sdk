@@ -29,7 +29,8 @@ func (c SubscriptionsClient) TestOutput(ctx context.Context, id LocationId, inpu
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/testOutput", id.ID()),
+
+		Path: fmt.Sprintf("%s/testOutput", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

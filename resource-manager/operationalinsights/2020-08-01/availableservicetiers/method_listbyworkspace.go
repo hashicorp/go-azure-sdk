@@ -26,7 +26,8 @@ func (c AvailableServiceTiersClient) ListByWorkspace(ctx context.Context, id Wor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/availableServiceTiers", id.ID()),
+
+		Path: fmt.Sprintf("%s/availableServiceTiers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

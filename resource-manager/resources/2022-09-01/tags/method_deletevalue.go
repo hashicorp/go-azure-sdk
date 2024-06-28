@@ -25,7 +25,8 @@ func (c TagsClient) DeleteValue(ctx context.Context, id TagValueId) (result Dele
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

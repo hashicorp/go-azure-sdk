@@ -30,7 +30,8 @@ func (c MachinesClient) InstallPatches(ctx context.Context, id MachineId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/installPatches", id.ID()),
+
+		Path: fmt.Sprintf("%s/installPatches", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

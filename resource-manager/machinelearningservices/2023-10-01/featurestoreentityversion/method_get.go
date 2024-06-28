@@ -25,7 +25,8 @@ func (c FeaturestoreEntityVersionClient) Get(ctx context.Context, id FeatureStor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

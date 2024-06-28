@@ -26,7 +26,8 @@ func (c DatabaseRecommendedActionsClient) ListByDatabaseAdvisor(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/recommendedActions", id.ID()),
+
+		Path: fmt.Sprintf("%s/recommendedActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

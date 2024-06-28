@@ -56,7 +56,8 @@ func (c UserClient) CreateOrUpdate(ctx context.Context, id UserId, input UserCre
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

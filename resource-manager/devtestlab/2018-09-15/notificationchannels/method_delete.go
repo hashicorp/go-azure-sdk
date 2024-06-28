@@ -25,7 +25,8 @@ func (c NotificationChannelsClient) Delete(ctx context.Context, id NotificationC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

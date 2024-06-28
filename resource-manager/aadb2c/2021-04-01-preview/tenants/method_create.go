@@ -29,7 +29,8 @@ func (c TenantsClient) Create(ctx context.Context, id B2CDirectoryId, input Crea
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

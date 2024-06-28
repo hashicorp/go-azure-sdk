@@ -30,7 +30,8 @@ func (c WebAppsClient) SwapSlotWithProduction(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/slotsswap", id.ID()),
+
+		Path: fmt.Sprintf("%s/slotsswap", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -50,6 +50,18 @@ func (o ListByVaultOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByVaultCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVaultCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVault ...
 func (c BackupsClient) ListByVault(ctx context.Context, id BackupVaultId, options ListByVaultOperationOptions) (result ListByVaultOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c BackupsClient) ListByVault(ctx context.Context, id BackupVaultId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByVaultCustomPager{},
 		Path:          fmt.Sprintf("%s/backups", id.ID()),
 		OptionsObject: options,
 	}

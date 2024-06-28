@@ -25,7 +25,8 @@ func (c ScheduledActionsClient) CheckNameAvailability(ctx context.Context, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.CostManagement/checkNameAvailability",
+
+		Path: "/providers/Microsoft.CostManagement/checkNameAvailability",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

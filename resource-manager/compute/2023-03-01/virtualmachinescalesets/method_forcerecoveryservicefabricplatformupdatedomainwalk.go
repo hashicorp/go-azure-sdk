@@ -60,7 +60,8 @@ func (c VirtualMachineScaleSetsClient) ForceRecoveryServiceFabricPlatformUpdateD
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/forceRecoveryServiceFabricPlatformUpdateDomainWalk", id.ID()),
 		OptionsObject: options,
 	}

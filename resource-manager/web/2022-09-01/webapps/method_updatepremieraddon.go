@@ -25,7 +25,8 @@ func (c WebAppsClient) UpdatePremierAddOn(ctx context.Context, id PremierAddonId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c ServiceClient) Update(ctx context.Context, id ServiceId, input ServiceRe
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

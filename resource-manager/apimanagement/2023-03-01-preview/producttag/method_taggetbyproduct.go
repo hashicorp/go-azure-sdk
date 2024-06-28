@@ -25,7 +25,8 @@ func (c ProductTagClient) TagGetByProduct(ctx context.Context, id ProductTagId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

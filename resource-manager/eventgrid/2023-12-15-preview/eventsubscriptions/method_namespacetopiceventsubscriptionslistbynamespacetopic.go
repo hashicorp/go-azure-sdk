@@ -54,6 +54,18 @@ func (o NamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions) To
 	return &out
 }
 
+type NamespaceTopicEventSubscriptionsListByNamespaceTopicCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *NamespaceTopicEventSubscriptionsListByNamespaceTopicCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // NamespaceTopicEventSubscriptionsListByNamespaceTopic ...
 func (c EventSubscriptionsClient) NamespaceTopicEventSubscriptionsListByNamespaceTopic(ctx context.Context, id NamespaceTopicId, options NamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions) (result NamespaceTopicEventSubscriptionsListByNamespaceTopicOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c EventSubscriptionsClient) NamespaceTopicEventSubscriptionsListByNamespac
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &NamespaceTopicEventSubscriptionsListByNamespaceTopicCustomPager{},
 		Path:          fmt.Sprintf("%s/eventSubscriptions", id.ID()),
 		OptionsObject: options,
 	}

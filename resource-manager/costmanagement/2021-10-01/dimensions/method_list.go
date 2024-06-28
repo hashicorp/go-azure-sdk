@@ -62,7 +62,8 @@ func (c DimensionsClient) List(ctx context.Context, id commonids.ScopeId, option
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/dimensions", id.ID()),
 		OptionsObject: options,
 	}

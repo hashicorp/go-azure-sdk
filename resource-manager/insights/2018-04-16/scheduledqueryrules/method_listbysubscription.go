@@ -53,7 +53,8 @@ func (c ScheduledQueryRulesClient) ListBySubscription(ctx context.Context, id co
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/scheduledQueryRules", id.ID()),
 		OptionsObject: options,
 	}

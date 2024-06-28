@@ -27,7 +27,8 @@ func (c AppServiceEnvironmentsClient) GetMultiRolePool(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/multiRolePools/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/multiRolePools/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

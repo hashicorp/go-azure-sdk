@@ -25,7 +25,8 @@ func (c WebAppsClient) GetContinuousWebJobSlot(ctx context.Context, id SlotConti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c SqlVirtualMachinesClient) Redeploy(ctx context.Context, id SqlVirtualMac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/redeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/redeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

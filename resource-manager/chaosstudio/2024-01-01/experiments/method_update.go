@@ -29,7 +29,8 @@ func (c ExperimentsClient) Update(ctx context.Context, id ExperimentId, input Ex
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

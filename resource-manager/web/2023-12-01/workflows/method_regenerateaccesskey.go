@@ -25,7 +25,8 @@ func (c WorkflowsClient) RegenerateAccessKey(ctx context.Context, id ManagementW
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateAccessKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateAccessKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

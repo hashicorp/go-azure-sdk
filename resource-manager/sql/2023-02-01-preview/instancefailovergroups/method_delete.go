@@ -30,7 +30,8 @@ func (c InstanceFailoverGroupsClient) Delete(ctx context.Context, id InstanceFai
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

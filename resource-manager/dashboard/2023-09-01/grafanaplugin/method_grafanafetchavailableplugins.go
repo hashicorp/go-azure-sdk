@@ -23,6 +23,18 @@ type GrafanaFetchAvailablePluginsCompleteResult struct {
 	Items              []GrafanaAvailablePlugin
 }
 
+type GrafanaFetchAvailablePluginsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GrafanaFetchAvailablePluginsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GrafanaFetchAvailablePlugins ...
 func (c GrafanaPluginClient) GrafanaFetchAvailablePlugins(ctx context.Context, id GrafanaId) (result GrafanaFetchAvailablePluginsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c GrafanaPluginClient) GrafanaFetchAvailablePlugins(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &GrafanaFetchAvailablePluginsCustomPager{},
 		Path:       fmt.Sprintf("%s/fetchAvailablePlugins", id.ID()),
 	}
 

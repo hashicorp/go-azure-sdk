@@ -26,7 +26,8 @@ func (c ReferenceDataSetsClient) ListByEnvironment(ctx context.Context, id Envir
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/referenceDataSets", id.ID()),
+
+		Path: fmt.Sprintf("%s/referenceDataSets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

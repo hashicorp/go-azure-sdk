@@ -25,7 +25,8 @@ func (c JobStepsClient) Delete(ctx context.Context, id StepId) (result DeleteOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

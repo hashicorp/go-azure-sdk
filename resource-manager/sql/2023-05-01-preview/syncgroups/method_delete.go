@@ -30,7 +30,8 @@ func (c SyncGroupsClient) Delete(ctx context.Context, id SyncGroupId) (result De
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

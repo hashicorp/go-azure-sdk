@@ -52,7 +52,8 @@ func (c EnvironmentsClient) Get(ctx context.Context, id EnvironmentId, options G
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

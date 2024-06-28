@@ -52,7 +52,8 @@ func (c CacheClient) Update(ctx context.Context, id CacheId, input CacheUpdatePa
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

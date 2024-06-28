@@ -58,6 +58,18 @@ func (o WorkspaceApiReleaseListByServiceOperationOptions) ToQuery() *client.Quer
 	return &out
 }
 
+type WorkspaceApiReleaseListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiReleaseListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiReleaseListByService ...
 func (c ApiReleaseClient) WorkspaceApiReleaseListByService(ctx context.Context, id WorkspaceApiId, options WorkspaceApiReleaseListByServiceOperationOptions) (result WorkspaceApiReleaseListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c ApiReleaseClient) WorkspaceApiReleaseListByService(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceApiReleaseListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/releases", id.ID()),
 		OptionsObject: options,
 	}

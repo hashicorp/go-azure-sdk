@@ -29,7 +29,8 @@ func (c StaticSitesClient) ValidateBackendForBuild(ctx context.Context, id Build
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

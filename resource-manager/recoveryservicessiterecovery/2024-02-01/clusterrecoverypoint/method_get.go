@@ -25,7 +25,8 @@ func (c ClusterRecoveryPointClient) Get(ctx context.Context, id ReplicationProte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c CosmosDBClient) SqlResourcesListSqlUserDefinedFunctions(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/userDefinedFunctions", id.ID()),
+
+		Path: fmt.Sprintf("%s/userDefinedFunctions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

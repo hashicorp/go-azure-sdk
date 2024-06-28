@@ -25,7 +25,8 @@ func (c JobStepsClient) Get(ctx context.Context, id StepId) (result GetOperation
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

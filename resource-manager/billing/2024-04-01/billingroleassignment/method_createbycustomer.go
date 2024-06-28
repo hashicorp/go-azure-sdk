@@ -30,7 +30,8 @@ func (c BillingRoleAssignmentClient) CreateByCustomer(ctx context.Context, id Bi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createBillingRoleAssignment", id.ID()),
+
+		Path: fmt.Sprintf("%s/createBillingRoleAssignment", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) GetTroubleshooting(ctx context.Context, id Networ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/troubleshoot", id.ID()),
+
+		Path: fmt.Sprintf("%s/troubleshoot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

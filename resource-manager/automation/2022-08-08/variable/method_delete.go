@@ -24,7 +24,8 @@ func (c VariableClient) Delete(ctx context.Context, id VariableId) (result Delet
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

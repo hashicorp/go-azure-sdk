@@ -25,7 +25,8 @@ func (c ScopeMapsClient) Get(ctx context.Context, id ScopeMapId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

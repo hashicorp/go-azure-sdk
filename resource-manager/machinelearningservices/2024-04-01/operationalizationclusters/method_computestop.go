@@ -28,7 +28,8 @@ func (c OperationalizationClustersClient) ComputeStop(ctx context.Context, id Co
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+
+		Path: fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

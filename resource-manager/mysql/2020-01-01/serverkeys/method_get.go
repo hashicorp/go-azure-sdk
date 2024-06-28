@@ -25,7 +25,8 @@ func (c ServerKeysClient) Get(ctx context.Context, id KeyId) (result GetOperatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

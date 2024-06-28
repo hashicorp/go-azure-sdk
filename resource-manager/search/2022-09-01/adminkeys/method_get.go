@@ -52,7 +52,8 @@ func (c AdminKeysClient) Get(ctx context.Context, id SearchServiceId, options Ge
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/listAdminKeys", id.ID()),
 		OptionsObject: options,
 	}

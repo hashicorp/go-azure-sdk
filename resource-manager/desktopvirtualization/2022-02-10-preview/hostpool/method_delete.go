@@ -52,7 +52,8 @@ func (c HostPoolClient) Delete(ctx context.Context, id HostPoolId, options Delet
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -28,7 +28,8 @@ func (c MachineLearningComputesClient) ComputeStop(ctx context.Context, id Compu
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+
+		Path: fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

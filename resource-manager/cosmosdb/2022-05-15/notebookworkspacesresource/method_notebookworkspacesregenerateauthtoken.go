@@ -29,7 +29,8 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesRegenerateAuthToken(
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/notebookWorkspaces/default/regenerateAuthToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/notebookWorkspaces/default/regenerateAuthToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

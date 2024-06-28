@@ -28,7 +28,8 @@ func (c WorkflowTriggerHistoriesClient) Resubmit(ctx context.Context, id Trigger
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resubmit", id.ID()),
+
+		Path: fmt.Sprintf("%s/resubmit", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c TenantAccessGitClient) RegeneratePrimaryKey(ctx context.Context, id Acce
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/git/regeneratePrimaryKey", id.ID()),
+
+		Path: fmt.Sprintf("%s/git/regeneratePrimaryKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

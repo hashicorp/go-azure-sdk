@@ -26,7 +26,8 @@ func (c DevicesClient) GetUpdateSummary(ctx context.Context, id DataBoxEdgeDevic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/updateSummary/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateSummary/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

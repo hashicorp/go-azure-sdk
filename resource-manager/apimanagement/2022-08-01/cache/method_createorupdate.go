@@ -53,7 +53,8 @@ func (c CacheClient) CreateOrUpdate(ctx context.Context, id CacheId, input Cache
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

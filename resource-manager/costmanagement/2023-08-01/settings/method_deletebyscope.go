@@ -27,7 +27,8 @@ func (c SettingsClient) DeleteByScope(ctx context.Context, id commonids.ScopeId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings/taginheritance", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings/taginheritance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

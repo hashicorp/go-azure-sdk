@@ -28,7 +28,8 @@ func (c AzureFirewallsClient) PacketCapture(ctx context.Context, id AzureFirewal
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/packetCapture", id.ID()),
+
+		Path: fmt.Sprintf("%s/packetCapture", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

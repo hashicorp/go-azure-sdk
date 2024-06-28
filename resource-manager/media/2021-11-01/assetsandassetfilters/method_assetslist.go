@@ -58,6 +58,18 @@ func (o AssetsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type AssetsListCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *AssetsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AssetsList ...
 func (c AssetsAndAssetFiltersClient) AssetsList(ctx context.Context, id MediaServiceId, options AssetsListOperationOptions) (result AssetsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c AssetsAndAssetFiltersClient) AssetsList(ctx context.Context, id MediaSer
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AssetsListCustomPager{},
 		Path:          fmt.Sprintf("%s/assets", id.ID()),
 		OptionsObject: options,
 	}

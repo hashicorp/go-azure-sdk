@@ -26,7 +26,8 @@ func (c RegistriesClient) GetBuildSourceUploadUrl(ctx context.Context, id Regist
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listBuildSourceUploadUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/listBuildSourceUploadUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -51,7 +51,8 @@ func (c SignInSettingsClient) Update(ctx context.Context, id ServiceId, input Po
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          fmt.Sprintf("%s/portalsettings/signin", id.ID()),
 		OptionsObject: options,
 	}

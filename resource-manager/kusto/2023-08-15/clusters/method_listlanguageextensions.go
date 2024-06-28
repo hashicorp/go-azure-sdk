@@ -27,7 +27,8 @@ func (c ClustersClient) ListLanguageExtensions(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listLanguageExtensions", id.ID()),
+
+		Path: fmt.Sprintf("%s/listLanguageExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

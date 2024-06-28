@@ -28,7 +28,8 @@ func (c AppsClient) Update(ctx context.Context, id IotAppId, input AppPatch) (re
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

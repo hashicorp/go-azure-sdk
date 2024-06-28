@@ -26,7 +26,8 @@ func (c WebAppsClient) ApplySlotConfigToProduction(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applySlotConfig", id.ID()),
+
+		Path: fmt.Sprintf("%s/applySlotConfig", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

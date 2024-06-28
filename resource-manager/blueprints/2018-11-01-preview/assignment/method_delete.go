@@ -53,7 +53,8 @@ func (c AssignmentClient) Delete(ctx context.Context, id ScopedBlueprintAssignme
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

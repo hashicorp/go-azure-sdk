@@ -26,7 +26,8 @@ func (c BackupAndExportClient) ValidateBackup(ctx context.Context, id FlexibleSe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateBackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateBackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

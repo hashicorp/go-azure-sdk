@@ -30,7 +30,8 @@ func (c LogAnalyticsClient) ExportThrottledRequests(ctx context.Context, id Loca
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logAnalytics/apiAccess/getThrottledRequests", id.ID()),
+
+		Path: fmt.Sprintf("%s/logAnalytics/apiAccess/getThrottledRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

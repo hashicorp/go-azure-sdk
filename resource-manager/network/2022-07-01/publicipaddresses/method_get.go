@@ -53,7 +53,8 @@ func (c PublicIPAddressesClient) Get(ctx context.Context, id commonids.PublicIPA
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) GetVMSecurityRules(ctx context.Context, id Networ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/securityGroupView", id.ID()),
+
+		Path: fmt.Sprintf("%s/securityGroupView", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c EncodingsClient) JobsCancelJob(ctx context.Context, id JobId) (result Jo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

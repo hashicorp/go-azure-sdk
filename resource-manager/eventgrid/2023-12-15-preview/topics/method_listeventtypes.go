@@ -27,7 +27,8 @@ func (c TopicsClient) ListEventTypes(ctx context.Context, id commonids.ScopeId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventGrid/eventTypes", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventGrid/eventTypes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

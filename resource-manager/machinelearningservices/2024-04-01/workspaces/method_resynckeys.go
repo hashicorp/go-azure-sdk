@@ -29,7 +29,8 @@ func (c WorkspacesClient) ResyncKeys(ctx context.Context, id WorkspaceId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resyncKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/resyncKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

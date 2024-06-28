@@ -26,7 +26,8 @@ func (c NotificationHubsClient) DebugSend(ctx context.Context, id NotificationHu
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/debugsend", id.ID()),
+
+		Path: fmt.Sprintf("%s/debugsend", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

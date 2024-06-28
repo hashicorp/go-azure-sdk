@@ -23,6 +23,18 @@ type ListSiteAnalysesSlotCompleteResult struct {
 	Items              []AnalysisDefinition
 }
 
+type ListSiteAnalysesSlotCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSiteAnalysesSlotCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSiteAnalysesSlot ...
 func (c DiagnosticsClient) ListSiteAnalysesSlot(ctx context.Context, id SlotDiagnosticId) (result ListSiteAnalysesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DiagnosticsClient) ListSiteAnalysesSlot(ctx context.Context, id SlotDiag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListSiteAnalysesSlotCustomPager{},
 		Path:       fmt.Sprintf("%s/analyses", id.ID()),
 	}
 

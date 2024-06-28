@@ -26,7 +26,8 @@ func (c RegistriesClient) RegenerateCredential(ctx context.Context, id RegistryI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regenerateCredential", id.ID()),
+
+		Path: fmt.Sprintf("%s/regenerateCredential", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

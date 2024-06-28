@@ -26,7 +26,8 @@ func (c AppPlatformClient) GatewaysListEnvSecrets(ctx context.Context, id Gatewa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listEnvSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/listEnvSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

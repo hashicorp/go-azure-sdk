@@ -60,7 +60,8 @@ func (c FleetMembersClient) Create(ctx context.Context, id MemberId, input Fleet
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

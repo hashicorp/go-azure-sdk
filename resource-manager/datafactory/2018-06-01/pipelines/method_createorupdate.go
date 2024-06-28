@@ -52,7 +52,8 @@ func (c PipelinesClient) CreateOrUpdate(ctx context.Context, id PipelineId, inpu
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

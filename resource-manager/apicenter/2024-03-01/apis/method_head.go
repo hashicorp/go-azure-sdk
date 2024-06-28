@@ -24,7 +24,8 @@ func (c ApisClient) Head(ctx context.Context, id ApiId) (result HeadOperationRes
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

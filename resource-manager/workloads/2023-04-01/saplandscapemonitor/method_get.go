@@ -26,7 +26,8 @@ func (c SapLandscapeMonitorClient) Get(ctx context.Context, id MonitorId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/sapLandscapeMonitor/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/sapLandscapeMonitor/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

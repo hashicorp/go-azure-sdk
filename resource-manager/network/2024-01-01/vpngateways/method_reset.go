@@ -56,7 +56,8 @@ func (c VpnGatewaysClient) Reset(ctx context.Context, id VpnGatewayId, options R
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/reset", id.ID()),
 		OptionsObject: options,
 	}

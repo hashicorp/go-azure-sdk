@@ -30,7 +30,8 @@ func (c RestorablesClient) TableResourcesRetrieveContinuousBackupInformation(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveContinuousBackupInformation", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveContinuousBackupInformation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

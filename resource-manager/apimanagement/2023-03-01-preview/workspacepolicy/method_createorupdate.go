@@ -53,7 +53,8 @@ func (c WorkspacePolicyClient) CreateOrUpdate(ctx context.Context, id WorkspaceI
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

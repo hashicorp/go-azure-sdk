@@ -26,7 +26,8 @@ func (c CustomOperationClient) TasksCommand(ctx context.Context, id TaskId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/command", id.ID()),
+
+		Path: fmt.Sprintf("%s/command", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

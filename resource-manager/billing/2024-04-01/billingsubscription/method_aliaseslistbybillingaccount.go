@@ -74,6 +74,18 @@ func (o AliasesListByBillingAccountOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type AliasesListByBillingAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AliasesListByBillingAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AliasesListByBillingAccount ...
 func (c BillingSubscriptionClient) AliasesListByBillingAccount(ctx context.Context, id BillingAccountId, options AliasesListByBillingAccountOperationOptions) (result AliasesListByBillingAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -82,6 +94,7 @@ func (c BillingSubscriptionClient) AliasesListByBillingAccount(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &AliasesListByBillingAccountCustomPager{},
 		Path:          fmt.Sprintf("%s/billingSubscriptionAliases", id.ID()),
 		OptionsObject: options,
 	}

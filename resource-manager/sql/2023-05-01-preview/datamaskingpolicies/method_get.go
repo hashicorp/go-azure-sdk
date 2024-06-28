@@ -27,7 +27,8 @@ func (c DataMaskingPoliciesClient) Get(ctx context.Context, id commonids.SqlData
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/dataMaskingPolicies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/dataMaskingPolicies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

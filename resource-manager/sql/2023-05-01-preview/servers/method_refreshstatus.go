@@ -31,7 +31,8 @@ func (c ServersClient) RefreshStatus(ctx context.Context, id commonids.SqlServer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refreshExternalGovernanceStatus", id.ID()),
+
+		Path: fmt.Sprintf("%s/refreshExternalGovernanceStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

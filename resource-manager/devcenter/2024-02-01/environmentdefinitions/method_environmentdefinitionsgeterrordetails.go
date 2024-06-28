@@ -26,7 +26,8 @@ func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsGetErrorDetails(ctx 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getErrorDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/getErrorDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c CustomAPIsClient) ListWsdlInterfaces(ctx context.Context, id LocationId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listWsdlInterfaces", id.ID()),
+
+		Path: fmt.Sprintf("%s/listWsdlInterfaces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

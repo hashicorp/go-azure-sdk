@@ -50,6 +50,18 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByServer ...
 func (c QueryTextsClient) ListByServer(ctx context.Context, id ServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c QueryTextsClient) ListByServer(ctx context.Context, id ServerId, options
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByServerCustomPager{},
 		Path:          fmt.Sprintf("%s/queryTexts", id.ID()),
 		OptionsObject: options,
 	}

@@ -25,7 +25,8 @@ func (c GetPrivateDnsZoneSuffixClient) Execute(ctx context.Context) (result Exec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.DBforPostgreSQL/getPrivateDnsZoneSuffix",
+
+		Path: "/providers/Microsoft.DBforPostgreSQL/getPrivateDnsZoneSuffix",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

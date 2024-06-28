@@ -54,7 +54,8 @@ func (c TrafficFilterClient) DetachTrafficFilterUpdate(ctx context.Context, id M
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/detachTrafficFilter", id.ID()),
 		OptionsObject: options,
 	}

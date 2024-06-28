@@ -26,7 +26,8 @@ func (c TenantSettingsClient) Get(ctx context.Context, id ServiceId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/settings/public", id.ID()),
+
+		Path: fmt.Sprintf("%s/settings/public", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

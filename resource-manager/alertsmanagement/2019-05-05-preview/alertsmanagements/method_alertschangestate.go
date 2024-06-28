@@ -52,7 +52,8 @@ func (c AlertsManagementsClient) AlertsChangeState(ctx context.Context, id Alert
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/changestate", id.ID()),
 		OptionsObject: options,
 	}

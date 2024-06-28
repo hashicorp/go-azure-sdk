@@ -25,7 +25,8 @@ func (c CredentialClient) Update(ctx context.Context, id CredentialId, input Cre
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

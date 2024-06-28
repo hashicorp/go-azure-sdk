@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) AddDisks(ctx context.Context, id Replic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addDisks", id.ID()),
+
+		Path: fmt.Sprintf("%s/addDisks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

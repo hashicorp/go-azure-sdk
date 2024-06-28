@@ -26,7 +26,8 @@ func (c ProductWikiClient) Get(ctx context.Context, id ProductId) (result GetOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/wikis/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

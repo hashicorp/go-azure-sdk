@@ -29,7 +29,8 @@ func (c RunbookDraftClient) ReplaceContent(ctx context.Context, id RunbookId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/draft/content", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

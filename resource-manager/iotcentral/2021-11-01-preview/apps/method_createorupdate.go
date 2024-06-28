@@ -30,7 +30,8 @@ func (c AppsClient) CreateOrUpdate(ctx context.Context, id IotAppId, input App) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c WorkflowRunActionsClient) Get(ctx context.Context, id ActionId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -54,6 +54,18 @@ func (o ListSynchronizationDetailsOperationOptions) ToQuery() *client.QueryParam
 	return &out
 }
 
+type ListSynchronizationDetailsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSynchronizationDetailsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSynchronizationDetails ...
 func (c ShareSubscriptionClient) ListSynchronizationDetails(ctx context.Context, id ShareSubscriptionId, input ShareSubscriptionSynchronization, options ListSynchronizationDetailsOperationOptions) (result ListSynchronizationDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c ShareSubscriptionClient) ListSynchronizationDetails(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
+		Pager:         &ListSynchronizationDetailsCustomPager{},
 		Path:          fmt.Sprintf("%s/listSynchronizationDetails", id.ID()),
 		OptionsObject: options,
 	}

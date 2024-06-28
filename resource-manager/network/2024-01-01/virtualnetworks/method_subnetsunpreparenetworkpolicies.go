@@ -30,7 +30,8 @@ func (c VirtualNetworksClient) SubnetsUnprepareNetworkPolicies(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unprepareNetworkPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/unprepareNetworkPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ExperimentsClient) ExecutionDetails(ctx context.Context, id ExecutionId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getExecutionDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/getExecutionDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

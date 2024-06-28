@@ -30,7 +30,8 @@ func (c OutputsClient) Test(ctx context.Context, id OutputId, input Output) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/test", id.ID()),
+
+		Path: fmt.Sprintf("%s/test", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

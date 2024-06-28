@@ -25,7 +25,8 @@ func (c ApiWikiClient) GetEntityTag(ctx context.Context, id ApiId) (result GetEn
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       fmt.Sprintf("%s/wikis/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

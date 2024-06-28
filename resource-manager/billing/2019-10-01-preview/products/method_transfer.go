@@ -27,7 +27,8 @@ func (c ProductsClient) Transfer(ctx context.Context, id InvoiceSectionProductId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/transfer", id.ID()),
+
+		Path: fmt.Sprintf("%s/transfer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

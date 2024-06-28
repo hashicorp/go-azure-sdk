@@ -23,6 +23,18 @@ type ContentItemListByServiceCompleteResult struct {
 	Items              []ContentItemContract
 }
 
+type ContentItemListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ContentItemListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ContentItemListByService ...
 func (c ContentTypeContentItemClient) ContentItemListByService(ctx context.Context, id ContentTypeId) (result ContentItemListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ContentTypeContentItemClient) ContentItemListByService(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ContentItemListByServiceCustomPager{},
 		Path:       fmt.Sprintf("%s/contentItems", id.ID()),
 	}
 

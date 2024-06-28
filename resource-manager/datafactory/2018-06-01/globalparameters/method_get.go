@@ -25,7 +25,8 @@ func (c GlobalParametersClient) Get(ctx context.Context, id GlobalParameterId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

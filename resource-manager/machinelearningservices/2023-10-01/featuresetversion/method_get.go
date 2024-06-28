@@ -25,7 +25,8 @@ func (c FeaturesetVersionClient) Get(ctx context.Context, id FeatureSetVersionId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

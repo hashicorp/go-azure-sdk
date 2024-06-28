@@ -26,7 +26,8 @@ func (c VideosClient) AccessPoliciesCreateOrUpdate(ctx context.Context, id Acces
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

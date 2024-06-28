@@ -28,7 +28,8 @@ func (c ApplyUpdatesClient) CreateOrUpdateParent(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Maintenance/applyUpdates/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Maintenance/applyUpdates/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

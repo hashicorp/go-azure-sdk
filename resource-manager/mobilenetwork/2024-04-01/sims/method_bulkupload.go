@@ -30,7 +30,8 @@ func (c SIMsClient) BulkUpload(ctx context.Context, id SimGroupId, input SimUplo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadSims", id.ID()),
+
+		Path: fmt.Sprintf("%s/uploadSims", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

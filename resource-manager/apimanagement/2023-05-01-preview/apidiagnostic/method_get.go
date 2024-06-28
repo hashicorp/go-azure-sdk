@@ -25,7 +25,8 @@ func (c ApiDiagnosticClient) Get(ctx context.Context, id ApiDiagnosticId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c FeatureClient) Get(ctx context.Context, id FeatureId) (result GetOperati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

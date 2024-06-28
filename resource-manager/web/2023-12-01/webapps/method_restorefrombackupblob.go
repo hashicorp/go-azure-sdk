@@ -30,7 +30,8 @@ func (c WebAppsClient) RestoreFromBackupBlob(ctx context.Context, id commonids.A
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreFromBackupBlob", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreFromBackupBlob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c UserClient) Delete(ctx context.Context, id UserId) (result DeleteOperati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

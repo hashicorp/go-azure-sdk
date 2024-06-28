@@ -56,7 +56,8 @@ func (c VirtualNetworkLinksClient) Delete(ctx context.Context, id VirtualNetwork
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

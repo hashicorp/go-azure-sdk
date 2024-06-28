@@ -52,7 +52,8 @@ func (c TaskResourceClient) TasksGet(ctx context.Context, id TaskId, options Tas
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

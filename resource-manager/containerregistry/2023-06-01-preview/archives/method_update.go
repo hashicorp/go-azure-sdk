@@ -25,7 +25,8 @@ func (c ArchivesClient) Update(ctx context.Context, id ArchiveId, input ArchiveU
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

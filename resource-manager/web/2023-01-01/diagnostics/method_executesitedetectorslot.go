@@ -60,7 +60,8 @@ func (c DiagnosticsClient) ExecuteSiteDetectorSlot(ctx context.Context, id SlotD
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/execute", id.ID()),
 		OptionsObject: options,
 	}

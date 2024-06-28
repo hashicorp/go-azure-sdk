@@ -26,7 +26,8 @@ func (c AppPlatformClient) ApiPortalsValidateDomain(ctx context.Context, id ApiP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateDomain", id.ID()),
+
+		Path: fmt.Sprintf("%s/validateDomain", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

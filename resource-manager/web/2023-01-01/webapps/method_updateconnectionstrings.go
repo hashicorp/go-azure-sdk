@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateConnectionStrings(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/connectionStrings", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/connectionStrings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

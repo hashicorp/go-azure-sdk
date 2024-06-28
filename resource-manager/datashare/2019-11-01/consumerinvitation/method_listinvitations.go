@@ -23,6 +23,18 @@ type ListInvitationsCompleteResult struct {
 	Items              []ConsumerInvitation
 }
 
+type ListInvitationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListInvitationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListInvitations ...
 func (c ConsumerInvitationClient) ListInvitations(ctx context.Context) (result ListInvitationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ConsumerInvitationClient) ListInvitations(ctx context.Context) (result L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListInvitationsCustomPager{},
 		Path:       "/providers/Microsoft.DataShare/listInvitations",
 	}
 

@@ -52,7 +52,8 @@ func (c LoadBalancersClient) Get(ctx context.Context, id LoadBalancerId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

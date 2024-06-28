@@ -25,7 +25,8 @@ func (c SiteClient) Get(ctx context.Context, id SiteId) (result GetOperationResp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

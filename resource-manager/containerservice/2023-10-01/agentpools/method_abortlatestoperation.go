@@ -29,7 +29,8 @@ func (c AgentPoolsClient) AbortLatestOperation(ctx context.Context, id AgentPool
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/abort", id.ID()),
+
+		Path: fmt.Sprintf("%s/abort", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

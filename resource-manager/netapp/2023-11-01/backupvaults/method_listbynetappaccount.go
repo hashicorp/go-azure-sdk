@@ -23,6 +23,18 @@ type ListByNetAppAccountCompleteResult struct {
 	Items              []BackupVault
 }
 
+type ListByNetAppAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByNetAppAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByNetAppAccount ...
 func (c BackupVaultsClient) ListByNetAppAccount(ctx context.Context, id NetAppAccountId) (result ListByNetAppAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BackupVaultsClient) ListByNetAppAccount(ctx context.Context, id NetAppAc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByNetAppAccountCustomPager{},
 		Path:       fmt.Sprintf("%s/backupVaults", id.ID()),
 	}
 

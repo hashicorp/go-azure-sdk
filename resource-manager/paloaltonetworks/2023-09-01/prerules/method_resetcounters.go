@@ -52,7 +52,8 @@ func (c PreRulesClient) ResetCounters(ctx context.Context, id PreRuleId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/resetCounters", id.ID()),
 		OptionsObject: options,
 	}

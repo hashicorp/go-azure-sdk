@@ -30,7 +30,8 @@ func (c ReplicasClient) Create(ctx context.Context, id ReplicaId, input Replica)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

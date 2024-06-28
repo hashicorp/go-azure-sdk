@@ -30,7 +30,8 @@ func (c AmlFilesystemsClient) Update(ctx context.Context, id AmlFilesystemId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

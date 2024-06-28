@@ -30,7 +30,8 @@ func (c CapacitiesClient) Create(ctx context.Context, id CapacityId, input Dedic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

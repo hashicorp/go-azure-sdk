@@ -26,7 +26,8 @@ func (c FunctionsClient) RetrieveDefaultDefinition(ctx context.Context, id Funct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveDefaultDefinition", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveDefaultDefinition", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

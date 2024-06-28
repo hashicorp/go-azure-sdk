@@ -30,7 +30,8 @@ func (c SignalRClient) ReplicasUpdate(ctx context.Context, id ReplicaId, input R
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

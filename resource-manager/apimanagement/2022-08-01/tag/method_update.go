@@ -52,7 +52,8 @@ func (c TagClient) Update(ctx context.Context, id TagId, input TagCreateUpdatePa
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

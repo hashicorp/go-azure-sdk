@@ -26,7 +26,8 @@ func (c ComponentContinuousExportAPIsClient) ExportConfigurationsList(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/exportConfiguration", id.ID()),
+
+		Path: fmt.Sprintf("%s/exportConfiguration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ConnectorClient) Validate(ctx context.Context, id ConnectorId) (result V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validate", id.ID()),
+
+		Path: fmt.Sprintf("%s/validate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

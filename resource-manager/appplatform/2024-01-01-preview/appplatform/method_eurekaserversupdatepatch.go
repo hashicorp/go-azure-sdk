@@ -31,7 +31,8 @@ func (c AppPlatformClient) EurekaServersUpdatePatch(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/eurekaServers/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/eurekaServers/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

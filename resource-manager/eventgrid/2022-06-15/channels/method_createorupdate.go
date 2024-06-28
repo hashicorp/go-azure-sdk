@@ -26,7 +26,8 @@ func (c ChannelsClient) CreateOrUpdate(ctx context.Context, id ChannelId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -31,7 +31,8 @@ func (c ManagedLedgerDigestUploadsClient) Disable(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/ledgerDigestUploads/current/disable", id.ID()),
+
+		Path: fmt.Sprintf("%s/ledgerDigestUploads/current/disable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c SentinelOnboardingStatesClient) List(ctx context.Context, id WorkspaceId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/onboardingStates", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/onboardingStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

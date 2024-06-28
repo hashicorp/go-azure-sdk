@@ -29,7 +29,8 @@ func (c SnapshotsClient) RestoreFiles(ctx context.Context, id SnapshotId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreFiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreFiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

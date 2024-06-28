@@ -26,7 +26,8 @@ func (c LinkedStorageAccountsClient) ListByWorkspace(ctx context.Context, id Wor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/linkedStorageAccounts", id.ID()),
+
+		Path: fmt.Sprintf("%s/linkedStorageAccounts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c ProductsClient) Move(ctx context.Context, id ProductId, input TransferPr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/move", id.ID()),
+
+		Path: fmt.Sprintf("%s/move", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

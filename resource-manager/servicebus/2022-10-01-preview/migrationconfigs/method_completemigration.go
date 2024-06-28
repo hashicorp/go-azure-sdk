@@ -25,7 +25,8 @@ func (c MigrationConfigsClient) CompleteMigration(ctx context.Context, id Namesp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrationConfigurations/$default/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/migrationConfigurations/$default/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

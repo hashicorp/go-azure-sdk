@@ -31,7 +31,8 @@ func (c PartnerConfigurationsClient) CreateOrUpdate(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.EventGrid/partnerConfigurations/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -53,7 +53,8 @@ func (c LoggerClient) CreateOrUpdate(ctx context.Context, id LoggerId, input Log
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

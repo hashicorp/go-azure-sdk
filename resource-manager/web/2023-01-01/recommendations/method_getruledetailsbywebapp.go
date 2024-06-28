@@ -56,7 +56,8 @@ func (c RecommendationsClient) GetRuleDetailsByWebApp(ctx context.Context, id Si
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

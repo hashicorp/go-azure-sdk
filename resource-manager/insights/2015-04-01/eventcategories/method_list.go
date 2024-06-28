@@ -25,7 +25,8 @@ func (c EventCategoriesClient) List(ctx context.Context) (result ListOperationRe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.Insights/eventcategories",
+
+		Path: "/providers/Microsoft.Insights/eventcategories",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

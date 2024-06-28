@@ -25,7 +25,8 @@ func (c ReplicationNetworkMappingsClient) Get(ctx context.Context, id Replicatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

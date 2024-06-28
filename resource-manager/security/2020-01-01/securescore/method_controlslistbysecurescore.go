@@ -50,6 +50,18 @@ func (o ControlsListBySecureScoreOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type ControlsListBySecureScoreCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ControlsListBySecureScoreCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ControlsListBySecureScore ...
 func (c SecureScoreClient) ControlsListBySecureScore(ctx context.Context, id SecureScoreId, options ControlsListBySecureScoreOperationOptions) (result ControlsListBySecureScoreOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c SecureScoreClient) ControlsListBySecureScore(ctx context.Context, id Sec
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ControlsListBySecureScoreCustomPager{},
 		Path:          fmt.Sprintf("%s/secureScoreControls", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c OperationsClient) ConvertGraphRunbookContent(ctx context.Context, id Aut
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/convertGraphRunbookContent", id.ID()),
+
+		Path: fmt.Sprintf("%s/convertGraphRunbookContent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

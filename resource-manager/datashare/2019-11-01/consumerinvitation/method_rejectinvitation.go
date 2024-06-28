@@ -26,7 +26,8 @@ func (c ConsumerInvitationClient) RejectInvitation(ctx context.Context, id Locat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rejectInvitation", id.ID()),
+
+		Path: fmt.Sprintf("%s/rejectInvitation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

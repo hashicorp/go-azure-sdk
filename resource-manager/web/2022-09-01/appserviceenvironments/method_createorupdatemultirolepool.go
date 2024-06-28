@@ -31,7 +31,8 @@ func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePool(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/multiRolePools/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/multiRolePools/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

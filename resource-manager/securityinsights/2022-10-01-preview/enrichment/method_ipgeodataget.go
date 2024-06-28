@@ -53,7 +53,8 @@ func (c EnrichmentClient) IPGeodataGet(ctx context.Context, id commonids.Resourc
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/enrichment/ip/geodata", id.ID()),
 		OptionsObject: options,
 	}

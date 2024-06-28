@@ -23,6 +23,18 @@ type ListByWorkloadGroupCompleteResult struct {
 	Items              []WorkloadClassifier
 }
 
+type ListByWorkloadGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByWorkloadGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByWorkloadGroup ...
 func (c WorkloadClassifiersClient) ListByWorkloadGroup(ctx context.Context, id WorkloadGroupId) (result ListByWorkloadGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadClassifiersClient) ListByWorkloadGroup(ctx context.Context, id W
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByWorkloadGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadClassifiers", id.ID()),
 	}
 

@@ -27,7 +27,8 @@ func (c FileServiceClient) List(ctx context.Context, id commonids.StorageAccount
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/fileServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/fileServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

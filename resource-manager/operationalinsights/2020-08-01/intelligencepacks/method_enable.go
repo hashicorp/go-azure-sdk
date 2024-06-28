@@ -25,7 +25,8 @@ func (c IntelligencePacksClient) Enable(ctx context.Context, id IntelligencePack
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enable", id.ID()),
+
+		Path: fmt.Sprintf("%s/enable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

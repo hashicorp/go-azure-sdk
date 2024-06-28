@@ -31,7 +31,8 @@ func (c ContainerInstanceClient) SubnetServiceAssociationLinkDelete(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.ContainerInstance/serviceAssociationLinks/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.ContainerInstance/serviceAssociationLinks/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

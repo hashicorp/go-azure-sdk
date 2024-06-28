@@ -25,7 +25,8 @@ func (c GatewayClient) Get(ctx context.Context, id GatewayId) (result GetOperati
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

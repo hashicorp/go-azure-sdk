@@ -56,7 +56,8 @@ func (c CertificateClient) Create(ctx context.Context, id CertificateId, input C
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

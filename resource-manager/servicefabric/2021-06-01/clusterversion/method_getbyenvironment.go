@@ -23,6 +23,18 @@ type GetByEnvironmentCompleteResult struct {
 	Items              []ClusterCodeVersionsResult
 }
 
+type GetByEnvironmentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetByEnvironmentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetByEnvironment ...
 func (c ClusterVersionClient) GetByEnvironment(ctx context.Context, id EnvironmentClusterVersionId) (result GetByEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ClusterVersionClient) GetByEnvironment(ctx context.Context, id Environme
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GetByEnvironmentCustomPager{},
 		Path:       id.ID(),
 	}
 

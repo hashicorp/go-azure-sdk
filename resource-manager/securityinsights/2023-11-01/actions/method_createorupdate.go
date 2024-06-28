@@ -26,7 +26,8 @@ func (c ActionsClient) CreateOrUpdate(ctx context.Context, id ActionId, input Ac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

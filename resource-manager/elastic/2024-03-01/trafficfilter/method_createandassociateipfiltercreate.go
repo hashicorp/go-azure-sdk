@@ -59,7 +59,8 @@ func (c TrafficFilterClient) CreateAndAssociateIPFilterCreate(ctx context.Contex
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/createAndAssociateIPFilter", id.ID()),
 		OptionsObject: options,
 	}

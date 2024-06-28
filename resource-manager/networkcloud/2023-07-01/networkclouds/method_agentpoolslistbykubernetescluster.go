@@ -23,6 +23,18 @@ type AgentPoolsListByKubernetesClusterCompleteResult struct {
 	Items              []AgentPool
 }
 
+type AgentPoolsListByKubernetesClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AgentPoolsListByKubernetesClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AgentPoolsListByKubernetesCluster ...
 func (c NetworkcloudsClient) AgentPoolsListByKubernetesCluster(ctx context.Context, id KubernetesClusterId) (result AgentPoolsListByKubernetesClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetworkcloudsClient) AgentPoolsListByKubernetesCluster(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AgentPoolsListByKubernetesClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/agentPools", id.ID()),
 	}
 

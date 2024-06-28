@@ -25,7 +25,8 @@ func (c AppServiceCertificateOrdersClient) VerifyDomainOwnership(ctx context.Con
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/verifyDomainOwnership", id.ID()),
+
+		Path: fmt.Sprintf("%s/verifyDomainOwnership", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

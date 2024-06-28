@@ -30,7 +30,8 @@ func (c LongTermRetentionBackupClient) FlexibleServerStartLtrBackup(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startLtrBackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/startLtrBackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

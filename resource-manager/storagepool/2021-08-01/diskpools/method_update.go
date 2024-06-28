@@ -30,7 +30,8 @@ func (c DiskPoolsClient) Update(ctx context.Context, id DiskPoolId, input DiskPo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c TemplateSpecVersionsClient) Delete(ctx context.Context, id TemplateSpecV
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c VirtualNetworkGatewaysClient) VpnDeviceConfigurationScript(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/vpndeviceconfigurationscript", id.ID()),
+
+		Path: fmt.Sprintf("%s/vpndeviceconfigurationscript", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

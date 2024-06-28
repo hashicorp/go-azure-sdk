@@ -30,7 +30,8 @@ func (c ManagedClustersClient) RotateServiceAccountSigningKeys(ctx context.Conte
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateServiceAccountSigningKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/rotateServiceAccountSigningKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

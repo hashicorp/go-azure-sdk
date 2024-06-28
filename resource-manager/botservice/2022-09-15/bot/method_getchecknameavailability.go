@@ -25,7 +25,8 @@ func (c BotClient) GetCheckNameAvailability(ctx context.Context, input CheckName
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.BotService/checkNameAvailability",
+
+		Path: "/providers/Microsoft.BotService/checkNameAvailability",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

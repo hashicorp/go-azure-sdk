@@ -31,7 +31,8 @@ func (c JobExecutionsClient) CreateOrUpdate(ctx context.Context, id ExecutionId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

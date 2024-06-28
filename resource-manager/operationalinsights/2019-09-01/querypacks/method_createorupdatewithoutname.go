@@ -27,7 +27,8 @@ func (c QueryPacksClient) CreateOrUpdateWithoutName(ctx context.Context, id comm
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/queryPacks", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.OperationalInsights/queryPacks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -60,7 +60,8 @@ func (c VirtualMachineInstancesClient) Delete(ctx context.Context, id commonids.
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default", id.ID()),
 		OptionsObject: options,
 	}

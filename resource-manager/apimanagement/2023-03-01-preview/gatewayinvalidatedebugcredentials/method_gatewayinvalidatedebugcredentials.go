@@ -25,7 +25,8 @@ func (c GatewayInvalidateDebugCredentialsClient) GatewayInvalidateDebugCredentia
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/invalidateDebugCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/invalidateDebugCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

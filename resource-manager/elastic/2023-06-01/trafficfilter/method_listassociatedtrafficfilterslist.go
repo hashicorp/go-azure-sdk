@@ -26,7 +26,8 @@ func (c TrafficFilterClient) ListAssociatedTrafficFilterslist(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listAssociatedTrafficFilters", id.ID()),
+
+		Path: fmt.Sprintf("%s/listAssociatedTrafficFilters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

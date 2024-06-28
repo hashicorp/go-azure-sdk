@@ -29,7 +29,8 @@ func (c VirtualMachineScaleSetRollingUpgradesClient) StartOSUpgrade(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/osRollingUpgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/osRollingUpgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

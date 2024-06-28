@@ -26,7 +26,8 @@ func (c TopicsAuthorizationRuleClient) TopicsListKeys(ctx context.Context, id To
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

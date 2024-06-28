@@ -25,7 +25,8 @@ func (c PATCHClient) FilesUpdate(ctx context.Context, id FileId, input ProjectFi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

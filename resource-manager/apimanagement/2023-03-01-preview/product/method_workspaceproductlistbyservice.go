@@ -66,6 +66,18 @@ func (o WorkspaceProductListByServiceOperationOptions) ToQuery() *client.QueryPa
 	return &out
 }
 
+type WorkspaceProductListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceProductListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceProductListByService ...
 func (c ProductClient) WorkspaceProductListByService(ctx context.Context, id WorkspaceId, options WorkspaceProductListByServiceOperationOptions) (result WorkspaceProductListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -74,6 +86,7 @@ func (c ProductClient) WorkspaceProductListByService(ctx context.Context, id Wor
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceProductListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/products", id.ID()),
 		OptionsObject: options,
 	}

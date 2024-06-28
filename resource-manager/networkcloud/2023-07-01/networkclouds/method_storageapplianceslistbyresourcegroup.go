@@ -24,6 +24,18 @@ type StorageAppliancesListByResourceGroupCompleteResult struct {
 	Items              []StorageAppliance
 }
 
+type StorageAppliancesListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *StorageAppliancesListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StorageAppliancesListByResourceGroup ...
 func (c NetworkcloudsClient) StorageAppliancesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result StorageAppliancesListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) StorageAppliancesListByResourceGroup(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &StorageAppliancesListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/storageAppliances", id.ID()),
 	}
 

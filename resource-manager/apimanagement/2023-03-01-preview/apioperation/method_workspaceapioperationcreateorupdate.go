@@ -53,7 +53,8 @@ func (c ApiOperationClient) WorkspaceApiOperationCreateOrUpdate(ctx context.Cont
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

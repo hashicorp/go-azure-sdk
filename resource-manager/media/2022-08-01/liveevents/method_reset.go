@@ -29,7 +29,8 @@ func (c LiveEventsClient) Reset(ctx context.Context, id LiveEventId) (result Res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

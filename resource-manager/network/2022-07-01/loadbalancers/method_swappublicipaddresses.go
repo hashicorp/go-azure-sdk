@@ -29,7 +29,8 @@ func (c LoadBalancersClient) SwapPublicIPAddresses(ctx context.Context, id Locat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setLoadBalancerFrontendPublicIpAddresses", id.ID()),
+
+		Path: fmt.Sprintf("%s/setLoadBalancerFrontendPublicIpAddresses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

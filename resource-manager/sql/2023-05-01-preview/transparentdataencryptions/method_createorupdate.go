@@ -32,7 +32,8 @@ func (c TransparentDataEncryptionsClient) CreateOrUpdate(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/transparentDataEncryption/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/transparentDataEncryption/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

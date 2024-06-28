@@ -24,6 +24,18 @@ type ClustersListOutboundNetworkDependenciesEndpointsCompleteResult struct {
 	Items              []OutboundNetworkDependenciesEndpoint
 }
 
+type ClustersListOutboundNetworkDependenciesEndpointsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ClustersListOutboundNetworkDependenciesEndpointsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ClustersListOutboundNetworkDependenciesEndpoints ...
 func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkDependenciesEndpoints(ctx context.Context, id commonids.KustoClusterId) (result ClustersListOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkD
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ClustersListOutboundNetworkDependenciesEndpointsCustomPager{},
 		Path:       fmt.Sprintf("%s/outboundNetworkDependenciesEndpoints", id.ID()),
 	}
 

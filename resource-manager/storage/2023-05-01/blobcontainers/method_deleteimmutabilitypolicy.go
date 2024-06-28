@@ -53,7 +53,8 @@ func (c BlobContainersClient) DeleteImmutabilityPolicy(ctx context.Context, id c
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/immutabilityPolicies/default", id.ID()),
 		OptionsObject: options,
 	}

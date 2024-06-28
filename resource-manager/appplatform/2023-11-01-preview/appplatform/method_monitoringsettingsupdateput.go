@@ -31,7 +31,8 @@ func (c AppPlatformClient) MonitoringSettingsUpdatePut(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/monitoringSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/monitoringSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

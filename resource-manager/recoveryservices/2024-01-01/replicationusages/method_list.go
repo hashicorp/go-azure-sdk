@@ -26,7 +26,8 @@ func (c ReplicationUsagesClient) List(ctx context.Context, id VaultId) (result L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/replicationUsages", id.ID()),
+
+		Path: fmt.Sprintf("%s/replicationUsages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

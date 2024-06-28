@@ -30,7 +30,8 @@ func (c WorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClient) Update(ct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/dedicatedSQLMinimalTLSSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/dedicatedSQLMinimalTLSSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

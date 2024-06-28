@@ -26,7 +26,8 @@ func (c WebAppsClient) CreateOrUpdateConfigurationSlot(ctx context.Context, id S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/web", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/web", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

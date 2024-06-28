@@ -26,7 +26,8 @@ func (c StaticSitesClient) GetBasicAuth(ctx context.Context, id StaticSiteId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/basicAuth/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/basicAuth/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c WorkbooksAPIsClient) WorkbooksGet(ctx context.Context, id WorkbookId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c CosmosDBClient) SqlResourcesGetSqlDatabaseThroughput(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/throughputSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/throughputSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

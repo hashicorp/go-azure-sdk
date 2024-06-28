@@ -27,7 +27,8 @@ func (c WebAppsClient) CreateOneDeployOperation(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/extensions/onedeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/onedeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

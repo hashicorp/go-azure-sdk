@@ -53,7 +53,8 @@ func (c ContentTypeClient) CreateOrUpdate(ctx context.Context, id ContentTypeId,
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

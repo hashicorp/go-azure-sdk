@@ -27,7 +27,8 @@ func (c BlobServiceClient) GetServiceProperties(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/blobServices/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/blobServices/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

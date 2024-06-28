@@ -25,7 +25,8 @@ func (c FlowLogsClient) UpdateTags(ctx context.Context, id FlowLogId, input Tags
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

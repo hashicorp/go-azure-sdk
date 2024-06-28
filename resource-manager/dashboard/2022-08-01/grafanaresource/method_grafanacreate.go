@@ -30,7 +30,8 @@ func (c GrafanaResourceClient) GrafanaCreate(ctx context.Context, id GrafanaId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type GitLabGroupsListAvailableCompleteResult struct {
 	Items              []GitLabGroup
 }
 
+type GitLabGroupsListAvailableCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GitLabGroupsListAvailableCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GitLabGroupsListAvailable ...
 func (c DevOpsClient) GitLabGroupsListAvailable(ctx context.Context, id SecurityConnectorId) (result GitLabGroupsListAvailableOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) GitLabGroupsListAvailable(ctx context.Context, id Security
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &GitLabGroupsListAvailableCustomPager{},
 		Path:       fmt.Sprintf("%s/devops/default/listAvailableGitLabGroups", id.ID()),
 	}
 

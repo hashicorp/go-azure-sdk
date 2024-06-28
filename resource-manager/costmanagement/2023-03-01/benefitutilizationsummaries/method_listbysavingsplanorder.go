@@ -55,6 +55,18 @@ func (o ListBySavingsPlanOrderOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListBySavingsPlanOrderCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySavingsPlanOrderCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySavingsPlanOrder ...
 func (c BenefitUtilizationSummariesClient) ListBySavingsPlanOrder(ctx context.Context, id SavingsPlanOrderId, options ListBySavingsPlanOrderOperationOptions) (result ListBySavingsPlanOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c BenefitUtilizationSummariesClient) ListBySavingsPlanOrder(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListBySavingsPlanOrderCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/benefitUtilizationSummaries", id.ID()),
 		OptionsObject: options,
 	}

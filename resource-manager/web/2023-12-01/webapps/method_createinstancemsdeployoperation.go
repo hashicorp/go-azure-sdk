@@ -29,7 +29,8 @@ func (c WebAppsClient) CreateInstanceMSDeployOperation(ctx context.Context, id I
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/extensions/mSDeploy", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/mSDeploy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

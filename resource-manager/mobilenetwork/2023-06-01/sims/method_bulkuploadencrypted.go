@@ -30,7 +30,8 @@ func (c SIMsClient) BulkUploadEncrypted(ctx context.Context, id SimGroupId, inpu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadEncryptedSims", id.ID()),
+
+		Path: fmt.Sprintf("%s/uploadEncryptedSims", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

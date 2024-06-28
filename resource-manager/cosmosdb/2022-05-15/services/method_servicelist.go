@@ -26,7 +26,8 @@ func (c ServicesClient) ServiceList(ctx context.Context, id DatabaseAccountId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/services", id.ID()),
+
+		Path: fmt.Sprintf("%s/services", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

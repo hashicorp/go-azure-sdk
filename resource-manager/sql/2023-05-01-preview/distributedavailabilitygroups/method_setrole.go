@@ -30,7 +30,8 @@ func (c DistributedAvailabilityGroupsClient) SetRole(ctx context.Context, id Dis
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setRole", id.ID()),
+
+		Path: fmt.Sprintf("%s/setRole", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

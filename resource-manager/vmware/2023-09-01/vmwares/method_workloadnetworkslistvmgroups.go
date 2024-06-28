@@ -23,6 +23,18 @@ type WorkloadNetworksListVMGroupsCompleteResult struct {
 	Items              []WorkloadNetworkVMGroup
 }
 
+type WorkloadNetworksListVMGroupsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkloadNetworksListVMGroupsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkloadNetworksListVMGroups ...
 func (c VMwaresClient) WorkloadNetworksListVMGroups(ctx context.Context, id PrivateCloudId) (result WorkloadNetworksListVMGroupsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c VMwaresClient) WorkloadNetworksListVMGroups(ctx context.Context, id Priv
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkloadNetworksListVMGroupsCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/vmGroups", id.ID()),
 	}
 

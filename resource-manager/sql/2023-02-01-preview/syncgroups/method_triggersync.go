@@ -25,7 +25,8 @@ func (c SyncGroupsClient) TriggerSync(ctx context.Context, id SyncGroupId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/triggerSync", id.ID()),
+
+		Path: fmt.Sprintf("%s/triggerSync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

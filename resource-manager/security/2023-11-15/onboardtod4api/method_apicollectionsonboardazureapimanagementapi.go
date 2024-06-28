@@ -30,7 +30,8 @@ func (c OnboardToD4APIClient) APICollectionsOnboardAzureApiManagementApi(ctx con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

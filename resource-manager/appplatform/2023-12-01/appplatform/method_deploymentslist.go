@@ -50,6 +50,18 @@ func (o DeploymentsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type DeploymentsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *DeploymentsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // DeploymentsList ...
 func (c AppPlatformClient) DeploymentsList(ctx context.Context, id AppId, options DeploymentsListOperationOptions) (result DeploymentsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c AppPlatformClient) DeploymentsList(ctx context.Context, id AppId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &DeploymentsListCustomPager{},
 		Path:          fmt.Sprintf("%s/deployments", id.ID()),
 		OptionsObject: options,
 	}

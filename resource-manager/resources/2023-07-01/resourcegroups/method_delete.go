@@ -56,7 +56,8 @@ func (c ResourceGroupsClient) Delete(ctx context.Context, id commonids.ResourceG
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

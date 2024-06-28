@@ -29,7 +29,8 @@ func (c LabsClient) ClaimAnyVM(ctx context.Context, id LabId) (result ClaimAnyVM
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/claimAnyVm", id.ID()),
+
+		Path: fmt.Sprintf("%s/claimAnyVm", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

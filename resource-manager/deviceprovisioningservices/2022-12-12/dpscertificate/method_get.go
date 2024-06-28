@@ -52,7 +52,8 @@ func (c DpsCertificateClient) Get(ctx context.Context, id CertificateId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

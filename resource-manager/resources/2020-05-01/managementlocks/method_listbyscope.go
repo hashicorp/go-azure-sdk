@@ -51,6 +51,18 @@ func (o ListByScopeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByScopeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByScopeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByScope ...
 func (c ManagementLocksClient) ListByScope(ctx context.Context, id commonids.ScopeId, options ListByScopeOperationOptions) (result ListByScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,6 +71,7 @@ func (c ManagementLocksClient) ListByScope(ctx context.Context, id commonids.Sco
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByScopeCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/locks", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c IntegrationRuntimesClient) CreateLinkedIntegrationRuntime(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/linkedIntegrationRuntime", id.ID()),
+
+		Path: fmt.Sprintf("%s/linkedIntegrationRuntime", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

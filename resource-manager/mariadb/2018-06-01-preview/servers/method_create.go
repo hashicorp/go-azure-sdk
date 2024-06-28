@@ -31,7 +31,8 @@ func (c ServersClient) Create(ctx context.Context, id ServerId, input ServerForC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

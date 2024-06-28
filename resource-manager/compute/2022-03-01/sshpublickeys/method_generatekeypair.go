@@ -26,7 +26,8 @@ func (c SshPublicKeysClient) GenerateKeyPair(ctx context.Context, id SshPublicKe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateKeyPair", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateKeyPair", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

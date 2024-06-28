@@ -29,7 +29,8 @@ func (c CapacitiesClient) Resume(ctx context.Context, id CapacityId) (result Res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resume", id.ID()),
+
+		Path: fmt.Sprintf("%s/resume", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

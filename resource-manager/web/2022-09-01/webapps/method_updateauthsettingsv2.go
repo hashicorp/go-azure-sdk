@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateAuthSettingsV2(ctx context.Context, id commonids.Ap
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/authsettingsV2", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/authsettingsV2", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

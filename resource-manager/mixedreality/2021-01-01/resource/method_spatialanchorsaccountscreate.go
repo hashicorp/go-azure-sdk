@@ -26,7 +26,8 @@ func (c ResourceClient) SpatialAnchorsAccountsCreate(ctx context.Context, id Spa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

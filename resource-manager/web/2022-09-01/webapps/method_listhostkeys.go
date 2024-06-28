@@ -27,7 +27,8 @@ func (c WebAppsClient) ListHostKeys(ctx context.Context, id commonids.AppService
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/host/default/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/host/default/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

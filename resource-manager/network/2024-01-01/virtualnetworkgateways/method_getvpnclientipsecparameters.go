@@ -29,7 +29,8 @@ func (c VirtualNetworkGatewaysClient) GetVpnclientIPsecParameters(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getvpnclientipsecparameters", id.ID()),
+
+		Path: fmt.Sprintf("%s/getvpnclientipsecparameters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

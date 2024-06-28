@@ -30,7 +30,8 @@ func (c ConnectorClient) Update(ctx context.Context, id ConnectorId, input Linke
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

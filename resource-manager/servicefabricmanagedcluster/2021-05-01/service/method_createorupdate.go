@@ -30,7 +30,8 @@ func (c ServiceClient) CreateOrUpdate(ctx context.Context, id ServiceId, input S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

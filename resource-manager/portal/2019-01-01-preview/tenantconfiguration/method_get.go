@@ -25,7 +25,8 @@ func (c TenantConfigurationClient) Get(ctx context.Context) (result GetOperation
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/Microsoft.Portal/tenantConfigurations/default",
+
+		Path: "/providers/Microsoft.Portal/tenantConfigurations/default",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c TasksClient) GetDetails(ctx context.Context, id TaskId) (result GetDetai
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listDetails", id.ID()),
+
+		Path: fmt.Sprintf("%s/listDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

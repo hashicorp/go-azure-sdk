@@ -24,6 +24,18 @@ type ListInaccessibleByInstanceCompleteResult struct {
 	Items              []ManagedDatabase
 }
 
+type ListInaccessibleByInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListInaccessibleByInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListInaccessibleByInstance ...
 func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListInaccessibleByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListInaccessibleByInstanceCustomPager{},
 		Path:       fmt.Sprintf("%s/inaccessibleManagedDatabases", id.ID()),
 	}
 

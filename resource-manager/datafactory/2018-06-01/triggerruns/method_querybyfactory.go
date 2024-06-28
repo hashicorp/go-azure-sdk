@@ -26,7 +26,8 @@ func (c TriggerrunsClient) QueryByFactory(ctx context.Context, id FactoryId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryTriggerRuns", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryTriggerRuns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

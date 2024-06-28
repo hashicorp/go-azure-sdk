@@ -26,7 +26,8 @@ func (c ProxyOperationsClient) WorkspacesListStorageAccountKeys(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listStorageAccountKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listStorageAccountKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

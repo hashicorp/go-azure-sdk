@@ -26,7 +26,8 @@ func (c SecuritySolutionsReferenceDataClient) ListByHomeRegion(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/securitySolutionsReferenceData", id.ID()),
+
+		Path: fmt.Sprintf("%s/securitySolutionsReferenceData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

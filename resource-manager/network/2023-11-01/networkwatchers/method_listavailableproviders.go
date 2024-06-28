@@ -30,7 +30,8 @@ func (c NetworkWatchersClient) ListAvailableProviders(ctx context.Context, id Ne
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/availableProvidersList", id.ID()),
+
+		Path: fmt.Sprintf("%s/availableProvidersList", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

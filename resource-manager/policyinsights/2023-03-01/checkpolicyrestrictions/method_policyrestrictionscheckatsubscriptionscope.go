@@ -27,7 +27,8 @@ func (c CheckPolicyRestrictionsClient) PolicyRestrictionsCheckAtSubscriptionScop
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.PolicyInsights/checkPolicyRestrictions", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.PolicyInsights/checkPolicyRestrictions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

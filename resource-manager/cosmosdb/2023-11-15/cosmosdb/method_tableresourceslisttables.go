@@ -26,7 +26,8 @@ func (c CosmosDBClient) TableResourcesListTables(ctx context.Context, id Databas
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tables", id.ID()),
+
+		Path: fmt.Sprintf("%s/tables", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

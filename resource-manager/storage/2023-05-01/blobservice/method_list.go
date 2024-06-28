@@ -27,7 +27,8 @@ func (c BlobServiceClient) List(ctx context.Context, id commonids.StorageAccount
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/blobServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/blobServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

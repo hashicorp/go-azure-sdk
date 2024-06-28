@@ -25,7 +25,8 @@ func (c CognitiveServicesAccountsClient) AccountsGet(ctx context.Context, id Acc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

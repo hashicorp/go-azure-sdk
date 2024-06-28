@@ -30,7 +30,8 @@ func (c NetAppResourceClient) UpdateNetworkSiblingSet(ctx context.Context, id Lo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateNetworkSiblingSet", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateNetworkSiblingSet", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -52,7 +52,8 @@ func (c PrivateLinkServicesClient) GetPrivateEndpointConnection(ctx context.Cont
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

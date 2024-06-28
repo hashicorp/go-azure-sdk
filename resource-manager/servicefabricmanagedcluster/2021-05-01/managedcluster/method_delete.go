@@ -30,7 +30,8 @@ func (c ManagedClusterClient) Delete(ctx context.Context, id ManagedClusterId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

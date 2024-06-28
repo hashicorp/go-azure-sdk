@@ -56,7 +56,8 @@ func (c RecoverableDatabasesClient) Get(ctx context.Context, id RecoverableDatab
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

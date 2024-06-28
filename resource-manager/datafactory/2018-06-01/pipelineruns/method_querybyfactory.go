@@ -26,7 +26,8 @@ func (c PipelineRunsClient) QueryByFactory(ctx context.Context, id FactoryId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryPipelineRuns", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryPipelineRuns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

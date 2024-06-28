@@ -30,7 +30,8 @@ func (c VaultsClient) CreateOrUpdate(ctx context.Context, id VaultId, input Vaul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

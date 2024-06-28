@@ -26,7 +26,8 @@ func (c OrdersClient) Get(ctx context.Context, id DataBoxEdgeDeviceId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/orders/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/orders/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

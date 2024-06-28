@@ -24,6 +24,18 @@ type VolumesListBySubscriptionCompleteResult struct {
 	Items              []Volume
 }
 
+type VolumesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *VolumesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VolumesListBySubscription ...
 func (c NetworkcloudsClient) VolumesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result VolumesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) VolumesListBySubscription(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &VolumesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/volumes", id.ID()),
 	}
 

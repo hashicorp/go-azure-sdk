@@ -30,7 +30,8 @@ func (c ApiManagementServiceClient) ApplyNetworkConfigurationUpdates(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applynetworkconfigurationupdates", id.ID()),
+
+		Path: fmt.Sprintf("%s/applynetworkconfigurationupdates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

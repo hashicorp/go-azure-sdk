@@ -25,7 +25,8 @@ func (c SnapshotsClient) Get(ctx context.Context, id SnapshotId) (result GetOper
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

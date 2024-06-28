@@ -24,6 +24,18 @@ type ListRecommendationsCompleteResult struct {
 	Items              []NameIdentifier
 }
 
+type ListRecommendationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListRecommendationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListRecommendations ...
 func (c DomainsClient) ListRecommendations(ctx context.Context, id commonids.SubscriptionId, input DomainRecommendationSearchParameters) (result ListRecommendationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DomainsClient) ListRecommendations(ctx context.Context, id commonids.Sub
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListRecommendationsCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.DomainRegistration/listDomainRecommendations", id.ID()),
 	}
 

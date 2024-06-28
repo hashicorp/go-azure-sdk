@@ -56,7 +56,8 @@ func (c NamedValueClient) CreateOrUpdate(ctx context.Context, id NamedValueId, i
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

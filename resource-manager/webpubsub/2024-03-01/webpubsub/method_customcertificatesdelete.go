@@ -25,7 +25,8 @@ func (c WebPubSubClient) CustomCertificatesDelete(ctx context.Context, id Custom
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

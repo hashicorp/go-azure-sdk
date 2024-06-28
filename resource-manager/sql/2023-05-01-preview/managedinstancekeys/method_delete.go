@@ -30,7 +30,8 @@ func (c ManagedInstanceKeysClient) Delete(ctx context.Context, id ManagedInstanc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

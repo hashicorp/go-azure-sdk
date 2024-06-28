@@ -52,7 +52,8 @@ func (c GraphQLApiResolverPolicyClient) Delete(ctx context.Context, id ResolverI
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

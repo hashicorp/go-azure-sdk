@@ -52,7 +52,8 @@ func (c ApiOperationPolicyClient) WorkspaceApiOperationPolicyGet(ctx context.Con
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
 	}

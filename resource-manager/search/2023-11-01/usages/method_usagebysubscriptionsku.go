@@ -52,7 +52,8 @@ func (c UsagesClient) UsageBySubscriptionSku(ctx context.Context, id UsageId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -65,7 +65,8 @@ func (c ChargesClient) List(ctx context.Context, id commonids.ScopeId, options L
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/charges", id.ID()),
 		OptionsObject: options,
 	}

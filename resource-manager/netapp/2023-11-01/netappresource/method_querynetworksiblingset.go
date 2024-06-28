@@ -26,7 +26,8 @@ func (c NetAppResourceClient) QueryNetworkSiblingSet(ctx context.Context, id Loc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/queryNetworkSiblingSet", id.ID()),
+
+		Path: fmt.Sprintf("%s/queryNetworkSiblingSet", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

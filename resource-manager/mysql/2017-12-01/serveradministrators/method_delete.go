@@ -30,7 +30,8 @@ func (c ServerAdministratorsClient) Delete(ctx context.Context, id ServerId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/administrators/activeDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/activeDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

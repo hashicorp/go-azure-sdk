@@ -26,7 +26,8 @@ func (c ReplicasClient) ListByServer(ctx context.Context, id ServerId) (result L
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/replicas", id.ID()),
+
+		Path: fmt.Sprintf("%s/replicas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

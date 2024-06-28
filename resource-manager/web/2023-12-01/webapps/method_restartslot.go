@@ -55,7 +55,8 @@ func (c WebAppsClient) RestartSlot(ctx context.Context, id SlotId, options Resta
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/restart", id.ID()),
 		OptionsObject: options,
 	}

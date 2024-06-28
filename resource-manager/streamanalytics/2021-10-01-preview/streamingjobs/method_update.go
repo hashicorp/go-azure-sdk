@@ -52,7 +52,8 @@ func (c StreamingJobsClient) Update(ctx context.Context, id StreamingJobId, inpu
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

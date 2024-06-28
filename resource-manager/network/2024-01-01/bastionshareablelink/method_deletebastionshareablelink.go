@@ -29,7 +29,8 @@ func (c BastionShareableLinkClient) DeleteBastionShareableLink(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteShareableLinks", id.ID()),
+
+		Path: fmt.Sprintf("%s/deleteShareableLinks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

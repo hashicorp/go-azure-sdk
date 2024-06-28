@@ -56,7 +56,8 @@ func (c PolicyFragmentClient) WorkspacePolicyFragmentCreateOrUpdate(ctx context.
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -29,7 +29,8 @@ func (c EventSubscriptionsClient) DomainTopicEventSubscriptionsUpdate(ctx contex
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

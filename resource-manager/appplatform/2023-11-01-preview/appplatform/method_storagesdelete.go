@@ -30,7 +30,8 @@ func (c AppPlatformClient) StoragesDelete(ctx context.Context, id StorageId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

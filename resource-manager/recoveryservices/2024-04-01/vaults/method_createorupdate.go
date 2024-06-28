@@ -56,7 +56,8 @@ func (c VaultsClient) CreateOrUpdate(ctx context.Context, id VaultId, input Vaul
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

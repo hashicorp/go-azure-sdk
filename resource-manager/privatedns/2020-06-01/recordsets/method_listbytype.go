@@ -54,6 +54,18 @@ func (o ListByTypeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByTypeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByTypeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByType ...
 func (c RecordSetsClient) ListByType(ctx context.Context, id PrivateZoneId, options ListByTypeOperationOptions) (result ListByTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,6 +74,7 @@ func (c RecordSetsClient) ListByType(ctx context.Context, id PrivateZoneId, opti
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByTypeCustomPager{},
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

@@ -27,7 +27,8 @@ func (c WebAppsClient) GetSitePhpErrorLogFlag(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/phplogging", id.ID()),
+
+		Path: fmt.Sprintf("%s/phplogging", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

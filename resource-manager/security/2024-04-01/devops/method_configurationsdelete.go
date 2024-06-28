@@ -30,7 +30,8 @@ func (c DevOpsClient) ConfigurationsDelete(ctx context.Context, id SecurityConne
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/devops/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/devops/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

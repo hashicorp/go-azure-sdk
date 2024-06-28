@@ -26,7 +26,8 @@ func (c WorkspacesClient) UsagesList(ctx context.Context, id WorkspaceId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/usages", id.ID()),
+
+		Path: fmt.Sprintf("%s/usages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

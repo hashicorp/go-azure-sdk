@@ -26,7 +26,8 @@ func (c RecipientTransfersClient) Accept(ctx context.Context, id TransferId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/acceptTransfer", id.ID()),
+
+		Path: fmt.Sprintf("%s/acceptTransfer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c HyperVSitesClient) RefreshSite(ctx context.Context, id HyperVSiteId) (re
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refresh", id.ID()),
+
+		Path: fmt.Sprintf("%s/refresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

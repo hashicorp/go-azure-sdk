@@ -26,7 +26,8 @@ func (c ExportsClient) GetExecutionHistory(ctx context.Context, id ScopedExportI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/runHistory", id.ID()),
+
+		Path: fmt.Sprintf("%s/runHistory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c CachesClient) SpaceAllocation(ctx context.Context, id CacheId, input []S
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/spaceAllocation", id.ID()),
+
+		Path: fmt.Sprintf("%s/spaceAllocation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c VirtualMachinesClient) InstanceView(ctx context.Context, id VirtualMachi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/instanceView", id.ID()),
+
+		Path: fmt.Sprintf("%s/instanceView", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

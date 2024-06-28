@@ -26,7 +26,8 @@ func (c DomainsClient) TransferOut(ctx context.Context, id DomainId) (result Tra
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/transferOut", id.ID()),
+
+		Path: fmt.Sprintf("%s/transferOut", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c IntegrationRuntimesClient) SyncCredentials(ctx context.Context, id Integ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/syncCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

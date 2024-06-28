@@ -25,7 +25,8 @@ func (c ReplicationsClient) Get(ctx context.Context, id ReplicationId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

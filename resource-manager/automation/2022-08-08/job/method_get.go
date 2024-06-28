@@ -52,7 +52,8 @@ func (c JobClient) Get(ctx context.Context, id JobId, options GetOperationOption
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

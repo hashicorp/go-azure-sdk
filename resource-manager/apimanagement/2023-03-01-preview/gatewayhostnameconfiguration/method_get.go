@@ -25,7 +25,8 @@ func (c GatewayHostnameConfigurationClient) Get(ctx context.Context, id Hostname
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

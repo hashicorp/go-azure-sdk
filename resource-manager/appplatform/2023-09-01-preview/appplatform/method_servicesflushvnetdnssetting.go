@@ -30,7 +30,8 @@ func (c AppPlatformClient) ServicesFlushVnetDnsSetting(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/flushVirtualNetworkDnsSettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/flushVirtualNetworkDnsSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

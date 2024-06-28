@@ -30,7 +30,8 @@ func (c RedisClient) ExportData(ctx context.Context, id RediId, input ExportRDBP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/export", id.ID()),
+
+		Path: fmt.Sprintf("%s/export", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

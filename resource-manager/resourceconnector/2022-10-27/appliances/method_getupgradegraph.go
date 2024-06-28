@@ -25,7 +25,8 @@ func (c AppliancesClient) GetUpgradeGraph(ctx context.Context, id UpgradeGraphId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

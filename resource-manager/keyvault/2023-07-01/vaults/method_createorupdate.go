@@ -31,7 +31,8 @@ func (c VaultsClient) CreateOrUpdate(ctx context.Context, id commonids.KeyVaultI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

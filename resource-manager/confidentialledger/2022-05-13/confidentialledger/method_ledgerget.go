@@ -25,7 +25,8 @@ func (c ConfidentialLedgerClient) LedgerGet(ctx context.Context, id LedgerId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

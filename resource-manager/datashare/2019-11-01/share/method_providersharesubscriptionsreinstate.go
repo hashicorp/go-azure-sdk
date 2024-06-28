@@ -26,7 +26,8 @@ func (c ShareClient) ProviderShareSubscriptionsReinstate(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reinstate", id.ID()),
+
+		Path: fmt.Sprintf("%s/reinstate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

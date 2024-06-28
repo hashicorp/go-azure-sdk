@@ -23,6 +23,18 @@ type ListAssociationsCompleteResult struct {
 	Items              []CommitmentPlanAccountAssociation
 }
 
+type ListAssociationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAssociationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAssociations ...
 func (c CommitmentPlansClient) ListAssociations(ctx context.Context, id CommitmentPlanId) (result ListAssociationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c CommitmentPlansClient) ListAssociations(ctx context.Context, id Commitme
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAssociationsCustomPager{},
 		Path:       fmt.Sprintf("%s/accountAssociations", id.ID()),
 	}
 

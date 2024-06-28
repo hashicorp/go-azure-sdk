@@ -30,7 +30,8 @@ func (c DevOpsClient) AzureDevOpsOrgsCreateOrUpdate(ctx context.Context, id Azur
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c CachesClient) StopPrimingJob(ctx context.Context, id CacheId, input Prim
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stopPrimingJob", id.ID()),
+
+		Path: fmt.Sprintf("%s/stopPrimingJob", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

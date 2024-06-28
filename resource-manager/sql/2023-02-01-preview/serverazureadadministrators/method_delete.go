@@ -31,7 +31,8 @@ func (c ServerAzureADAdministratorsClient) Delete(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/administrators/ActiveDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

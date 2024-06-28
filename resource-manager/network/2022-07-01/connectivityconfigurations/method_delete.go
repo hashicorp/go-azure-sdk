@@ -56,7 +56,8 @@ func (c ConnectivityConfigurationsClient) Delete(ctx context.Context, id Connect
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

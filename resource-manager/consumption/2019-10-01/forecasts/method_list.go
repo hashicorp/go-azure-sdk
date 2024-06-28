@@ -53,7 +53,8 @@ func (c ForecastsClient) List(ctx context.Context, id commonids.SubscriptionId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/forecasts", id.ID()),
 		OptionsObject: options,
 	}

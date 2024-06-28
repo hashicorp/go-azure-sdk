@@ -31,7 +31,8 @@ func (c LedgerDigestUploadsClient) CreateOrUpdate(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/ledgerDigestUploads/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/ledgerDigestUploads/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -53,7 +53,8 @@ func (c ServersClient) Get(ctx context.Context, id commonids.SqlServerId, option
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

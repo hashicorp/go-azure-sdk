@@ -26,7 +26,8 @@ func (c AppPlatformClient) BuildServiceGetBuildResultLog(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getLogFileUrl", id.ID()),
+
+		Path: fmt.Sprintf("%s/getLogFileUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

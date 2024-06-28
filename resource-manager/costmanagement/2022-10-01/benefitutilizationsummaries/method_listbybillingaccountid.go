@@ -55,6 +55,18 @@ func (o ListByBillingAccountIdOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByBillingAccountIdCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBillingAccountIdCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBillingAccountId ...
 func (c BenefitUtilizationSummariesClient) ListByBillingAccountId(ctx context.Context, id BillingAccountId, options ListByBillingAccountIdOperationOptions) (result ListByBillingAccountIdOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,6 +75,7 @@ func (c BenefitUtilizationSummariesClient) ListByBillingAccountId(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByBillingAccountIdCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/benefitUtilizationSummaries", id.ID()),
 		OptionsObject: options,
 	}

@@ -26,7 +26,8 @@ func (c ModelVersionClient) RegistryModelVersionsCreateOrGetStartPendingUpload(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/startPendingUpload", id.ID()),
+
+		Path: fmt.Sprintf("%s/startPendingUpload", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

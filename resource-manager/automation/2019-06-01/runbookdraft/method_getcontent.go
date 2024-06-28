@@ -26,7 +26,8 @@ func (c RunbookDraftClient) GetContent(ctx context.Context, id RunbookId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/draft/content", id.ID()),
+
+		Path: fmt.Sprintf("%s/draft/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

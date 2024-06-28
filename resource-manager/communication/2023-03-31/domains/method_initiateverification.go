@@ -28,7 +28,8 @@ func (c DomainsClient) InitiateVerification(ctx context.Context, id DomainId, in
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateVerification", id.ID()),
+
+		Path: fmt.Sprintf("%s/initiateVerification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c MobileNetworkClient) UpdateTags(ctx context.Context, id MobileNetworkId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

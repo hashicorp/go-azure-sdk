@@ -53,7 +53,8 @@ func (c MetricNamespacesClient) List(ctx context.Context, id commonids.ScopeId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricNamespaces", id.ID()),
 		OptionsObject: options,
 	}

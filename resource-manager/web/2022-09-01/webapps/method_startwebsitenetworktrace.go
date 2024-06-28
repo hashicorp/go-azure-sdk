@@ -61,7 +61,8 @@ func (c WebAppsClient) StartWebSiteNetworkTrace(ctx context.Context, id commonid
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/networkTrace/start", id.ID()),
 		OptionsObject: options,
 	}

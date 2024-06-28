@@ -23,6 +23,18 @@ type ListByLocationCompleteResult struct {
 	Items              []InstanceFailoverGroup
 }
 
+type ListByLocationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByLocationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByLocation ...
 func (c InstanceFailoverGroupsClient) ListByLocation(ctx context.Context, id ProviderLocationId) (result ListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c InstanceFailoverGroupsClient) ListByLocation(ctx context.Context, id Pro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByLocationCustomPager{},
 		Path:       fmt.Sprintf("%s/instanceFailoverGroups", id.ID()),
 	}
 

@@ -26,7 +26,8 @@ func (c CustomOperationClient) ServicesNestedCheckNameAvailability(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

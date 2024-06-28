@@ -27,7 +27,8 @@ func (c ObjectReplicationPoliciesClient) List(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/objectReplicationPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/objectReplicationPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

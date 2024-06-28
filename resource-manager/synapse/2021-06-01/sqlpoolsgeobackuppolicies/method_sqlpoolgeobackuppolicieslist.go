@@ -26,7 +26,8 @@ func (c SqlPoolsGeoBackupPoliciesClient) SqlPoolGeoBackupPoliciesList(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/geoBackupPolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/geoBackupPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

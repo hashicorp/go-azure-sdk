@@ -27,7 +27,8 @@ func (c AttestationProvidersClient) List(ctx context.Context, id commonids.Subsc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Attestation/attestationProviders", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Attestation/attestationProviders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

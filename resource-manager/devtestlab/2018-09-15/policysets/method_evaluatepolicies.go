@@ -26,7 +26,8 @@ func (c PolicySetsClient) EvaluatePolicies(ctx context.Context, id PolicySetId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/evaluatePolicies", id.ID()),
+
+		Path: fmt.Sprintf("%s/evaluatePolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

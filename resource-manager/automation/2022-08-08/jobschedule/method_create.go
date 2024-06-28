@@ -25,7 +25,8 @@ func (c JobScheduleClient) Create(ctx context.Context, id JobScheduleId, input J
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

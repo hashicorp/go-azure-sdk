@@ -25,7 +25,8 @@ func (c RoleAssignmentsClient) Get(ctx context.Context, id ScopedRoleAssignmentI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

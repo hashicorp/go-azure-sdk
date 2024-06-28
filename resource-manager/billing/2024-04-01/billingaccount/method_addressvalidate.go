@@ -25,7 +25,8 @@ func (c BillingAccountClient) AddressValidate(ctx context.Context, input Address
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Billing/validateAddress",
+
+		Path: "/providers/Microsoft.Billing/validateAddress",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

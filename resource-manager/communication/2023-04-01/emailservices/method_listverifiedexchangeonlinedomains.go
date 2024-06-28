@@ -27,7 +27,8 @@ func (c EmailServicesClient) ListVerifiedExchangeOnlineDomains(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Communication/listVerifiedExchangeOnlineDomains", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Communication/listVerifiedExchangeOnlineDomains", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

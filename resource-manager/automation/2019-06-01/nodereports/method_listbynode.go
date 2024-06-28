@@ -50,6 +50,18 @@ func (o ListByNodeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByNodeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByNodeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByNode ...
 func (c NodeReportsClient) ListByNode(ctx context.Context, id NodeId, options ListByNodeOperationOptions) (result ListByNodeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c NodeReportsClient) ListByNode(ctx context.Context, id NodeId, options Li
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByNodeCustomPager{},
 		Path:          fmt.Sprintf("%s/reports", id.ID()),
 		OptionsObject: options,
 	}

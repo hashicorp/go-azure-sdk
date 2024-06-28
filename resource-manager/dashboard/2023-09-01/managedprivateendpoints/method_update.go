@@ -30,7 +30,8 @@ func (c ManagedPrivateEndpointsClient) Update(ctx context.Context, id ManagedPri
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

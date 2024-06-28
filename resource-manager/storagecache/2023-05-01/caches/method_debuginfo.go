@@ -30,7 +30,8 @@ func (c CachesClient) DebugInfo(ctx context.Context, id CacheId) (result DebugIn
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/debugInfo", id.ID()),
+
+		Path: fmt.Sprintf("%s/debugInfo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c WorkspacesClient) WorkspacePurgeGetPurgeStatus(ctx context.Context, id O
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

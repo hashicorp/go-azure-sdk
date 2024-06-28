@@ -26,7 +26,8 @@ func (c FirewallPoliciesClient) FirewallPolicyDraftsDelete(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/firewallPolicyDrafts/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/firewallPolicyDrafts/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -59,7 +59,8 @@ func (c SubscriptionClient) Update(ctx context.Context, id Subscriptions2Id, inp
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

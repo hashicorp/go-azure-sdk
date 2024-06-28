@@ -30,7 +30,8 @@ func (c P2sVpnGatewaysClient) DisconnectP2sVpnConnections(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disconnectP2sVpnConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/disconnectP2sVpnConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

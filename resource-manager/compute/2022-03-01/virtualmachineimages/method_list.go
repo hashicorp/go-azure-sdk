@@ -60,7 +60,8 @@ func (c VirtualMachineImagesClient) List(ctx context.Context, id SkuId, options 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/versions", id.ID()),
 		OptionsObject: options,
 	}

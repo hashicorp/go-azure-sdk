@@ -29,7 +29,8 @@ func (c VirtualMachinesClient) TransferDisks(ctx context.Context, id VirtualMach
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/transferDisks", id.ID()),
+
+		Path: fmt.Sprintf("%s/transferDisks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

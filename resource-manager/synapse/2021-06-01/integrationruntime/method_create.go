@@ -56,7 +56,8 @@ func (c IntegrationRuntimeClient) Create(ctx context.Context, id IntegrationRunt
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

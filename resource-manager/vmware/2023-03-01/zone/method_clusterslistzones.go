@@ -26,7 +26,8 @@ func (c ZoneClient) ClustersListZones(ctx context.Context, id ClusterId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listZones", id.ID()),
+
+		Path: fmt.Sprintf("%s/listZones", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

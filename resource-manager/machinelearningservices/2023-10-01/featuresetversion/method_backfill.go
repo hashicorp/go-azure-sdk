@@ -30,7 +30,8 @@ func (c FeaturesetVersionClient) Backfill(ctx context.Context, id FeatureSetVers
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backfill", id.ID()),
+
+		Path: fmt.Sprintf("%s/backfill", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

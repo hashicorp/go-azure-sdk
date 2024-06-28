@@ -26,7 +26,8 @@ func (c AppServiceCertificateOrdersClient) RetrieveCertificateActions(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveCertificateActions", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveCertificateActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

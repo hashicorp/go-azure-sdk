@@ -28,7 +28,8 @@ func (c InvoiceClient) Amend(ctx context.Context, id BillingAccountInvoiceId) (r
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/amend", id.ID()),
+
+		Path: fmt.Sprintf("%s/amend", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c VpnServerConfigurationsClient) UpdateTags(ctx context.Context, id VpnSer
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

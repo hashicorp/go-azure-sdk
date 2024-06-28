@@ -31,7 +31,8 @@ func (c CachesClient) CreateOrUpdate(ctx context.Context, id CacheId, input Cach
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

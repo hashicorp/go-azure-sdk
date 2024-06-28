@@ -29,7 +29,8 @@ func (c VirtualNetworkGatewaysClient) DisconnectVirtualNetworkGatewayVpnConnecti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disconnectVirtualNetworkGatewayVpnConnections", id.ID()),
+
+		Path: fmt.Sprintf("%s/disconnectVirtualNetworkGatewayVpnConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

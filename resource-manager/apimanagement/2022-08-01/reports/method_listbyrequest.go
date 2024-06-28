@@ -60,7 +60,8 @@ func (c ReportsClient) ListByRequest(ctx context.Context, id ServiceId, options 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/reports/byRequest", id.ID()),
 		OptionsObject: options,
 	}

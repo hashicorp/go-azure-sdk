@@ -29,7 +29,8 @@ func (c CosmosDBClient) DatabaseAccountsFailoverPriorityChange(ctx context.Conte
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/failoverPriorityChange", id.ID()),
+
+		Path: fmt.Sprintf("%s/failoverPriorityChange", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

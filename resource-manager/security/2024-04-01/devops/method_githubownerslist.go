@@ -23,6 +23,18 @@ type GitHubOwnersListCompleteResult struct {
 	Items              []GitHubOwner
 }
 
+type GitHubOwnersListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GitHubOwnersListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GitHubOwnersList ...
 func (c DevOpsClient) GitHubOwnersList(ctx context.Context, id SecurityConnectorId) (result GitHubOwnersListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) GitHubOwnersList(ctx context.Context, id SecurityConnector
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GitHubOwnersListCustomPager{},
 		Path:       fmt.Sprintf("%s/devops/default/gitHubOwners", id.ID()),
 	}
 

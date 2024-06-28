@@ -26,7 +26,8 @@ func (c ExpressRoutePortsClient) GenerateLOA(ctx context.Context, id ExpressRout
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateLoa", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateLoa", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

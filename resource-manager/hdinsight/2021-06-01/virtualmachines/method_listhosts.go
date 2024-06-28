@@ -27,7 +27,8 @@ func (c VirtualMachinesClient) ListHosts(ctx context.Context, id commonids.HDIns
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listHosts", id.ID()),
+
+		Path: fmt.Sprintf("%s/listHosts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

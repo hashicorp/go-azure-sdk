@@ -26,7 +26,8 @@ func (c WebAppsClient) GetDiagnosticLogsConfigurationSlot(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/config/logs", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/logs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

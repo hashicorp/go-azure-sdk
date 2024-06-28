@@ -29,7 +29,8 @@ func (c LabsClient) ImportVirtualMachine(ctx context.Context, id LabId, input Im
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importVirtualMachine", id.ID()),
+
+		Path: fmt.Sprintf("%s/importVirtualMachine", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

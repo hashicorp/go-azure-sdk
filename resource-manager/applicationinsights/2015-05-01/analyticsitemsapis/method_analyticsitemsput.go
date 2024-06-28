@@ -52,7 +52,8 @@ func (c AnalyticsItemsAPIsClient) AnalyticsItemsPut(ctx context.Context, id Prov
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/item", id.ID()),
 		OptionsObject: options,
 	}

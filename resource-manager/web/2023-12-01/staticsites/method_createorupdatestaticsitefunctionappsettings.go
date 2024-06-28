@@ -26,7 +26,8 @@ func (c StaticSitesClient) CreateOrUpdateStaticSiteFunctionAppSettings(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/functionAppSettings", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/functionAppSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

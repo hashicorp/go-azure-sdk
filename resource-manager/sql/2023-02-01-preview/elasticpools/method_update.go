@@ -31,7 +31,8 @@ func (c ElasticPoolsClient) Update(ctx context.Context, id commonids.SqlElasticP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ManagedInstanceDtcsClient) CreateOrUpdate(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/dtc/current", id.ID()),
+
+		Path: fmt.Sprintf("%s/dtc/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

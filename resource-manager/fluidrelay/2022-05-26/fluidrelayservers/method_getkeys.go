@@ -26,7 +26,8 @@ func (c FluidRelayServersClient) GetKeys(ctx context.Context, id FluidRelayServe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/getKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

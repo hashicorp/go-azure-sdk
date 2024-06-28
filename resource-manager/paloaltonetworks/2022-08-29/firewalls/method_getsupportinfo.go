@@ -52,7 +52,8 @@ func (c FirewallsClient) GetSupportInfo(ctx context.Context, id FirewallId, opti
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/getSupportInfo", id.ID()),
 		OptionsObject: options,
 	}

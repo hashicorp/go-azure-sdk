@@ -26,7 +26,8 @@ func (c WebAppsClient) DeployWorkflowArtifacts(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deployWorkflowArtifacts", id.ID()),
+
+		Path: fmt.Sprintf("%s/deployWorkflowArtifacts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

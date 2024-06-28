@@ -26,7 +26,8 @@ func (c WebAppsClient) GetInstanceProcessDump(ctx context.Context, id InstancePr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/dump", id.ID()),
+
+		Path: fmt.Sprintf("%s/dump", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

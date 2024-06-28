@@ -26,7 +26,8 @@ func (c FeaturesClient) Unregister(ctx context.Context, id FeatureId) (result Un
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unregister", id.ID()),
+
+		Path: fmt.Sprintf("%s/unregister", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

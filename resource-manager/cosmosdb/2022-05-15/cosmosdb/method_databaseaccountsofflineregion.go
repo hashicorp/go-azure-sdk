@@ -29,7 +29,8 @@ func (c CosmosDBClient) DatabaseAccountsOfflineRegion(ctx context.Context, id Da
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/offlineRegion", id.ID()),
+
+		Path: fmt.Sprintf("%s/offlineRegion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

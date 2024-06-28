@@ -26,7 +26,8 @@ func (c PoliciesClient) Update(ctx context.Context, id BillingProfileId, input P
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/policies/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/policies/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

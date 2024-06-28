@@ -57,7 +57,8 @@ func (c DatabasesClient) Get(ctx context.Context, id commonids.SqlDatabaseId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

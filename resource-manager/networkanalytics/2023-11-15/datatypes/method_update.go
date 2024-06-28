@@ -30,7 +30,8 @@ func (c DataTypesClient) Update(ctx context.Context, id DataTypeId, input DataTy
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

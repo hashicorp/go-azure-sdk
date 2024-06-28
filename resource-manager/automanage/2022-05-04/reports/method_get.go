@@ -25,7 +25,8 @@ func (c ReportsClient) Get(ctx context.Context, id Providers2ConfigurationProfil
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

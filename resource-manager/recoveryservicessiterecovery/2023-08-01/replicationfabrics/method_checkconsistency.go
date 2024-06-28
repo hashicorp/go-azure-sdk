@@ -30,7 +30,8 @@ func (c ReplicationFabricsClient) CheckConsistency(ctx context.Context, id Repli
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkConsistency", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkConsistency", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c FirewallPoliciesClient) FirewallPolicyRuleCollectionGroupDraftsDelete(ct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/ruleCollectionGroupDrafts/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/ruleCollectionGroupDrafts/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

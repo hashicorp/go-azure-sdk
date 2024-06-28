@@ -26,7 +26,8 @@ func (c BatchEndpointClient) ListKeys(ctx context.Context, id BatchEndpointId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listKeys", id.ID()),
+
+		Path: fmt.Sprintf("%s/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

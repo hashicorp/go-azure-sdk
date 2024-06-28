@@ -27,7 +27,8 @@ func (c PowerBIDedicatedClient) CapacitiesListSkus(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -57,7 +57,8 @@ func (c TransformationsClient) CreateOrReplace(ctx context.Context, id Transform
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

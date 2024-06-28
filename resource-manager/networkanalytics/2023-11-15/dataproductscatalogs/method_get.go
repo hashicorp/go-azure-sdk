@@ -27,7 +27,8 @@ func (c DataProductsCatalogsClient) Get(ctx context.Context, id commonids.Resour
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

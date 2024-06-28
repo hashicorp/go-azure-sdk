@@ -30,7 +30,8 @@ func (c AppPlatformClient) ServicesEnableApmGlobally(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableApmGlobally", id.ID()),
+
+		Path: fmt.Sprintf("%s/enableApmGlobally", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

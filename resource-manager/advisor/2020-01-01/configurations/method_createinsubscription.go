@@ -27,7 +27,8 @@ func (c ConfigurationsClient) CreateInSubscription(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Advisor/configurations/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Advisor/configurations/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

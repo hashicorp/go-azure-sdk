@@ -52,7 +52,8 @@ func (c TenantAccessClient) Create(ctx context.Context, id AccessId, input Acces
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

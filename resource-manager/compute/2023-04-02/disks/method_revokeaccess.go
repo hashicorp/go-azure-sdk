@@ -30,7 +30,8 @@ func (c DisksClient) RevokeAccess(ctx context.Context, id commonids.ManagedDiskI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endGetAccess", id.ID()),
+
+		Path: fmt.Sprintf("%s/endGetAccess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

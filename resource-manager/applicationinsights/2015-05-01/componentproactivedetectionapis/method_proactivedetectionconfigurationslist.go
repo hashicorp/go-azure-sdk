@@ -26,7 +26,8 @@ func (c ComponentProactiveDetectionAPIsClient) ProactiveDetectionConfigurationsL
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/proactiveDetectionConfigs", id.ID()),
+
+		Path: fmt.Sprintf("%s/proactiveDetectionConfigs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

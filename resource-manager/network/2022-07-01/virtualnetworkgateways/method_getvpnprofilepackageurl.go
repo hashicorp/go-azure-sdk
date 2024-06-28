@@ -30,7 +30,8 @@ func (c VirtualNetworkGatewaysClient) GetVpnProfilePackageUrl(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getvpnprofilepackageurl", id.ID()),
+
+		Path: fmt.Sprintf("%s/getvpnprofilepackageurl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

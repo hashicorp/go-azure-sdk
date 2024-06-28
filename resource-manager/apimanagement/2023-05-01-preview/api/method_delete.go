@@ -58,7 +58,8 @@ func (c ApiClient) Delete(ctx context.Context, id ApiId, options DeleteOperation
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

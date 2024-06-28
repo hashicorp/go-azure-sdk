@@ -26,7 +26,8 @@ func (c SourceControlsClient) Delete(ctx context.Context, id SourceControlId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/delete", id.ID()),
+
+		Path: fmt.Sprintf("%s/delete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

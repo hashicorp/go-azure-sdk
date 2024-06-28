@@ -26,7 +26,8 @@ func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsListExpressionTrac
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listExpressionTraces", id.ID()),
+
+		Path: fmt.Sprintf("%s/listExpressionTraces", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

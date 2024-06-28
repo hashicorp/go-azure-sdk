@@ -26,7 +26,8 @@ func (c AppServiceEnvironmentsClient) Reboot(ctx context.Context, id commonids.A
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reboot", id.ID()),
+
+		Path: fmt.Sprintf("%s/reboot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

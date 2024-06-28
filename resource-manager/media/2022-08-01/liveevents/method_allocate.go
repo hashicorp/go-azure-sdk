@@ -29,7 +29,8 @@ func (c LiveEventsClient) Allocate(ctx context.Context, id LiveEventId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/allocate", id.ID()),
+
+		Path: fmt.Sprintf("%s/allocate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c RegisteredServerResourceClient) RegisteredServersListByStorageSyncServic
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/registeredServers", id.ID()),
+
+		Path: fmt.Sprintf("%s/registeredServers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

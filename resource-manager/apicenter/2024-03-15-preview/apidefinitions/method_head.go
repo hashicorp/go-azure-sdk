@@ -24,7 +24,8 @@ func (c ApiDefinitionsClient) Head(ctx context.Context, id DefinitionId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

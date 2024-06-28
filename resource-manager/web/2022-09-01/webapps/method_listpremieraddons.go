@@ -27,7 +27,8 @@ func (c WebAppsClient) ListPremierAddOns(ctx context.Context, id commonids.AppSe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/premierAddons", id.ID()),
+
+		Path: fmt.Sprintf("%s/premierAddons", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

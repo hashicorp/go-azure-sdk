@@ -25,7 +25,8 @@ func (c DeploymentsClient) CalculateTemplateHash(ctx context.Context, input inte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.Resources/calculateTemplateHash",
+
+		Path: "/providers/Microsoft.Resources/calculateTemplateHash",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

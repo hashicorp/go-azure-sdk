@@ -26,7 +26,8 @@ func (c ArcSettingsClient) GeneratePassword(ctx context.Context, id ArcSettingId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generatePassword", id.ID()),
+
+		Path: fmt.Sprintf("%s/generatePassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

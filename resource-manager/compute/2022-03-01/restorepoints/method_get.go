@@ -52,7 +52,8 @@ func (c RestorePointsClient) Get(ctx context.Context, id RestorePointId, options
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

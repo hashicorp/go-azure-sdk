@@ -26,7 +26,8 @@ func (c EdgeModulesClient) ListProvisioningToken(ctx context.Context, id EdgeMod
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listProvisioningToken", id.ID()),
+
+		Path: fmt.Sprintf("%s/listProvisioningToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

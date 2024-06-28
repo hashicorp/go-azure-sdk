@@ -24,7 +24,8 @@ func (c ApiIssueCommentClient) GetEntityTag(ctx context.Context, id CommentId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,8 @@ func (c AgreementsClient) MarketplaceAgreementsList(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.MarketplaceOrdering/agreements", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.MarketplaceOrdering/agreements", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

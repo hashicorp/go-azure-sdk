@@ -23,6 +23,18 @@ type ServerThreatProtectionSettingsListByServerCompleteResult struct {
 	Items              []ServerThreatProtectionSettingsModel
 }
 
+type ServerThreatProtectionSettingsListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ServerThreatProtectionSettingsListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ServerThreatProtectionSettingsListByServer ...
 func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsListByServer(ctx context.Context, id FlexibleServerId) (result ServerThreatProtectionSettingsListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsLi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ServerThreatProtectionSettingsListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/advancedThreatProtectionSettings", id.ID()),
 	}
 

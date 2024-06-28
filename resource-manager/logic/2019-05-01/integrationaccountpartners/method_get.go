@@ -25,7 +25,8 @@ func (c IntegrationAccountPartnersClient) Get(ctx context.Context, id PartnerId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

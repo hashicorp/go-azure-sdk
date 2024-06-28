@@ -26,7 +26,8 @@ func (c LocationsClient) CheckTrialAvailability(ctx context.Context, id Location
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkTrialAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkTrialAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

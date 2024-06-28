@@ -30,7 +30,8 @@ func (c ClustersClient) UpdateIdentityCertificate(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateClusterIdentityCertificate", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateClusterIdentityCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

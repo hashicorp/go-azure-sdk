@@ -30,7 +30,8 @@ func (c ReplicationVaultHealthClient) Refresh(ctx context.Context, id VaultId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replicationVaultHealth/default/refresh", id.ID()),
+
+		Path: fmt.Sprintf("%s/replicationVaultHealth/default/refresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c DeploymentUpdateClient) MonitorUpgrade(ctx context.Context, id MonitorId
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+
+		Path: fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

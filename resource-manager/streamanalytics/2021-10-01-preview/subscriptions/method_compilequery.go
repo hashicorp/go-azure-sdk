@@ -26,7 +26,8 @@ func (c SubscriptionsClient) CompileQuery(ctx context.Context, id LocationId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/compileQuery", id.ID()),
+
+		Path: fmt.Sprintf("%s/compileQuery", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c VirtualMachinesClient) RestrictMovement(ctx context.Context, id VirtualM
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restrictMovement", id.ID()),
+
+		Path: fmt.Sprintf("%s/restrictMovement", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c ConsumerGroupsClient) CreateOrUpdate(ctx context.Context, id ConsumerGro
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

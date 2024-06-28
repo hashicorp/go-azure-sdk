@@ -24,7 +24,8 @@ func (c LoggerClient) GetEntityTag(ctx context.Context, id LoggerId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodHead,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

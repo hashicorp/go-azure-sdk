@@ -56,7 +56,8 @@ func (c BigDataPoolsClient) CreateOrUpdate(ctx context.Context, id BigDataPoolId
 			http.StatusAccepted,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

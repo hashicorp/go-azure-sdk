@@ -58,6 +58,18 @@ func (o WorkspaceApiSchemaListByApiOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type WorkspaceApiSchemaListByApiCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiSchemaListByApiCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiSchemaListByApi ...
 func (c ApiSchemaClient) WorkspaceApiSchemaListByApi(ctx context.Context, id WorkspaceApiId, options WorkspaceApiSchemaListByApiOperationOptions) (result WorkspaceApiSchemaListByApiOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c ApiSchemaClient) WorkspaceApiSchemaListByApi(ctx context.Context, id Wor
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceApiSchemaListByApiCustomPager{},
 		Path:          fmt.Sprintf("%s/schemas", id.ID()),
 		OptionsObject: options,
 	}

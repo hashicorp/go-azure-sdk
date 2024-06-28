@@ -30,7 +30,8 @@ func (c CosmosDBClient) MongoDBResourcesMigrateMongoDBCollectionToManualThroughp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/throughputSettings/default/migrateToManualThroughput", id.ID()),
+
+		Path: fmt.Sprintf("%s/throughputSettings/default/migrateToManualThroughput", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

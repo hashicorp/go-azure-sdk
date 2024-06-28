@@ -29,7 +29,8 @@ func (c DeletedBackupInstancesClient) Undelete(ctx context.Context, id DeletedBa
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/undelete", id.ID()),
+
+		Path: fmt.Sprintf("%s/undelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

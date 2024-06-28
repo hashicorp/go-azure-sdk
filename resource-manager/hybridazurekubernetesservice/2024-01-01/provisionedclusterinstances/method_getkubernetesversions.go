@@ -27,7 +27,8 @@ func (c ProvisionedClusterInstancesClient) GetKubernetesVersions(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/kubernetesVersions/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/kubernetesVersions/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

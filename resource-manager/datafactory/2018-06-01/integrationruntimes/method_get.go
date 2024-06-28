@@ -52,7 +52,8 @@ func (c IntegrationRuntimesClient) Get(ctx context.Context, id IntegrationRuntim
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

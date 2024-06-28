@@ -25,7 +25,8 @@ func (c EventSubscriptionsClient) Get(ctx context.Context, id ScopedEventSubscri
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

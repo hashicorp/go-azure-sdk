@@ -28,7 +28,8 @@ func (c BackupsClient) UnderBackupVaultRestoreFiles(ctx context.Context, id Back
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreFiles", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreFiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

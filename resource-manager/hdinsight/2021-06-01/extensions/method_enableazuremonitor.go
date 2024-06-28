@@ -30,7 +30,8 @@ func (c ExtensionsClient) EnableAzureMonitor(ctx context.Context, id commonids.H
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
+
+		Path: fmt.Sprintf("%s/extensions/azureMonitor", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

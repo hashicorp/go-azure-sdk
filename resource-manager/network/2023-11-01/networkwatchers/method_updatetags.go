@@ -25,7 +25,8 @@ func (c NetworkWatchersClient) UpdateTags(ctx context.Context, id NetworkWatcher
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

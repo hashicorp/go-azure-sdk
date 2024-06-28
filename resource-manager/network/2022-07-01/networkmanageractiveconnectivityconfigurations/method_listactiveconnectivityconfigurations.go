@@ -26,7 +26,8 @@ func (c NetworkManagerActiveConnectivityConfigurationsClient) ListActiveConnecti
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listActiveConnectivityConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/listActiveConnectivityConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

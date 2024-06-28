@@ -61,7 +61,8 @@ func (c PrivateZonesClient) CreateOrUpdate(ctx context.Context, id PrivateDnsZon
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

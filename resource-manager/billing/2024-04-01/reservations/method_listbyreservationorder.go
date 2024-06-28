@@ -23,6 +23,18 @@ type ListByReservationOrderCompleteResult struct {
 	Items              []Reservation
 }
 
+type ListByReservationOrderCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReservationOrderCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReservationOrder ...
 func (c ReservationsClient) ListByReservationOrder(ctx context.Context, id ReservationOrderId) (result ListByReservationOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ReservationsClient) ListByReservationOrder(ctx context.Context, id Reser
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByReservationOrderCustomPager{},
 		Path:       fmt.Sprintf("%s/reservations", id.ID()),
 	}
 

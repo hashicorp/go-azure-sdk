@@ -26,7 +26,8 @@ func (c NotificationHubsClient) CheckNotificationHubAvailability(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkNotificationHubAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkNotificationHubAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

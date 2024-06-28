@@ -25,7 +25,8 @@ func (c VaultsClient) GetDeleted(ctx context.Context, id DeletedVaultId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

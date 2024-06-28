@@ -70,6 +70,18 @@ func (o ProductTemplatesListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ProductTemplatesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ProductTemplatesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ProductTemplatesList ...
 func (c ContentProductTemplatesClient) ProductTemplatesList(ctx context.Context, id WorkspaceId, options ProductTemplatesListOperationOptions) (result ProductTemplatesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -78,6 +90,7 @@ func (c ContentProductTemplatesClient) ProductTemplatesList(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ProductTemplatesListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/contentProductTemplates", id.ID()),
 		OptionsObject: options,
 	}

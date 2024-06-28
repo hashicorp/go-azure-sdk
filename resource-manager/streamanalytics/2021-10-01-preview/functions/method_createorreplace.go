@@ -57,7 +57,8 @@ func (c FunctionsClient) CreateOrReplace(ctx context.Context, id FunctionId, inp
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

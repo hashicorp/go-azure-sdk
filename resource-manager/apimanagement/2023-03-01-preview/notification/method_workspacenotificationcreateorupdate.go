@@ -52,7 +52,8 @@ func (c NotificationClient) WorkspaceNotificationCreateOrUpdate(ctx context.Cont
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

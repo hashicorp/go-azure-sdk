@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) Reprotect(ctx context.Context, id Repli
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reProtect", id.ID()),
+
+		Path: fmt.Sprintf("%s/reProtect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

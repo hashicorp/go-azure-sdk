@@ -29,7 +29,8 @@ func (c CosmosDBClient) SqlResourcesDeleteSqlTrigger(ctx context.Context, id Tri
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ListDryrunCompleteResult struct {
 	Items              []DryrunResource
 }
 
+type ListDryrunCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListDryrunCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListDryrun ...
 func (c LinkersClient) ListDryrun(ctx context.Context, id commonids.ScopeId) (result ListDryrunOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c LinkersClient) ListDryrun(ctx context.Context, id commonids.ScopeId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListDryrunCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.ServiceLinker/dryruns", id.ID()),
 	}
 

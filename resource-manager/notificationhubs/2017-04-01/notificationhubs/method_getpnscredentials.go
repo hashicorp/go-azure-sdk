@@ -26,7 +26,8 @@ func (c NotificationHubsClient) GetPnsCredentials(ctx context.Context, id Notifi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pnsCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/pnsCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

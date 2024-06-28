@@ -30,7 +30,8 @@ func (c IscsiPathsClient) CreateOrUpdate(ctx context.Context, id PrivateCloudId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/iscsiPaths/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

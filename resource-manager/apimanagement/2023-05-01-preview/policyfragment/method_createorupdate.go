@@ -56,7 +56,8 @@ func (c PolicyFragmentClient) CreateOrUpdate(ctx context.Context, id PolicyFragm
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

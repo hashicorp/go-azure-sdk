@@ -51,7 +51,8 @@ func (c JobClient) Resume(ctx context.Context, id JobId, options ResumeOperation
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/resume", id.ID()),
 		OptionsObject: options,
 	}

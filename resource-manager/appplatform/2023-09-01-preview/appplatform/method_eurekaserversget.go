@@ -27,7 +27,8 @@ func (c AppPlatformClient) EurekaServersGet(ctx context.Context, id commonids.Sp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/eurekaServers/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/eurekaServers/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

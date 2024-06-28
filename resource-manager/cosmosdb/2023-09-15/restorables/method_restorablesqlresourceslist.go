@@ -56,7 +56,8 @@ func (c RestorablesClient) RestorableSqlResourcesList(ctx context.Context, id Re
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/restorableSqlResources", id.ID()),
 		OptionsObject: options,
 	}

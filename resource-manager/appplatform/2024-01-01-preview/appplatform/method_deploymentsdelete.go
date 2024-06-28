@@ -30,7 +30,8 @@ func (c AppPlatformClient) DeploymentsDelete(ctx context.Context, id DeploymentI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

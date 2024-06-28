@@ -27,7 +27,8 @@ func (c TableServicePropertiesClient) TableServicesList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/tableServices", id.ID()),
+
+		Path: fmt.Sprintf("%s/tableServices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -28,7 +28,8 @@ func (c ClusterClient) UploadCertificate(ctx context.Context, id ClusterId, inpu
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadCertificate", id.ID()),
+
+		Path: fmt.Sprintf("%s/uploadCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

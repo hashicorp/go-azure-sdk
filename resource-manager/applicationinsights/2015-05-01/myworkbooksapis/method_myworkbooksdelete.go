@@ -25,7 +25,8 @@ func (c MyworkbooksAPIsClient) MyWorkbooksDelete(ctx context.Context, id MyWorkb
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

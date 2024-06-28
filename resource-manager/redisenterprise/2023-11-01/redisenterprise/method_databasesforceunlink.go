@@ -29,7 +29,8 @@ func (c RedisEnterpriseClient) DatabasesForceUnlink(ctx context.Context, id Data
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forceUnlink", id.ID()),
+
+		Path: fmt.Sprintf("%s/forceUnlink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

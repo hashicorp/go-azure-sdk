@@ -29,7 +29,8 @@ func (c WebAppsClient) RestoreSnapshotSlot(ctx context.Context, id SlotId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreSnapshot", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreSnapshot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

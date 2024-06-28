@@ -26,7 +26,8 @@ func (c NamespacesClient) GetPnsCredentials(ctx context.Context, id NamespaceId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pnsCredentials", id.ID()),
+
+		Path: fmt.Sprintf("%s/pnsCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

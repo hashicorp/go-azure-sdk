@@ -58,7 +58,8 @@ func (c DatabasesClient) Update(ctx context.Context, id commonids.KustoDatabaseI
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPatch,
+		HttpMethod: http.MethodPatch,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

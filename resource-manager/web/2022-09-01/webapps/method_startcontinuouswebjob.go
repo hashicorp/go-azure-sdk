@@ -25,7 +25,8 @@ func (c WebAppsClient) StartContinuousWebJob(ctx context.Context, id ContinuousW
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+
+		Path: fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

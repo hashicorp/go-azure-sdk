@@ -30,7 +30,8 @@ func (c CacheRulesClient) Create(ctx context.Context, id CacheRuleId, input Cach
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

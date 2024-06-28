@@ -26,7 +26,8 @@ func (c WebAppsClient) DiscoverBackupSlot(ctx context.Context, id SlotId, input 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/discoverbackup", id.ID()),
+
+		Path: fmt.Sprintf("%s/discoverbackup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

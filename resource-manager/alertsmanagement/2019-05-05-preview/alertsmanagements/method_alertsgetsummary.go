@@ -97,7 +97,8 @@ func (c AlertsManagementsClient) AlertsGetSummary(ctx context.Context, id common
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/alertsSummary", id.ID()),
 		OptionsObject: options,
 	}

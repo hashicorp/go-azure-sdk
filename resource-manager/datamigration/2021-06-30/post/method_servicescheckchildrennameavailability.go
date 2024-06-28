@@ -26,7 +26,8 @@ func (c POSTClient) ServicesCheckChildrenNameAvailability(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

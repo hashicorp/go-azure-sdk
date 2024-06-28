@@ -26,7 +26,8 @@ func (c AccountsClient) ListSas(ctx context.Context, id AccountId, input Account
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listSas", id.ID()),
+
+		Path: fmt.Sprintf("%s/listSas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

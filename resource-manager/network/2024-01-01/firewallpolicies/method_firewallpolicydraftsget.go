@@ -26,7 +26,8 @@ func (c FirewallPoliciesClient) FirewallPolicyDraftsGet(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/firewallPolicyDrafts/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/firewallPolicyDrafts/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

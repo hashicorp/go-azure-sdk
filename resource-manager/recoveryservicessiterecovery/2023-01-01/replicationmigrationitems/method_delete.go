@@ -55,7 +55,8 @@ func (c ReplicationMigrationItemsClient) Delete(ctx context.Context, id Replicat
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

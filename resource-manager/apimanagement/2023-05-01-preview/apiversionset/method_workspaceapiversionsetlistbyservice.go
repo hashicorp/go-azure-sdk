@@ -58,6 +58,18 @@ func (o WorkspaceApiVersionSetListByServiceOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
+type WorkspaceApiVersionSetListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiVersionSetListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiVersionSetListByService ...
 func (c ApiVersionSetClient) WorkspaceApiVersionSetListByService(ctx context.Context, id WorkspaceId, options WorkspaceApiVersionSetListByServiceOperationOptions) (result WorkspaceApiVersionSetListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,6 +78,7 @@ func (c ApiVersionSetClient) WorkspaceApiVersionSetListByService(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &WorkspaceApiVersionSetListByServiceCustomPager{},
 		Path:          fmt.Sprintf("%s/apiVersionSets", id.ID()),
 		OptionsObject: options,
 	}

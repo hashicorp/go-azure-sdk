@@ -27,7 +27,8 @@ func (c ResourceProvidersClient) CheckNameAvailability(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/checknameavailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/checknameavailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -29,7 +29,8 @@ func (c RedisEnterpriseClient) DatabasesExport(ctx context.Context, id DatabaseI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/export", id.ID()),
+
+		Path: fmt.Sprintf("%s/export", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

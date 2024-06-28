@@ -25,7 +25,8 @@ func (c AccountsClient) MediaservicesDelete(ctx context.Context, id MediaService
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

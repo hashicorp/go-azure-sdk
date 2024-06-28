@@ -52,7 +52,8 @@ func (c SqlPoolsMaintenanceWindowsClient) SqlPoolMaintenanceWindowsGet(ctx conte
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/maintenancewindows/current", id.ID()),
 		OptionsObject: options,
 	}

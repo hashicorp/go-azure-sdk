@@ -27,7 +27,8 @@ func (c ConnectionGatewaysClient) ConnectionGatewaysList(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Web/connectionGateways", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.Web/connectionGateways", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

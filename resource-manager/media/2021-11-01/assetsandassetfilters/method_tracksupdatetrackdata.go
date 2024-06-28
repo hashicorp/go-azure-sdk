@@ -28,7 +28,8 @@ func (c AssetsAndAssetFiltersClient) TracksUpdateTrackData(ctx context.Context, 
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateTrackData", id.ID()),
+
+		Path: fmt.Sprintf("%s/updateTrackData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

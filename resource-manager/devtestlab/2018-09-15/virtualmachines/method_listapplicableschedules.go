@@ -26,7 +26,8 @@ func (c VirtualMachinesClient) ListApplicableSchedules(ctx context.Context, id V
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listApplicableSchedules", id.ID()),
+
+		Path: fmt.Sprintf("%s/listApplicableSchedules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

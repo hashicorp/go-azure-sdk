@@ -25,7 +25,8 @@ func (c ResourceManagementPrivateLinkClient) Delete(ctx context.Context, id Reso
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c WebAppsClient) GetInstanceProcessModule(ctx context.Context, id Instance
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

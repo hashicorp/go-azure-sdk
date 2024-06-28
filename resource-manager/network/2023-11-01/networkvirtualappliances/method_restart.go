@@ -30,7 +30,8 @@ func (c NetworkVirtualAppliancesClient) Restart(ctx context.Context, id NetworkV
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+
+		Path: fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

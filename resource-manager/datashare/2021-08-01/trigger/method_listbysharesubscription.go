@@ -24,6 +24,18 @@ type ListByShareSubscriptionCompleteResult struct {
 	Items              []Trigger
 }
 
+type ListByShareSubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByShareSubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByShareSubscription ...
 func (c TriggerClient) ListByShareSubscription(ctx context.Context, id ShareSubscriptionId) (result ListByShareSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c TriggerClient) ListByShareSubscription(ctx context.Context, id ShareSubs
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByShareSubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/triggers", id.ID()),
 	}
 

@@ -25,7 +25,8 @@ func (c NotificationChannelsClient) Notify(ctx context.Context, id NotificationC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/notify", id.ID()),
+
+		Path: fmt.Sprintf("%s/notify", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

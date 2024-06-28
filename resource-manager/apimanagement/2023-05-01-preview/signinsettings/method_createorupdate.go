@@ -52,7 +52,8 @@ func (c SignInSettingsClient) CreateOrUpdate(ctx context.Context, id ServiceId, 
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          fmt.Sprintf("%s/portalsettings/signin", id.ID()),
 		OptionsObject: options,
 	}

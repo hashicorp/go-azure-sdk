@@ -25,7 +25,8 @@ func (c SecurityConnectorsClient) Update(ctx context.Context, id SecurityConnect
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c VirtualMachineInstancesClient) Delete(ctx context.Context, id commonids.
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

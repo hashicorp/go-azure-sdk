@@ -52,7 +52,8 @@ func (c SoftwareUpdateConfigurationClient) GetByName(ctx context.Context, id Sof
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

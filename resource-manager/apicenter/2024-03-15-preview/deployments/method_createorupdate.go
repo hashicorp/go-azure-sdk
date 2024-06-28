@@ -26,7 +26,8 @@ func (c DeploymentsClient) CreateOrUpdate(ctx context.Context, id DeploymentId, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

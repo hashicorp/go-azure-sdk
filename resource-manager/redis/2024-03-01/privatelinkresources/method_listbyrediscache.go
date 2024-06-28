@@ -26,7 +26,8 @@ func (c PrivateLinkResourcesClient) ListByRedisCache(ctx context.Context, id Red
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
+
+		Path: fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -30,7 +30,8 @@ func (c ProvisionedClusterInstancesClient) DeleteVMSkus(ctx context.Context, id 
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/skus/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/skus/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

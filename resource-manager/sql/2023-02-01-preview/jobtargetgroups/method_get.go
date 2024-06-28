@@ -25,7 +25,8 @@ func (c JobTargetGroupsClient) Get(ctx context.Context, id TargetGroupId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c IntegrationAccountBatchConfigurationsClient) List(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/batchConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/batchConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

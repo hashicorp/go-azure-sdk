@@ -26,7 +26,8 @@ func (c FirewallRulesClient) ListByServer(ctx context.Context, id ServerId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/firewallRules", id.ID()),
+
+		Path: fmt.Sprintf("%s/firewallRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

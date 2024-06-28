@@ -26,7 +26,8 @@ func (c ClustersClient) Get(ctx context.Context, id commonids.HDInsightClusterId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

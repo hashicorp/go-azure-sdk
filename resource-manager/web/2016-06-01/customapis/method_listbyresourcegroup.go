@@ -57,7 +57,8 @@ func (c CustomAPIsClient) ListByResourceGroup(ctx context.Context, id commonids.
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Web/customApis", id.ID()),
 		OptionsObject: options,
 	}

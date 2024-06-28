@@ -50,6 +50,18 @@ func (o GetAvailableStacksOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetAvailableStacksCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAvailableStacksCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAvailableStacks ...
 func (c ProviderClient) GetAvailableStacks(ctx context.Context, options GetAvailableStacksOperationOptions) (result GetAvailableStacksOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c ProviderClient) GetAvailableStacks(ctx context.Context, options GetAvail
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &GetAvailableStacksCustomPager{},
 		Path:          "/providers/Microsoft.Web/availableStacks",
 		OptionsObject: options,
 	}

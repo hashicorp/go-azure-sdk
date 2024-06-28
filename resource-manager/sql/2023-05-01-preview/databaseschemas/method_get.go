@@ -25,7 +25,8 @@ func (c DatabaseSchemasClient) Get(ctx context.Context, id SchemaId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

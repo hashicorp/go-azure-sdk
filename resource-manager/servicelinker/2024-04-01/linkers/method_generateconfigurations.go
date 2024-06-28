@@ -26,7 +26,8 @@ func (c LinkersClient) GenerateConfigurations(ctx context.Context, id ScopedLink
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateConfigurations", id.ID()),
+
+		Path: fmt.Sprintf("%s/generateConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

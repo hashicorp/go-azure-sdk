@@ -30,7 +30,8 @@ func (c TenantConfigurationClient) Save(ctx context.Context, id ServiceId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tenant/configuration/save", id.ID()),
+
+		Path: fmt.Sprintf("%s/tenant/configuration/save", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

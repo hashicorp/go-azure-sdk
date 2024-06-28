@@ -25,7 +25,8 @@ func (c PoliciesClient) Update(ctx context.Context, id PolicyId, input UpdateRes
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

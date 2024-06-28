@@ -30,7 +30,8 @@ func (c SubscriptionsClient) TestQuery(ctx context.Context, id LocationId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/testQuery", id.ID()),
+
+		Path: fmt.Sprintf("%s/testQuery", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

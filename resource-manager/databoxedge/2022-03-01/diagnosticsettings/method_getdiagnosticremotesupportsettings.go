@@ -26,7 +26,8 @@ func (c DiagnosticSettingsClient) GetDiagnosticRemoteSupportSettings(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/diagnosticRemoteSupportSettings/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/diagnosticRemoteSupportSettings/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

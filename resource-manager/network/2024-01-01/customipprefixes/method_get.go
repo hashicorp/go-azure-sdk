@@ -52,7 +52,8 @@ func (c CustomIPPrefixesClient) Get(ctx context.Context, id CustomIPPrefixId, op
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

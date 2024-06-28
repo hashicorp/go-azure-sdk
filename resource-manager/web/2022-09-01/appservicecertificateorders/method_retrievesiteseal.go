@@ -26,7 +26,8 @@ func (c AppServiceCertificateOrdersClient) RetrieveSiteSeal(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retrieveSiteSeal", id.ID()),
+
+		Path: fmt.Sprintf("%s/retrieveSiteSeal", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

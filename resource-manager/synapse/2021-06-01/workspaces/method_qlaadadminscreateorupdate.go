@@ -30,7 +30,8 @@ func (c WorkspacesClient) QlAadAdminsCreateOrUpdate(ctx context.Context, id Work
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
+
+		Path: fmt.Sprintf("%s/sqlAdministrators/activeDirectory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

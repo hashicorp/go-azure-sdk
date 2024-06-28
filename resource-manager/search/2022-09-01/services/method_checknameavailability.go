@@ -53,7 +53,8 @@ func (c ServicesClient) CheckNameAvailability(ctx context.Context, id commonids.
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Search/checkNameAvailability", id.ID()),
 		OptionsObject: options,
 	}

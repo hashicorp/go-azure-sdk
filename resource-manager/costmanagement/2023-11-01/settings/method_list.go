@@ -27,7 +27,8 @@ func (c SettingsClient) List(ctx context.Context, id commonids.ScopeId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.CostManagement/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

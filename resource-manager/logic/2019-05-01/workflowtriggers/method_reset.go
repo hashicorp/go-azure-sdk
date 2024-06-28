@@ -25,7 +25,8 @@ func (c WorkflowTriggersClient) Reset(ctx context.Context, id TriggerId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c PricingsClient) Update(ctx context.Context, id PricingId, input Pricing)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

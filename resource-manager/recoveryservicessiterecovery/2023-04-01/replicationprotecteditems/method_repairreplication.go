@@ -30,7 +30,8 @@ func (c ReplicationProtectedItemsClient) RepairReplication(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/repairReplication", id.ID()),
+
+		Path: fmt.Sprintf("%s/repairReplication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

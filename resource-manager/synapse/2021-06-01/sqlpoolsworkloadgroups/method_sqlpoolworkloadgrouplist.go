@@ -23,6 +23,18 @@ type SqlPoolWorkloadGroupListCompleteResult struct {
 	Items              []WorkloadGroup
 }
 
+type SqlPoolWorkloadGroupListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolWorkloadGroupListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolWorkloadGroupList ...
 func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupList(ctx context.Context, id SqlPoolId) (result SqlPoolWorkloadGroupListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupList(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolWorkloadGroupListCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadGroups", id.ID()),
 	}
 

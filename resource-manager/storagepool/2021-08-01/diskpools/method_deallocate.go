@@ -29,7 +29,8 @@ func (c DiskPoolsClient) Deallocate(ctx context.Context, id DiskPoolId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deallocate", id.ID()),
+
+		Path: fmt.Sprintf("%s/deallocate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

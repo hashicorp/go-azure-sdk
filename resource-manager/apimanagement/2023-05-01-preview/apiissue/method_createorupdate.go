@@ -53,7 +53,8 @@ func (c ApiIssueClient) CreateOrUpdate(ctx context.Context, id ApiIssueId, input
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

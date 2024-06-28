@@ -29,7 +29,8 @@ func (c PoolChangeClient) VolumesPoolChange(ctx context.Context, id VolumeId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/poolChange", id.ID()),
+
+		Path: fmt.Sprintf("%s/poolChange", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

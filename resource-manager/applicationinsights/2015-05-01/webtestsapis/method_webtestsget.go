@@ -25,7 +25,8 @@ func (c WebTestsAPIsClient) WebTestsGet(ctx context.Context, id WebTestId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

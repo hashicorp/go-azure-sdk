@@ -25,7 +25,8 @@ func (c SyncGroupsClient) CancelSync(ctx context.Context, id SyncGroupId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelSync", id.ID()),
+
+		Path: fmt.Sprintf("%s/cancelSync", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

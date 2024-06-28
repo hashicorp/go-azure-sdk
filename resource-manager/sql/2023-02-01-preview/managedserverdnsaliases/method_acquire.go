@@ -30,7 +30,8 @@ func (c ManagedServerDnsAliasesClient) Acquire(ctx context.Context, id ManagedIn
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/acquire", id.ID()),
+
+		Path: fmt.Sprintf("%s/acquire", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

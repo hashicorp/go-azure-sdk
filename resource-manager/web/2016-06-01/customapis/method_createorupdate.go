@@ -25,7 +25,8 @@ func (c CustomAPIsClient) CreateOrUpdate(ctx context.Context, id CustomApiId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

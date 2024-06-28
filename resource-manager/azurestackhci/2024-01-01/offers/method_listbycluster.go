@@ -50,6 +50,18 @@ func (o ListByClusterOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByCluster ...
 func (c OffersClient) ListByCluster(ctx context.Context, id ClusterId, options ListByClusterOperationOptions) (result ListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,6 +70,7 @@ func (c OffersClient) ListByCluster(ctx context.Context, id ClusterId, options L
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
+		Pager:         &ListByClusterCustomPager{},
 		Path:          fmt.Sprintf("%s/offers", id.ID()),
 		OptionsObject: options,
 	}

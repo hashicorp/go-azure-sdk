@@ -31,7 +31,8 @@ func (c VirtualMachineInstancesClient) CreateOrUpdate(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

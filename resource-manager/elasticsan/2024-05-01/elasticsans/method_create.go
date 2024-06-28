@@ -30,7 +30,8 @@ func (c ElasticSansClient) Create(ctx context.Context, id ElasticSanId, input El
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

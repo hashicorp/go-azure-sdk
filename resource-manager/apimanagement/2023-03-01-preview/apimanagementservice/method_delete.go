@@ -31,7 +31,8 @@ func (c ApiManagementServiceClient) Delete(ctx context.Context, id ServiceId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

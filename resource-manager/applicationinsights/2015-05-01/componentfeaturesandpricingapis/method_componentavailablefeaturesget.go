@@ -26,7 +26,8 @@ func (c ComponentFeaturesAndPricingAPIsClient) ComponentAvailableFeaturesGet(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/getavailablebillingfeatures", id.ID()),
+
+		Path: fmt.Sprintf("%s/getavailablebillingfeatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

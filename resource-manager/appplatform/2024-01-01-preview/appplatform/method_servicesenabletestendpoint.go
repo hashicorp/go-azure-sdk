@@ -27,7 +27,8 @@ func (c AppPlatformClient) ServicesEnableTestEndpoint(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableTestEndpoint", id.ID()),
+
+		Path: fmt.Sprintf("%s/enableTestEndpoint", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

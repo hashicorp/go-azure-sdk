@@ -56,7 +56,8 @@ func (c LiveEventsClient) Create(ctx context.Context, id LiveEventId, input Live
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodPut,
+		HttpMethod: http.MethodPut,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

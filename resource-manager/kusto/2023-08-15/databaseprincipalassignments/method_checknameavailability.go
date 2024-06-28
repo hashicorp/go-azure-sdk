@@ -27,7 +27,8 @@ func (c DatabasePrincipalAssignmentsClient) CheckNameAvailability(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkPrincipalAssignmentNameAvailability", id.ID()),
+
+		Path: fmt.Sprintf("%s/checkPrincipalAssignmentNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ContentKeyPoliciesClient) GetPolicyPropertiesWithSecrets(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getPolicyPropertiesWithSecrets", id.ID()),
+
+		Path: fmt.Sprintf("%s/getPolicyPropertiesWithSecrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

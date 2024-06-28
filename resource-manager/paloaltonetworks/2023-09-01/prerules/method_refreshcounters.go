@@ -51,7 +51,8 @@ func (c PreRulesClient) RefreshCounters(ctx context.Context, id PreRuleId, optio
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/refreshCounters", id.ID()),
 		OptionsObject: options,
 	}

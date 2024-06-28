@@ -26,7 +26,8 @@ func (c DeploymentInfoClient) List(ctx context.Context, id MonitorId) (result Li
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listDeploymentInfo", id.ID()),
+
+		Path: fmt.Sprintf("%s/listDeploymentInfo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

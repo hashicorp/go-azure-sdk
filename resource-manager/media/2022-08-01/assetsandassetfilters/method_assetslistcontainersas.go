@@ -26,7 +26,8 @@ func (c AssetsAndAssetFiltersClient) AssetsListContainerSas(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listContainerSas", id.ID()),
+
+		Path: fmt.Sprintf("%s/listContainerSas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

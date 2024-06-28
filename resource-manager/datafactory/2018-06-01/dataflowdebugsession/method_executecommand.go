@@ -30,7 +30,8 @@ func (c DataFlowDebugSessionClient) ExecuteCommand(ctx context.Context, id Facto
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/executeDataFlowDebugCommand", id.ID()),
+
+		Path: fmt.Sprintf("%s/executeDataFlowDebugCommand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

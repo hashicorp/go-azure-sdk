@@ -27,7 +27,8 @@ func (c AnalysisServicesClient) ServersListSkusForNew(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.AnalysisServices/skus", id.ID()),
+
+		Path: fmt.Sprintf("%s/providers/Microsoft.AnalysisServices/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

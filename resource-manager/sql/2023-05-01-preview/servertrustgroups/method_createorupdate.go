@@ -31,7 +31,8 @@ func (c ServerTrustGroupsClient) CreateOrUpdate(ctx context.Context, id ServerTr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

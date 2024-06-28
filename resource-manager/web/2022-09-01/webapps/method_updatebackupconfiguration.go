@@ -27,7 +27,8 @@ func (c WebAppsClient) UpdateBackupConfiguration(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/config/backup", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/backup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

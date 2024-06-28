@@ -29,7 +29,8 @@ func (c WebAppsClient) RestoreFromDeletedAppSlot(ctx context.Context, id SlotId,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreFromDeletedApp", id.ID()),
+
+		Path: fmt.Sprintf("%s/restoreFromDeletedApp", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

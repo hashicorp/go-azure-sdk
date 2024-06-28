@@ -25,7 +25,8 @@ func (c BackupVaultsClient) Get(ctx context.Context, id BackupVaultId) (result G
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

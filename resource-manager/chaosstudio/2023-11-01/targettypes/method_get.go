@@ -25,7 +25,8 @@ func (c TargetTypesClient) Get(ctx context.Context, id TargetTypeId) (result Get
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

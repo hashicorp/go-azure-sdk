@@ -25,7 +25,8 @@ func (c RouteFiltersClient) UpdateTags(ctx context.Context, id RouteFilterId, in
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

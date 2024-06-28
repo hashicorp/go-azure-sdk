@@ -27,7 +27,8 @@ func (c QueueServicePropertiesClient) QueueServicesSetServiceProperties(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/queueServices/default", id.ID()),
+
+		Path: fmt.Sprintf("%s/queueServices/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

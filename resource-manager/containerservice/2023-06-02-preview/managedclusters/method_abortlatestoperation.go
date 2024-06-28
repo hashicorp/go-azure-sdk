@@ -30,7 +30,8 @@ func (c ManagedClustersClient) AbortLatestOperation(ctx context.Context, id comm
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/abort", id.ID()),
+
+		Path: fmt.Sprintf("%s/abort", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

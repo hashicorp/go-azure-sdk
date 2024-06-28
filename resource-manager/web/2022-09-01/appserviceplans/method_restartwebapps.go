@@ -52,7 +52,8 @@ func (c AppServicePlansClient) RestartWebApps(ctx context.Context, id commonids.
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodPost,
+		HttpMethod: http.MethodPost,
+
 		Path:          fmt.Sprintf("%s/restartSites", id.ID()),
 		OptionsObject: options,
 	}

@@ -31,7 +31,8 @@ func (c P2sVpnGatewaysClient) Reset(ctx context.Context, id commonids.VirtualWAN
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reset", id.ID()),
+
+		Path: fmt.Sprintf("%s/reset", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

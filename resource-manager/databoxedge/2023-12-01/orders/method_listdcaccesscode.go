@@ -26,7 +26,8 @@ func (c OrdersClient) ListDCAccessCode(ctx context.Context, id DataBoxEdgeDevice
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/orders/default/listDCAccessCode", id.ID()),
+
+		Path: fmt.Sprintf("%s/orders/default/listDCAccessCode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

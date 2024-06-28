@@ -26,7 +26,8 @@ func (c EventSourcesClient) ListByEnvironment(ctx context.Context, id Environmen
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/eventSources", id.ID()),
+
+		Path: fmt.Sprintf("%s/eventSources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

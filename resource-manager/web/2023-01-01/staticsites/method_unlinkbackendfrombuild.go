@@ -52,7 +52,8 @@ func (c StaticSitesClient) UnlinkBackendFromBuild(ctx context.Context, id BuildL
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

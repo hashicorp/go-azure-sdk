@@ -29,7 +29,8 @@ func (c CosmosDBClient) CassandraResourcesDeleteCassandraTable(ctx context.Conte
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

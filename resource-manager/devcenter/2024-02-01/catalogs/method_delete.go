@@ -29,7 +29,8 @@ func (c CatalogsClient) Delete(ctx context.Context, id DevCenterCatalogId) (resu
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c RemediationsClient) DeleteAtManagementGroup(ctx context.Context, id Prov
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

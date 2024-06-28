@@ -29,7 +29,8 @@ func (c WebAppsClient) ListPublishingCredentialsSlot(ctx context.Context, id Slo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/config/publishingcredentials/list", id.ID()),
+
+		Path: fmt.Sprintf("%s/config/publishingcredentials/list", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

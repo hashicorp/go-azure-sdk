@@ -26,7 +26,8 @@ func (c FieResourceClient) FilesCreateOrUpdate(ctx context.Context, id FileId, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

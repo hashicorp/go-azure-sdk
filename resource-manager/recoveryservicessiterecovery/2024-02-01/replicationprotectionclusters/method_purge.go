@@ -29,7 +29,8 @@ func (c ReplicationProtectionClustersClient) Purge(ctx context.Context, id Repli
 			http.StatusNoContent,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

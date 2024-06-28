@@ -26,7 +26,8 @@ func (c AlertRuleIncidentsClient) ListByAlertRule(ctx context.Context, id AlertR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/incidents", id.ID()),
+
+		Path: fmt.Sprintf("%s/incidents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

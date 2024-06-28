@@ -52,7 +52,8 @@ func (c PipelinesClient) Get(ctx context.Context, id PipelineId, options GetOper
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
+		HttpMethod: http.MethodGet,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

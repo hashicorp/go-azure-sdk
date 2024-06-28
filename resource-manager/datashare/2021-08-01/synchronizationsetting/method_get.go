@@ -26,7 +26,8 @@ func (c SynchronizationSettingClient) Get(ctx context.Context, id Synchronizatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

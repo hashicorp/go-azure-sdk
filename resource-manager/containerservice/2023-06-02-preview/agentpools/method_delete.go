@@ -55,7 +55,8 @@ func (c AgentPoolsClient) Delete(ctx context.Context, id AgentPoolId, options De
 			http.StatusAccepted,
 			http.StatusNoContent,
 		},
-		HttpMethod:    http.MethodDelete,
+		HttpMethod: http.MethodDelete,
+
 		Path:          id.ID(),
 		OptionsObject: options,
 	}

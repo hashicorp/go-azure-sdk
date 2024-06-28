@@ -25,7 +25,8 @@ func (c CapacitiesClient) GetDetails(ctx context.Context, id CapacityId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,7 +25,8 @@ func (c TableServiceClient) TableUpdate(ctx context.Context, id TableId, input T
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+
+		Path: id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

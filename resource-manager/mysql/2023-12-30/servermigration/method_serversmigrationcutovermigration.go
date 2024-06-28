@@ -30,7 +30,8 @@ func (c ServerMigrationClient) ServersMigrationCutoverMigration(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cutoverMigration", id.ID()),
+
+		Path: fmt.Sprintf("%s/cutoverMigration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

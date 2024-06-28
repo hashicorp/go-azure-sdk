@@ -26,7 +26,8 @@ func (c OnlineDeploymentClient) GetLogs(ctx context.Context, id OnlineEndpointDe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getLogs", id.ID()),
+
+		Path: fmt.Sprintf("%s/getLogs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,8 @@ func (c ManagedClustersClient) ListKubernetesVersions(ctx context.Context, id Lo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/kubernetesVersions", id.ID()),
+
+		Path: fmt.Sprintf("%s/kubernetesVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
