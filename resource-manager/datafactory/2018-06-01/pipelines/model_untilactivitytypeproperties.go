@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UntilActivityTypeProperties struct {
-	Activities []Activity   `json:"activities"`
-	Expression Expression   `json:"expression"`
-	Timeout    *interface{} `json:"timeout,omitempty"`
+	Activities []Activity `json:"activities"`
+	Expression Expression `json:"expression"`
+	Timeout    *string    `json:"timeout,omitempty"`
 }
 
 var _ json.Unmarshaler = &UntilActivityTypeProperties{}

@@ -12,10 +12,10 @@ var _ FormatReadSettings = XmlReadSettings{}
 
 type XmlReadSettings struct {
 	CompressionProperties CompressionReadSettings `json:"compressionProperties"`
-	DetectDataType        *interface{}            `json:"detectDataType,omitempty"`
-	NamespacePrefixes     *interface{}            `json:"namespacePrefixes,omitempty"`
-	Namespaces            *interface{}            `json:"namespaces,omitempty"`
-	ValidationMode        *interface{}            `json:"validationMode,omitempty"`
+	DetectDataType        *bool                   `json:"detectDataType,omitempty"`
+	NamespacePrefixes     *map[string]string      `json:"namespacePrefixes,omitempty"`
+	Namespaces            *bool                   `json:"namespaces,omitempty"`
+	ValidationMode        *string                 `json:"validationMode,omitempty"`
 
 	// Fields inherited from FormatReadSettings
 }

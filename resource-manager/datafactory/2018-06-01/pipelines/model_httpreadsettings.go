@@ -12,14 +12,14 @@ var _ StoreReadSettings = HTTPReadSettings{}
 
 type HTTPReadSettings struct {
 	AdditionalColumns *interface{} `json:"additionalColumns,omitempty"`
-	AdditionalHeaders *interface{} `json:"additionalHeaders,omitempty"`
-	RequestBody       *interface{} `json:"requestBody,omitempty"`
-	RequestMethod     *interface{} `json:"requestMethod,omitempty"`
-	RequestTimeout    *interface{} `json:"requestTimeout,omitempty"`
+	AdditionalHeaders *string      `json:"additionalHeaders,omitempty"`
+	RequestBody       *string      `json:"requestBody,omitempty"`
+	RequestMethod     *string      `json:"requestMethod,omitempty"`
+	RequestTimeout    *string      `json:"requestTimeout,omitempty"`
 
 	// Fields inherited from StoreReadSettings
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
+	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
 }
 
 var _ json.Marshaler = HTTPReadSettings{}

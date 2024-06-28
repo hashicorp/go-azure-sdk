@@ -11,7 +11,7 @@ import (
 var _ CompressionReadSettings = TarGZipReadSettings{}
 
 type TarGZipReadSettings struct {
-	PreserveCompressionFileNameAsFolder *interface{} `json:"preserveCompressionFileNameAsFolder,omitempty"`
+	PreserveCompressionFileNameAsFolder *bool `json:"preserveCompressionFileNameAsFolder,omitempty"`
 
 	// Fields inherited from CompressionReadSettings
 }

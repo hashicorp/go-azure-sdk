@@ -11,19 +11,19 @@ import (
 var _ CopySink = WarehouseSink{}
 
 type WarehouseSink struct {
-	AllowCopyCommand    *interface{}           `json:"allowCopyCommand,omitempty"`
+	AllowCopyCommand    *bool                  `json:"allowCopyCommand,omitempty"`
 	CopyCommandSettings *DWCopyCommandSettings `json:"copyCommandSettings,omitempty"`
-	PreCopyScript       *interface{}           `json:"preCopyScript,omitempty"`
-	TableOption         *interface{}           `json:"tableOption,omitempty"`
-	WriteBehavior       *interface{}           `json:"writeBehavior,omitempty"`
+	PreCopyScript       *string                `json:"preCopyScript,omitempty"`
+	TableOption         *string                `json:"tableOption,omitempty"`
+	WriteBehavior       *string                `json:"writeBehavior,omitempty"`
 
 	// Fields inherited from CopySink
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *interface{} `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
-	WriteBatchSize           *interface{} `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
 }
 
 var _ json.Marshaler = WarehouseSink{}

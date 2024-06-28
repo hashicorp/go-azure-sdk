@@ -11,13 +11,13 @@ import (
 type QuickBooksLinkedServiceTypeProperties struct {
 	AccessToken           SecretBase   `json:"accessToken"`
 	AccessTokenSecret     SecretBase   `json:"accessTokenSecret"`
-	CompanyId             *interface{} `json:"companyId,omitempty"`
+	CompanyId             *string      `json:"companyId,omitempty"`
 	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
-	ConsumerKey           *interface{} `json:"consumerKey,omitempty"`
+	ConsumerKey           *string      `json:"consumerKey,omitempty"`
 	ConsumerSecret        SecretBase   `json:"consumerSecret"`
 	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Endpoint              *interface{} `json:"endpoint,omitempty"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
+	Endpoint              *string      `json:"endpoint,omitempty"`
+	UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
 }
 
 var _ json.Unmarshaler = &QuickBooksLinkedServiceTypeProperties{}

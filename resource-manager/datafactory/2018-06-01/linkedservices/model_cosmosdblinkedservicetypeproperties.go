@@ -9,18 +9,18 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CosmosDbLinkedServiceTypeProperties struct {
-	AccountEndpoint                *interface{}            `json:"accountEndpoint,omitempty"`
+	AccountEndpoint                *string                 `json:"accountEndpoint,omitempty"`
 	AccountKey                     SecretBase              `json:"accountKey"`
-	AzureCloudType                 *interface{}            `json:"azureCloudType,omitempty"`
+	AzureCloudType                 *string                 `json:"azureCloudType,omitempty"`
 	ConnectionMode                 *CosmosDbConnectionMode `json:"connectionMode,omitempty"`
-	ConnectionString               *interface{}            `json:"connectionString,omitempty"`
+	ConnectionString               *string                 `json:"connectionString,omitempty"`
 	Credential                     *CredentialReference    `json:"credential,omitempty"`
-	Database                       *interface{}            `json:"database,omitempty"`
+	Database                       *string                 `json:"database,omitempty"`
 	EncryptedCredential            *string                 `json:"encryptedCredential,omitempty"`
 	ServicePrincipalCredential     SecretBase              `json:"servicePrincipalCredential"`
-	ServicePrincipalCredentialType *interface{}            `json:"servicePrincipalCredentialType,omitempty"`
-	ServicePrincipalId             *interface{}            `json:"servicePrincipalId,omitempty"`
-	Tenant                         *interface{}            `json:"tenant,omitempty"`
+	ServicePrincipalCredentialType *string                 `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalId             *string                 `json:"servicePrincipalId,omitempty"`
+	Tenant                         *string                 `json:"tenant,omitempty"`
 }
 
 var _ json.Unmarshaler = &CosmosDbLinkedServiceTypeProperties{}

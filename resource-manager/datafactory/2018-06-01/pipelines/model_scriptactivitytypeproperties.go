@@ -5,6 +5,6 @@ package pipelines
 
 type ScriptActivityTypeProperties struct {
 	LogSettings                 *ScriptActivityTypePropertiesLogSettings `json:"logSettings,omitempty"`
-	ScriptBlockExecutionTimeout *interface{}                             `json:"scriptBlockExecutionTimeout,omitempty"`
+	ScriptBlockExecutionTimeout *string                                  `json:"scriptBlockExecutionTimeout,omitempty"`
 	Scripts                     *[]ScriptActivityScriptBlock             `json:"scripts,omitempty"`
 }

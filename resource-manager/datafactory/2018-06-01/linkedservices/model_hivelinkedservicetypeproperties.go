@@ -9,23 +9,23 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HiveLinkedServiceTypeProperties struct {
-	AllowHostNameCNMismatch   *interface{}                 `json:"allowHostNameCNMismatch,omitempty"`
-	AllowSelfSignedServerCert *interface{}                 `json:"allowSelfSignedServerCert,omitempty"`
+	AllowHostNameCNMismatch   *bool                        `json:"allowHostNameCNMismatch,omitempty"`
+	AllowSelfSignedServerCert *bool                        `json:"allowSelfSignedServerCert,omitempty"`
 	AuthenticationType        HiveAuthenticationType       `json:"authenticationType"`
-	EnableSsl                 *interface{}                 `json:"enableSsl,omitempty"`
+	EnableSsl                 *bool                        `json:"enableSsl,omitempty"`
 	EncryptedCredential       *string                      `json:"encryptedCredential,omitempty"`
-	HTTPPath                  *interface{}                 `json:"httpPath,omitempty"`
-	Host                      interface{}                  `json:"host"`
+	HTTPPath                  *string                      `json:"httpPath,omitempty"`
+	Host                      string                       `json:"host"`
 	Password                  SecretBase                   `json:"password"`
-	Port                      *interface{}                 `json:"port,omitempty"`
+	Port                      *int64                       `json:"port,omitempty"`
 	ServerType                *HiveServerType              `json:"serverType,omitempty"`
-	ServiceDiscoveryMode      *interface{}                 `json:"serviceDiscoveryMode,omitempty"`
+	ServiceDiscoveryMode      *bool                        `json:"serviceDiscoveryMode,omitempty"`
 	ThriftTransportProtocol   *HiveThriftTransportProtocol `json:"thriftTransportProtocol,omitempty"`
-	TrustedCertPath           *interface{}                 `json:"trustedCertPath,omitempty"`
-	UseNativeQuery            *interface{}                 `json:"useNativeQuery,omitempty"`
-	UseSystemTrustStore       *interface{}                 `json:"useSystemTrustStore,omitempty"`
-	Username                  *interface{}                 `json:"username,omitempty"`
-	ZooKeeperNameSpace        *interface{}                 `json:"zooKeeperNameSpace,omitempty"`
+	TrustedCertPath           *string                      `json:"trustedCertPath,omitempty"`
+	UseNativeQuery            *bool                        `json:"useNativeQuery,omitempty"`
+	UseSystemTrustStore       *bool                        `json:"useSystemTrustStore,omitempty"`
+	Username                  *string                      `json:"username,omitempty"`
+	ZooKeeperNameSpace        *string                      `json:"zooKeeperNameSpace,omitempty"`
 }
 
 var _ json.Unmarshaler = &HiveLinkedServiceTypeProperties{}

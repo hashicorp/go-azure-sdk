@@ -11,12 +11,12 @@ import (
 var _ DatasetLocation = GoogleCloudStorageLocation{}
 
 type GoogleCloudStorageLocation struct {
-	BucketName *interface{} `json:"bucketName,omitempty"`
-	Version    *interface{} `json:"version,omitempty"`
+	BucketName *string `json:"bucketName,omitempty"`
+	Version    *string `json:"version,omitempty"`
 
 	// Fields inherited from DatasetLocation
-	FileName   *interface{} `json:"fileName,omitempty"`
-	FolderPath *interface{} `json:"folderPath,omitempty"`
+	FileName   *string `json:"fileName,omitempty"`
+	FolderPath *string `json:"folderPath,omitempty"`
 }
 
 var _ json.Marshaler = GoogleCloudStorageLocation{}

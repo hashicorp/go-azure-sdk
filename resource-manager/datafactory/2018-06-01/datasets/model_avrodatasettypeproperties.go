@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AvroDatasetTypeProperties struct {
-	AvroCompressionCodec *interface{}    `json:"avroCompressionCodec,omitempty"`
+	AvroCompressionCodec *string         `json:"avroCompressionCodec,omitempty"`
 	AvroCompressionLevel *int64          `json:"avroCompressionLevel,omitempty"`
 	Location             DatasetLocation `json:"location"`
 }

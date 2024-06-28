@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataFlowStagingInfo struct {
-	FolderPath    *interface{} `json:"folderPath,omitempty"`
-	LinkedService Reference    `json:"linkedService"`
+	FolderPath    *string   `json:"folderPath,omitempty"`
+	LinkedService Reference `json:"linkedService"`
 }
 
 var _ json.Unmarshaler = &DataFlowStagingInfo{}

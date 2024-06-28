@@ -12,11 +12,11 @@ type XeroLinkedServiceTypeProperties struct {
 	ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
 	ConsumerKey           SecretBase   `json:"consumerKey"`
 	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Host                  *interface{} `json:"host,omitempty"`
+	Host                  *string      `json:"host,omitempty"`
 	PrivateKey            SecretBase   `json:"privateKey"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+	UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
 }
 
 var _ json.Unmarshaler = &XeroLinkedServiceTypeProperties{}

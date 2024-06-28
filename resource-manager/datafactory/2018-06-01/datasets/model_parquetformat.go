@@ -13,8 +13,8 @@ var _ DatasetStorageFormat = ParquetFormat{}
 type ParquetFormat struct {
 
 	// Fields inherited from DatasetStorageFormat
-	Deserializer *interface{} `json:"deserializer,omitempty"`
-	Serializer   *interface{} `json:"serializer,omitempty"`
+	Deserializer *string `json:"deserializer,omitempty"`
+	Serializer   *string `json:"serializer,omitempty"`
 }
 
 var _ json.Marshaler = ParquetFormat{}

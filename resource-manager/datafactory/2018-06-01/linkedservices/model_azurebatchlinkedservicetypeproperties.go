@@ -10,12 +10,12 @@ import (
 
 type AzureBatchLinkedServiceTypeProperties struct {
 	AccessKey           SecretBase             `json:"accessKey"`
-	AccountName         interface{}            `json:"accountName"`
-	BatchUri            interface{}            `json:"batchUri"`
+	AccountName         string                 `json:"accountName"`
+	BatchUri            string                 `json:"batchUri"`
 	Credential          *CredentialReference   `json:"credential,omitempty"`
 	EncryptedCredential *string                `json:"encryptedCredential,omitempty"`
 	LinkedServiceName   LinkedServiceReference `json:"linkedServiceName"`
-	PoolName            interface{}            `json:"poolName"`
+	PoolName            string                 `json:"poolName"`
 }
 
 var _ json.Unmarshaler = &AzureBatchLinkedServiceTypeProperties{}

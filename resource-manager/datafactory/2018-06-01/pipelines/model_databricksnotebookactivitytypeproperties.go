@@ -4,7 +4,7 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DatabricksNotebookActivityTypeProperties struct {
-	BaseParameters *map[string]interface{}   `json:"baseParameters,omitempty"`
+	BaseParameters *map[string]string        `json:"baseParameters,omitempty"`
 	Libraries      *[]map[string]interface{} `json:"libraries,omitempty"`
-	NotebookPath   interface{}               `json:"notebookPath"`
+	NotebookPath   string                    `json:"notebookPath"`
 }

@@ -6,11 +6,11 @@ package pipelines
 type ExecuteDataFlowActivityTypeProperties struct {
 	Compute                  *ExecuteDataFlowActivityTypePropertiesCompute `json:"compute,omitempty"`
 	ContinuationSettings     *ContinuationSettingsReference                `json:"continuationSettings,omitempty"`
-	ContinueOnError          *interface{}                                  `json:"continueOnError,omitempty"`
+	ContinueOnError          *bool                                         `json:"continueOnError,omitempty"`
 	DataFlow                 DataFlowReference                             `json:"dataFlow"`
 	IntegrationRuntime       *IntegrationRuntimeReference                  `json:"integrationRuntime,omitempty"`
-	RunConcurrently          *interface{}                                  `json:"runConcurrently,omitempty"`
-	SourceStagingConcurrency *interface{}                                  `json:"sourceStagingConcurrency,omitempty"`
+	RunConcurrently          *bool                                         `json:"runConcurrently,omitempty"`
+	SourceStagingConcurrency *int64                                        `json:"sourceStagingConcurrency,omitempty"`
 	Staging                  *DataFlowStagingInfo                          `json:"staging,omitempty"`
-	TraceLevel               *interface{}                                  `json:"traceLevel,omitempty"`
+	TraceLevel               *string                                       `json:"traceLevel,omitempty"`
 }

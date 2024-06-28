@@ -12,16 +12,16 @@ var _ CopySource = CosmosDbMongoDbApiSource{}
 
 type CosmosDbMongoDbApiSource struct {
 	AdditionalColumns *interface{}                    `json:"additionalColumns,omitempty"`
-	BatchSize         *interface{}                    `json:"batchSize,omitempty"`
+	BatchSize         *int64                          `json:"batchSize,omitempty"`
 	CursorMethods     *MongoDbCursorMethodsProperties `json:"cursorMethods,omitempty"`
-	Filter            *interface{}                    `json:"filter,omitempty"`
-	QueryTimeout      *interface{}                    `json:"queryTimeout,omitempty"`
+	Filter            *string                         `json:"filter,omitempty"`
+	QueryTimeout      *string                         `json:"queryTimeout,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = CosmosDbMongoDbApiSource{}

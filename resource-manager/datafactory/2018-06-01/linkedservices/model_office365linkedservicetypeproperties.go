@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Office365LinkedServiceTypeProperties struct {
-	EncryptedCredential      *string     `json:"encryptedCredential,omitempty"`
-	Office365TenantId        interface{} `json:"office365TenantId"`
-	ServicePrincipalId       interface{} `json:"servicePrincipalId"`
-	ServicePrincipalKey      SecretBase  `json:"servicePrincipalKey"`
-	ServicePrincipalTenantId interface{} `json:"servicePrincipalTenantId"`
+	EncryptedCredential      *string    `json:"encryptedCredential,omitempty"`
+	Office365TenantId        string     `json:"office365TenantId"`
+	ServicePrincipalId       string     `json:"servicePrincipalId"`
+	ServicePrincipalKey      SecretBase `json:"servicePrincipalKey"`
+	ServicePrincipalTenantId string     `json:"servicePrincipalTenantId"`
 }
 
 var _ json.Unmarshaler = &Office365LinkedServiceTypeProperties{}

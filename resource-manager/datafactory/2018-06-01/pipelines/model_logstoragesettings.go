@@ -4,8 +4,8 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LogStorageSettings struct {
-	EnableReliableLogging *interface{}           `json:"enableReliableLogging,omitempty"`
+	EnableReliableLogging *bool                  `json:"enableReliableLogging,omitempty"`
 	LinkedServiceName     LinkedServiceReference `json:"linkedServiceName"`
-	LogLevel              *interface{}           `json:"logLevel,omitempty"`
-	Path                  *interface{}           `json:"path,omitempty"`
+	LogLevel              *string                `json:"logLevel,omitempty"`
+	Path                  *string                `json:"path,omitempty"`
 }

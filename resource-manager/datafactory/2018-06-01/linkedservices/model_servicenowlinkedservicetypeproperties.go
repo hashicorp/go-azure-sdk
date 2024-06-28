@@ -10,15 +10,15 @@ import (
 
 type ServiceNowLinkedServiceTypeProperties struct {
 	AuthenticationType    ServiceNowAuthenticationType `json:"authenticationType"`
-	ClientId              *interface{}                 `json:"clientId,omitempty"`
+	ClientId              *string                      `json:"clientId,omitempty"`
 	ClientSecret          SecretBase                   `json:"clientSecret"`
 	EncryptedCredential   *string                      `json:"encryptedCredential,omitempty"`
-	Endpoint              interface{}                  `json:"endpoint"`
+	Endpoint              string                       `json:"endpoint"`
 	Password              SecretBase                   `json:"password"`
-	UseEncryptedEndpoints *interface{}                 `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{}                 `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{}                 `json:"usePeerVerification,omitempty"`
-	Username              *interface{}                 `json:"username,omitempty"`
+	UseEncryptedEndpoints *bool                        `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool                        `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool                        `json:"usePeerVerification,omitempty"`
+	Username              *string                      `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &ServiceNowLinkedServiceTypeProperties{}

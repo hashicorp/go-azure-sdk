@@ -10,12 +10,12 @@ import (
 
 type FileShareDatasetTypeProperties struct {
 	Compression           *DatasetCompression  `json:"compression,omitempty"`
-	FileFilter            *interface{}         `json:"fileFilter,omitempty"`
-	FileName              *interface{}         `json:"fileName,omitempty"`
-	FolderPath            *interface{}         `json:"folderPath,omitempty"`
+	FileFilter            *string              `json:"fileFilter,omitempty"`
+	FileName              *string              `json:"fileName,omitempty"`
+	FolderPath            *string              `json:"folderPath,omitempty"`
 	Format                DatasetStorageFormat `json:"format"`
-	ModifiedDatetimeEnd   *interface{}         `json:"modifiedDatetimeEnd,omitempty"`
-	ModifiedDatetimeStart *interface{}         `json:"modifiedDatetimeStart,omitempty"`
+	ModifiedDatetimeEnd   *string              `json:"modifiedDatetimeEnd,omitempty"`
+	ModifiedDatetimeStart *string              `json:"modifiedDatetimeStart,omitempty"`
 }
 
 var _ json.Unmarshaler = &FileShareDatasetTypeProperties{}

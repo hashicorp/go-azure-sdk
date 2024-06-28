@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AmazonS3CompatibleLinkedServiceTypeProperties struct {
-	AccessKeyId         *interface{} `json:"accessKeyId,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	ForcePathStyle      *interface{} `json:"forcePathStyle,omitempty"`
-	SecretAccessKey     SecretBase   `json:"secretAccessKey"`
-	ServiceUrl          *interface{} `json:"serviceUrl,omitempty"`
+	AccessKeyId         *string    `json:"accessKeyId,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	ForcePathStyle      *bool      `json:"forcePathStyle,omitempty"`
+	SecretAccessKey     SecretBase `json:"secretAccessKey"`
+	ServiceUrl          *string    `json:"serviceUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &AmazonS3CompatibleLinkedServiceTypeProperties{}

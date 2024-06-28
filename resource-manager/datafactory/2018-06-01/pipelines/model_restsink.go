@@ -11,19 +11,19 @@ import (
 var _ CopySink = RestSink{}
 
 type RestSink struct {
-	AdditionalHeaders   *interface{} `json:"additionalHeaders,omitempty"`
-	HTTPCompressionType *interface{} `json:"httpCompressionType,omitempty"`
-	HTTPRequestTimeout  *interface{} `json:"httpRequestTimeout,omitempty"`
-	RequestInterval     *interface{} `json:"requestInterval,omitempty"`
-	RequestMethod       *interface{} `json:"requestMethod,omitempty"`
+	AdditionalHeaders   *map[string]string `json:"additionalHeaders,omitempty"`
+	HTTPCompressionType *string            `json:"httpCompressionType,omitempty"`
+	HTTPRequestTimeout  *string            `json:"httpRequestTimeout,omitempty"`
+	RequestInterval     *interface{}       `json:"requestInterval,omitempty"`
+	RequestMethod       *string            `json:"requestMethod,omitempty"`
 
 	// Fields inherited from CopySink
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *interface{} `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
-	WriteBatchSize           *interface{} `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
 }
 
 var _ json.Marshaler = RestSink{}

@@ -10,21 +10,21 @@ import (
 
 type GoogleAdWordsLinkedServiceTypeProperties struct {
 	AuthenticationType     *GoogleAdWordsAuthenticationType `json:"authenticationType,omitempty"`
-	ClientCustomerID       *interface{}                     `json:"clientCustomerID,omitempty"`
-	ClientId               *interface{}                     `json:"clientId,omitempty"`
+	ClientCustomerID       *string                          `json:"clientCustomerID,omitempty"`
+	ClientId               *string                          `json:"clientId,omitempty"`
 	ClientSecret           SecretBase                       `json:"clientSecret"`
 	ConnectionProperties   *interface{}                     `json:"connectionProperties,omitempty"`
 	DeveloperToken         SecretBase                       `json:"developerToken"`
-	Email                  *interface{}                     `json:"email,omitempty"`
+	Email                  *string                          `json:"email,omitempty"`
 	EncryptedCredential    *string                          `json:"encryptedCredential,omitempty"`
-	GoogleAdsApiVersion    *interface{}                     `json:"googleAdsApiVersion,omitempty"`
-	KeyFilePath            *interface{}                     `json:"keyFilePath,omitempty"`
-	LoginCustomerID        *interface{}                     `json:"loginCustomerID,omitempty"`
+	GoogleAdsApiVersion    *string                          `json:"googleAdsApiVersion,omitempty"`
+	KeyFilePath            *string                          `json:"keyFilePath,omitempty"`
+	LoginCustomerID        *string                          `json:"loginCustomerID,omitempty"`
 	PrivateKey             SecretBase                       `json:"privateKey"`
 	RefreshToken           SecretBase                       `json:"refreshToken"`
-	SupportLegacyDataTypes *interface{}                     `json:"supportLegacyDataTypes,omitempty"`
-	TrustedCertPath        *interface{}                     `json:"trustedCertPath,omitempty"`
-	UseSystemTrustStore    *interface{}                     `json:"useSystemTrustStore,omitempty"`
+	SupportLegacyDataTypes *bool                            `json:"supportLegacyDataTypes,omitempty"`
+	TrustedCertPath        *string                          `json:"trustedCertPath,omitempty"`
+	UseSystemTrustStore    *bool                            `json:"useSystemTrustStore,omitempty"`
 }
 
 var _ json.Unmarshaler = &GoogleAdWordsLinkedServiceTypeProperties{}

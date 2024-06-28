@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TwilioLinkedServiceTypeProperties struct {
-	Password SecretBase  `json:"password"`
-	UserName interface{} `json:"userName"`
+	Password SecretBase `json:"password"`
+	UserName string     `json:"userName"`
 }
 
 var _ json.Unmarshaler = &TwilioLinkedServiceTypeProperties{}

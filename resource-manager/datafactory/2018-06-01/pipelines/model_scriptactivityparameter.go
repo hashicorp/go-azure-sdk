@@ -5,8 +5,8 @@ package pipelines
 
 type ScriptActivityParameter struct {
 	Direction *ScriptActivityParameterDirection `json:"direction,omitempty"`
-	Name      *interface{}                      `json:"name,omitempty"`
+	Name      *string                           `json:"name,omitempty"`
 	Size      *int64                            `json:"size,omitempty"`
 	Type      *ScriptActivityParameterType      `json:"type,omitempty"`
-	Value     *interface{}                      `json:"value,omitempty"`
+	Value     *string                           `json:"value,omitempty"`
 }

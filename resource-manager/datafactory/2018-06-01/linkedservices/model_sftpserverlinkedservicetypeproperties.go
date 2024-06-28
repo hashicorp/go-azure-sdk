@@ -11,15 +11,15 @@ import (
 type SftpServerLinkedServiceTypeProperties struct {
 	AuthenticationType    *SftpAuthenticationType `json:"authenticationType,omitempty"`
 	EncryptedCredential   *string                 `json:"encryptedCredential,omitempty"`
-	Host                  interface{}             `json:"host"`
-	HostKeyFingerprint    *interface{}            `json:"hostKeyFingerprint,omitempty"`
+	Host                  string                  `json:"host"`
+	HostKeyFingerprint    *string                 `json:"hostKeyFingerprint,omitempty"`
 	PassPhrase            SecretBase              `json:"passPhrase"`
 	Password              SecretBase              `json:"password"`
-	Port                  *interface{}            `json:"port,omitempty"`
+	Port                  *int64                  `json:"port,omitempty"`
 	PrivateKeyContent     SecretBase              `json:"privateKeyContent"`
-	PrivateKeyPath        *interface{}            `json:"privateKeyPath,omitempty"`
-	SkipHostKeyValidation *interface{}            `json:"skipHostKeyValidation,omitempty"`
-	UserName              *interface{}            `json:"userName,omitempty"`
+	PrivateKeyPath        *string                 `json:"privateKeyPath,omitempty"`
+	SkipHostKeyValidation *bool                   `json:"skipHostKeyValidation,omitempty"`
+	UserName              *string                 `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &SftpServerLinkedServiceTypeProperties{}

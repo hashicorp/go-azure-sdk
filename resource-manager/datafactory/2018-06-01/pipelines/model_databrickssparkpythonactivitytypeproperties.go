@@ -5,6 +5,6 @@ package pipelines
 
 type DatabricksSparkPythonActivityTypeProperties struct {
 	Libraries  *[]map[string]interface{} `json:"libraries,omitempty"`
-	Parameters *[]interface{}            `json:"parameters,omitempty"`
-	PythonFile interface{}               `json:"pythonFile"`
+	Parameters *[]string                 `json:"parameters,omitempty"`
+	PythonFile string                    `json:"pythonFile"`
 }

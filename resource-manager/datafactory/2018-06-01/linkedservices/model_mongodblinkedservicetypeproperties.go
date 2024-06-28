@@ -9,16 +9,16 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MongoDbLinkedServiceTypeProperties struct {
-	AllowSelfSignedServerCert *interface{}               `json:"allowSelfSignedServerCert,omitempty"`
-	AuthSource                *interface{}               `json:"authSource,omitempty"`
+	AllowSelfSignedServerCert *bool                      `json:"allowSelfSignedServerCert,omitempty"`
+	AuthSource                *string                    `json:"authSource,omitempty"`
 	AuthenticationType        *MongoDbAuthenticationType `json:"authenticationType,omitempty"`
-	DatabaseName              interface{}                `json:"databaseName"`
-	EnableSsl                 *interface{}               `json:"enableSsl,omitempty"`
+	DatabaseName              string                     `json:"databaseName"`
+	EnableSsl                 *bool                      `json:"enableSsl,omitempty"`
 	EncryptedCredential       *string                    `json:"encryptedCredential,omitempty"`
 	Password                  SecretBase                 `json:"password"`
-	Port                      *interface{}               `json:"port,omitempty"`
-	Server                    interface{}                `json:"server"`
-	Username                  *interface{}               `json:"username,omitempty"`
+	Port                      *int64                     `json:"port,omitempty"`
+	Server                    string                     `json:"server"`
+	Username                  *string                    `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &MongoDbLinkedServiceTypeProperties{}

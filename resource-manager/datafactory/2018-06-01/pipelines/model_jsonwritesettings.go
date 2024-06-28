@@ -11,7 +11,7 @@ import (
 var _ FormatWriteSettings = JsonWriteSettings{}
 
 type JsonWriteSettings struct {
-	FilePattern *interface{} `json:"filePattern,omitempty"`
+	FilePattern *string `json:"filePattern,omitempty"`
 
 	// Fields inherited from FormatWriteSettings
 }

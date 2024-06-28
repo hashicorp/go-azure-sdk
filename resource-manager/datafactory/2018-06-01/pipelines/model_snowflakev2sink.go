@@ -12,15 +12,15 @@ var _ CopySink = SnowflakeV2Sink{}
 
 type SnowflakeV2Sink struct {
 	ImportSettings *SnowflakeImportCopyCommand `json:"importSettings,omitempty"`
-	PreCopyScript  *interface{}                `json:"preCopyScript,omitempty"`
+	PreCopyScript  *string                     `json:"preCopyScript,omitempty"`
 
 	// Fields inherited from CopySink
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *interface{} `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
-	WriteBatchSize           *interface{} `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
 }
 
 var _ json.Marshaler = SnowflakeV2Sink{}

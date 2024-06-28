@@ -9,20 +9,20 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ODataLinkedServiceTypeProperties struct {
-	AadResourceId                        *interface{}                            `json:"aadResourceId,omitempty"`
+	AadResourceId                        *string                                 `json:"aadResourceId,omitempty"`
 	AadServicePrincipalCredentialType    *ODataAadServicePrincipalCredentialType `json:"aadServicePrincipalCredentialType,omitempty"`
-	AuthHeaders                          *interface{}                            `json:"authHeaders,omitempty"`
+	AuthHeaders                          *map[string]string                      `json:"authHeaders,omitempty"`
 	AuthenticationType                   *ODataAuthenticationType                `json:"authenticationType,omitempty"`
-	AzureCloudType                       *interface{}                            `json:"azureCloudType,omitempty"`
+	AzureCloudType                       *string                                 `json:"azureCloudType,omitempty"`
 	EncryptedCredential                  *string                                 `json:"encryptedCredential,omitempty"`
 	Password                             SecretBase                              `json:"password"`
 	ServicePrincipalEmbeddedCert         SecretBase                              `json:"servicePrincipalEmbeddedCert"`
 	ServicePrincipalEmbeddedCertPassword SecretBase                              `json:"servicePrincipalEmbeddedCertPassword"`
-	ServicePrincipalId                   *interface{}                            `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalId                   *string                                 `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey                  SecretBase                              `json:"servicePrincipalKey"`
-	Tenant                               *interface{}                            `json:"tenant,omitempty"`
-	Url                                  interface{}                             `json:"url"`
-	UserName                             *interface{}                            `json:"userName,omitempty"`
+	Tenant                               *string                                 `json:"tenant,omitempty"`
+	Url                                  string                                  `json:"url"`
+	UserName                             *string                                 `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &ODataLinkedServiceTypeProperties{}

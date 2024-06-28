@@ -10,14 +10,14 @@ import (
 
 type Db2LinkedServiceTypeProperties struct {
 	AuthenticationType    *Db2AuthenticationType `json:"authenticationType,omitempty"`
-	CertificateCommonName *interface{}           `json:"certificateCommonName,omitempty"`
-	ConnectionString      *interface{}           `json:"connectionString,omitempty"`
-	Database              *interface{}           `json:"database,omitempty"`
+	CertificateCommonName *string                `json:"certificateCommonName,omitempty"`
+	ConnectionString      *string                `json:"connectionString,omitempty"`
+	Database              *string                `json:"database,omitempty"`
 	EncryptedCredential   *string                `json:"encryptedCredential,omitempty"`
-	PackageCollection     *interface{}           `json:"packageCollection,omitempty"`
+	PackageCollection     *string                `json:"packageCollection,omitempty"`
 	Password              SecretBase             `json:"password"`
-	Server                *interface{}           `json:"server,omitempty"`
-	Username              *interface{}           `json:"username,omitempty"`
+	Server                *string                `json:"server,omitempty"`
+	Username              *string                `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &Db2LinkedServiceTypeProperties{}

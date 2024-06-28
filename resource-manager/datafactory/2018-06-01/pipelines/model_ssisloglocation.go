@@ -4,7 +4,7 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SSISLogLocation struct {
-	LogPath        interface{}                   `json:"logPath"`
+	LogPath        string                        `json:"logPath"`
 	Type           SsisLogLocationType           `json:"type"`
 	TypeProperties SSISLogLocationTypeProperties `json:"typeProperties"`
 }

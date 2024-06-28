@@ -12,7 +12,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TumblingWindowTriggerTypeProperties struct {
-	Delay          *interface{}            `json:"delay,omitempty"`
+	Delay          *string                 `json:"delay,omitempty"`
 	DependsOn      *[]DependencyReference  `json:"dependsOn,omitempty"`
 	EndTime        *string                 `json:"endTime,omitempty"`
 	Frequency      TumblingWindowFrequency `json:"frequency"`

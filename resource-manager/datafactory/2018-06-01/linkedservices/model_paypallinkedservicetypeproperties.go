@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PaypalLinkedServiceTypeProperties struct {
-	ClientId              interface{}  `json:"clientId"`
-	ClientSecret          SecretBase   `json:"clientSecret"`
-	EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
-	Host                  interface{}  `json:"host"`
-	UseEncryptedEndpoints *interface{} `json:"useEncryptedEndpoints,omitempty"`
-	UseHostVerification   *interface{} `json:"useHostVerification,omitempty"`
-	UsePeerVerification   *interface{} `json:"usePeerVerification,omitempty"`
+	ClientId              string     `json:"clientId"`
+	ClientSecret          SecretBase `json:"clientSecret"`
+	EncryptedCredential   *string    `json:"encryptedCredential,omitempty"`
+	Host                  string     `json:"host"`
+	UseEncryptedEndpoints *bool      `json:"useEncryptedEndpoints,omitempty"`
+	UseHostVerification   *bool      `json:"useHostVerification,omitempty"`
+	UsePeerVerification   *bool      `json:"usePeerVerification,omitempty"`
 }
 
 var _ json.Unmarshaler = &PaypalLinkedServiceTypeProperties{}

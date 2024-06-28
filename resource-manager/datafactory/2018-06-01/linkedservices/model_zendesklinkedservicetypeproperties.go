@@ -13,8 +13,8 @@ type ZendeskLinkedServiceTypeProperties struct {
 	AuthenticationType  ZendeskAuthenticationType `json:"authenticationType"`
 	EncryptedCredential *string                   `json:"encryptedCredential,omitempty"`
 	Password            SecretBase                `json:"password"`
-	Url                 interface{}               `json:"url"`
-	UserName            *interface{}              `json:"userName,omitempty"`
+	Url                 string                    `json:"url"`
+	UserName            *string                   `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &ZendeskLinkedServiceTypeProperties{}

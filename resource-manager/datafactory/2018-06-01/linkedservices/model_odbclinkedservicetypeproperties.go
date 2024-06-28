@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OdbcLinkedServiceTypeProperties struct {
-	AuthenticationType  *interface{} `json:"authenticationType,omitempty"`
-	ConnectionString    interface{}  `json:"connectionString"`
-	Credential          SecretBase   `json:"credential"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Password            SecretBase   `json:"password"`
-	UserName            *interface{} `json:"userName,omitempty"`
+	AuthenticationType  *string    `json:"authenticationType,omitempty"`
+	ConnectionString    string     `json:"connectionString"`
+	Credential          SecretBase `json:"credential"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Password            SecretBase `json:"password"`
+	UserName            *string    `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &OdbcLinkedServiceTypeProperties{}

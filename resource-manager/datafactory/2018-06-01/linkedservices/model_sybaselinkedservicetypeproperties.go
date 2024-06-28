@@ -10,12 +10,12 @@ import (
 
 type SybaseLinkedServiceTypeProperties struct {
 	AuthenticationType  *SybaseAuthenticationType `json:"authenticationType,omitempty"`
-	Database            interface{}               `json:"database"`
+	Database            string                    `json:"database"`
 	EncryptedCredential *string                   `json:"encryptedCredential,omitempty"`
 	Password            SecretBase                `json:"password"`
-	Schema              *interface{}              `json:"schema,omitempty"`
-	Server              interface{}               `json:"server"`
-	Username            *interface{}              `json:"username,omitempty"`
+	Schema              *string                   `json:"schema,omitempty"`
+	Server              string                    `json:"server"`
+	Username            *string                   `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &SybaseLinkedServiceTypeProperties{}

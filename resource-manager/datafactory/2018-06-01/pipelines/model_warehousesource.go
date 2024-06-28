@@ -12,19 +12,19 @@ var _ CopySource = WarehouseSource{}
 
 type WarehouseSource struct {
 	AdditionalColumns            *interface{}          `json:"additionalColumns,omitempty"`
-	IsolationLevel               *interface{}          `json:"isolationLevel,omitempty"`
+	IsolationLevel               *string               `json:"isolationLevel,omitempty"`
 	PartitionOption              *interface{}          `json:"partitionOption,omitempty"`
 	PartitionSettings            *SqlPartitionSettings `json:"partitionSettings,omitempty"`
-	QueryTimeout                 *interface{}          `json:"queryTimeout,omitempty"`
-	SqlReaderQuery               *interface{}          `json:"sqlReaderQuery,omitempty"`
-	SqlReaderStoredProcedureName *interface{}          `json:"sqlReaderStoredProcedureName,omitempty"`
+	QueryTimeout                 *string               `json:"queryTimeout,omitempty"`
+	SqlReaderQuery               *string               `json:"sqlReaderQuery,omitempty"`
+	SqlReaderStoredProcedureName *string               `json:"sqlReaderStoredProcedureName,omitempty"`
 	StoredProcedureParameters    *interface{}          `json:"storedProcedureParameters,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = WarehouseSource{}

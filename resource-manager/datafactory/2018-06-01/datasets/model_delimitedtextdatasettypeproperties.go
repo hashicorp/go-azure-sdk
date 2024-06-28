@@ -9,16 +9,16 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DelimitedTextDatasetTypeProperties struct {
-	ColumnDelimiter  *interface{}    `json:"columnDelimiter,omitempty"`
-	CompressionCodec *interface{}    `json:"compressionCodec,omitempty"`
-	CompressionLevel *interface{}    `json:"compressionLevel,omitempty"`
-	EncodingName     *interface{}    `json:"encodingName,omitempty"`
-	EscapeChar       *interface{}    `json:"escapeChar,omitempty"`
-	FirstRowAsHeader *interface{}    `json:"firstRowAsHeader,omitempty"`
+	ColumnDelimiter  *string         `json:"columnDelimiter,omitempty"`
+	CompressionCodec *string         `json:"compressionCodec,omitempty"`
+	CompressionLevel *string         `json:"compressionLevel,omitempty"`
+	EncodingName     *string         `json:"encodingName,omitempty"`
+	EscapeChar       *string         `json:"escapeChar,omitempty"`
+	FirstRowAsHeader *bool           `json:"firstRowAsHeader,omitempty"`
 	Location         DatasetLocation `json:"location"`
-	NullValue        *interface{}    `json:"nullValue,omitempty"`
-	QuoteChar        *interface{}    `json:"quoteChar,omitempty"`
-	RowDelimiter     *interface{}    `json:"rowDelimiter,omitempty"`
+	NullValue        *string         `json:"nullValue,omitempty"`
+	QuoteChar        *string         `json:"quoteChar,omitempty"`
+	RowDelimiter     *string         `json:"rowDelimiter,omitempty"`
 }
 
 var _ json.Unmarshaler = &DelimitedTextDatasetTypeProperties{}

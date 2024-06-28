@@ -4,5 +4,5 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SSISExecutionParameter struct {
-	Value interface{} `json:"value"`
+	Value string `json:"value"`
 }

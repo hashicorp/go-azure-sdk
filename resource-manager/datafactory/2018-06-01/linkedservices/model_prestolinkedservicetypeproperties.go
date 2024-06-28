@@ -9,20 +9,20 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrestoLinkedServiceTypeProperties struct {
-	AllowHostNameCNMismatch   *interface{}             `json:"allowHostNameCNMismatch,omitempty"`
-	AllowSelfSignedServerCert *interface{}             `json:"allowSelfSignedServerCert,omitempty"`
+	AllowHostNameCNMismatch   *bool                    `json:"allowHostNameCNMismatch,omitempty"`
+	AllowSelfSignedServerCert *bool                    `json:"allowSelfSignedServerCert,omitempty"`
 	AuthenticationType        PrestoAuthenticationType `json:"authenticationType"`
-	Catalog                   interface{}              `json:"catalog"`
-	EnableSsl                 *interface{}             `json:"enableSsl,omitempty"`
+	Catalog                   string                   `json:"catalog"`
+	EnableSsl                 *bool                    `json:"enableSsl,omitempty"`
 	EncryptedCredential       *string                  `json:"encryptedCredential,omitempty"`
-	Host                      interface{}              `json:"host"`
+	Host                      string                   `json:"host"`
 	Password                  SecretBase               `json:"password"`
-	Port                      *interface{}             `json:"port,omitempty"`
-	ServerVersion             interface{}              `json:"serverVersion"`
-	TimeZoneID                *interface{}             `json:"timeZoneID,omitempty"`
-	TrustedCertPath           *interface{}             `json:"trustedCertPath,omitempty"`
-	UseSystemTrustStore       *interface{}             `json:"useSystemTrustStore,omitempty"`
-	Username                  *interface{}             `json:"username,omitempty"`
+	Port                      *int64                   `json:"port,omitempty"`
+	ServerVersion             string                   `json:"serverVersion"`
+	TimeZoneID                *string                  `json:"timeZoneID,omitempty"`
+	TrustedCertPath           *string                  `json:"trustedCertPath,omitempty"`
+	UseSystemTrustStore       *bool                    `json:"useSystemTrustStore,omitempty"`
+	Username                  *string                  `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &PrestoLinkedServiceTypeProperties{}

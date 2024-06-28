@@ -9,15 +9,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HTTPLinkedServiceTypeProperties struct {
-	AuthHeaders                       *interface{}            `json:"authHeaders,omitempty"`
+	AuthHeaders                       *map[string]string      `json:"authHeaders,omitempty"`
 	AuthenticationType                *HTTPAuthenticationType `json:"authenticationType,omitempty"`
-	CertThumbprint                    *interface{}            `json:"certThumbprint,omitempty"`
-	EmbeddedCertData                  *interface{}            `json:"embeddedCertData,omitempty"`
-	EnableServerCertificateValidation *interface{}            `json:"enableServerCertificateValidation,omitempty"`
+	CertThumbprint                    *string                 `json:"certThumbprint,omitempty"`
+	EmbeddedCertData                  *string                 `json:"embeddedCertData,omitempty"`
+	EnableServerCertificateValidation *bool                   `json:"enableServerCertificateValidation,omitempty"`
 	EncryptedCredential               *string                 `json:"encryptedCredential,omitempty"`
 	Password                          SecretBase              `json:"password"`
-	Url                               interface{}             `json:"url"`
-	UserName                          *interface{}            `json:"userName,omitempty"`
+	Url                               string                  `json:"url"`
+	UserName                          *string                 `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &HTTPLinkedServiceTypeProperties{}

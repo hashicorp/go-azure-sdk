@@ -10,7 +10,7 @@ import (
 
 type OrcDatasetTypeProperties struct {
 	Location            DatasetLocation `json:"location"`
-	OrcCompressionCodec *interface{}    `json:"orcCompressionCodec,omitempty"`
+	OrcCompressionCodec *string         `json:"orcCompressionCodec,omitempty"`
 }
 
 var _ json.Unmarshaler = &OrcDatasetTypeProperties{}

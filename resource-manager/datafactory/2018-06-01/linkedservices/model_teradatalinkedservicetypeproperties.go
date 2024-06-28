@@ -10,11 +10,11 @@ import (
 
 type TeradataLinkedServiceTypeProperties struct {
 	AuthenticationType  *TeradataAuthenticationType `json:"authenticationType,omitempty"`
-	ConnectionString    *interface{}                `json:"connectionString,omitempty"`
+	ConnectionString    *string                     `json:"connectionString,omitempty"`
 	EncryptedCredential *string                     `json:"encryptedCredential,omitempty"`
 	Password            SecretBase                  `json:"password"`
-	Server              *interface{}                `json:"server,omitempty"`
-	Username            *interface{}                `json:"username,omitempty"`
+	Server              *string                     `json:"server,omitempty"`
+	Username            *string                     `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &TeradataLinkedServiceTypeProperties{}

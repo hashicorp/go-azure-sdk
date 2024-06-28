@@ -10,10 +10,10 @@ import (
 
 type DeleteActivityTypeProperties struct {
 	Dataset                  DatasetReference    `json:"dataset"`
-	EnableLogging            *interface{}        `json:"enableLogging,omitempty"`
+	EnableLogging            *bool               `json:"enableLogging,omitempty"`
 	LogStorageSettings       *LogStorageSettings `json:"logStorageSettings,omitempty"`
 	MaxConcurrentConnections *int64              `json:"maxConcurrentConnections,omitempty"`
-	Recursive                *interface{}        `json:"recursive,omitempty"`
+	Recursive                *bool               `json:"recursive,omitempty"`
 	StoreSettings            StoreReadSettings   `json:"storeSettings"`
 }
 

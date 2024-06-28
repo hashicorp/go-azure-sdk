@@ -12,17 +12,17 @@ var _ CopySource = SapOpenHubSource{}
 
 type SapOpenHubSource struct {
 	AdditionalColumns                *interface{} `json:"additionalColumns,omitempty"`
-	BaseRequestId                    *interface{} `json:"baseRequestId,omitempty"`
-	CustomRfcReadTableFunctionModule *interface{} `json:"customRfcReadTableFunctionModule,omitempty"`
-	ExcludeLastRequest               *interface{} `json:"excludeLastRequest,omitempty"`
-	QueryTimeout                     *interface{} `json:"queryTimeout,omitempty"`
-	SapDataColumnDelimiter           *interface{} `json:"sapDataColumnDelimiter,omitempty"`
+	BaseRequestId                    *int64       `json:"baseRequestId,omitempty"`
+	CustomRfcReadTableFunctionModule *string      `json:"customRfcReadTableFunctionModule,omitempty"`
+	ExcludeLastRequest               *bool        `json:"excludeLastRequest,omitempty"`
+	QueryTimeout                     *string      `json:"queryTimeout,omitempty"`
+	SapDataColumnDelimiter           *string      `json:"sapDataColumnDelimiter,omitempty"`
 
 	// Fields inherited from CopySource
-	DisableMetricsCollection *interface{} `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *interface{} `json:"maxConcurrentConnections,omitempty"`
-	SourceRetryCount         *interface{} `json:"sourceRetryCount,omitempty"`
-	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
 }
 
 var _ json.Marshaler = SapOpenHubSource{}

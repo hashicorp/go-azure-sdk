@@ -10,12 +10,12 @@ import (
 
 type AzureBlobDatasetTypeProperties struct {
 	Compression           *DatasetCompression  `json:"compression,omitempty"`
-	FileName              *interface{}         `json:"fileName,omitempty"`
-	FolderPath            *interface{}         `json:"folderPath,omitempty"`
+	FileName              *string              `json:"fileName,omitempty"`
+	FolderPath            *string              `json:"folderPath,omitempty"`
 	Format                DatasetStorageFormat `json:"format"`
-	ModifiedDatetimeEnd   *interface{}         `json:"modifiedDatetimeEnd,omitempty"`
-	ModifiedDatetimeStart *interface{}         `json:"modifiedDatetimeStart,omitempty"`
-	TableRootLocation     *interface{}         `json:"tableRootLocation,omitempty"`
+	ModifiedDatetimeEnd   *string              `json:"modifiedDatetimeEnd,omitempty"`
+	ModifiedDatetimeStart *string              `json:"modifiedDatetimeStart,omitempty"`
+	TableRootLocation     *string              `json:"tableRootLocation,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureBlobDatasetTypeProperties{}

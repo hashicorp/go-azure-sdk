@@ -12,10 +12,10 @@ type WebActivityAuthentication struct {
 	Credential *CredentialReference `json:"credential,omitempty"`
 	Password   SecretBase           `json:"password"`
 	Pfx        SecretBase           `json:"pfx"`
-	Resource   *interface{}         `json:"resource,omitempty"`
+	Resource   *string              `json:"resource,omitempty"`
 	Type       *string              `json:"type,omitempty"`
-	UserTenant *interface{}         `json:"userTenant,omitempty"`
-	Username   *interface{}         `json:"username,omitempty"`
+	UserTenant *string              `json:"userTenant,omitempty"`
+	Username   *string              `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &WebActivityAuthentication{}

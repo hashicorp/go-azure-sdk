@@ -11,8 +11,8 @@ import (
 var _ ExportSettings = AzureDatabricksDeltaLakeExportCommand{}
 
 type AzureDatabricksDeltaLakeExportCommand struct {
-	DateFormat      *interface{} `json:"dateFormat,omitempty"`
-	TimestampFormat *interface{} `json:"timestampFormat,omitempty"`
+	DateFormat      *string `json:"dateFormat,omitempty"`
+	TimestampFormat *string `json:"timestampFormat,omitempty"`
 
 	// Fields inherited from ExportSettings
 }

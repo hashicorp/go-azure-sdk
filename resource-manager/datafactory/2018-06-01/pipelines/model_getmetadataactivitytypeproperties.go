@@ -10,7 +10,7 @@ import (
 
 type GetMetadataActivityTypeProperties struct {
 	Dataset        DatasetReference   `json:"dataset"`
-	FieldList      *[]interface{}     `json:"fieldList,omitempty"`
+	FieldList      *[]string          `json:"fieldList,omitempty"`
 	FormatSettings FormatReadSettings `json:"formatSettings"`
 	StoreSettings  StoreReadSettings  `json:"storeSettings"`
 }

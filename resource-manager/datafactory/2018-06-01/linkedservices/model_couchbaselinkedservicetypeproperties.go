@@ -4,7 +4,7 @@ package linkedservices
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CouchbaseLinkedServiceTypeProperties struct {
-	ConnectionString    *interface{}                  `json:"connectionString,omitempty"`
+	ConnectionString    *string                       `json:"connectionString,omitempty"`
 	CredString          *AzureKeyVaultSecretReference `json:"credString,omitempty"`
 	EncryptedCredential *string                       `json:"encryptedCredential,omitempty"`
 }

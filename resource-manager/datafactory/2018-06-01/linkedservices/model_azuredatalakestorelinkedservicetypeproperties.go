@@ -9,16 +9,16 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureDataLakeStoreLinkedServiceTypeProperties struct {
-	AccountName         *interface{}         `json:"accountName,omitempty"`
-	AzureCloudType      *interface{}         `json:"azureCloudType,omitempty"`
+	AccountName         *string              `json:"accountName,omitempty"`
+	AzureCloudType      *string              `json:"azureCloudType,omitempty"`
 	Credential          *CredentialReference `json:"credential,omitempty"`
-	DataLakeStoreUri    interface{}          `json:"dataLakeStoreUri"`
+	DataLakeStoreUri    string               `json:"dataLakeStoreUri"`
 	EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
-	ResourceGroupName   *interface{}         `json:"resourceGroupName,omitempty"`
-	ServicePrincipalId  *interface{}         `json:"servicePrincipalId,omitempty"`
+	ResourceGroupName   *string              `json:"resourceGroupName,omitempty"`
+	ServicePrincipalId  *string              `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey SecretBase           `json:"servicePrincipalKey"`
-	SubscriptionId      *interface{}         `json:"subscriptionId,omitempty"`
-	Tenant              *interface{}         `json:"tenant,omitempty"`
+	SubscriptionId      *string              `json:"subscriptionId,omitempty"`
+	Tenant              *string              `json:"tenant,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureDataLakeStoreLinkedServiceTypeProperties{}

@@ -9,18 +9,18 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureBlobFSLinkedServiceTypeProperties struct {
-	AccountKey                     *interface{}         `json:"accountKey,omitempty"`
-	AzureCloudType                 *interface{}         `json:"azureCloudType,omitempty"`
+	AccountKey                     *string              `json:"accountKey,omitempty"`
+	AzureCloudType                 *string              `json:"azureCloudType,omitempty"`
 	Credential                     *CredentialReference `json:"credential,omitempty"`
 	EncryptedCredential            *string              `json:"encryptedCredential,omitempty"`
 	SasToken                       SecretBase           `json:"sasToken"`
-	SasUri                         *interface{}         `json:"sasUri,omitempty"`
+	SasUri                         *string              `json:"sasUri,omitempty"`
 	ServicePrincipalCredential     SecretBase           `json:"servicePrincipalCredential"`
-	ServicePrincipalCredentialType *interface{}         `json:"servicePrincipalCredentialType,omitempty"`
-	ServicePrincipalId             *interface{}         `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalCredentialType *string              `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalId             *string              `json:"servicePrincipalId,omitempty"`
 	ServicePrincipalKey            SecretBase           `json:"servicePrincipalKey"`
-	Tenant                         *interface{}         `json:"tenant,omitempty"`
-	Url                            *interface{}         `json:"url,omitempty"`
+	Tenant                         *string              `json:"tenant,omitempty"`
+	Url                            *string              `json:"url,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureBlobFSLinkedServiceTypeProperties{}

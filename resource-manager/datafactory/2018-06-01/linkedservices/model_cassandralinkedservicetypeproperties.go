@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CassandraLinkedServiceTypeProperties struct {
-	AuthenticationType  *interface{} `json:"authenticationType,omitempty"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Host                interface{}  `json:"host"`
-	Password            SecretBase   `json:"password"`
-	Port                *interface{} `json:"port,omitempty"`
-	Username            *interface{} `json:"username,omitempty"`
+	AuthenticationType  *string    `json:"authenticationType,omitempty"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Host                string     `json:"host"`
+	Password            SecretBase `json:"password"`
+	Port                *int64     `json:"port,omitempty"`
+	Username            *string    `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &CassandraLinkedServiceTypeProperties{}

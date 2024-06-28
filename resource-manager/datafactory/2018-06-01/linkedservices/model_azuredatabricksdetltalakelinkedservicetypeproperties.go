@@ -10,11 +10,11 @@ import (
 
 type AzureDatabricksDetltaLakeLinkedServiceTypeProperties struct {
 	AccessToken         SecretBase           `json:"accessToken"`
-	ClusterId           *interface{}         `json:"clusterId,omitempty"`
+	ClusterId           *string              `json:"clusterId,omitempty"`
 	Credential          *CredentialReference `json:"credential,omitempty"`
-	Domain              interface{}          `json:"domain"`
+	Domain              string               `json:"domain"`
 	EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
-	WorkspaceResourceId *interface{}         `json:"workspaceResourceId,omitempty"`
+	WorkspaceResourceId *string              `json:"workspaceResourceId,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureDatabricksDetltaLakeLinkedServiceTypeProperties{}

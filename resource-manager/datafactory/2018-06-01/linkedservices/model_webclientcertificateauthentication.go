@@ -15,7 +15,7 @@ type WebClientCertificateAuthentication struct {
 	Pfx      SecretBase `json:"pfx"`
 
 	// Fields inherited from WebLinkedServiceTypeProperties
-	Url interface{} `json:"url"`
+	Url string `json:"url"`
 }
 
 var _ json.Marshaler = WebClientCertificateAuthentication{}

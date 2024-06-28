@@ -10,9 +10,9 @@ import (
 
 type XmlDatasetTypeProperties struct {
 	Compression  *DatasetCompression `json:"compression,omitempty"`
-	EncodingName *interface{}        `json:"encodingName,omitempty"`
+	EncodingName *string             `json:"encodingName,omitempty"`
 	Location     DatasetLocation     `json:"location"`
-	NullValue    *interface{}        `json:"nullValue,omitempty"`
+	NullValue    *string             `json:"nullValue,omitempty"`
 }
 
 var _ json.Unmarshaler = &XmlDatasetTypeProperties{}

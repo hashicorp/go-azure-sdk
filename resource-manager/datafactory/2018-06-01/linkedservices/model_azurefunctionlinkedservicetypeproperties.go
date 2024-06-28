@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureFunctionLinkedServiceTypeProperties struct {
-	Authentication      *interface{}         `json:"authentication,omitempty"`
+	Authentication      *string              `json:"authentication,omitempty"`
 	Credential          *CredentialReference `json:"credential,omitempty"`
 	EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
-	FunctionAppUrl      interface{}          `json:"functionAppUrl"`
+	FunctionAppUrl      string               `json:"functionAppUrl"`
 	FunctionKey         SecretBase           `json:"functionKey"`
-	ResourceId          *interface{}         `json:"resourceId,omitempty"`
+	ResourceId          *string              `json:"resourceId,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureFunctionLinkedServiceTypeProperties{}

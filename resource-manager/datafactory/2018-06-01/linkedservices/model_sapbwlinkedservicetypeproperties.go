@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SapBWLinkedServiceTypeProperties struct {
-	ClientId            interface{}  `json:"clientId"`
-	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
-	Password            SecretBase   `json:"password"`
-	Server              interface{}  `json:"server"`
-	SystemNumber        interface{}  `json:"systemNumber"`
-	UserName            *interface{} `json:"userName,omitempty"`
+	ClientId            string     `json:"clientId"`
+	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
+	Password            SecretBase `json:"password"`
+	Server              string     `json:"server"`
+	SystemNumber        string     `json:"systemNumber"`
+	UserName            *string    `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &SapBWLinkedServiceTypeProperties{}

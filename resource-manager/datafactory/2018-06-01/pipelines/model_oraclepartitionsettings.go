@@ -4,8 +4,8 @@ package pipelines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OraclePartitionSettings struct {
-	PartitionColumnName *interface{} `json:"partitionColumnName,omitempty"`
-	PartitionLowerBound *interface{} `json:"partitionLowerBound,omitempty"`
+	PartitionColumnName *string      `json:"partitionColumnName,omitempty"`
+	PartitionLowerBound *string      `json:"partitionLowerBound,omitempty"`
 	PartitionNames      *interface{} `json:"partitionNames,omitempty"`
-	PartitionUpperBound *interface{} `json:"partitionUpperBound,omitempty"`
+	PartitionUpperBound *string      `json:"partitionUpperBound,omitempty"`
 }

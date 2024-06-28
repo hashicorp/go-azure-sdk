@@ -4,9 +4,9 @@ package datasets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestResourceDatasetTypeProperties struct {
-	AdditionalHeaders *map[string]interface{} `json:"additionalHeaders,omitempty"`
-	PaginationRules   *map[string]interface{} `json:"paginationRules,omitempty"`
-	RelativeUrl       *interface{}            `json:"relativeUrl,omitempty"`
-	RequestBody       *interface{}            `json:"requestBody,omitempty"`
-	RequestMethod     *interface{}            `json:"requestMethod,omitempty"`
+	AdditionalHeaders *map[string]string `json:"additionalHeaders,omitempty"`
+	PaginationRules   *map[string]string `json:"paginationRules,omitempty"`
+	RelativeUrl       *string            `json:"relativeUrl,omitempty"`
+	RequestBody       *string            `json:"requestBody,omitempty"`
+	RequestMethod     *string            `json:"requestMethod,omitempty"`
 }

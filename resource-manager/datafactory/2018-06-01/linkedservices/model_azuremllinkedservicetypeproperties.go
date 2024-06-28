@@ -9,14 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureMLLinkedServiceTypeProperties struct {
-	ApiKey                 SecretBase   `json:"apiKey"`
-	Authentication         *interface{} `json:"authentication,omitempty"`
-	EncryptedCredential    *string      `json:"encryptedCredential,omitempty"`
-	MlEndpoint             interface{}  `json:"mlEndpoint"`
-	ServicePrincipalId     *interface{} `json:"servicePrincipalId,omitempty"`
-	ServicePrincipalKey    SecretBase   `json:"servicePrincipalKey"`
-	Tenant                 *interface{} `json:"tenant,omitempty"`
-	UpdateResourceEndpoint *interface{} `json:"updateResourceEndpoint,omitempty"`
+	ApiKey                 SecretBase `json:"apiKey"`
+	Authentication         *string    `json:"authentication,omitempty"`
+	EncryptedCredential    *string    `json:"encryptedCredential,omitempty"`
+	MlEndpoint             string     `json:"mlEndpoint"`
+	ServicePrincipalId     *string    `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalKey    SecretBase `json:"servicePrincipalKey"`
+	Tenant                 *string    `json:"tenant,omitempty"`
+	UpdateResourceEndpoint *string    `json:"updateResourceEndpoint,omitempty"`
 }
 
 var _ json.Unmarshaler = &AzureMLLinkedServiceTypeProperties{}

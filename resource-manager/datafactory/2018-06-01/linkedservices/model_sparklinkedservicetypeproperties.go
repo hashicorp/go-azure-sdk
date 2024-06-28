@@ -9,20 +9,20 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SparkLinkedServiceTypeProperties struct {
-	AllowHostNameCNMismatch   *interface{}                  `json:"allowHostNameCNMismatch,omitempty"`
-	AllowSelfSignedServerCert *interface{}                  `json:"allowSelfSignedServerCert,omitempty"`
+	AllowHostNameCNMismatch   *bool                         `json:"allowHostNameCNMismatch,omitempty"`
+	AllowSelfSignedServerCert *bool                         `json:"allowSelfSignedServerCert,omitempty"`
 	AuthenticationType        SparkAuthenticationType       `json:"authenticationType"`
-	EnableSsl                 *interface{}                  `json:"enableSsl,omitempty"`
+	EnableSsl                 *bool                         `json:"enableSsl,omitempty"`
 	EncryptedCredential       *string                       `json:"encryptedCredential,omitempty"`
-	HTTPPath                  *interface{}                  `json:"httpPath,omitempty"`
-	Host                      interface{}                   `json:"host"`
+	HTTPPath                  *string                       `json:"httpPath,omitempty"`
+	Host                      string                        `json:"host"`
 	Password                  SecretBase                    `json:"password"`
-	Port                      interface{}                   `json:"port"`
+	Port                      int64                         `json:"port"`
 	ServerType                *SparkServerType              `json:"serverType,omitempty"`
 	ThriftTransportProtocol   *SparkThriftTransportProtocol `json:"thriftTransportProtocol,omitempty"`
-	TrustedCertPath           *interface{}                  `json:"trustedCertPath,omitempty"`
-	UseSystemTrustStore       *interface{}                  `json:"useSystemTrustStore,omitempty"`
-	Username                  *interface{}                  `json:"username,omitempty"`
+	TrustedCertPath           *string                       `json:"trustedCertPath,omitempty"`
+	UseSystemTrustStore       *bool                         `json:"useSystemTrustStore,omitempty"`
+	Username                  *string                       `json:"username,omitempty"`
 }
 
 var _ json.Unmarshaler = &SparkLinkedServiceTypeProperties{}
