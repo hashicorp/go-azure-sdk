@@ -53,8 +53,8 @@ func (c LocationCapabilitiesClient) CapabilitiesListByLocation(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/capabilities", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/capabilities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

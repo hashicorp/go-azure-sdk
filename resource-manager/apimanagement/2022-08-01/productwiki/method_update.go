@@ -53,8 +53,8 @@ func (c ProductWikiClient) Update(ctx context.Context, id ProductId, input WikiU
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
-		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

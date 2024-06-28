@@ -23,6 +23,18 @@ type SqlPoolUsagesListCompleteResult struct {
 	Items              []SqlPoolUsage
 }
 
+type SqlPoolUsagesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolUsagesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolUsagesList ...
 func (c SqlPoolsUsagesClient) SqlPoolUsagesList(ctx context.Context, id SqlPoolId) (result SqlPoolUsagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsUsagesClient) SqlPoolUsagesList(ctx context.Context, id SqlPoolI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolUsagesListCustomPager{},
 		Path:       fmt.Sprintf("%s/usages", id.ID()),
 	}
 

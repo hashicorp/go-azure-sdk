@@ -23,6 +23,18 @@ type ListByLabPlanCompleteResult struct {
 	Items              []Image
 }
 
+type ListByLabPlanCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByLabPlanCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByLabPlan ...
 func (c ImageClient) ListByLabPlan(ctx context.Context, id LabPlanId) (result ListByLabPlanOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ImageClient) ListByLabPlan(ctx context.Context, id LabPlanId) (result Li
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByLabPlanCustomPager{},
 		Path:       fmt.Sprintf("%s/images", id.ID()),
 	}
 

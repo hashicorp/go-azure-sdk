@@ -23,6 +23,18 @@ type ListRevisionsCompleteResult struct {
 	Items              []Revision
 }
 
+type ListRevisionsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListRevisionsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListRevisions ...
 func (c ContainerAppsRevisionsClient) ListRevisions(ctx context.Context, id ProviderContainerAppId) (result ListRevisionsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ContainerAppsRevisionsClient) ListRevisions(ctx context.Context, id Prov
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListRevisionsCustomPager{},
 		Path:       fmt.Sprintf("%s/revisions", id.ID()),
 	}
 

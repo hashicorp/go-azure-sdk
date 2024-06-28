@@ -54,8 +54,8 @@ func (c EnrichmentClient) DomainWhoisGet(ctx context.Context, id commonids.Resou
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/enrichment/domain/whois", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/enrichment/domain/whois", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type WorkspaceApiOperationPolicyListByOperationCompleteResult struct {
 	Items              []PolicyContract
 }
 
+type WorkspaceApiOperationPolicyListByOperationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiOperationPolicyListByOperationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiOperationPolicyListByOperation ...
 func (c ApiOperationPolicyClient) WorkspaceApiOperationPolicyListByOperation(ctx context.Context, id ApiOperationId) (result WorkspaceApiOperationPolicyListByOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ApiOperationPolicyClient) WorkspaceApiOperationPolicyListByOperation(ctx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceApiOperationPolicyListByOperationCustomPager{},
 		Path:       fmt.Sprintf("%s/policies", id.ID()),
 	}
 

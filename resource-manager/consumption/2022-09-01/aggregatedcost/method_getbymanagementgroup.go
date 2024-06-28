@@ -54,8 +54,8 @@ func (c AggregatedCostClient) GetByManagementGroup(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/aggregatedcost", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/aggregatedcost", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

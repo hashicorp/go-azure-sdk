@@ -61,8 +61,8 @@ func (c RestorablesClient) RestorableSqlContainersList(ctx context.Context, id R
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/restorableSqlContainers", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restorableSqlContainers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

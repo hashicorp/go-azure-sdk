@@ -63,8 +63,8 @@ func (c DimensionsClient) List(ctx context.Context, id commonids.ScopeId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/dimensions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/dimensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

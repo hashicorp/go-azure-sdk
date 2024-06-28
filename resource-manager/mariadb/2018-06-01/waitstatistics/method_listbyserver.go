@@ -23,6 +23,18 @@ type ListByServerCompleteResult struct {
 	Items              []WaitStatistic
 }
 
+type ListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByServer ...
 func (c WaitStatisticsClient) ListByServer(ctx context.Context, id ServerId, input WaitStatisticsInput) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WaitStatisticsClient) ListByServer(ctx context.Context, id ServerId, inp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/waitStatistics", id.ID()),
 	}
 

@@ -58,6 +58,18 @@ func (o WorkspaceGlobalSchemaListByServiceOperationOptions) ToQuery() *client.Qu
 	return &out
 }
 
+type WorkspaceGlobalSchemaListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceGlobalSchemaListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceGlobalSchemaListByService ...
 func (c SchemaClient) WorkspaceGlobalSchemaListByService(ctx context.Context, id WorkspaceId, options WorkspaceGlobalSchemaListByServiceOperationOptions) (result WorkspaceGlobalSchemaListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c SchemaClient) WorkspaceGlobalSchemaListByService(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/schemas", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceGlobalSchemaListByServiceCustomPager{},
+		Path:          fmt.Sprintf("%s/schemas", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

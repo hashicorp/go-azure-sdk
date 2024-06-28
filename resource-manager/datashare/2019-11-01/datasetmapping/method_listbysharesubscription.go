@@ -55,6 +55,18 @@ func (o ListByShareSubscriptionOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByShareSubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByShareSubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByShareSubscription ...
 func (c DataSetMappingClient) ListByShareSubscription(ctx context.Context, id ShareSubscriptionId, options ListByShareSubscriptionOperationOptions) (result ListByShareSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,8 +75,9 @@ func (c DataSetMappingClient) ListByShareSubscription(ctx context.Context, id Sh
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/dataSetMappings", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByShareSubscriptionCustomPager{},
+		Path:          fmt.Sprintf("%s/dataSetMappings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

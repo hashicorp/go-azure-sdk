@@ -23,6 +23,18 @@ type ResourcesListByHostPoolCompleteResult struct {
 	Items              []PrivateLinkResource
 }
 
+type ResourcesListByHostPoolCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ResourcesListByHostPoolCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ResourcesListByHostPool ...
 func (c PrivateLinkClient) ResourcesListByHostPool(ctx context.Context, id HostPoolId) (result ResourcesListByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkClient) ResourcesListByHostPool(ctx context.Context, id HostP
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ResourcesListByHostPoolCustomPager{},
 		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type WorkspaceNotificationRecipientUserListByNotificationCompleteResult struct {
 	Items              []RecipientUserContract
 }
 
+type WorkspaceNotificationRecipientUserListByNotificationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceNotificationRecipientUserListByNotificationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceNotificationRecipientUserListByNotification ...
 func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListByNotification(ctx context.Context, id NotificationNotificationId) (result WorkspaceNotificationRecipientUserListByNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NotificationRecipientUserClient) WorkspaceNotificationRecipientUserListB
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceNotificationRecipientUserListByNotificationCustomPager{},
 		Path:       fmt.Sprintf("%s/recipientUsers", id.ID()),
 	}
 

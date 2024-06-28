@@ -58,6 +58,18 @@ func (o ListByQueryOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByQueryCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByQueryCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByQuery ...
 func (c ManagedDatabaseQueriesClient) ListByQuery(ctx context.Context, id QueryId, options ListByQueryOperationOptions) (result ListByQueryOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c ManagedDatabaseQueriesClient) ListByQuery(ctx context.Context, id QueryI
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/statistics", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByQueryCustomPager{},
+		Path:          fmt.Sprintf("%s/statistics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

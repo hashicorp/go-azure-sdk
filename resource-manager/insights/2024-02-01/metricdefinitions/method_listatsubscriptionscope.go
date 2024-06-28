@@ -58,8 +58,8 @@ func (c MetricDefinitionsClient) ListAtSubscriptionScope(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

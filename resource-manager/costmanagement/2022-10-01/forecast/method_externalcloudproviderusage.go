@@ -53,8 +53,8 @@ func (c ForecastClient) ExternalCloudProviderUsage(ctx context.Context, id Exter
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/forecast", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/forecast", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

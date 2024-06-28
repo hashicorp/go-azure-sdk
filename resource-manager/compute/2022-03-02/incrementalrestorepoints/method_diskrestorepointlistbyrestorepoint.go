@@ -23,6 +23,18 @@ type DiskRestorePointListByRestorePointCompleteResult struct {
 	Items              []DiskRestorePoint
 }
 
+type DiskRestorePointListByRestorePointCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *DiskRestorePointListByRestorePointCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // DiskRestorePointListByRestorePoint ...
 func (c IncrementalRestorePointsClient) DiskRestorePointListByRestorePoint(ctx context.Context, id RestorePointId) (result DiskRestorePointListByRestorePointOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IncrementalRestorePointsClient) DiskRestorePointListByRestorePoint(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &DiskRestorePointListByRestorePointCustomPager{},
 		Path:       fmt.Sprintf("%s/diskRestorePoints", id.ID()),
 	}
 

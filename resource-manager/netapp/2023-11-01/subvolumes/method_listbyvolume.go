@@ -23,6 +23,18 @@ type ListByVolumeCompleteResult struct {
 	Items              []SubvolumeInfo
 }
 
+type ListByVolumeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVolumeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVolume ...
 func (c SubVolumesClient) ListByVolume(ctx context.Context, id VolumeId) (result ListByVolumeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SubVolumesClient) ListByVolume(ctx context.Context, id VolumeId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByVolumeCustomPager{},
 		Path:       fmt.Sprintf("%s/subVolumes", id.ID()),
 	}
 

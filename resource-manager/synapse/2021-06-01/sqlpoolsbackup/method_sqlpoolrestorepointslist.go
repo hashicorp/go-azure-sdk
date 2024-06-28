@@ -23,6 +23,18 @@ type SqlPoolRestorePointsListCompleteResult struct {
 	Items              []RestorePoint
 }
 
+type SqlPoolRestorePointsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolRestorePointsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolRestorePointsList ...
 func (c SqlPoolsBackupClient) SqlPoolRestorePointsList(ctx context.Context, id SqlPoolId) (result SqlPoolRestorePointsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsBackupClient) SqlPoolRestorePointsList(ctx context.Context, id S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolRestorePointsListCustomPager{},
 		Path:       fmt.Sprintf("%s/restorePoints", id.ID()),
 	}
 

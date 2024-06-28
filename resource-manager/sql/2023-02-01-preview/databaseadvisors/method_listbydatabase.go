@@ -54,8 +54,8 @@ func (c DatabaseAdvisorsClient) ListByDatabase(ctx context.Context, id commonids
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/advisors", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/advisors", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

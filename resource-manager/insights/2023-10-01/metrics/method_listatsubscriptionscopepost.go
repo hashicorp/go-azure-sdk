@@ -102,8 +102,8 @@ func (c MetricsClient) ListAtSubscriptionScopePost(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metrics", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metrics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

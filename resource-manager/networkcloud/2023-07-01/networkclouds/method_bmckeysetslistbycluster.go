@@ -23,6 +23,18 @@ type BmcKeySetsListByClusterCompleteResult struct {
 	Items              []BmcKeySet
 }
 
+type BmcKeySetsListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BmcKeySetsListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BmcKeySetsListByCluster ...
 func (c NetworkcloudsClient) BmcKeySetsListByCluster(ctx context.Context, id ClusterId) (result BmcKeySetsListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetworkcloudsClient) BmcKeySetsListByCluster(ctx context.Context, id Clu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &BmcKeySetsListByClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/bmcKeySets", id.ID()),
 	}
 

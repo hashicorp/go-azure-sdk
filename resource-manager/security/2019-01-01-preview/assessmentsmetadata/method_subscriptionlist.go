@@ -24,6 +24,18 @@ type SubscriptionListCompleteResult struct {
 	Items              []SecurityAssessmentMetadata
 }
 
+type SubscriptionListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SubscriptionListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SubscriptionList ...
 func (c AssessmentsMetadataClient) SubscriptionList(ctx context.Context, id commonids.SubscriptionId) (result SubscriptionListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c AssessmentsMetadataClient) SubscriptionList(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SubscriptionListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Security/assessmentMetadata", id.ID()),
 	}
 

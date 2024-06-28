@@ -54,6 +54,18 @@ func (o ListByLocationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByLocationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByLocationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByLocation ...
 func (c ManagedDatabaseMoveOperationsClient) ListByLocation(ctx context.Context, id ProviderLocationId, options ListByLocationOperationOptions) (result ListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c ManagedDatabaseMoveOperationsClient) ListByLocation(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/managedDatabaseMoveOperationResults", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByLocationCustomPager{},
+		Path:          fmt.Sprintf("%s/managedDatabaseMoveOperationResults", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -69,8 +69,8 @@ func (c DeploymentStacksClient) DeleteAtResourceGroup(ctx context.Context, id Pr
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

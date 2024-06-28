@@ -23,6 +23,18 @@ type ManagedEnvironmentUsagesListCompleteResult struct {
 	Items              []Usage
 }
 
+type ManagedEnvironmentUsagesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ManagedEnvironmentUsagesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ManagedEnvironmentUsagesList ...
 func (c UsagesClient) ManagedEnvironmentUsagesList(ctx context.Context, id ManagedEnvironmentId) (result ManagedEnvironmentUsagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c UsagesClient) ManagedEnvironmentUsagesList(ctx context.Context, id Manag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ManagedEnvironmentUsagesListCustomPager{},
 		Path:       fmt.Sprintf("%s/usages", id.ID()),
 	}
 

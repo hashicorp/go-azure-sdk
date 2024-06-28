@@ -51,6 +51,18 @@ func (o ListForResourceGroupOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListForResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListForResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListForResourceGroup ...
 func (c DenyAssignmentsClient) ListForResourceGroup(ctx context.Context, id commonids.ResourceGroupId, options ListForResourceGroupOperationOptions) (result ListForResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,8 +71,9 @@ func (c DenyAssignmentsClient) ListForResourceGroup(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/denyAssignments", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListForResourceGroupCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/denyAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

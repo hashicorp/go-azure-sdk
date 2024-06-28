@@ -23,6 +23,18 @@ type WorkspaceManagedSqlServerUsagesListCompleteResult struct {
 	Items              []ServerUsage
 }
 
+type WorkspaceManagedSqlServerUsagesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceManagedSqlServerUsagesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceManagedSqlServerUsagesList ...
 func (c WorkspaceManagedSqlServerSqlUsagesClient) WorkspaceManagedSqlServerUsagesList(ctx context.Context, id WorkspaceId) (result WorkspaceManagedSqlServerUsagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkspaceManagedSqlServerSqlUsagesClient) WorkspaceManagedSqlServerUsage
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceManagedSqlServerUsagesListCustomPager{},
 		Path:       fmt.Sprintf("%s/sqlUsages", id.ID()),
 	}
 

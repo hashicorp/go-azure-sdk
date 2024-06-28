@@ -53,8 +53,8 @@ func (c ApiClient) WorkspaceApiUpdate(ctx context.Context, id WorkspaceApiId, in
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

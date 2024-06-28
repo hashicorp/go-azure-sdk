@@ -24,6 +24,18 @@ type ApiManagementSkusListCompleteResult struct {
 	Items              []ApiManagementSku
 }
 
+type ApiManagementSkusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ApiManagementSkusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ApiManagementSkusList ...
 func (c SkusClient) ApiManagementSkusList(ctx context.Context, id commonids.SubscriptionId) (result ApiManagementSkusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c SkusClient) ApiManagementSkusList(ctx context.Context, id commonids.Subs
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ApiManagementSkusListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.ApiManagement/skus", id.ID()),
 	}
 

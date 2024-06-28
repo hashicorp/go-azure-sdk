@@ -23,6 +23,18 @@ type ListByApplicationTypesCompleteResult struct {
 	Items              []ApplicationTypeVersionResource
 }
 
+type ListByApplicationTypesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByApplicationTypesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByApplicationTypes ...
 func (c ApplicationTypeVersionClient) ListByApplicationTypes(ctx context.Context, id ApplicationTypeId) (result ListByApplicationTypesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ApplicationTypeVersionClient) ListByApplicationTypes(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByApplicationTypesCustomPager{},
 		Path:       fmt.Sprintf("%s/versions", id.ID()),
 	}
 

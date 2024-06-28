@@ -53,8 +53,8 @@ func (c SqlPoolsMaintenanceWindowOptionsClient) SqlPoolMaintenanceWindowOptionsG
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

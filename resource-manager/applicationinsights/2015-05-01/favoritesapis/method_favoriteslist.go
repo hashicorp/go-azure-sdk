@@ -65,8 +65,8 @@ func (c FavoritesAPIsClient) FavoritesList(ctx context.Context, id ComponentId, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/favorites", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/favorites", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

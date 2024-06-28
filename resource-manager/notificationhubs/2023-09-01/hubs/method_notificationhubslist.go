@@ -50,6 +50,18 @@ func (o NotificationHubsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type NotificationHubsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *NotificationHubsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // NotificationHubsList ...
 func (c HubsClient) NotificationHubsList(ctx context.Context, id NamespaceId, options NotificationHubsListOperationOptions) (result NotificationHubsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c HubsClient) NotificationHubsList(ctx context.Context, id NamespaceId, op
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/notificationHubs", id.ID()),
 		OptionsObject: options,
+		Pager:         &NotificationHubsListCustomPager{},
+		Path:          fmt.Sprintf("%s/notificationHubs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

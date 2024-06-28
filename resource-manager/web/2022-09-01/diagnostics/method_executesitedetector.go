@@ -61,8 +61,8 @@ func (c DiagnosticsClient) ExecuteSiteDetector(ctx context.Context, id Diagnosti
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/execute", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/execute", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

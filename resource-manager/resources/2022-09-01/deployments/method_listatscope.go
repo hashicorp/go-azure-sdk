@@ -55,6 +55,18 @@ func (o ListAtScopeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListAtScopeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAtScopeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAtScope ...
 func (c DeploymentsClient) ListAtScope(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions) (result ListAtScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,8 +75,9 @@ func (c DeploymentsClient) ListAtScope(ctx context.Context, id commonids.ScopeId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Resources/deployments", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListAtScopeCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Resources/deployments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

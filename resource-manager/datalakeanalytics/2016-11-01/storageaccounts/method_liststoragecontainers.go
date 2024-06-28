@@ -23,6 +23,18 @@ type ListStorageContainersCompleteResult struct {
 	Items              []StorageContainer
 }
 
+type ListStorageContainersCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListStorageContainersCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListStorageContainers ...
 func (c StorageAccountsClient) ListStorageContainers(ctx context.Context, id StorageAccountId) (result ListStorageContainersOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c StorageAccountsClient) ListStorageContainers(ctx context.Context, id Sto
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListStorageContainersCustomPager{},
 		Path:       fmt.Sprintf("%s/containers", id.ID()),
 	}
 

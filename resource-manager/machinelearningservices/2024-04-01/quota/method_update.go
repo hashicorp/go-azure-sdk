@@ -23,6 +23,18 @@ type UpdateCompleteResult struct {
 	Items              []UpdateWorkspaceQuotas
 }
 
+type UpdateCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *UpdateCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Update ...
 func (c QuotaClient) Update(ctx context.Context, id LocationId, input QuotaUpdateParameters) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c QuotaClient) Update(ctx context.Context, id LocationId, input QuotaUpdat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &UpdateCustomPager{},
 		Path:       fmt.Sprintf("%s/updateQuotas", id.ID()),
 	}
 

@@ -53,8 +53,8 @@ func (c TaskResourceClient) TasksDelete(ctx context.Context, id TaskId, options 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

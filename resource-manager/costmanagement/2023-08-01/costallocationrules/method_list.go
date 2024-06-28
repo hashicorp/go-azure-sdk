@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []CostAllocationRuleDefinition
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c CostAllocationRulesClient) List(ctx context.Context, id BillingAccountId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c CostAllocationRulesClient) List(ctx context.Context, id BillingAccountId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.CostManagement/costAllocationRules", id.ID()),
 	}
 

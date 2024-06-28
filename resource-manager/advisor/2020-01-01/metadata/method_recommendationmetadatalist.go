@@ -23,6 +23,18 @@ type RecommendationMetadataListCompleteResult struct {
 	Items              []MetadataEntity
 }
 
+type RecommendationMetadataListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RecommendationMetadataListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RecommendationMetadataList ...
 func (c MetadataClient) RecommendationMetadataList(ctx context.Context) (result RecommendationMetadataListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MetadataClient) RecommendationMetadataList(ctx context.Context) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RecommendationMetadataListCustomPager{},
 		Path:       "/providers/Microsoft.Advisor/metadata",
 	}
 

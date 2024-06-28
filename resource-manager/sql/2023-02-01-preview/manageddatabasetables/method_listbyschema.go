@@ -50,6 +50,18 @@ func (o ListBySchemaOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListBySchemaCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySchemaCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySchema ...
 func (c ManagedDatabaseTablesClient) ListBySchema(ctx context.Context, id DatabaseSchemaId, options ListBySchemaOperationOptions) (result ListBySchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c ManagedDatabaseTablesClient) ListBySchema(ctx context.Context, id Databa
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/tables", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListBySchemaCustomPager{},
+		Path:          fmt.Sprintf("%s/tables", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

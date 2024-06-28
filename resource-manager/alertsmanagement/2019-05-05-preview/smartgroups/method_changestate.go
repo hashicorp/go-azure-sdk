@@ -53,8 +53,8 @@ func (c SmartGroupsClient) ChangeState(ctx context.Context, id SmartGroupId, opt
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/changeState", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/changeState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

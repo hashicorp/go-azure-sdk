@@ -23,6 +23,18 @@ type ListAvailableServiceSkusCompleteResult struct {
 	Items              []ResourceSkuResult
 }
 
+type ListAvailableServiceSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAvailableServiceSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAvailableServiceSkus ...
 func (c ApiManagementServiceSkusClient) ListAvailableServiceSkus(ctx context.Context, id ServiceId) (result ListAvailableServiceSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ApiManagementServiceSkusClient) ListAvailableServiceSkus(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAvailableServiceSkusCustomPager{},
 		Path:       fmt.Sprintf("%s/skus", id.ID()),
 	}
 

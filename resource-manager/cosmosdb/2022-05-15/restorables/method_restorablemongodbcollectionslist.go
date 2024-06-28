@@ -53,8 +53,8 @@ func (c RestorablesClient) RestorableMongodbCollectionsList(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/restorableMongodbCollections", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restorableMongodbCollections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

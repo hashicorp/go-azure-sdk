@@ -24,6 +24,18 @@ type ClusterManagersListBySubscriptionCompleteResult struct {
 	Items              []ClusterManager
 }
 
+type ClusterManagersListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ClusterManagersListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ClusterManagersListBySubscription ...
 func (c NetworkcloudsClient) ClusterManagersListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result ClusterManagersListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) ClusterManagersListBySubscription(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ClusterManagersListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/clusterManagers", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type AzureDevOpsProjectsListCompleteResult struct {
 	Items              []AzureDevOpsProject
 }
 
+type AzureDevOpsProjectsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AzureDevOpsProjectsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AzureDevOpsProjectsList ...
 func (c DevOpsClient) AzureDevOpsProjectsList(ctx context.Context, id AzureDevOpsOrgId) (result AzureDevOpsProjectsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) AzureDevOpsProjectsList(ctx context.Context, id AzureDevOp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AzureDevOpsProjectsListCustomPager{},
 		Path:       fmt.Sprintf("%s/projects", id.ID()),
 	}
 

@@ -62,6 +62,18 @@ func (o WorkspaceTagListByServiceOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type WorkspaceTagListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceTagListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceTagListByService ...
 func (c TagClient) WorkspaceTagListByService(ctx context.Context, id WorkspaceId, options WorkspaceTagListByServiceOperationOptions) (result WorkspaceTagListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,8 +82,9 @@ func (c TagClient) WorkspaceTagListByService(ctx context.Context, id WorkspaceId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/tags", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceTagListByServiceCustomPager{},
+		Path:          fmt.Sprintf("%s/tags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

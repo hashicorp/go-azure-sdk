@@ -70,6 +70,18 @@ func (o ListByDepartmentOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDepartmentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDepartmentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDepartment ...
 func (c EnrollmentAccountClient) ListByDepartment(ctx context.Context, id DepartmentId, options ListByDepartmentOperationOptions) (result ListByDepartmentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -78,8 +90,9 @@ func (c EnrollmentAccountClient) ListByDepartment(ctx context.Context, id Depart
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/enrollmentAccounts", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByDepartmentCustomPager{},
+		Path:          fmt.Sprintf("%s/enrollmentAccounts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

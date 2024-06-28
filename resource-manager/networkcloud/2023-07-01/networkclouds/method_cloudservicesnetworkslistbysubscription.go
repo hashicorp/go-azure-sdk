@@ -24,6 +24,18 @@ type CloudServicesNetworksListBySubscriptionCompleteResult struct {
 	Items              []CloudServicesNetwork
 }
 
+type CloudServicesNetworksListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *CloudServicesNetworksListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // CloudServicesNetworksListBySubscription ...
 func (c NetworkcloudsClient) CloudServicesNetworksListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result CloudServicesNetworksListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) CloudServicesNetworksListBySubscription(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &CloudServicesNetworksListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/cloudServicesNetworks", id.ID()),
 	}
 

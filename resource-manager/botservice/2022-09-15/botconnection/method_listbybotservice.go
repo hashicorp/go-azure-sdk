@@ -24,6 +24,18 @@ type ListByBotServiceCompleteResult struct {
 	Items              []ConnectionSetting
 }
 
+type ListByBotServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBotServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBotService ...
 func (c BotConnectionClient) ListByBotService(ctx context.Context, id commonids.BotServiceId) (result ListByBotServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c BotConnectionClient) ListByBotService(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByBotServiceCustomPager{},
 		Path:       fmt.Sprintf("%s/connections", id.ID()),
 	}
 

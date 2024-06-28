@@ -23,6 +23,18 @@ type RegionInfosListCompleteResult struct {
 	Items              []RegionInfoResource
 }
 
+type RegionInfosListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegionInfosListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegionInfosList ...
 func (c NetAppResourceClient) RegionInfosList(ctx context.Context, id LocationId) (result RegionInfosListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetAppResourceClient) RegionInfosList(ctx context.Context, id LocationId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RegionInfosListCustomPager{},
 		Path:       fmt.Sprintf("%s/regionInfos", id.ID()),
 	}
 

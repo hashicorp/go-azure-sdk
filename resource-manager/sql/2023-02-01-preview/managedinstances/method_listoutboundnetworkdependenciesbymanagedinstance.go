@@ -24,6 +24,18 @@ type ListOutboundNetworkDependenciesByManagedInstanceCompleteResult struct {
 	Items              []OutboundEnvironmentEndpoint
 }
 
+type ListOutboundNetworkDependenciesByManagedInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListOutboundNetworkDependenciesByManagedInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListOutboundNetworkDependenciesByManagedInstance ...
 func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListOutboundNetworkDependenciesByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListOutboundNetworkDependenciesByManagedInstanceCustomPager{},
 		Path:       fmt.Sprintf("%s/outboundNetworkDependenciesEndpoints", id.ID()),
 	}
 

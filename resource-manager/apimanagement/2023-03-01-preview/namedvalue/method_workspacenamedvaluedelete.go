@@ -53,8 +53,8 @@ func (c NamedValueClient) WorkspaceNamedValueDelete(ctx context.Context, id Work
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

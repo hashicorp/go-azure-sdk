@@ -52,8 +52,8 @@ func (c RecommendationsClient) DisableRecommendationForHostingEnvironment(ctx co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/disable", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

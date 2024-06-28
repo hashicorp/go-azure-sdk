@@ -23,6 +23,18 @@ type EnvironmentDefinitionsListByProjectCatalogCompleteResult struct {
 	Items              []EnvironmentDefinition
 }
 
+type EnvironmentDefinitionsListByProjectCatalogCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *EnvironmentDefinitionsListByProjectCatalogCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // EnvironmentDefinitionsListByProjectCatalog ...
 func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByProjectCatalog(ctx context.Context, id CatalogId) (result EnvironmentDefinitionsListByProjectCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByProjectCatalog
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &EnvironmentDefinitionsListByProjectCatalogCustomPager{},
 		Path:       fmt.Sprintf("%s/environmentDefinitions", id.ID()),
 	}
 

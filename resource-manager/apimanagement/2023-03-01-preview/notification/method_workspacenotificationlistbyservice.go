@@ -54,6 +54,18 @@ func (o WorkspaceNotificationListByServiceOperationOptions) ToQuery() *client.Qu
 	return &out
 }
 
+type WorkspaceNotificationListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceNotificationListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceNotificationListByService ...
 func (c NotificationClient) WorkspaceNotificationListByService(ctx context.Context, id WorkspaceId, options WorkspaceNotificationListByServiceOperationOptions) (result WorkspaceNotificationListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c NotificationClient) WorkspaceNotificationListByService(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/notifications", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceNotificationListByServiceCustomPager{},
+		Path:          fmt.Sprintf("%s/notifications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

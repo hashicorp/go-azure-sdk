@@ -23,6 +23,18 @@ type ListByApplicationsCompleteResult struct {
 	Items              []ServiceResource
 }
 
+type ListByApplicationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByApplicationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByApplications ...
 func (c ServiceClient) ListByApplications(ctx context.Context, id ApplicationId) (result ListByApplicationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ServiceClient) ListByApplications(ctx context.Context, id ApplicationId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByApplicationsCustomPager{},
 		Path:       fmt.Sprintf("%s/services", id.ID()),
 	}
 

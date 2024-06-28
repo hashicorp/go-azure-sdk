@@ -24,6 +24,18 @@ type ListSiteDetectorResponsesCompleteResult struct {
 	Items              []DetectorResponse
 }
 
+type ListSiteDetectorResponsesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSiteDetectorResponsesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSiteDetectorResponses ...
 func (c DiagnosticsClient) ListSiteDetectorResponses(ctx context.Context, id commonids.AppServiceId) (result ListSiteDetectorResponsesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DiagnosticsClient) ListSiteDetectorResponses(ctx context.Context, id com
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListSiteDetectorResponsesCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

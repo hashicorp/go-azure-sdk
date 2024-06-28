@@ -51,6 +51,18 @@ func (o ListByDataBoxEdgeDeviceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDataBoxEdgeDeviceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDataBoxEdgeDeviceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDataBoxEdgeDevice ...
 func (c TriggersClient) ListByDataBoxEdgeDevice(ctx context.Context, id DataBoxEdgeDeviceId, options ListByDataBoxEdgeDeviceOperationOptions) (result ListByDataBoxEdgeDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,8 +71,9 @@ func (c TriggersClient) ListByDataBoxEdgeDevice(ctx context.Context, id DataBoxE
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/triggers", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByDataBoxEdgeDeviceCustomPager{},
+		Path:          fmt.Sprintf("%s/triggers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -54,8 +54,8 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Datadog/subscriptionStatuses", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Datadog/subscriptionStatuses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

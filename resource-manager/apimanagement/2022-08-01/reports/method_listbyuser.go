@@ -62,6 +62,18 @@ func (o ListByUserOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByUserCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByUserCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByUser ...
 func (c ReportsClient) ListByUser(ctx context.Context, id ServiceId, options ListByUserOperationOptions) (result ListByUserOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,8 +82,9 @@ func (c ReportsClient) ListByUser(ctx context.Context, id ServiceId, options Lis
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/reports/byUser", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByUserCustomPager{},
+		Path:          fmt.Sprintf("%s/reports/byUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

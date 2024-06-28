@@ -23,6 +23,18 @@ type ListByInvoiceSectionsCompleteResult struct {
 	Items              []BillingPermissionsProperties
 }
 
+type ListByInvoiceSectionsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByInvoiceSectionsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByInvoiceSections ...
 func (c BillingPermissionsClient) ListByInvoiceSections(ctx context.Context, id InvoiceSectionId) (result ListByInvoiceSectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingPermissionsClient) ListByInvoiceSections(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByInvoiceSectionsCustomPager{},
 		Path:       fmt.Sprintf("%s/billingPermissions", id.ID()),
 	}
 

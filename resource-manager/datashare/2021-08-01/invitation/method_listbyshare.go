@@ -54,6 +54,18 @@ func (o ListByShareOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByShareCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByShareCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByShare ...
 func (c InvitationClient) ListByShare(ctx context.Context, id ShareId, options ListByShareOperationOptions) (result ListByShareOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c InvitationClient) ListByShare(ctx context.Context, id ShareId, options L
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/invitations", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByShareCustomPager{},
+		Path:          fmt.Sprintf("%s/invitations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

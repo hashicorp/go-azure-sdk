@@ -23,6 +23,18 @@ type LongRunningBackupsListCompleteResult struct {
 	Items              []ServerBackupV2
 }
 
+type LongRunningBackupsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *LongRunningBackupsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // LongRunningBackupsList ...
 func (c BackupsV2Client) LongRunningBackupsList(ctx context.Context, id FlexibleServerId) (result LongRunningBackupsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BackupsV2Client) LongRunningBackupsList(ctx context.Context, id Flexible
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &LongRunningBackupsListCustomPager{},
 		Path:       fmt.Sprintf("%s/backupsV2", id.ID()),
 	}
 

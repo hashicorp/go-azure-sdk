@@ -50,6 +50,18 @@ func (o ListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions) ToQue
 	return &out
 }
 
+type ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListInvoiceSectionsByCreateSubscriptionPermission ...
 func (c BillingAccountClient) ListInvoiceSectionsByCreateSubscriptionPermission(ctx context.Context, id BillingAccountId, options ListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions) (result ListInvoiceSectionsByCreateSubscriptionPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c BillingAccountClient) ListInvoiceSectionsByCreateSubscriptionPermission(
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/listInvoiceSectionsWithCreateSubscriptionPermission", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager{},
+		Path:          fmt.Sprintf("%s/listInvoiceSectionsWithCreateSubscriptionPermission", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

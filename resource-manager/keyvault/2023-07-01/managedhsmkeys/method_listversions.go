@@ -23,6 +23,18 @@ type ListVersionsCompleteResult struct {
 	Items              []ManagedHsmKey
 }
 
+type ListVersionsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListVersionsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListVersions ...
 func (c ManagedHsmKeysClient) ListVersions(ctx context.Context, id KeyId) (result ListVersionsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ManagedHsmKeysClient) ListVersions(ctx context.Context, id KeyId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListVersionsCustomPager{},
 		Path:       fmt.Sprintf("%s/versions", id.ID()),
 	}
 

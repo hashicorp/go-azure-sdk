@@ -23,6 +23,18 @@ type ListByPrivateLinkScopeCompleteResult struct {
 	Items              []PrivateLinkResource
 }
 
+type ListByPrivateLinkScopeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPrivateLinkScopeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPrivateLinkScope ...
 func (c PrivateLinkResourcesClient) ListByPrivateLinkScope(ctx context.Context, id PrivateLinkScopeId) (result ListByPrivateLinkScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkResourcesClient) ListByPrivateLinkScope(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPrivateLinkScopeCustomPager{},
 		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 

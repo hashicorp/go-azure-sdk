@@ -56,8 +56,8 @@ func (c DeviceCapacityCheckClient) CheckResourceCreationFeasibility(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/deviceCapacityCheck", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceCapacityCheck", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

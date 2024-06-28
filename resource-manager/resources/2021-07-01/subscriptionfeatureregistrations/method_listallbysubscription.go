@@ -24,6 +24,18 @@ type ListAllBySubscriptionCompleteResult struct {
 	Items              []SubscriptionFeatureRegistration
 }
 
+type ListAllBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAllBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAllBySubscription ...
 func (c SubscriptionFeatureRegistrationsClient) ListAllBySubscription(ctx context.Context, id commonids.SubscriptionId) (result ListAllBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c SubscriptionFeatureRegistrationsClient) ListAllBySubscription(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAllBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Features/subscriptionFeatureRegistrations", id.ID()),
 	}
 

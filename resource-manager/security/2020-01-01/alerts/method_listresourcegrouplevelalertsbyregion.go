@@ -23,6 +23,18 @@ type ListResourceGroupLevelAlertsByRegionCompleteResult struct {
 	Items              []Alert
 }
 
+type ListResourceGroupLevelAlertsByRegionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListResourceGroupLevelAlertsByRegionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListResourceGroupLevelAlertsByRegion ...
 func (c AlertsClient) ListResourceGroupLevelAlertsByRegion(ctx context.Context, id ProviderLocationId) (result ListResourceGroupLevelAlertsByRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AlertsClient) ListResourceGroupLevelAlertsByRegion(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListResourceGroupLevelAlertsByRegionCustomPager{},
 		Path:       fmt.Sprintf("%s/alerts", id.ID()),
 	}
 

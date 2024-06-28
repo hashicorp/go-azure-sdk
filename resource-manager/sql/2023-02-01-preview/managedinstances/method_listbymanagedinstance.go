@@ -75,6 +75,18 @@ func (o ListByManagedInstanceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByManagedInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByManagedInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByManagedInstance ...
 func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByManagedInstanceOperationOptions) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -83,8 +95,9 @@ func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/topqueries", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByManagedInstanceCustomPager{},
+		Path:          fmt.Sprintf("%s/topqueries", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

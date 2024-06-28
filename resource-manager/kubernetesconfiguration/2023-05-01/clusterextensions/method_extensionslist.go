@@ -24,6 +24,18 @@ type ExtensionsListCompleteResult struct {
 	Items              []Extension
 }
 
+type ExtensionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ExtensionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ExtensionsList ...
 func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id commonids.ScopeId) (result ExtensionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id commonid
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ExtensionsListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.KubernetesConfiguration/extensions", id.ID()),
 	}
 

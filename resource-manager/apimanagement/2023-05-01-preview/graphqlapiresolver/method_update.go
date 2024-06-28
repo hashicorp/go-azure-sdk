@@ -53,8 +53,8 @@ func (c GraphQLApiResolverClient) Update(ctx context.Context, id ResolverId, inp
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

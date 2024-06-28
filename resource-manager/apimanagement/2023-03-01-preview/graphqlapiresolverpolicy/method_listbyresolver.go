@@ -23,6 +23,18 @@ type ListByResolverCompleteResult struct {
 	Items              []PolicyContract
 }
 
+type ListByResolverCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResolverCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByResolver ...
 func (c GraphQLApiResolverPolicyClient) ListByResolver(ctx context.Context, id ResolverId) (result ListByResolverOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c GraphQLApiResolverPolicyClient) ListByResolver(ctx context.Context, id R
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByResolverCustomPager{},
 		Path:       fmt.Sprintf("%s/policies", id.ID()),
 	}
 

@@ -24,6 +24,18 @@ type VMSkusListCompleteResult struct {
 	Items              []VMSkuProfile
 }
 
+type VMSkusListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *VMSkusListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // VMSkusList ...
 func (c ProvisionedClusterInstancesClient) VMSkusList(ctx context.Context, id commonids.ScopeId) (result VMSkusListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ProvisionedClusterInstancesClient) VMSkusList(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &VMSkusListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/skus", id.ID()),
 	}
 

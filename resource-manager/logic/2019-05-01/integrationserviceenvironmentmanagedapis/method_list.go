@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []IntegrationServiceEnvironmentManagedApi
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c IntegrationServiceEnvironmentManagedApisClient) List(ctx context.Context, id IntegrationServiceEnvironmentId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IntegrationServiceEnvironmentManagedApisClient) List(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/managedApis", id.ID()),
 	}
 

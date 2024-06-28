@@ -50,6 +50,18 @@ func (o ListBuiltInsOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListBuiltInsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBuiltInsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBuiltIns ...
 func (c TemplateSpecsClient) ListBuiltIns(ctx context.Context, options ListBuiltInsOperationOptions) (result ListBuiltInsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c TemplateSpecsClient) ListBuiltIns(ctx context.Context, options ListBuilt
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          "/providers/Microsoft.Resources/builtInTemplateSpecs",
 		OptionsObject: options,
+		Pager:         &ListBuiltInsCustomPager{},
+		Path:          "/providers/Microsoft.Resources/builtInTemplateSpecs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

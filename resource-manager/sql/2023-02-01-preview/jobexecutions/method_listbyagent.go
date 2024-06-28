@@ -74,6 +74,18 @@ func (o ListByAgentOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByAgentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAgentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAgent ...
 func (c JobExecutionsClient) ListByAgent(ctx context.Context, id JobAgentId, options ListByAgentOperationOptions) (result ListByAgentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -82,8 +94,9 @@ func (c JobExecutionsClient) ListByAgent(ctx context.Context, id JobAgentId, opt
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/executions", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByAgentCustomPager{},
+		Path:          fmt.Sprintf("%s/executions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type PrivateEndpointConnectionsListByHostPoolCompleteResult struct {
 	Items              []PrivateEndpointConnectionWithSystemData
 }
 
+type PrivateEndpointConnectionsListByHostPoolCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *PrivateEndpointConnectionsListByHostPoolCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // PrivateEndpointConnectionsListByHostPool ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPool(ctx context.Context, id HostPoolId) (result PrivateEndpointConnectionsListByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPool(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &PrivateEndpointConnectionsListByHostPoolCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

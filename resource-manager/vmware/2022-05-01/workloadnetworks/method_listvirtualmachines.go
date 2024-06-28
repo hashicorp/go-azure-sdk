@@ -23,6 +23,18 @@ type ListVirtualMachinesCompleteResult struct {
 	Items              []WorkloadNetworkVirtualMachine
 }
 
+type ListVirtualMachinesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListVirtualMachinesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListVirtualMachines ...
 func (c WorkloadNetworksClient) ListVirtualMachines(ctx context.Context, id PrivateCloudId) (result ListVirtualMachinesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworksClient) ListVirtualMachines(ctx context.Context, id Priv
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListVirtualMachinesCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/virtualMachines", id.ID()),
 	}
 

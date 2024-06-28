@@ -53,8 +53,8 @@ func (c SupportedOperatingSystemsClient) Get(ctx context.Context, id VaultId, op
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/replicationSupportedOperatingSystems", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replicationSupportedOperatingSystems", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

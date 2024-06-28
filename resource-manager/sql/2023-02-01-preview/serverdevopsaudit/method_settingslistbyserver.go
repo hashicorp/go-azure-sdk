@@ -24,6 +24,18 @@ type SettingsListByServerCompleteResult struct {
 	Items              []ServerDevOpsAuditingSettings
 }
 
+type SettingsListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SettingsListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SettingsListByServer ...
 func (c ServerDevOpsAuditClient) SettingsListByServer(ctx context.Context, id commonids.SqlServerId) (result SettingsListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ServerDevOpsAuditClient) SettingsListByServer(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SettingsListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/devOpsAuditingSettings", id.ID()),
 	}
 

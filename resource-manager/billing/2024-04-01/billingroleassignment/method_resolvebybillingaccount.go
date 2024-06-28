@@ -57,6 +57,18 @@ func (o ResolveByBillingAccountOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ResolveByBillingAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ResolveByBillingAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ResolveByBillingAccount ...
 func (c BillingRoleAssignmentClient) ResolveByBillingAccount(ctx context.Context, id BillingAccountId, options ResolveByBillingAccountOperationOptions) (result ResolveByBillingAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c BillingRoleAssignmentClient) ResolveByBillingAccount(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/resolveBillingRoleAssignments", id.ID()),
 		OptionsObject: options,
+		Pager:         &ResolveByBillingAccountCustomPager{},
+		Path:          fmt.Sprintf("%s/resolveBillingRoleAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByVCenterCompleteResult struct {
 	Items              []InventoryItem
 }
 
+type ListByVCenterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVCenterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVCenter ...
 func (c InventoryItemsClient) ListByVCenter(ctx context.Context, id VCenterId) (result ListByVCenterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c InventoryItemsClient) ListByVCenter(ctx context.Context, id VCenterId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByVCenterCustomPager{},
 		Path:       fmt.Sprintf("%s/inventoryItems", id.ID()),
 	}
 

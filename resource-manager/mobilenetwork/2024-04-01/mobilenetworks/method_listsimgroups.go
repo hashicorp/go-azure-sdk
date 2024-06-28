@@ -23,6 +23,18 @@ type ListSimGroupsCompleteResult struct {
 	Items              []SimGroup
 }
 
+type ListSimGroupsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSimGroupsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSimGroups ...
 func (c MobileNetworksClient) ListSimGroups(ctx context.Context, id MobileNetworkId) (result ListSimGroupsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MobileNetworksClient) ListSimGroups(ctx context.Context, id MobileNetwor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListSimGroupsCustomPager{},
 		Path:       fmt.Sprintf("%s/listSimGroups", id.ID()),
 	}
 

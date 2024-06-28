@@ -53,8 +53,8 @@ func (c PortalConfigClient) CreateOrUpdate(ctx context.Context, id PortalConfigI
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

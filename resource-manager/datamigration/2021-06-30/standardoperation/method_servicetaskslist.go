@@ -50,6 +50,18 @@ func (o ServiceTasksListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ServiceTasksListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ServiceTasksListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ServiceTasksList ...
 func (c StandardOperationClient) ServiceTasksList(ctx context.Context, id ServiceId, options ServiceTasksListOperationOptions) (result ServiceTasksListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c StandardOperationClient) ServiceTasksList(ctx context.Context, id Servic
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/serviceTasks", id.ID()),
 		OptionsObject: options,
+		Pager:         &ServiceTasksListCustomPager{},
+		Path:          fmt.Sprintf("%s/serviceTasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

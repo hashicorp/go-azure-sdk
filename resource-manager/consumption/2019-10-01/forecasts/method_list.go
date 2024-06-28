@@ -54,8 +54,8 @@ func (c ForecastsClient) List(ctx context.Context, id commonids.SubscriptionId, 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/forecasts", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/forecasts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

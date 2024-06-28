@@ -23,6 +23,18 @@ type SqlPoolOperationsListCompleteResult struct {
 	Items              []SqlPoolOperation
 }
 
+type SqlPoolOperationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolOperationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolOperationsList ...
 func (c SqlPoolsOperationsClient) SqlPoolOperationsList(ctx context.Context, id SqlPoolId) (result SqlPoolOperationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsOperationsClient) SqlPoolOperationsList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolOperationsListCustomPager{},
 		Path:       fmt.Sprintf("%s/operations", id.ID()),
 	}
 

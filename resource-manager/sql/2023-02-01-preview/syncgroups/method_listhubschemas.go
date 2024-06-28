@@ -23,6 +23,18 @@ type ListHubSchemasCompleteResult struct {
 	Items              []SyncFullSchemaProperties
 }
 
+type ListHubSchemasCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListHubSchemasCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListHubSchemas ...
 func (c SyncGroupsClient) ListHubSchemas(ctx context.Context, id SyncGroupId) (result ListHubSchemasOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SyncGroupsClient) ListHubSchemas(ctx context.Context, id SyncGroupId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListHubSchemasCustomPager{},
 		Path:       fmt.Sprintf("%s/hubSchemas", id.ID()),
 	}
 

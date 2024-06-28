@@ -23,6 +23,18 @@ type ConnectedPartnerResourcesListCompleteResult struct {
 	Items              []ConnectedPartnerResourcesListFormat
 }
 
+type ConnectedPartnerResourcesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ConnectedPartnerResourcesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ConnectedPartnerResourcesList ...
 func (c ConnectedResourcesClient) ConnectedPartnerResourcesList(ctx context.Context, id MonitorId, input string) (result ConnectedPartnerResourcesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ConnectedResourcesClient) ConnectedPartnerResourcesList(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ConnectedPartnerResourcesListCustomPager{},
 		Path:       fmt.Sprintf("%s/listConnectedPartnerResources", id.ID()),
 	}
 

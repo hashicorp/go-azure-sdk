@@ -23,6 +23,18 @@ type ListByHomeRegionCompleteResult struct {
 	Items              []TopologyResource
 }
 
+type ListByHomeRegionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByHomeRegionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByHomeRegion ...
 func (c TopologyClient) ListByHomeRegion(ctx context.Context, id LocationId) (result ListByHomeRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c TopologyClient) ListByHomeRegion(ctx context.Context, id LocationId) (re
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByHomeRegionCustomPager{},
 		Path:       fmt.Sprintf("%s/topologies", id.ID()),
 	}
 

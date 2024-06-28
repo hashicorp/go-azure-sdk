@@ -50,6 +50,18 @@ func (o EnvironmentDefinitionsListByCatalogOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
+type EnvironmentDefinitionsListByCatalogCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *EnvironmentDefinitionsListByCatalogCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // EnvironmentDefinitionsListByCatalog ...
 func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByCatalog(ctx context.Context, id DevCenterCatalogId, options EnvironmentDefinitionsListByCatalogOperationOptions) (result EnvironmentDefinitionsListByCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByCatalog(ctx co
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/environmentDefinitions", id.ID()),
 		OptionsObject: options,
+		Pager:         &EnvironmentDefinitionsListByCatalogCustomPager{},
+		Path:          fmt.Sprintf("%s/environmentDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

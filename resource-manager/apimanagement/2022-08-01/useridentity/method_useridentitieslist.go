@@ -23,6 +23,18 @@ type UserIdentitiesListCompleteResult struct {
 	Items              []UserIdentityContract
 }
 
+type UserIdentitiesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *UserIdentitiesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // UserIdentitiesList ...
 func (c UserIdentityClient) UserIdentitiesList(ctx context.Context, id UserId) (result UserIdentitiesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c UserIdentityClient) UserIdentitiesList(ctx context.Context, id UserId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &UserIdentitiesListCustomPager{},
 		Path:       fmt.Sprintf("%s/identities", id.ID()),
 	}
 

@@ -53,8 +53,8 @@ func (c ApiWikiClient) Delete(ctx context.Context, id ApiId, options DeleteOpera
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ListSiteContainersCompleteResult struct {
 	Items              []SiteContainer
 }
 
+type ListSiteContainersCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSiteContainersCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSiteContainers ...
 func (c WebAppsClient) ListSiteContainers(ctx context.Context, id commonids.AppServiceId) (result ListSiteContainersOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c WebAppsClient) ListSiteContainers(ctx context.Context, id commonids.AppS
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListSiteContainersCustomPager{},
 		Path:       fmt.Sprintf("%s/sitecontainers", id.ID()),
 	}
 

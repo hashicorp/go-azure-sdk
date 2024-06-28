@@ -53,8 +53,8 @@ func (c AssessmentsClient) Get(ctx context.Context, id ScopedAssessmentId, optio
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

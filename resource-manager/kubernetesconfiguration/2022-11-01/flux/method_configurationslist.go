@@ -24,6 +24,18 @@ type ConfigurationsListCompleteResult struct {
 	Items              []FluxConfiguration
 }
 
+type ConfigurationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ConfigurationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ConfigurationsList ...
 func (c FluxClient) ConfigurationsList(ctx context.Context, id commonids.ScopeId) (result ConfigurationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c FluxClient) ConfigurationsList(ctx context.Context, id commonids.ScopeId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ConfigurationsListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.KubernetesConfiguration/fluxConfigurations", id.ID()),
 	}
 

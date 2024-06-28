@@ -23,6 +23,18 @@ type WorkloadNetworksListDhcpCompleteResult struct {
 	Items              []WorkloadNetworkDhcp
 }
 
+type WorkloadNetworksListDhcpCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkloadNetworksListDhcpCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkloadNetworksListDhcp ...
 func (c VMwaresClient) WorkloadNetworksListDhcp(ctx context.Context, id PrivateCloudId) (result WorkloadNetworksListDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c VMwaresClient) WorkloadNetworksListDhcp(ctx context.Context, id PrivateC
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkloadNetworksListDhcpCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/dhcpConfigurations", id.ID()),
 	}
 

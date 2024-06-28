@@ -23,6 +23,18 @@ type ListAgreementsCompleteResult struct {
 	Items              []TldLegalAgreement
 }
 
+type ListAgreementsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAgreementsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAgreements ...
 func (c TopLevelDomainsClient) ListAgreements(ctx context.Context, id TopLevelDomainId, input TopLevelDomainAgreementOption) (result ListAgreementsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c TopLevelDomainsClient) ListAgreements(ctx context.Context, id TopLevelDo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListAgreementsCustomPager{},
 		Path:       fmt.Sprintf("%s/listAgreements", id.ID()),
 	}
 

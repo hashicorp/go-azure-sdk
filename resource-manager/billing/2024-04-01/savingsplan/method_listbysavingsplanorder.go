@@ -23,6 +23,18 @@ type ListBySavingsPlanOrderCompleteResult struct {
 	Items              []SavingsPlanModel
 }
 
+type ListBySavingsPlanOrderCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySavingsPlanOrderCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySavingsPlanOrder ...
 func (c SavingsPlanClient) ListBySavingsPlanOrder(ctx context.Context, id SavingsPlanOrderId) (result ListBySavingsPlanOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SavingsPlanClient) ListBySavingsPlanOrder(ctx context.Context, id Saving
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySavingsPlanOrderCustomPager{},
 		Path:       fmt.Sprintf("%s/savingsPlans", id.ID()),
 	}
 

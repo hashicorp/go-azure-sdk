@@ -24,6 +24,18 @@ type UsagesListCompleteResult struct {
 	Items              []CurrentUsagesBase
 }
 
+type UsagesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *UsagesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // UsagesList ...
 func (c UsagesInformationClient) UsagesList(ctx context.Context, id commonids.ScopeId) (result UsagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c UsagesInformationClient) UsagesList(ctx context.Context, id commonids.Sc
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &UsagesListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Quota/usages", id.ID()),
 	}
 

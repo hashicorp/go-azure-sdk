@@ -24,6 +24,18 @@ type ListByRoleCompleteResult struct {
 	Items              []Addon
 }
 
+type ListByRoleCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByRoleCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByRole ...
 func (c AddonsClient) ListByRole(ctx context.Context, id RoleId) (result ListByRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c AddonsClient) ListByRole(ctx context.Context, id RoleId) (result ListByR
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByRoleCustomPager{},
 		Path:       fmt.Sprintf("%s/addons", id.ID()),
 	}
 

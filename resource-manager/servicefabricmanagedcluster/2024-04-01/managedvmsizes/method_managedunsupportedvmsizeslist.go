@@ -23,6 +23,18 @@ type ManagedUnsupportedVMSizesListCompleteResult struct {
 	Items              []ManagedVMSize
 }
 
+type ManagedUnsupportedVMSizesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ManagedUnsupportedVMSizesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ManagedUnsupportedVMSizesList ...
 func (c ManagedVMSizesClient) ManagedUnsupportedVMSizesList(ctx context.Context, id LocationId) (result ManagedUnsupportedVMSizesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ManagedVMSizesClient) ManagedUnsupportedVMSizesList(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ManagedUnsupportedVMSizesListCustomPager{},
 		Path:       fmt.Sprintf("%s/managedUnsupportedVMSizes", id.ID()),
 	}
 

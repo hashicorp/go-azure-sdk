@@ -23,6 +23,18 @@ type WorkspaceManagedSqlServerRecoverableSqlPoolsListCompleteResult struct {
 	Items              []RecoverableSqlPool
 }
 
+type WorkspaceManagedSqlServerRecoverableSqlPoolsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceManagedSqlServerRecoverableSqlPoolsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceManagedSqlServerRecoverableSqlPoolsList ...
 func (c RecoverableSqlPoolsClient) WorkspaceManagedSqlServerRecoverableSqlPoolsList(ctx context.Context, id WorkspaceId) (result WorkspaceManagedSqlServerRecoverableSqlPoolsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c RecoverableSqlPoolsClient) WorkspaceManagedSqlServerRecoverableSqlPoolsL
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceManagedSqlServerRecoverableSqlPoolsListCustomPager{},
 		Path:       fmt.Sprintf("%s/recoverableSqlPools", id.ID()),
 	}
 

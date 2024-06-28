@@ -53,8 +53,8 @@ func (c GETClient) ServiceTasksGet(ctx context.Context, id ServiceTaskId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

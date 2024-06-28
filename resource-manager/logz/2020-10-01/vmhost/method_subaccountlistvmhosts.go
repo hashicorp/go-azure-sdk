@@ -23,6 +23,18 @@ type SubAccountListVMHostsCompleteResult struct {
 	Items              []VMResources
 }
 
+type SubAccountListVMHostsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SubAccountListVMHostsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SubAccountListVMHosts ...
 func (c VMHostClient) SubAccountListVMHosts(ctx context.Context, id AccountId) (result SubAccountListVMHostsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c VMHostClient) SubAccountListVMHosts(ctx context.Context, id AccountId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &SubAccountListVMHostsCustomPager{},
 		Path:       fmt.Sprintf("%s/listVMHosts", id.ID()),
 	}
 

@@ -55,6 +55,18 @@ func (o ListRecommendedRulesForWebAppOperationOptions) ToQuery() *client.QueryPa
 	return &out
 }
 
+type ListRecommendedRulesForWebAppCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListRecommendedRulesForWebAppCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListRecommendedRulesForWebApp ...
 func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context, id commonids.AppServiceId, options ListRecommendedRulesForWebAppOperationOptions) (result ListRecommendedRulesForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,8 +75,9 @@ func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/recommendations", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListRecommendedRulesForWebAppCustomPager{},
+		Path:          fmt.Sprintf("%s/recommendations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

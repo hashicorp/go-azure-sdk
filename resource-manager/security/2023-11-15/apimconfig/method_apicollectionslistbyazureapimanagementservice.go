@@ -23,6 +23,18 @@ type APICollectionsListByAzureApiManagementServiceCompleteResult struct {
 	Items              []ApiCollection
 }
 
+type APICollectionsListByAzureApiManagementServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *APICollectionsListByAzureApiManagementServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // APICollectionsListByAzureApiManagementService ...
 func (c APIMConfigClient) APICollectionsListByAzureApiManagementService(ctx context.Context, id ServiceId) (result APICollectionsListByAzureApiManagementServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c APIMConfigClient) APICollectionsListByAzureApiManagementService(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &APICollectionsListByAzureApiManagementServiceCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Security/apiCollections", id.ID()),
 	}
 

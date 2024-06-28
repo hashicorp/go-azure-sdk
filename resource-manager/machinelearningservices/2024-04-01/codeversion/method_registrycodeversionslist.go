@@ -58,6 +58,18 @@ func (o RegistryCodeVersionsListOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
+type RegistryCodeVersionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegistryCodeVersionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegistryCodeVersionsList ...
 func (c CodeVersionClient) RegistryCodeVersionsList(ctx context.Context, id RegistryCodeId, options RegistryCodeVersionsListOperationOptions) (result RegistryCodeVersionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c CodeVersionClient) RegistryCodeVersionsList(ctx context.Context, id Regi
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/versions", id.ID()),
 		OptionsObject: options,
+		Pager:         &RegistryCodeVersionsListCustomPager{},
+		Path:          fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

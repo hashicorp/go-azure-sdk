@@ -24,6 +24,18 @@ type ListBySiteCompleteResult struct {
 	Items              []ResourceHealthMetadata
 }
 
+type ListBySiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySite ...
 func (c ResourceHealthMetadataClient) ListBySite(ctx context.Context, id commonids.AppServiceId) (result ListBySiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ResourceHealthMetadataClient) ListBySite(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySiteCustomPager{},
 		Path:       fmt.Sprintf("%s/resourceHealthMetadata", id.ID()),
 	}
 

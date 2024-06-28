@@ -24,6 +24,18 @@ type StreamListByJobCompleteResult struct {
 	Items              []JobStream
 }
 
+type StreamListByJobCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *StreamListByJobCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StreamListByJob ...
 func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id commonids.AutomationCompilationJobId) (result StreamListByJobOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &StreamListByJobCustomPager{},
 		Path:       fmt.Sprintf("%s/streams", id.ID()),
 	}
 

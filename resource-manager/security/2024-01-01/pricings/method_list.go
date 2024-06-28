@@ -53,8 +53,8 @@ func (c PricingsClient) List(ctx context.Context, id ScopeIdId, options ListOper
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Security/pricings", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Security/pricings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

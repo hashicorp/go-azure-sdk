@@ -24,6 +24,18 @@ type ListByInstanceCompleteResult struct {
 	Items              []StartStopManagedInstanceSchedule
 }
 
+type ListByInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByInstance ...
 func (c StartStopManagedInstanceSchedulesClient) ListByInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c StartStopManagedInstanceSchedulesClient) ListByInstance(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByInstanceCustomPager{},
 		Path:       fmt.Sprintf("%s/startStopSchedules", id.ID()),
 	}
 

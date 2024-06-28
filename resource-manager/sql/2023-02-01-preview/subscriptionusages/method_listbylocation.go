@@ -23,6 +23,18 @@ type ListByLocationCompleteResult struct {
 	Items              []SubscriptionUsage
 }
 
+type ListByLocationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByLocationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByLocation ...
 func (c SubscriptionUsagesClient) ListByLocation(ctx context.Context, id LocationId) (result ListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SubscriptionUsagesClient) ListByLocation(ctx context.Context, id Locatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByLocationCustomPager{},
 		Path:       fmt.Sprintf("%s/usages", id.ID()),
 	}
 

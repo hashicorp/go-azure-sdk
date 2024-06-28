@@ -23,6 +23,18 @@ type AzureDevOpsReposListCompleteResult struct {
 	Items              []AzureDevOpsRepository
 }
 
+type AzureDevOpsReposListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AzureDevOpsReposListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AzureDevOpsReposList ...
 func (c DevOpsClient) AzureDevOpsReposList(ctx context.Context, id ProjectId) (result AzureDevOpsReposListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) AzureDevOpsReposList(ctx context.Context, id ProjectId) (r
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AzureDevOpsReposListCustomPager{},
 		Path:       fmt.Sprintf("%s/repos", id.ID()),
 	}
 

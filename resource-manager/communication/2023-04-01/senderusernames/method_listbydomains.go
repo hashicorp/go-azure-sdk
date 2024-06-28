@@ -23,6 +23,18 @@ type ListByDomainsCompleteResult struct {
 	Items              []SenderUsernameResource
 }
 
+type ListByDomainsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDomainsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDomains ...
 func (c SenderUsernamesClient) ListByDomains(ctx context.Context, id DomainId) (result ListByDomainsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SenderUsernamesClient) ListByDomains(ctx context.Context, id DomainId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByDomainsCustomPager{},
 		Path:       fmt.Sprintf("%s/senderUsernames", id.ID()),
 	}
 

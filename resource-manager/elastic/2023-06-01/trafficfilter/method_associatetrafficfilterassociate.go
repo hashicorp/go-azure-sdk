@@ -55,8 +55,8 @@ func (c TrafficFilterClient) AssociateTrafficFilterAssociate(ctx context.Context
 			http.StatusAccepted,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/associateTrafficFilter", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/associateTrafficFilter", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

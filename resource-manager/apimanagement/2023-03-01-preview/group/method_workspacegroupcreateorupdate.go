@@ -54,8 +54,8 @@ func (c GroupClient) WorkspaceGroupCreateOrUpdate(ctx context.Context, id Worksp
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

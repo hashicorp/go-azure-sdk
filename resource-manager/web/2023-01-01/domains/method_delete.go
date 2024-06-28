@@ -53,8 +53,8 @@ func (c DomainsClient) Delete(ctx context.Context, id DomainId, options DeleteOp
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

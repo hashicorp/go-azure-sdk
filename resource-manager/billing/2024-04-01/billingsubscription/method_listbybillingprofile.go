@@ -78,6 +78,18 @@ func (o ListByBillingProfileOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByBillingProfileCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBillingProfileCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBillingProfile ...
 func (c BillingSubscriptionClient) ListByBillingProfile(ctx context.Context, id BillingProfileId, options ListByBillingProfileOperationOptions) (result ListByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -86,8 +98,9 @@ func (c BillingSubscriptionClient) ListByBillingProfile(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/billingSubscriptions", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByBillingProfileCustomPager{},
+		Path:          fmt.Sprintf("%s/billingSubscriptions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

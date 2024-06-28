@@ -23,6 +23,18 @@ type ListByAgentCompleteResult struct {
 	Items              []JobTargetGroup
 }
 
+type ListByAgentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAgentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAgent ...
 func (c JobTargetGroupsClient) ListByAgent(ctx context.Context, id JobAgentId) (result ListByAgentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c JobTargetGroupsClient) ListByAgent(ctx context.Context, id JobAgentId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByAgentCustomPager{},
 		Path:       fmt.Sprintf("%s/targetGroups", id.ID()),
 	}
 

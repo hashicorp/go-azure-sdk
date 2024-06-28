@@ -23,6 +23,18 @@ type SetListCompleteResult struct {
 	Items              []Capability
 }
 
+type SetListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SetListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SetList ...
 func (c LocationBasedCapabilityClient) SetList(ctx context.Context, id LocationId) (result SetListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c LocationBasedCapabilityClient) SetList(ctx context.Context, id LocationI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SetListCustomPager{},
 		Path:       fmt.Sprintf("%s/capabilitySets", id.ID()),
 	}
 

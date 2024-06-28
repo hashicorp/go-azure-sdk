@@ -58,6 +58,18 @@ func (o ListByAuthorizationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByAuthorizationCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAuthorizationCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAuthorization ...
 func (c AuthorizationAccessPolicyClient) ListByAuthorization(ctx context.Context, id AuthorizationId, options ListByAuthorizationOperationOptions) (result ListByAuthorizationOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c AuthorizationAccessPolicyClient) ListByAuthorization(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/accessPolicies", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByAuthorizationCustomPager{},
+		Path:          fmt.Sprintf("%s/accessPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

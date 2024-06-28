@@ -24,6 +24,18 @@ type L3NetworksListByResourceGroupCompleteResult struct {
 	Items              []L3Network
 }
 
+type L3NetworksListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *L3NetworksListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // L3NetworksListByResourceGroup ...
 func (c NetworkcloudsClient) L3NetworksListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result L3NetworksListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) L3NetworksListByResourceGroup(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &L3NetworksListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/l3Networks", id.ID()),
 	}
 

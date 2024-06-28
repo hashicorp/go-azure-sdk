@@ -24,6 +24,18 @@ type RegistriesListBySubscriptionCompleteResult struct {
 	Items              []RegistryTrackedResource
 }
 
+type RegistriesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegistriesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegistriesListBySubscription ...
 func (c RegistryManagementClient) RegistriesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result RegistriesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c RegistryManagementClient) RegistriesListBySubscription(ctx context.Conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RegistriesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.MachineLearningServices/registries", id.ID()),
 	}
 

@@ -53,8 +53,8 @@ func (c StandardOperationClient) ProjectsDelete(ctx context.Context, id ProjectI
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

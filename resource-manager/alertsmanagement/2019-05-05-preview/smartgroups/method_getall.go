@@ -91,6 +91,18 @@ func (o GetAllOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetAllCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAll ...
 func (c SmartGroupsClient) GetAll(ctx context.Context, id commonids.SubscriptionId, options GetAllOperationOptions) (result GetAllOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -99,8 +111,9 @@ func (c SmartGroupsClient) GetAll(ctx context.Context, id commonids.Subscription
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/smartGroups", id.ID()),
 		OptionsObject: options,
+		Pager:         &GetAllCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.AlertsManagement/smartGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

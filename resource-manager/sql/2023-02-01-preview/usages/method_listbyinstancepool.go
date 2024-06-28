@@ -50,6 +50,18 @@ func (o ListByInstancePoolOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByInstancePoolCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByInstancePoolCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByInstancePool ...
 func (c UsagesClient) ListByInstancePool(ctx context.Context, id InstancePoolId, options ListByInstancePoolOperationOptions) (result ListByInstancePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c UsagesClient) ListByInstancePool(ctx context.Context, id InstancePoolId,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/usages", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByInstancePoolCustomPager{},
+		Path:          fmt.Sprintf("%s/usages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

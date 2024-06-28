@@ -23,6 +23,18 @@ type ListPublicIPsCompleteResult struct {
 	Items              []WorkloadNetworkPublicIP
 }
 
+type ListPublicIPsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListPublicIPsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListPublicIPs ...
 func (c WorkloadNetworksClient) ListPublicIPs(ctx context.Context, id PrivateCloudId) (result ListPublicIPsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworksClient) ListPublicIPs(ctx context.Context, id PrivateClo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListPublicIPsCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/publicIPs", id.ID()),
 	}
 

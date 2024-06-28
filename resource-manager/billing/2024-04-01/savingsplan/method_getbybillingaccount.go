@@ -53,8 +53,8 @@ func (c SavingsPlanClient) GetByBillingAccount(ctx context.Context, id SavingsPl
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

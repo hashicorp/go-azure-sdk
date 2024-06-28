@@ -50,6 +50,18 @@ func (o RegistryCodeContainersListOperationOptions) ToQuery() *client.QueryParam
 	return &out
 }
 
+type RegistryCodeContainersListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegistryCodeContainersListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegistryCodeContainersList ...
 func (c CodeContainerClient) RegistryCodeContainersList(ctx context.Context, id RegistryId, options RegistryCodeContainersListOperationOptions) (result RegistryCodeContainersListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c CodeContainerClient) RegistryCodeContainersList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/codes", id.ID()),
 		OptionsObject: options,
+		Pager:         &RegistryCodeContainersListCustomPager{},
+		Path:          fmt.Sprintf("%s/codes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

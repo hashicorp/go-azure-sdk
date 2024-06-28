@@ -52,8 +52,8 @@ func (c SqlPoolsMaintenanceWindowsClient) SqlPoolMaintenanceWindowsCreateOrUpdat
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          fmt.Sprintf("%s/maintenancewindows/current", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/maintenancewindows/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type QueryByFactoryCompleteResult struct {
 	Items              []DataFlowDebugSessionInfo
 }
 
+type QueryByFactoryCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *QueryByFactoryCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // QueryByFactory ...
 func (c DataFlowDebugSessionClient) QueryByFactory(ctx context.Context, id FactoryId) (result QueryByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DataFlowDebugSessionClient) QueryByFactory(ctx context.Context, id Facto
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &QueryByFactoryCustomPager{},
 		Path:       fmt.Sprintf("%s/queryDataFlowDebugSessions", id.ID()),
 	}
 

@@ -58,6 +58,18 @@ func (o EntitiesRelationsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type EntitiesRelationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *EntitiesRelationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // EntitiesRelationsList ...
 func (c EntityRelationsClient) EntitiesRelationsList(ctx context.Context, id EntityId, options EntitiesRelationsListOperationOptions) (result EntitiesRelationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c EntityRelationsClient) EntitiesRelationsList(ctx context.Context, id Ent
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/relations", id.ID()),
 		OptionsObject: options,
+		Pager:         &EntitiesRelationsListCustomPager{},
+		Path:          fmt.Sprintf("%s/relations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -53,8 +53,8 @@ func (c PrivateLinkResourcesClient) ListSupported(ctx context.Context, id Search
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

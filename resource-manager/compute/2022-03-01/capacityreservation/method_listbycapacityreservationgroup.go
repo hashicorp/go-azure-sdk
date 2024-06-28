@@ -23,6 +23,18 @@ type ListByCapacityReservationGroupCompleteResult struct {
 	Items              []CapacityReservation
 }
 
+type ListByCapacityReservationGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByCapacityReservationGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByCapacityReservationGroup ...
 func (c CapacityReservationClient) ListByCapacityReservationGroup(ctx context.Context, id CapacityReservationGroupId) (result ListByCapacityReservationGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c CapacityReservationClient) ListByCapacityReservationGroup(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByCapacityReservationGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/capacityReservations", id.ID()),
 	}
 

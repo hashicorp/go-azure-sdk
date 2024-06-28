@@ -55,8 +55,8 @@ func (c ForecastClient) Usage(ctx context.Context, id commonids.ScopeId, input F
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/forecast", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.CostManagement/forecast", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

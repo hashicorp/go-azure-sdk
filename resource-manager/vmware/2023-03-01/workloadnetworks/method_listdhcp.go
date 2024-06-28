@@ -23,6 +23,18 @@ type ListDhcpCompleteResult struct {
 	Items              []WorkloadNetworkDhcp
 }
 
+type ListDhcpCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListDhcpCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListDhcp ...
 func (c WorkloadNetworksClient) ListDhcp(ctx context.Context, id PrivateCloudId) (result ListDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworksClient) ListDhcp(ctx context.Context, id PrivateCloudId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListDhcpCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/dhcpConfigurations", id.ID()),
 	}
 

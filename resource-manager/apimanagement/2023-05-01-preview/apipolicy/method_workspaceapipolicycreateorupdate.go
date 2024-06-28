@@ -54,8 +54,8 @@ func (c ApiPolicyClient) WorkspaceApiPolicyCreateOrUpdate(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/policies/policy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

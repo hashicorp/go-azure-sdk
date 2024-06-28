@@ -23,6 +23,18 @@ type WorkspaceManagedSqlServerEncryptionProtectorListCompleteResult struct {
 	Items              []EncryptionProtector
 }
 
+type WorkspaceManagedSqlServerEncryptionProtectorListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceManagedSqlServerEncryptionProtectorListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceManagedSqlServerEncryptionProtectorList ...
 func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManagedSqlServerEncryptionProtectorList(ctx context.Context, id WorkspaceId) (result WorkspaceManagedSqlServerEncryptionProtectorListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManag
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceManagedSqlServerEncryptionProtectorListCustomPager{},
 		Path:       fmt.Sprintf("%s/encryptionProtector", id.ID()),
 	}
 

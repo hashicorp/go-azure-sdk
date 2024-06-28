@@ -61,8 +61,8 @@ func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id Ex
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/dimensions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/dimensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

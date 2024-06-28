@@ -23,6 +23,18 @@ type SqlPoolSecurityAlertPoliciesListCompleteResult struct {
 	Items              []SqlPoolSecurityAlertPolicy
 }
 
+type SqlPoolSecurityAlertPoliciesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolSecurityAlertPoliciesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolSecurityAlertPoliciesList ...
 func (c SqlPoolsSecurityAlertPoliciesClient) SqlPoolSecurityAlertPoliciesList(ctx context.Context, id SqlPoolId) (result SqlPoolSecurityAlertPoliciesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsSecurityAlertPoliciesClient) SqlPoolSecurityAlertPoliciesList(ct
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolSecurityAlertPoliciesListCustomPager{},
 		Path:       fmt.Sprintf("%s/securityAlertPolicies", id.ID()),
 	}
 

@@ -24,6 +24,18 @@ type ListAtManagementGroupCompleteResult struct {
 	Items              []DeploymentStack
 }
 
+type ListAtManagementGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAtManagementGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAtManagementGroup ...
 func (c DeploymentStacksClient) ListAtManagementGroup(ctx context.Context, id commonids.ManagementGroupId) (result ListAtManagementGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DeploymentStacksClient) ListAtManagementGroup(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAtManagementGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/deploymentStacks", id.ID()),
 	}
 

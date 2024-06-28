@@ -23,6 +23,18 @@ type ListReplicaSkusCompleteResult struct {
 	Items              []Sku
 }
 
+type ListReplicaSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListReplicaSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListReplicaSkus ...
 func (c SignalRClient) ListReplicaSkus(ctx context.Context, id ReplicaId) (result ListReplicaSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SignalRClient) ListReplicaSkus(ctx context.Context, id ReplicaId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListReplicaSkusCustomPager{},
 		Path:       fmt.Sprintf("%s/skus", id.ID()),
 	}
 
