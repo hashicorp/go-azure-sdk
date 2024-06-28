@@ -23,6 +23,18 @@ type ListByFactoryCompleteResult struct {
 	Items              []LinkedServiceResource
 }
 
+type ListByFactoryCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByFactoryCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByFactory ...
 func (c LinkedServicesClient) ListByFactory(ctx context.Context, id FactoryId) (result ListByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c LinkedServicesClient) ListByFactory(ctx context.Context, id FactoryId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByFactoryCustomPager{},
 		Path:       fmt.Sprintf("%s/linkedServices", id.ID()),
 	}
 

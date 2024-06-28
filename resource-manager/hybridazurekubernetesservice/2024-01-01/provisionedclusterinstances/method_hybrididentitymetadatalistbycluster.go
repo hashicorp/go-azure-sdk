@@ -24,6 +24,18 @@ type HybridIdentityMetadataListByClusterCompleteResult struct {
 	Items              []HybridIdentityMetadata
 }
 
+type HybridIdentityMetadataListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *HybridIdentityMetadataListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // HybridIdentityMetadataListByCluster ...
 func (c ProvisionedClusterInstancesClient) HybridIdentityMetadataListByCluster(ctx context.Context, id commonids.ScopeId) (result HybridIdentityMetadataListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ProvisionedClusterInstancesClient) HybridIdentityMetadataListByCluster(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &HybridIdentityMetadataListByClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata", id.ID()),
 	}
 

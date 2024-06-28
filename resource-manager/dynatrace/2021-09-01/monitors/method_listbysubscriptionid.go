@@ -24,6 +24,18 @@ type ListBySubscriptionIdCompleteResult struct {
 	Items              []MonitorResource
 }
 
+type ListBySubscriptionIdCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySubscriptionIdCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySubscriptionId ...
 func (c MonitorsClient) ListBySubscriptionId(ctx context.Context, id commonids.SubscriptionId) (result ListBySubscriptionIdOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c MonitorsClient) ListBySubscriptionId(ctx context.Context, id commonids.S
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySubscriptionIdCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Dynatrace.Observability/monitors", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type GetCompleteResult struct {
 	Items              []SsisObjectMetadata
 }
 
+type GetCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Get ...
 func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id Inte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &GetCustomPager{},
 		Path:       fmt.Sprintf("%s/getObjectMetadata", id.ID()),
 	}
 

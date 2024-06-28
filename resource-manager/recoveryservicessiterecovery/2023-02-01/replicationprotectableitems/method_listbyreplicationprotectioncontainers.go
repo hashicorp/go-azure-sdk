@@ -54,6 +54,18 @@ func (o ListByReplicationProtectionContainersOperationOptions) ToQuery() *client
 	return &out
 }
 
+type ListByReplicationProtectionContainersCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReplicationProtectionContainersCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReplicationProtectionContainers ...
 func (c ReplicationProtectableItemsClient) ListByReplicationProtectionContainers(ctx context.Context, id ReplicationProtectionContainerId, options ListByReplicationProtectionContainersOperationOptions) (result ListByReplicationProtectionContainersOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c ReplicationProtectableItemsClient) ListByReplicationProtectionContainers
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/replicationProtectableItems", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByReplicationProtectionContainersCustomPager{},
+		Path:          fmt.Sprintf("%s/replicationProtectableItems", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

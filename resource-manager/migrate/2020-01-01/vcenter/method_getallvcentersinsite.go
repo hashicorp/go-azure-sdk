@@ -50,6 +50,18 @@ func (o GetAllVCentersInSiteOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetAllVCentersInSiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllVCentersInSiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAllVCentersInSite ...
 func (c VCenterClient) GetAllVCentersInSite(ctx context.Context, id VMwareSiteId, options GetAllVCentersInSiteOperationOptions) (result GetAllVCentersInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c VCenterClient) GetAllVCentersInSite(ctx context.Context, id VMwareSiteId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/vCenters", id.ID()),
 		OptionsObject: options,
+		Pager:         &GetAllVCentersInSiteCustomPager{},
+		Path:          fmt.Sprintf("%s/vCenters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

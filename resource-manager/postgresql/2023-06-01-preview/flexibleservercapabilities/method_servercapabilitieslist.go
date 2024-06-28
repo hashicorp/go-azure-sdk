@@ -23,6 +23,18 @@ type ServerCapabilitiesListCompleteResult struct {
 	Items              []FlexibleServerCapability
 }
 
+type ServerCapabilitiesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ServerCapabilitiesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ServerCapabilitiesList ...
 func (c FlexibleServerCapabilitiesClient) ServerCapabilitiesList(ctx context.Context, id FlexibleServerId) (result ServerCapabilitiesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c FlexibleServerCapabilitiesClient) ServerCapabilitiesList(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ServerCapabilitiesListCustomPager{},
 		Path:       fmt.Sprintf("%s/capabilities", id.ID()),
 	}
 

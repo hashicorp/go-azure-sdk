@@ -50,6 +50,18 @@ func (o GetAllClustersInSiteOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetAllClustersInSiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllClustersInSiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAllClustersInSite ...
 func (c HyperVClusterClient) GetAllClustersInSite(ctx context.Context, id HyperVSiteId, options GetAllClustersInSiteOperationOptions) (result GetAllClustersInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c HyperVClusterClient) GetAllClustersInSite(ctx context.Context, id HyperV
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/clusters", id.ID()),
 		OptionsObject: options,
+		Pager:         &GetAllClustersInSiteCustomPager{},
+		Path:          fmt.Sprintf("%s/clusters", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

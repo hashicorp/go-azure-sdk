@@ -61,8 +61,8 @@ func (c VirtualMachineExtensionImagesClient) ListVersions(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/versions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

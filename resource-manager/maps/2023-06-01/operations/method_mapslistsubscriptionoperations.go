@@ -24,6 +24,18 @@ type MapsListSubscriptionOperationsCompleteResult struct {
 	Items              []OperationDetail
 }
 
+type MapsListSubscriptionOperationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *MapsListSubscriptionOperationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // MapsListSubscriptionOperations ...
 func (c OperationsClient) MapsListSubscriptionOperations(ctx context.Context, id commonids.SubscriptionId) (result MapsListSubscriptionOperationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c OperationsClient) MapsListSubscriptionOperations(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &MapsListSubscriptionOperationsCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Maps/operations", id.ID()),
 	}
 

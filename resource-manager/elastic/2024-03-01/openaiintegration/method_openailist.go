@@ -23,6 +23,18 @@ type OpenAIListCompleteResult struct {
 	Items              []OpenAIIntegrationRPModel
 }
 
+type OpenAIListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *OpenAIListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // OpenAIList ...
 func (c OpenAIIntegrationClient) OpenAIList(ctx context.Context, id MonitorId) (result OpenAIListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c OpenAIIntegrationClient) OpenAIList(ctx context.Context, id MonitorId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &OpenAIListCustomPager{},
 		Path:       fmt.Sprintf("%s/openAIIntegrations", id.ID()),
 	}
 

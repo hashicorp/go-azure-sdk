@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []RecipientTransferDetails
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c RecipientTransfersClient) List(ctx context.Context) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c RecipientTransfersClient) List(ctx context.Context) (result ListOperatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       "/providers/Microsoft.Billing/transfers",
 	}
 

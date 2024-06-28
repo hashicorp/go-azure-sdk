@@ -23,6 +23,18 @@ type NotificationHubsListAuthorizationRulesCompleteResult struct {
 	Items              []SharedAccessAuthorizationRuleResource
 }
 
+type NotificationHubsListAuthorizationRulesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *NotificationHubsListAuthorizationRulesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // NotificationHubsListAuthorizationRules ...
 func (c HubsClient) NotificationHubsListAuthorizationRules(ctx context.Context, id NotificationHubId) (result NotificationHubsListAuthorizationRulesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c HubsClient) NotificationHubsListAuthorizationRules(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &NotificationHubsListAuthorizationRulesCustomPager{},
 		Path:       fmt.Sprintf("%s/authorizationRules", id.ID()),
 	}
 

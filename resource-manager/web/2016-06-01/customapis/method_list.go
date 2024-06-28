@@ -58,8 +58,8 @@ func (c CustomAPIsClient) List(ctx context.Context, id commonids.SubscriptionId,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Web/customApis", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Web/customApis", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

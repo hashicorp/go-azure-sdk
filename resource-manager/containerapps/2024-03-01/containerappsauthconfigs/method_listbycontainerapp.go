@@ -23,6 +23,18 @@ type ListByContainerAppCompleteResult struct {
 	Items              []AuthConfig
 }
 
+type ListByContainerAppCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByContainerAppCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByContainerApp ...
 func (c ContainerAppsAuthConfigsClient) ListByContainerApp(ctx context.Context, id ContainerAppId) (result ListByContainerAppOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ContainerAppsAuthConfigsClient) ListByContainerApp(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByContainerAppCustomPager{},
 		Path:       fmt.Sprintf("%s/authConfigs", id.ID()),
 	}
 

@@ -54,6 +54,18 @@ func (o ListSupportedCloudServiceSkusOperationOptions) ToQuery() *client.QueryPa
 	return &out
 }
 
+type ListSupportedCloudServiceSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSupportedCloudServiceSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSupportedCloudServiceSkus ...
 func (c LocationClient) ListSupportedCloudServiceSkus(ctx context.Context, id LocationId, options ListSupportedCloudServiceSkusOperationOptions) (result ListSupportedCloudServiceSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c LocationClient) ListSupportedCloudServiceSkus(ctx context.Context, id Lo
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/cloudServiceSkus", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListSupportedCloudServiceSkusCustomPager{},
+		Path:          fmt.Sprintf("%s/cloudServiceSkus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

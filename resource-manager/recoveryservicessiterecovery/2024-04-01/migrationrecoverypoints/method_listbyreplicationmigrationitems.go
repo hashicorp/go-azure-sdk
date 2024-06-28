@@ -23,6 +23,18 @@ type ListByReplicationMigrationItemsCompleteResult struct {
 	Items              []MigrationRecoveryPoint
 }
 
+type ListByReplicationMigrationItemsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReplicationMigrationItemsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReplicationMigrationItems ...
 func (c MigrationRecoveryPointsClient) ListByReplicationMigrationItems(ctx context.Context, id ReplicationMigrationItemId) (result ListByReplicationMigrationItemsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MigrationRecoveryPointsClient) ListByReplicationMigrationItems(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByReplicationMigrationItemsCustomPager{},
 		Path:       fmt.Sprintf("%s/migrationRecoveryPoints", id.ID()),
 	}
 

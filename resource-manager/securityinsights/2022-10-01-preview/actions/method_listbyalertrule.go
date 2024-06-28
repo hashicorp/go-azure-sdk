@@ -23,6 +23,18 @@ type ListByAlertRuleCompleteResult struct {
 	Items              []ActionResponse
 }
 
+type ListByAlertRuleCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAlertRuleCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAlertRule ...
 func (c ActionsClient) ListByAlertRule(ctx context.Context, id AlertRuleId) (result ListByAlertRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ActionsClient) ListByAlertRule(ctx context.Context, id AlertRuleId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByAlertRuleCustomPager{},
 		Path:       fmt.Sprintf("%s/actions", id.ID()),
 	}
 

@@ -57,8 +57,8 @@ func (c ComponentAnnotationsAPIsClient) AnnotationsList(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/annotations", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/annotations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ListAtSubscriptionCompleteResult struct {
 	Items              []DeploymentStack
 }
 
+type ListAtSubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAtSubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAtSubscription ...
 func (c DeploymentStacksClient) ListAtSubscription(ctx context.Context, id commonids.SubscriptionId) (result ListAtSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c DeploymentStacksClient) ListAtSubscription(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAtSubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Resources/deploymentStacks", id.ID()),
 	}
 

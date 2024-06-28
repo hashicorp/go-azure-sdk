@@ -53,8 +53,8 @@ func (c LinkedServicesClient) CreateOrUpdate(ctx context.Context, id LinkedServi
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

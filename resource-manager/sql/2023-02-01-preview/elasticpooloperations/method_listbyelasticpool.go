@@ -24,6 +24,18 @@ type ListByElasticPoolCompleteResult struct {
 	Items              []ElasticPoolOperation
 }
 
+type ListByElasticPoolCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByElasticPoolCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByElasticPool ...
 func (c ElasticPoolOperationsClient) ListByElasticPool(ctx context.Context, id commonids.SqlElasticPoolId) (result ListByElasticPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ElasticPoolOperationsClient) ListByElasticPool(ctx context.Context, id c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByElasticPoolCustomPager{},
 		Path:       fmt.Sprintf("%s/operations", id.ID()),
 	}
 

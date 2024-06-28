@@ -23,6 +23,18 @@ type ListBySyncGroupCompleteResult struct {
 	Items              []SyncMember
 }
 
+type ListBySyncGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySyncGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySyncGroup ...
 func (c SyncMembersClient) ListBySyncGroup(ctx context.Context, id SyncGroupId) (result ListBySyncGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SyncMembersClient) ListBySyncGroup(ctx context.Context, id SyncGroupId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySyncGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/syncMembers", id.ID()),
 	}
 

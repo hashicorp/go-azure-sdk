@@ -23,6 +23,18 @@ type ScriptExecutionsListCompleteResult struct {
 	Items              []ScriptExecution
 }
 
+type ScriptExecutionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ScriptExecutionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ScriptExecutionsList ...
 func (c ScriptsClient) ScriptExecutionsList(ctx context.Context, id PrivateCloudId) (result ScriptExecutionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ScriptsClient) ScriptExecutionsList(ctx context.Context, id PrivateCloud
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ScriptExecutionsListCustomPager{},
 		Path:       fmt.Sprintf("%s/scriptExecutions", id.ID()),
 	}
 

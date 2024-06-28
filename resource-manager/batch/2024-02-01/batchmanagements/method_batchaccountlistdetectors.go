@@ -23,6 +23,18 @@ type BatchAccountListDetectorsCompleteResult struct {
 	Items              []DetectorResponse
 }
 
+type BatchAccountListDetectorsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BatchAccountListDetectorsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BatchAccountListDetectors ...
 func (c BatchManagementsClient) BatchAccountListDetectors(ctx context.Context, id BatchAccountId) (result BatchAccountListDetectorsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BatchManagementsClient) BatchAccountListDetectors(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &BatchAccountListDetectorsCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

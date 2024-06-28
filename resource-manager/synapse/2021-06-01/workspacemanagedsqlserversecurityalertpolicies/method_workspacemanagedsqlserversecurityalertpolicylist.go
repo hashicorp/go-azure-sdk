@@ -23,6 +23,18 @@ type WorkspaceManagedSqlServerSecurityAlertPolicyListCompleteResult struct {
 	Items              []ServerSecurityAlertPolicy
 }
 
+type WorkspaceManagedSqlServerSecurityAlertPolicyListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceManagedSqlServerSecurityAlertPolicyListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceManagedSqlServerSecurityAlertPolicyList ...
 func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSqlServerSecurityAlertPolicyList(ctx context.Context, id WorkspaceId) (result WorkspaceManagedSqlServerSecurityAlertPolicyListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSq
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceManagedSqlServerSecurityAlertPolicyListCustomPager{},
 		Path:       fmt.Sprintf("%s/securityAlertPolicies", id.ID()),
 	}
 

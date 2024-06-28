@@ -23,6 +23,18 @@ type ReplicasListCompleteResult struct {
 	Items              []Replica
 }
 
+type ReplicasListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ReplicasListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ReplicasList ...
 func (c WebPubSubClient) ReplicasList(ctx context.Context, id WebPubSubId) (result ReplicasListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WebPubSubClient) ReplicasList(ctx context.Context, id WebPubSubId) (resu
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ReplicasListCustomPager{},
 		Path:       fmt.Sprintf("%s/replicas", id.ID()),
 	}
 

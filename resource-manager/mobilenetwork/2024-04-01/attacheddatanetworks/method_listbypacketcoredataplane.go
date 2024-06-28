@@ -23,6 +23,18 @@ type ListByPacketCoreDataPlaneCompleteResult struct {
 	Items              []AttachedDataNetwork
 }
 
+type ListByPacketCoreDataPlaneCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPacketCoreDataPlaneCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPacketCoreDataPlane ...
 func (c AttachedDataNetworksClient) ListByPacketCoreDataPlane(ctx context.Context, id PacketCoreDataPlaneId) (result ListByPacketCoreDataPlaneOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AttachedDataNetworksClient) ListByPacketCoreDataPlane(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPacketCoreDataPlaneCustomPager{},
 		Path:       fmt.Sprintf("%s/attachedDataNetworks", id.ID()),
 	}
 

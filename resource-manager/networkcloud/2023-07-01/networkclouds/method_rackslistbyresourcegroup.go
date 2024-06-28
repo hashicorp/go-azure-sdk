@@ -24,6 +24,18 @@ type RacksListByResourceGroupCompleteResult struct {
 	Items              []Rack
 }
 
+type RacksListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RacksListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RacksListByResourceGroup ...
 func (c NetworkcloudsClient) RacksListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result RacksListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) RacksListByResourceGroup(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RacksListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/racks", id.ID()),
 	}
 

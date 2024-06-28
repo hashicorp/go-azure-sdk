@@ -23,6 +23,18 @@ type ListByFactoryCompleteResult struct {
 	Items              []IntegrationRuntimeResource
 }
 
+type ListByFactoryCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByFactoryCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByFactory ...
 func (c IntegrationRuntimesClient) ListByFactory(ctx context.Context, id FactoryId) (result ListByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IntegrationRuntimesClient) ListByFactory(ctx context.Context, id Factory
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByFactoryCustomPager{},
 		Path:       fmt.Sprintf("%s/integrationRuntimes", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type ListByReplicationProtectionClusterCompleteResult struct {
 	Items              []ClusterRecoveryPoint
 }
 
+type ListByReplicationProtectionClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByReplicationProtectionClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByReplicationProtectionCluster ...
 func (c ClusterRecoveryPointsClient) ListByReplicationProtectionCluster(ctx context.Context, id ReplicationProtectionClusterId) (result ListByReplicationProtectionClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ClusterRecoveryPointsClient) ListByReplicationProtectionCluster(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByReplicationProtectionClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/recoveryPoints", id.ID()),
 	}
 

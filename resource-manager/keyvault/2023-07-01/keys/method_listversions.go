@@ -24,6 +24,18 @@ type ListVersionsCompleteResult struct {
 	Items              []Key
 }
 
+type ListVersionsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListVersionsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListVersions ...
 func (c KeysClient) ListVersions(ctx context.Context, id commonids.KeyVaultKeyId) (result ListVersionsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c KeysClient) ListVersions(ctx context.Context, id commonids.KeyVaultKeyId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListVersionsCustomPager{},
 		Path:       fmt.Sprintf("%s/versions", id.ID()),
 	}
 

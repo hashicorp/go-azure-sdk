@@ -53,8 +53,8 @@ func (c MaintenanceWindowsClient) CreateOrUpdate(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          fmt.Sprintf("%s/maintenanceWindows/current", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/maintenanceWindows/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByResourceGroupAndRegionCompleteResult struct {
 	Items              []JitNetworkAccessPolicy
 }
 
+type ListByResourceGroupAndRegionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResourceGroupAndRegionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByResourceGroupAndRegion ...
 func (c JitNetworkAccessPoliciesClient) ListByResourceGroupAndRegion(ctx context.Context, id ProviderLocationId) (result ListByResourceGroupAndRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c JitNetworkAccessPoliciesClient) ListByResourceGroupAndRegion(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByResourceGroupAndRegionCustomPager{},
 		Path:       fmt.Sprintf("%s/jitNetworkAccessPolicies", id.ID()),
 	}
 

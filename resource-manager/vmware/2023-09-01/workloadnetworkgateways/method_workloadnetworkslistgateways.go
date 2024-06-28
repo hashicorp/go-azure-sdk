@@ -23,6 +23,18 @@ type WorkloadNetworksListGatewaysCompleteResult struct {
 	Items              []WorkloadNetworkGateway
 }
 
+type WorkloadNetworksListGatewaysCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkloadNetworksListGatewaysCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkloadNetworksListGateways ...
 func (c WorkloadNetworkGatewaysClient) WorkloadNetworksListGateways(ctx context.Context, id PrivateCloudId) (result WorkloadNetworksListGatewaysOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkloadNetworkGatewaysClient) WorkloadNetworksListGateways(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkloadNetworksListGatewaysCustomPager{},
 		Path:       fmt.Sprintf("%s/workloadNetworks/default/gateways", id.ID()),
 	}
 

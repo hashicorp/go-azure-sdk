@@ -23,6 +23,18 @@ type UeInformationListCompleteResult struct {
 	Items              []UeInfo
 }
 
+type UeInformationListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *UeInformationListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // UeInformationList ...
 func (c UeInformationListClient) UeInformationList(ctx context.Context, id PacketCoreControlPlaneId) (result UeInformationListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c UeInformationListClient) UeInformationList(ctx context.Context, id Packe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &UeInformationListCustomPager{},
 		Path:       fmt.Sprintf("%s/ues", id.ID()),
 	}
 

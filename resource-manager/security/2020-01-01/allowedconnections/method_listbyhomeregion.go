@@ -23,6 +23,18 @@ type ListByHomeRegionCompleteResult struct {
 	Items              []AllowedConnectionsResource
 }
 
+type ListByHomeRegionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByHomeRegionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByHomeRegion ...
 func (c AllowedConnectionsClient) ListByHomeRegion(ctx context.Context, id LocationId) (result ListByHomeRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AllowedConnectionsClient) ListByHomeRegion(ctx context.Context, id Locat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByHomeRegionCustomPager{},
 		Path:       fmt.Sprintf("%s/allowedConnections", id.ID()),
 	}
 

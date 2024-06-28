@@ -23,6 +23,18 @@ type ListAppServiceCertificateOrderDetectorResponseCompleteResult struct {
 	Items              []DetectorResponse
 }
 
+type ListAppServiceCertificateOrderDetectorResponseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAppServiceCertificateOrderDetectorResponseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAppServiceCertificateOrderDetectorResponse ...
 func (c CertificateOrdersDiagnosticsClient) ListAppServiceCertificateOrderDetectorResponse(ctx context.Context, id CertificateOrderId) (result ListAppServiceCertificateOrderDetectorResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c CertificateOrdersDiagnosticsClient) ListAppServiceCertificateOrderDetect
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListAppServiceCertificateOrderDetectorResponseCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

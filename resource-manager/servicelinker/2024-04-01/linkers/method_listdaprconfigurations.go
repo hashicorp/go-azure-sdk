@@ -24,6 +24,18 @@ type ListDaprConfigurationsCompleteResult struct {
 	Items              []DaprConfigurationResource
 }
 
+type ListDaprConfigurationsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListDaprConfigurationsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListDaprConfigurations ...
 func (c LinkersClient) ListDaprConfigurations(ctx context.Context, id commonids.ScopeId) (result ListDaprConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c LinkersClient) ListDaprConfigurations(ctx context.Context, id commonids.
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListDaprConfigurationsCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.ServiceLinker/daprConfigurations", id.ID()),
 	}
 

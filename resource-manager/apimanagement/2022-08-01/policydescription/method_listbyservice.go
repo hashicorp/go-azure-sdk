@@ -53,8 +53,8 @@ func (c PolicyDescriptionClient) ListByService(ctx context.Context, id ServiceId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/policyDescriptions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/policyDescriptions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

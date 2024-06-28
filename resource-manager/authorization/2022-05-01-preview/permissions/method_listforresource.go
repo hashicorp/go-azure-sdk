@@ -24,6 +24,18 @@ type ListForResourceCompleteResult struct {
 	Items              []Permission
 }
 
+type ListForResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListForResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListForResource ...
 func (c PermissionsClient) ListForResource(ctx context.Context, id commonids.ScopeId) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c PermissionsClient) ListForResource(ctx context.Context, id commonids.Sco
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListForResourceCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Authorization/permissions", id.ID()),
 	}
 

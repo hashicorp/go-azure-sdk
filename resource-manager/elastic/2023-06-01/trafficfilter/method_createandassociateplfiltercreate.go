@@ -64,8 +64,8 @@ func (c TrafficFilterClient) CreateAndAssociatePLFilterCreate(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/createAndAssociatePLFilter", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createAndAssociatePLFilter", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ContainerAppsDiagnosticsListDetectorsCompleteResult struct {
 	Items              []Diagnostics
 }
 
+type ContainerAppsDiagnosticsListDetectorsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ContainerAppsDiagnosticsListDetectorsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ContainerAppsDiagnosticsListDetectors ...
 func (c DiagnosticsClient) ContainerAppsDiagnosticsListDetectors(ctx context.Context, id ContainerAppId) (result ContainerAppsDiagnosticsListDetectorsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DiagnosticsClient) ContainerAppsDiagnosticsListDetectors(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ContainerAppsDiagnosticsListDetectorsCustomPager{},
 		Path:       fmt.Sprintf("%s/detectors", id.ID()),
 	}
 

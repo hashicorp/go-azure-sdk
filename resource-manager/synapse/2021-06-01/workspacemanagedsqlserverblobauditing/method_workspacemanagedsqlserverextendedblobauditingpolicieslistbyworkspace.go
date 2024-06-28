@@ -23,6 +23,18 @@ type WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspaceComplet
 	Items              []ExtendedServerBlobAuditingPolicy
 }
 
+type WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspaceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspaceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspace ...
 func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspace(ctx context.Context, id WorkspaceId) (result WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerEx
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesListByWorkspaceCustomPager{},
 		Path:       fmt.Sprintf("%s/extendedAuditingSettings", id.ID()),
 	}
 

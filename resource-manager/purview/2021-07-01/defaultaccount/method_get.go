@@ -61,8 +61,8 @@ func (c DefaultAccountClient) Get(ctx context.Context, options GetOperationOptio
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          "/providers/Microsoft.Purview/getDefaultAccount",
 		OptionsObject: options,
+		Path:          "/providers/Microsoft.Purview/getDefaultAccount",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

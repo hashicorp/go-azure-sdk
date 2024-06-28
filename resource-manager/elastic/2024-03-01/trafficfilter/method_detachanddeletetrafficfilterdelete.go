@@ -52,8 +52,8 @@ func (c TrafficFilterClient) DetachAndDeleteTrafficFilterDelete(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/detachAndDeleteTrafficFilter", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/detachAndDeleteTrafficFilter", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

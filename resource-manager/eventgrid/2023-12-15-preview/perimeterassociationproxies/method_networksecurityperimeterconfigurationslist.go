@@ -24,6 +24,18 @@ type NetworkSecurityPerimeterConfigurationsListCompleteResult struct {
 	Items              []NetworkSecurityPerimeterConfiguration
 }
 
+type NetworkSecurityPerimeterConfigurationsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *NetworkSecurityPerimeterConfigurationsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // NetworkSecurityPerimeterConfigurationsList ...
 func (c PerimeterAssociationProxiesClient) NetworkSecurityPerimeterConfigurationsList(ctx context.Context, id commonids.ScopeId) (result NetworkSecurityPerimeterConfigurationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c PerimeterAssociationProxiesClient) NetworkSecurityPerimeterConfiguration
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &NetworkSecurityPerimeterConfigurationsListCustomPager{},
 		Path:       fmt.Sprintf("%s/networkSecurityPerimeterConfigurations", id.ID()),
 	}
 

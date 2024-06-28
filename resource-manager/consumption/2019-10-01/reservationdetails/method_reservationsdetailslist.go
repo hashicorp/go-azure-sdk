@@ -67,6 +67,18 @@ func (o ReservationsDetailsListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ReservationsDetailsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ReservationsDetailsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ReservationsDetailsList ...
 func (c ReservationDetailsClient) ReservationsDetailsList(ctx context.Context, id commonids.ScopeId, options ReservationsDetailsListOperationOptions) (result ReservationsDetailsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -75,8 +87,9 @@ func (c ReservationDetailsClient) ReservationsDetailsList(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/reservationDetails", id.ID()),
 		OptionsObject: options,
+		Pager:         &ReservationsDetailsListCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/reservationDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

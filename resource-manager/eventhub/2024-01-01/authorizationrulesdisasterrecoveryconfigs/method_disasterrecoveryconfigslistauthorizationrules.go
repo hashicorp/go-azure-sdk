@@ -23,6 +23,18 @@ type DisasterRecoveryConfigsListAuthorizationRulesCompleteResult struct {
 	Items              []AuthorizationRule
 }
 
+type DisasterRecoveryConfigsListAuthorizationRulesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *DisasterRecoveryConfigsListAuthorizationRulesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // DisasterRecoveryConfigsListAuthorizationRules ...
 func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListAuthorizationRules(ctx context.Context, id DisasterRecoveryConfigId) (result DisasterRecoveryConfigsListAuthorizationRulesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigs
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &DisasterRecoveryConfigsListAuthorizationRulesCustomPager{},
 		Path:       fmt.Sprintf("%s/authorizationRules", id.ID()),
 	}
 

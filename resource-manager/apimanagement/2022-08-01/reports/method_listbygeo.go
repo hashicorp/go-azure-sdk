@@ -58,6 +58,18 @@ func (o ListByGeoOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByGeoCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByGeoCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByGeo ...
 func (c ReportsClient) ListByGeo(ctx context.Context, id ServiceId, options ListByGeoOperationOptions) (result ListByGeoOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c ReportsClient) ListByGeo(ctx context.Context, id ServiceId, options List
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/reports/byGeo", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByGeoCustomPager{},
+		Path:          fmt.Sprintf("%s/reports/byGeo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

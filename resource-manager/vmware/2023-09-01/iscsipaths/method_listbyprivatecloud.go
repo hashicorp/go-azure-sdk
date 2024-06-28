@@ -23,6 +23,18 @@ type ListByPrivateCloudCompleteResult struct {
 	Items              []IscsiPath
 }
 
+type ListByPrivateCloudCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPrivateCloudCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPrivateCloud ...
 func (c IscsiPathsClient) ListByPrivateCloud(ctx context.Context, id PrivateCloudId) (result ListByPrivateCloudOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IscsiPathsClient) ListByPrivateCloud(ctx context.Context, id PrivateClou
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPrivateCloudCustomPager{},
 		Path:       fmt.Sprintf("%s/iscsiPaths", id.ID()),
 	}
 

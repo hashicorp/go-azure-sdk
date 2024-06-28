@@ -23,6 +23,18 @@ type ScriptCmdletsListCompleteResult struct {
 	Items              []ScriptCmdlet
 }
 
+type ScriptCmdletsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ScriptCmdletsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ScriptCmdletsList ...
 func (c ScriptsClient) ScriptCmdletsList(ctx context.Context, id ScriptPackageId) (result ScriptCmdletsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ScriptsClient) ScriptCmdletsList(ctx context.Context, id ScriptPackageId
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ScriptCmdletsListCustomPager{},
 		Path:       fmt.Sprintf("%s/scriptCmdlets", id.ID()),
 	}
 

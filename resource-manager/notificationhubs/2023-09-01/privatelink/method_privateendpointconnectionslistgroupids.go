@@ -23,6 +23,18 @@ type PrivateEndpointConnectionsListGroupIdsCompleteResult struct {
 	Items              []PrivateLinkResource
 }
 
+type PrivateEndpointConnectionsListGroupIdsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *PrivateEndpointConnectionsListGroupIdsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // PrivateEndpointConnectionsListGroupIds ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsListGroupIds(ctx context.Context, id NamespaceId) (result PrivateEndpointConnectionsListGroupIdsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListGroupIds(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &PrivateEndpointConnectionsListGroupIdsCustomPager{},
 		Path:       fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 

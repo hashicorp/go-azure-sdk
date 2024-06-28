@@ -54,6 +54,18 @@ func (o ListByResourceGroupDatabaseOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
+type ListByResourceGroupDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResourceGroupDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByResourceGroupDatabase ...
 func (c LongTermRetentionBackupsClient) ListByResourceGroupDatabase(ctx context.Context, id LocationLongTermRetentionServerLongTermRetentionDatabaseId, options ListByResourceGroupDatabaseOperationOptions) (result ListByResourceGroupDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c LongTermRetentionBackupsClient) ListByResourceGroupDatabase(ctx context.
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/longTermRetentionBackups", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByResourceGroupDatabaseCustomPager{},
+		Path:          fmt.Sprintf("%s/longTermRetentionBackups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

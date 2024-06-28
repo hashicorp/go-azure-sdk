@@ -51,6 +51,18 @@ func (o ListForResourceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListForResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListForResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListForResource ...
 func (c PolicyAssignmentsClient) ListForResource(ctx context.Context, id commonids.ScopeId, options ListForResourceOperationOptions) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,8 +71,9 @@ func (c PolicyAssignmentsClient) ListForResource(ctx context.Context, id commoni
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/resourceNameproviders/Microsoft.Authorization/policyAssignments", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListForResourceCustomPager{},
+		Path:          fmt.Sprintf("%s/resourceNameproviders/Microsoft.Authorization/policyAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

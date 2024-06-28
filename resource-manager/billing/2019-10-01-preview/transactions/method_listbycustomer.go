@@ -58,6 +58,18 @@ func (o ListByCustomerOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByCustomerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByCustomerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByCustomer ...
 func (c TransactionsClient) ListByCustomer(ctx context.Context, id CustomerId, options ListByCustomerOperationOptions) (result ListByCustomerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c TransactionsClient) ListByCustomer(ctx context.Context, id CustomerId, o
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/transactions", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByCustomerCustomPager{},
+		Path:          fmt.Sprintf("%s/transactions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

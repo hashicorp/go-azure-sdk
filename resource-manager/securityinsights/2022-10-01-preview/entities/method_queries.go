@@ -53,8 +53,8 @@ func (c EntitiesClient) Queries(ctx context.Context, id EntityId, options Querie
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/queries", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/queries", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

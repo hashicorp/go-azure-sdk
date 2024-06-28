@@ -54,8 +54,8 @@ func (c TagClient) WorkspaceTagCreateOrUpdate(ctx context.Context, id WorkspaceT
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

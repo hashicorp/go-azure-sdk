@@ -24,6 +24,18 @@ type ListSourceShareSynchronizationSettingsCompleteResult struct {
 	Items              []SourceShareSynchronizationSetting
 }
 
+type ListSourceShareSynchronizationSettingsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSourceShareSynchronizationSettingsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSourceShareSynchronizationSettings ...
 func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettings(ctx context.Context, id ShareSubscriptionId) (result ListSourceShareSynchronizationSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettings(ctx cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListSourceShareSynchronizationSettingsCustomPager{},
 		Path:       fmt.Sprintf("%s/listSourceShareSynchronizationSettings", id.ID()),
 	}
 

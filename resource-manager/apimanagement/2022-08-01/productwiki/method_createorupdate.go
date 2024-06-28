@@ -54,8 +54,8 @@ func (c ProductWikiClient) CreateOrUpdate(ctx context.Context, id ProductId, inp
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
-		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type PolicyRestrictionListByServiceCompleteResult struct {
 	Items              []PolicyRestrictionContract
 }
 
+type PolicyRestrictionListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *PolicyRestrictionListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // PolicyRestrictionListByService ...
 func (c PolicyRestrictionsClient) PolicyRestrictionListByService(ctx context.Context, id ServiceId) (result PolicyRestrictionListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PolicyRestrictionsClient) PolicyRestrictionListByService(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &PolicyRestrictionListByServiceCustomPager{},
 		Path:       fmt.Sprintf("%s/policyRestrictions", id.ID()),
 	}
 

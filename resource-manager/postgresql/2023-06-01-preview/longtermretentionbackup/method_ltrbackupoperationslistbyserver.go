@@ -23,6 +23,18 @@ type LtrBackupOperationsListByServerCompleteResult struct {
 	Items              []LtrServerBackupOperation
 }
 
+type LtrBackupOperationsListByServerCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *LtrBackupOperationsListByServerCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // LtrBackupOperationsListByServer ...
 func (c LongTermRetentionBackupClient) LtrBackupOperationsListByServer(ctx context.Context, id FlexibleServerId) (result LtrBackupOperationsListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c LongTermRetentionBackupClient) LtrBackupOperationsListByServer(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &LtrBackupOperationsListByServerCustomPager{},
 		Path:       fmt.Sprintf("%s/ltrBackupOperations", id.ID()),
 	}
 

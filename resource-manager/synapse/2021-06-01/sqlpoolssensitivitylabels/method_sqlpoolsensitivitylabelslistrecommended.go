@@ -54,6 +54,18 @@ func (o SqlPoolSensitivityLabelsListRecommendedOperationOptions) ToQuery() *clie
 	return &out
 }
 
+type SqlPoolSensitivityLabelsListRecommendedCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolSensitivityLabelsListRecommendedCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolSensitivityLabelsListRecommended ...
 func (c SqlPoolsSensitivityLabelsClient) SqlPoolSensitivityLabelsListRecommended(ctx context.Context, id SqlPoolId, options SqlPoolSensitivityLabelsListRecommendedOperationOptions) (result SqlPoolSensitivityLabelsListRecommendedOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c SqlPoolsSensitivityLabelsClient) SqlPoolSensitivityLabelsListRecommended
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/recommendedSensitivityLabels", id.ID()),
 		OptionsObject: options,
+		Pager:         &SqlPoolSensitivityLabelsListRecommendedCustomPager{},
+		Path:          fmt.Sprintf("%s/recommendedSensitivityLabels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

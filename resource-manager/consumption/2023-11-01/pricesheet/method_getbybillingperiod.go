@@ -57,8 +57,8 @@ func (c PriceSheetClient) GetByBillingPeriod(ctx context.Context, id BillingPeri
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/pricesheets/default", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/pricesheets/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

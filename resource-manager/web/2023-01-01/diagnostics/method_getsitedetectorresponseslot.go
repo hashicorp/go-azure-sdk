@@ -61,8 +61,8 @@ func (c DiagnosticsClient) GetSiteDetectorResponseSlot(ctx context.Context, id S
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

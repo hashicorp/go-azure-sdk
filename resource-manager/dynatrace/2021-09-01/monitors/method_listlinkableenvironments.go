@@ -23,6 +23,18 @@ type ListLinkableEnvironmentsCompleteResult struct {
 	Items              []LinkableEnvironmentResponse
 }
 
+type ListLinkableEnvironmentsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListLinkableEnvironmentsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListLinkableEnvironments ...
 func (c MonitorsClient) ListLinkableEnvironments(ctx context.Context, id MonitorId, input LinkableEnvironmentRequest) (result ListLinkableEnvironmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MonitorsClient) ListLinkableEnvironments(ctx context.Context, id Monitor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListLinkableEnvironmentsCustomPager{},
 		Path:       fmt.Sprintf("%s/listLinkableEnvironments", id.ID()),
 	}
 

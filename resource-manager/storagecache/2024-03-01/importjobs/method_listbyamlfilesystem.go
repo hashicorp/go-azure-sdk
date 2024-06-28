@@ -23,6 +23,18 @@ type ListByAmlFilesystemCompleteResult struct {
 	Items              []ImportJob
 }
 
+type ListByAmlFilesystemCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByAmlFilesystemCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByAmlFilesystem ...
 func (c ImportJobsClient) ListByAmlFilesystem(ctx context.Context, id AmlFilesystemId) (result ListByAmlFilesystemOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ImportJobsClient) ListByAmlFilesystem(ctx context.Context, id AmlFilesys
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByAmlFilesystemCustomPager{},
 		Path:       fmt.Sprintf("%s/importJobs", id.ID()),
 	}
 

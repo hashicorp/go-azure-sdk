@@ -23,6 +23,18 @@ type ConsumerSourceDataSetsListByShareSubscriptionCompleteResult struct {
 	Items              []ConsumerSourceDataSet
 }
 
+type ConsumerSourceDataSetsListByShareSubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ConsumerSourceDataSetsListByShareSubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ConsumerSourceDataSetsListByShareSubscription ...
 func (c ShareSubscriptionClient) ConsumerSourceDataSetsListByShareSubscription(ctx context.Context, id ShareSubscriptionId) (result ConsumerSourceDataSetsListByShareSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ShareSubscriptionClient) ConsumerSourceDataSetsListByShareSubscription(c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ConsumerSourceDataSetsListByShareSubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/consumerSourceDataSets", id.ID()),
 	}
 

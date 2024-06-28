@@ -61,8 +61,8 @@ func (c DefaultAccountClient) Remove(ctx context.Context, options RemoveOperatio
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          "/providers/Microsoft.Purview/removeDefaultAccount",
 		OptionsObject: options,
+		Path:          "/providers/Microsoft.Purview/removeDefaultAccount",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByPolicyNameCompleteResult struct {
 	Items              []PrivateEndpointConnection
 }
 
+type ListByPolicyNameCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPolicyNameCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPolicyName ...
 func (c PrivateEndpointConnectionsClient) ListByPolicyName(ctx context.Context, id PrivateLinkForAzureAdId) (result ListByPolicyNameOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateEndpointConnectionsClient) ListByPolicyName(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPolicyNameCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

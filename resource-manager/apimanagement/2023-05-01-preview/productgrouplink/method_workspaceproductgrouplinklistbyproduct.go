@@ -58,6 +58,18 @@ func (o WorkspaceProductGroupLinkListByProductOperationOptions) ToQuery() *clien
 	return &out
 }
 
+type WorkspaceProductGroupLinkListByProductCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceProductGroupLinkListByProductCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceProductGroupLinkListByProduct ...
 func (c ProductGroupLinkClient) WorkspaceProductGroupLinkListByProduct(ctx context.Context, id WorkspaceProductId, options WorkspaceProductGroupLinkListByProductOperationOptions) (result WorkspaceProductGroupLinkListByProductOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c ProductGroupLinkClient) WorkspaceProductGroupLinkListByProduct(ctx conte
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/groupLinks", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceProductGroupLinkListByProductCustomPager{},
+		Path:          fmt.Sprintf("%s/groupLinks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

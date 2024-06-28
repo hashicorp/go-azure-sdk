@@ -23,6 +23,18 @@ type ExecuteCompleteResult struct {
 	Items              []CapabilityProperties
 }
 
+type ExecuteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ExecuteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Execute ...
 func (c LocationBasedCapabilitiesClient) Execute(ctx context.Context, id LocationId) (result ExecuteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c LocationBasedCapabilitiesClient) Execute(ctx context.Context, id Locatio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ExecuteCustomPager{},
 		Path:       fmt.Sprintf("%s/capabilities", id.ID()),
 	}
 

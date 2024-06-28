@@ -24,6 +24,18 @@ type RackSkusListBySubscriptionCompleteResult struct {
 	Items              []RackSku
 }
 
+type RackSkusListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RackSkusListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RackSkusListBySubscription ...
 func (c NetworkcloudsClient) RackSkusListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result RackSkusListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) RackSkusListBySubscription(ctx context.Context, id 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &RackSkusListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/rackSkus", id.ID()),
 	}
 

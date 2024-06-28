@@ -23,6 +23,18 @@ type ListByJobCompleteResult struct {
 	Items              []JobStep
 }
 
+type ListByJobCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByJobCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByJob ...
 func (c JobStepsClient) ListByJob(ctx context.Context, id JobId) (result ListByJobOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c JobStepsClient) ListByJob(ctx context.Context, id JobId) (result ListByJ
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByJobCustomPager{},
 		Path:       fmt.Sprintf("%s/steps", id.ID()),
 	}
 

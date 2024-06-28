@@ -54,8 +54,8 @@ func (c MetricDefinitionsClient) List(ctx context.Context, id commonids.ScopeId,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

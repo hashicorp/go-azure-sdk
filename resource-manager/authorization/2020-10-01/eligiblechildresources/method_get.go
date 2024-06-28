@@ -51,6 +51,18 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // Get ...
 func (c EligibleChildResourcesClient) Get(ctx context.Context, id commonids.ScopeId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,8 +71,9 @@ func (c EligibleChildResourcesClient) Get(ctx context.Context, id commonids.Scop
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/eligibleChildResources", id.ID()),
 		OptionsObject: options,
+		Pager:         &GetCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/eligibleChildResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

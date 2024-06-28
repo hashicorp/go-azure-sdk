@@ -24,6 +24,18 @@ type CommitmentPlansListPlansByResourceGroupCompleteResult struct {
 	Items              []CommitmentPlan
 }
 
+type CommitmentPlansListPlansByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *CommitmentPlansListPlansByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // CommitmentPlansListPlansByResourceGroup ...
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansListPlansByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result CommitmentPlansListPlansByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansListPlansByResour
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &CommitmentPlansListPlansByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.CognitiveServices/commitmentPlans", id.ID()),
 	}
 

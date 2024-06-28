@@ -61,8 +61,8 @@ func (c RestorablesClient) RestorableGremlinGraphsList(ctx context.Context, id R
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/restorableGraphs", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restorableGraphs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

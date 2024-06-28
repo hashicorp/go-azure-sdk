@@ -53,8 +53,8 @@ func (c ProductClient) WorkspaceProductUpdate(ctx context.Context, id WorkspaceP
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
-		Path:          id.ID(),
 		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ResourceSkusListSkusCompleteResult struct {
 	Items              []ResourceSku
 }
 
+type ResourceSkusListSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ResourceSkusListSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ResourceSkusListSkus ...
 func (c GETClient) ResourceSkusListSkus(ctx context.Context, id commonids.SubscriptionId) (result ResourceSkusListSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c GETClient) ResourceSkusListSkus(ctx context.Context, id commonids.Subscr
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ResourceSkusListSkusCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.DataMigration/skus", id.ID()),
 	}
 

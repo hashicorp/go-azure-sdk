@@ -23,6 +23,18 @@ type SqlPoolTransparentDataEncryptionsListCompleteResult struct {
 	Items              []TransparentDataEncryption
 }
 
+type SqlPoolTransparentDataEncryptionsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolTransparentDataEncryptionsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolTransparentDataEncryptionsList ...
 func (c SqlPoolsTransparentDataEncryptionClient) SqlPoolTransparentDataEncryptionsList(ctx context.Context, id SqlPoolId) (result SqlPoolTransparentDataEncryptionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SqlPoolsTransparentDataEncryptionClient) SqlPoolTransparentDataEncryptio
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SqlPoolTransparentDataEncryptionsListCustomPager{},
 		Path:       fmt.Sprintf("%s/transparentDataEncryption", id.ID()),
 	}
 

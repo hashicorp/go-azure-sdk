@@ -52,8 +52,8 @@ func (c UserConfirmationPasswordSendClient) UserConfirmationPasswordSend(ctx con
 			http.StatusNoContent,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/confirmations/password/send", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/confirmations/password/send", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -23,6 +23,18 @@ type ListByConfigurationStoreCompleteResult struct {
 	Items              []PrivateEndpointConnection
 }
 
+type ListByConfigurationStoreCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByConfigurationStoreCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByConfigurationStore ...
 func (c PrivateEndpointConnectionsClient) ListByConfigurationStore(ctx context.Context, id ConfigurationStoreId) (result ListByConfigurationStoreOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateEndpointConnectionsClient) ListByConfigurationStore(ctx context.C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByConfigurationStoreCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

@@ -24,6 +24,18 @@ type BareMetalMachinesListByResourceGroupCompleteResult struct {
 	Items              []BareMetalMachine
 }
 
+type BareMetalMachinesListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BareMetalMachinesListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BareMetalMachinesListByResourceGroup ...
 func (c NetworkcloudsClient) BareMetalMachinesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result BareMetalMachinesListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) BareMetalMachinesListByResourceGroup(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &BareMetalMachinesListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/bareMetalMachines", id.ID()),
 	}
 

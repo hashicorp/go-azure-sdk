@@ -23,6 +23,18 @@ type GetAllJobsInSiteCompleteResult struct {
 	Items              []HyperVJob
 }
 
+type GetAllJobsInSiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllJobsInSiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAllJobsInSite ...
 func (c HyperVJobsClient) GetAllJobsInSite(ctx context.Context, id HyperVSiteId) (result GetAllJobsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c HyperVJobsClient) GetAllJobsInSite(ctx context.Context, id HyperVSiteId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GetAllJobsInSiteCustomPager{},
 		Path:       fmt.Sprintf("%s/jobs", id.ID()),
 	}
 

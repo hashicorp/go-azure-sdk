@@ -53,8 +53,8 @@ func (c ProductWikiClient) Delete(ctx context.Context, id ProductId, options Del
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
-		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wikis/default", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

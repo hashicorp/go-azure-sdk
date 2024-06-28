@@ -24,6 +24,18 @@ type ListByResourceCompleteResult struct {
 	Items              []PrivateEndpointConnection
 }
 
+type ListByResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByResource ...
 func (c PrivateEndpointConnectionsClient) ListByResource(ctx context.Context, id commonids.KeyVaultId) (result ListByResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c PrivateEndpointConnectionsClient) ListByResource(ctx context.Context, id
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByResourceCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

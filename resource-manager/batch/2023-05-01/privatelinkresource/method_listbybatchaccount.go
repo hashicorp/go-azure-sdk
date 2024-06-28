@@ -50,6 +50,18 @@ func (o ListByBatchAccountOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByBatchAccountCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByBatchAccountCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByBatchAccount ...
 func (c PrivateLinkResourceClient) ListByBatchAccount(ctx context.Context, id BatchAccountId, options ListByBatchAccountOperationOptions) (result ListByBatchAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c PrivateLinkResourceClient) ListByBatchAccount(ctx context.Context, id Ba
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByBatchAccountCustomPager{},
+		Path:          fmt.Sprintf("%s/privateLinkResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

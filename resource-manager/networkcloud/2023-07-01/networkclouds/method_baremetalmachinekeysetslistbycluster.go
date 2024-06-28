@@ -23,6 +23,18 @@ type BareMetalMachineKeySetsListByClusterCompleteResult struct {
 	Items              []BareMetalMachineKeySet
 }
 
+type BareMetalMachineKeySetsListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BareMetalMachineKeySetsListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BareMetalMachineKeySetsListByCluster ...
 func (c NetworkcloudsClient) BareMetalMachineKeySetsListByCluster(ctx context.Context, id ClusterId) (result BareMetalMachineKeySetsListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsListByCluster(ctx context.Co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &BareMetalMachineKeySetsListByClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/bareMetalMachineKeySets", id.ID()),
 	}
 

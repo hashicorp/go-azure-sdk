@@ -23,6 +23,18 @@ type ListInvoiceSectionsByCreateSubscriptionPermissionCompleteResult struct {
 	Items              []InvoiceSectionWithCreateSubPermission
 }
 
+type ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListInvoiceSectionsByCreateSubscriptionPermission ...
 func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermission(ctx context.Context, id BillingAccountId) (result ListInvoiceSectionsByCreateSubscriptionPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingAccountsClient) ListInvoiceSectionsByCreateSubscriptionPermission
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListInvoiceSectionsByCreateSubscriptionPermissionCustomPager{},
 		Path:       fmt.Sprintf("%s/listInvoiceSectionsWithCreateSubscriptionPermission", id.ID()),
 	}
 

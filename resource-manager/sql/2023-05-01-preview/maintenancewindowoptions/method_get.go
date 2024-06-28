@@ -54,8 +54,8 @@ func (c MaintenanceWindowOptionsClient) Get(ctx context.Context, id commonids.Sq
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/maintenanceWindowOptions/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

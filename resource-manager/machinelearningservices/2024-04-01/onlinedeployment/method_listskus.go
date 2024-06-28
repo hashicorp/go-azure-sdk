@@ -54,6 +54,18 @@ func (o ListSkusOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListSkusCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListSkusCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListSkus ...
 func (c OnlineDeploymentClient) ListSkus(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions) (result ListSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c OnlineDeploymentClient) ListSkus(ctx context.Context, id OnlineEndpointD
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/skus", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListSkusCustomPager{},
+		Path:          fmt.Sprintf("%s/skus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

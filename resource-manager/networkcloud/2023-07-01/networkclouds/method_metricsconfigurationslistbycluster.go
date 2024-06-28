@@ -23,6 +23,18 @@ type MetricsConfigurationsListByClusterCompleteResult struct {
 	Items              []ClusterMetricsConfiguration
 }
 
+type MetricsConfigurationsListByClusterCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *MetricsConfigurationsListByClusterCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // MetricsConfigurationsListByCluster ...
 func (c NetworkcloudsClient) MetricsConfigurationsListByCluster(ctx context.Context, id ClusterId) (result MetricsConfigurationsListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c NetworkcloudsClient) MetricsConfigurationsListByCluster(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &MetricsConfigurationsListByClusterCustomPager{},
 		Path:       fmt.Sprintf("%s/metricsConfigurations", id.ID()),
 	}
 

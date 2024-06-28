@@ -23,6 +23,18 @@ type MonitorListVMHostsCompleteResult struct {
 	Items              []VMResources
 }
 
+type MonitorListVMHostsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *MonitorListVMHostsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // MonitorListVMHosts ...
 func (c VMHostClient) MonitorListVMHosts(ctx context.Context, id MonitorId) (result MonitorListVMHostsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c VMHostClient) MonitorListVMHosts(ctx context.Context, id MonitorId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &MonitorListVMHostsCustomPager{},
 		Path:       fmt.Sprintf("%s/listVMHosts", id.ID()),
 	}
 

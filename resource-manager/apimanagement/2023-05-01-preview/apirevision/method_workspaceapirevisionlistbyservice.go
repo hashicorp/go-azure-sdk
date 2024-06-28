@@ -58,6 +58,18 @@ func (o WorkspaceApiRevisionListByServiceOperationOptions) ToQuery() *client.Que
 	return &out
 }
 
+type WorkspaceApiRevisionListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiRevisionListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiRevisionListByService ...
 func (c ApiRevisionClient) WorkspaceApiRevisionListByService(ctx context.Context, id WorkspaceApiId, options WorkspaceApiRevisionListByServiceOperationOptions) (result WorkspaceApiRevisionListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -66,8 +78,9 @@ func (c ApiRevisionClient) WorkspaceApiRevisionListByService(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/revisions", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceApiRevisionListByServiceCustomPager{},
+		Path:          fmt.Sprintf("%s/revisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

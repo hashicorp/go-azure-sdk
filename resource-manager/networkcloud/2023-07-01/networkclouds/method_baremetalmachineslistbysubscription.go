@@ -24,6 +24,18 @@ type BareMetalMachinesListBySubscriptionCompleteResult struct {
 	Items              []BareMetalMachine
 }
 
+type BareMetalMachinesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *BareMetalMachinesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // BareMetalMachinesListBySubscription ...
 func (c NetworkcloudsClient) BareMetalMachinesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result BareMetalMachinesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) BareMetalMachinesListBySubscription(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &BareMetalMachinesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/bareMetalMachines", id.ID()),
 	}
 

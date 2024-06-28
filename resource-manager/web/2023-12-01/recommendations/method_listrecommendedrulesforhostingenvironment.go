@@ -55,6 +55,18 @@ func (o ListRecommendedRulesForHostingEnvironmentOperationOptions) ToQuery() *cl
 	return &out
 }
 
+type ListRecommendedRulesForHostingEnvironmentCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListRecommendedRulesForHostingEnvironmentCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListRecommendedRulesForHostingEnvironment ...
 func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (result ListRecommendedRulesForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -63,8 +75,9 @@ func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx con
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/recommendations", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListRecommendedRulesForHostingEnvironmentCustomPager{},
+		Path:          fmt.Sprintf("%s/recommendations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

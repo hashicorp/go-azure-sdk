@@ -62,6 +62,18 @@ func (o ListLogsOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListLogsCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListLogsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListLogs ...
 func (c SyncGroupsClient) ListLogs(ctx context.Context, id SyncGroupId, options ListLogsOperationOptions) (result ListLogsOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -70,8 +82,9 @@ func (c SyncGroupsClient) ListLogs(ctx context.Context, id SyncGroupId, options 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/logs", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListLogsCustomPager{},
+		Path:          fmt.Sprintf("%s/logs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

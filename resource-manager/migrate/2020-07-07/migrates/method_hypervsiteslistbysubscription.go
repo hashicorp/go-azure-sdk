@@ -24,6 +24,18 @@ type HyperVSitesListBySubscriptionCompleteResult struct {
 	Items              []HyperVSite
 }
 
+type HyperVSitesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *HyperVSitesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // HyperVSitesListBySubscription ...
 func (c MigratesClient) HyperVSitesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result HyperVSitesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c MigratesClient) HyperVSitesListBySubscription(ctx context.Context, id co
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &HyperVSitesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.OffAzure/hyperVSites", id.ID()),
 	}
 

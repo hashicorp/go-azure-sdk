@@ -23,6 +23,18 @@ type ListBySiteSlotCompleteResult struct {
 	Items              []ResourceHealthMetadata
 }
 
+type ListBySiteSlotCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListBySiteSlotCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListBySiteSlot ...
 func (c ResourceHealthMetadataClient) ListBySiteSlot(ctx context.Context, id SlotId) (result ListBySiteSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c ResourceHealthMetadataClient) ListBySiteSlot(ctx context.Context, id Slo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListBySiteSlotCustomPager{},
 		Path:       fmt.Sprintf("%s/resourceHealthMetadata", id.ID()),
 	}
 

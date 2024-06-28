@@ -23,6 +23,18 @@ type ListByVersionCompleteResult struct {
 	Items              []JobStep
 }
 
+type ListByVersionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByVersionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByVersion ...
 func (c JobStepsClient) ListByVersion(ctx context.Context, id VersionId) (result ListByVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c JobStepsClient) ListByVersion(ctx context.Context, id VersionId) (result
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByVersionCustomPager{},
 		Path:       fmt.Sprintf("%s/steps", id.ID()),
 	}
 

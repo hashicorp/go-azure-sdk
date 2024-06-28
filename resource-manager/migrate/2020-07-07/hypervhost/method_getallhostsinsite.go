@@ -50,6 +50,18 @@ func (o GetAllHostsInSiteOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type GetAllHostsInSiteCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GetAllHostsInSiteCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GetAllHostsInSite ...
 func (c HyperVHostClient) GetAllHostsInSite(ctx context.Context, id HyperVSiteId, options GetAllHostsInSiteOperationOptions) (result GetAllHostsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c HyperVHostClient) GetAllHostsInSite(ctx context.Context, id HyperVSiteId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/hosts", id.ID()),
 		OptionsObject: options,
+		Pager:         &GetAllHostsInSiteCustomPager{},
+		Path:          fmt.Sprintf("%s/hosts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

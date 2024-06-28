@@ -51,6 +51,18 @@ func (o ListByInstanceOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByInstanceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByInstanceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByInstance ...
 func (c ManagedInstanceKeysClient) ListByInstance(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByInstanceOperationOptions) (result ListByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -59,8 +71,9 @@ func (c ManagedInstanceKeysClient) ListByInstance(ctx context.Context, id common
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/keys", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByInstanceCustomPager{},
+		Path:          fmt.Sprintf("%s/keys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

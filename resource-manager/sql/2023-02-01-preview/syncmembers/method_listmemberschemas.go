@@ -23,6 +23,18 @@ type ListMemberSchemasCompleteResult struct {
 	Items              []SyncFullSchemaProperties
 }
 
+type ListMemberSchemasCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListMemberSchemasCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListMemberSchemas ...
 func (c SyncMembersClient) ListMemberSchemas(ctx context.Context, id SyncMemberId) (result ListMemberSchemasOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c SyncMembersClient) ListMemberSchemas(ctx context.Context, id SyncMemberI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListMemberSchemasCustomPager{},
 		Path:       fmt.Sprintf("%s/schemas", id.ID()),
 	}
 

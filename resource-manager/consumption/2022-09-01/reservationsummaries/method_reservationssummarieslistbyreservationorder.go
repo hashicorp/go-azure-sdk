@@ -54,6 +54,18 @@ func (o ReservationsSummariesListByReservationOrderOperationOptions) ToQuery() *
 	return &out
 }
 
+type ReservationsSummariesListByReservationOrderCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ReservationsSummariesListByReservationOrderCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ReservationsSummariesListByReservationOrder ...
 func (c ReservationSummariesClient) ReservationsSummariesListByReservationOrder(ctx context.Context, id ReservationOrderId, options ReservationsSummariesListByReservationOrderOperationOptions) (result ReservationsSummariesListByReservationOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c ReservationSummariesClient) ReservationsSummariesListByReservationOrder(
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/reservationSummaries", id.ID()),
 		OptionsObject: options,
+		Pager:         &ReservationsSummariesListByReservationOrderCustomPager{},
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/reservationSummaries", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

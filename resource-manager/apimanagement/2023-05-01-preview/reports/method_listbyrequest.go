@@ -61,8 +61,8 @@ func (c ReportsClient) ListByRequest(ctx context.Context, id ServiceId, options 
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/reports/byRequest", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reports/byRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

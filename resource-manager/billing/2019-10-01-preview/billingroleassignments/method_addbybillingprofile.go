@@ -23,6 +23,18 @@ type AddByBillingProfileCompleteResult struct {
 	Items              []BillingRoleAssignment
 }
 
+type AddByBillingProfileCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AddByBillingProfileCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AddByBillingProfile ...
 func (c BillingRoleAssignmentsClient) AddByBillingProfile(ctx context.Context, id BillingProfileId, input BillingRoleAssignmentPayload) (result AddByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c BillingRoleAssignmentsClient) AddByBillingProfile(ctx context.Context, i
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &AddByBillingProfileCustomPager{},
 		Path:       fmt.Sprintf("%s/createBillingRoleAssignment", id.ID()),
 	}
 

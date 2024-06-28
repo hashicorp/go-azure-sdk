@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []MonitoredResource
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c MonitoredResourcesClient) List(ctx context.Context, id MonitorId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c MonitoredResourcesClient) List(ctx context.Context, id MonitorId) (resul
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/listMonitoredResources", id.ID()),
 	}
 

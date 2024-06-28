@@ -24,6 +24,18 @@ type ClusterManagersListByResourceGroupCompleteResult struct {
 	Items              []ClusterManager
 }
 
+type ClusterManagersListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ClusterManagersListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ClusterManagersListByResourceGroup ...
 func (c NetworkcloudsClient) ClusterManagersListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result ClusterManagersListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) ClusterManagersListByResourceGroup(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ClusterManagersListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/clusterManagers", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type AzureDevOpsOrgsListCompleteResult struct {
 	Items              []AzureDevOpsOrg
 }
 
+type AzureDevOpsOrgsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *AzureDevOpsOrgsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // AzureDevOpsOrgsList ...
 func (c DevOpsClient) AzureDevOpsOrgsList(ctx context.Context, id SecurityConnectorId) (result AzureDevOpsOrgsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) AzureDevOpsOrgsList(ctx context.Context, id SecurityConnec
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &AzureDevOpsOrgsListCustomPager{},
 		Path:       fmt.Sprintf("%s/devops/default/azureDevOpsOrgs", id.ID()),
 	}
 

@@ -66,8 +66,8 @@ func (c ChargesClient) List(ctx context.Context, id commonids.ScopeId, options L
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/charges", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Consumption/charges", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

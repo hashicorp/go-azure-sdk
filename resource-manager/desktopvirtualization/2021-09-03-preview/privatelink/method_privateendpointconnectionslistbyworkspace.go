@@ -23,6 +23,18 @@ type PrivateEndpointConnectionsListByWorkspaceCompleteResult struct {
 	Items              []PrivateEndpointConnectionWithSystemData
 }
 
+type PrivateEndpointConnectionsListByWorkspaceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *PrivateEndpointConnectionsListByWorkspaceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // PrivateEndpointConnectionsListByWorkspace ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspace(ctx context.Context, id WorkspaceId) (result PrivateEndpointConnectionsListByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspace(ctx context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &PrivateEndpointConnectionsListByWorkspaceCustomPager{},
 		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 

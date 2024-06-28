@@ -66,6 +66,18 @@ func (o WorkspaceApiListByServiceOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
+type WorkspaceApiListByServiceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *WorkspaceApiListByServiceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // WorkspaceApiListByService ...
 func (c ApiClient) WorkspaceApiListByService(ctx context.Context, id WorkspaceId, options WorkspaceApiListByServiceOperationOptions) (result WorkspaceApiListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -74,8 +86,9 @@ func (c ApiClient) WorkspaceApiListByService(ctx context.Context, id WorkspaceId
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/apis", id.ID()),
 		OptionsObject: options,
+		Pager:         &WorkspaceApiListByServiceCustomPager{},
+		Path:          fmt.Sprintf("%s/apis", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

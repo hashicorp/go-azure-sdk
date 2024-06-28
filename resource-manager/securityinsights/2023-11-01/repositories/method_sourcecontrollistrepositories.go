@@ -23,6 +23,18 @@ type SourceControllistRepositoriesCompleteResult struct {
 	Items              []Repo
 }
 
+type SourceControllistRepositoriesCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SourceControllistRepositoriesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SourceControllistRepositories ...
 func (c RepositoriesClient) SourceControllistRepositories(ctx context.Context, id WorkspaceId, input RepositoryAccessProperties) (result SourceControllistRepositoriesOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c RepositoriesClient) SourceControllistRepositories(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
+		Pager:      &SourceControllistRepositoriesCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.SecurityInsights/listRepositories", id.ID()),
 	}
 

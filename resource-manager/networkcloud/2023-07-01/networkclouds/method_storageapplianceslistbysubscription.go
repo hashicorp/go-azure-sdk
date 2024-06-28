@@ -24,6 +24,18 @@ type StorageAppliancesListBySubscriptionCompleteResult struct {
 	Items              []StorageAppliance
 }
 
+type StorageAppliancesListBySubscriptionCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *StorageAppliancesListBySubscriptionCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // StorageAppliancesListBySubscription ...
 func (c NetworkcloudsClient) StorageAppliancesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result StorageAppliancesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c NetworkcloudsClient) StorageAppliancesListBySubscription(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &StorageAppliancesListBySubscriptionCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.NetworkCloud/storageAppliances", id.ID()),
 	}
 

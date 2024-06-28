@@ -59,6 +59,18 @@ func (o ListByDatabaseOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListByDatabaseCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByDatabaseCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByDatabase ...
 func (c ManagedDatabaseSecurityEventsClient) ListByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, options ListByDatabaseOperationOptions) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -67,8 +79,9 @@ func (c ManagedDatabaseSecurityEventsClient) ListByDatabase(ctx context.Context,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/securityEvents", id.ID()),
 		OptionsObject: options,
+		Pager:         &ListByDatabaseCustomPager{},
+		Path:          fmt.Sprintf("%s/securityEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

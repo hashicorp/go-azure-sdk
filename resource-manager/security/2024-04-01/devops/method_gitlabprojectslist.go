@@ -23,6 +23,18 @@ type GitLabProjectsListCompleteResult struct {
 	Items              []GitLabProject
 }
 
+type GitLabProjectsListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *GitLabProjectsListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // GitLabProjectsList ...
 func (c DevOpsClient) GitLabProjectsList(ctx context.Context, id GitLabGroupId) (result GitLabProjectsListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c DevOpsClient) GitLabProjectsList(ctx context.Context, id GitLabGroupId) 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &GitLabProjectsListCustomPager{},
 		Path:       fmt.Sprintf("%s/projects", id.ID()),
 	}
 

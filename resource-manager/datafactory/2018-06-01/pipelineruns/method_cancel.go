@@ -52,8 +52,8 @@ func (c PipelineRunsClient) Cancel(ctx context.Context, id PipelineRunId, option
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

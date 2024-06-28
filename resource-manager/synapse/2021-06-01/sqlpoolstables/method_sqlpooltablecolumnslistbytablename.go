@@ -50,6 +50,18 @@ func (o SqlPoolTableColumnsListByTableNameOperationOptions) ToQuery() *client.Qu
 	return &out
 }
 
+type SqlPoolTableColumnsListByTableNameCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SqlPoolTableColumnsListByTableNameCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // SqlPoolTableColumnsListByTableName ...
 func (c SqlPoolsTablesClient) SqlPoolTableColumnsListByTableName(ctx context.Context, id TableId, options SqlPoolTableColumnsListByTableNameOperationOptions) (result SqlPoolTableColumnsListByTableNameOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -58,8 +70,9 @@ func (c SqlPoolsTablesClient) SqlPoolTableColumnsListByTableName(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/columns", id.ID()),
 		OptionsObject: options,
+		Pager:         &SqlPoolTableColumnsListByTableNameCustomPager{},
+		Path:          fmt.Sprintf("%s/columns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,6 +24,18 @@ type ListByExtendedResourceCompleteResult struct {
 	Items              []AdaptiveNetworkHardening
 }
 
+type ListByExtendedResourceCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByExtendedResourceCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByExtendedResource ...
 func (c AdaptiveNetworkHardeningsClient) ListByExtendedResource(ctx context.Context, id commonids.ScopeId) (result ListByExtendedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -32,6 +44,7 @@ func (c AdaptiveNetworkHardeningsClient) ListByExtendedResource(ctx context.Cont
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByExtendedResourceCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.Security/adaptiveNetworkHardenings", id.ID()),
 	}
 

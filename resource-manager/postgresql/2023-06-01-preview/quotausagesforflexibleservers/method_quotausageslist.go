@@ -23,6 +23,18 @@ type QuotaUsagesListCompleteResult struct {
 	Items              []QuotaUsage
 }
 
+type QuotaUsagesListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *QuotaUsagesListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // QuotaUsagesList ...
 func (c QuotaUsagesForFlexibleServersClient) QuotaUsagesList(ctx context.Context, id LocationId) (result QuotaUsagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c QuotaUsagesForFlexibleServersClient) QuotaUsagesList(ctx context.Context
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &QuotaUsagesListCustomPager{},
 		Path:       fmt.Sprintf("%s/resourceType/flexibleServers/usages", id.ID()),
 	}
 

@@ -23,6 +23,18 @@ type ListByPacketCoreControlPlaneCompleteResult struct {
 	Items              []PacketCoreDataPlane
 }
 
+type ListByPacketCoreControlPlaneCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByPacketCoreControlPlaneCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListByPacketCoreControlPlane ...
 func (c PacketCoreDataPlanesClient) ListByPacketCoreControlPlane(ctx context.Context, id PacketCoreControlPlaneId) (result ListByPacketCoreControlPlaneOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c PacketCoreDataPlanesClient) ListByPacketCoreControlPlane(ctx context.Con
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByPacketCoreControlPlaneCustomPager{},
 		Path:       fmt.Sprintf("%s/packetCoreDataPlanes", id.ID()),
 	}
 

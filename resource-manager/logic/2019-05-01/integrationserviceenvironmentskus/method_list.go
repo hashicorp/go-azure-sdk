@@ -23,6 +23,18 @@ type ListCompleteResult struct {
 	Items              []IntegrationServiceEnvironmentSkuDefinition
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c IntegrationServiceEnvironmentSkusClient) List(ctx context.Context, id IntegrationServiceEnvironmentId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -31,6 +43,7 @@ func (c IntegrationServiceEnvironmentSkusClient) List(ctx context.Context, id In
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/skus", id.ID()),
 	}
 

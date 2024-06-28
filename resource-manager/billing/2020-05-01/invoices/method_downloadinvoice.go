@@ -57,8 +57,8 @@ func (c InvoicesClient) DownloadInvoice(ctx context.Context, id BillingAccountIn
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
-		Path:          fmt.Sprintf("%s/download", id.ID()),
 		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/download", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

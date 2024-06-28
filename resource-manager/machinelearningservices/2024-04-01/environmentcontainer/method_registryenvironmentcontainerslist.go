@@ -54,6 +54,18 @@ func (o RegistryEnvironmentContainersListOperationOptions) ToQuery() *client.Que
 	return &out
 }
 
+type RegistryEnvironmentContainersListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *RegistryEnvironmentContainersListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // RegistryEnvironmentContainersList ...
 func (c EnvironmentContainerClient) RegistryEnvironmentContainersList(ctx context.Context, id RegistryId, options RegistryEnvironmentContainersListOperationOptions) (result RegistryEnvironmentContainersListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -62,8 +74,9 @@ func (c EnvironmentContainerClient) RegistryEnvironmentContainersList(ctx contex
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodGet,
-		Path:          fmt.Sprintf("%s/environments", id.ID()),
 		OptionsObject: options,
+		Pager:         &RegistryEnvironmentContainersListCustomPager{},
+		Path:          fmt.Sprintf("%s/environments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
