@@ -12,21 +12,21 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type UbscriptionsCreateOperationResponse struct {
+type SubscriptionsCreateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
 	Model        *SubscriptionUnderManagementGroup
 }
 
-type UbscriptionsCreateOperationOptions struct {
+type SubscriptionsCreateOperationOptions struct {
 	CacheControl *string
 }
 
-func DefaultUbscriptionsCreateOperationOptions() UbscriptionsCreateOperationOptions {
-	return UbscriptionsCreateOperationOptions{}
+func DefaultSubscriptionsCreateOperationOptions() SubscriptionsCreateOperationOptions {
+	return SubscriptionsCreateOperationOptions{}
 }
 
-func (o UbscriptionsCreateOperationOptions) ToHeaders() *client.Headers {
+func (o SubscriptionsCreateOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
 	if o.CacheControl != nil {
 		out.Append("Cache-Control", fmt.Sprintf("%v", *o.CacheControl))
@@ -34,19 +34,19 @@ func (o UbscriptionsCreateOperationOptions) ToHeaders() *client.Headers {
 	return &out
 }
 
-func (o UbscriptionsCreateOperationOptions) ToOData() *odata.Query {
+func (o SubscriptionsCreateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	return &out
 }
 
-func (o UbscriptionsCreateOperationOptions) ToQuery() *client.QueryParams {
+func (o SubscriptionsCreateOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
 
 	return &out
 }
 
-// UbscriptionsCreate ...
-func (c ManagementGroupsClient) UbscriptionsCreate(ctx context.Context, id SubscriptionId, options UbscriptionsCreateOperationOptions) (result UbscriptionsCreateOperationResponse, err error) {
+// SubscriptionsCreate ...
+func (c ManagementGroupsClient) SubscriptionsCreate(ctx context.Context, id SubscriptionId, options SubscriptionsCreateOperationOptions) (result SubscriptionsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
