@@ -12,20 +12,20 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type UbscriptionsDeleteOperationResponse struct {
+type SubscriptionsDeleteOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-type UbscriptionsDeleteOperationOptions struct {
+type SubscriptionsDeleteOperationOptions struct {
 	CacheControl *string
 }
 
-func DefaultUbscriptionsDeleteOperationOptions() UbscriptionsDeleteOperationOptions {
-	return UbscriptionsDeleteOperationOptions{}
+func DefaultSubscriptionsDeleteOperationOptions() SubscriptionsDeleteOperationOptions {
+	return SubscriptionsDeleteOperationOptions{}
 }
 
-func (o UbscriptionsDeleteOperationOptions) ToHeaders() *client.Headers {
+func (o SubscriptionsDeleteOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
 	if o.CacheControl != nil {
 		out.Append("Cache-Control", fmt.Sprintf("%v", *o.CacheControl))
@@ -33,19 +33,19 @@ func (o UbscriptionsDeleteOperationOptions) ToHeaders() *client.Headers {
 	return &out
 }
 
-func (o UbscriptionsDeleteOperationOptions) ToOData() *odata.Query {
+func (o SubscriptionsDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	return &out
 }
 
-func (o UbscriptionsDeleteOperationOptions) ToQuery() *client.QueryParams {
+func (o SubscriptionsDeleteOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
 
 	return &out
 }
 
-// UbscriptionsDelete ...
-func (c ManagementGroupsClient) UbscriptionsDelete(ctx context.Context, id SubscriptionId, options UbscriptionsDeleteOperationOptions) (result UbscriptionsDeleteOperationResponse, err error) {
+// SubscriptionsDelete ...
+func (c ManagementGroupsClient) SubscriptionsDelete(ctx context.Context, id SubscriptionId, options SubscriptionsDeleteOperationOptions) (result SubscriptionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

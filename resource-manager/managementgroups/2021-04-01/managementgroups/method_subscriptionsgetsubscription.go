@@ -12,21 +12,21 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type UbscriptionsGetSubscriptionOperationResponse struct {
+type SubscriptionsGetSubscriptionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
 	Model        *SubscriptionUnderManagementGroup
 }
 
-type UbscriptionsGetSubscriptionOperationOptions struct {
+type SubscriptionsGetSubscriptionOperationOptions struct {
 	CacheControl *string
 }
 
-func DefaultUbscriptionsGetSubscriptionOperationOptions() UbscriptionsGetSubscriptionOperationOptions {
-	return UbscriptionsGetSubscriptionOperationOptions{}
+func DefaultSubscriptionsGetSubscriptionOperationOptions() SubscriptionsGetSubscriptionOperationOptions {
+	return SubscriptionsGetSubscriptionOperationOptions{}
 }
 
-func (o UbscriptionsGetSubscriptionOperationOptions) ToHeaders() *client.Headers {
+func (o SubscriptionsGetSubscriptionOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
 	if o.CacheControl != nil {
 		out.Append("Cache-Control", fmt.Sprintf("%v", *o.CacheControl))
@@ -34,19 +34,19 @@ func (o UbscriptionsGetSubscriptionOperationOptions) ToHeaders() *client.Headers
 	return &out
 }
 
-func (o UbscriptionsGetSubscriptionOperationOptions) ToOData() *odata.Query {
+func (o SubscriptionsGetSubscriptionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	return &out
 }
 
-func (o UbscriptionsGetSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+func (o SubscriptionsGetSubscriptionOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
 
 	return &out
 }
 
-// UbscriptionsGetSubscription ...
-func (c ManagementGroupsClient) UbscriptionsGetSubscription(ctx context.Context, id SubscriptionId, options UbscriptionsGetSubscriptionOperationOptions) (result UbscriptionsGetSubscriptionOperationResponse, err error) {
+// SubscriptionsGetSubscription ...
+func (c ManagementGroupsClient) SubscriptionsGetSubscription(ctx context.Context, id SubscriptionId, options SubscriptionsGetSubscriptionOperationOptions) (result SubscriptionsGetSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
