@@ -26,8 +26,9 @@ func TestPollerProvisioningState_InProvisioningState_Immediate(t *testing.T) {
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
@@ -90,8 +91,9 @@ func TestPollerProvisioningState_OkWithNoBody_Immediate(t *testing.T) {
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
@@ -124,8 +126,9 @@ func TestPollerProvisioningState_OkWithNoBody_AfterPolling(t *testing.T) {
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
@@ -168,8 +171,9 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
@@ -215,8 +219,9 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
@@ -261,8 +266,9 @@ func TestPollerProvisioningState_InProvisioningState_Poll(t *testing.T) {
 	defer server.Close()
 
 	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since the
-		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{

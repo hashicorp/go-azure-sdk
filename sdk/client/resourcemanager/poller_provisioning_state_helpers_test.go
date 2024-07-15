@@ -94,6 +94,9 @@ func (e provisioningStateEndpoint) assertCalled(t *testing.T, expected int) {
 func (e provisioningStateEndpoint) response() *http.Response {
 	return &http.Response{
 		Header: map[string][]string{
+			// NOTE: any custom host/port is discarded, since we use the host from the Client when building the
+			// Poller - this is because we should only be hitting the ARM Endpoint (and using that token) so
+			// any differences (including regional endpoints, or custom ports) would be unexpected/an error.
 			http.CanonicalHeaderKey("Azure-AsyncOperation"): {"http://localhost/lro/poll"},
 			http.CanonicalHeaderKey("Retry-After"):          {"1"},
 		},
