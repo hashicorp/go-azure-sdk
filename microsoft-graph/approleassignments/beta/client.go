@@ -7,8 +7,8 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/approleassignments/beta/approleassignment"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

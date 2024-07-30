@@ -18,8 +18,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/directory"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/federationconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/onpremisessynchronization"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

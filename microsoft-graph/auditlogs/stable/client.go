@@ -10,8 +10,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/stable/directoryaudit"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/stable/provisioning"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/stable/signin"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

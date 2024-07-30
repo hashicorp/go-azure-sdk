@@ -405,8 +405,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/virtualevent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/virtualeventwebinar"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/windowsinformationprotectiondeviceregistration"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

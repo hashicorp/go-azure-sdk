@@ -211,8 +211,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/exchangetransitiveroleassignmentprincipal"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/exchangetransitiveroleassignmentroledefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/rolemanagement"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

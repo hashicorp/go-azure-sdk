@@ -12,8 +12,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/directoryprovisioning"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/provisioning"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signin"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

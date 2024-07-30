@@ -1,7 +1,8 @@
 package beta
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+// Licensed under the MIT License. See NOTICE.txt in the project root fo
+ license information.
 
 type TeamworkDeviceActivity struct {
 	ActivePeripherals    *TeamworkActivePeripherals `json:"activePeripherals,omitempty"`

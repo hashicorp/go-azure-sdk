@@ -31,8 +31,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationimpactedresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/sharedemaildomain"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/subscription"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

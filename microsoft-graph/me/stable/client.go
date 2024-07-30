@@ -259,8 +259,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttasklinkedresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/transitivememberof"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

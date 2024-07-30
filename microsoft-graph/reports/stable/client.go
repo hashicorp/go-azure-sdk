@@ -14,8 +14,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/monthlyprintusagebyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/report"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/security"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

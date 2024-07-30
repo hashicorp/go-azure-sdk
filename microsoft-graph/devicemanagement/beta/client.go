@@ -395,8 +395,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotaartifact"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotaconnector"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotadeployment"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

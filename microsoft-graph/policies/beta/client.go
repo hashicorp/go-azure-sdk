@@ -62,8 +62,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenissuancepolicyappliesto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenlifetimepolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenlifetimepolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

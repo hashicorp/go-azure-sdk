@@ -10,8 +10,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/inviteduser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/invitedusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/inviteduserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

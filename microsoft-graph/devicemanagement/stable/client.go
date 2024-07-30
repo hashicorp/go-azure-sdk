@@ -109,8 +109,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsinformationprotectionnetworklearningsummary"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsmalwareinformation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsmalwareinformationdevicemalwarestate"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {

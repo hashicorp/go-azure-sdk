@@ -296,8 +296,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/threadpostmention"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/transitivemember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/transitivememberof"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/manicminer/hamilton/msgraph"
 )
 
 type Client struct {
