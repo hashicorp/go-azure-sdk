@@ -1,0 +1,10 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessPackageLocalizedText struct {
+	LanguageCode *string `json:"languageCode,omitempty"`
+	ODataType    *string `json:"@odata.type,omitempty"`
+	Text         *string `json:"text,omitempty"`
+}

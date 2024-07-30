@@ -1,0 +1,36 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidForWorkNineWorkEasConfiguration struct {
+	Assignments                                 *[]DeviceConfigurationAssignment                             `json:"assignments,omitempty"`
+	AuthenticationMethod                        *AndroidForWorkNineWorkEasConfigurationAuthenticationMethod  `json:"authenticationMethod,omitempty"`
+	CreatedDateTime                             *string                                                      `json:"createdDateTime,omitempty"`
+	Description                                 *string                                                      `json:"description,omitempty"`
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode                 `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+	DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition                  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+	DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion                  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+	DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                                 `json:"deviceSettingStateSummaries,omitempty"`
+	DeviceStatusOverview                        *DeviceConfigurationDeviceOverview                           `json:"deviceStatusOverview,omitempty"`
+	DeviceStatuses                              *[]DeviceConfigurationDeviceStatus                           `json:"deviceStatuses,omitempty"`
+	DisplayName                                 *string                                                      `json:"displayName,omitempty"`
+	DurationOfEmailToSync                       *AndroidForWorkNineWorkEasConfigurationDurationOfEmailToSync `json:"durationOfEmailToSync,omitempty"`
+	EmailAddressSource                          *AndroidForWorkNineWorkEasConfigurationEmailAddressSource    `json:"emailAddressSource,omitempty"`
+	GroupAssignments                            *[]DeviceConfigurationGroupAssignment                        `json:"groupAssignments,omitempty"`
+	HostName                                    *string                                                      `json:"hostName,omitempty"`
+	Id                                          *string                                                      `json:"id,omitempty"`
+	IdentityCertificate                         *AndroidForWorkCertificateProfileBase                        `json:"identityCertificate,omitempty"`
+	LastModifiedDateTime                        *string                                                      `json:"lastModifiedDateTime,omitempty"`
+	ODataType                                   *string                                                      `json:"@odata.type,omitempty"`
+	RequireSsl                                  *bool                                                        `json:"requireSsl,omitempty"`
+	RoleScopeTagIds                             *[]string                                                    `json:"roleScopeTagIds,omitempty"`
+	SupportsScopeTags                           *bool                                                        `json:"supportsScopeTags,omitempty"`
+	SyncCalendar                                *bool                                                        `json:"syncCalendar,omitempty"`
+	SyncContacts                                *bool                                                        `json:"syncContacts,omitempty"`
+	SyncTasks                                   *bool                                                        `json:"syncTasks,omitempty"`
+	UserStatusOverview                          *DeviceConfigurationUserOverview                             `json:"userStatusOverview,omitempty"`
+	UserStatuses                                *[]DeviceConfigurationUserStatus                             `json:"userStatuses,omitempty"`
+	UsernameSource                              *AndroidForWorkNineWorkEasConfigurationUsernameSource        `json:"usernameSource,omitempty"`
+	Version                                     *int64                                                       `json:"version,omitempty"`
+}

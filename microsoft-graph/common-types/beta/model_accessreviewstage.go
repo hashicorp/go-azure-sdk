@@ -1,0 +1,15 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessReviewStage struct {
+	Decisions         *[]AccessReviewInstanceDecisionItem `json:"decisions,omitempty"`
+	EndDateTime       *string                             `json:"endDateTime,omitempty"`
+	FallbackReviewers *[]AccessReviewReviewerScope        `json:"fallbackReviewers,omitempty"`
+	Id                *string                             `json:"id,omitempty"`
+	ODataType         *string                             `json:"@odata.type,omitempty"`
+	Reviewers         *[]AccessReviewReviewerScope        `json:"reviewers,omitempty"`
+	StartDateTime     *string                             `json:"startDateTime,omitempty"`
+	Status            *string                             `json:"status,omitempty"`
+}

@@ -1,0 +1,21 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MicrosoftTunnelSite struct {
+	Description                     *string                       `json:"description,omitempty"`
+	DisplayName                     *string                       `json:"displayName,omitempty"`
+	Id                              *string                       `json:"id,omitempty"`
+	InternalNetworkProbeUrl         *string                       `json:"internalNetworkProbeUrl,omitempty"`
+	MicrosoftTunnelConfiguration    *MicrosoftTunnelConfiguration `json:"microsoftTunnelConfiguration,omitempty"`
+	MicrosoftTunnelServers          *[]MicrosoftTunnelServer      `json:"microsoftTunnelServers,omitempty"`
+	ODataType                       *string                       `json:"@odata.type,omitempty"`
+	PublicAddress                   *string                       `json:"publicAddress,omitempty"`
+	RoleScopeTagIds                 *[]string                     `json:"roleScopeTagIds,omitempty"`
+	UpgradeAutomatically            *bool                         `json:"upgradeAutomatically,omitempty"`
+	UpgradeAvailable                *bool                         `json:"upgradeAvailable,omitempty"`
+	UpgradeWindowEndTime            *string                       `json:"upgradeWindowEndTime,omitempty"`
+	UpgradeWindowStartTime          *string                       `json:"upgradeWindowStartTime,omitempty"`
+	UpgradeWindowUtcOffsetInMinutes *int64                        `json:"upgradeWindowUtcOffsetInMinutes,omitempty"`
+}

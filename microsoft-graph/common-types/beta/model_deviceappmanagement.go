@@ -1,0 +1,39 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceAppManagement struct {
+	AndroidManagedAppProtections                              *[]AndroidManagedAppProtection                               `json:"androidManagedAppProtections,omitempty"`
+	DefaultManagedAppProtections                              *[]DefaultManagedAppProtection                               `json:"defaultManagedAppProtections,omitempty"`
+	DeviceAppManagementTasks                                  *[]DeviceAppManagementTask                                   `json:"deviceAppManagementTasks,omitempty"`
+	EnterpriseCodeSigningCertificates                         *[]EnterpriseCodeSigningCertificate                          `json:"enterpriseCodeSigningCertificates,omitempty"`
+	Id                                                        *string                                                      `json:"id,omitempty"`
+	IosLobAppProvisioningConfigurations                       *[]IosLobAppProvisioningConfiguration                        `json:"iosLobAppProvisioningConfigurations,omitempty"`
+	IosManagedAppProtections                                  *[]IosManagedAppProtection                                   `json:"iosManagedAppProtections,omitempty"`
+	IsEnabledForMicrosoftStoreForBusiness                     *bool                                                        `json:"isEnabledForMicrosoftStoreForBusiness,omitempty"`
+	ManagedAppPolicies                                        *[]ManagedAppPolicy                                          `json:"managedAppPolicies,omitempty"`
+	ManagedAppRegistrations                                   *[]ManagedAppRegistration                                    `json:"managedAppRegistrations,omitempty"`
+	ManagedAppStatuses                                        *[]ManagedAppStatus                                          `json:"managedAppStatuses,omitempty"`
+	ManagedEBookCategories                                    *[]ManagedEBookCategory                                      `json:"managedEBookCategories,omitempty"`
+	ManagedEBooks                                             *[]ManagedEBook                                              `json:"managedEBooks,omitempty"`
+	MdmWindowsInformationProtectionPolicies                   *[]MdmWindowsInformationProtectionPolicy                     `json:"mdmWindowsInformationProtectionPolicies,omitempty"`
+	MicrosoftStoreForBusinessLanguage                         *string                                                      `json:"microsoftStoreForBusinessLanguage,omitempty"`
+	MicrosoftStoreForBusinessLastCompletedApplicationSyncTime *string                                                      `json:"microsoftStoreForBusinessLastCompletedApplicationSyncTime,omitempty"`
+	MicrosoftStoreForBusinessLastSuccessfulSyncDateTime       *string                                                      `json:"microsoftStoreForBusinessLastSuccessfulSyncDateTime,omitempty"`
+	MicrosoftStoreForBusinessPortalSelection                  *DeviceAppManagementMicrosoftStoreForBusinessPortalSelection `json:"microsoftStoreForBusinessPortalSelection,omitempty"`
+	MobileAppCategories                                       *[]MobileAppCategory                                         `json:"mobileAppCategories,omitempty"`
+	MobileAppConfigurations                                   *[]ManagedDeviceMobileAppConfiguration                       `json:"mobileAppConfigurations,omitempty"`
+	MobileApps                                                *[]MobileApp                                                 `json:"mobileApps,omitempty"`
+	ODataType                                                 *string                                                      `json:"@odata.type,omitempty"`
+	PolicySets                                                *[]PolicySet                                                 `json:"policySets,omitempty"`
+	SymantecCodeSigningCertificate                            *SymantecCodeSigningCertificate                              `json:"symantecCodeSigningCertificate,omitempty"`
+	TargetedManagedAppConfigurations                          *[]TargetedManagedAppConfiguration                           `json:"targetedManagedAppConfigurations,omitempty"`
+	VppTokens                                                 *[]VppToken                                                  `json:"vppTokens,omitempty"`
+	WdacSupplementalPolicies                                  *[]WindowsDefenderApplicationControlSupplementalPolicy       `json:"wdacSupplementalPolicies,omitempty"`
+	WindowsInformationProtectionDeviceRegistrations           *[]WindowsInformationProtectionDeviceRegistration            `json:"windowsInformationProtectionDeviceRegistrations,omitempty"`
+	WindowsInformationProtectionPolicies                      *[]WindowsInformationProtectionPolicy                        `json:"windowsInformationProtectionPolicies,omitempty"`
+	WindowsInformationProtectionWipeActions                   *[]WindowsInformationProtectionWipeAction                    `json:"windowsInformationProtectionWipeActions,omitempty"`
+	WindowsManagedAppProtections                              *[]WindowsManagedAppProtection                               `json:"windowsManagedAppProtections,omitempty"`
+	WindowsManagementApp                                      *WindowsManagementApp                                        `json:"windowsManagementApp,omitempty"`
+}

@@ -1,0 +1,26 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GroupPolicyDefinition struct {
+	Category                  *GroupPolicyCategory             `json:"category,omitempty"`
+	CategoryPath              *string                          `json:"categoryPath,omitempty"`
+	ClassType                 *GroupPolicyDefinitionClassType  `json:"classType,omitempty"`
+	DefinitionFile            *GroupPolicyDefinitionFile       `json:"definitionFile,omitempty"`
+	DisplayName               *string                          `json:"displayName,omitempty"`
+	ExplainText               *string                          `json:"explainText,omitempty"`
+	GroupPolicyCategoryId     *string                          `json:"groupPolicyCategoryId,omitempty"`
+	HasRelatedDefinitions     *bool                            `json:"hasRelatedDefinitions,omitempty"`
+	Id                        *string                          `json:"id,omitempty"`
+	LastModifiedDateTime      *string                          `json:"lastModifiedDateTime,omitempty"`
+	MinDeviceCspVersion       *string                          `json:"minDeviceCspVersion,omitempty"`
+	MinUserCspVersion         *string                          `json:"minUserCspVersion,omitempty"`
+	NextVersionDefinition     *GroupPolicyDefinition           `json:"nextVersionDefinition,omitempty"`
+	ODataType                 *string                          `json:"@odata.type,omitempty"`
+	PolicyType                *GroupPolicyDefinitionPolicyType `json:"policyType,omitempty"`
+	Presentations             *[]GroupPolicyPresentation       `json:"presentations,omitempty"`
+	PreviousVersionDefinition *GroupPolicyDefinition           `json:"previousVersionDefinition,omitempty"`
+	SupportedOn               *string                          `json:"supportedOn,omitempty"`
+	Version                   *string                          `json:"version,omitempty"`
+}

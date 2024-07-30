@@ -1,0 +1,19 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UnifiedRoleManagementAlert struct {
+	AlertConfiguration   *UnifiedRoleManagementAlertConfiguration `json:"alertConfiguration,omitempty"`
+	AlertDefinition      *UnifiedRoleManagementAlertDefinition    `json:"alertDefinition,omitempty"`
+	AlertDefinitionId    *string                                  `json:"alertDefinitionId,omitempty"`
+	AlertIncidents       *[]UnifiedRoleManagementAlertIncident    `json:"alertIncidents,omitempty"`
+	Id                   *string                                  `json:"id,omitempty"`
+	IncidentCount        *int64                                   `json:"incidentCount,omitempty"`
+	IsActive             *bool                                    `json:"isActive,omitempty"`
+	LastModifiedDateTime *string                                  `json:"lastModifiedDateTime,omitempty"`
+	LastScannedDateTime  *string                                  `json:"lastScannedDateTime,omitempty"`
+	ODataType            *string                                  `json:"@odata.type,omitempty"`
+	ScopeId              *string                                  `json:"scopeId,omitempty"`
+	ScopeType            *string                                  `json:"scopeType,omitempty"`
+}

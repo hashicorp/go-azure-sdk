@@ -1,0 +1,93 @@
+package conditionalaccesauthenticationstrengthpolicy
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations string
+
+const (
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsDeviceBasedPush             UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "deviceBasedPush"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsEmail                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "email"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedMultiFactor        UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "federatedMultiFactor"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedSingleFactor       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "federatedSingleFactor"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFido2                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "fido2"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsHardwareOath                UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "hardwareOath"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsMicrosoftAuthenticatorPush  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "microsoftAuthenticatorPush"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsPassword                    UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "password"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSms                         UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "sms"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSoftwareOath                UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "softwareOath"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassMultiUse UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "temporaryAccessPassMultiUse"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassOneTime  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "temporaryAccessPassOneTime"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsVoice                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "voice"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsWindowsHelloForBusiness     UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "windowsHelloForBusiness"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateMultiFactor  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "x509CertificateMultiFactor"
+	UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateSingleFactor UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations = "x509CertificateSingleFactor"
+)
+
+func PossibleValuesForUpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations() []string {
+	return []string{
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsDeviceBasedPush),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsEmail),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedMultiFactor),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedSingleFactor),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFido2),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsHardwareOath),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsMicrosoftAuthenticatorPush),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsPassword),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSms),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSoftwareOath),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassMultiUse),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassOneTime),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsVoice),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsWindowsHelloForBusiness),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateMultiFactor),
+		string(UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateSingleFactor),
+	}
+}
+
+func (s *UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseUpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations(input string) (*UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations, error) {
+	vals := map[string]UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations{
+		"devicebasedpush":             UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsDeviceBasedPush,
+		"email":                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsEmail,
+		"federatedmultifactor":        UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedMultiFactor,
+		"federatedsinglefactor":       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFederatedSingleFactor,
+		"fido2":                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsFido2,
+		"hardwareoath":                UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsHardwareOath,
+		"microsoftauthenticatorpush":  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsMicrosoftAuthenticatorPush,
+		"password":                    UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsPassword,
+		"sms":                         UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSms,
+		"softwareoath":                UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsSoftwareOath,
+		"temporaryaccesspassmultiuse": UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassMultiUse,
+		"temporaryaccesspassonetime":  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsTemporaryAccessPassOneTime,
+		"voice":                       UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsVoice,
+		"windowshelloforbusiness":     UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsWindowsHelloForBusiness,
+		"x509certificatemultifactor":  UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateMultiFactor,
+		"x509certificatesinglefactor": UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinationsX509CertificateSingleFactor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateIdentityConditionalAccesAuthenticationStrengthPolicyAllowedCombinationRequestAllowedCombinations(input)
+	return &out, nil
+}

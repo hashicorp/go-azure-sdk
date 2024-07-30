@@ -1,0 +1,10 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type InformationProtection struct {
+	Bitlocker                *Bitlocker                 `json:"bitlocker,omitempty"`
+	ODataType                *string                    `json:"@odata.type,omitempty"`
+	ThreatAssessmentRequests *[]ThreatAssessmentRequest `json:"threatAssessmentRequests,omitempty"`
+}

@@ -1,0 +1,16 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DomainDnsMxRecord struct {
+	Id               *string `json:"id,omitempty"`
+	IsOptional       *bool   `json:"isOptional,omitempty"`
+	Label            *string `json:"label,omitempty"`
+	MailExchange     *string `json:"mailExchange,omitempty"`
+	ODataType        *string `json:"@odata.type,omitempty"`
+	Preference       *int64  `json:"preference,omitempty"`
+	RecordType       *string `json:"recordType,omitempty"`
+	SupportedService *string `json:"supportedService,omitempty"`
+	Ttl              *int64  `json:"ttl,omitempty"`
+}

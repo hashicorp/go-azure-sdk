@@ -1,0 +1,11 @@
+package lifecycleworkflowworkflow
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type BroadcastMeetingCaptionSettings struct {
+	IsCaptionEnabled     *bool     `json:"isCaptionEnabled,omitempty"`
+	ODataType            *string   `json:"@odata.type,omitempty"`
+	SpokenLanguage       *string   `json:"spokenLanguage,omitempty"`
+	TranslationLanguages *[]string `json:"translationLanguages,omitempty"`
+}

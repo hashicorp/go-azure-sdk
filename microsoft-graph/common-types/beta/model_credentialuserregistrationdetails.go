@@ -1,0 +1,16 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CredentialUserRegistrationDetails struct {
+	AuthMethods       *CredentialUserRegistrationDetailsAuthMethods `json:"authMethods,omitempty"`
+	Id                *string                                       `json:"id,omitempty"`
+	IsCapable         *bool                                         `json:"isCapable,omitempty"`
+	IsEnabled         *bool                                         `json:"isEnabled,omitempty"`
+	IsMfaRegistered   *bool                                         `json:"isMfaRegistered,omitempty"`
+	IsRegistered      *bool                                         `json:"isRegistered,omitempty"`
+	ODataType         *string                                       `json:"@odata.type,omitempty"`
+	UserDisplayName   *string                                       `json:"userDisplayName,omitempty"`
+	UserPrincipalName *string                                       `json:"userPrincipalName,omitempty"`
+}

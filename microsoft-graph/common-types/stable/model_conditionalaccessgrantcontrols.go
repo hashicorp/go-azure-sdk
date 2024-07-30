@@ -1,0 +1,13 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ConditionalAccessGrantControls struct {
+	AuthenticationStrength      *AuthenticationStrengthPolicy                  `json:"authenticationStrength,omitempty"`
+	BuiltInControls             *ConditionalAccessGrantControlsBuiltInControls `json:"builtInControls,omitempty"`
+	CustomAuthenticationFactors *[]string                                      `json:"customAuthenticationFactors,omitempty"`
+	ODataType                   *string                                        `json:"@odata.type,omitempty"`
+	Operator                    *string                                        `json:"operator,omitempty"`
+	TermsOfUse                  *[]string                                      `json:"termsOfUse,omitempty"`
+}

@@ -1,0 +1,11 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecuritySubmissionAdminReview struct {
+	ODataType      *string                                    `json:"@odata.type,omitempty"`
+	ReviewBy       *string                                    `json:"reviewBy,omitempty"`
+	ReviewDateTime *string                                    `json:"reviewDateTime,omitempty"`
+	ReviewResult   *SecuritySubmissionAdminReviewReviewResult `json:"reviewResult,omitempty"`
+}

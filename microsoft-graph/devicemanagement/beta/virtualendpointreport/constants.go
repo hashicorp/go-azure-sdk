@@ -1,0 +1,223 @@
+package virtualendpointreport
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName string
+
+const (
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameCloudPCUsageCategoryReports                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "cloudPcUsageCategoryReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameDailyAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "dailyAggregatedRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "frontlineLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "frontlineLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameInaccessibleCloudPCReports                  GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "inaccessibleCloudPcReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameNoLicenseAvailableConnectivityFailureReport GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "noLicenseAvailableConnectivityFailureReport"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRawRemoteConnectionReports                  GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "rawRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionHistoricalReports           GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "remoteConnectionHistoricalReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionQualityReports              GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "remoteConnectionQualityReports"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "sharedUseLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "sharedUseLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameTotalAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName = "totalAggregatedRemoteConnectionReports"
+)
+
+func PossibleValuesForGetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName() []string {
+	return []string{
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameCloudPCUsageCategoryReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameDailyAggregatedRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameInaccessibleCloudPCReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameNoLicenseAvailableConnectivityFailureReport),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRawRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionHistoricalReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionQualityReports),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameTotalAggregatedRemoteConnectionReports),
+	}
+}
+
+func (s *GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseGetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName(input string) (*GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName, error) {
+	vals := map[string]GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName{
+		"cloudpcusagecategoryreports":                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameCloudPCUsageCategoryReports,
+		"dailyaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameDailyAggregatedRemoteConnectionReports,
+		"frontlinelicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageRealTimeReport,
+		"frontlinelicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameFrontlineLicenseUsageReport,
+		"inaccessiblecloudpcreports":                  GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameInaccessibleCloudPCReports,
+		"nolicenseavailableconnectivityfailurereport": GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameNoLicenseAvailableConnectivityFailureReport,
+		"rawremoteconnectionreports":                  GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRawRemoteConnectionReports,
+		"remoteconnectionhistoricalreports":           GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionHistoricalReports,
+		"remoteconnectionqualityreports":              GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameRemoteConnectionQualityReports,
+		"shareduselicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageRealTimeReport,
+		"shareduselicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameSharedUseLicenseUsageReport,
+		"totalaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportNameTotalAggregatedRemoteConnectionReports,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GetDeviceManagementVirtualEndpointReportsCloudPCRecommendationReportRequestReportName(input)
+	return &out, nil
+}
+
+type GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName string
+
+const (
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameCloudPCUsageCategoryReports                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "cloudPcUsageCategoryReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameDailyAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "dailyAggregatedRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "frontlineLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "frontlineLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameInaccessibleCloudPCReports                  GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "inaccessibleCloudPcReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameNoLicenseAvailableConnectivityFailureReport GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "noLicenseAvailableConnectivityFailureReport"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRawRemoteConnectionReports                  GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "rawRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionHistoricalReports           GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "remoteConnectionHistoricalReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionQualityReports              GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "remoteConnectionQualityReports"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "sharedUseLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "sharedUseLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameTotalAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName = "totalAggregatedRemoteConnectionReports"
+)
+
+func PossibleValuesForGetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName() []string {
+	return []string{
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameCloudPCUsageCategoryReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameDailyAggregatedRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameInaccessibleCloudPCReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameNoLicenseAvailableConnectivityFailureReport),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRawRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionHistoricalReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionQualityReports),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameTotalAggregatedRemoteConnectionReports),
+	}
+}
+
+func (s *GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseGetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName(input string) (*GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName, error) {
+	vals := map[string]GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName{
+		"cloudpcusagecategoryreports":                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameCloudPCUsageCategoryReports,
+		"dailyaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameDailyAggregatedRemoteConnectionReports,
+		"frontlinelicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageRealTimeReport,
+		"frontlinelicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameFrontlineLicenseUsageReport,
+		"inaccessiblecloudpcreports":                  GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameInaccessibleCloudPCReports,
+		"nolicenseavailableconnectivityfailurereport": GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameNoLicenseAvailableConnectivityFailureReport,
+		"rawremoteconnectionreports":                  GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRawRemoteConnectionReports,
+		"remoteconnectionhistoricalreports":           GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionHistoricalReports,
+		"remoteconnectionqualityreports":              GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameRemoteConnectionQualityReports,
+		"shareduselicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageRealTimeReport,
+		"shareduselicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameSharedUseLicenseUsageReport,
+		"totalaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportNameTotalAggregatedRemoteConnectionReports,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GetDeviceManagementVirtualEndpointReportsFrontlineReportRequestReportName(input)
+	return &out, nil
+}
+
+type GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName string
+
+const (
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameCloudPCUsageCategoryReports                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "cloudPcUsageCategoryReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameDailyAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "dailyAggregatedRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "frontlineLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "frontlineLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameInaccessibleCloudPCReports                  GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "inaccessibleCloudPcReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameNoLicenseAvailableConnectivityFailureReport GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "noLicenseAvailableConnectivityFailureReport"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRawRemoteConnectionReports                  GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "rawRemoteConnectionReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionHistoricalReports           GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "remoteConnectionHistoricalReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionQualityReports              GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "remoteConnectionQualityReports"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageRealTimeReport         GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "sharedUseLicenseUsageRealTimeReport"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageReport                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "sharedUseLicenseUsageReport"
+	GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameTotalAggregatedRemoteConnectionReports      GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName = "totalAggregatedRemoteConnectionReports"
+)
+
+func PossibleValuesForGetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName() []string {
+	return []string{
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameCloudPCUsageCategoryReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameDailyAggregatedRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameInaccessibleCloudPCReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameNoLicenseAvailableConnectivityFailureReport),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRawRemoteConnectionReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionHistoricalReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionQualityReports),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageRealTimeReport),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageReport),
+		string(GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameTotalAggregatedRemoteConnectionReports),
+	}
+}
+
+func (s *GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseGetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName(input string) (*GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName, error) {
+	vals := map[string]GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName{
+		"cloudpcusagecategoryreports":                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameCloudPCUsageCategoryReports,
+		"dailyaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameDailyAggregatedRemoteConnectionReports,
+		"frontlinelicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageRealTimeReport,
+		"frontlinelicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameFrontlineLicenseUsageReport,
+		"inaccessiblecloudpcreports":                  GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameInaccessibleCloudPCReports,
+		"nolicenseavailableconnectivityfailurereport": GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameNoLicenseAvailableConnectivityFailureReport,
+		"rawremoteconnectionreports":                  GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRawRemoteConnectionReports,
+		"remoteconnectionhistoricalreports":           GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionHistoricalReports,
+		"remoteconnectionqualityreports":              GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameRemoteConnectionQualityReports,
+		"shareduselicenseusagerealtimereport":         GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageRealTimeReport,
+		"shareduselicenseusagereport":                 GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameSharedUseLicenseUsageReport,
+		"totalaggregatedremoteconnectionreports":      GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportNameTotalAggregatedRemoteConnectionReports,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GetDeviceManagementVirtualEndpointReportsSharedUseLicenseUsageReportRequestReportName(input)
+	return &out, nil
+}

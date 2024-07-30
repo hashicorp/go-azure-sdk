@@ -1,0 +1,18 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UrlAssessmentRequest struct {
+	Category           *UrlAssessmentRequestCategory           `json:"category,omitempty"`
+	ContentType        *UrlAssessmentRequestContentType        `json:"contentType,omitempty"`
+	CreatedBy          *IdentitySet                            `json:"createdBy,omitempty"`
+	CreatedDateTime    *string                                 `json:"createdDateTime,omitempty"`
+	ExpectedAssessment *UrlAssessmentRequestExpectedAssessment `json:"expectedAssessment,omitempty"`
+	Id                 *string                                 `json:"id,omitempty"`
+	ODataType          *string                                 `json:"@odata.type,omitempty"`
+	RequestSource      *UrlAssessmentRequestRequestSource      `json:"requestSource,omitempty"`
+	Results            *[]ThreatAssessmentResult               `json:"results,omitempty"`
+	Status             *UrlAssessmentRequestStatus             `json:"status,omitempty"`
+	Url                *string                                 `json:"url,omitempty"`
+}

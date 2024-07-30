@@ -1,0 +1,22 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserSecurityState struct {
+	AadUserId                    *string                           `json:"aadUserId,omitempty"`
+	AccountName                  *string                           `json:"accountName,omitempty"`
+	DomainName                   *string                           `json:"domainName,omitempty"`
+	EmailRole                    *UserSecurityStateEmailRole       `json:"emailRole,omitempty"`
+	IsVpn                        *bool                             `json:"isVpn,omitempty"`
+	LogonDateTime                *string                           `json:"logonDateTime,omitempty"`
+	LogonId                      *string                           `json:"logonId,omitempty"`
+	LogonIp                      *string                           `json:"logonIp,omitempty"`
+	LogonLocation                *string                           `json:"logonLocation,omitempty"`
+	LogonType                    *UserSecurityStateLogonType       `json:"logonType,omitempty"`
+	ODataType                    *string                           `json:"@odata.type,omitempty"`
+	OnPremisesSecurityIdentifier *string                           `json:"onPremisesSecurityIdentifier,omitempty"`
+	RiskScore                    *string                           `json:"riskScore,omitempty"`
+	UserAccountType              *UserSecurityStateUserAccountType `json:"userAccountType,omitempty"`
+	UserPrincipalName            *string                           `json:"userPrincipalName,omitempty"`
+}

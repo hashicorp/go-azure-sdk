@@ -1,0 +1,106 @@
+package entitlementmanagementassignmentrequest
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListEntitlementManagementAssignmentRequestsOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]stable.AccessPackageAssignmentRequest
+}
+
+type ListEntitlementManagementAssignmentRequestsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []stable.AccessPackageAssignmentRequest
+}
+
+type ListEntitlementManagementAssignmentRequestsCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListEntitlementManagementAssignmentRequestsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListEntitlementManagementAssignmentRequests ...
+func (c EntitlementManagementAssignmentRequestClient) ListEntitlementManagementAssignmentRequests(ctx context.Context) (result ListEntitlementManagementAssignmentRequestsOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Pager:      &ListEntitlementManagementAssignmentRequestsCustomPager{},
+		Path:       "/identityGovernance/entitlementManagement/assignmentRequests",
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]stable.AccessPackageAssignmentRequest `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListEntitlementManagementAssignmentRequestsComplete retrieves all the results into a single object
+func (c EntitlementManagementAssignmentRequestClient) ListEntitlementManagementAssignmentRequestsComplete(ctx context.Context) (ListEntitlementManagementAssignmentRequestsCompleteResult, error) {
+	return c.ListEntitlementManagementAssignmentRequestsCompleteMatchingPredicate(ctx, AccessPackageAssignmentRequestOperationPredicate{})
+}
+
+// ListEntitlementManagementAssignmentRequestsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c EntitlementManagementAssignmentRequestClient) ListEntitlementManagementAssignmentRequestsCompleteMatchingPredicate(ctx context.Context, predicate AccessPackageAssignmentRequestOperationPredicate) (result ListEntitlementManagementAssignmentRequestsCompleteResult, err error) {
+	items := make([]stable.AccessPackageAssignmentRequest, 0)
+
+	resp, err := c.ListEntitlementManagementAssignmentRequests(ctx)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAssignmentRequestsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

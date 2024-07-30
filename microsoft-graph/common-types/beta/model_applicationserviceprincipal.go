@@ -1,0 +1,10 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ApplicationServicePrincipal struct {
+	Application      *Application      `json:"application,omitempty"`
+	ODataType        *string           `json:"@odata.type,omitempty"`
+	ServicePrincipal *ServicePrincipal `json:"servicePrincipal,omitempty"`
+}

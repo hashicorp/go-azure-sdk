@@ -1,0 +1,33 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnlineMeetingBase struct {
+	AllowAttendeeToEnableCamera    *bool                                            `json:"allowAttendeeToEnableCamera,omitempty"`
+	AllowAttendeeToEnableMic       *bool                                            `json:"allowAttendeeToEnableMic,omitempty"`
+	AllowMeetingChat               *OnlineMeetingBaseAllowMeetingChat               `json:"allowMeetingChat,omitempty"`
+	AllowParticipantsToChangeName  *bool                                            `json:"allowParticipantsToChangeName,omitempty"`
+	AllowRecording                 *bool                                            `json:"allowRecording,omitempty"`
+	AllowTeamworkReactions         *bool                                            `json:"allowTeamworkReactions,omitempty"`
+	AllowTranscription             *bool                                            `json:"allowTranscription,omitempty"`
+	AllowedPresenters              *OnlineMeetingBaseAllowedPresenters              `json:"allowedPresenters,omitempty"`
+	AnonymizeIdentityForRoles      *OnlineMeetingBaseAnonymizeIdentityForRoles      `json:"anonymizeIdentityForRoles,omitempty"`
+	AttendanceReports              *[]MeetingAttendanceReport                       `json:"attendanceReports,omitempty"`
+	AudioConferencing              *AudioConferencing                               `json:"audioConferencing,omitempty"`
+	ChatInfo                       *ChatInfo                                        `json:"chatInfo,omitempty"`
+	ChatRestrictions               *ChatRestrictions                                `json:"chatRestrictions,omitempty"`
+	Id                             *string                                          `json:"id,omitempty"`
+	IsEndToEndEncryptionEnabled    *bool                                            `json:"isEndToEndEncryptionEnabled,omitempty"`
+	IsEntryExitAnnounced           *bool                                            `json:"isEntryExitAnnounced,omitempty"`
+	JoinInformation                *ItemBody                                        `json:"joinInformation,omitempty"`
+	JoinMeetingIdSettings          *JoinMeetingIdSettings                           `json:"joinMeetingIdSettings,omitempty"`
+	JoinWebUrl                     *string                                          `json:"joinWebUrl,omitempty"`
+	LobbyBypassSettings            *LobbyBypassSettings                             `json:"lobbyBypassSettings,omitempty"`
+	ODataType                      *string                                          `json:"@odata.type,omitempty"`
+	RecordAutomatically            *bool                                            `json:"recordAutomatically,omitempty"`
+	ShareMeetingChatHistoryDefault *OnlineMeetingBaseShareMeetingChatHistoryDefault `json:"shareMeetingChatHistoryDefault,omitempty"`
+	Subject                        *string                                          `json:"subject,omitempty"`
+	VideoTeleconferenceId          *string                                          `json:"videoTeleconferenceId,omitempty"`
+	WatermarkProtection            *WatermarkProtectionValues                       `json:"watermarkProtection,omitempty"`
+}

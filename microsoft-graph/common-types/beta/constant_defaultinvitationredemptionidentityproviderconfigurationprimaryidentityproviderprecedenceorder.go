@@ -1,0 +1,63 @@
+package beta
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder string
+
+const (
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_AzureActiveDirectory    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "azureActiveDirectory"
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_DefaultConfiguredIdp    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "defaultConfiguredIdp"
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_EmailOneTimePasscode    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "emailOneTimePasscode"
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_ExternalFederation      DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "externalFederation"
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_MicrosoftAccount        DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "microsoftAccount"
+	DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_SocialIdentityProviders DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder = "socialIdentityProviders"
+)
+
+func PossibleValuesForDefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder() []string {
+	return []string{
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_AzureActiveDirectory),
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_DefaultConfiguredIdp),
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_EmailOneTimePasscode),
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_ExternalFederation),
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_MicrosoftAccount),
+		string(DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_SocialIdentityProviders),
+	}
+}
+
+func (s *DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder(input string) (*DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder, error) {
+	vals := map[string]DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder{
+		"azureactivedirectory":    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_AzureActiveDirectory,
+		"defaultconfiguredidp":    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_DefaultConfiguredIdp,
+		"emailonetimepasscode":    DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_EmailOneTimePasscode,
+		"externalfederation":      DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_ExternalFederation,
+		"microsoftaccount":        DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_MicrosoftAccount,
+		"socialidentityproviders": DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder_SocialIdentityProviders,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DefaultInvitationRedemptionIdentityProviderConfigurationPrimaryIdentityProviderPrecedenceOrder(input)
+	return &out, nil
+}

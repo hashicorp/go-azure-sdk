@@ -1,0 +1,21 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCGalleryImage struct {
+	DisplayName      *string                    `json:"displayName,omitempty"`
+	EndDate          *string                    `json:"endDate,omitempty"`
+	ExpirationDate   *string                    `json:"expirationDate,omitempty"`
+	Id               *string                    `json:"id,omitempty"`
+	ODataType        *string                    `json:"@odata.type,omitempty"`
+	Offer            *string                    `json:"offer,omitempty"`
+	OfferDisplayName *string                    `json:"offerDisplayName,omitempty"`
+	Publisher        *string                    `json:"publisher,omitempty"`
+	RecommendedSku   *string                    `json:"recommendedSku,omitempty"`
+	SizeInGB         *int64                     `json:"sizeInGB,omitempty"`
+	Sku              *string                    `json:"sku,omitempty"`
+	SkuDisplayName   *string                    `json:"skuDisplayName,omitempty"`
+	StartDate        *string                    `json:"startDate,omitempty"`
+	Status           *CloudPCGalleryImageStatus `json:"status,omitempty"`
+}

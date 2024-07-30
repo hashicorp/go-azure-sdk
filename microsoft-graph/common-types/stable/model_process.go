@@ -1,0 +1,20 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Process struct {
+	AccountName                  *string                `json:"accountName,omitempty"`
+	CommandLine                  *string                `json:"commandLine,omitempty"`
+	CreatedDateTime              *string                `json:"createdDateTime,omitempty"`
+	FileHash                     *FileHash              `json:"fileHash,omitempty"`
+	IntegrityLevel               *ProcessIntegrityLevel `json:"integrityLevel,omitempty"`
+	IsElevated                   *bool                  `json:"isElevated,omitempty"`
+	Name                         *string                `json:"name,omitempty"`
+	ODataType                    *string                `json:"@odata.type,omitempty"`
+	ParentProcessCreatedDateTime *string                `json:"parentProcessCreatedDateTime,omitempty"`
+	ParentProcessId              *int64                 `json:"parentProcessId,omitempty"`
+	ParentProcessName            *string                `json:"parentProcessName,omitempty"`
+	Path                         *string                `json:"path,omitempty"`
+	ProcessId                    *int64                 `json:"processId,omitempty"`
+}

@@ -1,0 +1,69 @@
+package lifecycleworkflowdeleteditemworkflow
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+
+type IdentityGovernanceWorkflowOperationPredicate struct {
+	CreatedDateTime         *string
+	DeletedDateTime         *string
+	Description             *string
+	DisplayName             *string
+	Id                      *string
+	IsEnabled               *bool
+	IsSchedulingEnabled     *bool
+	LastModifiedDateTime    *string
+	NextScheduleRunDateTime *string
+	ODataType               *string
+	Version                 *int64
+}
+
+func (p IdentityGovernanceWorkflowOperationPredicate) Matches(input stable.IdentityGovernanceWorkflow) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.IsSchedulingEnabled != nil && (input.IsSchedulingEnabled == nil || *p.IsSchedulingEnabled != *input.IsSchedulingEnabled) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.NextScheduleRunDateTime != nil && (input.NextScheduleRunDateTime == nil || *p.NextScheduleRunDateTime != *input.NextScheduleRunDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,20 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SynchronizationStatus struct {
+	Code                               *SynchronizationStatusCode    `json:"code,omitempty"`
+	CountSuccessiveCompleteFailures    *int64                        `json:"countSuccessiveCompleteFailures,omitempty"`
+	EscrowsPruned                      *bool                         `json:"escrowsPruned,omitempty"`
+	LastExecution                      *SynchronizationTaskExecution `json:"lastExecution,omitempty"`
+	LastSuccessfulExecution            *SynchronizationTaskExecution `json:"lastSuccessfulExecution,omitempty"`
+	LastSuccessfulExecutionWithExports *SynchronizationTaskExecution `json:"lastSuccessfulExecutionWithExports,omitempty"`
+	ODataType                          *string                       `json:"@odata.type,omitempty"`
+	Progress                           *[]SynchronizationProgress    `json:"progress,omitempty"`
+	Quarantine                         *SynchronizationQuarantine    `json:"quarantine,omitempty"`
+	SteadyStateFirstAchievedTime       *string                       `json:"steadyStateFirstAchievedTime,omitempty"`
+	SteadyStateLastAchievedTime        *string                       `json:"steadyStateLastAchievedTime,omitempty"`
+	SynchronizedEntryCountByType       *[]StringKeyLongValuePair     `json:"synchronizedEntryCountByType,omitempty"`
+	TroubleshootingUrl                 *string                       `json:"troubleshootingUrl,omitempty"`
+}

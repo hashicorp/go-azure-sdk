@@ -1,0 +1,106 @@
+package outlooktask
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListOutlookTaskCompletesOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]beta.OutlookTask
+}
+
+type ListOutlookTaskCompletesCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []beta.OutlookTask
+}
+
+type ListOutlookTaskCompletesCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListOutlookTaskCompletesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListOutlookTaskCompletes ...
+func (c OutlookTaskClient) ListOutlookTaskCompletes(ctx context.Context, id MeOutlookTaskId) (result ListOutlookTaskCompletesOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodPost,
+		Pager:      &ListOutlookTaskCompletesCustomPager{},
+		Path:       fmt.Sprintf("%s/complete", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]beta.OutlookTask `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListOutlookTaskCompletesComplete retrieves all the results into a single object
+func (c OutlookTaskClient) ListOutlookTaskCompletesComplete(ctx context.Context, id MeOutlookTaskId) (ListOutlookTaskCompletesCompleteResult, error) {
+	return c.ListOutlookTaskCompletesCompleteMatchingPredicate(ctx, id, OutlookTaskOperationPredicate{})
+}
+
+// ListOutlookTaskCompletesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c OutlookTaskClient) ListOutlookTaskCompletesCompleteMatchingPredicate(ctx context.Context, id MeOutlookTaskId, predicate OutlookTaskOperationPredicate) (result ListOutlookTaskCompletesCompleteResult, err error) {
+	items := make([]beta.OutlookTask, 0)
+
+	resp, err := c.ListOutlookTaskCompletes(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOutlookTaskCompletesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

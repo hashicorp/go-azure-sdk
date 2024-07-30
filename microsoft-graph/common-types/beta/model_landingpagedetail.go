@@ -1,0 +1,12 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LandingPageDetail struct {
+	Content           *string `json:"content,omitempty"`
+	Id                *string `json:"id,omitempty"`
+	IsDefaultLangauge *bool   `json:"isDefaultLangauge,omitempty"`
+	Language          *string `json:"language,omitempty"`
+	ODataType         *string `json:"@odata.type,omitempty"`
+}

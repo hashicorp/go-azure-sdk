@@ -1,0 +1,24 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceEnrollmentNotificationConfiguration struct {
+	Assignments                       *[]EnrollmentConfigurationAssignment                                        `json:"assignments,omitempty"`
+	BrandingOptions                   *DeviceEnrollmentNotificationConfigurationBrandingOptions                   `json:"brandingOptions,omitempty"`
+	CreatedDateTime                   *string                                                                     `json:"createdDateTime,omitempty"`
+	DefaultLocale                     *string                                                                     `json:"defaultLocale,omitempty"`
+	Description                       *string                                                                     `json:"description,omitempty"`
+	DeviceEnrollmentConfigurationType *DeviceEnrollmentNotificationConfigurationDeviceEnrollmentConfigurationType `json:"deviceEnrollmentConfigurationType,omitempty"`
+	DisplayName                       *string                                                                     `json:"displayName,omitempty"`
+	Id                                *string                                                                     `json:"id,omitempty"`
+	LastModifiedDateTime              *string                                                                     `json:"lastModifiedDateTime,omitempty"`
+	NotificationMessageTemplateId     *string                                                                     `json:"notificationMessageTemplateId,omitempty"`
+	NotificationTemplates             *[]string                                                                   `json:"notificationTemplates,omitempty"`
+	ODataType                         *string                                                                     `json:"@odata.type,omitempty"`
+	PlatformType                      *DeviceEnrollmentNotificationConfigurationPlatformType                      `json:"platformType,omitempty"`
+	Priority                          *int64                                                                      `json:"priority,omitempty"`
+	RoleScopeTagIds                   *[]string                                                                   `json:"roleScopeTagIds,omitempty"`
+	TemplateType                      *DeviceEnrollmentNotificationConfigurationTemplateType                      `json:"templateType,omitempty"`
+	Version                           *int64                                                                      `json:"version,omitempty"`
+}

@@ -1,0 +1,18 @@
+package lifecycleworkflowdeleteditemworkflow
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WorkbookChartDataLabels struct {
+	Format           *WorkbookChartDataLabelFormat `json:"format,omitempty"`
+	Id               *string                       `json:"id,omitempty"`
+	ODataType        *string                       `json:"@odata.type,omitempty"`
+	Position         *string                       `json:"position,omitempty"`
+	Separator        *string                       `json:"separator,omitempty"`
+	ShowBubbleSize   *bool                         `json:"showBubbleSize,omitempty"`
+	ShowCategoryName *bool                         `json:"showCategoryName,omitempty"`
+	ShowLegendKey    *bool                         `json:"showLegendKey,omitempty"`
+	ShowPercentage   *bool                         `json:"showPercentage,omitempty"`
+	ShowSeriesName   *bool                         `json:"showSeriesName,omitempty"`
+	ShowValue        *bool                         `json:"showValue,omitempty"`
+}

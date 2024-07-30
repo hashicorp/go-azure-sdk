@@ -1,0 +1,10 @@
+package resourceaccessprofile
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceAndAppManagementAssignmentTarget struct {
+	DeviceAndAppManagementAssignmentFilterId   *string                                                                           `json:"deviceAndAppManagementAssignmentFilterId,omitempty"`
+	DeviceAndAppManagementAssignmentFilterType *DeviceAndAppManagementAssignmentTargetDeviceAndAppManagementAssignmentFilterType `json:"deviceAndAppManagementAssignmentFilterType,omitempty"`
+	ODataType                                  *string                                                                           `json:"@odata.type,omitempty"`
+}

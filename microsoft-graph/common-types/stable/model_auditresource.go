@@ -1,0 +1,12 @@
+package stable
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AuditResource struct {
+	AuditResourceType  *string          `json:"auditResourceType,omitempty"`
+	DisplayName        *string          `json:"displayName,omitempty"`
+	ModifiedProperties *[]AuditProperty `json:"modifiedProperties,omitempty"`
+	ODataType          *string          `json:"@odata.type,omitempty"`
+	ResourceId         *string          `json:"resourceId,omitempty"`
+}

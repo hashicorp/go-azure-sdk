@@ -1,0 +1,19 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityOauthApplicationEvidence struct {
+	AppId                    *string                                            `json:"appId,omitempty"`
+	CreatedDateTime          *string                                            `json:"createdDateTime,omitempty"`
+	DetailedRoles            *[]string                                          `json:"detailedRoles,omitempty"`
+	DisplayName              *string                                            `json:"displayName,omitempty"`
+	ODataType                *string                                            `json:"@odata.type,omitempty"`
+	ObjectId                 *string                                            `json:"objectId,omitempty"`
+	Publisher                *string                                            `json:"publisher,omitempty"`
+	RemediationStatus        *SecurityOauthApplicationEvidenceRemediationStatus `json:"remediationStatus,omitempty"`
+	RemediationStatusDetails *string                                            `json:"remediationStatusDetails,omitempty"`
+	Roles                    *SecurityOauthApplicationEvidenceRoles             `json:"roles,omitempty"`
+	Tags                     *[]string                                          `json:"tags,omitempty"`
+	Verdict                  *SecurityOauthApplicationEvidenceVerdict           `json:"verdict,omitempty"`
+}

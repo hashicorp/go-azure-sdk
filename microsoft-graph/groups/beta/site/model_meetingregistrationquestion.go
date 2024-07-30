@@ -1,0 +1,13 @@
+package site
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MeetingRegistrationQuestion struct {
+	AnswerInputType *MeetingRegistrationQuestionAnswerInputType `json:"answerInputType,omitempty"`
+	AnswerOptions   *[]string                                   `json:"answerOptions,omitempty"`
+	DisplayName     *string                                     `json:"displayName,omitempty"`
+	Id              *string                                     `json:"id,omitempty"`
+	IsRequired      *bool                                       `json:"isRequired,omitempty"`
+	ODataType       *string                                     `json:"@odata.type,omitempty"`
+}

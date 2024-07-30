@@ -1,0 +1,15 @@
+package site
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TermStoreGroup struct {
+	CreatedDateTime *string              `json:"createdDateTime,omitempty"`
+	Description     *string              `json:"description,omitempty"`
+	DisplayName     *string              `json:"displayName,omitempty"`
+	Id              *string              `json:"id,omitempty"`
+	ODataType       *string              `json:"@odata.type,omitempty"`
+	ParentSiteId    *string              `json:"parentSiteId,omitempty"`
+	Scope           *TermStoreGroupScope `json:"scope,omitempty"`
+	Sets            *[]TermStoreSet      `json:"sets,omitempty"`
+}

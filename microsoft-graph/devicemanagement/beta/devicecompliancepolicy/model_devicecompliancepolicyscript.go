@@ -1,0 +1,10 @@
+package devicecompliancepolicy
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceCompliancePolicyScript struct {
+	DeviceComplianceScriptId *string `json:"deviceComplianceScriptId,omitempty"`
+	ODataType                *string `json:"@odata.type,omitempty"`
+	RulesContent             *string `json:"rulesContent,omitempty"`
+}

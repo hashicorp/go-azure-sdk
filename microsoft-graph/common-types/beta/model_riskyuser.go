@@ -1,0 +1,18 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RiskyUser struct {
+	History                 *[]RiskyUserHistoryItem `json:"history,omitempty"`
+	Id                      *string                 `json:"id,omitempty"`
+	IsDeleted               *bool                   `json:"isDeleted,omitempty"`
+	IsProcessing            *bool                   `json:"isProcessing,omitempty"`
+	ODataType               *string                 `json:"@odata.type,omitempty"`
+	RiskDetail              *RiskyUserRiskDetail    `json:"riskDetail,omitempty"`
+	RiskLastUpdatedDateTime *string                 `json:"riskLastUpdatedDateTime,omitempty"`
+	RiskLevel               *RiskyUserRiskLevel     `json:"riskLevel,omitempty"`
+	RiskState               *RiskyUserRiskState     `json:"riskState,omitempty"`
+	UserDisplayName         *string                 `json:"userDisplayName,omitempty"`
+	UserPrincipalName       *string                 `json:"userPrincipalName,omitempty"`
+}

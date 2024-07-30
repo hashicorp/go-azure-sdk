@@ -1,0 +1,20 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UnmanagedDeviceDiscoveryTask struct {
+	AssignedTo       *string                               `json:"assignedTo,omitempty"`
+	Category         *UnmanagedDeviceDiscoveryTaskCategory `json:"category,omitempty"`
+	CreatedDateTime  *string                               `json:"createdDateTime,omitempty"`
+	Creator          *string                               `json:"creator,omitempty"`
+	CreatorNotes     *string                               `json:"creatorNotes,omitempty"`
+	Description      *string                               `json:"description,omitempty"`
+	DisplayName      *string                               `json:"displayName,omitempty"`
+	DueDateTime      *string                               `json:"dueDateTime,omitempty"`
+	Id               *string                               `json:"id,omitempty"`
+	ODataType        *string                               `json:"@odata.type,omitempty"`
+	Priority         *UnmanagedDeviceDiscoveryTaskPriority `json:"priority,omitempty"`
+	Status           *UnmanagedDeviceDiscoveryTaskStatus   `json:"status,omitempty"`
+	UnmanagedDevices *[]UnmanagedDevice                    `json:"unmanagedDevices,omitempty"`
+}

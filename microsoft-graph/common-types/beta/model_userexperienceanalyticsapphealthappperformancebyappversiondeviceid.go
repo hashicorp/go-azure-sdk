@@ -1,0 +1,17 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId struct {
+	AppCrashCount     *int64  `json:"appCrashCount,omitempty"`
+	AppDisplayName    *string `json:"appDisplayName,omitempty"`
+	AppName           *string `json:"appName,omitempty"`
+	AppPublisher      *string `json:"appPublisher,omitempty"`
+	AppVersion        *string `json:"appVersion,omitempty"`
+	DeviceDisplayName *string `json:"deviceDisplayName,omitempty"`
+	DeviceId          *string `json:"deviceId,omitempty"`
+	Id                *string `json:"id,omitempty"`
+	ODataType         *string `json:"@odata.type,omitempty"`
+	ProcessedDateTime *string `json:"processedDateTime,omitempty"`
+}

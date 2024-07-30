@@ -1,0 +1,12 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ProtectGroup struct {
+	AllowEmailFromGuestUsers *bool                `json:"allowEmailFromGuestUsers,omitempty"`
+	AllowGuestUsers          *bool                `json:"allowGuestUsers,omitempty"`
+	Name                     *string              `json:"name,omitempty"`
+	ODataType                *string              `json:"@odata.type,omitempty"`
+	Privacy                  *ProtectGroupPrivacy `json:"privacy,omitempty"`
+}

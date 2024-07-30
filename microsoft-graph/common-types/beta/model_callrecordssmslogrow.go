@@ -1,0 +1,26 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallRecordsSmsLogRow struct {
+	CallCharge            *float64 `json:"callCharge,omitempty"`
+	Currency              *string  `json:"currency,omitempty"`
+	DestinationContext    *string  `json:"destinationContext,omitempty"`
+	DestinationName       *string  `json:"destinationName,omitempty"`
+	DestinationNumber     *string  `json:"destinationNumber,omitempty"`
+	Id                    *string  `json:"id,omitempty"`
+	LicenseCapability     *string  `json:"licenseCapability,omitempty"`
+	ODataType             *string  `json:"@odata.type,omitempty"`
+	OtherPartyCountryCode *string  `json:"otherPartyCountryCode,omitempty"`
+	SentDateTime          *string  `json:"sentDateTime,omitempty"`
+	SmsId                 *string  `json:"smsId,omitempty"`
+	SmsType               *string  `json:"smsType,omitempty"`
+	SmsUnits              *int64   `json:"smsUnits,omitempty"`
+	SourceNumber          *string  `json:"sourceNumber,omitempty"`
+	TenantCountryCode     *string  `json:"tenantCountryCode,omitempty"`
+	UserCountryCode       *string  `json:"userCountryCode,omitempty"`
+	UserDisplayName       *string  `json:"userDisplayName,omitempty"`
+	UserId                *string  `json:"userId,omitempty"`
+	UserPrincipalName     *string  `json:"userPrincipalName,omitempty"`
+}

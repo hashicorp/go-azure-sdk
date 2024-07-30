@@ -1,0 +1,18 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UnifiedRbacResourceAction struct {
+	ActionVerb                      *string                              `json:"actionVerb,omitempty"`
+	AuthenticationContext           *AuthenticationContextClassReference `json:"authenticationContext,omitempty"`
+	AuthenticationContextId         *string                              `json:"authenticationContextId,omitempty"`
+	Description                     *string                              `json:"description,omitempty"`
+	Id                              *string                              `json:"id,omitempty"`
+	IsAuthenticationContextSettable *bool                                `json:"isAuthenticationContextSettable,omitempty"`
+	IsPrivileged                    *bool                                `json:"isPrivileged,omitempty"`
+	Name                            *string                              `json:"name,omitempty"`
+	ODataType                       *string                              `json:"@odata.type,omitempty"`
+	ResourceScope                   *UnifiedRbacResourceScope            `json:"resourceScope,omitempty"`
+	ResourceScopeId                 *string                              `json:"resourceScopeId,omitempty"`
+}

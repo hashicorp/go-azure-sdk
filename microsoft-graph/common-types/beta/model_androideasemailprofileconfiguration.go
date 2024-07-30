@@ -1,0 +1,43 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidEasEmailProfileConfiguration struct {
+	AccountName                                 *string                                                   `json:"accountName,omitempty"`
+	Assignments                                 *[]DeviceConfigurationAssignment                          `json:"assignments,omitempty"`
+	AuthenticationMethod                        *AndroidEasEmailProfileConfigurationAuthenticationMethod  `json:"authenticationMethod,omitempty"`
+	CreatedDateTime                             *string                                                   `json:"createdDateTime,omitempty"`
+	CustomDomainName                            *string                                                   `json:"customDomainName,omitempty"`
+	Description                                 *string                                                   `json:"description,omitempty"`
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode              `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+	DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition               `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+	DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion               `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+	DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                              `json:"deviceSettingStateSummaries,omitempty"`
+	DeviceStatusOverview                        *DeviceConfigurationDeviceOverview                        `json:"deviceStatusOverview,omitempty"`
+	DeviceStatuses                              *[]DeviceConfigurationDeviceStatus                        `json:"deviceStatuses,omitempty"`
+	DisplayName                                 *string                                                   `json:"displayName,omitempty"`
+	DurationOfEmailToSync                       *AndroidEasEmailProfileConfigurationDurationOfEmailToSync `json:"durationOfEmailToSync,omitempty"`
+	EmailAddressSource                          *AndroidEasEmailProfileConfigurationEmailAddressSource    `json:"emailAddressSource,omitempty"`
+	EmailSyncSchedule                           *AndroidEasEmailProfileConfigurationEmailSyncSchedule     `json:"emailSyncSchedule,omitempty"`
+	GroupAssignments                            *[]DeviceConfigurationGroupAssignment                     `json:"groupAssignments,omitempty"`
+	HostName                                    *string                                                   `json:"hostName,omitempty"`
+	Id                                          *string                                                   `json:"id,omitempty"`
+	IdentityCertificate                         *AndroidCertificateProfileBase                            `json:"identityCertificate,omitempty"`
+	LastModifiedDateTime                        *string                                                   `json:"lastModifiedDateTime,omitempty"`
+	ODataType                                   *string                                                   `json:"@odata.type,omitempty"`
+	RequireSmime                                *bool                                                     `json:"requireSmime,omitempty"`
+	RequireSsl                                  *bool                                                     `json:"requireSsl,omitempty"`
+	RoleScopeTagIds                             *[]string                                                 `json:"roleScopeTagIds,omitempty"`
+	SmimeSigningCertificate                     *AndroidCertificateProfileBase                            `json:"smimeSigningCertificate,omitempty"`
+	SupportsScopeTags                           *bool                                                     `json:"supportsScopeTags,omitempty"`
+	SyncCalendar                                *bool                                                     `json:"syncCalendar,omitempty"`
+	SyncContacts                                *bool                                                     `json:"syncContacts,omitempty"`
+	SyncNotes                                   *bool                                                     `json:"syncNotes,omitempty"`
+	SyncTasks                                   *bool                                                     `json:"syncTasks,omitempty"`
+	UserDomainNameSource                        *AndroidEasEmailProfileConfigurationUserDomainNameSource  `json:"userDomainNameSource,omitempty"`
+	UserStatusOverview                          *DeviceConfigurationUserOverview                          `json:"userStatusOverview,omitempty"`
+	UserStatuses                                *[]DeviceConfigurationUserStatus                          `json:"userStatuses,omitempty"`
+	UsernameSource                              *AndroidEasEmailProfileConfigurationUsernameSource        `json:"usernameSource,omitempty"`
+	Version                                     *int64                                                    `json:"version,omitempty"`
+}

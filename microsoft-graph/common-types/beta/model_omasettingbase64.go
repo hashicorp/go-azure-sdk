@@ -1,0 +1,15 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OmaSettingBase64 struct {
+	Description            *string `json:"description,omitempty"`
+	DisplayName            *string `json:"displayName,omitempty"`
+	FileName               *string `json:"fileName,omitempty"`
+	IsEncrypted            *bool   `json:"isEncrypted,omitempty"`
+	ODataType              *string `json:"@odata.type,omitempty"`
+	OmaUri                 *string `json:"omaUri,omitempty"`
+	SecretReferenceValueId *string `json:"secretReferenceValueId,omitempty"`
+	Value                  *string `json:"value,omitempty"`
+}

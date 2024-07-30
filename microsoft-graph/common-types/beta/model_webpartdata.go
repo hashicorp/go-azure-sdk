@@ -1,0 +1,14 @@
+package beta
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WebPartData struct {
+	Audiences              *[]string               `json:"audiences,omitempty"`
+	DataVersion            *string                 `json:"dataVersion,omitempty"`
+	Description            *string                 `json:"description,omitempty"`
+	ODataType              *string                 `json:"@odata.type,omitempty"`
+	Properties             *Json                   `json:"properties,omitempty"`
+	ServerProcessedContent *ServerProcessedContent `json:"serverProcessedContent,omitempty"`
+	Title                  *string                 `json:"title,omitempty"`
+}

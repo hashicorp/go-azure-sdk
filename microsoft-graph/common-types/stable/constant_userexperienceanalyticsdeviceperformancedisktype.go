@@ -1,0 +1,54 @@
+package stable
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsDevicePerformanceDiskType string
+
+const (
+	UserExperienceAnalyticsDevicePerformanceDiskType_Hdd     UserExperienceAnalyticsDevicePerformanceDiskType = "hdd"
+	UserExperienceAnalyticsDevicePerformanceDiskType_Ssd     UserExperienceAnalyticsDevicePerformanceDiskType = "ssd"
+	UserExperienceAnalyticsDevicePerformanceDiskType_Unknown UserExperienceAnalyticsDevicePerformanceDiskType = "unknown"
+)
+
+func PossibleValuesForUserExperienceAnalyticsDevicePerformanceDiskType() []string {
+	return []string{
+		string(UserExperienceAnalyticsDevicePerformanceDiskType_Hdd),
+		string(UserExperienceAnalyticsDevicePerformanceDiskType_Ssd),
+		string(UserExperienceAnalyticsDevicePerformanceDiskType_Unknown),
+	}
+}
+
+func (s *UserExperienceAnalyticsDevicePerformanceDiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUserExperienceAnalyticsDevicePerformanceDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseUserExperienceAnalyticsDevicePerformanceDiskType(input string) (*UserExperienceAnalyticsDevicePerformanceDiskType, error) {
+	vals := map[string]UserExperienceAnalyticsDevicePerformanceDiskType{
+		"hdd":     UserExperienceAnalyticsDevicePerformanceDiskType_Hdd,
+		"ssd":     UserExperienceAnalyticsDevicePerformanceDiskType_Ssd,
+		"unknown": UserExperienceAnalyticsDevicePerformanceDiskType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsDevicePerformanceDiskType(input)
+	return &out, nil
+}

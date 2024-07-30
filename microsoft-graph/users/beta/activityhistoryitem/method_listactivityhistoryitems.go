@@ -1,0 +1,106 @@
+package activityhistoryitem
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListActivityHistoryItemsOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]beta.ActivityHistoryItem
+}
+
+type ListActivityHistoryItemsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []beta.ActivityHistoryItem
+}
+
+type ListActivityHistoryItemsCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListActivityHistoryItemsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListActivityHistoryItems ...
+func (c ActivityHistoryItemClient) ListActivityHistoryItems(ctx context.Context, id UserIdActivityId) (result ListActivityHistoryItemsOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Pager:      &ListActivityHistoryItemsCustomPager{},
+		Path:       fmt.Sprintf("%s/historyItems", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]beta.ActivityHistoryItem `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListActivityHistoryItemsComplete retrieves all the results into a single object
+func (c ActivityHistoryItemClient) ListActivityHistoryItemsComplete(ctx context.Context, id UserIdActivityId) (ListActivityHistoryItemsCompleteResult, error) {
+	return c.ListActivityHistoryItemsCompleteMatchingPredicate(ctx, id, ActivityHistoryItemOperationPredicate{})
+}
+
+// ListActivityHistoryItemsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ActivityHistoryItemClient) ListActivityHistoryItemsCompleteMatchingPredicate(ctx context.Context, id UserIdActivityId, predicate ActivityHistoryItemOperationPredicate) (result ListActivityHistoryItemsCompleteResult, err error) {
+	items := make([]beta.ActivityHistoryItem, 0)
+
+	resp, err := c.ListActivityHistoryItems(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListActivityHistoryItemsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}
