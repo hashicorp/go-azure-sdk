@@ -12,6 +12,7 @@ type DynamicsCrmLinkedServiceTypeProperties struct {
 	AuthenticationType             string               `json:"authenticationType"`
 	Credential                     *CredentialReference `json:"credential,omitempty"`
 	DeploymentType                 string               `json:"deploymentType"`
+	Domain                         *string              `json:"domain,omitempty"`
 	EncryptedCredential            *string              `json:"encryptedCredential,omitempty"`
 	HostName                       *string              `json:"hostName,omitempty"`
 	OrganizationName               *string              `json:"organizationName,omitempty"`
@@ -36,6 +37,7 @@ func (s *DynamicsCrmLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	s.AuthenticationType = decoded.AuthenticationType
 	s.Credential = decoded.Credential
 	s.DeploymentType = decoded.DeploymentType
+	s.Domain = decoded.Domain
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.HostName = decoded.HostName
 	s.OrganizationName = decoded.OrganizationName

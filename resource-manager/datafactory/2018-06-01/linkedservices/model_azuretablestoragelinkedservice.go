@@ -11,7 +11,7 @@ import (
 var _ LinkedService = AzureTableStorageLinkedService{}
 
 type AzureTableStorageLinkedService struct {
-	TypeProperties AzureStorageLinkedServiceTypeProperties `json:"typeProperties"`
+	TypeProperties AzureTableStorageLinkedServiceTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from LinkedService
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`

@@ -11,12 +11,14 @@ import (
 type AzureFileStorageLinkedServiceTypeProperties struct {
 	AccountKey          *AzureKeyVaultSecretReference `json:"accountKey,omitempty"`
 	ConnectionString    *string                       `json:"connectionString,omitempty"`
+	Credential          *CredentialReference          `json:"credential,omitempty"`
 	EncryptedCredential *string                       `json:"encryptedCredential,omitempty"`
 	FileShare           *string                       `json:"fileShare,omitempty"`
 	Host                *string                       `json:"host,omitempty"`
 	Password            SecretBase                    `json:"password"`
 	SasToken            *AzureKeyVaultSecretReference `json:"sasToken,omitempty"`
 	SasUri              *string                       `json:"sasUri,omitempty"`
+	ServiceEndpoint     *string                       `json:"serviceEndpoint,omitempty"`
 	Snapshot            *string                       `json:"snapshot,omitempty"`
 	UserId              *string                       `json:"userId,omitempty"`
 }
@@ -32,11 +34,13 @@ func (s *AzureFileStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 
 	s.AccountKey = decoded.AccountKey
 	s.ConnectionString = decoded.ConnectionString
+	s.Credential = decoded.Credential
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.FileShare = decoded.FileShare
 	s.Host = decoded.Host
 	s.SasToken = decoded.SasToken
 	s.SasUri = decoded.SasUri
+	s.ServiceEndpoint = decoded.ServiceEndpoint
 	s.Snapshot = decoded.Snapshot
 	s.UserId = decoded.UserId
 
