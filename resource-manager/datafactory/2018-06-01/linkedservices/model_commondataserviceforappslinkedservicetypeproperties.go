@@ -11,6 +11,7 @@ import (
 type CommonDataServiceForAppsLinkedServiceTypeProperties struct {
 	AuthenticationType             string     `json:"authenticationType"`
 	DeploymentType                 string     `json:"deploymentType"`
+	Domain                         *string    `json:"domain,omitempty"`
 	EncryptedCredential            *string    `json:"encryptedCredential,omitempty"`
 	HostName                       *string    `json:"hostName,omitempty"`
 	OrganizationName               *string    `json:"organizationName,omitempty"`
@@ -34,6 +35,7 @@ func (s *CommonDataServiceForAppsLinkedServiceTypeProperties) UnmarshalJSON(byte
 
 	s.AuthenticationType = decoded.AuthenticationType
 	s.DeploymentType = decoded.DeploymentType
+	s.Domain = decoded.Domain
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.HostName = decoded.HostName
 	s.OrganizationName = decoded.OrganizationName
