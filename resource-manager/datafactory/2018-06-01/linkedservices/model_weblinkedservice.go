@@ -18,6 +18,7 @@ type WebLinkedService struct {
 	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Version     *string                            `json:"version,omitempty"`
 }
 
 var _ json.Marshaler = WebLinkedService{}
@@ -57,6 +58,7 @@ func (s *WebLinkedService) UnmarshalJSON(bytes []byte) error {
 	s.ConnectVia = decoded.ConnectVia
 	s.Description = decoded.Description
 	s.Parameters = decoded.Parameters
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

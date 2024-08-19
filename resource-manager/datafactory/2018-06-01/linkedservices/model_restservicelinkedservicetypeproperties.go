@@ -9,24 +9,27 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestServiceLinkedServiceTypeProperties struct {
-	AadResourceId                     *string                       `json:"aadResourceId,omitempty"`
-	AuthHeaders                       *interface{}                  `json:"authHeaders,omitempty"`
-	AuthenticationType                RestServiceAuthenticationType `json:"authenticationType"`
-	AzureCloudType                    *string                       `json:"azureCloudType,omitempty"`
-	ClientId                          *string                       `json:"clientId,omitempty"`
-	ClientSecret                      SecretBase                    `json:"clientSecret"`
-	Credential                        *CredentialReference          `json:"credential,omitempty"`
-	EnableServerCertificateValidation *bool                         `json:"enableServerCertificateValidation,omitempty"`
-	EncryptedCredential               *string                       `json:"encryptedCredential,omitempty"`
-	Password                          SecretBase                    `json:"password"`
-	Resource                          *string                       `json:"resource,omitempty"`
-	Scope                             *string                       `json:"scope,omitempty"`
-	ServicePrincipalId                *string                       `json:"servicePrincipalId,omitempty"`
-	ServicePrincipalKey               SecretBase                    `json:"servicePrincipalKey"`
-	Tenant                            *string                       `json:"tenant,omitempty"`
-	TokenEndpoint                     *string                       `json:"tokenEndpoint,omitempty"`
-	Url                               string                        `json:"url"`
-	UserName                          *string                       `json:"userName,omitempty"`
+	AadResourceId                        *string                       `json:"aadResourceId,omitempty"`
+	AuthHeaders                          *interface{}                  `json:"authHeaders,omitempty"`
+	AuthenticationType                   RestServiceAuthenticationType `json:"authenticationType"`
+	AzureCloudType                       *string                       `json:"azureCloudType,omitempty"`
+	ClientId                             *string                       `json:"clientId,omitempty"`
+	ClientSecret                         SecretBase                    `json:"clientSecret"`
+	Credential                           *CredentialReference          `json:"credential,omitempty"`
+	EnableServerCertificateValidation    *bool                         `json:"enableServerCertificateValidation,omitempty"`
+	EncryptedCredential                  *string                       `json:"encryptedCredential,omitempty"`
+	Password                             SecretBase                    `json:"password"`
+	Resource                             *string                       `json:"resource,omitempty"`
+	Scope                                *string                       `json:"scope,omitempty"`
+	ServicePrincipalCredentialType       *string                       `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalEmbeddedCert         SecretBase                    `json:"servicePrincipalEmbeddedCert"`
+	ServicePrincipalEmbeddedCertPassword SecretBase                    `json:"servicePrincipalEmbeddedCertPassword"`
+	ServicePrincipalId                   *string                       `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalKey                  SecretBase                    `json:"servicePrincipalKey"`
+	Tenant                               *string                       `json:"tenant,omitempty"`
+	TokenEndpoint                        *string                       `json:"tokenEndpoint,omitempty"`
+	Url                                  string                        `json:"url"`
+	UserName                             *string                       `json:"userName,omitempty"`
 }
 
 var _ json.Unmarshaler = &RestServiceLinkedServiceTypeProperties{}
@@ -48,6 +51,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.Resource = decoded.Resource
 	s.Scope = decoded.Scope
+	s.ServicePrincipalCredentialType = decoded.ServicePrincipalCredentialType
 	s.ServicePrincipalId = decoded.ServicePrincipalId
 	s.Tenant = decoded.Tenant
 	s.TokenEndpoint = decoded.TokenEndpoint
@@ -73,6 +77,22 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 			return fmt.Errorf("unmarshaling field 'Password' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}
 		s.Password = impl
+	}
+
+	if v, ok := temp["servicePrincipalEmbeddedCert"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCert' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ServicePrincipalEmbeddedCert = impl
+	}
+
+	if v, ok := temp["servicePrincipalEmbeddedCertPassword"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCertPassword' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ServicePrincipalEmbeddedCertPassword = impl
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {

@@ -4,5 +4,5 @@ package appserviceplans
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FunctionsScaleAndConcurrencyTriggersHTTP struct {
-	PerInstanceConcurrency *float64 `json:"perInstanceConcurrency,omitempty"`
+	PerInstanceConcurrency *int64 `json:"perInstanceConcurrency,omitempty"`
 }

@@ -5,7 +5,7 @@ package appserviceenvironments
 
 type FunctionsScaleAndConcurrency struct {
 	AlwaysReady          *[]FunctionsAlwaysReadyConfig         `json:"alwaysReady,omitempty"`
-	InstanceMemoryMB     *float64                              `json:"instanceMemoryMB,omitempty"`
-	MaximumInstanceCount *float64                              `json:"maximumInstanceCount,omitempty"`
+	InstanceMemoryMB     *int64                                `json:"instanceMemoryMB,omitempty"`
+	MaximumInstanceCount *int64                                `json:"maximumInstanceCount,omitempty"`
 	Triggers             *FunctionsScaleAndConcurrencyTriggers `json:"triggers,omitempty"`
 }

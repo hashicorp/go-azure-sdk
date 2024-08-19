@@ -20,8 +20,42 @@ type DeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DeleteOperationOptions struct {
+	DeleteWorkflow                *bool
+	IgnoreWorkflowDeletionFailure *bool
+	XMsGitHubAuxiliary            *string
+}
+
+func DefaultDeleteOperationOptions() DeleteOperationOptions {
+	return DeleteOperationOptions{}
+}
+
+func (o DeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.XMsGitHubAuxiliary != nil {
+		out.Append("x-ms-github-auxiliary", fmt.Sprintf("%v", *o.XMsGitHubAuxiliary))
+	}
+	return &out
+}
+
+func (o DeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	return &out
+}
+
+func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.DeleteWorkflow != nil {
+		out.Append("deleteWorkflow", fmt.Sprintf("%v", *o.DeleteWorkflow))
+	}
+	if o.IgnoreWorkflowDeletionFailure != nil {
+		out.Append("ignoreWorkflowDeletionFailure", fmt.Sprintf("%v", *o.IgnoreWorkflowDeletionFailure))
+	}
+	return &out
+}
+
 // Delete ...
-func (c ContainerAppsSourceControlsClient) Delete(ctx context.Context, id SourceControlId) (result DeleteOperationResponse, err error) {
+func (c ContainerAppsSourceControlsClient) Delete(ctx context.Context, id SourceControlId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -29,8 +63,9 @@ func (c ContainerAppsSourceControlsClient) Delete(ctx context.Context, id Source
 			http.StatusNoContent,
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodDelete,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -57,8 +92,8 @@ func (c ContainerAppsSourceControlsClient) Delete(ctx context.Context, id Source
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ContainerAppsSourceControlsClient) DeleteThenPoll(ctx context.Context, id SourceControlId) error {
-	result, err := c.Delete(ctx, id)
+func (c ContainerAppsSourceControlsClient) DeleteThenPoll(ctx context.Context, id SourceControlId, options DeleteOperationOptions) error {
+	result, err := c.Delete(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
 	}
