@@ -1,4 +1,4 @@
-package paymentmethods
+package deployments
 
 import (
 	"context"
@@ -14,26 +14,31 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type DeleteAtBillingProfileOperationResponse struct {
+type WhatIfAtTenantScopeOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *WhatIfOperationResult
 }
 
-// DeleteAtBillingProfile ...
-func (c PaymentMethodsClient) DeleteAtBillingProfile(ctx context.Context, id PaymentMethodLinkId) (result DeleteAtBillingProfileOperationResponse, err error) {
+// WhatIfAtTenantScope ...
+func (c DeploymentsClient) WhatIfAtTenantScope(ctx context.Context, id DeploymentId, input ScopedDeploymentWhatIf) (result WhatIfAtTenantScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
-			http.StatusNoContent,
+			http.StatusOK,
 		},
-		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+		HttpMethod: http.MethodPost,
+		Path:       fmt.Sprintf("%s/whatIf", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
 	if err != nil {
+		return
+	}
+
+	if err = req.Marshal(input); err != nil {
 		return
 	}
 
@@ -55,15 +60,15 @@ func (c PaymentMethodsClient) DeleteAtBillingProfile(ctx context.Context, id Pay
 	return
 }
 
-// DeleteAtBillingProfileThenPoll performs DeleteAtBillingProfile then polls until it's completed
-func (c PaymentMethodsClient) DeleteAtBillingProfileThenPoll(ctx context.Context, id PaymentMethodLinkId) error {
-	result, err := c.DeleteAtBillingProfile(ctx, id)
+// WhatIfAtTenantScopeThenPoll performs WhatIfAtTenantScope then polls until it's completed
+func (c DeploymentsClient) WhatIfAtTenantScopeThenPoll(ctx context.Context, id DeploymentId, input ScopedDeploymentWhatIf) error {
+	result, err := c.WhatIfAtTenantScope(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing DeleteAtBillingProfile: %+v", err)
+		return fmt.Errorf("performing WhatIfAtTenantScope: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after DeleteAtBillingProfile: %+v", err)
+		return fmt.Errorf("polling after WhatIfAtTenantScope: %+v", err)
 	}
 
 	return nil

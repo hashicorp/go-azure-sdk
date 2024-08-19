@@ -18,6 +18,7 @@ type ReconcileForPrivateLinkScopeOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *NetworkSecurityPerimeterConfigurationReconcileResult
 }
 
 // ReconcileForPrivateLinkScope ...
@@ -26,6 +27,7 @@ func (c NetworkSecurityPerimeterConfigurationClient) ReconcileForPrivateLinkScop
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
+			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
 		Path:       fmt.Sprintf("%s/reconcile", id.ID()),

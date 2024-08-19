@@ -26,5 +26,5 @@ type BillingProfileProperties struct {
 	StatusReasonCode         *BillingProfileStatusReasonCode `json:"statusReasonCode,omitempty"`
 	SystemId                 *string                         `json:"systemId,omitempty"`
 	Tags                     *map[string]string              `json:"tags,omitempty"`
-	TargetClouds             *[]TargetCloud                  `json:"targetClouds,omitempty"`
+	TargetClouds             *[]string                       `json:"targetClouds,omitempty"`
 }
