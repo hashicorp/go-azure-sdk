@@ -18,6 +18,7 @@ type DynamicsCrmLinkedService struct {
 	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Version     *string                            `json:"version,omitempty"`
 }
 
 var _ json.Marshaler = DynamicsCrmLinkedService{}

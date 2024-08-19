@@ -31,7 +31,7 @@ payload := containerappssourcecontrols.SourceControl{
 }
 
 
-if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload, containerappssourcecontrols.DefaultCreateOrUpdateOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -43,7 +43,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 ctx := context.TODO()
 id := containerappssourcecontrols.NewSourceControlID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "sourceControlValue")
 
-if err := client.DeleteThenPoll(ctx, id); err != nil {
+if err := client.DeleteThenPoll(ctx, id, containerappssourcecontrols.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```

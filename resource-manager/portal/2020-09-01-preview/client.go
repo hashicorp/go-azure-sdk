@@ -6,41 +6,41 @@ package v2020_09_01_preview
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/dashboard"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/listtenantconfigurationviolations"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/tenantconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/dashboards"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/listtenantconfigurationviolationsoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/tenantconfigurations"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	Dashboard                         *dashboard.DashboardClient
-	ListTenantConfigurationViolations *listtenantconfigurationviolations.ListTenantConfigurationViolationsClient
-	TenantConfiguration               *tenantconfiguration.TenantConfigurationClient
+	Dashboards                                  *dashboards.DashboardsClient
+	ListTenantConfigurationViolationsOperations *listtenantconfigurationviolationsoperations.ListTenantConfigurationViolationsOperationsClient
+	TenantConfigurations                        *tenantconfigurations.TenantConfigurationsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	dashboardClient, err := dashboard.NewDashboardClientWithBaseURI(sdkApi)
+	dashboardsClient, err := dashboards.NewDashboardsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Dashboard client: %+v", err)
+		return nil, fmt.Errorf("building Dashboards client: %+v", err)
 	}
-	configureFunc(dashboardClient.Client)
+	configureFunc(dashboardsClient.Client)
 
-	listTenantConfigurationViolationsClient, err := listtenantconfigurationviolations.NewListTenantConfigurationViolationsClientWithBaseURI(sdkApi)
+	listTenantConfigurationViolationsOperationsClient, err := listtenantconfigurationviolationsoperations.NewListTenantConfigurationViolationsOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ListTenantConfigurationViolations client: %+v", err)
+		return nil, fmt.Errorf("building ListTenantConfigurationViolationsOperations client: %+v", err)
 	}
-	configureFunc(listTenantConfigurationViolationsClient.Client)
+	configureFunc(listTenantConfigurationViolationsOperationsClient.Client)
 
-	tenantConfigurationClient, err := tenantconfiguration.NewTenantConfigurationClientWithBaseURI(sdkApi)
+	tenantConfigurationsClient, err := tenantconfigurations.NewTenantConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building TenantConfiguration client: %+v", err)
+		return nil, fmt.Errorf("building TenantConfigurations client: %+v", err)
 	}
-	configureFunc(tenantConfigurationClient.Client)
+	configureFunc(tenantConfigurationsClient.Client)
 
 	return &Client{
-		Dashboard:                         dashboardClient,
-		ListTenantConfigurationViolations: listTenantConfigurationViolationsClient,
-		TenantConfiguration:               tenantConfigurationClient,
+		Dashboards: dashboardsClient,
+		ListTenantConfigurationViolationsOperations: listTenantConfigurationViolationsOperationsClient,
+		TenantConfigurations:                        tenantConfigurationsClient,
 	}, nil
 }

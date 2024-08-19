@@ -21,16 +21,44 @@ type CreateOrUpdateOperationResponse struct {
 	Model        *SourceControl
 }
 
+type CreateOrUpdateOperationOptions struct {
+	XMsGitHubAuxiliary *string
+}
+
+func DefaultCreateOrUpdateOperationOptions() CreateOrUpdateOperationOptions {
+	return CreateOrUpdateOperationOptions{}
+}
+
+func (o CreateOrUpdateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.XMsGitHubAuxiliary != nil {
+		out.Append("x-ms-github-auxiliary", fmt.Sprintf("%v", *o.XMsGitHubAuxiliary))
+	}
+	return &out
+}
+
+func (o CreateOrUpdateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	return &out
+}
+
+func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOrUpdate ...
-func (c ContainerAppsSourceControlsClient) CreateOrUpdate(ctx context.Context, id SourceControlId, input SourceControl) (result CreateOrUpdateOperationResponse, err error) {
+func (c ContainerAppsSourceControlsClient) CreateOrUpdate(ctx context.Context, id SourceControlId, input SourceControl, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -61,8 +89,8 @@ func (c ContainerAppsSourceControlsClient) CreateOrUpdate(ctx context.Context, i
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ContainerAppsSourceControlsClient) CreateOrUpdateThenPoll(ctx context.Context, id SourceControlId, input SourceControl) error {
-	result, err := c.CreateOrUpdate(ctx, id, input)
+func (c ContainerAppsSourceControlsClient) CreateOrUpdateThenPoll(ctx context.Context, id SourceControlId, input SourceControl, options CreateOrUpdateOperationOptions) error {
+	result, err := c.CreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
 	}

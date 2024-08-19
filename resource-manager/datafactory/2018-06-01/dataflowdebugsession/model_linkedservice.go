@@ -14,6 +14,7 @@ type LinkedService struct {
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
 	Type        string                             `json:"type"`
+	Version     *string                            `json:"version,omitempty"`
 }
 
 var _ json.Unmarshaler = &LinkedService{}
@@ -29,6 +30,7 @@ func (s *LinkedService) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.Parameters = decoded.Parameters
 	s.Type = decoded.Type
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

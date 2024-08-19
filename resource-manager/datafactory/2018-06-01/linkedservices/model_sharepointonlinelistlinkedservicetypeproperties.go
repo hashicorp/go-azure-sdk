@@ -9,11 +9,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SharePointOnlineListLinkedServiceTypeProperties struct {
-	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
-	ServicePrincipalId  string     `json:"servicePrincipalId"`
-	ServicePrincipalKey SecretBase `json:"servicePrincipalKey"`
-	SiteUrl             string     `json:"siteUrl"`
-	TenantId            string     `json:"tenantId"`
+	EncryptedCredential                  *string    `json:"encryptedCredential,omitempty"`
+	ServicePrincipalCredentialType       *string    `json:"servicePrincipalCredentialType,omitempty"`
+	ServicePrincipalEmbeddedCert         SecretBase `json:"servicePrincipalEmbeddedCert"`
+	ServicePrincipalEmbeddedCertPassword SecretBase `json:"servicePrincipalEmbeddedCertPassword"`
+	ServicePrincipalId                   string     `json:"servicePrincipalId"`
+	ServicePrincipalKey                  SecretBase `json:"servicePrincipalKey"`
+	SiteUrl                              string     `json:"siteUrl"`
+	TenantId                             string     `json:"tenantId"`
 }
 
 var _ json.Unmarshaler = &SharePointOnlineListLinkedServiceTypeProperties{}
@@ -26,6 +29,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
+	s.ServicePrincipalCredentialType = decoded.ServicePrincipalCredentialType
 	s.ServicePrincipalId = decoded.ServicePrincipalId
 	s.SiteUrl = decoded.SiteUrl
 	s.TenantId = decoded.TenantId
@@ -33,6 +37,22 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
 		return fmt.Errorf("unmarshaling SharePointOnlineListLinkedServiceTypeProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["servicePrincipalEmbeddedCert"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCert' for 'SharePointOnlineListLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ServicePrincipalEmbeddedCert = impl
+	}
+
+	if v, ok := temp["servicePrincipalEmbeddedCertPassword"]; ok {
+		impl, err := unmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCertPassword' for 'SharePointOnlineListLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ServicePrincipalEmbeddedCertPassword = impl
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
