@@ -20,18 +20,6 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PaymentMethodsClient.DeleteAtBillingProfile`
-
-```go
-ctx := context.TODO()
-id := paymentmethods.NewPaymentMethodLinkID("billingAccountValue", "billingProfileValue", "paymentMethodLinkValue")
-
-if err := client.DeleteAtBillingProfileThenPoll(ctx, id); err != nil {
-	// handle the error
-}
-```
-
-
 ### Example Usage: `PaymentMethodsClient.DeleteByUser`
 
 ```go

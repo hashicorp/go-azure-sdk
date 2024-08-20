@@ -10,5 +10,5 @@ type InvoiceSectionProperties struct {
 	State             *InvoiceSectionState           `json:"state,omitempty"`
 	SystemId          *string                        `json:"systemId,omitempty"`
 	Tags              *map[string]string             `json:"tags,omitempty"`
-	TargetCloud       *TargetCloud                   `json:"targetCloud,omitempty"`
+	TargetCloud       *string                        `json:"targetCloud,omitempty"`
 }

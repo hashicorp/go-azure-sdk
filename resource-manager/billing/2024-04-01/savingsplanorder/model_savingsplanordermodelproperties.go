@@ -17,7 +17,6 @@ type SavingsPlanOrderModelProperties struct {
 	BillingScopeId     *string                 `json:"billingScopeId,omitempty"`
 	CustomerId         *string                 `json:"customerId,omitempty"`
 	DisplayName        *string                 `json:"displayName,omitempty"`
-	ExpiryDate         *string                 `json:"expiryDate,omitempty"`
 	ExpiryDateTime     *string                 `json:"expiryDateTime,omitempty"`
 	ExtendedStatusInfo *ExtendedStatusInfo     `json:"extendedStatusInfo,omitempty"`
 	PlanInformation    *BillingPlanInformation `json:"planInformation,omitempty"`
