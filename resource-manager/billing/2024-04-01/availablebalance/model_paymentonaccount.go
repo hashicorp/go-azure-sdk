@@ -16,7 +16,7 @@ type PaymentOnAccount struct {
 	Date                      *string              `json:"date,omitempty"`
 	InvoiceId                 *string              `json:"invoiceId,omitempty"`
 	InvoiceName               *string              `json:"invoiceName,omitempty"`
-	Type                      *PaymentMethodFamily `json:"type,omitempty"`
+	PaymentMethodType         *PaymentMethodFamily `json:"paymentMethodType,omitempty"`
 }
 
 func (o *PaymentOnAccount) GetDateAsTime() (*time.Time, error) {
