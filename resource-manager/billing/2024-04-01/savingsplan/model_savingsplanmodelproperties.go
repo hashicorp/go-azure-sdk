@@ -22,7 +22,6 @@ type SavingsPlanModelProperties struct {
 	DisplayName                  *string                 `json:"displayName,omitempty"`
 	DisplayProvisioningState     *string                 `json:"displayProvisioningState,omitempty"`
 	EffectiveDateTime            *string                 `json:"effectiveDateTime,omitempty"`
-	ExpiryDate                   *string                 `json:"expiryDate,omitempty"`
 	ExpiryDateTime               *string                 `json:"expiryDateTime,omitempty"`
 	ExtendedStatusInfo           *ExtendedStatusInfo     `json:"extendedStatusInfo,omitempty"`
 	ProductCode                  *string                 `json:"productCode,omitempty"`

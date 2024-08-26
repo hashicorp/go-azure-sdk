@@ -13,5 +13,4 @@ type PaymentMethodProperties struct {
 	Logos             *[]PaymentMethodLogo `json:"logos,omitempty"`
 	PaymentMethodType *string              `json:"paymentMethodType,omitempty"`
 	Status            *PaymentMethodStatus `json:"status,omitempty"`
-	Type              *string              `json:"type,omitempty"`
 }
