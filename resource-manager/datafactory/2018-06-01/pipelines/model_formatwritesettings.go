@@ -52,6 +52,14 @@ func unmarshalFormatWriteSettingsImplementation(input []byte) (FormatWriteSettin
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "IcebergWriteSettings") {
+		var out IcebergWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IcebergWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "JsonWriteSettings") {
 		var out JsonWriteSettings
 		if err := json.Unmarshal(input, &out); err != nil {

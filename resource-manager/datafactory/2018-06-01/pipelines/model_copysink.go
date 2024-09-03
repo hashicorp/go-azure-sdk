@@ -204,6 +204,14 @@ func unmarshalCopySinkImplementation(input []byte) (CopySink, error) {
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "IcebergSink") {
+		var out IcebergSink
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IcebergSink: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "InformixSink") {
 		var out InformixSink
 		if err := json.Unmarshal(input, &out); err != nil {
