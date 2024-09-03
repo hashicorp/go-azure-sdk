@@ -6,10 +6,8 @@ package v2020_01_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/adaptivenetworkhardenings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/alerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/allowedconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/applicationwhitelistings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/assessments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/assessmentsmetadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/discoveredsecuritysolutions"
@@ -28,10 +26,8 @@ import (
 )
 
 type Client struct {
-	AdaptiveNetworkHardenings      *adaptivenetworkhardenings.AdaptiveNetworkHardeningsClient
 	Alerts                         *alerts.AlertsClient
 	AllowedConnections             *allowedconnections.AllowedConnectionsClient
-	ApplicationWhitelistings       *applicationwhitelistings.ApplicationWhitelistingsClient
 	Assessments                    *assessments.AssessmentsClient
 	AssessmentsMetadata            *assessmentsmetadata.AssessmentsMetadataClient
 	DiscoveredSecuritySolutions    *discoveredsecuritysolutions.DiscoveredSecuritySolutionsClient
@@ -48,12 +44,6 @@ type Client struct {
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	adaptiveNetworkHardeningsClient, err := adaptivenetworkhardenings.NewAdaptiveNetworkHardeningsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AdaptiveNetworkHardenings client: %+v", err)
-	}
-	configureFunc(adaptiveNetworkHardeningsClient.Client)
-
 	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Alerts client: %+v", err)
@@ -65,12 +55,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building AllowedConnections client: %+v", err)
 	}
 	configureFunc(allowedConnectionsClient.Client)
-
-	applicationWhitelistingsClient, err := applicationwhitelistings.NewApplicationWhitelistingsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ApplicationWhitelistings client: %+v", err)
-	}
-	configureFunc(applicationWhitelistingsClient.Client)
 
 	assessmentsClient, err := assessments.NewAssessmentsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -151,10 +135,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(topologyClient.Client)
 
 	return &Client{
-		AdaptiveNetworkHardenings:      adaptiveNetworkHardeningsClient,
 		Alerts:                         alertsClient,
 		AllowedConnections:             allowedConnectionsClient,
-		ApplicationWhitelistings:       applicationWhitelistingsClient,
 		Assessments:                    assessmentsClient,
 		AssessmentsMetadata:            assessmentsMetadataClient,
 		DiscoveredSecuritySolutions:    discoveredSecuritySolutionsClient,

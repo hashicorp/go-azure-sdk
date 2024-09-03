@@ -396,6 +396,14 @@ func unmarshalDatasetImplementation(input []byte) (Dataset, error) {
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "Iceberg") {
+		var out IcebergDataset
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IcebergDataset: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "ImpalaObject") {
 		var out ImpalaObjectDataset
 		if err := json.Unmarshal(input, &out); err != nil {
