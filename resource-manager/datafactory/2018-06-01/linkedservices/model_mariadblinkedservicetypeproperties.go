@@ -11,5 +11,7 @@ type MariaDBLinkedServiceTypeProperties struct {
 	Password            *AzureKeyVaultSecretReference `json:"password,omitempty"`
 	Port                *int64                        `json:"port,omitempty"`
 	Server              *string                       `json:"server,omitempty"`
+	SslMode             *int64                        `json:"sslMode,omitempty"`
+	UseSystemTrustStore *int64                        `json:"useSystemTrustStore,omitempty"`
 	Username            *string                       `json:"username,omitempty"`
 }
