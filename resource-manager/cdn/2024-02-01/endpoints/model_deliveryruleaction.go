@@ -1,0 +1,117 @@
+package endpoints
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeliveryRuleAction interface {
+}
+
+// RawDeliveryRuleActionImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawDeliveryRuleActionImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
+func unmarshalDeliveryRuleActionImplementation(input []byte) (DeliveryRuleAction, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeliveryRuleAction into map[string]interface: %+v", err)
+	}
+
+	value, ok := temp["name"].(string)
+	if !ok {
+		return nil, nil
+	}
+
+	if strings.EqualFold(value, "CacheExpiration") {
+		var out DeliveryRuleCacheExpirationAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleCacheExpirationAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CacheKeyQueryString") {
+		var out DeliveryRuleCacheKeyQueryStringAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleCacheKeyQueryStringAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ModifyRequestHeader") {
+		var out DeliveryRuleRequestHeaderAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleRequestHeaderAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ModifyResponseHeader") {
+		var out DeliveryRuleResponseHeaderAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleResponseHeaderAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "RouteConfigurationOverride") {
+		var out DeliveryRuleRouteConfigurationOverrideAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleRouteConfigurationOverrideAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OriginGroupOverride") {
+		var out OriginGroupOverrideAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OriginGroupOverrideAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "UrlRedirect") {
+		var out UrlRedirectAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UrlRedirectAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "UrlRewrite") {
+		var out UrlRewriteAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UrlRewriteAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "UrlSigning") {
+		var out UrlSigningAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UrlSigningAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	out := RawDeliveryRuleActionImpl{
+		Type:   value,
+		Values: temp,
+	}
+	return out, nil
+
+}
