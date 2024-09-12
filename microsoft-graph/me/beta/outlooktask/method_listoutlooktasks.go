@@ -1,0 +1,167 @@
+package outlooktask
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListOutlookTasksOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]beta.OutlookTask
+}
+
+type ListOutlookTasksCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []beta.OutlookTask
+}
+
+type ListOutlookTasksOperationOptions struct {
+	Count   *bool
+	Expand  *odata.Expand
+	Filter  *string
+	OrderBy *odata.OrderBy
+	Search  *string
+	Select  *[]string
+	Skip    *int64
+	Top     *int64
+}
+
+func DefaultListOutlookTasksOperationOptions() ListOutlookTasksOperationOptions {
+	return ListOutlookTasksOperationOptions{}
+}
+
+func (o ListOutlookTasksOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListOutlookTasksOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Count != nil {
+		out.Count = *o.Count
+	}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Filter != nil {
+		out.Filter = *o.Filter
+	}
+	if o.OrderBy != nil {
+		out.OrderBy = *o.OrderBy
+	}
+	if o.Search != nil {
+		out.Search = *o.Search
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	if o.Skip != nil {
+		out.Skip = int(*o.Skip)
+	}
+	if o.Top != nil {
+		out.Top = int(*o.Top)
+	}
+	return &out
+}
+
+func (o ListOutlookTasksOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+type ListOutlookTasksCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListOutlookTasksCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListOutlookTasks - List tasks (deprecated). Get all the Outlook tasks in the user's mailbox. By default, this
+// operation (and the POST, PATCH, and complete task operations) returns date-related properties in UTC. You can use the
+// Prefer: outlook.timezone header to have all the date-related properties in the response represented in a time zone
+// different than UTC. See an example for getting a single task. You can apply the header similarly to get multiple
+// tasks.
+func (c OutlookTaskClient) ListOutlookTasks(ctx context.Context, options ListOutlookTasksOperationOptions) (result ListOutlookTasksOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListOutlookTasksCustomPager{},
+		Path:          "/me/outlook/tasks",
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]beta.OutlookTask `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListOutlookTasksComplete retrieves all the results into a single object
+func (c OutlookTaskClient) ListOutlookTasksComplete(ctx context.Context, options ListOutlookTasksOperationOptions) (ListOutlookTasksCompleteResult, error) {
+	return c.ListOutlookTasksCompleteMatchingPredicate(ctx, options, OutlookTaskOperationPredicate{})
+}
+
+// ListOutlookTasksCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c OutlookTaskClient) ListOutlookTasksCompleteMatchingPredicate(ctx context.Context, options ListOutlookTasksOperationOptions, predicate OutlookTaskOperationPredicate) (result ListOutlookTasksCompleteResult, err error) {
+	items := make([]beta.OutlookTask, 0)
+
+	resp, err := c.ListOutlookTasks(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOutlookTasksCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

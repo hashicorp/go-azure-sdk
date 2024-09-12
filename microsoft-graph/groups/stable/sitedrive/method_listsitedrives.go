@@ -1,0 +1,163 @@
+package sitedrive
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListSiteDrivesOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]stable.Drive
+}
+
+type ListSiteDrivesCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []stable.Drive
+}
+
+type ListSiteDrivesOperationOptions struct {
+	Count   *bool
+	Expand  *odata.Expand
+	Filter  *string
+	OrderBy *odata.OrderBy
+	Search  *string
+	Select  *[]string
+	Skip    *int64
+	Top     *int64
+}
+
+func DefaultListSiteDrivesOperationOptions() ListSiteDrivesOperationOptions {
+	return ListSiteDrivesOperationOptions{}
+}
+
+func (o ListSiteDrivesOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListSiteDrivesOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Count != nil {
+		out.Count = *o.Count
+	}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Filter != nil {
+		out.Filter = *o.Filter
+	}
+	if o.OrderBy != nil {
+		out.OrderBy = *o.OrderBy
+	}
+	if o.Search != nil {
+		out.Search = *o.Search
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	if o.Skip != nil {
+		out.Skip = int(*o.Skip)
+	}
+	if o.Top != nil {
+		out.Top = int(*o.Top)
+	}
+	return &out
+}
+
+func (o ListSiteDrivesOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+type ListSiteDrivesCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListSiteDrivesCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListSiteDrives - Get drives from groups. The collection of drives (document libraries) under this site.
+func (c SiteDriveClient) ListSiteDrives(ctx context.Context, id stable.GroupIdSiteId, options ListSiteDrivesOperationOptions) (result ListSiteDrivesOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListSiteDrivesCustomPager{},
+		Path:          fmt.Sprintf("%s/drives", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]stable.Drive `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListSiteDrivesComplete retrieves all the results into a single object
+func (c SiteDriveClient) ListSiteDrivesComplete(ctx context.Context, id stable.GroupIdSiteId, options ListSiteDrivesOperationOptions) (ListSiteDrivesCompleteResult, error) {
+	return c.ListSiteDrivesCompleteMatchingPredicate(ctx, id, options, DriveOperationPredicate{})
+}
+
+// ListSiteDrivesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c SiteDriveClient) ListSiteDrivesCompleteMatchingPredicate(ctx context.Context, id stable.GroupIdSiteId, options ListSiteDrivesOperationOptions, predicate DriveOperationPredicate) (result ListSiteDrivesCompleteResult, err error) {
+	items := make([]stable.Drive, 0)
+
+	resp, err := c.ListSiteDrives(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSiteDrivesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

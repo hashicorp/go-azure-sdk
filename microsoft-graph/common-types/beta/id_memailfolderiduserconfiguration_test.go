@@ -1,0 +1,222 @@
+package beta
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = &MeMailFolderIdUserConfigurationId{}
+
+func TestNewMeMailFolderIdUserConfigurationID(t *testing.T) {
+	id := NewMeMailFolderIdUserConfigurationID("mailFolderIdValue", "userConfigurationIdValue")
+
+	if id.MailFolderId != "mailFolderIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	}
+
+	if id.UserConfigurationId != "userConfigurationIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserConfigurationId'", id.UserConfigurationId, "userConfigurationIdValue")
+	}
+}
+
+func TestFormatMeMailFolderIdUserConfigurationID(t *testing.T) {
+	actual := NewMeMailFolderIdUserConfigurationID("mailFolderIdValue", "userConfigurationIdValue").ID()
+	expected := "/me/mailFolders/mailFolderIdValue/userConfigurations/userConfigurationIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParseMeMailFolderIdUserConfigurationID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *MeMailFolderIdUserConfigurationId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders/mailFolderIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations/userConfigurationIdValue",
+			Expected: &MeMailFolderIdUserConfigurationId{
+				MailFolderId:        "mailFolderIdValue",
+				UserConfigurationId: "userConfigurationIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations/userConfigurationIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseMeMailFolderIdUserConfigurationID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.MailFolderId != v.Expected.MailFolderId {
+			t.Fatalf("Expected %q but got %q for MailFolderId", v.Expected.MailFolderId, actual.MailFolderId)
+		}
+
+		if actual.UserConfigurationId != v.Expected.UserConfigurationId {
+			t.Fatalf("Expected %q but got %q for UserConfigurationId", v.Expected.UserConfigurationId, actual.UserConfigurationId)
+		}
+
+	}
+}
+
+func TestParseMeMailFolderIdUserConfigurationIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *MeMailFolderIdUserConfigurationId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/mE",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/mE/mAiLfOlDeRs",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders/mailFolderIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/uSeRcOnFiGuRaTiOnS",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations/userConfigurationIdValue",
+			Expected: &MeMailFolderIdUserConfigurationId{
+				MailFolderId:        "mailFolderIdValue",
+				UserConfigurationId: "userConfigurationIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/me/mailFolders/mailFolderIdValue/userConfigurations/userConfigurationIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/uSeRcOnFiGuRaTiOnS/uSeRcOnFiGuRaTiOnIdVaLuE",
+			Expected: &MeMailFolderIdUserConfigurationId{
+				MailFolderId:        "mAiLfOlDeRiDvAlUe",
+				UserConfigurationId: "uSeRcOnFiGuRaTiOnIdVaLuE",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/uSeRcOnFiGuRaTiOnS/uSeRcOnFiGuRaTiOnIdVaLuE/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseMeMailFolderIdUserConfigurationIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.MailFolderId != v.Expected.MailFolderId {
+			t.Fatalf("Expected %q but got %q for MailFolderId", v.Expected.MailFolderId, actual.MailFolderId)
+		}
+
+		if actual.UserConfigurationId != v.Expected.UserConfigurationId {
+			t.Fatalf("Expected %q but got %q for UserConfigurationId", v.Expected.UserConfigurationId, actual.UserConfigurationId)
+		}
+
+	}
+}
+
+func TestSegmentsForMeMailFolderIdUserConfigurationId(t *testing.T) {
+	segments := MeMailFolderIdUserConfigurationId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("MeMailFolderIdUserConfigurationId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

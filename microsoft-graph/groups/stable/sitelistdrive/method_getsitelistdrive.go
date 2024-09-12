@@ -1,0 +1,89 @@
+package sitelistdrive
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GetSiteListDriveOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *stable.Drive
+}
+
+type GetSiteListDriveOperationOptions struct {
+	Expand *odata.Expand
+	Select *[]string
+}
+
+func DefaultGetSiteListDriveOperationOptions() GetSiteListDriveOperationOptions {
+	return GetSiteListDriveOperationOptions{}
+}
+
+func (o GetSiteListDriveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetSiteListDriveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}
+
+func (o GetSiteListDriveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// GetSiteListDrive - Get drive from groups. Allows access to the list as a drive resource with driveItems. Only present
+// on document libraries.
+func (c SiteListDriveClient) GetSiteListDrive(ctx context.Context, id stable.GroupIdSiteIdListId, options GetSiteListDriveOperationOptions) (result GetSiteListDriveOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/drive", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.Execute(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var model stable.Drive
+	result.Model = &model
+	if err = resp.Unmarshal(result.Model); err != nil {
+		return
+	}
+
+	return
+}

@@ -1,0 +1,14 @@
+package accessreviewdefinitioninstancestage
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+
+type AccessReviewStageOperationPredicate struct {
+}
+
+func (p AccessReviewStageOperationPredicate) Matches(input beta.AccessReviewStage) bool {
+
+	return true
+}

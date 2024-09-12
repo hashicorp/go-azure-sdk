@@ -1,0 +1,89 @@
+package joinedteamchanneltabteamsapp
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GetJoinedTeamChannelTabTeamsAppOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *stable.TeamsApp
+}
+
+type GetJoinedTeamChannelTabTeamsAppOperationOptions struct {
+	Expand *odata.Expand
+	Select *[]string
+}
+
+func DefaultGetJoinedTeamChannelTabTeamsAppOperationOptions() GetJoinedTeamChannelTabTeamsAppOperationOptions {
+	return GetJoinedTeamChannelTabTeamsAppOperationOptions{}
+}
+
+func (o GetJoinedTeamChannelTabTeamsAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetJoinedTeamChannelTabTeamsAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}
+
+func (o GetJoinedTeamChannelTabTeamsAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// GetJoinedTeamChannelTabTeamsApp - Get teamsApp from me. The application that is linked to the tab. This can't be
+// changed after tab creation.
+func (c JoinedTeamChannelTabTeamsAppClient) GetJoinedTeamChannelTabTeamsApp(ctx context.Context, id stable.MeJoinedTeamIdChannelIdTabId, options GetJoinedTeamChannelTabTeamsAppOperationOptions) (result GetJoinedTeamChannelTabTeamsAppOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/teamsApp", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.Execute(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var model stable.TeamsApp
+	result.Model = &model
+	if err = resp.Unmarshal(result.Model); err != nil {
+		return
+	}
+
+	return
+}

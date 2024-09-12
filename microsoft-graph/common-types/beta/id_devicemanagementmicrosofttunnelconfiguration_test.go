@@ -1,0 +1,177 @@
+package beta
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = &DeviceManagementMicrosoftTunnelConfigurationId{}
+
+func TestNewDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
+	id := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationIdValue")
+
+	if id.MicrosoftTunnelConfigurationId != "microsoftTunnelConfigurationIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelConfigurationId'", id.MicrosoftTunnelConfigurationId, "microsoftTunnelConfigurationIdValue")
+	}
+}
+
+func TestFormatDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
+	actual := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationIdValue").ID()
+	expected := "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParseDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *DeviceManagementMicrosoftTunnelConfigurationId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/deviceManagement",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/deviceManagement/microsoftTunnelConfigurations",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue",
+			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
+				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseDeviceManagementMicrosoftTunnelConfigurationID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.MicrosoftTunnelConfigurationId != v.Expected.MicrosoftTunnelConfigurationId {
+			t.Fatalf("Expected %q but got %q for MicrosoftTunnelConfigurationId", v.Expected.MicrosoftTunnelConfigurationId, actual.MicrosoftTunnelConfigurationId)
+		}
+
+	}
+}
+
+func TestParseDeviceManagementMicrosoftTunnelConfigurationIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *DeviceManagementMicrosoftTunnelConfigurationId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/deviceManagement",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/dEvIcEmAnAgEmEnT",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/deviceManagement/microsoftTunnelConfigurations",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue",
+			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
+				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe",
+			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
+				MicrosoftTunnelConfigurationId: "mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseDeviceManagementMicrosoftTunnelConfigurationIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.MicrosoftTunnelConfigurationId != v.Expected.MicrosoftTunnelConfigurationId {
+			t.Fatalf("Expected %q but got %q for MicrosoftTunnelConfigurationId", v.Expected.MicrosoftTunnelConfigurationId, actual.MicrosoftTunnelConfigurationId)
+		}
+
+	}
+}
+
+func TestSegmentsForDeviceManagementMicrosoftTunnelConfigurationId(t *testing.T) {
+	segments := DeviceManagementMicrosoftTunnelConfigurationId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("DeviceManagementMicrosoftTunnelConfigurationId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

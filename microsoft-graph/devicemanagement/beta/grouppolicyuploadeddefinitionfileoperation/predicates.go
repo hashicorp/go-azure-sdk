@@ -1,0 +1,14 @@
+package grouppolicyuploadeddefinitionfileoperation
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+
+type GroupPolicyOperationOperationPredicate struct {
+}
+
+func (p GroupPolicyOperationOperationPredicate) Matches(input beta.GroupPolicyOperation) bool {
+
+	return true
+}

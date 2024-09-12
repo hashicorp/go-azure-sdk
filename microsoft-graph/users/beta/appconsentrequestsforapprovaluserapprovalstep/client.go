@@ -1,0 +1,26 @@
+package appconsentrequestsforapprovaluserapprovalstep
+
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AppConsentRequestsForApprovalUserApprovalStepClient struct {
+	Client *msgraph.Client
+}
+
+func NewAppConsentRequestsForApprovalUserApprovalStepClientWithBaseURI(sdkApi sdkEnv.Api) (*AppConsentRequestsForApprovalUserApprovalStepClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "appconsentrequestsforapprovaluserapprovalstep", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AppConsentRequestsForApprovalUserApprovalStepClient: %+v", err)
+	}
+
+	return &AppConsentRequestsForApprovalUserApprovalStepClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,26 @@
+package directorytransitiveroleassignmentroledefinition
+
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DirectoryTransitiveRoleAssignmentRoleDefinitionClient struct {
+	Client *msgraph.Client
+}
+
+func NewDirectoryTransitiveRoleAssignmentRoleDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryTransitiveRoleAssignmentRoleDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directorytransitiveroleassignmentroledefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryTransitiveRoleAssignmentRoleDefinitionClient: %+v", err)
+	}
+
+	return &DirectoryTransitiveRoleAssignmentRoleDefinitionClient{
+		Client: client,
+	}, nil
+}

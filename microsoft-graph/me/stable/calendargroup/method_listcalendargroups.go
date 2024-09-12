@@ -1,0 +1,163 @@
+package calendargroup
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListCalendarGroupsOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]stable.CalendarGroup
+}
+
+type ListCalendarGroupsCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []stable.CalendarGroup
+}
+
+type ListCalendarGroupsOperationOptions struct {
+	Count   *bool
+	Expand  *odata.Expand
+	Filter  *string
+	OrderBy *odata.OrderBy
+	Search  *string
+	Select  *[]string
+	Skip    *int64
+	Top     *int64
+}
+
+func DefaultListCalendarGroupsOperationOptions() ListCalendarGroupsOperationOptions {
+	return ListCalendarGroupsOperationOptions{}
+}
+
+func (o ListCalendarGroupsOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListCalendarGroupsOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Count != nil {
+		out.Count = *o.Count
+	}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Filter != nil {
+		out.Filter = *o.Filter
+	}
+	if o.OrderBy != nil {
+		out.OrderBy = *o.OrderBy
+	}
+	if o.Search != nil {
+		out.Search = *o.Search
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	if o.Skip != nil {
+		out.Skip = int(*o.Skip)
+	}
+	if o.Top != nil {
+		out.Top = int(*o.Top)
+	}
+	return &out
+}
+
+func (o ListCalendarGroupsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+type ListCalendarGroupsCustomPager struct {
+	NextLink *odata.Link `json:"@odata.nextLink"`
+}
+
+func (p *ListCalendarGroupsCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
+// ListCalendarGroups - List calendarGroups. Get the user's calendar groups.
+func (c CalendarGroupClient) ListCalendarGroups(ctx context.Context, options ListCalendarGroupsOperationOptions) (result ListCalendarGroupsOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListCalendarGroupsCustomPager{},
+		Path:          "/me/calendarGroups",
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]stable.CalendarGroup `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListCalendarGroupsComplete retrieves all the results into a single object
+func (c CalendarGroupClient) ListCalendarGroupsComplete(ctx context.Context, options ListCalendarGroupsOperationOptions) (ListCalendarGroupsCompleteResult, error) {
+	return c.ListCalendarGroupsCompleteMatchingPredicate(ctx, options, CalendarGroupOperationPredicate{})
+}
+
+// ListCalendarGroupsCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c CalendarGroupClient) ListCalendarGroupsCompleteMatchingPredicate(ctx context.Context, options ListCalendarGroupsOperationOptions, predicate CalendarGroupOperationPredicate) (result ListCalendarGroupsCompleteResult, err error) {
+	items := make([]stable.CalendarGroup, 0)
+
+	resp, err := c.ListCalendarGroups(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCalendarGroupsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}
