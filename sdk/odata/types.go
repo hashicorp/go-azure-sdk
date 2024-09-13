@@ -64,6 +64,7 @@ const (
 	TypeAndroidManagedStoreWebApp                        Type = "#microsoft.graph.androidManagedStoreWebApp"
 	TypeAndroidStoreApp                                  Type = "#microsoft.graph.androidStoreApp"
 	TypeApplication                                      Type = "#microsoft.graph.application"
+	TypeAuthorizationPolicy                              Type = "#microsoft.graph.authorizationPolicy"
 	TypeAzureActiveDirectoryTenant                       Type = "#microsoft.graph.azureActiveDirectoryTenant"
 	TypeAzureADWindowsAutopilotDeploymentProfile         Type = "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile"
 	TypeConditionalAccessPolicy                          Type = "#microsoft.graph.conditionalAccessPolicy"
