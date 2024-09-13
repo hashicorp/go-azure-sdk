@@ -81,6 +81,7 @@ const (
 	TypeFido2AuthenticationMethod                        Type = "#microsoft.graph.fido2AuthenticationMethod"
 	TypeGroup                                            Type = "#microsoft.graph.group"
 	TypeGroupMembers                                     Type = "#microsoft.graph.groupMembers"
+	TypeInternalDomainFederation                         Type = "#microsoft.graph.internalDomainFederation"
 	TypeInternalSponsors                                 Type = "#microsoft.graph.internalSponsors"
 	TypeIOSLobApp                                        Type = "#microsoft.graph.iosLobApp"
 	TypeIOSiPadOSWebClip                                 Type = "#microsoft.graph.iosiPadOSWebClip"
