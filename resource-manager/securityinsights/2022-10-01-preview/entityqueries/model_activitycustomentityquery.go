@@ -16,11 +16,24 @@ type ActivityCustomEntityQuery struct {
 	Properties *ActivityEntityQueriesProperties `json:"properties,omitempty"`
 
 	// Fields inherited from CustomEntityQuery
+
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
+	Kind       CustomEntityQueryKind  `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s ActivityCustomEntityQuery) CustomEntityQuery() BaseCustomEntityQueryImpl {
+	return BaseCustomEntityQueryImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ActivityCustomEntityQuery{}
@@ -34,9 +47,10 @@ func (s ActivityCustomEntityQuery) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ActivityCustomEntityQuery: %+v", err)
 	}
+
 	decoded["kind"] = "Activity"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type DenyAssignmentsClient struct {
 }
 
 func NewDenyAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*DenyAssignmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "denyassignments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "denyassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DenyAssignmentsClient: %+v", err)
 	}

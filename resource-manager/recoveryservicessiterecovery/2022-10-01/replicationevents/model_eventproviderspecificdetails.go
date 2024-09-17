@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EventProviderSpecificDetails interface {
+	EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl
 }
 
-// RawEventProviderSpecificDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EventProviderSpecificDetails = BaseEventProviderSpecificDetailsImpl{}
+
+type BaseEventProviderSpecificDetailsImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseEventProviderSpecificDetailsImpl) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return s
+}
+
+var _ EventProviderSpecificDetails = RawEventProviderSpecificDetailsImpl{}
+
+// RawEventProviderSpecificDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEventProviderSpecificDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	eventProviderSpecificDetails BaseEventProviderSpecificDetailsImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalEventProviderSpecificDetailsImplementation(input []byte) (EventProviderSpecificDetails, error) {
+func (s RawEventProviderSpecificDetailsImpl) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return s.eventProviderSpecificDetails
+}
+
+func UnmarshalEventProviderSpecificDetailsImplementation(input []byte) (EventProviderSpecificDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -108,10 +125,15 @@ func unmarshalEventProviderSpecificDetailsImplementation(input []byte) (EventPro
 		return out, nil
 	}
 
-	out := RawEventProviderSpecificDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEventProviderSpecificDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEventProviderSpecificDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEventProviderSpecificDetailsImpl{
+		eventProviderSpecificDetails: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

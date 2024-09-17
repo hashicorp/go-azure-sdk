@@ -44,7 +44,7 @@ func ParseSingleSignOnConfigurationID(input string) (*SingleSignOnConfigurationI
 	}
 
 	id := SingleSignOnConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSingleSignOnConfigurationIDInsensitively(input string) (*SingleSignOnC
 	}
 
 	id := SingleSignOnConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

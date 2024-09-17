@@ -44,7 +44,7 @@ func ParseEntityQueryTemplateID(input string) (*EntityQueryTemplateId, error) {
 	}
 
 	id := EntityQueryTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEntityQueryTemplateIDInsensitively(input string) (*EntityQueryTemplate
 	}
 
 	id := EntityQueryTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseSyncSetID(input string) (*SyncSetId, error) {
 	}
 
 	id := SyncSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSyncSetIDInsensitively(input string) (*SyncSetId, error) {
 	}
 
 	id := SyncSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

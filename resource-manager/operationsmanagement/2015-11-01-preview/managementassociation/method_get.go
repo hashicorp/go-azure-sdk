@@ -45,7 +45,6 @@ func (c ManagementAssociationClient) Get(ctx context.Context, id ScopedManagemen
 
 	var model ManagementAssociation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

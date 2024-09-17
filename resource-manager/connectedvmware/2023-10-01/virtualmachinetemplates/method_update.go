@@ -49,7 +49,6 @@ func (c VirtualMachineTemplatesClient) Update(ctx context.Context, id VirtualMac
 
 	var model VirtualMachineTemplate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

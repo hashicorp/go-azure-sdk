@@ -55,7 +55,7 @@ func (s *CopyActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["sink"]; ok {
-		impl, err := unmarshalCopySinkImplementation(v)
+		impl, err := UnmarshalCopySinkImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Sink' for 'CopyActivityTypeProperties': %+v", err)
 		}
@@ -63,7 +63,7 @@ func (s *CopyActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["source"]; ok {
-		impl, err := unmarshalCopySourceImplementation(v)
+		impl, err := UnmarshalCopySourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Source' for 'CopyActivityTypeProperties': %+v", err)
 		}

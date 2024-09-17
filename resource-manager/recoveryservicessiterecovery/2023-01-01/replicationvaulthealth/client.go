@@ -15,7 +15,7 @@ type ReplicationVaultHealthClient struct {
 }
 
 func NewReplicationVaultHealthClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationVaultHealthClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationvaulthealth", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationvaulthealth", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationVaultHealthClient: %+v", err)
 	}

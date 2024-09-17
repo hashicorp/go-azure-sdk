@@ -15,7 +15,7 @@ type ApiIssueAttachmentClient struct {
 }
 
 func NewApiIssueAttachmentClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiIssueAttachmentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apiissueattachment", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apiissueattachment", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiIssueAttachmentClient: %+v", err)
 	}

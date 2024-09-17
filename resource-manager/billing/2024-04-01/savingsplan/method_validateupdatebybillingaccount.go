@@ -50,7 +50,6 @@ func (c SavingsPlanClient) ValidateUpdateByBillingAccount(ctx context.Context, i
 
 	var model SavingsPlanValidateResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

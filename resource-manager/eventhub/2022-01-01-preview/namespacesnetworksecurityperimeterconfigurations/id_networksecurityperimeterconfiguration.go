@@ -44,7 +44,7 @@ func ParseNetworkSecurityPerimeterConfigurationID(input string) (*NetworkSecurit
 	}
 
 	id := NetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNetworkSecurityPerimeterConfigurationIDInsensitively(input string) (*N
 	}
 
 	id := NetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

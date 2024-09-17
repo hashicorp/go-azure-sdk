@@ -46,7 +46,7 @@ func ParseCollectionID(input string) (*CollectionId, error) {
 	}
 
 	id := CollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCollectionIDInsensitively(input string) (*CollectionId, error) {
 	}
 
 	id := CollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FeatureSupportRequest interface {
+	FeatureSupportRequest() BaseFeatureSupportRequestImpl
 }
 
-// RawFeatureSupportRequestImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ FeatureSupportRequest = BaseFeatureSupportRequestImpl{}
+
+type BaseFeatureSupportRequestImpl struct {
+	FeatureType string `json:"featureType"`
+}
+
+func (s BaseFeatureSupportRequestImpl) FeatureSupportRequest() BaseFeatureSupportRequestImpl {
+	return s
+}
+
+var _ FeatureSupportRequest = RawFeatureSupportRequestImpl{}
+
+// RawFeatureSupportRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFeatureSupportRequestImpl struct {
-	Type   string
-	Values map[string]interface{}
+	featureSupportRequest BaseFeatureSupportRequestImpl
+	Type                  string
+	Values                map[string]interface{}
 }
 
-func unmarshalFeatureSupportRequestImplementation(input []byte) (FeatureSupportRequest, error) {
+func (s RawFeatureSupportRequestImpl) FeatureSupportRequest() BaseFeatureSupportRequestImpl {
+	return s.featureSupportRequest
+}
+
+func UnmarshalFeatureSupportRequestImplementation(input []byte) (FeatureSupportRequest, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalFeatureSupportRequestImplementation(input []byte) (FeatureSupportR
 		return out, nil
 	}
 
-	out := RawFeatureSupportRequestImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseFeatureSupportRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFeatureSupportRequestImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawFeatureSupportRequestImpl{
+		featureSupportRequest: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
 
 }

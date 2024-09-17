@@ -50,7 +50,6 @@ func (c ArtifactSourcesClient) CreateOrUpdate(ctx context.Context, id ArtifactSo
 
 	var model ArtifactSource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

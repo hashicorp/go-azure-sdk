@@ -33,7 +33,7 @@ func (s *ContentKeyPolicyOption) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["configuration"]; ok {
-		impl, err := unmarshalContentKeyPolicyConfigurationImplementation(v)
+		impl, err := UnmarshalContentKeyPolicyConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Configuration' for 'ContentKeyPolicyOption': %+v", err)
 		}
@@ -41,7 +41,7 @@ func (s *ContentKeyPolicyOption) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["restriction"]; ok {
-		impl, err := unmarshalContentKeyPolicyRestrictionImplementation(v)
+		impl, err := UnmarshalContentKeyPolicyRestrictionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Restriction' for 'ContentKeyPolicyOption': %+v", err)
 		}

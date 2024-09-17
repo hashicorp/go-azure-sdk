@@ -41,6 +41,7 @@ func (o WorkspaceApiReleaseListByServiceOperationOptions) ToHeaders() *client.He
 
 func (o WorkspaceApiReleaseListByServiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

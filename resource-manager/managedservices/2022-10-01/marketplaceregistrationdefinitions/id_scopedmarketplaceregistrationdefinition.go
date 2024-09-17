@@ -40,7 +40,7 @@ func ParseScopedMarketplaceRegistrationDefinitionID(input string) (*ScopedMarket
 	}
 
 	id := ScopedMarketplaceRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedMarketplaceRegistrationDefinitionIDInsensitively(input string) (
 	}
 
 	id := ScopedMarketplaceRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

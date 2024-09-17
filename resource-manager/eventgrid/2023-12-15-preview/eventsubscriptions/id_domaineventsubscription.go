@@ -44,7 +44,7 @@ func ParseDomainEventSubscriptionID(input string) (*DomainEventSubscriptionId, e
 	}
 
 	id := DomainEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDomainEventSubscriptionIDInsensitively(input string) (*DomainEventSubs
 	}
 
 	id := DomainEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

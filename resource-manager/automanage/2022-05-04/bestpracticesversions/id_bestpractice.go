@@ -38,7 +38,7 @@ func ParseBestPracticeID(input string) (*BestPracticeId, error) {
 	}
 
 	id := BestPracticeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseBestPracticeIDInsensitively(input string) (*BestPracticeId, error) {
 	}
 
 	id := BestPracticeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

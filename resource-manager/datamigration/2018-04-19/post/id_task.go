@@ -46,7 +46,7 @@ func ParseTaskID(input string) (*TaskId, error) {
 	}
 
 	id := TaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTaskIDInsensitively(input string) (*TaskId, error) {
 	}
 
 	id := TaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

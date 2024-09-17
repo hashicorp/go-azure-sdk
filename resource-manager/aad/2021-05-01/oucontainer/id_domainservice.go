@@ -42,7 +42,7 @@ func ParseDomainServiceID(input string) (*DomainServiceId, error) {
 	}
 
 	id := DomainServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDomainServiceIDInsensitively(input string) (*DomainServiceId, error) {
 	}
 
 	id := DomainServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

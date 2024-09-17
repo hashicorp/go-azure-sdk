@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-06-01/datacollectionendpoints` Documentation
 
-The `datacollectionendpoints` SDK allows for interaction with the Azure Resource Manager Service `insights` (API Version `2022-06-01`).
+The `datacollectionendpoints` SDK allows for interaction with Azure Resource Manager `insights` (API Version `2022-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

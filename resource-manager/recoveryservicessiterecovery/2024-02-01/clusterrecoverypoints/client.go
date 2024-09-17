@@ -15,7 +15,7 @@ type ClusterRecoveryPointsClient struct {
 }
 
 func NewClusterRecoveryPointsClientWithBaseURI(sdkApi sdkEnv.Api) (*ClusterRecoveryPointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "clusterrecoverypoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "clusterrecoverypoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ClusterRecoveryPointsClient: %+v", err)
 	}

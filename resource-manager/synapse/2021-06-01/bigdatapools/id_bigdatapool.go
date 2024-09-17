@@ -44,7 +44,7 @@ func ParseBigDataPoolID(input string) (*BigDataPoolId, error) {
 	}
 
 	id := BigDataPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBigDataPoolIDInsensitively(input string) (*BigDataPoolId, error) {
 	}
 
 	id := BigDataPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

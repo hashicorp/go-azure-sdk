@@ -45,7 +45,6 @@ func (c UserSessionClient) Get(ctx context.Context, id UserSessionId) (result Ge
 
 	var model UserSession
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

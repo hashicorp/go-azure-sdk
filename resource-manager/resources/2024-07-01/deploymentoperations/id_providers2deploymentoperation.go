@@ -42,7 +42,7 @@ func ParseProviders2DeploymentOperationID(input string) (*Providers2DeploymentOp
 	}
 
 	id := Providers2DeploymentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviders2DeploymentOperationIDInsensitively(input string) (*Providers
 	}
 
 	id := Providers2DeploymentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

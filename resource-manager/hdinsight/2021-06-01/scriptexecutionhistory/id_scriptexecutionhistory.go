@@ -44,7 +44,7 @@ func ParseScriptExecutionHistoryID(input string) (*ScriptExecutionHistoryId, err
 	}
 
 	id := ScriptExecutionHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseScriptExecutionHistoryIDInsensitively(input string) (*ScriptExecutionH
 	}
 
 	id := ScriptExecutionHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseDiskPoolID(input string) (*DiskPoolId, error) {
 	}
 
 	id := DiskPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDiskPoolIDInsensitively(input string) (*DiskPoolId, error) {
 	}
 
 	id := DiskPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

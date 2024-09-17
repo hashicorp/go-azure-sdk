@@ -42,7 +42,7 @@ func ParseProviderContainerAppID(input string) (*ProviderContainerAppId, error) 
 	}
 
 	id := ProviderContainerAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderContainerAppIDInsensitively(input string) (*ProviderContainerA
 	}
 
 	id := ProviderContainerAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

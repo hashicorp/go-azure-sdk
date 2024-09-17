@@ -15,7 +15,7 @@ type AuthorizationRulesDisasterRecoveryConfigsClient struct {
 }
 
 func NewAuthorizationRulesDisasterRecoveryConfigsClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationRulesDisasterRecoveryConfigsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "authorizationrulesdisasterrecoveryconfigs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationrulesdisasterrecoveryconfigs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AuthorizationRulesDisasterRecoveryConfigsClient: %+v", err)
 	}

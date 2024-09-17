@@ -44,7 +44,7 @@ func ParseAdvisorID(input string) (*AdvisorId, error) {
 	}
 
 	id := AdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAdvisorIDInsensitively(input string) (*AdvisorId, error) {
 	}
 
 	id := AdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type DataContainerClient struct {
 }
 
 func NewDataContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*DataContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datacontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datacontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataContainerClient: %+v", err)
 	}

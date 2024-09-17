@@ -44,7 +44,7 @@ func ParseNotificationHubID(input string) (*NotificationHubId, error) {
 	}
 
 	id := NotificationHubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNotificationHubIDInsensitively(input string) (*NotificationHubId, erro
 	}
 
 	id := NotificationHubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

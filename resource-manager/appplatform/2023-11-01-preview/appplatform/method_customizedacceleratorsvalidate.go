@@ -51,7 +51,6 @@ func (c AppPlatformClient) CustomizedAcceleratorsValidate(ctx context.Context, i
 
 	var model CustomizedAcceleratorValidateResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -40,7 +40,7 @@ func ParseScopedFluxConfigurationID(input string) (*ScopedFluxConfigurationId, e
 	}
 
 	id := ScopedFluxConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedFluxConfigurationIDInsensitively(input string) (*ScopedFluxConfi
 	}
 
 	id := ScopedFluxConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

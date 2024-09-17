@@ -42,7 +42,7 @@ func ParseVirtualHardDiskID(input string) (*VirtualHardDiskId, error) {
 	}
 
 	id := VirtualHardDiskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualHardDiskIDInsensitively(input string) (*VirtualHardDiskId, erro
 	}
 
 	id := VirtualHardDiskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

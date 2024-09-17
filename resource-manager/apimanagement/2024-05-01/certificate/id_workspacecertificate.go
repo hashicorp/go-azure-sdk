@@ -46,7 +46,7 @@ func ParseWorkspaceCertificateID(input string) (*WorkspaceCertificateId, error) 
 	}
 
 	id := WorkspaceCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceCertificateIDInsensitively(input string) (*WorkspaceCertifica
 	}
 
 	id := WorkspaceCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -14,6 +14,14 @@ type FeatureSubset struct {
 	Features []string `json:"features"`
 
 	// Fields inherited from MonitoringFeatureFilterBase
+
+	FilterType MonitoringFeatureFilterType `json:"filterType"`
+}
+
+func (s FeatureSubset) MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl {
+	return BaseMonitoringFeatureFilterBaseImpl{
+		FilterType: s.FilterType,
+	}
 }
 
 var _ json.Marshaler = FeatureSubset{}
@@ -27,9 +35,10 @@ func (s FeatureSubset) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FeatureSubset: %+v", err)
 	}
+
 	decoded["filterType"] = "FeatureSubset"
 
 	encoded, err = json.Marshal(decoded)

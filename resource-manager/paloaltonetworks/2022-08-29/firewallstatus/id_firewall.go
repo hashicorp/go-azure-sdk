@@ -42,7 +42,7 @@ func ParseFirewallID(input string) (*FirewallId, error) {
 	}
 
 	id := FirewallId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFirewallIDInsensitively(input string) (*FirewallId, error) {
 	}
 
 	id := FirewallId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

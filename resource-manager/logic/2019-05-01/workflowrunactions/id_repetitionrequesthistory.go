@@ -50,7 +50,7 @@ func ParseRepetitionRequestHistoryID(input string) (*RepetitionRequestHistoryId,
 	}
 
 	id := RepetitionRequestHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseRepetitionRequestHistoryIDInsensitively(input string) (*RepetitionRequ
 	}
 
 	id := RepetitionRequestHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

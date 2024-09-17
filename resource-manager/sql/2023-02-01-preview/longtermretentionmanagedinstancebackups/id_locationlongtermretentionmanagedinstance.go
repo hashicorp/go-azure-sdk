@@ -44,7 +44,7 @@ func ParseLocationLongTermRetentionManagedInstanceID(input string) (*LocationLon
 	}
 
 	id := LocationLongTermRetentionManagedInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocationLongTermRetentionManagedInstanceIDInsensitively(input string) 
 	}
 
 	id := LocationLongTermRetentionManagedInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

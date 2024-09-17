@@ -45,7 +45,6 @@ func (c DevOpsClient) GitHubOwnersGet(ctx context.Context, id GitHubOwnerId) (re
 
 	var model GitHubOwner
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

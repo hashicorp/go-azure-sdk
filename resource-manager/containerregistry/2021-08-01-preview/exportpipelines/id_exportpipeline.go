@@ -44,7 +44,7 @@ func ParseExportPipelineID(input string) (*ExportPipelineId, error) {
 	}
 
 	id := ExportPipelineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseExportPipelineIDInsensitively(input string) (*ExportPipelineId, error)
 	}
 
 	id := ExportPipelineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type ReservedInstancesClient struct {
 }
 
 func NewReservedInstancesClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservedInstancesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "reservedinstances", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "reservedinstances", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReservedInstancesClient: %+v", err)
 	}

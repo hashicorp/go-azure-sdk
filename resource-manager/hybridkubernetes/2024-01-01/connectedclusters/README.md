@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/hybridkubernetes/2024-01-01/connectedclusters` Documentation
 
-The `connectedclusters` SDK allows for interaction with the Azure Resource Manager Service `hybridkubernetes` (API Version `2024-01-01`).
+The `connectedclusters` SDK allows for interaction with Azure Resource Manager `hybridkubernetes` (API Version `2024-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

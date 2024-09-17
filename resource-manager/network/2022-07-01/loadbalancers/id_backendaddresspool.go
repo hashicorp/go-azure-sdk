@@ -44,7 +44,7 @@ func ParseBackendAddressPoolID(input string) (*BackendAddressPoolId, error) {
 	}
 
 	id := BackendAddressPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackendAddressPoolIDInsensitively(input string) (*BackendAddressPoolId
 	}
 
 	id := BackendAddressPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

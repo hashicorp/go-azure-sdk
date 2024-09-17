@@ -15,7 +15,7 @@ type HyperVSitesClient struct {
 }
 
 func NewHyperVSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVSitesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervsites", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervsites", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVSitesClient: %+v", err)
 	}

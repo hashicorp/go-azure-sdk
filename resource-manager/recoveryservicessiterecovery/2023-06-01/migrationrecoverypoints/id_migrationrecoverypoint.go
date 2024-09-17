@@ -50,7 +50,7 @@ func ParseMigrationRecoveryPointID(input string) (*MigrationRecoveryPointId, err
 	}
 
 	id := MigrationRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseMigrationRecoveryPointIDInsensitively(input string) (*MigrationRecover
 	}
 
 	id := MigrationRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

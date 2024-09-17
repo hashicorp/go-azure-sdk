@@ -45,7 +45,6 @@ func (c ScriptsClient) ScriptExecutionsGet(ctx context.Context, id ScriptExecuti
 
 	var model ScriptExecution
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

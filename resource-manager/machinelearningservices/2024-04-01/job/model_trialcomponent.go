@@ -38,7 +38,7 @@ func (s *TrialComponent) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["distribution"]; ok {
-		impl, err := unmarshalDistributionConfigurationImplementation(v)
+		impl, err := UnmarshalDistributionConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Distribution' for 'TrialComponent': %+v", err)
 		}

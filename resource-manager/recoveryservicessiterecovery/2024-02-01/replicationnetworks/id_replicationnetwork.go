@@ -46,7 +46,7 @@ func ParseReplicationNetworkID(input string) (*ReplicationNetworkId, error) {
 	}
 
 	id := ReplicationNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicationNetworkIDInsensitively(input string) (*ReplicationNetworkId
 	}
 
 	id := ReplicationNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

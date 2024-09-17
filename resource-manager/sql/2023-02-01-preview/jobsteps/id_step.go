@@ -48,7 +48,7 @@ func ParseStepID(input string) (*StepId, error) {
 	}
 
 	id := StepId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseStepIDInsensitively(input string) (*StepId, error) {
 	}
 
 	id := StepId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

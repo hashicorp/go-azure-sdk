@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/hubs` Documentation
 
-The `hubs` SDK allows for interaction with the Azure Resource Manager Service `notificationhubs` (API Version `2023-09-01`).
+The `hubs` SDK allows for interaction with Azure Resource Manager `notificationhubs` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

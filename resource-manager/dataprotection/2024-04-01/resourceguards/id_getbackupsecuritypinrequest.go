@@ -44,7 +44,7 @@ func ParseGetBackupSecurityPINRequestID(input string) (*GetBackupSecurityPINRequ
 	}
 
 	id := GetBackupSecurityPINRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGetBackupSecurityPINRequestIDInsensitively(input string) (*GetBackupSe
 	}
 
 	id := GetBackupSecurityPINRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

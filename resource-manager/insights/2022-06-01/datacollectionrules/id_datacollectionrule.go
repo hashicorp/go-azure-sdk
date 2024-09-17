@@ -42,7 +42,7 @@ func ParseDataCollectionRuleID(input string) (*DataCollectionRuleId, error) {
 	}
 
 	id := DataCollectionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDataCollectionRuleIDInsensitively(input string) (*DataCollectionRuleId
 	}
 
 	id := DataCollectionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseDicomServiceID(input string) (*DicomServiceId, error) {
 	}
 
 	id := DicomServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDicomServiceIDInsensitively(input string) (*DicomServiceId, error) {
 	}
 
 	id := DicomServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

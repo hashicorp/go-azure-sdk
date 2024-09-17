@@ -45,7 +45,6 @@ func (c DeploymentStacksClient) GetAtSubscription(ctx context.Context, id Deploy
 
 	var model DeploymentStack
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

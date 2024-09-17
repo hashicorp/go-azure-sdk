@@ -14,6 +14,14 @@ type JobInputs struct {
 	Inputs *[]JobInput `json:"inputs,omitempty"`
 
 	// Fields inherited from JobInput
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s JobInputs) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = JobInputs{}
@@ -27,9 +35,10 @@ func (s JobInputs) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobInputs: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JobInputs"
 
 	encoded, err = json.Marshal(decoded)
@@ -43,6 +52,13 @@ func (s JobInputs) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobInputs{}
 
 func (s *JobInputs) UnmarshalJSON(bytes []byte) error {
+	type alias JobInputs
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into JobInputs: %+v", err)
+	}
+
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -57,7 +73,7 @@ func (s *JobInputs) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]JobInput, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Inputs' for 'JobInputs': %+v", i, err)
 			}

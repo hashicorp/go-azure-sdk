@@ -40,7 +40,7 @@ func (s *ProtectionPolicyResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalProtectionPolicyImplementation(v)
+		impl, err := UnmarshalProtectionPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ProtectionPolicyResource': %+v", err)
 		}

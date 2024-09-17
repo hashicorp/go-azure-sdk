@@ -44,7 +44,7 @@ func ParseUpgradeGraphID(input string) (*UpgradeGraphId, error) {
 	}
 
 	id := UpgradeGraphId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUpgradeGraphIDInsensitively(input string) (*UpgradeGraphId, error) {
 	}
 
 	id := UpgradeGraphId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

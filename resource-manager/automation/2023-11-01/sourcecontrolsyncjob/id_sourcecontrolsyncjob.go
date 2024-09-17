@@ -46,7 +46,7 @@ func ParseSourceControlSyncJobID(input string) (*SourceControlSyncJobId, error) 
 	}
 
 	id := SourceControlSyncJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSourceControlSyncJobIDInsensitively(input string) (*SourceControlSyncJ
 	}
 
 	id := SourceControlSyncJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

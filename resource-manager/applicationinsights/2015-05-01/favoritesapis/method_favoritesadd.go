@@ -49,7 +49,6 @@ func (c FavoritesAPIsClient) FavoritesAdd(ctx context.Context, id FavoriteId, in
 
 	var model ApplicationInsightsComponentFavorite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

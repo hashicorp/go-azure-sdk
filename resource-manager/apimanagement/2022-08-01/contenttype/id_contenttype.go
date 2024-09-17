@@ -44,7 +44,7 @@ func ParseContentTypeID(input string) (*ContentTypeId, error) {
 	}
 
 	id := ContentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentTypeIDInsensitively(input string) (*ContentTypeId, error) {
 	}
 
 	id := ContentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

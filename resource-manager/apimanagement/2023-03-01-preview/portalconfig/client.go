@@ -15,7 +15,7 @@ type PortalConfigClient struct {
 }
 
 func NewPortalConfigClientWithBaseURI(sdkApi sdkEnv.Api) (*PortalConfigClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "portalconfig", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "portalconfig", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PortalConfigClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseAccountFilterID(input string) (*AccountFilterId, error) {
 	}
 
 	id := AccountFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccountFilterIDInsensitively(input string) (*AccountFilterId, error) {
 	}
 
 	id := AccountFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

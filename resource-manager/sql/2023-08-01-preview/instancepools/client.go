@@ -15,7 +15,7 @@ type InstancePoolsClient struct {
 }
 
 func NewInstancePoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*InstancePoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "instancepools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "instancepools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating InstancePoolsClient: %+v", err)
 	}

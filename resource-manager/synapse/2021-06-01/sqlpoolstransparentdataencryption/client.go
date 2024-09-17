@@ -15,7 +15,7 @@ type SqlPoolsTransparentDataEncryptionClient struct {
 }
 
 func NewSqlPoolsTransparentDataEncryptionClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsTransparentDataEncryptionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolstransparentdataencryption", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolstransparentdataencryption", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsTransparentDataEncryptionClient: %+v", err)
 	}

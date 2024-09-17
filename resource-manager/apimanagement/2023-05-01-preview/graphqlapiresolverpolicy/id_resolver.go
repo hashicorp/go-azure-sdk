@@ -46,7 +46,7 @@ func ParseResolverID(input string) (*ResolverId, error) {
 	}
 
 	id := ResolverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseResolverIDInsensitively(input string) (*ResolverId, error) {
 	}
 
 	id := ResolverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

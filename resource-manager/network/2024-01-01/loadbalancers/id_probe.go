@@ -44,7 +44,7 @@ func ParseProbeID(input string) (*ProbeId, error) {
 	}
 
 	id := ProbeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseProbeIDInsensitively(input string) (*ProbeId, error) {
 	}
 
 	id := ProbeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParsePortMirroringProfileID(input string) (*PortMirroringProfileId, error) 
 	}
 
 	id := PortMirroringProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePortMirroringProfileIDInsensitively(input string) (*PortMirroringProfi
 	}
 
 	id := PortMirroringProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

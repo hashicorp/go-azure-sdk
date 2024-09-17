@@ -31,6 +31,14 @@ type InMageRcmEnableProtectionInput struct {
 	TestSubnetName                        *string                     `json:"testSubnetName,omitempty"`
 
 	// Fields inherited from EnableProtectionProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageRcmEnableProtectionInput) EnableProtectionProviderSpecificInput() BaseEnableProtectionProviderSpecificInputImpl {
+	return BaseEnableProtectionProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageRcmEnableProtectionInput{}
@@ -44,9 +52,10 @@ func (s InMageRcmEnableProtectionInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageRcmEnableProtectionInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageRcm"
 
 	encoded, err = json.Marshal(decoded)

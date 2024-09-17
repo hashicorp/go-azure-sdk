@@ -1,12 +1,10 @@
 package deletedwebapps
 
-import "fmt"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 const defaultApiVersion = "2022-09-01"
 
 func userAgent() string {
-	return fmt.Sprintf("hashicorp/go-azure-sdk/deletedwebapps/%s", defaultApiVersion)
+	return "hashicorp/go-azure-sdk/deletedwebapps/2022-09-01"
 }

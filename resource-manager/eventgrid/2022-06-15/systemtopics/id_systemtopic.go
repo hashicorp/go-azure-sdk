@@ -42,7 +42,7 @@ func ParseSystemTopicID(input string) (*SystemTopicId, error) {
 	}
 
 	id := SystemTopicId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSystemTopicIDInsensitively(input string) (*SystemTopicId, error) {
 	}
 
 	id := SystemTopicId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

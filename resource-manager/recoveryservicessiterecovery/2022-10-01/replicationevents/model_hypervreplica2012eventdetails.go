@@ -17,6 +17,14 @@ type HyperVReplica2012EventDetails struct {
 	RemoteFabricName    *string `json:"remoteFabricName,omitempty"`
 
 	// Fields inherited from EventProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s HyperVReplica2012EventDetails) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return BaseEventProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = HyperVReplica2012EventDetails{}
@@ -30,9 +38,10 @@ func (s HyperVReplica2012EventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling HyperVReplica2012EventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "HyperVReplica2012"
 
 	encoded, err = json.Marshal(decoded)

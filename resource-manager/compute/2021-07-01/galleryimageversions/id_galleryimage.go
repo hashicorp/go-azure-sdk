@@ -44,7 +44,7 @@ func ParseGalleryImageID(input string) (*GalleryImageId, error) {
 	}
 
 	id := GalleryImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGalleryImageIDInsensitively(input string) (*GalleryImageId, error) {
 	}
 
 	id := GalleryImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -50,7 +50,6 @@ func (c AssessmentsClient) CreateOrUpdate(ctx context.Context, id ScopedAssessme
 
 	var model SecurityAssessmentResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -13,6 +13,14 @@ var _ Seasonality = AutoSeasonality{}
 type AutoSeasonality struct {
 
 	// Fields inherited from Seasonality
+
+	Mode SeasonalityMode `json:"mode"`
+}
+
+func (s AutoSeasonality) Seasonality() BaseSeasonalityImpl {
+	return BaseSeasonalityImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = AutoSeasonality{}
@@ -26,9 +34,10 @@ func (s AutoSeasonality) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutoSeasonality: %+v", err)
 	}
+
 	decoded["mode"] = "Auto"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type NamespacesPrivateEndpointConnectionsClient struct {
 }
 
 func NewNamespacesPrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesPrivateEndpointConnectionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "namespacesprivateendpointconnections", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "namespacesprivateendpointconnections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NamespacesPrivateEndpointConnectionsClient: %+v", err)
 	}

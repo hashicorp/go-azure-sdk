@@ -44,7 +44,7 @@ func ParseRunbookID(input string) (*RunbookId, error) {
 	}
 
 	id := RunbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRunbookIDInsensitively(input string) (*RunbookId, error) {
 	}
 
 	id := RunbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

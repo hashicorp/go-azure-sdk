@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EnvironmentData interface {
+	EnvironmentData() BaseEnvironmentDataImpl
 }
 
-// RawEnvironmentDataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EnvironmentData = BaseEnvironmentDataImpl{}
+
+type BaseEnvironmentDataImpl struct {
+	EnvironmentType EnvironmentType `json:"environmentType"`
+}
+
+func (s BaseEnvironmentDataImpl) EnvironmentData() BaseEnvironmentDataImpl {
+	return s
+}
+
+var _ EnvironmentData = RawEnvironmentDataImpl{}
+
+// RawEnvironmentDataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEnvironmentDataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	environmentData BaseEnvironmentDataImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalEnvironmentDataImplementation(input []byte) (EnvironmentData, error) {
+func (s RawEnvironmentDataImpl) EnvironmentData() BaseEnvironmentDataImpl {
+	return s.environmentData
+}
+
+func UnmarshalEnvironmentDataImplementation(input []byte) (EnvironmentData, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +93,15 @@ func unmarshalEnvironmentDataImplementation(input []byte) (EnvironmentData, erro
 		return out, nil
 	}
 
-	out := RawEnvironmentDataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEnvironmentDataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEnvironmentDataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEnvironmentDataImpl{
+		environmentData: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

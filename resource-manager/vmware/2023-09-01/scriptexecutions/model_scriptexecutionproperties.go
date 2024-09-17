@@ -101,7 +101,7 @@ func (s *ScriptExecutionProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]ScriptExecutionParameter, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalScriptExecutionParameterImplementation(val)
+			impl, err := UnmarshalScriptExecutionParameterImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'HiddenParameters' for 'ScriptExecutionProperties': %+v", i, err)
 			}
@@ -118,7 +118,7 @@ func (s *ScriptExecutionProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]ScriptExecutionParameter, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalScriptExecutionParameterImplementation(val)
+			impl, err := UnmarshalScriptExecutionParameterImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Parameters' for 'ScriptExecutionProperties': %+v", i, err)
 			}

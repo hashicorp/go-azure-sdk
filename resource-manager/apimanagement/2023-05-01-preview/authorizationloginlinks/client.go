@@ -15,7 +15,7 @@ type AuthorizationLoginLinksClient struct {
 }
 
 func NewAuthorizationLoginLinksClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationLoginLinksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "authorizationloginlinks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationloginlinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AuthorizationLoginLinksClient: %+v", err)
 	}

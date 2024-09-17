@@ -44,7 +44,7 @@ func ParseCountTypeID(input string) (*CountTypeId, error) {
 	}
 
 	id := CountTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCountTypeIDInsensitively(input string) (*CountTypeId, error) {
 	}
 
 	id := CountTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

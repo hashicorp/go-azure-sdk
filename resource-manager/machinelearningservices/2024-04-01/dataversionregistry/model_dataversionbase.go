@@ -10,18 +10,41 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataVersionBase interface {
+	DataVersionBase() BaseDataVersionBaseImpl
 }
 
-// RawDataVersionBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataVersionBase = BaseDataVersionBaseImpl{}
+
+type BaseDataVersionBaseImpl struct {
+	DataType    DataType           `json:"dataType"`
+	DataUri     string             `json:"dataUri"`
+	Description *string            `json:"description,omitempty"`
+	IsAnonymous *bool              `json:"isAnonymous,omitempty"`
+	IsArchived  *bool              `json:"isArchived,omitempty"`
+	Properties  *map[string]string `json:"properties,omitempty"`
+	Tags        *map[string]string `json:"tags,omitempty"`
+}
+
+func (s BaseDataVersionBaseImpl) DataVersionBase() BaseDataVersionBaseImpl {
+	return s
+}
+
+var _ DataVersionBase = RawDataVersionBaseImpl{}
+
+// RawDataVersionBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataVersionBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataVersionBase BaseDataVersionBaseImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalDataVersionBaseImplementation(input []byte) (DataVersionBase, error) {
+func (s RawDataVersionBaseImpl) DataVersionBase() BaseDataVersionBaseImpl {
+	return s.dataVersionBase
+}
+
+func UnmarshalDataVersionBaseImplementation(input []byte) (DataVersionBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +83,15 @@ func unmarshalDataVersionBaseImplementation(input []byte) (DataVersionBase, erro
 		return out, nil
 	}
 
-	out := RawDataVersionBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataVersionBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataVersionBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataVersionBaseImpl{
+		dataVersionBase: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

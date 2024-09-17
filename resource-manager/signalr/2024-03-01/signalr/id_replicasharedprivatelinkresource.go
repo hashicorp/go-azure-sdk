@@ -46,7 +46,7 @@ func ParseReplicaSharedPrivateLinkResourceID(input string) (*ReplicaSharedPrivat
 	}
 
 	id := ReplicaSharedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicaSharedPrivateLinkResourceIDInsensitively(input string) (*Replic
 	}
 
 	id := ReplicaSharedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseWorkerID(input string) (*WorkerId, error) {
 	}
 
 	id := WorkerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkerIDInsensitively(input string) (*WorkerId, error) {
 	}
 
 	id := WorkerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

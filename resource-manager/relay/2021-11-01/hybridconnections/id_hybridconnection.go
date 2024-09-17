@@ -44,7 +44,7 @@ func ParseHybridConnectionID(input string) (*HybridConnectionId, error) {
 	}
 
 	id := HybridConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHybridConnectionIDInsensitively(input string) (*HybridConnectionId, er
 	}
 
 	id := HybridConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

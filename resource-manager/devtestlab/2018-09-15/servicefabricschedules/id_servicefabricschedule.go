@@ -48,7 +48,7 @@ func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error
 	}
 
 	id := ServiceFabricScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseServiceFabricScheduleIDInsensitively(input string) (*ServiceFabricSche
 	}
 
 	id := ServiceFabricScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

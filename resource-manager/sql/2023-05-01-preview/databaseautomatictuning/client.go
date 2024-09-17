@@ -15,7 +15,7 @@ type DatabaseAutomaticTuningClient struct {
 }
 
 func NewDatabaseAutomaticTuningClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseAutomaticTuningClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseautomatictuning", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseautomatictuning", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseAutomaticTuningClient: %+v", err)
 	}

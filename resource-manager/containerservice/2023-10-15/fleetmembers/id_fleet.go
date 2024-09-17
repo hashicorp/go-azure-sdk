@@ -42,7 +42,7 @@ func ParseFleetID(input string) (*FleetId, error) {
 	}
 
 	id := FleetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFleetIDInsensitively(input string) (*FleetId, error) {
 	}
 
 	id := FleetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

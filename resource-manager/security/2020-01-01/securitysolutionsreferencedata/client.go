@@ -15,7 +15,7 @@ type SecuritySolutionsReferenceDataClient struct {
 }
 
 func NewSecuritySolutionsReferenceDataClientWithBaseURI(sdkApi sdkEnv.Api) (*SecuritySolutionsReferenceDataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securitysolutionsreferencedata", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "securitysolutionsreferencedata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecuritySolutionsReferenceDataClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type ReplicationAlertSettingsClient struct {
 }
 
 func NewReplicationAlertSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationAlertSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationalertsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationalertsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationAlertSettingsClient: %+v", err)
 	}

@@ -16,10 +16,22 @@ type IoTRole struct {
 	Properties *IoTRoleProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Role
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       RoleTypes              `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s IoTRole) Role() BaseRoleImpl {
+	return BaseRoleImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = IoTRole{}
@@ -33,9 +45,10 @@ func (s IoTRole) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IoTRole: %+v", err)
 	}
+
 	decoded["kind"] = "IOT"
 
 	encoded, err = json.Marshal(decoded)

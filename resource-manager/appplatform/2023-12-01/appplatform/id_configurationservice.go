@@ -44,7 +44,7 @@ func ParseConfigurationServiceID(input string) (*ConfigurationServiceId, error) 
 	}
 
 	id := ConfigurationServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConfigurationServiceIDInsensitively(input string) (*ConfigurationServi
 	}
 
 	id := ConfigurationServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

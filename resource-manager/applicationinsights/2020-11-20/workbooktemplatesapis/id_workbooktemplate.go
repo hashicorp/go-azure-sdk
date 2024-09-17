@@ -42,7 +42,7 @@ func ParseWorkbookTemplateID(input string) (*WorkbookTemplateId, error) {
 	}
 
 	id := WorkbookTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseWorkbookTemplateIDInsensitively(input string) (*WorkbookTemplateId, er
 	}
 
 	id := WorkbookTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

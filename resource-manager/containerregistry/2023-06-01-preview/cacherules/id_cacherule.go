@@ -44,7 +44,7 @@ func ParseCacheRuleID(input string) (*CacheRuleId, error) {
 	}
 
 	id := CacheRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCacheRuleIDInsensitively(input string) (*CacheRuleId, error) {
 	}
 
 	id := CacheRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

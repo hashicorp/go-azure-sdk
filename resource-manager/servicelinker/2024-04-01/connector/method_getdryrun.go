@@ -45,7 +45,6 @@ func (c ConnectorClient) GetDryrun(ctx context.Context, id DryrunId) (result Get
 
 	var model DryrunResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

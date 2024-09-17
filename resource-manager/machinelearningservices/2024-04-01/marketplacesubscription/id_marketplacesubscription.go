@@ -44,7 +44,7 @@ func ParseMarketplaceSubscriptionID(input string) (*MarketplaceSubscriptionId, e
 	}
 
 	id := MarketplaceSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMarketplaceSubscriptionIDInsensitively(input string) (*MarketplaceSubs
 	}
 
 	id := MarketplaceSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

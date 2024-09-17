@@ -46,7 +46,7 @@ func ParseStaticMemberID(input string) (*StaticMemberId, error) {
 	}
 
 	id := StaticMemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseStaticMemberIDInsensitively(input string) (*StaticMemberId, error) {
 	}
 
 	id := StaticMemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type WorkloadGroupsClient struct {
 }
 
 func NewWorkloadGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workloadgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workloadgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkloadGroupsClient: %+v", err)
 	}

@@ -45,7 +45,6 @@ func (c MigrationsClient) Get(ctx context.Context, id MigrationId) (result GetOp
 
 	var model MigrationResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

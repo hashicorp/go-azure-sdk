@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-05-15/datatransfer` Documentation
 
-The `datatransfer` SDK allows for interaction with the Azure Resource Manager Service `cosmosdb` (API Version `2022-05-15`).
+The `datatransfer` SDK allows for interaction with Azure Resource Manager `cosmosdb` (API Version `2022-05-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

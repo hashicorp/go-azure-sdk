@@ -50,7 +50,7 @@ func ParseVersionStepID(input string) (*VersionStepId, error) {
 	}
 
 	id := VersionStepId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseVersionStepIDInsensitively(input string) (*VersionStepId, error) {
 	}
 
 	id := VersionStepId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

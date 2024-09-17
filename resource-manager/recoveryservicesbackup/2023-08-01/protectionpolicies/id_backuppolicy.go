@@ -44,7 +44,7 @@ func ParseBackupPolicyID(input string) (*BackupPolicyId, error) {
 	}
 
 	id := BackupPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupPolicyIDInsensitively(input string) (*BackupPolicyId, error) {
 	}
 
 	id := BackupPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

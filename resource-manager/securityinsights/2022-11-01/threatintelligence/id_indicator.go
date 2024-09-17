@@ -44,7 +44,7 @@ func ParseIndicatorID(input string) (*IndicatorId, error) {
 	}
 
 	id := IndicatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIndicatorIDInsensitively(input string) (*IndicatorId, error) {
 	}
 
 	id := IndicatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

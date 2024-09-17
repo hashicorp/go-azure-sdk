@@ -42,7 +42,7 @@ func ParseCacheID(input string) (*CacheId, error) {
 	}
 
 	id := CacheId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCacheIDInsensitively(input string) (*CacheId, error) {
 	}
 
 	id := CacheId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

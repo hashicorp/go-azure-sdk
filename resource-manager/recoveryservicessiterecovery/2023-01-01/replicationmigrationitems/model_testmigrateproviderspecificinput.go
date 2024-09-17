@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TestMigrateProviderSpecificInput interface {
+	TestMigrateProviderSpecificInput() BaseTestMigrateProviderSpecificInputImpl
 }
 
-// RawTestMigrateProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TestMigrateProviderSpecificInput = BaseTestMigrateProviderSpecificInputImpl{}
+
+type BaseTestMigrateProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseTestMigrateProviderSpecificInputImpl) TestMigrateProviderSpecificInput() BaseTestMigrateProviderSpecificInputImpl {
+	return s
+}
+
+var _ TestMigrateProviderSpecificInput = RawTestMigrateProviderSpecificInputImpl{}
+
+// RawTestMigrateProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTestMigrateProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	testMigrateProviderSpecificInput BaseTestMigrateProviderSpecificInputImpl
+	Type                             string
+	Values                           map[string]interface{}
 }
 
-func unmarshalTestMigrateProviderSpecificInputImplementation(input []byte) (TestMigrateProviderSpecificInput, error) {
+func (s RawTestMigrateProviderSpecificInputImpl) TestMigrateProviderSpecificInput() BaseTestMigrateProviderSpecificInputImpl {
+	return s.testMigrateProviderSpecificInput
+}
+
+func UnmarshalTestMigrateProviderSpecificInputImplementation(input []byte) (TestMigrateProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalTestMigrateProviderSpecificInputImplementation(input []byte) (Test
 		return out, nil
 	}
 
-	out := RawTestMigrateProviderSpecificInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTestMigrateProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTestMigrateProviderSpecificInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTestMigrateProviderSpecificInputImpl{
+		testMigrateProviderSpecificInput: parent,
+		Type:                             value,
+		Values:                           temp,
+	}, nil
 
 }

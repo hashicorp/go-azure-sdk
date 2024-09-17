@@ -46,7 +46,7 @@ func ParseSlotBackupID(input string) (*SlotBackupId, error) {
 	}
 
 	id := SlotBackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotBackupIDInsensitively(input string) (*SlotBackupId, error) {
 	}
 
 	id := SlotBackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

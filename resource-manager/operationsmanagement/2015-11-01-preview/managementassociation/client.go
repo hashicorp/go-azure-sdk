@@ -15,7 +15,7 @@ type ManagementAssociationClient struct {
 }
 
 func NewManagementAssociationClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementAssociationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managementassociation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managementassociation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagementAssociationClient: %+v", err)
 	}

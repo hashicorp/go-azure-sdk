@@ -73,7 +73,7 @@ func (c DataConnectorsClient) List(ctx context.Context, id WorkspaceId) (result 
 	temp := make([]DataConnector, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalDataConnectorImplementation(v)
+			val, err := UnmarshalDataConnectorImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for DataConnector (%q): %+v", i, v, err)
 				return result, err

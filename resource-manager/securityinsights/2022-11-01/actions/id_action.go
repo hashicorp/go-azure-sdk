@@ -46,7 +46,7 @@ func ParseActionID(input string) (*ActionId, error) {
 	}
 
 	id := ActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseActionIDInsensitively(input string) (*ActionId, error) {
 	}
 
 	id := ActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -49,7 +49,6 @@ func (c TemplateSpecsClient) Update(ctx context.Context, id TemplateSpecId, inpu
 
 	var model TemplateSpec
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

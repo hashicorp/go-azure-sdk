@@ -44,7 +44,7 @@ func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
 	}
 
 	id := RegisteredIdentityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegisteredIdentityIDInsensitively(input string) (*RegisteredIdentityId
 	}
 
 	id := RegisteredIdentityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

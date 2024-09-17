@@ -15,7 +15,7 @@ type PlanClient struct {
 }
 
 func NewPlanClientWithBaseURI(sdkApi sdkEnv.Api) (*PlanClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "plan", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "plan", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PlanClient: %+v", err)
 	}

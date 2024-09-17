@@ -21,6 +21,14 @@ type HyperVVirtualMachineDetails struct {
 	SourceItemId           *string         `json:"sourceItemId,omitempty"`
 
 	// Fields inherited from ConfigurationSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s HyperVVirtualMachineDetails) ConfigurationSettings() BaseConfigurationSettingsImpl {
+	return BaseConfigurationSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = HyperVVirtualMachineDetails{}
@@ -34,9 +42,10 @@ func (s HyperVVirtualMachineDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling HyperVVirtualMachineDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "HyperVVirtualMachine"
 
 	encoded, err = json.Marshal(decoded)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2017-12-01/serversecurityalertpolicies` Documentation
 
-The `serversecurityalertpolicies` SDK allows for interaction with the Azure Resource Manager Service `mysql` (API Version `2017-12-01`).
+The `serversecurityalertpolicies` SDK allows for interaction with Azure Resource Manager `mysql` (API Version `2017-12-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -44,7 +44,7 @@ func ParseRevisionsApiRevisionID(input string) (*RevisionsApiRevisionId, error) 
 	}
 
 	id := RevisionsApiRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRevisionsApiRevisionIDInsensitively(input string) (*RevisionsApiRevisi
 	}
 
 	id := RevisionsApiRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -32,7 +32,7 @@ func (s *GetBlobReferenceForConsumptionDto) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["credential"]; ok {
-		impl, err := unmarshalDataReferenceCredentialImplementation(v)
+		impl, err := UnmarshalDataReferenceCredentialImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Credential' for 'GetBlobReferenceForConsumptionDto': %+v", err)
 		}

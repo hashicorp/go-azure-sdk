@@ -46,7 +46,7 @@ func ParseDefaultID(input string) (*DefaultId, error) {
 	}
 
 	id := DefaultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDefaultIDInsensitively(input string) (*DefaultId, error) {
 	}
 
 	id := DefaultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseStorageInsightConfigID(input string) (*StorageInsightConfigId, error) 
 	}
 
 	id := StorageInsightConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStorageInsightConfigIDInsensitively(input string) (*StorageInsightConf
 	}
 
 	id := StorageInsightConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

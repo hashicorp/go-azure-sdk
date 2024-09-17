@@ -45,7 +45,6 @@ func (c RecommendedActionsClient) Get(ctx context.Context, id RecommendedActionI
 
 	var model RecommendationAction
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

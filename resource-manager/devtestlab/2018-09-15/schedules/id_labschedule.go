@@ -44,7 +44,7 @@ func ParseLabScheduleID(input string) (*LabScheduleId, error) {
 	}
 
 	id := LabScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLabScheduleIDInsensitively(input string) (*LabScheduleId, error) {
 	}
 
 	id := LabScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

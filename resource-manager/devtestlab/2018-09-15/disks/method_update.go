@@ -49,7 +49,6 @@ func (c DisksClient) Update(ctx context.Context, id DiskId, input UpdateResource
 
 	var model Disk
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

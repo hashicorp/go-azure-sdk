@@ -46,7 +46,7 @@ func ParseConfigReferenceConnectionStringID(input string) (*ConfigReferenceConne
 	}
 
 	id := ConfigReferenceConnectionStringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseConfigReferenceConnectionStringIDInsensitively(input string) (*ConfigR
 	}
 
 	id := ConfigReferenceConnectionStringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

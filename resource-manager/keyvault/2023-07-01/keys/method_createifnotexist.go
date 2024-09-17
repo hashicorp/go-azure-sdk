@@ -50,7 +50,6 @@ func (c KeysClient) CreateIfNotExist(ctx context.Context, id commonids.KeyVaultK
 
 	var model Key
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

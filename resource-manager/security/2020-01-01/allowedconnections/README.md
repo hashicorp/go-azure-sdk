@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/allowedconnections` Documentation
 
-The `allowedconnections` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2020-01-01`).
+The `allowedconnections` SDK allows for interaction with Azure Resource Manager `security` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

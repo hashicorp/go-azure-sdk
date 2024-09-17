@@ -15,7 +15,7 @@ type BillingRoleAssignmentsClient struct {
 }
 
 func NewBillingRoleAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingRoleAssignmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "billingroleassignments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "billingroleassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BillingRoleAssignmentsClient: %+v", err)
 	}

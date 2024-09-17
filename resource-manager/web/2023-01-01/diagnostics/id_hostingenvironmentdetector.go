@@ -44,7 +44,7 @@ func ParseHostingEnvironmentDetectorID(input string) (*HostingEnvironmentDetecto
 	}
 
 	id := HostingEnvironmentDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHostingEnvironmentDetectorIDInsensitively(input string) (*HostingEnvir
 	}
 
 	id := HostingEnvironmentDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -73,7 +73,7 @@ func (c ArtifactClient) List(ctx context.Context, id ScopedBlueprintId) (result 
 	temp := make([]Artifact, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalArtifactImplementation(v)
+			val, err := UnmarshalArtifactImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for Artifact (%q): %+v", i, v, err)
 				return result, err

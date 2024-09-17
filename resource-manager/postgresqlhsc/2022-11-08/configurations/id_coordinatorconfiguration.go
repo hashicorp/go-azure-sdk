@@ -44,7 +44,7 @@ func ParseCoordinatorConfigurationID(input string) (*CoordinatorConfigurationId,
 	}
 
 	id := CoordinatorConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCoordinatorConfigurationIDInsensitively(input string) (*CoordinatorCon
 	}
 
 	id := CoordinatorConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

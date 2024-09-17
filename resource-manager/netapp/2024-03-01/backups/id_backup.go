@@ -46,7 +46,7 @@ func ParseBackupID(input string) (*BackupId, error) {
 	}
 
 	id := BackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBackupIDInsensitively(input string) (*BackupId, error) {
 	}
 
 	id := BackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -49,7 +49,6 @@ func (c EnvironmentsClient) Update(ctx context.Context, id EnvironmentId, input 
 
 	var model DtlEnvironment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

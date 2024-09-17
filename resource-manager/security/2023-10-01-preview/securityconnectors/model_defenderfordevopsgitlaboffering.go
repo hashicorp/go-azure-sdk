@@ -13,7 +13,16 @@ var _ CloudOffering = DefenderForDevOpsGitLabOffering{}
 type DefenderForDevOpsGitLabOffering struct {
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s DefenderForDevOpsGitLabOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = DefenderForDevOpsGitLabOffering{}
@@ -27,9 +36,10 @@ func (s DefenderForDevOpsGitLabOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DefenderForDevOpsGitLabOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "DefenderForDevOpsGitLab"
 
 	encoded, err = json.Marshal(decoded)

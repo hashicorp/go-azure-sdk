@@ -40,7 +40,7 @@ func ParseCostAllocationRuleID(input string) (*CostAllocationRuleId, error) {
 	}
 
 	id := CostAllocationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseCostAllocationRuleIDInsensitively(input string) (*CostAllocationRuleId
 	}
 
 	id := CostAllocationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

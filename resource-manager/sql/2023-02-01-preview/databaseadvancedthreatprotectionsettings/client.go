@@ -15,7 +15,7 @@ type DatabaseAdvancedThreatProtectionSettingsClient struct {
 }
 
 func NewDatabaseAdvancedThreatProtectionSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseAdvancedThreatProtectionSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseadvancedthreatprotectionsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseadvancedthreatprotectionsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseAdvancedThreatProtectionSettingsClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseVirtualNetworkRuleID(input string) (*VirtualNetworkRuleId, error) {
 	}
 
 	id := VirtualNetworkRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualNetworkRuleIDInsensitively(input string) (*VirtualNetworkRuleId
 	}
 
 	id := VirtualNetworkRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -47,7 +47,6 @@ func (c KustoClient) ClustersListSkus(ctx context.Context, id commonids.Subscrip
 
 	var model SkuDescriptionList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type StreamingPoliciesAndStreamingLocatorsClient struct {
 }
 
 func NewStreamingPoliciesAndStreamingLocatorsClientWithBaseURI(sdkApi sdkEnv.Api) (*StreamingPoliciesAndStreamingLocatorsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "streamingpoliciesandstreaminglocators", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "streamingpoliciesandstreaminglocators", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StreamingPoliciesAndStreamingLocatorsClient: %+v", err)
 	}

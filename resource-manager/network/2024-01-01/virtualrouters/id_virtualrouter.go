@@ -42,7 +42,7 @@ func ParseVirtualRouterID(input string) (*VirtualRouterId, error) {
 	}
 
 	id := VirtualRouterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualRouterIDInsensitively(input string) (*VirtualRouterId, error) {
 	}
 
 	id := VirtualRouterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

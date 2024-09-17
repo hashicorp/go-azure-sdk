@@ -15,7 +15,7 @@ type SensitivityLabelsClient struct {
 }
 
 func NewSensitivityLabelsClientWithBaseURI(sdkApi sdkEnv.Api) (*SensitivityLabelsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sensitivitylabels", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sensitivitylabels", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SensitivityLabelsClient: %+v", err)
 	}

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LinkedIntegrationRuntimeType interface {
+	LinkedIntegrationRuntimeType() BaseLinkedIntegrationRuntimeTypeImpl
 }
 
-// RawLinkedIntegrationRuntimeTypeImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ LinkedIntegrationRuntimeType = BaseLinkedIntegrationRuntimeTypeImpl{}
+
+type BaseLinkedIntegrationRuntimeTypeImpl struct {
+	AuthorizationType string `json:"authorizationType"`
+}
+
+func (s BaseLinkedIntegrationRuntimeTypeImpl) LinkedIntegrationRuntimeType() BaseLinkedIntegrationRuntimeTypeImpl {
+	return s
+}
+
+var _ LinkedIntegrationRuntimeType = RawLinkedIntegrationRuntimeTypeImpl{}
+
+// RawLinkedIntegrationRuntimeTypeImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawLinkedIntegrationRuntimeTypeImpl struct {
-	Type   string
-	Values map[string]interface{}
+	linkedIntegrationRuntimeType BaseLinkedIntegrationRuntimeTypeImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalLinkedIntegrationRuntimeTypeImplementation(input []byte) (LinkedIntegrationRuntimeType, error) {
+func (s RawLinkedIntegrationRuntimeTypeImpl) LinkedIntegrationRuntimeType() BaseLinkedIntegrationRuntimeTypeImpl {
+	return s.linkedIntegrationRuntimeType
+}
+
+func UnmarshalLinkedIntegrationRuntimeTypeImplementation(input []byte) (LinkedIntegrationRuntimeType, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalLinkedIntegrationRuntimeTypeImplementation(input []byte) (LinkedIn
 		return out, nil
 	}
 
-	out := RawLinkedIntegrationRuntimeTypeImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseLinkedIntegrationRuntimeTypeImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLinkedIntegrationRuntimeTypeImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawLinkedIntegrationRuntimeTypeImpl{
+		linkedIntegrationRuntimeType: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

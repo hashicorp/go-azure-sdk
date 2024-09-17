@@ -46,7 +46,7 @@ func ParseHybridConnectionNamespaceRelayID(input string) (*HybridConnectionNames
 	}
 
 	id := HybridConnectionNamespaceRelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseHybridConnectionNamespaceRelayIDInsensitively(input string) (*HybridCo
 	}
 
 	id := HybridConnectionNamespaceRelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

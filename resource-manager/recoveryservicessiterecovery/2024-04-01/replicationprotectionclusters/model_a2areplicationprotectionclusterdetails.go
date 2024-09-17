@@ -35,6 +35,14 @@ type A2AReplicationProtectionClusterDetails struct {
 	RpoInSeconds                    *int64                    `json:"rpoInSeconds,omitempty"`
 
 	// Fields inherited from ReplicationClusterProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s A2AReplicationProtectionClusterDetails) ReplicationClusterProviderSpecificSettings() BaseReplicationClusterProviderSpecificSettingsImpl {
+	return BaseReplicationClusterProviderSpecificSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = A2AReplicationProtectionClusterDetails{}
@@ -48,9 +56,10 @@ func (s A2AReplicationProtectionClusterDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling A2AReplicationProtectionClusterDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "A2A"
 
 	encoded, err = json.Marshal(decoded)

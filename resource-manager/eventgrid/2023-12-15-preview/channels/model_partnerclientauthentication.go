@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartnerClientAuthentication interface {
+	PartnerClientAuthentication() BasePartnerClientAuthenticationImpl
 }
 
-// RawPartnerClientAuthenticationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ PartnerClientAuthentication = BasePartnerClientAuthenticationImpl{}
+
+type BasePartnerClientAuthenticationImpl struct {
+	ClientAuthenticationType PartnerClientAuthenticationType `json:"clientAuthenticationType"`
+}
+
+func (s BasePartnerClientAuthenticationImpl) PartnerClientAuthentication() BasePartnerClientAuthenticationImpl {
+	return s
+}
+
+var _ PartnerClientAuthentication = RawPartnerClientAuthenticationImpl{}
+
+// RawPartnerClientAuthenticationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawPartnerClientAuthenticationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	partnerClientAuthentication BasePartnerClientAuthenticationImpl
+	Type                        string
+	Values                      map[string]interface{}
 }
 
-func unmarshalPartnerClientAuthenticationImplementation(input []byte) (PartnerClientAuthentication, error) {
+func (s RawPartnerClientAuthenticationImpl) PartnerClientAuthentication() BasePartnerClientAuthenticationImpl {
+	return s.partnerClientAuthentication
+}
+
+func UnmarshalPartnerClientAuthenticationImplementation(input []byte) (PartnerClientAuthentication, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalPartnerClientAuthenticationImplementation(input []byte) (PartnerCl
 		return out, nil
 	}
 
-	out := RawPartnerClientAuthenticationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BasePartnerClientAuthenticationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePartnerClientAuthenticationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawPartnerClientAuthenticationImpl{
+		partnerClientAuthentication: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
 
 }

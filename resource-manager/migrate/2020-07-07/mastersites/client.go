@@ -15,7 +15,7 @@ type MasterSitesClient struct {
 }
 
 func NewMasterSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*MasterSitesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mastersites", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "mastersites", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MasterSitesClient: %+v", err)
 	}

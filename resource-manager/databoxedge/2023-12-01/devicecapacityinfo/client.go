@@ -15,7 +15,7 @@ type DeviceCapacityInfoClient struct {
 }
 
 func NewDeviceCapacityInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCapacityInfoClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "devicecapacityinfo", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "devicecapacityinfo", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeviceCapacityInfoClient: %+v", err)
 	}

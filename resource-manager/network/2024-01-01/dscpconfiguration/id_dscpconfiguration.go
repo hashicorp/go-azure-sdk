@@ -42,7 +42,7 @@ func ParseDscpConfigurationID(input string) (*DscpConfigurationId, error) {
 	}
 
 	id := DscpConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDscpConfigurationIDInsensitively(input string) (*DscpConfigurationId, 
 	}
 
 	id := DscpConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

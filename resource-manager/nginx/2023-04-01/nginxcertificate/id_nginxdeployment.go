@@ -42,7 +42,7 @@ func ParseNginxDeploymentID(input string) (*NginxDeploymentId, error) {
 	}
 
 	id := NginxDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseNginxDeploymentIDInsensitively(input string) (*NginxDeploymentId, erro
 	}
 
 	id := NginxDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,6 @@ func (c StreamingEndpointsClient) Skus(ctx context.Context, id StreamingEndpoint
 
 	var model StreamingEndpointSkuInfoListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

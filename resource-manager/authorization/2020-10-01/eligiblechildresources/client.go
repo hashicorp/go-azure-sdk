@@ -15,7 +15,7 @@ type EligibleChildResourcesClient struct {
 }
 
 func NewEligibleChildResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*EligibleChildResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "eligiblechildresources", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "eligiblechildresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EligibleChildResourcesClient: %+v", err)
 	}

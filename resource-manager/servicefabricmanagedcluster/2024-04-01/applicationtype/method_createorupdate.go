@@ -49,7 +49,6 @@ func (c ApplicationTypeClient) CreateOrUpdate(ctx context.Context, id Applicatio
 
 	var model ApplicationTypeResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

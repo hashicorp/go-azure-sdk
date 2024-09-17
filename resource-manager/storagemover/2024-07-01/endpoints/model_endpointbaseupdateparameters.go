@@ -22,7 +22,7 @@ func (s *EndpointBaseUpdateParameters) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalEndpointBaseUpdatePropertiesImplementation(v)
+		impl, err := UnmarshalEndpointBaseUpdatePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'EndpointBaseUpdateParameters': %+v", err)
 		}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/qumulostorage/2022-10-12/filesystems` Documentation
 
-The `filesystems` SDK allows for interaction with the Azure Resource Manager Service `qumulostorage` (API Version `2022-10-12`).
+The `filesystems` SDK allows for interaction with Azure Resource Manager `qumulostorage` (API Version `2022-10-12`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

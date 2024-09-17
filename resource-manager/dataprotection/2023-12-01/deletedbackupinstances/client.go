@@ -15,7 +15,7 @@ type DeletedBackupInstancesClient struct {
 }
 
 func NewDeletedBackupInstancesClientWithBaseURI(sdkApi sdkEnv.Api) (*DeletedBackupInstancesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "deletedbackupinstances", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "deletedbackupinstances", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedBackupInstancesClient: %+v", err)
 	}

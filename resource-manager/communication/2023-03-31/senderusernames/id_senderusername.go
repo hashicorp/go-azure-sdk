@@ -46,7 +46,7 @@ func ParseSenderUsernameID(input string) (*SenderUsernameId, error) {
 	}
 
 	id := SenderUsernameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSenderUsernameIDInsensitively(input string) (*SenderUsernameId, error)
 	}
 
 	id := SenderUsernameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

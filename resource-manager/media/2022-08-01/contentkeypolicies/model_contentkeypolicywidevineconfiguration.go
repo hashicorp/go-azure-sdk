@@ -14,6 +14,14 @@ type ContentKeyPolicyWidevineConfiguration struct {
 	WidevineTemplate string `json:"widevineTemplate"`
 
 	// Fields inherited from ContentKeyPolicyConfiguration
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyWidevineConfiguration) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return BaseContentKeyPolicyConfigurationImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyWidevineConfiguration{}
@@ -27,9 +35,10 @@ func (s ContentKeyPolicyWidevineConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyWidevineConfiguration: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyWidevineConfiguration"
 
 	encoded, err = json.Marshal(decoded)

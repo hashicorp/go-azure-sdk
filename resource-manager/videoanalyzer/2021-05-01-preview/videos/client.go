@@ -15,7 +15,7 @@ type VideosClient struct {
 }
 
 func NewVideosClientWithBaseURI(sdkApi sdkEnv.Api) (*VideosClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "videos", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "videos", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VideosClient: %+v", err)
 	}

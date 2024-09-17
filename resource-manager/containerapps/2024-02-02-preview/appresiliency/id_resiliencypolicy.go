@@ -44,7 +44,7 @@ func ParseResiliencyPolicyID(input string) (*ResiliencyPolicyId, error) {
 	}
 
 	id := ResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseResiliencyPolicyIDInsensitively(input string) (*ResiliencyPolicyId, er
 	}
 
 	id := ResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

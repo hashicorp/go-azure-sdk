@@ -38,7 +38,7 @@ func ParseInvoiceID(input string) (*InvoiceId, error) {
 	}
 
 	id := InvoiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseInvoiceIDInsensitively(input string) (*InvoiceId, error) {
 	}
 
 	id := InvoiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

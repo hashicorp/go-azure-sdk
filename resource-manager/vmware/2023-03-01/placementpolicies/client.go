@@ -15,7 +15,7 @@ type PlacementPoliciesClient struct {
 }
 
 func NewPlacementPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*PlacementPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "placementpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "placementpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PlacementPoliciesClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseHybridIdentityMetadataID(input string) (*HybridIdentityMetadataId, err
 	}
 
 	id := HybridIdentityMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHybridIdentityMetadataIDInsensitively(input string) (*HybridIdentityMe
 	}
 
 	id := HybridIdentityMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

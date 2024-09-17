@@ -49,7 +49,6 @@ func (c BillingSubscriptionsClient) Update(ctx context.Context, id BillingAccoun
 
 	var model BillingSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

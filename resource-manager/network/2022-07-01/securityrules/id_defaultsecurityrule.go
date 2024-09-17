@@ -44,7 +44,7 @@ func ParseDefaultSecurityRuleID(input string) (*DefaultSecurityRuleId, error) {
 	}
 
 	id := DefaultSecurityRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDefaultSecurityRuleIDInsensitively(input string) (*DefaultSecurityRule
 	}
 
 	id := DefaultSecurityRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

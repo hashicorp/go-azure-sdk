@@ -42,7 +42,7 @@ func ParseFileSystemID(input string) (*FileSystemId, error) {
 	}
 
 	id := FileSystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFileSystemIDInsensitively(input string) (*FileSystemId, error) {
 	}
 
 	id := FileSystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

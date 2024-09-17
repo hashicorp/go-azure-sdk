@@ -13,8 +13,18 @@ var _ DatasetStorageFormat = OrcFormat{}
 type OrcFormat struct {
 
 	// Fields inherited from DatasetStorageFormat
+
 	Deserializer *string `json:"deserializer,omitempty"`
 	Serializer   *string `json:"serializer,omitempty"`
+	Type         string  `json:"type"`
+}
+
+func (s OrcFormat) DatasetStorageFormat() BaseDatasetStorageFormatImpl {
+	return BaseDatasetStorageFormatImpl{
+		Deserializer: s.Deserializer,
+		Serializer:   s.Serializer,
+		Type:         s.Type,
+	}
 }
 
 var _ json.Marshaler = OrcFormat{}
@@ -28,9 +38,10 @@ func (s OrcFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OrcFormat: %+v", err)
 	}
+
 	decoded["type"] = "OrcFormat"
 
 	encoded, err = json.Marshal(decoded)

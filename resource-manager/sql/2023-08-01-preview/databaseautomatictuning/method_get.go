@@ -47,7 +47,6 @@ func (c DatabaseAutomaticTuningClient) Get(ctx context.Context, id commonids.Sql
 
 	var model DatabaseAutomaticTuning
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,7 @@ func ParseDataSetMappingID(input string) (*DataSetMappingId, error) {
 	}
 
 	id := DataSetMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDataSetMappingIDInsensitively(input string) (*DataSetMappingId, error)
 	}
 
 	id := DataSetMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

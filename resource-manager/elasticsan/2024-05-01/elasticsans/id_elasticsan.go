@@ -42,7 +42,7 @@ func ParseElasticSanID(input string) (*ElasticSanId, error) {
 	}
 
 	id := ElasticSanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseElasticSanIDInsensitively(input string) (*ElasticSanId, error) {
 	}
 
 	id := ElasticSanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

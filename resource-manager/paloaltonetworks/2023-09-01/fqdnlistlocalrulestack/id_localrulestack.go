@@ -42,7 +42,7 @@ func ParseLocalRulestackID(input string) (*LocalRulestackId, error) {
 	}
 
 	id := LocalRulestackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLocalRulestackIDInsensitively(input string) (*LocalRulestackId, error)
 	}
 
 	id := LocalRulestackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

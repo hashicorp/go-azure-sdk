@@ -44,7 +44,7 @@ func ParseProviderInstanceID(input string) (*ProviderInstanceId, error) {
 	}
 
 	id := ProviderInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseProviderInstanceIDInsensitively(input string) (*ProviderInstanceId, er
 	}
 
 	id := ProviderInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

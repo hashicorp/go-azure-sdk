@@ -44,7 +44,7 @@ func ParseRaiPolicyID(input string) (*RaiPolicyId, error) {
 	}
 
 	id := RaiPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRaiPolicyIDInsensitively(input string) (*RaiPolicyId, error) {
 	}
 
 	id := RaiPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

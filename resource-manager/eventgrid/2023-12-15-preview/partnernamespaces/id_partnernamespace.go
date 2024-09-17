@@ -42,7 +42,7 @@ func ParsePartnerNamespaceID(input string) (*PartnerNamespaceId, error) {
 	}
 
 	id := PartnerNamespaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePartnerNamespaceIDInsensitively(input string) (*PartnerNamespaceId, er
 	}
 
 	id := PartnerNamespaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

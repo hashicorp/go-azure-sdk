@@ -45,7 +45,6 @@ func (c BestPracticesClient) Get(ctx context.Context, id BestPracticeId) (result
 
 	var model BestPractice
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,7 @@ func ParseBackupProtectionIntentID(input string) (*BackupProtectionIntentId, err
 	}
 
 	id := BackupProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBackupProtectionIntentIDInsensitively(input string) (*BackupProtection
 	}
 
 	id := BackupProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

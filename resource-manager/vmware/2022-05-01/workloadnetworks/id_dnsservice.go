@@ -44,7 +44,7 @@ func ParseDnsServiceID(input string) (*DnsServiceId, error) {
 	}
 
 	id := DnsServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDnsServiceIDInsensitively(input string) (*DnsServiceId, error) {
 	}
 
 	id := DnsServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

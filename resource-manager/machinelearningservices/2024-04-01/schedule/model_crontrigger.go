@@ -14,9 +14,20 @@ type CronTrigger struct {
 	Expression string `json:"expression"`
 
 	// Fields inherited from TriggerBase
-	EndTime   *string `json:"endTime,omitempty"`
-	StartTime *string `json:"startTime,omitempty"`
-	TimeZone  *string `json:"timeZone,omitempty"`
+
+	EndTime     *string     `json:"endTime,omitempty"`
+	StartTime   *string     `json:"startTime,omitempty"`
+	TimeZone    *string     `json:"timeZone,omitempty"`
+	TriggerType TriggerType `json:"triggerType"`
+}
+
+func (s CronTrigger) TriggerBase() BaseTriggerBaseImpl {
+	return BaseTriggerBaseImpl{
+		EndTime:     s.EndTime,
+		StartTime:   s.StartTime,
+		TimeZone:    s.TimeZone,
+		TriggerType: s.TriggerType,
+	}
 }
 
 var _ json.Marshaler = CronTrigger{}
@@ -30,9 +41,10 @@ func (s CronTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CronTrigger: %+v", err)
 	}
+
 	decoded["triggerType"] = "Cron"
 
 	encoded, err = json.Marshal(decoded)

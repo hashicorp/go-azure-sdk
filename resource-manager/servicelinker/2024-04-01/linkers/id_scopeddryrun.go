@@ -40,7 +40,7 @@ func ParseScopedDryrunID(input string) (*ScopedDryrunId, error) {
 	}
 
 	id := ScopedDryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedDryrunIDInsensitively(input string) (*ScopedDryrunId, error) {
 	}
 
 	id := ScopedDryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

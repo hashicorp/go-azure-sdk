@@ -50,7 +50,6 @@ func (c RaiBlocklistsClient) CreateOrUpdate(ctx context.Context, id RaiBlocklist
 
 	var model RaiBlocklist
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

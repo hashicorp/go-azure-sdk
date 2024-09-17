@@ -40,7 +40,7 @@ func ParseScopedEventSubscriptionID(input string) (*ScopedEventSubscriptionId, e
 	}
 
 	id := ScopedEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedEventSubscriptionIDInsensitively(input string) (*ScopedEventSubs
 	}
 
 	id := ScopedEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

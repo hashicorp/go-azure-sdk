@@ -15,7 +15,7 @@ type TopologyClient struct {
 }
 
 func NewTopologyClientWithBaseURI(sdkApi sdkEnv.Api) (*TopologyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topology", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "topology", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopologyClient: %+v", err)
 	}

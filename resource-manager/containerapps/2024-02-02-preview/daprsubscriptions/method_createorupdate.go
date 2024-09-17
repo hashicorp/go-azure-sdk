@@ -50,7 +50,6 @@ func (c DaprSubscriptionsClient) CreateOrUpdate(ctx context.Context, id DaprSubs
 
 	var model DaprSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

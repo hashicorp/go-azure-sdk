@@ -40,7 +40,7 @@ func ParseScopedNetworkSecurityPerimeterConfigurationID(input string) (*ScopedNe
 	}
 
 	id := ScopedNetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedNetworkSecurityPerimeterConfigurationIDInsensitively(input strin
 	}
 
 	id := ScopedNetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

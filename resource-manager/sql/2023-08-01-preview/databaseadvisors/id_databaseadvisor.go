@@ -46,7 +46,7 @@ func ParseDatabaseAdvisorID(input string) (*DatabaseAdvisorId, error) {
 	}
 
 	id := DatabaseAdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDatabaseAdvisorIDInsensitively(input string) (*DatabaseAdvisorId, erro
 	}
 
 	id := DatabaseAdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

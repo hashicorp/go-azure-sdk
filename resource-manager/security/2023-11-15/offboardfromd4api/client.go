@@ -15,7 +15,7 @@ type OffboardFromD4APIClient struct {
 }
 
 func NewOffboardFromD4APIClientWithBaseURI(sdkApi sdkEnv.Api) (*OffboardFromD4APIClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "offboardfromd4api", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "offboardfromd4api", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OffboardFromD4APIClient: %+v", err)
 	}

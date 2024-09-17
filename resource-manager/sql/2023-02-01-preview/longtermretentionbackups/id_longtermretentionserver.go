@@ -42,7 +42,7 @@ func ParseLongTermRetentionServerID(input string) (*LongTermRetentionServerId, e
 	}
 
 	id := LongTermRetentionServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLongTermRetentionServerIDInsensitively(input string) (*LongTermRetenti
 	}
 
 	id := LongTermRetentionServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

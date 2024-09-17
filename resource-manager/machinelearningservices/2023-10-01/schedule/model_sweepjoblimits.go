@@ -16,7 +16,16 @@ type SweepJobLimits struct {
 	TrialTimeout        *string `json:"trialTimeout,omitempty"`
 
 	// Fields inherited from JobLimits
-	Timeout *string `json:"timeout,omitempty"`
+
+	JobLimitsType JobLimitsType `json:"jobLimitsType"`
+	Timeout       *string       `json:"timeout,omitempty"`
+}
+
+func (s SweepJobLimits) JobLimits() BaseJobLimitsImpl {
+	return BaseJobLimitsImpl{
+		JobLimitsType: s.JobLimitsType,
+		Timeout:       s.Timeout,
+	}
 }
 
 var _ json.Marshaler = SweepJobLimits{}
@@ -30,9 +39,10 @@ func (s SweepJobLimits) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SweepJobLimits: %+v", err)
 	}
+
 	decoded["jobLimitsType"] = "Sweep"
 
 	encoded, err = json.Marshal(decoded)

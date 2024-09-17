@@ -36,6 +36,7 @@ func (o WorkspaceNotificationCreateOrUpdateOperationOptions) ToHeaders() *client
 
 func (o WorkspaceNotificationCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c NotificationClient) WorkspaceNotificationCreateOrUpdate(ctx context.Cont
 
 	var model NotificationContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

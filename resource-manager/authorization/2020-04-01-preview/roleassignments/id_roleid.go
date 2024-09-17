@@ -38,7 +38,7 @@ func ParseRoleIdID(input string) (*RoleIdId, error) {
 	}
 
 	id := RoleIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseRoleIdIDInsensitively(input string) (*RoleIdId, error) {
 	}
 
 	id := RoleIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseSlotProcessID(input string) (*SlotProcessId, error) {
 	}
 
 	id := SlotProcessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotProcessIDInsensitively(input string) (*SlotProcessId, error) {
 	}
 
 	id := SlotProcessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

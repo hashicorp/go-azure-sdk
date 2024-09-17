@@ -48,7 +48,7 @@ func ParseSourceControlSyncJobStreamID(input string) (*SourceControlSyncJobStrea
 	}
 
 	id := SourceControlSyncJobStreamId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseSourceControlSyncJobStreamIDInsensitively(input string) (*SourceContro
 	}
 
 	id := SourceControlSyncJobStreamId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

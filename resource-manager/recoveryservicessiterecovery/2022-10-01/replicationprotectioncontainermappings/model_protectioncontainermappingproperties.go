@@ -48,7 +48,7 @@ func (s *ProtectionContainerMappingProperties) UnmarshalJSON(bytes []byte) error
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalProtectionContainerMappingProviderSpecificDetailsImplementation(v)
+		impl, err := UnmarshalProtectionContainerMappingProviderSpecificDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ProtectionContainerMappingProperties': %+v", err)
 		}

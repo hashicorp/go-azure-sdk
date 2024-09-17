@@ -44,7 +44,7 @@ func ParseApiCollectionID(input string) (*ApiCollectionId, error) {
 	}
 
 	id := ApiCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApiCollectionIDInsensitively(input string) (*ApiCollectionId, error) {
 	}
 
 	id := ApiCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

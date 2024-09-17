@@ -44,7 +44,7 @@ func ParseGlobalParameterID(input string) (*GlobalParameterId, error) {
 	}
 
 	id := GlobalParameterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGlobalParameterIDInsensitively(input string) (*GlobalParameterId, erro
 	}
 
 	id := GlobalParameterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseBookmarkRelationID(input string) (*BookmarkRelationId, error) {
 	}
 
 	id := BookmarkRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBookmarkRelationIDInsensitively(input string) (*BookmarkRelationId, er
 	}
 
 	id := BookmarkRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

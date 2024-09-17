@@ -40,7 +40,7 @@ func ParsePostRuleID(input string) (*PostRuleId, error) {
 	}
 
 	id := PostRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePostRuleIDInsensitively(input string) (*PostRuleId, error) {
 	}
 
 	id := PostRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -21,6 +21,14 @@ type BookmarkTimelineItem struct {
 	StartTimeUtc    *string   `json:"startTimeUtc,omitempty"`
 
 	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}
+
+func (s BookmarkTimelineItem) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return BaseEntityTimelineItemImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = BookmarkTimelineItem{}
@@ -34,9 +42,10 @@ func (s BookmarkTimelineItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BookmarkTimelineItem: %+v", err)
 	}
+
 	decoded["kind"] = "Bookmark"
 
 	encoded, err = json.Marshal(decoded)

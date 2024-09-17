@@ -40,7 +40,7 @@ func ParseProviderTopicTypeID(input string) (*ProviderTopicTypeId, error) {
 	}
 
 	id := ProviderTopicTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviderTopicTypeIDInsensitively(input string) (*ProviderTopicTypeId, 
 	}
 
 	id := ProviderTopicTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

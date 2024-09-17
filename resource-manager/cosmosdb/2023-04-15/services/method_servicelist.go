@@ -46,7 +46,6 @@ func (c ServicesClient) ServiceList(ctx context.Context, id DatabaseAccountId) (
 
 	var model ServiceResourceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

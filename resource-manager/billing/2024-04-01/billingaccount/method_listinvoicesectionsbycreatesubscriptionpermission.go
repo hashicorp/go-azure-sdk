@@ -39,6 +39,7 @@ func (o ListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions) ToHea
 
 func (o ListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

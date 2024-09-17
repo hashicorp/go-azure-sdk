@@ -44,7 +44,7 @@ func ParseAccessPolicyID(input string) (*AccessPolicyId, error) {
 	}
 
 	id := AccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccessPolicyIDInsensitively(input string) (*AccessPolicyId, error) {
 	}
 
 	id := AccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

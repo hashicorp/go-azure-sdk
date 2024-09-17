@@ -34,7 +34,7 @@ func (s *Input) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalInputPropertiesImplementation(v)
+		impl, err := UnmarshalInputPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'Input': %+v", err)
 		}

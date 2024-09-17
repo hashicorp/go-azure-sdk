@@ -50,7 +50,6 @@ func (c EdgeModulesClient) CreateOrUpdate(ctx context.Context, id EdgeModuleId, 
 
 	var model EdgeModuleEntity
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

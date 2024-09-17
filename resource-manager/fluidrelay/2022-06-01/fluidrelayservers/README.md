@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/fluidrelay/2022-06-01/fluidrelayservers` Documentation
 
-The `fluidrelayservers` SDK allows for interaction with the Azure Resource Manager Service `fluidrelay` (API Version `2022-06-01`).
+The `fluidrelayservers` SDK allows for interaction with Azure Resource Manager `fluidrelay` (API Version `2022-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

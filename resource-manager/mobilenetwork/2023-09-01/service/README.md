@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2023-09-01/service` Documentation
 
-The `service` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2023-09-01`).
+The `service` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

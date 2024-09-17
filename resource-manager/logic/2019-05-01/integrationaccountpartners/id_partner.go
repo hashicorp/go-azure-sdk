@@ -44,7 +44,7 @@ func ParsePartnerID(input string) (*PartnerId, error) {
 	}
 
 	id := PartnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePartnerIDInsensitively(input string) (*PartnerId, error) {
 	}
 
 	id := PartnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

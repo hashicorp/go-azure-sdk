@@ -16,12 +16,26 @@ type DatabricksNotebookActivity struct {
 	TypeProperties    DatabricksNotebookActivityTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from Activity
+
 	DependsOn        *[]ActivityDependency     `json:"dependsOn,omitempty"`
 	Description      *string                   `json:"description,omitempty"`
 	Name             string                    `json:"name"`
 	OnInactiveMarkAs *ActivityOnInactiveMarkAs `json:"onInactiveMarkAs,omitempty"`
 	State            *ActivityState            `json:"state,omitempty"`
+	Type             string                    `json:"type"`
 	UserProperties   *[]UserProperty           `json:"userProperties,omitempty"`
+}
+
+func (s DatabricksNotebookActivity) Activity() BaseActivityImpl {
+	return BaseActivityImpl{
+		DependsOn:        s.DependsOn,
+		Description:      s.Description,
+		Name:             s.Name,
+		OnInactiveMarkAs: s.OnInactiveMarkAs,
+		State:            s.State,
+		Type:             s.Type,
+		UserProperties:   s.UserProperties,
+	}
 }
 
 var _ json.Marshaler = DatabricksNotebookActivity{}
@@ -35,9 +49,10 @@ func (s DatabricksNotebookActivity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DatabricksNotebookActivity: %+v", err)
 	}
+
 	decoded["type"] = "DatabricksNotebook"
 
 	encoded, err = json.Marshal(decoded)

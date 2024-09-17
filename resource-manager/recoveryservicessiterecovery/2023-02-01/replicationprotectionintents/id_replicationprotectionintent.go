@@ -44,7 +44,7 @@ func ParseReplicationProtectionIntentID(input string) (*ReplicationProtectionInt
 	}
 
 	id := ReplicationProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationProtectionIntentIDInsensitively(input string) (*Replication
 	}
 
 	id := ReplicationProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

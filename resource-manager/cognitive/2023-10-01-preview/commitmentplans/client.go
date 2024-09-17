@@ -15,7 +15,7 @@ type CommitmentPlansClient struct {
 }
 
 func NewCommitmentPlansClientWithBaseURI(sdkApi sdkEnv.Api) (*CommitmentPlansClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "commitmentplans", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "commitmentplans", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CommitmentPlansClient: %+v", err)
 	}

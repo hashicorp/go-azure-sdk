@@ -14,6 +14,14 @@ type Office365ProjectCheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s Office365ProjectCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = Office365ProjectCheckRequirements{}
@@ -27,9 +35,10 @@ func (s Office365ProjectCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Office365ProjectCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "Office365Project"
 
 	encoded, err = json.Marshal(decoded)

@@ -30,7 +30,7 @@ func (s *DeliveryWithResourceIdentity) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["destination"]; ok {
-		impl, err := unmarshalEventSubscriptionDestinationImplementation(v)
+		impl, err := UnmarshalEventSubscriptionDestinationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Destination' for 'DeliveryWithResourceIdentity': %+v", err)
 		}

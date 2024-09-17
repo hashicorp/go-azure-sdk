@@ -40,7 +40,7 @@ func ParseScopedEdgeDeviceID(input string) (*ScopedEdgeDeviceId, error) {
 	}
 
 	id := ScopedEdgeDeviceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedEdgeDeviceIDInsensitively(input string) (*ScopedEdgeDeviceId, er
 	}
 
 	id := ScopedEdgeDeviceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

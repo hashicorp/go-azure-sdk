@@ -42,7 +42,7 @@ func ParseConnectedEnvironmentID(input string) (*ConnectedEnvironmentId, error) 
 	}
 
 	id := ConnectedEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseConnectedEnvironmentIDInsensitively(input string) (*ConnectedEnvironme
 	}
 
 	id := ConnectedEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

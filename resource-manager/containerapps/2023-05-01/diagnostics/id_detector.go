@@ -44,7 +44,7 @@ func ParseDetectorID(input string) (*DetectorId, error) {
 	}
 
 	id := DetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDetectorIDInsensitively(input string) (*DetectorId, error) {
 	}
 
 	id := DetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

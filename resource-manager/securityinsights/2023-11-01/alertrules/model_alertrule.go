@@ -4,24 +4,48 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AlertRule interface {
+	AlertRule() BaseAlertRuleImpl
 }
 
-// RawAlertRuleImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AlertRule = BaseAlertRuleImpl{}
+
+type BaseAlertRuleImpl struct {
+	Etag       *string                `json:"etag,omitempty"`
+	Id         *string                `json:"id,omitempty"`
+	Kind       AlertRuleKind          `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseAlertRuleImpl) AlertRule() BaseAlertRuleImpl {
+	return s
+}
+
+var _ AlertRule = RawAlertRuleImpl{}
+
+// RawAlertRuleImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAlertRuleImpl struct {
-	Type   string
-	Values map[string]interface{}
+	alertRule BaseAlertRuleImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalAlertRuleImplementation(input []byte) (AlertRule, error) {
+func (s RawAlertRuleImpl) AlertRule() BaseAlertRuleImpl {
+	return s.alertRule
+}
+
+func UnmarshalAlertRuleImplementation(input []byte) (AlertRule, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +84,15 @@ func unmarshalAlertRuleImplementation(input []byte) (AlertRule, error) {
 		return out, nil
 	}
 
-	out := RawAlertRuleImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAlertRuleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAlertRuleImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAlertRuleImpl{
+		alertRule: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

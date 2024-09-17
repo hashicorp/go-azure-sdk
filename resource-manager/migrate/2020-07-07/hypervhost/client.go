@@ -15,7 +15,7 @@ type HyperVHostClient struct {
 }
 
 func NewHyperVHostClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVHostClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervhost", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervhost", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVHostClient: %+v", err)
 	}

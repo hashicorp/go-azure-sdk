@@ -44,7 +44,7 @@ func ParseServerFarmVirtualNetworkConnectionID(input string) (*ServerFarmVirtual
 	}
 
 	id := ServerFarmVirtualNetworkConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerFarmVirtualNetworkConnectionIDInsensitively(input string) (*Serv
 	}
 
 	id := ServerFarmVirtualNetworkConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

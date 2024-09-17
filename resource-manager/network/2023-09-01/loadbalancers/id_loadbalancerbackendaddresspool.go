@@ -44,7 +44,7 @@ func ParseLoadBalancerBackendAddressPoolID(input string) (*LoadBalancerBackendAd
 	}
 
 	id := LoadBalancerBackendAddressPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLoadBalancerBackendAddressPoolIDInsensitively(input string) (*LoadBala
 	}
 
 	id := LoadBalancerBackendAddressPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

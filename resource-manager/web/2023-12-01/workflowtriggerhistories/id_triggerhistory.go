@@ -48,7 +48,7 @@ func ParseTriggerHistoryID(input string) (*TriggerHistoryId, error) {
 	}
 
 	id := TriggerHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseTriggerHistoryIDInsensitively(input string) (*TriggerHistoryId, error)
 	}
 
 	id := TriggerHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

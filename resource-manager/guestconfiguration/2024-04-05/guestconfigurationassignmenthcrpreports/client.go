@@ -15,7 +15,7 @@ type GuestConfigurationAssignmentHCRPReportsClient struct {
 }
 
 func NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(sdkApi sdkEnv.Api) (*GuestConfigurationAssignmentHCRPReportsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "guestconfigurationassignmenthcrpreports", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "guestconfigurationassignmenthcrpreports", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GuestConfigurationAssignmentHCRPReportsClient: %+v", err)
 	}

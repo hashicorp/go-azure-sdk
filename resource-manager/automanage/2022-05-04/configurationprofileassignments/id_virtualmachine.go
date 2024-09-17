@@ -42,7 +42,7 @@ func ParseVirtualMachineID(input string) (*VirtualMachineId, error) {
 	}
 
 	id := VirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualMachineIDInsensitively(input string) (*VirtualMachineId, error)
 	}
 
 	id := VirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

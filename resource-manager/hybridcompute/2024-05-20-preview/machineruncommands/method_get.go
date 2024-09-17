@@ -45,7 +45,6 @@ func (c MachineRunCommandsClient) Get(ctx context.Context, id RunCommandId) (res
 
 	var model MachineRunCommand
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

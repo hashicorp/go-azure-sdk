@@ -92,7 +92,7 @@ func (s *HDInsightOnDemandLinkedServiceTypeProperties) UnmarshalJSON(bytes []byt
 	}
 
 	if v, ok := temp["clusterPassword"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClusterPassword' for 'HDInsightOnDemandLinkedServiceTypeProperties': %+v", err)
 		}
@@ -100,7 +100,7 @@ func (s *HDInsightOnDemandLinkedServiceTypeProperties) UnmarshalJSON(bytes []byt
 	}
 
 	if v, ok := temp["clusterSshPassword"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClusterSshPassword' for 'HDInsightOnDemandLinkedServiceTypeProperties': %+v", err)
 		}
@@ -108,7 +108,7 @@ func (s *HDInsightOnDemandLinkedServiceTypeProperties) UnmarshalJSON(bytes []byt
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalKey' for 'HDInsightOnDemandLinkedServiceTypeProperties': %+v", err)
 		}

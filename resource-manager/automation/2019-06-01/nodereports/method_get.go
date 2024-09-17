@@ -45,7 +45,6 @@ func (c NodeReportsClient) Get(ctx context.Context, id ReportId) (result GetOper
 
 	var model DscNodeReport
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

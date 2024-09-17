@@ -40,7 +40,7 @@ func ParseScopedScheduledActionID(input string) (*ScopedScheduledActionId, error
 	}
 
 	id := ScopedScheduledActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedScheduledActionIDInsensitively(input string) (*ScopedScheduledAc
 	}
 
 	id := ScopedScheduledActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

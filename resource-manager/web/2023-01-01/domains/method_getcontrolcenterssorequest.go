@@ -47,7 +47,6 @@ func (c DomainsClient) GetControlCenterSsoRequest(ctx context.Context, id common
 
 	var model DomainControlCenterSsoRequest
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -48,7 +48,7 @@ func ParseScopeRepetitionID(input string) (*ScopeRepetitionId, error) {
 	}
 
 	id := ScopeRepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseScopeRepetitionIDInsensitively(input string) (*ScopeRepetitionId, erro
 	}
 
 	id := ScopeRepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

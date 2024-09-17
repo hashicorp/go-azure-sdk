@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryPlanActionDetails interface {
+	RecoveryPlanActionDetails() BaseRecoveryPlanActionDetailsImpl
 }
 
-// RawRecoveryPlanActionDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RecoveryPlanActionDetails = BaseRecoveryPlanActionDetailsImpl{}
+
+type BaseRecoveryPlanActionDetailsImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseRecoveryPlanActionDetailsImpl) RecoveryPlanActionDetails() BaseRecoveryPlanActionDetailsImpl {
+	return s
+}
+
+var _ RecoveryPlanActionDetails = RawRecoveryPlanActionDetailsImpl{}
+
+// RawRecoveryPlanActionDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRecoveryPlanActionDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	recoveryPlanActionDetails BaseRecoveryPlanActionDetailsImpl
+	Type                      string
+	Values                    map[string]interface{}
 }
 
-func unmarshalRecoveryPlanActionDetailsImplementation(input []byte) (RecoveryPlanActionDetails, error) {
+func (s RawRecoveryPlanActionDetailsImpl) RecoveryPlanActionDetails() BaseRecoveryPlanActionDetailsImpl {
+	return s.recoveryPlanActionDetails
+}
+
+func UnmarshalRecoveryPlanActionDetailsImplementation(input []byte) (RecoveryPlanActionDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalRecoveryPlanActionDetailsImplementation(input []byte) (RecoveryPla
 		return out, nil
 	}
 
-	out := RawRecoveryPlanActionDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRecoveryPlanActionDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryPlanActionDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRecoveryPlanActionDetailsImpl{
+		recoveryPlanActionDetails: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
 
 }

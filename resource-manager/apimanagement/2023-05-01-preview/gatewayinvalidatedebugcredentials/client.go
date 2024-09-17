@@ -15,7 +15,7 @@ type GatewayInvalidateDebugCredentialsClient struct {
 }
 
 func NewGatewayInvalidateDebugCredentialsClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayInvalidateDebugCredentialsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewayinvalidatedebugcredentials", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewayinvalidatedebugcredentials", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayInvalidateDebugCredentialsClient: %+v", err)
 	}

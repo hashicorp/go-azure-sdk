@@ -45,7 +45,6 @@ func (c MachinePoolsClient) Get(ctx context.Context, id MachinePoolId) (result G
 
 	var model MachinePool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

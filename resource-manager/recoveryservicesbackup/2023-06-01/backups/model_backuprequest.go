@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackupRequest interface {
+	BackupRequest() BaseBackupRequestImpl
 }
 
-// RawBackupRequestImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ BackupRequest = BaseBackupRequestImpl{}
+
+type BaseBackupRequestImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseBackupRequestImpl) BackupRequest() BaseBackupRequestImpl {
+	return s
+}
+
+var _ BackupRequest = RawBackupRequestImpl{}
+
+// RawBackupRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawBackupRequestImpl struct {
-	Type   string
-	Values map[string]interface{}
+	backupRequest BaseBackupRequestImpl
+	Type          string
+	Values        map[string]interface{}
 }
 
-func unmarshalBackupRequestImplementation(input []byte) (BackupRequest, error) {
+func (s RawBackupRequestImpl) BackupRequest() BaseBackupRequestImpl {
+	return s.backupRequest
+}
+
+func UnmarshalBackupRequestImplementation(input []byte) (BackupRequest, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalBackupRequestImplementation(input []byte) (BackupRequest, error) {
 		return out, nil
 	}
 
-	out := RawBackupRequestImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseBackupRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBackupRequestImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawBackupRequestImpl{
+		backupRequest: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
 
 }

@@ -45,7 +45,6 @@ func (c TenantBackfillClient) StartTenantBackfill(ctx context.Context) (result S
 
 	var model TenantBackfillStatusResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

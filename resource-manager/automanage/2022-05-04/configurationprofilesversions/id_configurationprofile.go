@@ -42,7 +42,7 @@ func ParseConfigurationProfileID(input string) (*ConfigurationProfileId, error) 
 	}
 
 	id := ConfigurationProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseConfigurationProfileIDInsensitively(input string) (*ConfigurationProfi
 	}
 
 	id := ConfigurationProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

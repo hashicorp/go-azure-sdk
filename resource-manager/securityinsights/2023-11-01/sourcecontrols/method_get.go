@@ -45,7 +45,6 @@ func (c SourceControlsClient) Get(ctx context.Context, id SourceControlId) (resu
 
 	var model SourceControl
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

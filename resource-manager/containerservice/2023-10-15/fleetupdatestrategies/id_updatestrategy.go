@@ -44,7 +44,7 @@ func ParseUpdateStrategyID(input string) (*UpdateStrategyId, error) {
 	}
 
 	id := UpdateStrategyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUpdateStrategyIDInsensitively(input string) (*UpdateStrategyId, error)
 	}
 
 	id := UpdateStrategyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

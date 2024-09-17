@@ -42,7 +42,7 @@ func ParseLicenseID(input string) (*LicenseId, error) {
 	}
 
 	id := LicenseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLicenseIDInsensitively(input string) (*LicenseId, error) {
 	}
 
 	id := LicenseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

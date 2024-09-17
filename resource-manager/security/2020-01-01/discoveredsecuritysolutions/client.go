@@ -15,7 +15,7 @@ type DiscoveredSecuritySolutionsClient struct {
 }
 
 func NewDiscoveredSecuritySolutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DiscoveredSecuritySolutionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "discoveredsecuritysolutions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "discoveredsecuritysolutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DiscoveredSecuritySolutionsClient: %+v", err)
 	}

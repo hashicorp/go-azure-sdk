@@ -15,6 +15,14 @@ type A2AClusterTestFailoverInput struct {
 	IndividualNodeRecoveryPoints *[]string `json:"individualNodeRecoveryPoints,omitempty"`
 
 	// Fields inherited from ClusterTestFailoverProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s A2AClusterTestFailoverInput) ClusterTestFailoverProviderSpecificInput() BaseClusterTestFailoverProviderSpecificInputImpl {
+	return BaseClusterTestFailoverProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = A2AClusterTestFailoverInput{}
@@ -28,9 +36,10 @@ func (s A2AClusterTestFailoverInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling A2AClusterTestFailoverInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "A2A"
 
 	encoded, err = json.Marshal(decoded)

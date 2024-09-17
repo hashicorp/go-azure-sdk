@@ -50,7 +50,6 @@ func (c IntegrationRuntimesClient) CreateLinkedIntegrationRuntime(ctx context.Co
 
 	var model IntegrationRuntimeStatusResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

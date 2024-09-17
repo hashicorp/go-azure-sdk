@@ -48,7 +48,7 @@ func ParseTriggeredWebJobHistoryID(input string) (*TriggeredWebJobHistoryId, err
 	}
 
 	id := TriggeredWebJobHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseTriggeredWebJobHistoryIDInsensitively(input string) (*TriggeredWebJobH
 	}
 
 	id := TriggeredWebJobHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

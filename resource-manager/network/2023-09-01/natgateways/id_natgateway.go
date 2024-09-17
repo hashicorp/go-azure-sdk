@@ -42,7 +42,7 @@ func ParseNatGatewayID(input string) (*NatGatewayId, error) {
 	}
 
 	id := NatGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseNatGatewayIDInsensitively(input string) (*NatGatewayId, error) {
 	}
 
 	id := NatGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

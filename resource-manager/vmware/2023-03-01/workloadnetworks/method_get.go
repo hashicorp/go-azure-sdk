@@ -46,7 +46,6 @@ func (c WorkloadNetworksClient) Get(ctx context.Context, id PrivateCloudId) (res
 
 	var model Resource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

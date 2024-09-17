@@ -44,7 +44,7 @@ func ParseBatchEndpointID(input string) (*BatchEndpointId, error) {
 	}
 
 	id := BatchEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBatchEndpointIDInsensitively(input string) (*BatchEndpointId, error) {
 	}
 
 	id := BatchEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

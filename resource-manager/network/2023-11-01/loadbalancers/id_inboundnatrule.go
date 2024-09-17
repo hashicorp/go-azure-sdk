@@ -44,7 +44,7 @@ func ParseInboundNatRuleID(input string) (*InboundNatRuleId, error) {
 	}
 
 	id := InboundNatRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInboundNatRuleIDInsensitively(input string) (*InboundNatRuleId, error)
 	}
 
 	id := InboundNatRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/endpoints` Documentation
 
-The `endpoints` SDK allows for interaction with the Azure Resource Manager Service `storagemover` (API Version `2024-07-01`).
+The `endpoints` SDK allows for interaction with Azure Resource Manager `storagemover` (API Version `2024-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

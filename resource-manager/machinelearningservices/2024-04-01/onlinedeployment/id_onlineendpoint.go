@@ -44,7 +44,7 @@ func ParseOnlineEndpointID(input string) (*OnlineEndpointId, error) {
 	}
 
 	id := OnlineEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOnlineEndpointIDInsensitively(input string) (*OnlineEndpointId, error)
 	}
 
 	id := OnlineEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

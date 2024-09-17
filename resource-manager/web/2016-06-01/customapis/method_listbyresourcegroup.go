@@ -36,6 +36,7 @@ func (o ListByResourceGroupOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByResourceGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c CustomAPIsClient) ListByResourceGroup(ctx context.Context, id commonids.
 
 	var model CustomApiDefinitionCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

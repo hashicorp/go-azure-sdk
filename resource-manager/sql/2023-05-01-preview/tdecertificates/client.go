@@ -15,7 +15,7 @@ type TdeCertificatesClient struct {
 }
 
 func NewTdeCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*TdeCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tdecertificates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "tdecertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TdeCertificatesClient: %+v", err)
 	}

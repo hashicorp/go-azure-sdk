@@ -50,7 +50,6 @@ func (c AssetsAndAssetFiltersClient) AssetsCreateOrUpdate(ctx context.Context, i
 
 	var model Asset
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

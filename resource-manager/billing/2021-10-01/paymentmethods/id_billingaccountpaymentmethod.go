@@ -40,7 +40,7 @@ func ParseBillingAccountPaymentMethodID(input string) (*BillingAccountPaymentMet
 	}
 
 	id := BillingAccountPaymentMethodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseBillingAccountPaymentMethodIDInsensitively(input string) (*BillingAcco
 	}
 
 	id := BillingAccountPaymentMethodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseAutomationAccountID(input string) (*AutomationAccountId, error) {
 	}
 
 	id := AutomationAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAutomationAccountIDInsensitively(input string) (*AutomationAccountId, 
 	}
 
 	id := AutomationAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

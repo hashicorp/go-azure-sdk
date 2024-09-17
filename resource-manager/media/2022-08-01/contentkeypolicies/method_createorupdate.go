@@ -50,7 +50,6 @@ func (c ContentKeyPoliciesClient) CreateOrUpdate(ctx context.Context, id Content
 
 	var model ContentKeyPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c EncodingsClient) JobsGet(ctx context.Context, id JobId) (result JobsGetO
 
 	var model Job
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

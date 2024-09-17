@@ -15,7 +15,7 @@ type VMInstanceGuestAgentsClient struct {
 }
 
 func NewVMInstanceGuestAgentsClientWithBaseURI(sdkApi sdkEnv.Api) (*VMInstanceGuestAgentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vminstanceguestagents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vminstanceguestagents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMInstanceGuestAgentsClient: %+v", err)
 	}

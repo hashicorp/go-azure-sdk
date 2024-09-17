@@ -50,7 +50,7 @@ func ParseDefinitionID(input string) (*DefinitionId, error) {
 	}
 
 	id := DefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseDefinitionIDInsensitively(input string) (*DefinitionId, error) {
 	}
 
 	id := DefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseOutboundEndpointID(input string) (*OutboundEndpointId, error) {
 	}
 
 	id := OutboundEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOutboundEndpointIDInsensitively(input string) (*OutboundEndpointId, er
 	}
 
 	id := OutboundEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

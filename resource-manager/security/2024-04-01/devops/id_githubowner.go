@@ -44,7 +44,7 @@ func ParseGitHubOwnerID(input string) (*GitHubOwnerId, error) {
 	}
 
 	id := GitHubOwnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGitHubOwnerIDInsensitively(input string) (*GitHubOwnerId, error) {
 	}
 
 	id := GitHubOwnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -13,6 +13,14 @@ var _ ContentKeyPolicyPlayReadyContentKeyLocation = ContentKeyPolicyPlayReadyCon
 type ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader struct {
 
 	// Fields inherited from ContentKeyPolicyPlayReadyContentKeyLocation
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader) ContentKeyPolicyPlayReadyContentKeyLocation() BaseContentKeyPolicyPlayReadyContentKeyLocationImpl {
+	return BaseContentKeyPolicyPlayReadyContentKeyLocationImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader{}
@@ -26,9 +34,10 @@ func (s ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader) MarshalJSON() (
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader"
 
 	encoded, err = json.Marshal(decoded)

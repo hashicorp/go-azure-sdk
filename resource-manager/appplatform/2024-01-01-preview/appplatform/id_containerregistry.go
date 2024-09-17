@@ -44,7 +44,7 @@ func ParseContainerRegistryID(input string) (*ContainerRegistryId, error) {
 	}
 
 	id := ContainerRegistryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContainerRegistryIDInsensitively(input string) (*ContainerRegistryId, 
 	}
 
 	id := ContainerRegistryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

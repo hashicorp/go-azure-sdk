@@ -40,7 +40,7 @@ func ParseScopedSourceControlConfigurationID(input string) (*ScopedSourceControl
 	}
 
 	id := ScopedSourceControlConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedSourceControlConfigurationIDInsensitively(input string) (*Scoped
 	}
 
 	id := ScopedSourceControlConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

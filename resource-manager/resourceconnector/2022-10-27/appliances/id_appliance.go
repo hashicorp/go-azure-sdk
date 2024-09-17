@@ -42,7 +42,7 @@ func ParseApplianceID(input string) (*ApplianceId, error) {
 	}
 
 	id := ApplianceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseApplianceIDInsensitively(input string) (*ApplianceId, error) {
 	}
 
 	id := ApplianceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseCommitmentPlanID(input string) (*CommitmentPlanId, error) {
 	}
 
 	id := CommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCommitmentPlanIDInsensitively(input string) (*CommitmentPlanId, error)
 	}
 
 	id := CommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

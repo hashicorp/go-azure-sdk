@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2019-07-01/applicationdefinitions` Documentation
 
-The `applicationdefinitions` SDK allows for interaction with the Azure Resource Manager Service `managedapplications` (API Version `2019-07-01`).
+The `applicationdefinitions` SDK allows for interaction with Azure Resource Manager `managedapplications` (API Version `2019-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

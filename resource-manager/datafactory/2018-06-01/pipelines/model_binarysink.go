@@ -14,12 +14,26 @@ type BinarySink struct {
 	StoreSettings StoreWriteSettings `json:"storeSettings"`
 
 	// Fields inherited from CopySink
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
 	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	Type                     string  `json:"type"`
 	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
 	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
+}
+
+func (s BinarySink) CopySink() BaseCopySinkImpl {
+	return BaseCopySinkImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SinkRetryCount:           s.SinkRetryCount,
+		SinkRetryWait:            s.SinkRetryWait,
+		Type:                     s.Type,
+		WriteBatchSize:           s.WriteBatchSize,
+		WriteBatchTimeout:        s.WriteBatchTimeout,
+	}
 }
 
 var _ json.Marshaler = BinarySink{}
@@ -33,9 +47,10 @@ func (s BinarySink) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BinarySink: %+v", err)
 	}
+
 	decoded["type"] = "BinarySink"
 
 	encoded, err = json.Marshal(decoded)
@@ -59,6 +74,7 @@ func (s *BinarySink) UnmarshalJSON(bytes []byte) error {
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SinkRetryCount = decoded.SinkRetryCount
 	s.SinkRetryWait = decoded.SinkRetryWait
+	s.Type = decoded.Type
 	s.WriteBatchSize = decoded.WriteBatchSize
 	s.WriteBatchTimeout = decoded.WriteBatchTimeout
 
@@ -68,7 +84,7 @@ func (s *BinarySink) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["storeSettings"]; ok {
-		impl, err := unmarshalStoreWriteSettingsImplementation(v)
+		impl, err := UnmarshalStoreWriteSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'StoreSettings' for 'BinarySink': %+v", err)
 		}

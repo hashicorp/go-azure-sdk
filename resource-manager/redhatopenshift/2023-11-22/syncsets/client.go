@@ -15,7 +15,7 @@ type SyncSetsClient struct {
 }
 
 func NewSyncSetsClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncSetsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "syncsets", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "syncsets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SyncSetsClient: %+v", err)
 	}

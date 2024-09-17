@@ -45,7 +45,6 @@ func (c QueryTextsClient) Get(ctx context.Context, id QueryTextId) (result GetOp
 
 	var model QueryText
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

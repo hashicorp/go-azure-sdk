@@ -46,7 +46,6 @@ func (c VideosClient) VideosListStreamingToken(ctx context.Context, id VideoId) 
 
 	var model VideoStreamingToken
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

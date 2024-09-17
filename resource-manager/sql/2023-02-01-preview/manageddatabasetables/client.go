@@ -15,7 +15,7 @@ type ManagedDatabaseTablesClient struct {
 }
 
 func NewManagedDatabaseTablesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseTablesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasetables", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasetables", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseTablesClient: %+v", err)
 	}

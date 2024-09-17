@@ -46,7 +46,7 @@ func ParseSupportedBuildPackID(input string) (*SupportedBuildPackId, error) {
 	}
 
 	id := SupportedBuildPackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSupportedBuildPackIDInsensitively(input string) (*SupportedBuildPackId
 	}
 
 	id := SupportedBuildPackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

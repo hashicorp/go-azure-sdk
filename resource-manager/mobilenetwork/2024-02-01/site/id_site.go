@@ -44,7 +44,7 @@ func ParseSiteID(input string) (*SiteId, error) {
 	}
 
 	id := SiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSiteIDInsensitively(input string) (*SiteId, error) {
 	}
 
 	id := SiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

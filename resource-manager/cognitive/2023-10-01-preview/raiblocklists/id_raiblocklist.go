@@ -44,7 +44,7 @@ func ParseRaiBlocklistID(input string) (*RaiBlocklistId, error) {
 	}
 
 	id := RaiBlocklistId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRaiBlocklistIDInsensitively(input string) (*RaiBlocklistId, error) {
 	}
 
 	id := RaiBlocklistId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

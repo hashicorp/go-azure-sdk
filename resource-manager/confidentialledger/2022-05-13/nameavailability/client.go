@@ -15,7 +15,7 @@ type NameAvailabilityClient struct {
 }
 
 func NewNameAvailabilityClientWithBaseURI(sdkApi sdkEnv.Api) (*NameAvailabilityClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "nameavailability", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "nameavailability", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NameAvailabilityClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseArtifactSourceID(input string) (*ArtifactSourceId, error) {
 	}
 
 	id := ArtifactSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseArtifactSourceIDInsensitively(input string) (*ArtifactSourceId, error)
 	}
 
 	id := ArtifactSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

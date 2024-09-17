@@ -15,7 +15,7 @@ type WCFRelaysClient struct {
 }
 
 func NewWCFRelaysClientWithBaseURI(sdkApi sdkEnv.Api) (*WCFRelaysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "wcfrelays", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "wcfrelays", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WCFRelaysClient: %+v", err)
 	}

@@ -42,7 +42,7 @@ func ParseDnsPrivateViewID(input string) (*DnsPrivateViewId, error) {
 	}
 
 	id := DnsPrivateViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDnsPrivateViewIDInsensitively(input string) (*DnsPrivateViewId, error)
 	}
 
 	id := DnsPrivateViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

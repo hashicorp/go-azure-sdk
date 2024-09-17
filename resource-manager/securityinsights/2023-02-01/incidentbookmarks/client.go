@@ -15,7 +15,7 @@ type IncidentBookmarksClient struct {
 }
 
 func NewIncidentBookmarksClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentBookmarksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "incidentbookmarks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "incidentbookmarks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IncidentBookmarksClient: %+v", err)
 	}

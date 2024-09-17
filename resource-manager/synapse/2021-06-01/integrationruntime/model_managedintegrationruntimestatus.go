@@ -14,8 +14,18 @@ type ManagedIntegrationRuntimeStatus struct {
 	TypeProperties ManagedIntegrationRuntimeStatusTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from IntegrationRuntimeStatus
+
 	DataFactoryName *string                  `json:"dataFactoryName,omitempty"`
 	State           *IntegrationRuntimeState `json:"state,omitempty"`
+	Type            IntegrationRuntimeType   `json:"type"`
+}
+
+func (s ManagedIntegrationRuntimeStatus) IntegrationRuntimeStatus() BaseIntegrationRuntimeStatusImpl {
+	return BaseIntegrationRuntimeStatusImpl{
+		DataFactoryName: s.DataFactoryName,
+		State:           s.State,
+		Type:            s.Type,
+	}
 }
 
 var _ json.Marshaler = ManagedIntegrationRuntimeStatus{}
@@ -29,9 +39,10 @@ func (s ManagedIntegrationRuntimeStatus) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedIntegrationRuntimeStatus: %+v", err)
 	}
+
 	decoded["type"] = "Managed"
 
 	encoded, err = json.Marshal(decoded)

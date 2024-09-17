@@ -40,6 +40,7 @@ func (o ListSupportedVirtualMachineSkusOperationOptions) ToHeaders() *client.Hea
 
 func (o ListSupportedVirtualMachineSkusOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

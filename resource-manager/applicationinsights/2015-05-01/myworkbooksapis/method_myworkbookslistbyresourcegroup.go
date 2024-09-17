@@ -37,6 +37,7 @@ func (o MyWorkbooksListByResourceGroupOperationOptions) ToHeaders() *client.Head
 
 func (o MyWorkbooksListByResourceGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -83,7 +84,6 @@ func (c MyworkbooksAPIsClient) MyWorkbooksListByResourceGroup(ctx context.Contex
 
 	var model MyWorkbooksListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

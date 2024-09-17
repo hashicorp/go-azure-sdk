@@ -45,7 +45,6 @@ func (c FeaturestoreEntityContainerClient) GetEntity(ctx context.Context, id Fea
 
 	var model FeaturestoreEntityContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseAutonomousDbVersionID(input string) (*AutonomousDbVersionId, error) {
 	}
 
 	id := AutonomousDbVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAutonomousDbVersionIDInsensitively(input string) (*AutonomousDbVersion
 	}
 
 	id := AutonomousDbVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

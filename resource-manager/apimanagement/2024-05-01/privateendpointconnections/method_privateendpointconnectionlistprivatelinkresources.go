@@ -46,7 +46,6 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionListPrivateLi
 
 	var model PrivateLinkResourceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

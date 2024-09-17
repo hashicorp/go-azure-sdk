@@ -44,7 +44,7 @@ func ParseManagedInstancePrivateEndpointConnectionID(input string) (*ManagedInst
 	}
 
 	id := ManagedInstancePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstancePrivateEndpointConnectionIDInsensitively(input string) 
 	}
 
 	id := ManagedInstancePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

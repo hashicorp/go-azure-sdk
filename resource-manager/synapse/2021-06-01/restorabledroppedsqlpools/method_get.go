@@ -45,7 +45,6 @@ func (c RestorableDroppedSqlPoolsClient) Get(ctx context.Context, id RestorableD
 
 	var model RestorableDroppedSqlPool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

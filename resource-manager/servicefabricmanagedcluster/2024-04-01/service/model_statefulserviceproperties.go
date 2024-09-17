@@ -20,6 +20,7 @@ type StatefulServiceProperties struct {
 	TargetReplicaSetSize       *int64  `json:"targetReplicaSetSize,omitempty"`
 
 	// Fields inherited from ServiceResourceProperties
+
 	CorrelationScheme            *[]ServiceCorrelation         `json:"correlationScheme,omitempty"`
 	DefaultMoveCost              *MoveCost                     `json:"defaultMoveCost,omitempty"`
 	PartitionDescription         Partition                     `json:"partitionDescription"`
@@ -27,10 +28,28 @@ type StatefulServiceProperties struct {
 	ProvisioningState            *string                       `json:"provisioningState,omitempty"`
 	ScalingPolicies              *[]ScalingPolicy              `json:"scalingPolicies,omitempty"`
 	ServiceDnsName               *string                       `json:"serviceDnsName,omitempty"`
+	ServiceKind                  ServiceKind                   `json:"serviceKind"`
 	ServiceLoadMetrics           *[]ServiceLoadMetric          `json:"serviceLoadMetrics,omitempty"`
 	ServicePackageActivationMode *ServicePackageActivationMode `json:"servicePackageActivationMode,omitempty"`
 	ServicePlacementPolicies     *[]ServicePlacementPolicy     `json:"servicePlacementPolicies,omitempty"`
 	ServiceTypeName              string                        `json:"serviceTypeName"`
+}
+
+func (s StatefulServiceProperties) ServiceResourceProperties() BaseServiceResourcePropertiesImpl {
+	return BaseServiceResourcePropertiesImpl{
+		CorrelationScheme:            s.CorrelationScheme,
+		DefaultMoveCost:              s.DefaultMoveCost,
+		PartitionDescription:         s.PartitionDescription,
+		PlacementConstraints:         s.PlacementConstraints,
+		ProvisioningState:            s.ProvisioningState,
+		ScalingPolicies:              s.ScalingPolicies,
+		ServiceDnsName:               s.ServiceDnsName,
+		ServiceKind:                  s.ServiceKind,
+		ServiceLoadMetrics:           s.ServiceLoadMetrics,
+		ServicePackageActivationMode: s.ServicePackageActivationMode,
+		ServicePlacementPolicies:     s.ServicePlacementPolicies,
+		ServiceTypeName:              s.ServiceTypeName,
+	}
 }
 
 var _ json.Marshaler = StatefulServiceProperties{}
@@ -44,9 +63,10 @@ func (s StatefulServiceProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StatefulServiceProperties: %+v", err)
 	}
+
 	decoded["serviceKind"] = "Stateful"
 
 	encoded, err = json.Marshal(decoded)
@@ -76,6 +96,7 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 	s.ReplicaRestartWaitDuration = decoded.ReplicaRestartWaitDuration
 	s.ScalingPolicies = decoded.ScalingPolicies
 	s.ServiceDnsName = decoded.ServiceDnsName
+	s.ServiceKind = decoded.ServiceKind
 	s.ServiceLoadMetrics = decoded.ServiceLoadMetrics
 	s.ServicePackageActivationMode = decoded.ServicePackageActivationMode
 	s.ServicePlacementTimeLimit = decoded.ServicePlacementTimeLimit
@@ -89,7 +110,7 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["partitionDescription"]; ok {
-		impl, err := unmarshalPartitionImplementation(v)
+		impl, err := UnmarshalPartitionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PartitionDescription' for 'StatefulServiceProperties': %+v", err)
 		}
@@ -104,7 +125,7 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]ServicePlacementPolicy, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalServicePlacementPolicyImplementation(val)
+			impl, err := UnmarshalServicePlacementPolicyImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ServicePlacementPolicies' for 'StatefulServiceProperties': %+v", i, err)
 			}

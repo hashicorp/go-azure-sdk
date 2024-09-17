@@ -15,7 +15,7 @@ import (
 type ProductSettingsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Settings
+	Model        Settings
 }
 
 // ProductSettingsGet ...
@@ -48,11 +48,11 @@ func (c SettingsClient) ProductSettingsGet(ctx context.Context, id SettingId) (r
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalSettingsImplementation(respObj)
+	model, err := UnmarshalSettingsImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

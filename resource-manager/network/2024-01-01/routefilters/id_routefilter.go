@@ -42,7 +42,7 @@ func ParseRouteFilterID(input string) (*RouteFilterId, error) {
 	}
 
 	id := RouteFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRouteFilterIDInsensitively(input string) (*RouteFilterId, error) {
 	}
 
 	id := RouteFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

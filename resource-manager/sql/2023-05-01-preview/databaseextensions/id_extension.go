@@ -46,7 +46,7 @@ func ParseExtensionID(input string) (*ExtensionId, error) {
 	}
 
 	id := ExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseExtensionIDInsensitively(input string) (*ExtensionId, error) {
 	}
 
 	id := ExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -38,7 +38,7 @@ func (s *WorkspaceConnectionPropertiesV2BasicResource) UnmarshalJSON(bytes []byt
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalWorkspaceConnectionPropertiesV2Implementation(v)
+		impl, err := UnmarshalWorkspaceConnectionPropertiesV2Implementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'WorkspaceConnectionPropertiesV2BasicResource': %+v", err)
 		}

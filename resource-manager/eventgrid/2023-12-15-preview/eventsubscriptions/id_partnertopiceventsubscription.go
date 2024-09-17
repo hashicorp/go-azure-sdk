@@ -44,7 +44,7 @@ func ParsePartnerTopicEventSubscriptionID(input string) (*PartnerTopicEventSubsc
 	}
 
 	id := PartnerTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePartnerTopicEventSubscriptionIDInsensitively(input string) (*PartnerTo
 	}
 
 	id := PartnerTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

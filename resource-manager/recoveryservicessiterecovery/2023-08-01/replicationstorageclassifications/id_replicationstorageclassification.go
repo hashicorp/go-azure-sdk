@@ -46,7 +46,7 @@ func ParseReplicationStorageClassificationID(input string) (*ReplicationStorageC
 	}
 
 	id := ReplicationStorageClassificationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicationStorageClassificationIDInsensitively(input string) (*Replic
 	}
 
 	id := ReplicationStorageClassificationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

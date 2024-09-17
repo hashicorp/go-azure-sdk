@@ -42,7 +42,7 @@ func ParseSpatialAnchorsAccountID(input string) (*SpatialAnchorsAccountId, error
 	}
 
 	id := SpatialAnchorsAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSpatialAnchorsAccountIDInsensitively(input string) (*SpatialAnchorsAcc
 	}
 
 	id := SpatialAnchorsAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

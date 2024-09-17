@@ -44,7 +44,7 @@ func ParseEnvironmentTypeID(input string) (*EnvironmentTypeId, error) {
 	}
 
 	id := EnvironmentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEnvironmentTypeIDInsensitively(input string) (*EnvironmentTypeId, erro
 	}
 
 	id := EnvironmentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

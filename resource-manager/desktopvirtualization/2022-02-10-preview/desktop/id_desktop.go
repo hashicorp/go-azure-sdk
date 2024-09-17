@@ -44,7 +44,7 @@ func ParseDesktopID(input string) (*DesktopId, error) {
 	}
 
 	id := DesktopId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDesktopIDInsensitively(input string) (*DesktopId, error) {
 	}
 
 	id := DesktopId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

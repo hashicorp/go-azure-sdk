@@ -46,7 +46,7 @@ func ParseApiID(input string) (*ApiId, error) {
 	}
 
 	id := ApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseApiIDInsensitively(input string) (*ApiId, error) {
 	}
 
 	id := ApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

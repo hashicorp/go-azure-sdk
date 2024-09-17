@@ -46,7 +46,7 @@ func ParseQueueAuthorizationRuleID(input string) (*QueueAuthorizationRuleId, err
 	}
 
 	id := QueueAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseQueueAuthorizationRuleIDInsensitively(input string) (*QueueAuthorizati
 	}
 
 	id := QueueAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

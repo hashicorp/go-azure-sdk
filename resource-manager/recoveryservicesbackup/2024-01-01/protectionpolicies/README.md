@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-01-01/protectionpolicies` Documentation
 
-The `protectionpolicies` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicesbackup` (API Version `2024-01-01`).
+The `protectionpolicies` SDK allows for interaction with Azure Resource Manager `recoveryservicesbackup` (API Version `2024-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

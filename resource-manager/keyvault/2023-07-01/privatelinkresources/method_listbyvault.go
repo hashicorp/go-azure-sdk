@@ -47,7 +47,6 @@ func (c PrivateLinkResourcesClient) ListByVault(ctx context.Context, id commonid
 
 	var model PrivateLinkResourceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

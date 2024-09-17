@@ -40,7 +40,7 @@ func (s *JobService) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["nodes"]; ok {
-		impl, err := unmarshalNodesImplementation(v)
+		impl, err := UnmarshalNodesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Nodes' for 'JobService': %+v", err)
 		}

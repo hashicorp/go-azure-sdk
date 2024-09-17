@@ -15,7 +15,7 @@ type DataProductsCatalogsClient struct {
 }
 
 func NewDataProductsCatalogsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataProductsCatalogsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataproductscatalogs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataproductscatalogs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataProductsCatalogsClient: %+v", err)
 	}

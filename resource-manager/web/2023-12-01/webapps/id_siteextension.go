@@ -44,7 +44,7 @@ func ParseSiteExtensionID(input string) (*SiteExtensionId, error) {
 	}
 
 	id := SiteExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSiteExtensionIDInsensitively(input string) (*SiteExtensionId, error) {
 	}
 
 	id := SiteExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

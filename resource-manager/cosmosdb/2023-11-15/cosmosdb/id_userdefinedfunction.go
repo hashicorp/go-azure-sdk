@@ -48,7 +48,7 @@ func ParseUserDefinedFunctionID(input string) (*UserDefinedFunctionId, error) {
 	}
 
 	id := UserDefinedFunctionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseUserDefinedFunctionIDInsensitively(input string) (*UserDefinedFunction
 	}
 
 	id := UserDefinedFunctionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

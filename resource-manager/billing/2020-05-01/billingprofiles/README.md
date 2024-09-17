@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/billingprofiles` Documentation
 
-The `billingprofiles` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `billingprofiles` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

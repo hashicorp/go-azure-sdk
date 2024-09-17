@@ -38,7 +38,7 @@ func ParseViewID(input string) (*ViewId, error) {
 	}
 
 	id := ViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseViewIDInsensitively(input string) (*ViewId, error) {
 	}
 
 	id := ViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

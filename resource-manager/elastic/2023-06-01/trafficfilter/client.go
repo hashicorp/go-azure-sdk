@@ -15,7 +15,7 @@ type TrafficFilterClient struct {
 }
 
 func NewTrafficFilterClientWithBaseURI(sdkApi sdkEnv.Api) (*TrafficFilterClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "trafficfilter", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "trafficfilter", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TrafficFilterClient: %+v", err)
 	}

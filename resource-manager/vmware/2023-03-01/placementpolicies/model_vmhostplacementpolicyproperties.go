@@ -18,9 +18,20 @@ type VMHostPlacementPolicyProperties struct {
 	VMMembers              []string                `json:"vmMembers"`
 
 	// Fields inherited from PlacementPolicyProperties
+
 	DisplayName       *string                           `json:"displayName,omitempty"`
 	ProvisioningState *PlacementPolicyProvisioningState `json:"provisioningState,omitempty"`
 	State             *PlacementPolicyState             `json:"state,omitempty"`
+	Type              PlacementPolicyType               `json:"type"`
+}
+
+func (s VMHostPlacementPolicyProperties) PlacementPolicyProperties() BasePlacementPolicyPropertiesImpl {
+	return BasePlacementPolicyPropertiesImpl{
+		DisplayName:       s.DisplayName,
+		ProvisioningState: s.ProvisioningState,
+		State:             s.State,
+		Type:              s.Type,
+	}
 }
 
 var _ json.Marshaler = VMHostPlacementPolicyProperties{}
@@ -34,9 +45,10 @@ func (s VMHostPlacementPolicyProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMHostPlacementPolicyProperties: %+v", err)
 	}
+
 	decoded["type"] = "VmHost"
 
 	encoded, err = json.Marshal(decoded)

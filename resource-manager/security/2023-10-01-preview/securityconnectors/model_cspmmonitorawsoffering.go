@@ -14,7 +14,16 @@ type CspmMonitorAwsOffering struct {
 	NativeCloudConnection *CspmMonitorAwsOfferingNativeCloudConnection `json:"nativeCloudConnection,omitempty"`
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s CspmMonitorAwsOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = CspmMonitorAwsOffering{}
@@ -28,9 +37,10 @@ func (s CspmMonitorAwsOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CspmMonitorAwsOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "CspmMonitorAws"
 
 	encoded, err = json.Marshal(decoded)

@@ -40,7 +40,7 @@ func ParseSubscriptionID(input string) (*SubscriptionId, error) {
 	}
 
 	id := SubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSubscriptionIDInsensitively(input string) (*SubscriptionId, error) {
 	}
 
 	id := SubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

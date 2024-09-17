@@ -39,6 +39,7 @@ func (o SqlPoolTableColumnsListByTableNameOperationOptions) ToHeaders() *client.
 
 func (o SqlPoolTableColumnsListByTableNameOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

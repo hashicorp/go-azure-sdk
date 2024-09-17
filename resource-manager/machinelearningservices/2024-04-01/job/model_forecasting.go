@@ -25,9 +25,20 @@ type Forecasting struct {
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 
 	// Fields inherited from AutoMLVertical
+
 	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
 	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TaskType         TaskType        `json:"taskType"`
 	TrainingData     MLTableJobInput `json:"trainingData"`
+}
+
+func (s Forecasting) AutoMLVertical() BaseAutoMLVerticalImpl {
+	return BaseAutoMLVerticalImpl{
+		LogVerbosity:     s.LogVerbosity,
+		TargetColumnName: s.TargetColumnName,
+		TaskType:         s.TaskType,
+		TrainingData:     s.TrainingData,
+	}
 }
 
 var _ json.Marshaler = Forecasting{}
@@ -41,9 +52,10 @@ func (s Forecasting) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Forecasting: %+v", err)
 	}
+
 	decoded["taskType"] = "Forecasting"
 
 	encoded, err = json.Marshal(decoded)
@@ -70,6 +82,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 	s.LogVerbosity = decoded.LogVerbosity
 	s.PrimaryMetric = decoded.PrimaryMetric
 	s.TargetColumnName = decoded.TargetColumnName
+	s.TaskType = decoded.TaskType
 	s.TestData = decoded.TestData
 	s.TestDataSize = decoded.TestDataSize
 	s.TrainingData = decoded.TrainingData
@@ -84,7 +97,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["nCrossValidations"]; ok {
-		impl, err := unmarshalNCrossValidationsImplementation(v)
+		impl, err := UnmarshalNCrossValidationsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'NCrossValidations' for 'Forecasting': %+v", err)
 		}

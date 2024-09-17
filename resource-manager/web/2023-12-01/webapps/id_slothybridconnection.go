@@ -46,7 +46,7 @@ func ParseSlotHybridConnectionID(input string) (*SlotHybridConnectionId, error) 
 	}
 
 	id := SlotHybridConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotHybridConnectionIDInsensitively(input string) (*SlotHybridConnecti
 	}
 
 	id := SlotHybridConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseTopQueryStatisticID(input string) (*TopQueryStatisticId, error) {
 	}
 
 	id := TopQueryStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopQueryStatisticIDInsensitively(input string) (*TopQueryStatisticId, 
 	}
 
 	id := TopQueryStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

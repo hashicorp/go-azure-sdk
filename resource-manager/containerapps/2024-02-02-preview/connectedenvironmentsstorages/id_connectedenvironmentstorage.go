@@ -44,7 +44,7 @@ func ParseConnectedEnvironmentStorageID(input string) (*ConnectedEnvironmentStor
 	}
 
 	id := ConnectedEnvironmentStorageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectedEnvironmentStorageIDInsensitively(input string) (*ConnectedEn
 	}
 
 	id := ConnectedEnvironmentStorageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

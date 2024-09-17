@@ -40,7 +40,7 @@ func ParseProviderPacketCoreControlPlaneVersionID(input string) (*ProviderPacket
 	}
 
 	id := ProviderPacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviderPacketCoreControlPlaneVersionIDInsensitively(input string) (*P
 	}
 
 	id := ProviderPacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

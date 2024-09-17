@@ -49,7 +49,6 @@ func (c DataReferenceClient) RegistryDataReferencesGetBlobReferenceSAS(ctx conte
 
 	var model GetBlobReferenceSASResponseDto
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

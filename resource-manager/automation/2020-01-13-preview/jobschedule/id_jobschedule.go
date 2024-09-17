@@ -44,7 +44,7 @@ func ParseJobScheduleID(input string) (*JobScheduleId, error) {
 	}
 
 	id := JobScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseJobScheduleIDInsensitively(input string) (*JobScheduleId, error) {
 	}
 
 	id := JobScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

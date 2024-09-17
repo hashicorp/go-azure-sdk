@@ -40,7 +40,7 @@ func ParseScopedDenyAssignmentIdID(input string) (*ScopedDenyAssignmentIdId, err
 	}
 
 	id := ScopedDenyAssignmentIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedDenyAssignmentIdIDInsensitively(input string) (*ScopedDenyAssign
 	}
 
 	id := ScopedDenyAssignmentIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseStreamingJobID(input string) (*StreamingJobId, error) {
 	}
 
 	id := StreamingJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseStreamingJobIDInsensitively(input string) (*StreamingJobId, error) {
 	}
 
 	id := StreamingJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

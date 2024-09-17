@@ -40,7 +40,7 @@ func ParseScopedAssessmentID(input string) (*ScopedAssessmentId, error) {
 	}
 
 	id := ScopedAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAssessmentIDInsensitively(input string) (*ScopedAssessmentId, er
 	}
 
 	id := ScopedAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

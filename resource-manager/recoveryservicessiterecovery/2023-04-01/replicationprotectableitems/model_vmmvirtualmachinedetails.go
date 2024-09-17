@@ -12,15 +12,15 @@ var _ ConfigurationSettings = VMmVirtualMachineDetails{}
 
 type VMmVirtualMachineDetails struct {
 
-	// Fields inherited from HyperVVirtualMachineDetails
-	DiskDetails            *[]DiskDetails  `json:"diskDetails,omitempty"`
-	Generation             *string         `json:"generation,omitempty"`
-	HasFibreChannelAdapter *PresenceStatus `json:"hasFibreChannelAdapter,omitempty"`
-	HasPhysicalDisk        *PresenceStatus `json:"hasPhysicalDisk,omitempty"`
-	HasSharedVhd           *PresenceStatus `json:"hasSharedVhd,omitempty"`
-	HyperVHostId           *string         `json:"hyperVHostId,omitempty"`
-	OsDetails              *OSDetails      `json:"osDetails,omitempty"`
-	SourceItemId           *string         `json:"sourceItemId,omitempty"`
+	// Fields inherited from ConfigurationSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMmVirtualMachineDetails) ConfigurationSettings() BaseConfigurationSettingsImpl {
+	return BaseConfigurationSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMmVirtualMachineDetails{}
@@ -34,9 +34,10 @@ func (s VMmVirtualMachineDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMmVirtualMachineDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VmmVirtualMachine"
 
 	encoded, err = json.Marshal(decoded)

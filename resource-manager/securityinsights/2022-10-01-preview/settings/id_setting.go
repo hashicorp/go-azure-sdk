@@ -44,7 +44,7 @@ func ParseSettingID(input string) (*SettingId, error) {
 	}
 
 	id := SettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSettingIDInsensitively(input string) (*SettingId, error) {
 	}
 
 	id := SettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

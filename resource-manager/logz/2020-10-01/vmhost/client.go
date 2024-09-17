@@ -15,7 +15,7 @@ type VMHostClient struct {
 }
 
 func NewVMHostClientWithBaseURI(sdkApi sdkEnv.Api) (*VMHostClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vmhost", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vmhost", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMHostClient: %+v", err)
 	}

@@ -40,7 +40,7 @@ func ParseScopedQuotaRequestID(input string) (*ScopedQuotaRequestId, error) {
 	}
 
 	id := ScopedQuotaRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedQuotaRequestIDInsensitively(input string) (*ScopedQuotaRequestId
 	}
 
 	id := ScopedQuotaRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

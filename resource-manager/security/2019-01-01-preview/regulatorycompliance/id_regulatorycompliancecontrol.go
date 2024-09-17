@@ -42,7 +42,7 @@ func ParseRegulatoryComplianceControlID(input string) (*RegulatoryComplianceCont
 	}
 
 	id := RegulatoryComplianceControlId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRegulatoryComplianceControlIDInsensitively(input string) (*RegulatoryC
 	}
 
 	id := RegulatoryComplianceControlId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

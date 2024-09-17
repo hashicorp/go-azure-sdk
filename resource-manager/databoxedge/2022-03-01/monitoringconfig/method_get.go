@@ -46,7 +46,6 @@ func (c MonitoringConfigClient) Get(ctx context.Context, id RoleId) (result GetO
 
 	var model MonitoringMetricConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

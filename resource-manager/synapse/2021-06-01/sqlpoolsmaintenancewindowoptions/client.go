@@ -15,7 +15,7 @@ type SqlPoolsMaintenanceWindowOptionsClient struct {
 }
 
 func NewSqlPoolsMaintenanceWindowOptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsMaintenanceWindowOptionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsmaintenancewindowoptions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsmaintenancewindowoptions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsMaintenanceWindowOptionsClient: %+v", err)
 	}

@@ -40,7 +40,7 @@ func ParseProviderAssessmentMetadataID(input string) (*ProviderAssessmentMetadat
 	}
 
 	id := ProviderAssessmentMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviderAssessmentMetadataIDInsensitively(input string) (*ProviderAsse
 	}
 
 	id := ProviderAssessmentMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

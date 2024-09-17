@@ -45,7 +45,6 @@ func (c ApiVersionsClient) Get(ctx context.Context, id VersionId) (result GetOpe
 
 	var model ApiVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

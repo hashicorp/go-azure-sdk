@@ -44,7 +44,7 @@ func ParseAppSettingID(input string) (*AppSettingId, error) {
 	}
 
 	id := AppSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAppSettingIDInsensitively(input string) (*AppSettingId, error) {
 	}
 
 	id := AppSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

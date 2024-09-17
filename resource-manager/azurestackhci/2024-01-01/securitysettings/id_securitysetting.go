@@ -44,7 +44,7 @@ func ParseSecuritySettingID(input string) (*SecuritySettingId, error) {
 	}
 
 	id := SecuritySettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSecuritySettingIDInsensitively(input string) (*SecuritySettingId, erro
 	}
 
 	id := SecuritySettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type ManagedClusterVersionClient struct {
 }
 
 func NewManagedClusterVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedClusterVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedclusterversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedclusterversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedClusterVersionClient: %+v", err)
 	}

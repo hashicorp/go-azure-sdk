@@ -15,7 +15,7 @@ type ManagedLedgerDigestUploadsClient struct {
 }
 
 func NewManagedLedgerDigestUploadsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedLedgerDigestUploadsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedledgerdigestuploads", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedledgerdigestuploads", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedLedgerDigestUploadsClient: %+v", err)
 	}

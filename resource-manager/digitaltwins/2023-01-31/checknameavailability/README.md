@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/checknameavailability` Documentation
 
-The `checknameavailability` SDK allows for interaction with the Azure Resource Manager Service `digitaltwins` (API Version `2023-01-31`).
+The `checknameavailability` SDK allows for interaction with Azure Resource Manager `digitaltwins` (API Version `2023-01-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

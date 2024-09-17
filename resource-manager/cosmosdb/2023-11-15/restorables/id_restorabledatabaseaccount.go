@@ -42,7 +42,7 @@ func ParseRestorableDatabaseAccountID(input string) (*RestorableDatabaseAccountI
 	}
 
 	id := RestorableDatabaseAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRestorableDatabaseAccountIDInsensitively(input string) (*RestorableDat
 	}
 
 	id := RestorableDatabaseAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

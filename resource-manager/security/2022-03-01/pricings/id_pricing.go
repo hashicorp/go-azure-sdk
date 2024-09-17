@@ -40,7 +40,7 @@ func ParsePricingID(input string) (*PricingId, error) {
 	}
 
 	id := PricingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePricingIDInsensitively(input string) (*PricingId, error) {
 	}
 
 	id := PricingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

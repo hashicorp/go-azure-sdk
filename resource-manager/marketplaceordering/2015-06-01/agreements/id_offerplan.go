@@ -44,7 +44,7 @@ func ParseOfferPlanID(input string) (*OfferPlanId, error) {
 	}
 
 	id := OfferPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOfferPlanIDInsensitively(input string) (*OfferPlanId, error) {
 	}
 
 	id := OfferPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type AzureBackupJobClient struct {
 }
 
 func NewAzureBackupJobClientWithBaseURI(sdkApi sdkEnv.Api) (*AzureBackupJobClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "azurebackupjob", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "azurebackupjob", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AzureBackupJobClient: %+v", err)
 	}

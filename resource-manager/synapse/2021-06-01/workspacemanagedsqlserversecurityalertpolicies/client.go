@@ -15,7 +15,7 @@ type WorkspaceManagedSqlServerSecurityAlertPoliciesClient struct {
 }
 
 func NewWorkspaceManagedSqlServerSecurityAlertPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerSecurityAlertPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacemanagedsqlserversecurityalertpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserversecurityalertpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerSecurityAlertPoliciesClient: %+v", err)
 	}

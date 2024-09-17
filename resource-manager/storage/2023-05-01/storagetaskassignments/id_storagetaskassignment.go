@@ -44,7 +44,7 @@ func ParseStorageTaskAssignmentID(input string) (*StorageTaskAssignmentId, error
 	}
 
 	id := StorageTaskAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStorageTaskAssignmentIDInsensitively(input string) (*StorageTaskAssign
 	}
 
 	id := StorageTaskAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

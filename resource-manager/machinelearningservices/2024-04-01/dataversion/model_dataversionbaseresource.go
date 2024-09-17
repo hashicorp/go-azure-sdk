@@ -38,7 +38,7 @@ func (s *DataVersionBaseResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalDataVersionBaseImplementation(v)
+		impl, err := UnmarshalDataVersionBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'DataVersionBaseResource': %+v", err)
 		}

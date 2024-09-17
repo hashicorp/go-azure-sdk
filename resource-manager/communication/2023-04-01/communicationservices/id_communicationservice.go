@@ -42,7 +42,7 @@ func ParseCommunicationServiceID(input string) (*CommunicationServiceId, error) 
 	}
 
 	id := CommunicationServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCommunicationServiceIDInsensitively(input string) (*CommunicationServi
 	}
 
 	id := CommunicationServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

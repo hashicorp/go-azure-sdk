@@ -46,7 +46,6 @@ func (c IncidentAlertsClient) IncidentsListAlerts(ctx context.Context, id Incide
 
 	var model IncidentAlertList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

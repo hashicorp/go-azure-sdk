@@ -44,7 +44,7 @@ func ParseConnectionMonitorID(input string) (*ConnectionMonitorId, error) {
 	}
 
 	id := ConnectionMonitorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectionMonitorIDInsensitively(input string) (*ConnectionMonitorId, 
 	}
 
 	id := ConnectionMonitorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

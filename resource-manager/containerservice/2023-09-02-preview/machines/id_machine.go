@@ -46,7 +46,7 @@ func ParseMachineID(input string) (*MachineId, error) {
 	}
 
 	id := MachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseMachineIDInsensitively(input string) (*MachineId, error) {
 	}
 
 	id := MachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

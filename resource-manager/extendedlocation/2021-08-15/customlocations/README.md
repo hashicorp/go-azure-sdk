@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/extendedlocation/2021-08-15/customlocations` Documentation
 
-The `customlocations` SDK allows for interaction with the Azure Resource Manager Service `extendedlocation` (API Version `2021-08-15`).
+The `customlocations` SDK allows for interaction with Azure Resource Manager `extendedlocation` (API Version `2021-08-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

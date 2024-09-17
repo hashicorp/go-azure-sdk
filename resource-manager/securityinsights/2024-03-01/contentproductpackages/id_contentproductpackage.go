@@ -44,7 +44,7 @@ func ParseContentProductPackageID(input string) (*ContentProductPackageId, error
 	}
 
 	id := ContentProductPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentProductPackageIDInsensitively(input string) (*ContentProductPac
 	}
 
 	id := ContentProductPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

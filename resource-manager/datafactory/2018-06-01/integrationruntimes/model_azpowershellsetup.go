@@ -14,6 +14,14 @@ type AzPowerShellSetup struct {
 	TypeProperties AzPowerShellSetupTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from CustomSetupBase
+
+	Type string `json:"type"`
+}
+
+func (s AzPowerShellSetup) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return BaseCustomSetupBaseImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = AzPowerShellSetup{}
@@ -27,9 +35,10 @@ func (s AzPowerShellSetup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzPowerShellSetup: %+v", err)
 	}
+
 	decoded["type"] = "AzPowerShellSetup"
 
 	encoded, err = json.Marshal(decoded)

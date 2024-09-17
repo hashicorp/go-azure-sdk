@@ -40,7 +40,7 @@ func ParseBillingRoleDefinitionID(input string) (*BillingRoleDefinitionId, error
 	}
 
 	id := BillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseBillingRoleDefinitionIDInsensitively(input string) (*BillingRoleDefini
 	}
 
 	id := BillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

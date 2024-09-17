@@ -46,7 +46,7 @@ func ParseProductLinkID(input string) (*ProductLinkId, error) {
 	}
 
 	id := ProductLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProductLinkIDInsensitively(input string) (*ProductLinkId, error) {
 	}
 
 	id := ProductLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

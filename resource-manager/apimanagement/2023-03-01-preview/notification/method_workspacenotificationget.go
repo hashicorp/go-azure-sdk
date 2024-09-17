@@ -45,7 +45,6 @@ func (c NotificationClient) WorkspaceNotificationGet(ctx context.Context, id Not
 
 	var model NotificationContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

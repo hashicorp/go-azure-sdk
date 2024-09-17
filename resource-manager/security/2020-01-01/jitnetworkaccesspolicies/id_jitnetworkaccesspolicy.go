@@ -44,7 +44,7 @@ func ParseJitNetworkAccessPolicyID(input string) (*JitNetworkAccessPolicyId, err
 	}
 
 	id := JitNetworkAccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseJitNetworkAccessPolicyIDInsensitively(input string) (*JitNetworkAccess
 	}
 
 	id := JitNetworkAccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

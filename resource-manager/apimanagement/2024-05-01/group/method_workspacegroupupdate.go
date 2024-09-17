@@ -36,6 +36,7 @@ func (o WorkspaceGroupUpdateOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceGroupUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c GroupClient) WorkspaceGroupUpdate(ctx context.Context, id WorkspaceGroup
 
 	var model GroupContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

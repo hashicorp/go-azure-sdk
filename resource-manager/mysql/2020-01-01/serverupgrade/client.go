@@ -15,7 +15,7 @@ type ServerUpgradeClient struct {
 }
 
 func NewServerUpgradeClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerUpgradeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverupgrade", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverupgrade", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerUpgradeClient: %+v", err)
 	}

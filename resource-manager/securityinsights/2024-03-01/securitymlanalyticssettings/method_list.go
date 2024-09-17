@@ -73,7 +73,7 @@ func (c SecurityMLAnalyticsSettingsClient) List(ctx context.Context, id Workspac
 	temp := make([]SecurityMLAnalyticsSetting, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalSecurityMLAnalyticsSettingImplementation(v)
+			val, err := UnmarshalSecurityMLAnalyticsSettingImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for SecurityMLAnalyticsSetting (%q): %+v", i, v, err)
 				return result, err

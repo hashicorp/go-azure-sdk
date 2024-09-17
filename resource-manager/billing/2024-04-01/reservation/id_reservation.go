@@ -42,7 +42,7 @@ func ParseReservationID(input string) (*ReservationId, error) {
 	}
 
 	id := ReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseReservationIDInsensitively(input string) (*ReservationId, error) {
 	}
 
 	id := ReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -45,7 +45,6 @@ func (c ScriptCmdletsClient) Get(ctx context.Context, id ScriptCmdletId) (result
 
 	var model ScriptCmdlet
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -56,6 +56,7 @@ func (o AlertsGetAllOperationOptions) ToHeaders() *client.Headers {
 
 func (o AlertsGetAllOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

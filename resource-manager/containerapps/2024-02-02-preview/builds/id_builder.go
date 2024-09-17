@@ -42,7 +42,7 @@ func ParseBuilderID(input string) (*BuilderId, error) {
 	}
 
 	id := BuilderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseBuilderIDInsensitively(input string) (*BuilderId, error) {
 	}
 
 	id := BuilderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

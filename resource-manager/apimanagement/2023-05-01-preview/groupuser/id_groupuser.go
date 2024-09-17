@@ -46,7 +46,7 @@ func ParseGroupUserID(input string) (*GroupUserId, error) {
 	}
 
 	id := GroupUserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGroupUserIDInsensitively(input string) (*GroupUserId, error) {
 	}
 
 	id := GroupUserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

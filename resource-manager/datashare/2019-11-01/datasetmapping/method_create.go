@@ -15,7 +15,7 @@ import (
 type CreateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *DataSetMapping
+	Model        DataSetMapping
 }
 
 // Create ...
@@ -53,11 +53,11 @@ func (c DataSetMappingClient) Create(ctx context.Context, id DataSetMappingId, i
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalDataSetMappingImplementation(respObj)
+	model, err := UnmarshalDataSetMappingImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

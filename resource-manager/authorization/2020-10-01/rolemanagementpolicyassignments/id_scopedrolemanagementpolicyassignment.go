@@ -40,7 +40,7 @@ func ParseScopedRoleManagementPolicyAssignmentID(input string) (*ScopedRoleManag
 	}
 
 	id := ScopedRoleManagementPolicyAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedRoleManagementPolicyAssignmentIDInsensitively(input string) (*Sc
 	}
 
 	id := ScopedRoleManagementPolicyAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

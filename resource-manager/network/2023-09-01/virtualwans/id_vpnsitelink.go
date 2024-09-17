@@ -44,7 +44,7 @@ func ParseVpnSiteLinkID(input string) (*VpnSiteLinkId, error) {
 	}
 
 	id := VpnSiteLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVpnSiteLinkIDInsensitively(input string) (*VpnSiteLinkId, error) {
 	}
 
 	id := VpnSiteLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -31,7 +31,7 @@ func (s *AppFiguresLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["clientKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientKey' for 'AppFiguresLinkedServiceTypeProperties': %+v", err)
 		}
@@ -39,7 +39,7 @@ func (s *AppFiguresLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'AppFiguresLinkedServiceTypeProperties': %+v", err)
 		}

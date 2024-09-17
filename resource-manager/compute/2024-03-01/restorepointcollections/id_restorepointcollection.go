@@ -42,7 +42,7 @@ func ParseRestorePointCollectionID(input string) (*RestorePointCollectionId, err
 	}
 
 	id := RestorePointCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRestorePointCollectionIDInsensitively(input string) (*RestorePointColl
 	}
 
 	id := RestorePointCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

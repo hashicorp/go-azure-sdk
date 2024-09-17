@@ -44,7 +44,7 @@ func ParseHubRouteTableID(input string) (*HubRouteTableId, error) {
 	}
 
 	id := HubRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHubRouteTableIDInsensitively(input string) (*HubRouteTableId, error) {
 	}
 
 	id := HubRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type BatchManagementsClient struct {
 }
 
 func NewBatchManagementsClientWithBaseURI(sdkApi sdkEnv.Api) (*BatchManagementsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "batchmanagements", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "batchmanagements", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BatchManagementsClient: %+v", err)
 	}

@@ -42,7 +42,7 @@ func ParsePrivateLinkScopeID(input string) (*PrivateLinkScopeId, error) {
 	}
 
 	id := PrivateLinkScopeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePrivateLinkScopeIDInsensitively(input string) (*PrivateLinkScopeId, er
 	}
 
 	id := PrivateLinkScopeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

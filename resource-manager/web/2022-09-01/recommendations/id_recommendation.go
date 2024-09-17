@@ -40,7 +40,7 @@ func ParseRecommendationID(input string) (*RecommendationId, error) {
 	}
 
 	id := RecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseRecommendationIDInsensitively(input string) (*RecommendationId, error)
 	}
 
 	id := RecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

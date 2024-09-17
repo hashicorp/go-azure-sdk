@@ -44,7 +44,7 @@ func ParseSystemTopicEventSubscriptionID(input string) (*SystemTopicEventSubscri
 	}
 
 	id := SystemTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSystemTopicEventSubscriptionIDInsensitively(input string) (*SystemTopi
 	}
 
 	id := SystemTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

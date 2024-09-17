@@ -15,7 +15,7 @@ type SyncIdentityProvidersClient struct {
 }
 
 func NewSyncIdentityProvidersClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncIdentityProvidersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "syncidentityproviders", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "syncidentityproviders", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SyncIdentityProvidersClient: %+v", err)
 	}

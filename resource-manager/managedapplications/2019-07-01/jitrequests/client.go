@@ -15,7 +15,7 @@ type JitRequestsClient struct {
 }
 
 func NewJitRequestsClientWithBaseURI(sdkApi sdkEnv.Api) (*JitRequestsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jitrequests", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jitrequests", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JitRequestsClient: %+v", err)
 	}

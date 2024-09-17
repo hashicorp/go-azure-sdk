@@ -15,7 +15,7 @@ type NamespacesPrivateLinkResourcesClient struct {
 }
 
 func NewNamespacesPrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesPrivateLinkResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "namespacesprivatelinkresources", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "namespacesprivatelinkresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NamespacesPrivateLinkResourcesClient: %+v", err)
 	}

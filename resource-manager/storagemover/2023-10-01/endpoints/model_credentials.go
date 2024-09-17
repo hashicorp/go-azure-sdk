@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Credentials interface {
+	Credentials() BaseCredentialsImpl
 }
 
-// RawCredentialsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Credentials = BaseCredentialsImpl{}
+
+type BaseCredentialsImpl struct {
+	Type CredentialType `json:"type"`
+}
+
+func (s BaseCredentialsImpl) Credentials() BaseCredentialsImpl {
+	return s
+}
+
+var _ Credentials = RawCredentialsImpl{}
+
+// RawCredentialsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCredentialsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	credentials BaseCredentialsImpl
+	Type        string
+	Values      map[string]interface{}
 }
 
-func unmarshalCredentialsImplementation(input []byte) (Credentials, error) {
+func (s RawCredentialsImpl) Credentials() BaseCredentialsImpl {
+	return s.credentials
+}
+
+func UnmarshalCredentialsImplementation(input []byte) (Credentials, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalCredentialsImplementation(input []byte) (Credentials, error) {
 		return out, nil
 	}
 
-	out := RawCredentialsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCredentialsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCredentialsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCredentialsImpl{
+		credentials: parent,
+		Type:        value,
+		Values:      temp,
+	}, nil
 
 }

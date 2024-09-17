@@ -15,6 +15,14 @@ type AzureKeyVaultSmbCredentials struct {
 	UsernameUri *string `json:"usernameUri,omitempty"`
 
 	// Fields inherited from Credentials
+
+	Type CredentialType `json:"type"`
+}
+
+func (s AzureKeyVaultSmbCredentials) Credentials() BaseCredentialsImpl {
+	return BaseCredentialsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureKeyVaultSmbCredentials{}
@@ -28,9 +36,10 @@ func (s AzureKeyVaultSmbCredentials) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureKeyVaultSmbCredentials: %+v", err)
 	}
+
 	decoded["type"] = "AzureKeyVaultSmb"
 
 	encoded, err = json.Marshal(decoded)

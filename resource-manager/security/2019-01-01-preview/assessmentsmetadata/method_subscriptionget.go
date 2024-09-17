@@ -45,7 +45,6 @@ func (c AssessmentsMetadataClient) SubscriptionGet(ctx context.Context, id Provi
 
 	var model SecurityAssessmentMetadata
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

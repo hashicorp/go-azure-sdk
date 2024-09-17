@@ -42,7 +42,7 @@ func ParseBareMetalMachineID(input string) (*BareMetalMachineId, error) {
 	}
 
 	id := BareMetalMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseBareMetalMachineIDInsensitively(input string) (*BareMetalMachineId, er
 	}
 
 	id := BareMetalMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

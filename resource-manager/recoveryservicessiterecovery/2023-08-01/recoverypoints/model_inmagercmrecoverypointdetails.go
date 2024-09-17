@@ -14,6 +14,14 @@ type InMageRcmRecoveryPointDetails struct {
 	IsMultiVMSyncPoint *string `json:"isMultiVmSyncPoint,omitempty"`
 
 	// Fields inherited from ProviderSpecificRecoveryPointDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageRcmRecoveryPointDetails) ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl {
+	return BaseProviderSpecificRecoveryPointDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageRcmRecoveryPointDetails{}
@@ -27,9 +35,10 @@ func (s InMageRcmRecoveryPointDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageRcmRecoveryPointDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageRcm"
 
 	encoded, err = json.Marshal(decoded)

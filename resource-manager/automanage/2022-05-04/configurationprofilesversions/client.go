@@ -15,7 +15,7 @@ type ConfigurationProfilesVersionsClient struct {
 }
 
 func NewConfigurationProfilesVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfigurationProfilesVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "configurationprofilesversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "configurationprofilesversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConfigurationProfilesVersionsClient: %+v", err)
 	}

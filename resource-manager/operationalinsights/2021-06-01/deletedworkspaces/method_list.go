@@ -47,7 +47,6 @@ func (c DeletedWorkspacesClient) List(ctx context.Context, id commonids.Subscrip
 
 	var model WorkspaceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

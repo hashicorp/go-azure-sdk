@@ -40,7 +40,7 @@ func ParseScopedExtensionID(input string) (*ScopedExtensionId, error) {
 	}
 
 	id := ScopedExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedExtensionIDInsensitively(input string) (*ScopedExtensionId, erro
 	}
 
 	id := ScopedExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

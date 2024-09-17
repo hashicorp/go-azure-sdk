@@ -36,6 +36,7 @@ func (o AssociateTrafficFilterAssociateOperationOptions) ToHeaders() *client.Hea
 
 func (o AssociateTrafficFilterAssociateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

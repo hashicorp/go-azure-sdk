@@ -44,7 +44,7 @@ func ParseAccountCommitmentPlanID(input string) (*AccountCommitmentPlanId, error
 	}
 
 	id := AccountCommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccountCommitmentPlanIDInsensitively(input string) (*AccountCommitment
 	}
 
 	id := AccountCommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

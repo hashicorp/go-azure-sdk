@@ -40,7 +40,7 @@ func ParseRackSkuID(input string) (*RackSkuId, error) {
 	}
 
 	id := RackSkuId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseRackSkuIDInsensitively(input string) (*RackSkuId, error) {
 	}
 
 	id := RackSkuId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

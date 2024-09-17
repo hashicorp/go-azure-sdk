@@ -44,7 +44,7 @@ func ParseProactiveDetectionConfigID(input string) (*ProactiveDetectionConfigId,
 	}
 
 	id := ProactiveDetectionConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseProactiveDetectionConfigIDInsensitively(input string) (*ProactiveDetec
 	}
 
 	id := ProactiveDetectionConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

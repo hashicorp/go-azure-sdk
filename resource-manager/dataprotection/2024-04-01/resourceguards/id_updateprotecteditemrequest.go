@@ -44,7 +44,7 @@ func ParseUpdateProtectedItemRequestID(input string) (*UpdateProtectedItemReques
 	}
 
 	id := UpdateProtectedItemRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUpdateProtectedItemRequestIDInsensitively(input string) (*UpdateProtec
 	}
 
 	id := UpdateProtectedItemRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

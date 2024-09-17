@@ -40,7 +40,7 @@ func ParseAgreementID(input string) (*AgreementId, error) {
 	}
 
 	id := AgreementId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAgreementIDInsensitively(input string) (*AgreementId, error) {
 	}
 
 	id := AgreementId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

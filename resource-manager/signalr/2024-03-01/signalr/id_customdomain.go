@@ -44,7 +44,7 @@ func ParseCustomDomainID(input string) (*CustomDomainId, error) {
 	}
 
 	id := CustomDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCustomDomainIDInsensitively(input string) (*CustomDomainId, error) {
 	}
 
 	id := CustomDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

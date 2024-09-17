@@ -13,6 +13,14 @@ var _ TargetRollingWindowSize = AutoTargetRollingWindowSize{}
 type AutoTargetRollingWindowSize struct {
 
 	// Fields inherited from TargetRollingWindowSize
+
+	Mode TargetRollingWindowSizeMode `json:"mode"`
+}
+
+func (s AutoTargetRollingWindowSize) TargetRollingWindowSize() BaseTargetRollingWindowSizeImpl {
+	return BaseTargetRollingWindowSizeImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = AutoTargetRollingWindowSize{}
@@ -26,9 +34,10 @@ func (s AutoTargetRollingWindowSize) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutoTargetRollingWindowSize: %+v", err)
 	}
+
 	decoded["mode"] = "Auto"
 
 	encoded, err = json.Marshal(decoded)

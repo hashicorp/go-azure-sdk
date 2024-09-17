@@ -44,7 +44,7 @@ func ParseVersionArtifactScopedID(input string) (*VersionArtifactScopedId, error
 	}
 
 	id := VersionArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVersionArtifactScopedIDInsensitively(input string) (*VersionArtifactSc
 	}
 
 	id := VersionArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

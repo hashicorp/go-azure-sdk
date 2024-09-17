@@ -46,7 +46,7 @@ func ParseFeatureStoreEntityVersionID(input string) (*FeatureStoreEntityVersionI
 	}
 
 	id := FeatureStoreEntityVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseFeatureStoreEntityVersionIDInsensitively(input string) (*FeatureStoreE
 	}
 
 	id := FeatureStoreEntityVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

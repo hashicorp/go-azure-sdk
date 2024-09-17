@@ -45,7 +45,6 @@ func (c ComponentContainerClient) RegistryComponentContainersGet(ctx context.Con
 
 	var model ComponentContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

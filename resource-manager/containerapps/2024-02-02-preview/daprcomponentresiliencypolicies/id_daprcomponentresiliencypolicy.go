@@ -46,7 +46,7 @@ func ParseDaprComponentResiliencyPolicyID(input string) (*DaprComponentResilienc
 	}
 
 	id := DaprComponentResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDaprComponentResiliencyPolicyIDInsensitively(input string) (*DaprCompo
 	}
 
 	id := DaprComponentResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

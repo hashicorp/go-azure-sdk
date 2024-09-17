@@ -42,7 +42,7 @@ func ParseContactProfileID(input string) (*ContactProfileId, error) {
 	}
 
 	id := ContactProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseContactProfileIDInsensitively(input string) (*ContactProfileId, error)
 	}
 
 	id := ContactProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

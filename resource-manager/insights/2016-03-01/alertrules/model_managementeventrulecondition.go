@@ -14,7 +14,16 @@ type ManagementEventRuleCondition struct {
 	Aggregation *ManagementEventAggregationCondition `json:"aggregation,omitempty"`
 
 	// Fields inherited from RuleCondition
+
 	DataSource RuleDataSource `json:"dataSource"`
+	OdataType  string         `json:"odata.type"`
+}
+
+func (s ManagementEventRuleCondition) RuleCondition() BaseRuleConditionImpl {
+	return BaseRuleConditionImpl{
+		DataSource: s.DataSource,
+		OdataType:  s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ManagementEventRuleCondition{}
@@ -28,9 +37,10 @@ func (s ManagementEventRuleCondition) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagementEventRuleCondition: %+v", err)
 	}
+
 	decoded["odata.type"] = "Microsoft.Azure.Management.Insights.Models.ManagementEventRuleCondition"
 
 	encoded, err = json.Marshal(decoded)
@@ -51,6 +61,7 @@ func (s *ManagementEventRuleCondition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.Aggregation = decoded.Aggregation
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -58,7 +69,7 @@ func (s *ManagementEventRuleCondition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["dataSource"]; ok {
-		impl, err := unmarshalRuleDataSourceImplementation(v)
+		impl, err := UnmarshalRuleDataSourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DataSource' for 'ManagementEventRuleCondition': %+v", err)
 		}

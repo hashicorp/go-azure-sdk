@@ -42,7 +42,7 @@ func ParseExperimentID(input string) (*ExperimentId, error) {
 	}
 
 	id := ExperimentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseExperimentIDInsensitively(input string) (*ExperimentId, error) {
 	}
 
 	id := ExperimentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

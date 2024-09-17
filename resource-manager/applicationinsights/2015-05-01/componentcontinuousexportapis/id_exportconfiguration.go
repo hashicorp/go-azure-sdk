@@ -44,7 +44,7 @@ func ParseExportConfigurationID(input string) (*ExportConfigurationId, error) {
 	}
 
 	id := ExportConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseExportConfigurationIDInsensitively(input string) (*ExportConfiguration
 	}
 
 	id := ExportConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseSlotPrivateEndpointConnectionID(input string) (*SlotPrivateEndpointCon
 	}
 
 	id := SlotPrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotPrivateEndpointConnectionIDInsensitively(input string) (*SlotPriva
 	}
 
 	id := SlotPrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

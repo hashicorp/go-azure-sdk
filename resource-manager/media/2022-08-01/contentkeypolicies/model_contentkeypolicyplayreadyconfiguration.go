@@ -15,6 +15,14 @@ type ContentKeyPolicyPlayReadyConfiguration struct {
 	ResponseCustomData *string                            `json:"responseCustomData,omitempty"`
 
 	// Fields inherited from ContentKeyPolicyConfiguration
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyPlayReadyConfiguration) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return BaseContentKeyPolicyConfigurationImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyPlayReadyConfiguration{}
@@ -28,9 +36,10 @@ func (s ContentKeyPolicyPlayReadyConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyPlayReadyConfiguration: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyPlayReadyConfiguration"
 
 	encoded, err = json.Marshal(decoded)

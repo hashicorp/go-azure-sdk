@@ -44,7 +44,7 @@ func ParseGlobalReachConnectionID(input string) (*GlobalReachConnectionId, error
 	}
 
 	id := GlobalReachConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGlobalReachConnectionIDInsensitively(input string) (*GlobalReachConnec
 	}
 
 	id := GlobalReachConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

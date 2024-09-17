@@ -15,7 +15,7 @@ type CertificateOrdersDiagnosticsClient struct {
 }
 
 func NewCertificateOrdersDiagnosticsClientWithBaseURI(sdkApi sdkEnv.Api) (*CertificateOrdersDiagnosticsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "certificateordersdiagnostics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "certificateordersdiagnostics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CertificateOrdersDiagnosticsClient: %+v", err)
 	}

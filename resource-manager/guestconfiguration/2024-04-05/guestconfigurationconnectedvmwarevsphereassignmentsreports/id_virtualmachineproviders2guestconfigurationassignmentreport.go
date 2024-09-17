@@ -46,7 +46,7 @@ func ParseVirtualMachineProviders2GuestConfigurationAssignmentReportID(input str
 	}
 
 	id := VirtualMachineProviders2GuestConfigurationAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualMachineProviders2GuestConfigurationAssignmentReportIDInsensitiv
 	}
 
 	id := VirtualMachineProviders2GuestConfigurationAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

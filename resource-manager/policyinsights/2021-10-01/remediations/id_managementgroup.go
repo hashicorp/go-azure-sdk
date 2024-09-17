@@ -38,7 +38,7 @@ func ParseManagementGroupID(input string) (*ManagementGroupId, error) {
 	}
 
 	id := ManagementGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseManagementGroupIDInsensitively(input string) (*ManagementGroupId, erro
 	}
 
 	id := ManagementGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

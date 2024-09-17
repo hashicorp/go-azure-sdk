@@ -15,7 +15,7 @@ type SynapseLinkWorkspacesClient struct {
 }
 
 func NewSynapseLinkWorkspacesClientWithBaseURI(sdkApi sdkEnv.Api) (*SynapseLinkWorkspacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "synapselinkworkspaces", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "synapselinkworkspaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SynapseLinkWorkspacesClient: %+v", err)
 	}

@@ -23,13 +23,28 @@ type MabJob struct {
 	WorkloadType  *WorkloadType         `json:"workloadType,omitempty"`
 
 	// Fields inherited from Job
+
 	ActivityId           *string               `json:"activityId,omitempty"`
 	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
 	EndTime              *string               `json:"endTime,omitempty"`
 	EntityFriendlyName   *string               `json:"entityFriendlyName,omitempty"`
+	JobType              string                `json:"jobType"`
 	Operation            *string               `json:"operation,omitempty"`
 	StartTime            *string               `json:"startTime,omitempty"`
 	Status               *string               `json:"status,omitempty"`
+}
+
+func (s MabJob) Job() BaseJobImpl {
+	return BaseJobImpl{
+		ActivityId:           s.ActivityId,
+		BackupManagementType: s.BackupManagementType,
+		EndTime:              s.EndTime,
+		EntityFriendlyName:   s.EntityFriendlyName,
+		JobType:              s.JobType,
+		Operation:            s.Operation,
+		StartTime:            s.StartTime,
+		Status:               s.Status,
+	}
 }
 
 func (o *MabJob) GetEndTimeAsTime() (*time.Time, error) {
@@ -67,9 +82,10 @@ func (s MabJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MabJob: %+v", err)
 	}
+
 	decoded["jobType"] = "MabJob"
 
 	encoded, err = json.Marshal(decoded)

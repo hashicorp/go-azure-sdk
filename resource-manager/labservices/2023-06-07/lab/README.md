@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2023-06-07/lab` Documentation
 
-The `lab` SDK allows for interaction with the Azure Resource Manager Service `labservices` (API Version `2023-06-07`).
+The `lab` SDK allows for interaction with Azure Resource Manager `labservices` (API Version `2023-06-07`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

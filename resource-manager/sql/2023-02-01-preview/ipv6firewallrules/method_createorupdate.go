@@ -50,7 +50,6 @@ func (c IPv6FirewallRulesClient) CreateOrUpdate(ctx context.Context, id IPv6Fire
 
 	var model IPv6FirewallRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

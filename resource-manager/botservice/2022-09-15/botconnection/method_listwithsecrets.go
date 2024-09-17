@@ -46,7 +46,6 @@ func (c BotConnectionClient) ListWithSecrets(ctx context.Context, id ConnectionI
 
 	var model ConnectionSetting
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

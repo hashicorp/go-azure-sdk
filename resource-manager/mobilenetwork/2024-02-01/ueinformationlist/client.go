@@ -15,7 +15,7 @@ type UeInformationListClient struct {
 }
 
 func NewUeInformationListClientWithBaseURI(sdkApi sdkEnv.Api) (*UeInformationListClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "ueinformationlist", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "ueinformationlist", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating UeInformationListClient: %+v", err)
 	}

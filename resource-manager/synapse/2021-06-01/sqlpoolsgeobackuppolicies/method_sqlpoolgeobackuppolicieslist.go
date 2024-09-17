@@ -46,7 +46,6 @@ func (c SqlPoolsGeoBackupPoliciesClient) SqlPoolGeoBackupPoliciesList(ctx contex
 
 	var model GeoBackupPolicyListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

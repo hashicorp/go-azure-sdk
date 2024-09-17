@@ -44,7 +44,7 @@ func ParseMigrationID(input string) (*MigrationId, error) {
 	}
 
 	id := MigrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMigrationIDInsensitively(input string) (*MigrationId, error) {
 	}
 
 	id := MigrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

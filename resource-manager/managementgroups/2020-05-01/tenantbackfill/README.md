@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2020-05-01/tenantbackfill` Documentation
 
-The `tenantbackfill` SDK allows for interaction with the Azure Resource Manager Service `managementgroups` (API Version `2020-05-01`).
+The `tenantbackfill` SDK allows for interaction with Azure Resource Manager `managementgroups` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

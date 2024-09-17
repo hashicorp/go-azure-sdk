@@ -44,7 +44,7 @@ func ParseNotificationChannelID(input string) (*NotificationChannelId, error) {
 	}
 
 	id := NotificationChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNotificationChannelIDInsensitively(input string) (*NotificationChannel
 	}
 
 	id := NotificationChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

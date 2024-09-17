@@ -40,7 +40,7 @@ func ParseAzureWebCategoryID(input string) (*AzureWebCategoryId, error) {
 	}
 
 	id := AzureWebCategoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAzureWebCategoryIDInsensitively(input string) (*AzureWebCategoryId, er
 	}
 
 	id := AzureWebCategoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

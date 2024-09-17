@@ -40,7 +40,7 @@ func ParseScopedRegistrationDefinitionID(input string) (*ScopedRegistrationDefin
 	}
 
 	id := ScopedRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedRegistrationDefinitionIDInsensitively(input string) (*ScopedRegi
 	}
 
 	id := ScopedRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

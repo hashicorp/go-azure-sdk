@@ -46,7 +46,6 @@ func (c MigrationConfigsClient) Get(ctx context.Context, id NamespaceId) (result
 
 	var model MigrationConfigProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

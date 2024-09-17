@@ -42,7 +42,7 @@ func ParseAzureTrafficCollectorID(input string) (*AzureTrafficCollectorId, error
 	}
 
 	id := AzureTrafficCollectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAzureTrafficCollectorIDInsensitively(input string) (*AzureTrafficColle
 	}
 
 	id := AzureTrafficCollectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

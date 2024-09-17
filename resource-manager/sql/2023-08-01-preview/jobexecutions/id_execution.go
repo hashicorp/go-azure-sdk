@@ -48,7 +48,7 @@ func ParseExecutionID(input string) (*ExecutionId, error) {
 	}
 
 	id := ExecutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseExecutionIDInsensitively(input string) (*ExecutionId, error) {
 	}
 
 	id := ExecutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

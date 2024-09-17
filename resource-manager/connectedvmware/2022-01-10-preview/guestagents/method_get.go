@@ -45,7 +45,6 @@ func (c GuestAgentsClient) Get(ctx context.Context, id GuestAgentId) (result Get
 
 	var model GuestAgent
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type DataNetworksClient struct {
 }
 
 func NewDataNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*DataNetworksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datanetworks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datanetworks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataNetworksClient: %+v", err)
 	}

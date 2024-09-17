@@ -44,7 +44,7 @@ func ParseAnnotationID(input string) (*AnnotationId, error) {
 	}
 
 	id := AnnotationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAnnotationIDInsensitively(input string) (*AnnotationId, error) {
 	}
 
 	id := AnnotationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

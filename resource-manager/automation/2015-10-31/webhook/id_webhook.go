@@ -44,7 +44,7 @@ func ParseWebHookID(input string) (*WebHookId, error) {
 	}
 
 	id := WebHookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWebHookIDInsensitively(input string) (*WebHookId, error) {
 	}
 
 	id := WebHookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

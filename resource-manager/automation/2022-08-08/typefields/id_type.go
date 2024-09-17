@@ -46,7 +46,7 @@ func ParseTypeID(input string) (*TypeId, error) {
 	}
 
 	id := TypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTypeIDInsensitively(input string) (*TypeId, error) {
 	}
 
 	id := TypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

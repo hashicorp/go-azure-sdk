@@ -45,7 +45,6 @@ func (c AlertsClient) GetResourceGroupLevelAlerts(ctx context.Context, id Locati
 
 	var model Alert
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

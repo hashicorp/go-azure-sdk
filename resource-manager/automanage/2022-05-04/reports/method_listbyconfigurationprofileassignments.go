@@ -46,7 +46,6 @@ func (c ReportsClient) ListByConfigurationProfileAssignments(ctx context.Context
 
 	var model ReportList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

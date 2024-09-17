@@ -44,7 +44,7 @@ func ParseSavedSearchID(input string) (*SavedSearchId, error) {
 	}
 
 	id := SavedSearchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSavedSearchIDInsensitively(input string) (*SavedSearchId, error) {
 	}
 
 	id := SavedSearchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

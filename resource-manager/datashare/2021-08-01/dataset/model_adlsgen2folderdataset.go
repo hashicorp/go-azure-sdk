@@ -16,10 +16,22 @@ type ADLSGen2FolderDataSet struct {
 	Properties ADLSGen2FolderProperties `json:"properties"`
 
 	// Fields inherited from DataSet
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       DataSetKind            `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s ADLSGen2FolderDataSet) DataSet() BaseDataSetImpl {
+	return BaseDataSetImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ADLSGen2FolderDataSet{}
@@ -33,9 +45,10 @@ func (s ADLSGen2FolderDataSet) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ADLSGen2FolderDataSet: %+v", err)
 	}
+
 	decoded["kind"] = "AdlsGen2Folder"
 
 	encoded, err = json.Marshal(decoded)

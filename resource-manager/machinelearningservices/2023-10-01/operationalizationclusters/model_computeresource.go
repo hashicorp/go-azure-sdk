@@ -47,7 +47,7 @@ func (s *ComputeResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalComputeImplementation(v)
+		impl, err := UnmarshalComputeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ComputeResource': %+v", err)
 		}

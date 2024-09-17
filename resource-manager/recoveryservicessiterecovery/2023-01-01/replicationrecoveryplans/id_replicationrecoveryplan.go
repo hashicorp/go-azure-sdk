@@ -44,7 +44,7 @@ func ParseReplicationRecoveryPlanID(input string) (*ReplicationRecoveryPlanId, e
 	}
 
 	id := ReplicationRecoveryPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationRecoveryPlanIDInsensitively(input string) (*ReplicationReco
 	}
 
 	id := ReplicationRecoveryPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

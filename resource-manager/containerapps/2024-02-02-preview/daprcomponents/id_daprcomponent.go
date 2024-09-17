@@ -44,7 +44,7 @@ func ParseDaprComponentID(input string) (*DaprComponentId, error) {
 	}
 
 	id := DaprComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDaprComponentIDInsensitively(input string) (*DaprComponentId, error) {
 	}
 
 	id := DaprComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -40,7 +40,7 @@ func ParseSecureScoreID(input string) (*SecureScoreId, error) {
 	}
 
 	id := SecureScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSecureScoreIDInsensitively(input string) (*SecureScoreId, error) {
 	}
 
 	id := SecureScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

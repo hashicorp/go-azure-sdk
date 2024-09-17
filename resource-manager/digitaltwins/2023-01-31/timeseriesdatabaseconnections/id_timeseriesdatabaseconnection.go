@@ -44,7 +44,7 @@ func ParseTimeSeriesDatabaseConnectionID(input string) (*TimeSeriesDatabaseConne
 	}
 
 	id := TimeSeriesDatabaseConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTimeSeriesDatabaseConnectionIDInsensitively(input string) (*TimeSeries
 	}
 
 	id := TimeSeriesDatabaseConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

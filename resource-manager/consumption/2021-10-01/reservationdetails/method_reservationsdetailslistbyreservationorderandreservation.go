@@ -39,6 +39,7 @@ func (o ReservationsDetailsListByReservationOrderAndReservationOperationOptions)
 
 func (o ReservationsDetailsListByReservationOrderAndReservationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

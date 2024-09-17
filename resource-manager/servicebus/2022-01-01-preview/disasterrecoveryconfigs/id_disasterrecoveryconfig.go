@@ -44,7 +44,7 @@ func ParseDisasterRecoveryConfigID(input string) (*DisasterRecoveryConfigId, err
 	}
 
 	id := DisasterRecoveryConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDisasterRecoveryConfigIDInsensitively(input string) (*DisasterRecovery
 	}
 
 	id := DisasterRecoveryConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

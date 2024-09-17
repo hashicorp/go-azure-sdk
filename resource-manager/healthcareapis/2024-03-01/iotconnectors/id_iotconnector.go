@@ -44,7 +44,7 @@ func ParseIotConnectorID(input string) (*IotConnectorId, error) {
 	}
 
 	id := IotConnectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIotConnectorIDInsensitively(input string) (*IotConnectorId, error) {
 	}
 
 	id := IotConnectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseNetworkGroupID(input string) (*NetworkGroupId, error) {
 	}
 
 	id := NetworkGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNetworkGroupIDInsensitively(input string) (*NetworkGroupId, error) {
 	}
 
 	id := NetworkGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

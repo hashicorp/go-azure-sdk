@@ -38,7 +38,7 @@ func ParseAliasID(input string) (*AliasId, error) {
 	}
 
 	id := AliasId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseAliasIDInsensitively(input string) (*AliasId, error) {
 	}
 
 	id := AliasId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

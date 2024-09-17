@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/customresourceprovider` Documentation
 
-The `customresourceprovider` SDK allows for interaction with the Azure Resource Manager Service `customproviders` (API Version `2018-09-01-preview`).
+The `customresourceprovider` SDK allows for interaction with Azure Resource Manager `customproviders` (API Version `2018-09-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

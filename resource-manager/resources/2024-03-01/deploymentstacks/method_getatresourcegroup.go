@@ -45,7 +45,6 @@ func (c DeploymentStacksClient) GetAtResourceGroup(ctx context.Context, id Provi
 
 	var model DeploymentStack
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

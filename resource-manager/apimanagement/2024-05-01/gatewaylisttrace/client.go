@@ -15,7 +15,7 @@ type GatewayListTraceClient struct {
 }
 
 func NewGatewayListTraceClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayListTraceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewaylisttrace", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewaylisttrace", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayListTraceClient: %+v", err)
 	}

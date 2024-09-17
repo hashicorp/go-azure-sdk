@@ -15,7 +15,7 @@ type LogProfilesAPIsClient struct {
 }
 
 func NewLogProfilesAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*LogProfilesAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "logprofilesapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "logprofilesapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LogProfilesAPIsClient: %+v", err)
 	}

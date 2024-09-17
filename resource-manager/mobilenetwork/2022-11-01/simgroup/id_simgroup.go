@@ -42,7 +42,7 @@ func ParseSimGroupID(input string) (*SimGroupId, error) {
 	}
 
 	id := SimGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSimGroupIDInsensitively(input string) (*SimGroupId, error) {
 	}
 
 	id := SimGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

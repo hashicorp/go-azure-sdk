@@ -42,7 +42,7 @@ func ParseNetAppAccountID(input string) (*NetAppAccountId, error) {
 	}
 
 	id := NetAppAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseNetAppAccountIDInsensitively(input string) (*NetAppAccountId, error) {
 	}
 
 	id := NetAppAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

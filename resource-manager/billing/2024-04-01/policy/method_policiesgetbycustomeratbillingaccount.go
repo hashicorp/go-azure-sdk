@@ -46,7 +46,6 @@ func (c PolicyClient) PoliciesGetByCustomerAtBillingAccount(ctx context.Context,
 
 	var model CustomerPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

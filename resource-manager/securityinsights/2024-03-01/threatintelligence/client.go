@@ -15,7 +15,7 @@ type ThreatIntelligenceClient struct {
 }
 
 func NewThreatIntelligenceClientWithBaseURI(sdkApi sdkEnv.Api) (*ThreatIntelligenceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "threatintelligence", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "threatintelligence", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ThreatIntelligenceClient: %+v", err)
 	}

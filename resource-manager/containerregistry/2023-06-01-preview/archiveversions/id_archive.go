@@ -46,7 +46,7 @@ func ParseArchiveID(input string) (*ArchiveId, error) {
 	}
 
 	id := ArchiveId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseArchiveIDInsensitively(input string) (*ArchiveId, error) {
 	}
 
 	id := ArchiveId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

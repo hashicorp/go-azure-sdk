@@ -44,7 +44,7 @@ func ParseManagementWorkflowID(input string) (*ManagementWorkflowId, error) {
 	}
 
 	id := ManagementWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagementWorkflowIDInsensitively(input string) (*ManagementWorkflowId
 	}
 
 	id := ManagementWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

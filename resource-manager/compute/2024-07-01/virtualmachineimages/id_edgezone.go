@@ -42,7 +42,7 @@ func ParseEdgeZoneID(input string) (*EdgeZoneId, error) {
 	}
 
 	id := EdgeZoneId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseEdgeZoneIDInsensitively(input string) (*EdgeZoneId, error) {
 	}
 
 	id := EdgeZoneId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

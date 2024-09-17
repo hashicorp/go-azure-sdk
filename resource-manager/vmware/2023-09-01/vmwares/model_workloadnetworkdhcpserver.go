@@ -15,10 +15,22 @@ type WorkloadNetworkDhcpServer struct {
 	ServerAddress *string `json:"serverAddress,omitempty"`
 
 	// Fields inherited from WorkloadNetworkDhcpEntity
+
+	DhcpType          DhcpTypeEnum                          `json:"dhcpType"`
 	DisplayName       *string                               `json:"displayName,omitempty"`
 	ProvisioningState *WorkloadNetworkDhcpProvisioningState `json:"provisioningState,omitempty"`
 	Revision          *int64                                `json:"revision,omitempty"`
 	Segments          *[]string                             `json:"segments,omitempty"`
+}
+
+func (s WorkloadNetworkDhcpServer) WorkloadNetworkDhcpEntity() BaseWorkloadNetworkDhcpEntityImpl {
+	return BaseWorkloadNetworkDhcpEntityImpl{
+		DhcpType:          s.DhcpType,
+		DisplayName:       s.DisplayName,
+		ProvisioningState: s.ProvisioningState,
+		Revision:          s.Revision,
+		Segments:          s.Segments,
+	}
 }
 
 var _ json.Marshaler = WorkloadNetworkDhcpServer{}
@@ -32,9 +44,10 @@ func (s WorkloadNetworkDhcpServer) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling WorkloadNetworkDhcpServer: %+v", err)
 	}
+
 	decoded["dhcpType"] = "SERVER"
 
 	encoded, err = json.Marshal(decoded)

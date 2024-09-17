@@ -44,7 +44,7 @@ func ParseDeleteProtectedItemRequestID(input string) (*DeleteProtectedItemReques
 	}
 
 	id := DeleteProtectedItemRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDeleteProtectedItemRequestIDInsensitively(input string) (*DeleteProtec
 	}
 
 	id := DeleteProtectedItemRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

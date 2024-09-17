@@ -47,7 +47,6 @@ func (c ServicePrincipalsClient) Get(ctx context.Context, id commonids.Subscript
 
 	var model ServicePrincipal
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

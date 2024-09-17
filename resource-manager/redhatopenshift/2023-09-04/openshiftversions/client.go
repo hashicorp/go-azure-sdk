@@ -15,7 +15,7 @@ type OpenShiftVersionsClient struct {
 }
 
 func NewOpenShiftVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*OpenShiftVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "openshiftversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "openshiftversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OpenShiftVersionsClient: %+v", err)
 	}

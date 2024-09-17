@@ -44,7 +44,7 @@ func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
 	}
 
 	id := IntegrationRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIntegrationRuntimeIDInsensitively(input string) (*IntegrationRuntimeId
 	}
 
 	id := IntegrationRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

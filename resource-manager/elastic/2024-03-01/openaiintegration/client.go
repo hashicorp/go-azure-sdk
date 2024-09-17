@@ -15,7 +15,7 @@ type OpenAIIntegrationClient struct {
 }
 
 func NewOpenAIIntegrationClientWithBaseURI(sdkApi sdkEnv.Api) (*OpenAIIntegrationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "openaiintegration", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "openaiintegration", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OpenAIIntegrationClient: %+v", err)
 	}

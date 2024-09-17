@@ -15,7 +15,7 @@ type OnlineEndpointClient struct {
 }
 
 func NewOnlineEndpointClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineEndpointClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "onlineendpoint", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "onlineendpoint", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OnlineEndpointClient: %+v", err)
 	}

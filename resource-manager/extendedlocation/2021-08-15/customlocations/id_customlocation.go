@@ -42,7 +42,7 @@ func ParseCustomLocationID(input string) (*CustomLocationId, error) {
 	}
 
 	id := CustomLocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomLocationIDInsensitively(input string) (*CustomLocationId, error)
 	}
 
 	id := CustomLocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

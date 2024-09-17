@@ -50,7 +50,6 @@ func (c OnlineDeploymentClient) GetLogs(ctx context.Context, id OnlineEndpointDe
 
 	var model DeploymentLogs
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

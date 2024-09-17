@@ -40,7 +40,7 @@ func ParseAlertsSuppressionRuleID(input string) (*AlertsSuppressionRuleId, error
 	}
 
 	id := AlertsSuppressionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAlertsSuppressionRuleIDInsensitively(input string) (*AlertsSuppression
 	}
 
 	id := AlertsSuppressionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseSlotNetworkTraceID(input string) (*SlotNetworkTraceId, error) {
 	}
 
 	id := SlotNetworkTraceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotNetworkTraceIDInsensitively(input string) (*SlotNetworkTraceId, er
 	}
 
 	id := SlotNetworkTraceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/extensions` Documentation
 
-The `extensions` SDK allows for interaction with the Azure Resource Manager Service `hybridcompute` (API Version `2022-11-10`).
+The `extensions` SDK allows for interaction with Azure Resource Manager `hybridcompute` (API Version `2022-11-10`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

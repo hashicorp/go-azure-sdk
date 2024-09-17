@@ -36,6 +36,7 @@ func (o ExtensionsDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o ExtensionsDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

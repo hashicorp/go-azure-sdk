@@ -46,7 +46,7 @@ func ParseAgentPoolID(input string) (*AgentPoolId, error) {
 	}
 
 	id := AgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAgentPoolIDInsensitively(input string) (*AgentPoolId, error) {
 	}
 
 	id := AgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

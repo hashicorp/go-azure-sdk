@@ -44,7 +44,7 @@ func ParsePeeringID(input string) (*PeeringId, error) {
 	}
 
 	id := PeeringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePeeringIDInsensitively(input string) (*PeeringId, error) {
 	}
 
 	id := PeeringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

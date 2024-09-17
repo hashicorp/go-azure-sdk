@@ -50,7 +50,6 @@ func (c NotificationHubsClient) DebugSend(ctx context.Context, id NotificationHu
 
 	var model DebugSendResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -38,7 +38,7 @@ func (s *TimeSeriesDatabaseConnection) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalTimeSeriesDatabaseConnectionPropertiesImplementation(v)
+		impl, err := UnmarshalTimeSeriesDatabaseConnectionPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'TimeSeriesDatabaseConnection': %+v", err)
 		}

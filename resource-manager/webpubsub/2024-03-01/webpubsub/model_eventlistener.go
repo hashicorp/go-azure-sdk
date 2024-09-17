@@ -23,7 +23,7 @@ func (s *EventListener) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["endpoint"]; ok {
-		impl, err := unmarshalEventListenerEndpointImplementation(v)
+		impl, err := UnmarshalEventListenerEndpointImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Endpoint' for 'EventListener': %+v", err)
 		}
@@ -31,7 +31,7 @@ func (s *EventListener) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["filter"]; ok {
-		impl, err := unmarshalEventListenerFilterImplementation(v)
+		impl, err := UnmarshalEventListenerFilterImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Filter' for 'EventListener': %+v", err)
 		}

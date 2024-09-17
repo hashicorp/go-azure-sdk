@@ -44,7 +44,7 @@ func ParseTestLineID(input string) (*TestLineId, error) {
 	}
 
 	id := TestLineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTestLineIDInsensitively(input string) (*TestLineId, error) {
 	}
 
 	id := TestLineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

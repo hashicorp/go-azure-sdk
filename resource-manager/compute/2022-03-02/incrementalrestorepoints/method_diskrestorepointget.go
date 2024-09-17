@@ -45,7 +45,6 @@ func (c IncrementalRestorePointsClient) DiskRestorePointGet(ctx context.Context,
 
 	var model DiskRestorePoint
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c ManagedClusterVersionClient) Get(ctx context.Context, id ManagedClusterV
 
 	var model ManagedClusterCodeVersionResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

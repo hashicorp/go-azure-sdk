@@ -15,7 +15,7 @@ type ManagedDatabaseMoveOperationsClient struct {
 }
 
 func NewManagedDatabaseMoveOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseMoveOperationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasemoveoperations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasemoveoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseMoveOperationsClient: %+v", err)
 	}

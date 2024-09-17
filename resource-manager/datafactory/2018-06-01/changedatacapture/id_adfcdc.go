@@ -44,7 +44,7 @@ func ParseAdfcdcID(input string) (*AdfcdcId, error) {
 	}
 
 	id := AdfcdcId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAdfcdcIDInsensitively(input string) (*AdfcdcId, error) {
 	}
 
 	id := AdfcdcId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -48,7 +48,7 @@ func ParseWorkspaceApiDiagnosticID(input string) (*WorkspaceApiDiagnosticId, err
 	}
 
 	id := WorkspaceApiDiagnosticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseWorkspaceApiDiagnosticIDInsensitively(input string) (*WorkspaceApiDiag
 	}
 
 	id := WorkspaceApiDiagnosticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

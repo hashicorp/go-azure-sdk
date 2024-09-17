@@ -44,7 +44,7 @@ func ParseDedicatedSQLMinimalTLSSettingID(input string) (*DedicatedSQLMinimalTLS
 	}
 
 	id := DedicatedSQLMinimalTLSSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDedicatedSQLMinimalTLSSettingIDInsensitively(input string) (*Dedicated
 	}
 
 	id := DedicatedSQLMinimalTLSSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

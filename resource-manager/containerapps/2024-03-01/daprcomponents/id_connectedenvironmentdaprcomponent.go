@@ -44,7 +44,7 @@ func ParseConnectedEnvironmentDaprComponentID(input string) (*ConnectedEnvironme
 	}
 
 	id := ConnectedEnvironmentDaprComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectedEnvironmentDaprComponentIDInsensitively(input string) (*Conne
 	}
 
 	id := ConnectedEnvironmentDaprComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

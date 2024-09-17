@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-04-01/backupresourcestorageconfigsnoncrr` Documentation
 
-The `backupresourcestorageconfigsnoncrr` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicesbackup` (API Version `2023-04-01`).
+The `backupresourcestorageconfigsnoncrr` SDK allows for interaction with Azure Resource Manager `recoveryservicesbackup` (API Version `2023-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

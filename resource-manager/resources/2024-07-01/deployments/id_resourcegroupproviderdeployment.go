@@ -42,7 +42,7 @@ func ParseResourceGroupProviderDeploymentID(input string) (*ResourceGroupProvide
 	}
 
 	id := ResourceGroupProviderDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseResourceGroupProviderDeploymentIDInsensitively(input string) (*Resourc
 	}
 
 	id := ResourceGroupProviderDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

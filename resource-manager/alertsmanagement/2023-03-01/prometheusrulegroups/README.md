@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2023-03-01/prometheusrulegroups` Documentation
 
-The `prometheusrulegroups` SDK allows for interaction with the Azure Resource Manager Service `alertsmanagement` (API Version `2023-03-01`).
+The `prometheusrulegroups` SDK allows for interaction with Azure Resource Manager `alertsmanagement` (API Version `2023-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -42,7 +42,7 @@ func ParseConfigurationStoreID(input string) (*ConfigurationStoreId, error) {
 	}
 
 	id := ConfigurationStoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseConfigurationStoreIDInsensitively(input string) (*ConfigurationStoreId
 	}
 
 	id := ConfigurationStoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

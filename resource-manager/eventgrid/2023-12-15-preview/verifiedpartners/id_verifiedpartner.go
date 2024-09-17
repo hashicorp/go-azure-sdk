@@ -38,7 +38,7 @@ func ParseVerifiedPartnerID(input string) (*VerifiedPartnerId, error) {
 	}
 
 	id := VerifiedPartnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseVerifiedPartnerIDInsensitively(input string) (*VerifiedPartnerId, erro
 	}
 
 	id := VerifiedPartnerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

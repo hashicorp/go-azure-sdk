@@ -14,6 +14,14 @@ type AwsOrganizationalDataMember struct {
 	ParentHierarchyId *string `json:"parentHierarchyId,omitempty"`
 
 	// Fields inherited from AwsOrganizationalData
+
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s AwsOrganizationalDataMember) AwsOrganizationalData() BaseAwsOrganizationalDataImpl {
+	return BaseAwsOrganizationalDataImpl{
+		OrganizationMembershipType: s.OrganizationMembershipType,
+	}
 }
 
 var _ json.Marshaler = AwsOrganizationalDataMember{}
@@ -27,9 +35,10 @@ func (s AwsOrganizationalDataMember) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AwsOrganizationalDataMember: %+v", err)
 	}
+
 	decoded["organizationMembershipType"] = "Member"
 
 	encoded, err = json.Marshal(decoded)

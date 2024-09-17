@@ -15,7 +15,7 @@ type RegulatoryComplianceClient struct {
 }
 
 func NewRegulatoryComplianceClientWithBaseURI(sdkApi sdkEnv.Api) (*RegulatoryComplianceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "regulatorycompliance", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "regulatorycompliance", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RegulatoryComplianceClient: %+v", err)
 	}

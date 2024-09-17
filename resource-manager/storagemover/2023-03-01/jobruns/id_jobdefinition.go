@@ -46,7 +46,7 @@ func ParseJobDefinitionID(input string) (*JobDefinitionId, error) {
 	}
 
 	id := JobDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseJobDefinitionIDInsensitively(input string) (*JobDefinitionId, error) {
 	}
 
 	id := JobDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

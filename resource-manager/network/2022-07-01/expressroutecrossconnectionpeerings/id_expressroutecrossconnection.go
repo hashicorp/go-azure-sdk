@@ -42,7 +42,7 @@ func ParseExpressRouteCrossConnectionID(input string) (*ExpressRouteCrossConnect
 	}
 
 	id := ExpressRouteCrossConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseExpressRouteCrossConnectionIDInsensitively(input string) (*ExpressRout
 	}
 
 	id := ExpressRouteCrossConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

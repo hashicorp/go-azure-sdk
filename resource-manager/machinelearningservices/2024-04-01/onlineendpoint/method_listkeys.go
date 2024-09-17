@@ -46,7 +46,6 @@ func (c OnlineEndpointClient) ListKeys(ctx context.Context, id OnlineEndpointId)
 
 	var model EndpointAuthKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

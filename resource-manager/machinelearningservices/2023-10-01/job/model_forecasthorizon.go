@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ForecastHorizon interface {
+	ForecastHorizon() BaseForecastHorizonImpl
 }
 
-// RawForecastHorizonImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ForecastHorizon = BaseForecastHorizonImpl{}
+
+type BaseForecastHorizonImpl struct {
+	Mode ForecastHorizonMode `json:"mode"`
+}
+
+func (s BaseForecastHorizonImpl) ForecastHorizon() BaseForecastHorizonImpl {
+	return s
+}
+
+var _ ForecastHorizon = RawForecastHorizonImpl{}
+
+// RawForecastHorizonImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawForecastHorizonImpl struct {
-	Type   string
-	Values map[string]interface{}
+	forecastHorizon BaseForecastHorizonImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalForecastHorizonImplementation(input []byte) (ForecastHorizon, error) {
+func (s RawForecastHorizonImpl) ForecastHorizon() BaseForecastHorizonImpl {
+	return s.forecastHorizon
+}
+
+func UnmarshalForecastHorizonImplementation(input []byte) (ForecastHorizon, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalForecastHorizonImplementation(input []byte) (ForecastHorizon, erro
 		return out, nil
 	}
 
-	out := RawForecastHorizonImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseForecastHorizonImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseForecastHorizonImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawForecastHorizonImpl{
+		forecastHorizon: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

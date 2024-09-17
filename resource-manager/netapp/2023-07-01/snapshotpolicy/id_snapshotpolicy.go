@@ -44,7 +44,7 @@ func ParseSnapshotPolicyID(input string) (*SnapshotPolicyId, error) {
 	}
 
 	id := SnapshotPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSnapshotPolicyIDInsensitively(input string) (*SnapshotPolicyId, error)
 	}
 
 	id := SnapshotPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

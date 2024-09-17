@@ -42,7 +42,7 @@ func ParseSearchServiceID(input string) (*SearchServiceId, error) {
 	}
 
 	id := SearchServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSearchServiceIDInsensitively(input string) (*SearchServiceId, error) {
 	}
 
 	id := SearchServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseGatewayID(input string) (*GatewayId, error) {
 	}
 
 	id := GatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGatewayIDInsensitively(input string) (*GatewayId, error) {
 	}
 
 	id := GatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

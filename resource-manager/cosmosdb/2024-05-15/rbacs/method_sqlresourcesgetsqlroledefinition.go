@@ -45,7 +45,6 @@ func (c RbacsClient) SqlResourcesGetSqlRoleDefinition(ctx context.Context, id Sq
 
 	var model SqlRoleDefinitionGetResults
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

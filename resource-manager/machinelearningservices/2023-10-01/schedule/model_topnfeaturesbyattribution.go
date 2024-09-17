@@ -14,6 +14,14 @@ type TopNFeaturesByAttribution struct {
 	Top *int64 `json:"top,omitempty"`
 
 	// Fields inherited from MonitoringFeatureFilterBase
+
+	FilterType MonitoringFeatureFilterType `json:"filterType"`
+}
+
+func (s TopNFeaturesByAttribution) MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl {
+	return BaseMonitoringFeatureFilterBaseImpl{
+		FilterType: s.FilterType,
+	}
 }
 
 var _ json.Marshaler = TopNFeaturesByAttribution{}
@@ -27,9 +35,10 @@ func (s TopNFeaturesByAttribution) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TopNFeaturesByAttribution: %+v", err)
 	}
+
 	decoded["filterType"] = "TopNByAttribution"
 
 	encoded, err = json.Marshal(decoded)

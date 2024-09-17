@@ -15,7 +15,7 @@ type PacketCoreControlPlaneVersionClient struct {
 }
 
 func NewPacketCoreControlPlaneVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*PacketCoreControlPlaneVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "packetcorecontrolplaneversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "packetcorecontrolplaneversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PacketCoreControlPlaneVersionClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type CloudLinksClient struct {
 }
 
 func NewCloudLinksClientWithBaseURI(sdkApi sdkEnv.Api) (*CloudLinksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "cloudlinks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "cloudlinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CloudLinksClient: %+v", err)
 	}

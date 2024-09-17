@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataConnectorsCheckRequirements interface {
+	DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl
 }
 
-// RawDataConnectorsCheckRequirementsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataConnectorsCheckRequirements = BaseDataConnectorsCheckRequirementsImpl{}
+
+type BaseDataConnectorsCheckRequirementsImpl struct {
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s BaseDataConnectorsCheckRequirementsImpl) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return s
+}
+
+var _ DataConnectorsCheckRequirements = RawDataConnectorsCheckRequirementsImpl{}
+
+// RawDataConnectorsCheckRequirementsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataConnectorsCheckRequirementsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataConnectorsCheckRequirements BaseDataConnectorsCheckRequirementsImpl
+	Type                            string
+	Values                          map[string]interface{}
 }
 
-func unmarshalDataConnectorsCheckRequirementsImplementation(input []byte) (DataConnectorsCheckRequirements, error) {
+func (s RawDataConnectorsCheckRequirementsImpl) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return s.dataConnectorsCheckRequirements
+}
+
+func UnmarshalDataConnectorsCheckRequirementsImplementation(input []byte) (DataConnectorsCheckRequirements, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -172,10 +189,15 @@ func unmarshalDataConnectorsCheckRequirementsImplementation(input []byte) (DataC
 		return out, nil
 	}
 
-	out := RawDataConnectorsCheckRequirementsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataConnectorsCheckRequirementsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataConnectorsCheckRequirementsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataConnectorsCheckRequirementsImpl{
+		dataConnectorsCheckRequirements: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
 
 }

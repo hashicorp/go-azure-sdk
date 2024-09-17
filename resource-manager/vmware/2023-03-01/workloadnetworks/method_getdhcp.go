@@ -45,7 +45,6 @@ func (c WorkloadNetworksClient) GetDhcp(ctx context.Context, id DhcpConfiguratio
 
 	var model WorkloadNetworkDhcp
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

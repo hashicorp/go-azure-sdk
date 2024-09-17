@@ -14,10 +14,22 @@ type ServerPropertiesForReplica struct {
 	SourceServerId string `json:"sourceServerId"`
 
 	// Fields inherited from ServerPropertiesForCreate
+
+	CreateMode        CreateMode             `json:"createMode"`
 	MinimalTlsVersion *MinimalTlsVersionEnum `json:"minimalTlsVersion,omitempty"`
 	SslEnforcement    *SslEnforcementEnum    `json:"sslEnforcement,omitempty"`
 	StorageProfile    *StorageProfile        `json:"storageProfile,omitempty"`
 	Version           *ServerVersion         `json:"version,omitempty"`
+}
+
+func (s ServerPropertiesForReplica) ServerPropertiesForCreate() BaseServerPropertiesForCreateImpl {
+	return BaseServerPropertiesForCreateImpl{
+		CreateMode:        s.CreateMode,
+		MinimalTlsVersion: s.MinimalTlsVersion,
+		SslEnforcement:    s.SslEnforcement,
+		StorageProfile:    s.StorageProfile,
+		Version:           s.Version,
+	}
 }
 
 var _ json.Marshaler = ServerPropertiesForReplica{}
@@ -31,9 +43,10 @@ func (s ServerPropertiesForReplica) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ServerPropertiesForReplica: %+v", err)
 	}
+
 	decoded["createMode"] = "Replica"
 
 	encoded, err = json.Marshal(decoded)

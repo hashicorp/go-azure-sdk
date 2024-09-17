@@ -44,7 +44,7 @@ func ParseReplicationEventID(input string) (*ReplicationEventId, error) {
 	}
 
 	id := ReplicationEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationEventIDInsensitively(input string) (*ReplicationEventId, er
 	}
 
 	id := ReplicationEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

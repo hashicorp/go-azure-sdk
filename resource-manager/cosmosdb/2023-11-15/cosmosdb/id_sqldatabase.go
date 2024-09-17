@@ -44,7 +44,7 @@ func ParseSqlDatabaseID(input string) (*SqlDatabaseId, error) {
 	}
 
 	id := SqlDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSqlDatabaseIDInsensitively(input string) (*SqlDatabaseId, error) {
 	}
 
 	id := SqlDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

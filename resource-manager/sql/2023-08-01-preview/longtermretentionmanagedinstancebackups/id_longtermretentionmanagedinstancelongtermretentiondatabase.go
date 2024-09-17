@@ -46,7 +46,7 @@ func ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseID(input stri
 	}
 
 	id := LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseLongTermRetentionManagedInstanceLongTermRetentionDatabaseIDInsensitive
 	}
 
 	id := LongTermRetentionManagedInstanceLongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

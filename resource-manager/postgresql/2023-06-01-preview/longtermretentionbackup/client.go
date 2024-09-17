@@ -15,7 +15,7 @@ type LongTermRetentionBackupClient struct {
 }
 
 func NewLongTermRetentionBackupClientWithBaseURI(sdkApi sdkEnv.Api) (*LongTermRetentionBackupClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "longtermretentionbackup", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "longtermretentionbackup", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LongTermRetentionBackupClient: %+v", err)
 	}

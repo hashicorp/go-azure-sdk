@@ -40,6 +40,7 @@ func (o NamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions) To
 
 func (o NamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

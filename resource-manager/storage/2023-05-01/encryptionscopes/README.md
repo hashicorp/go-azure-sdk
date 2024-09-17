@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/encryptionscopes` Documentation
 
-The `encryptionscopes` SDK allows for interaction with the Azure Resource Manager Service `storage` (API Version `2023-05-01`).
+The `encryptionscopes` SDK allows for interaction with Azure Resource Manager `storage` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

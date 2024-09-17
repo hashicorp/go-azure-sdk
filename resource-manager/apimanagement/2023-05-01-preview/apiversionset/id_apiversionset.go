@@ -44,7 +44,7 @@ func ParseApiVersionSetID(input string) (*ApiVersionSetId, error) {
 	}
 
 	id := ApiVersionSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApiVersionSetIDInsensitively(input string) (*ApiVersionSetId, error) {
 	}
 
 	id := ApiVersionSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

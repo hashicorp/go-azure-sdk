@@ -44,7 +44,7 @@ func ParseTrustedAccessRoleBindingID(input string) (*TrustedAccessRoleBindingId,
 	}
 
 	id := TrustedAccessRoleBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTrustedAccessRoleBindingIDInsensitively(input string) (*TrustedAccessR
 	}
 
 	id := TrustedAccessRoleBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

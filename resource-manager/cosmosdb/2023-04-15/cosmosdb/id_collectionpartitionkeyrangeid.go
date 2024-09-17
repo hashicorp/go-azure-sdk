@@ -50,7 +50,7 @@ func ParseCollectionPartitionKeyRangeIdID(input string) (*CollectionPartitionKey
 	}
 
 	id := CollectionPartitionKeyRangeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseCollectionPartitionKeyRangeIdIDInsensitively(input string) (*Collectio
 	}
 
 	id := CollectionPartitionKeyRangeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

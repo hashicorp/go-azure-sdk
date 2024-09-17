@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-10-01-preview/privateendpointconnections` Documentation
 
-The `privateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `cognitive` (API Version `2023-10-01-preview`).
+The `privateendpointconnections` SDK allows for interaction with Azure Resource Manager `cognitive` (API Version `2023-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

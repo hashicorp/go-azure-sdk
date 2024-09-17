@@ -40,7 +40,7 @@ func ParseScopedLockID(input string) (*ScopedLockId, error) {
 	}
 
 	id := ScopedLockId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedLockIDInsensitively(input string) (*ScopedLockId, error) {
 	}
 
 	id := ScopedLockId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

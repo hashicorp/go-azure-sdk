@@ -44,7 +44,7 @@ func ParseHubID(input string) (*HubId, error) {
 	}
 
 	id := HubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHubIDInsensitively(input string) (*HubId, error) {
 	}
 
 	id := HubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

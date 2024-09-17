@@ -35,6 +35,7 @@ func (o RemoveOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

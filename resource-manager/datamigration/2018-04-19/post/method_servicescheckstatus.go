@@ -46,7 +46,6 @@ func (c POSTClient) ServicesCheckStatus(ctx context.Context, id ServiceId) (resu
 
 	var model DataMigrationServiceStatusResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

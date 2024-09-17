@@ -15,7 +15,7 @@ type ApiOperationsByTagClient struct {
 }
 
 func NewApiOperationsByTagClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiOperationsByTagClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apioperationsbytag", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apioperationsbytag", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiOperationsByTagClient: %+v", err)
 	}

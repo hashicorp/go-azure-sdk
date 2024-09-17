@@ -34,7 +34,7 @@ func (s *ServiceResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalServiceResourcePropertiesImplementation(v)
+		impl, err := UnmarshalServiceResourcePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ServiceResource': %+v", err)
 		}

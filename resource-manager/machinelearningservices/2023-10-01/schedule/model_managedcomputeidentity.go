@@ -16,6 +16,14 @@ type ManagedComputeIdentity struct {
 	Identity *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
 
 	// Fields inherited from MonitorComputeIdentityBase
+
+	ComputeIdentityType MonitorComputeIdentityType `json:"computeIdentityType"`
+}
+
+func (s ManagedComputeIdentity) MonitorComputeIdentityBase() BaseMonitorComputeIdentityBaseImpl {
+	return BaseMonitorComputeIdentityBaseImpl{
+		ComputeIdentityType: s.ComputeIdentityType,
+	}
 }
 
 var _ json.Marshaler = ManagedComputeIdentity{}
@@ -29,9 +37,10 @@ func (s ManagedComputeIdentity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedComputeIdentity: %+v", err)
 	}
+
 	decoded["computeIdentityType"] = "ManagedIdentity"
 
 	encoded, err = json.Marshal(decoded)

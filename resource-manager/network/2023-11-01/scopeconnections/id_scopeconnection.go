@@ -44,7 +44,7 @@ func ParseScopeConnectionID(input string) (*ScopeConnectionId, error) {
 	}
 
 	id := ScopeConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseScopeConnectionIDInsensitively(input string) (*ScopeConnectionId, erro
 	}
 
 	id := ScopeConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

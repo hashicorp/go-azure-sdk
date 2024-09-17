@@ -42,7 +42,7 @@ func ParseResourceManagementPrivateLinkID(input string) (*ResourceManagementPriv
 	}
 
 	id := ResourceManagementPrivateLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseResourceManagementPrivateLinkIDInsensitively(input string) (*ResourceM
 	}
 
 	id := ResourceManagementPrivateLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

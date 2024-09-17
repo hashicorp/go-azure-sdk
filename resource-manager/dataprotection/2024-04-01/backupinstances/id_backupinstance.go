@@ -44,7 +44,7 @@ func ParseBackupInstanceID(input string) (*BackupInstanceId, error) {
 	}
 
 	id := BackupInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupInstanceIDInsensitively(input string) (*BackupInstanceId, error)
 	}
 
 	id := BackupInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

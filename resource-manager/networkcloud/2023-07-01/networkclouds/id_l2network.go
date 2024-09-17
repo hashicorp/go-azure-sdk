@@ -42,7 +42,7 @@ func ParseL2NetworkID(input string) (*L2NetworkId, error) {
 	}
 
 	id := L2NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseL2NetworkIDInsensitively(input string) (*L2NetworkId, error) {
 	}
 
 	id := L2NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

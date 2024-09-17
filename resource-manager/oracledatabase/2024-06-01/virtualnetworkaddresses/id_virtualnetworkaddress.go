@@ -44,7 +44,7 @@ func ParseVirtualNetworkAddressID(input string) (*VirtualNetworkAddressId, error
 	}
 
 	id := VirtualNetworkAddressId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualNetworkAddressIDInsensitively(input string) (*VirtualNetworkAdd
 	}
 
 	id := VirtualNetworkAddressId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

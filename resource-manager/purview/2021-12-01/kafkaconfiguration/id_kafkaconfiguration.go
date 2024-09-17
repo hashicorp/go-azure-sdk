@@ -44,7 +44,7 @@ func ParseKafkaConfigurationID(input string) (*KafkaConfigurationId, error) {
 	}
 
 	id := KafkaConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseKafkaConfigurationIDInsensitively(input string) (*KafkaConfigurationId
 	}
 
 	id := KafkaConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

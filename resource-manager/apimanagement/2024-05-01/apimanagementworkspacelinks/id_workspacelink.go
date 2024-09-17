@@ -44,7 +44,7 @@ func ParseWorkspaceLinkID(input string) (*WorkspaceLinkId, error) {
 	}
 
 	id := WorkspaceLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkspaceLinkIDInsensitively(input string) (*WorkspaceLinkId, error) {
 	}
 
 	id := WorkspaceLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParsePortalRevisionID(input string) (*PortalRevisionId, error) {
 	}
 
 	id := PortalRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePortalRevisionIDInsensitively(input string) (*PortalRevisionId, error)
 	}
 
 	id := PortalRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

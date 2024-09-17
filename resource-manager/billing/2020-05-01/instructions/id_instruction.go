@@ -42,7 +42,7 @@ func ParseInstructionID(input string) (*InstructionId, error) {
 	}
 
 	id := InstructionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseInstructionIDInsensitively(input string) (*InstructionId, error) {
 	}
 
 	id := InstructionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

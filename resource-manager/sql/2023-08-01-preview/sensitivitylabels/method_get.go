@@ -45,7 +45,6 @@ func (c SensitivityLabelsClient) Get(ctx context.Context, id SensitivityLabelSou
 
 	var model SensitivityLabel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

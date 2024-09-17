@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MonitoringFeatureFilterBase interface {
+	MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl
 }
 
-// RawMonitoringFeatureFilterBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ MonitoringFeatureFilterBase = BaseMonitoringFeatureFilterBaseImpl{}
+
+type BaseMonitoringFeatureFilterBaseImpl struct {
+	FilterType MonitoringFeatureFilterType `json:"filterType"`
+}
+
+func (s BaseMonitoringFeatureFilterBaseImpl) MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl {
+	return s
+}
+
+var _ MonitoringFeatureFilterBase = RawMonitoringFeatureFilterBaseImpl{}
+
+// RawMonitoringFeatureFilterBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawMonitoringFeatureFilterBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	monitoringFeatureFilterBase BaseMonitoringFeatureFilterBaseImpl
+	Type                        string
+	Values                      map[string]interface{}
 }
 
-func unmarshalMonitoringFeatureFilterBaseImplementation(input []byte) (MonitoringFeatureFilterBase, error) {
+func (s RawMonitoringFeatureFilterBaseImpl) MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl {
+	return s.monitoringFeatureFilterBase
+}
+
+func UnmarshalMonitoringFeatureFilterBaseImplementation(input []byte) (MonitoringFeatureFilterBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalMonitoringFeatureFilterBaseImplementation(input []byte) (Monitorin
 		return out, nil
 	}
 
-	out := RawMonitoringFeatureFilterBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseMonitoringFeatureFilterBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMonitoringFeatureFilterBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawMonitoringFeatureFilterBaseImpl{
+		monitoringFeatureFilterBase: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
 
 }

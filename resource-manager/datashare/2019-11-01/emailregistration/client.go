@@ -15,7 +15,7 @@ type EmailRegistrationClient struct {
 }
 
 func NewEmailRegistrationClientWithBaseURI(sdkApi sdkEnv.Api) (*EmailRegistrationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "emailregistration", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "emailregistration", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EmailRegistrationClient: %+v", err)
 	}

@@ -16,6 +16,8 @@ var _ WorkspaceConnectionPropertiesV2 = AADAuthTypeWorkspaceConnectionProperties
 type AADAuthTypeWorkspaceConnectionProperties struct {
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
+
+	AuthType                ConnectionAuthType  `json:"authType"`
 	Category                *ConnectionCategory `json:"category,omitempty"`
 	CreatedByWorkspaceArmId *string             `json:"createdByWorkspaceArmId,omitempty"`
 	ExpiryTime              *string             `json:"expiryTime,omitempty"`
@@ -26,6 +28,22 @@ type AADAuthTypeWorkspaceConnectionProperties struct {
 	Target                  *string             `json:"target,omitempty"`
 	Value                   *string             `json:"value,omitempty"`
 	ValueFormat             *ValueFormat        `json:"valueFormat,omitempty"`
+}
+
+func (s AADAuthTypeWorkspaceConnectionProperties) WorkspaceConnectionPropertiesV2() BaseWorkspaceConnectionPropertiesV2Impl {
+	return BaseWorkspaceConnectionPropertiesV2Impl{
+		AuthType:                s.AuthType,
+		Category:                s.Category,
+		CreatedByWorkspaceArmId: s.CreatedByWorkspaceArmId,
+		ExpiryTime:              s.ExpiryTime,
+		Group:                   s.Group,
+		IsSharedToAll:           s.IsSharedToAll,
+		Metadata:                s.Metadata,
+		SharedUserList:          s.SharedUserList,
+		Target:                  s.Target,
+		Value:                   s.Value,
+		ValueFormat:             s.ValueFormat,
+	}
 }
 
 func (o *AADAuthTypeWorkspaceConnectionProperties) GetExpiryTimeAsTime() (*time.Time, error) {
@@ -51,9 +69,10 @@ func (s AADAuthTypeWorkspaceConnectionProperties) MarshalJSON() ([]byte, error) 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AADAuthTypeWorkspaceConnectionProperties: %+v", err)
 	}
+
 	decoded["authType"] = "AAD"
 
 	encoded, err = json.Marshal(decoded)

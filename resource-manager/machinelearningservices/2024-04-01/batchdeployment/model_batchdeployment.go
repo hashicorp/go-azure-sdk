@@ -59,7 +59,7 @@ func (s *BatchDeployment) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["deploymentConfiguration"]; ok {
-		impl, err := unmarshalBatchDeploymentConfigurationImplementation(v)
+		impl, err := UnmarshalBatchDeploymentConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DeploymentConfiguration' for 'BatchDeployment': %+v", err)
 		}
@@ -67,7 +67,7 @@ func (s *BatchDeployment) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["model"]; ok {
-		impl, err := unmarshalAssetReferenceBaseImplementation(v)
+		impl, err := UnmarshalAssetReferenceBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Model' for 'BatchDeployment': %+v", err)
 		}

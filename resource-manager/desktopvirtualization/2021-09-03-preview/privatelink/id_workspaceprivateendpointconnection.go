@@ -44,7 +44,7 @@ func ParseWorkspacePrivateEndpointConnectionID(input string) (*WorkspacePrivateE
 	}
 
 	id := WorkspacePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkspacePrivateEndpointConnectionIDInsensitively(input string) (*Work
 	}
 
 	id := WorkspacePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

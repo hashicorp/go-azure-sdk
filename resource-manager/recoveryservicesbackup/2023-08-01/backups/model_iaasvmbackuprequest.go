@@ -14,6 +14,14 @@ type IaasVMBackupRequest struct {
 	RecoveryPointExpiryTimeInUTC *string `json:"recoveryPointExpiryTimeInUTC,omitempty"`
 
 	// Fields inherited from BackupRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s IaasVMBackupRequest) BackupRequest() BaseBackupRequestImpl {
+	return BaseBackupRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = IaasVMBackupRequest{}
@@ -27,9 +35,10 @@ func (s IaasVMBackupRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IaasVMBackupRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "IaasVMBackupRequest"
 
 	encoded, err = json.Marshal(decoded)

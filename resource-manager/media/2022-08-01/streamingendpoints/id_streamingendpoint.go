@@ -44,7 +44,7 @@ func ParseStreamingEndpointID(input string) (*StreamingEndpointId, error) {
 	}
 
 	id := StreamingEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStreamingEndpointIDInsensitively(input string) (*StreamingEndpointId, 
 	}
 
 	id := StreamingEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

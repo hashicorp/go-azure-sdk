@@ -44,7 +44,7 @@ func ParseAutomationRuleID(input string) (*AutomationRuleId, error) {
 	}
 
 	id := AutomationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAutomationRuleIDInsensitively(input string) (*AutomationRuleId, error)
 	}
 
 	id := AutomationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

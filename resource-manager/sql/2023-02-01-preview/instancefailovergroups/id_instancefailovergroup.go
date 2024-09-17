@@ -44,7 +44,7 @@ func ParseInstanceFailoverGroupID(input string) (*InstanceFailoverGroupId, error
 	}
 
 	id := InstanceFailoverGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInstanceFailoverGroupIDInsensitively(input string) (*InstanceFailoverG
 	}
 
 	id := InstanceFailoverGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

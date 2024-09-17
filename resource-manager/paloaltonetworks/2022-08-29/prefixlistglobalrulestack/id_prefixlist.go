@@ -40,7 +40,7 @@ func ParsePrefixListID(input string) (*PrefixListId, error) {
 	}
 
 	id := PrefixListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePrefixListIDInsensitively(input string) (*PrefixListId, error) {
 	}
 
 	id := PrefixListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

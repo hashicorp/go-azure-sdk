@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/graphqueries` Documentation
 
-The `graphqueries` SDK allows for interaction with the Azure Resource Manager Service `resourcegraph` (API Version `2024-04-01`).
+The `graphqueries` SDK allows for interaction with Azure Resource Manager `resourcegraph` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

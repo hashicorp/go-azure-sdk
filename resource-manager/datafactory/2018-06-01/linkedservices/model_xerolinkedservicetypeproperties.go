@@ -41,7 +41,7 @@ func (s *XeroLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["consumerKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ConsumerKey' for 'XeroLinkedServiceTypeProperties': %+v", err)
 		}
@@ -49,7 +49,7 @@ func (s *XeroLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["privateKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrivateKey' for 'XeroLinkedServiceTypeProperties': %+v", err)
 		}

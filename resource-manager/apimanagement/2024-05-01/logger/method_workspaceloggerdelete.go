@@ -35,6 +35,7 @@ func (o WorkspaceLoggerDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceLoggerDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

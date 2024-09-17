@@ -14,9 +14,20 @@ type SavingsPlanUtilizationSummary struct {
 	Properties *SavingsPlanUtilizationSummaryProperties `json:"properties,omitempty"`
 
 	// Fields inherited from BenefitUtilizationSummary
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string     `json:"id,omitempty"`
+	Kind BenefitKind `json:"kind"`
+	Name *string     `json:"name,omitempty"`
+	Type *string     `json:"type,omitempty"`
+}
+
+func (s SavingsPlanUtilizationSummary) BenefitUtilizationSummary() BaseBenefitUtilizationSummaryImpl {
+	return BaseBenefitUtilizationSummaryImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = SavingsPlanUtilizationSummary{}
@@ -30,9 +41,10 @@ func (s SavingsPlanUtilizationSummary) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SavingsPlanUtilizationSummary: %+v", err)
 	}
+
 	decoded["kind"] = "SavingsPlan"
 
 	encoded, err = json.Marshal(decoded)

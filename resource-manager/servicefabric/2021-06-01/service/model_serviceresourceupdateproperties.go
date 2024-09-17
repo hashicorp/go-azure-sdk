@@ -10,18 +10,40 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ServiceResourceUpdateProperties interface {
+	ServiceResourceUpdateProperties() BaseServiceResourceUpdatePropertiesImpl
 }
 
-// RawServiceResourceUpdatePropertiesImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ServiceResourceUpdateProperties = BaseServiceResourceUpdatePropertiesImpl{}
+
+type BaseServiceResourceUpdatePropertiesImpl struct {
+	CorrelationScheme        *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
+	DefaultMoveCost          *MoveCost                            `json:"defaultMoveCost,omitempty"`
+	PlacementConstraints     *string                              `json:"placementConstraints,omitempty"`
+	ServiceKind              ServiceKind                          `json:"serviceKind"`
+	ServiceLoadMetrics       *[]ServiceLoadMetricDescription      `json:"serviceLoadMetrics,omitempty"`
+	ServicePlacementPolicies *[]ServicePlacementPolicyDescription `json:"servicePlacementPolicies,omitempty"`
+}
+
+func (s BaseServiceResourceUpdatePropertiesImpl) ServiceResourceUpdateProperties() BaseServiceResourceUpdatePropertiesImpl {
+	return s
+}
+
+var _ ServiceResourceUpdateProperties = RawServiceResourceUpdatePropertiesImpl{}
+
+// RawServiceResourceUpdatePropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawServiceResourceUpdatePropertiesImpl struct {
-	Type   string
-	Values map[string]interface{}
+	serviceResourceUpdateProperties BaseServiceResourceUpdatePropertiesImpl
+	Type                            string
+	Values                          map[string]interface{}
 }
 
-func unmarshalServiceResourceUpdatePropertiesImplementation(input []byte) (ServiceResourceUpdateProperties, error) {
+func (s RawServiceResourceUpdatePropertiesImpl) ServiceResourceUpdateProperties() BaseServiceResourceUpdatePropertiesImpl {
+	return s.serviceResourceUpdateProperties
+}
+
+func UnmarshalServiceResourceUpdatePropertiesImplementation(input []byte) (ServiceResourceUpdateProperties, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +74,15 @@ func unmarshalServiceResourceUpdatePropertiesImplementation(input []byte) (Servi
 		return out, nil
 	}
 
-	out := RawServiceResourceUpdatePropertiesImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseServiceResourceUpdatePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseServiceResourceUpdatePropertiesImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawServiceResourceUpdatePropertiesImpl{
+		serviceResourceUpdateProperties: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
 
 }

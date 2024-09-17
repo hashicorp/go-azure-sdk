@@ -46,7 +46,7 @@ func ParseCredentialID(input string) (*CredentialId, error) {
 	}
 
 	id := CredentialId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCredentialIDInsensitively(input string) (*CredentialId, error) {
 	}
 
 	id := CredentialId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

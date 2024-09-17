@@ -44,7 +44,7 @@ func ParseApplicationInstanceID(input string) (*ApplicationInstanceId, error) {
 	}
 
 	id := ApplicationInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApplicationInstanceIDInsensitively(input string) (*ApplicationInstance
 	}
 
 	id := ApplicationInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

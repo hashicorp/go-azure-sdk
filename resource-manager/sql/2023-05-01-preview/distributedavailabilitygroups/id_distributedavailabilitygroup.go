@@ -44,7 +44,7 @@ func ParseDistributedAvailabilityGroupID(input string) (*DistributedAvailability
 	}
 
 	id := DistributedAvailabilityGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDistributedAvailabilityGroupIDInsensitively(input string) (*Distribute
 	}
 
 	id := DistributedAvailabilityGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

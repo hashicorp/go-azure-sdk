@@ -44,7 +44,7 @@ func ParseReplicationAlertSettingID(input string) (*ReplicationAlertSettingId, e
 	}
 
 	id := ReplicationAlertSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationAlertSettingIDInsensitively(input string) (*ReplicationAler
 	}
 
 	id := ReplicationAlertSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

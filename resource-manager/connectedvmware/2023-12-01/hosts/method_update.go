@@ -49,7 +49,6 @@ func (c HostsClient) Update(ctx context.Context, id HostId, input ResourcePatch)
 
 	var model Host
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

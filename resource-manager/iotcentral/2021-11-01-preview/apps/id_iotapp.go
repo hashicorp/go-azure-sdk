@@ -42,7 +42,7 @@ func ParseIotAppID(input string) (*IotAppId, error) {
 	}
 
 	id := IotAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseIotAppIDInsensitively(input string) (*IotAppId, error) {
 	}
 
 	id := IotAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

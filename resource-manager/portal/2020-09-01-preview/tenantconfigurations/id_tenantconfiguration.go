@@ -38,7 +38,7 @@ func ParseTenantConfigurationID(input string) (*TenantConfigurationId, error) {
 	}
 
 	id := TenantConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseTenantConfigurationIDInsensitively(input string) (*TenantConfiguration
 	}
 
 	id := TenantConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

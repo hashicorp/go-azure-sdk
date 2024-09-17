@@ -44,7 +44,7 @@ func ParseFlowLogID(input string) (*FlowLogId, error) {
 	}
 
 	id := FlowLogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFlowLogIDInsensitively(input string) (*FlowLogId, error) {
 	}
 
 	id := FlowLogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

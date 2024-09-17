@@ -45,7 +45,6 @@ func (c BestPracticesClient) ListByTenant(ctx context.Context) (result ListByTen
 
 	var model BestPracticeList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

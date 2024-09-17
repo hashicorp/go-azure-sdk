@@ -30,7 +30,7 @@ func (s *VaultRetentionPolicy) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["vaultRetention"]; ok {
-		impl, err := unmarshalRetentionPolicyImplementation(v)
+		impl, err := UnmarshalRetentionPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'VaultRetention' for 'VaultRetentionPolicy': %+v", err)
 		}

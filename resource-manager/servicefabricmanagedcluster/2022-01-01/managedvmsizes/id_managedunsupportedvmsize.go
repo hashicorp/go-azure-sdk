@@ -42,7 +42,7 @@ func ParseManagedUnsupportedVMSizeID(input string) (*ManagedUnsupportedVMSizeId,
 	}
 
 	id := ManagedUnsupportedVMSizeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseManagedUnsupportedVMSizeIDInsensitively(input string) (*ManagedUnsuppo
 	}
 
 	id := ManagedUnsupportedVMSizeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

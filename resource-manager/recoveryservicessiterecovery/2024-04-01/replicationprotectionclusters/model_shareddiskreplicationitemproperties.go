@@ -42,7 +42,7 @@ func (s *SharedDiskReplicationItemProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["sharedDiskProviderSpecificDetails"]; ok {
-		impl, err := unmarshalSharedDiskReplicationProviderSpecificSettingsImplementation(v)
+		impl, err := UnmarshalSharedDiskReplicationProviderSpecificSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SharedDiskProviderSpecificDetails' for 'SharedDiskReplicationItemProperties': %+v", err)
 		}

@@ -50,7 +50,6 @@ func (c RecoveryServicesClient) CheckNameAvailability(ctx context.Context, id Pr
 
 	var model CheckNameAvailabilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

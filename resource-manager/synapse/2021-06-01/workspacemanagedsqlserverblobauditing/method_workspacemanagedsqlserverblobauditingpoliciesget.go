@@ -46,7 +46,6 @@ func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerBl
 
 	var model ServerBlobAuditingPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

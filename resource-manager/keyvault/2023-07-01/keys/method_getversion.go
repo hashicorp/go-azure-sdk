@@ -46,7 +46,6 @@ func (c KeysClient) GetVersion(ctx context.Context, id commonids.KeyVaultKeyVers
 
 	var model Key
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,7 @@ func ParseSlotContinuousWebJobID(input string) (*SlotContinuousWebJobId, error) 
 	}
 
 	id := SlotContinuousWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotContinuousWebJobIDInsensitively(input string) (*SlotContinuousWebJ
 	}
 
 	id := SlotContinuousWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

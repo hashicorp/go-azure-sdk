@@ -34,6 +34,7 @@ func (o DisableAllForHostingEnvironmentOperationOptions) ToHeaders() *client.Hea
 
 func (o DisableAllForHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

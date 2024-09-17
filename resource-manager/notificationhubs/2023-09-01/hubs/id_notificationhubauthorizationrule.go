@@ -46,7 +46,7 @@ func ParseNotificationHubAuthorizationRuleID(input string) (*NotificationHubAuth
 	}
 
 	id := NotificationHubAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseNotificationHubAuthorizationRuleIDInsensitively(input string) (*Notifi
 	}
 
 	id := NotificationHubAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

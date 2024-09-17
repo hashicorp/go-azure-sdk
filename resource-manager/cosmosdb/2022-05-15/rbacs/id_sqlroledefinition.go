@@ -44,7 +44,7 @@ func ParseSqlRoleDefinitionID(input string) (*SqlRoleDefinitionId, error) {
 	}
 
 	id := SqlRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSqlRoleDefinitionIDInsensitively(input string) (*SqlRoleDefinitionId, 
 	}
 
 	id := SqlRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

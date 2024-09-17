@@ -49,7 +49,6 @@ func (c EncodingsClient) JobsUpdate(ctx context.Context, id JobId, input Job) (r
 
 	var model Job
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

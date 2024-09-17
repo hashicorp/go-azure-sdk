@@ -14,6 +14,14 @@ type AzureADPartnerClientAuthentication struct {
 	Properties *AzureADPartnerClientAuthenticationProperties `json:"properties,omitempty"`
 
 	// Fields inherited from PartnerClientAuthentication
+
+	ClientAuthenticationType PartnerClientAuthenticationType `json:"clientAuthenticationType"`
+}
+
+func (s AzureADPartnerClientAuthentication) PartnerClientAuthentication() BasePartnerClientAuthenticationImpl {
+	return BasePartnerClientAuthenticationImpl{
+		ClientAuthenticationType: s.ClientAuthenticationType,
+	}
 }
 
 var _ json.Marshaler = AzureADPartnerClientAuthentication{}
@@ -27,9 +35,10 @@ func (s AzureADPartnerClientAuthentication) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureADPartnerClientAuthentication: %+v", err)
 	}
+
 	decoded["clientAuthenticationType"] = "AzureAD"
 
 	encoded, err = json.Marshal(decoded)

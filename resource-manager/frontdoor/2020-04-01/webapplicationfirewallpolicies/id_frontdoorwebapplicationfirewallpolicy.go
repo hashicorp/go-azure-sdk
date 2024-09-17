@@ -42,7 +42,7 @@ func ParseFrontDoorWebApplicationFirewallPolicyID(input string) (*FrontDoorWebAp
 	}
 
 	id := FrontDoorWebApplicationFirewallPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFrontDoorWebApplicationFirewallPolicyIDInsensitively(input string) (*F
 	}
 
 	id := FrontDoorWebApplicationFirewallPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

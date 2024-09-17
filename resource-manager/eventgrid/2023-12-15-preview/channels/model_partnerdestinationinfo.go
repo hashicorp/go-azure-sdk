@@ -10,18 +10,40 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartnerDestinationInfo interface {
+	PartnerDestinationInfo() BasePartnerDestinationInfoImpl
 }
 
-// RawPartnerDestinationInfoImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ PartnerDestinationInfo = BasePartnerDestinationInfoImpl{}
+
+type BasePartnerDestinationInfoImpl struct {
+	AzureSubscriptionId       *string                      `json:"azureSubscriptionId,omitempty"`
+	EndpointServiceContext    *string                      `json:"endpointServiceContext,omitempty"`
+	EndpointType              PartnerEndpointType          `json:"endpointType"`
+	Name                      *string                      `json:"name,omitempty"`
+	ResourceGroupName         *string                      `json:"resourceGroupName,omitempty"`
+	ResourceMoveChangeHistory *[]ResourceMoveChangeHistory `json:"resourceMoveChangeHistory,omitempty"`
+}
+
+func (s BasePartnerDestinationInfoImpl) PartnerDestinationInfo() BasePartnerDestinationInfoImpl {
+	return s
+}
+
+var _ PartnerDestinationInfo = RawPartnerDestinationInfoImpl{}
+
+// RawPartnerDestinationInfoImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawPartnerDestinationInfoImpl struct {
-	Type   string
-	Values map[string]interface{}
+	partnerDestinationInfo BasePartnerDestinationInfoImpl
+	Type                   string
+	Values                 map[string]interface{}
 }
 
-func unmarshalPartnerDestinationInfoImplementation(input []byte) (PartnerDestinationInfo, error) {
+func (s RawPartnerDestinationInfoImpl) PartnerDestinationInfo() BasePartnerDestinationInfoImpl {
+	return s.partnerDestinationInfo
+}
+
+func UnmarshalPartnerDestinationInfoImplementation(input []byte) (PartnerDestinationInfo, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +66,15 @@ func unmarshalPartnerDestinationInfoImplementation(input []byte) (PartnerDestina
 		return out, nil
 	}
 
-	out := RawPartnerDestinationInfoImpl{
-		Type:   value,
-		Values: temp,
+	var parent BasePartnerDestinationInfoImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePartnerDestinationInfoImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawPartnerDestinationInfoImpl{
+		partnerDestinationInfo: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
 
 }

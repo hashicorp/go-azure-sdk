@@ -44,7 +44,7 @@ func ParseClientGroupID(input string) (*ClientGroupId, error) {
 	}
 
 	id := ClientGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseClientGroupIDInsensitively(input string) (*ClientGroupId, error) {
 	}
 
 	id := ClientGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseLocalNetworkGatewayID(input string) (*LocalNetworkGatewayId, error) {
 	}
 
 	id := LocalNetworkGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLocalNetworkGatewayIDInsensitively(input string) (*LocalNetworkGateway
 	}
 
 	id := LocalNetworkGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

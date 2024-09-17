@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-02-01/attacheddatanetwork` Documentation
 
-The `attacheddatanetwork` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2024-02-01`).
+The `attacheddatanetwork` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2024-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

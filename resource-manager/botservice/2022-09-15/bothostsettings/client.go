@@ -15,7 +15,7 @@ type BotHostSettingsClient struct {
 }
 
 func NewBotHostSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*BotHostSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "bothostsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "bothostsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BotHostSettingsClient: %+v", err)
 	}

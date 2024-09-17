@@ -44,7 +44,7 @@ func ParseRulesEngineID(input string) (*RulesEngineId, error) {
 	}
 
 	id := RulesEngineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRulesEngineIDInsensitively(input string) (*RulesEngineId, error) {
 	}
 
 	id := RulesEngineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

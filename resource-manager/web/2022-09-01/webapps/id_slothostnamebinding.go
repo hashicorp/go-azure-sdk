@@ -46,7 +46,7 @@ func ParseSlotHostNameBindingID(input string) (*SlotHostNameBindingId, error) {
 	}
 
 	id := SlotHostNameBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotHostNameBindingIDInsensitively(input string) (*SlotHostNameBinding
 	}
 
 	id := SlotHostNameBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseNetworkFeatureID(input string) (*NetworkFeatureId, error) {
 	}
 
 	id := NetworkFeatureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNetworkFeatureIDInsensitively(input string) (*NetworkFeatureId, error)
 	}
 
 	id := NetworkFeatureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

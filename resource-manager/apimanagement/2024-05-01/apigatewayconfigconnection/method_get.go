@@ -45,7 +45,6 @@ func (c ApiGatewayConfigConnectionClient) Get(ctx context.Context, id ConfigConn
 
 	var model ApiManagementGatewayConfigConnectionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

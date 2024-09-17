@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AdditionalData interface {
+	AdditionalData() BaseAdditionalDataImpl
 }
 
-// RawAdditionalDataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AdditionalData = BaseAdditionalDataImpl{}
+
+type BaseAdditionalDataImpl struct {
+	AssessedResourceType AssessedResourceType `json:"assessedResourceType"`
+}
+
+func (s BaseAdditionalDataImpl) AdditionalData() BaseAdditionalDataImpl {
+	return s
+}
+
+var _ AdditionalData = RawAdditionalDataImpl{}
+
+// RawAdditionalDataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAdditionalDataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	additionalData BaseAdditionalDataImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalAdditionalDataImplementation(input []byte) (AdditionalData, error) {
+func (s RawAdditionalDataImpl) AdditionalData() BaseAdditionalDataImpl {
+	return s.additionalData
+}
+
+func UnmarshalAdditionalDataImplementation(input []byte) (AdditionalData, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalAdditionalDataImplementation(input []byte) (AdditionalData, error)
 		return out, nil
 	}
 
-	out := RawAdditionalDataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAdditionalDataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAdditionalDataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAdditionalDataImpl{
+		additionalData: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

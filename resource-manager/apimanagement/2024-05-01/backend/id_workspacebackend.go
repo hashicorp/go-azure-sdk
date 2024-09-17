@@ -46,7 +46,7 @@ func ParseWorkspaceBackendID(input string) (*WorkspaceBackendId, error) {
 	}
 
 	id := WorkspaceBackendId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceBackendIDInsensitively(input string) (*WorkspaceBackendId, er
 	}
 
 	id := WorkspaceBackendId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

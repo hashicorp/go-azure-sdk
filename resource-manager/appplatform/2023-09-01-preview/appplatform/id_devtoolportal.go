@@ -44,7 +44,7 @@ func ParseDevToolPortalID(input string) (*DevToolPortalId, error) {
 	}
 
 	id := DevToolPortalId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDevToolPortalIDInsensitively(input string) (*DevToolPortalId, error) {
 	}
 
 	id := DevToolPortalId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

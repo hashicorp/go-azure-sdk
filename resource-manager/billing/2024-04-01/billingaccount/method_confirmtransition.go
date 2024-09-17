@@ -46,7 +46,6 @@ func (c BillingAccountClient) ConfirmTransition(ctx context.Context, id BillingA
 
 	var model TransitionDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

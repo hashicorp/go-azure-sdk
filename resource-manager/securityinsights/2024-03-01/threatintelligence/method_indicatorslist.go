@@ -42,6 +42,7 @@ func (o IndicatorsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o IndicatorsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -109,7 +110,7 @@ func (c ThreatIntelligenceClient) IndicatorsList(ctx context.Context, id Workspa
 	temp := make([]ThreatIntelligenceInformation, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalThreatIntelligenceInformationImplementation(v)
+			val, err := UnmarshalThreatIntelligenceInformationImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for ThreatIntelligenceInformation (%q): %+v", i, v, err)
 				return result, err

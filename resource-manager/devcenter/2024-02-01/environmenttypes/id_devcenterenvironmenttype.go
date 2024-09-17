@@ -44,7 +44,7 @@ func ParseDevCenterEnvironmentTypeID(input string) (*DevCenterEnvironmentTypeId,
 	}
 
 	id := DevCenterEnvironmentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDevCenterEnvironmentTypeIDInsensitively(input string) (*DevCenterEnvir
 	}
 
 	id := DevCenterEnvironmentTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

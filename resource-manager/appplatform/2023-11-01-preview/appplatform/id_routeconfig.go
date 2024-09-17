@@ -46,7 +46,7 @@ func ParseRouteConfigID(input string) (*RouteConfigId, error) {
 	}
 
 	id := RouteConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRouteConfigIDInsensitively(input string) (*RouteConfigId, error) {
 	}
 
 	id := RouteConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

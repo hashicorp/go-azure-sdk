@@ -45,7 +45,6 @@ func (c PaymentMethodsClient) GetByBillingAccount(ctx context.Context, id Billin
 
 	var model PaymentMethod
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

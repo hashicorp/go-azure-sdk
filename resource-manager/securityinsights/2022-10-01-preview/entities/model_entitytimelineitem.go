@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityTimelineItem interface {
+	EntityTimelineItem() BaseEntityTimelineItemImpl
 }
 
-// RawEntityTimelineItemImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EntityTimelineItem = BaseEntityTimelineItemImpl{}
+
+type BaseEntityTimelineItemImpl struct {
+	Kind EntityTimelineKind `json:"kind"`
+}
+
+func (s BaseEntityTimelineItemImpl) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return s
+}
+
+var _ EntityTimelineItem = RawEntityTimelineItemImpl{}
+
+// RawEntityTimelineItemImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEntityTimelineItemImpl struct {
-	Type   string
-	Values map[string]interface{}
+	entityTimelineItem BaseEntityTimelineItemImpl
+	Type               string
+	Values             map[string]interface{}
 }
 
-func unmarshalEntityTimelineItemImplementation(input []byte) (EntityTimelineItem, error) {
+func (s RawEntityTimelineItemImpl) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return s.entityTimelineItem
+}
+
+func UnmarshalEntityTimelineItemImplementation(input []byte) (EntityTimelineItem, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +85,15 @@ func unmarshalEntityTimelineItemImplementation(input []byte) (EntityTimelineItem
 		return out, nil
 	}
 
-	out := RawEntityTimelineItemImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEntityTimelineItemImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEntityTimelineItemImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEntityTimelineItemImpl{
+		entityTimelineItem: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
 
 }

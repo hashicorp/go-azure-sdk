@@ -48,7 +48,7 @@ func ParseSlotHybridConnectionNamespaceRelayID(input string) (*SlotHybridConnect
 	}
 
 	id := SlotHybridConnectionNamespaceRelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseSlotHybridConnectionNamespaceRelayIDInsensitively(input string) (*Slot
 	}
 
 	id := SlotHybridConnectionNamespaceRelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

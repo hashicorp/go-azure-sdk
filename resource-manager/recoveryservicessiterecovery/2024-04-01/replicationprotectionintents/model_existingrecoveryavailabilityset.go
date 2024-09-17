@@ -14,6 +14,14 @@ type ExistingRecoveryAvailabilitySet struct {
 	RecoveryAvailabilitySetId *string `json:"recoveryAvailabilitySetId,omitempty"`
 
 	// Fields inherited from RecoveryAvailabilitySetCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s ExistingRecoveryAvailabilitySet) RecoveryAvailabilitySetCustomDetails() BaseRecoveryAvailabilitySetCustomDetailsImpl {
+	return BaseRecoveryAvailabilitySetCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = ExistingRecoveryAvailabilitySet{}
@@ -27,9 +35,10 @@ func (s ExistingRecoveryAvailabilitySet) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExistingRecoveryAvailabilitySet: %+v", err)
 	}
+
 	decoded["resourceType"] = "Existing"
 
 	encoded, err = json.Marshal(decoded)

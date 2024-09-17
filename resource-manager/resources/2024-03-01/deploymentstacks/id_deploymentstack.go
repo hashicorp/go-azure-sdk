@@ -40,7 +40,7 @@ func ParseDeploymentStackID(input string) (*DeploymentStackId, error) {
 	}
 
 	id := DeploymentStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseDeploymentStackIDInsensitively(input string) (*DeploymentStackId, erro
 	}
 
 	id := DeploymentStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

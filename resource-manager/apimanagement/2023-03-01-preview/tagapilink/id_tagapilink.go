@@ -48,7 +48,7 @@ func ParseTagApiLinkID(input string) (*TagApiLinkId, error) {
 	}
 
 	id := TagApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseTagApiLinkIDInsensitively(input string) (*TagApiLinkId, error) {
 	}
 
 	id := TagApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

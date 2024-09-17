@@ -44,7 +44,7 @@ func ParseCommandResultID(input string) (*CommandResultId, error) {
 	}
 
 	id := CommandResultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCommandResultIDInsensitively(input string) (*CommandResultId, error) {
 	}
 
 	id := CommandResultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

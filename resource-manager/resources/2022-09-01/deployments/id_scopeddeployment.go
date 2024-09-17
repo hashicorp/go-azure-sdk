@@ -40,7 +40,7 @@ func ParseScopedDeploymentID(input string) (*ScopedDeploymentId, error) {
 	}
 
 	id := ScopedDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedDeploymentIDInsensitively(input string) (*ScopedDeploymentId, er
 	}
 
 	id := ScopedDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -4,24 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Addon interface {
+	Addon() BaseAddonImpl
 }
 
-// RawAddonImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Addon = BaseAddonImpl{}
+
+type BaseAddonImpl struct {
+	Id         *string                `json:"id,omitempty"`
+	Kind       AddonType              `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseAddonImpl) Addon() BaseAddonImpl {
+	return s
+}
+
+var _ Addon = RawAddonImpl{}
+
+// RawAddonImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAddonImpl struct {
+	addon  BaseAddonImpl
 	Type   string
 	Values map[string]interface{}
 }
 
-func unmarshalAddonImplementation(input []byte) (Addon, error) {
+func (s RawAddonImpl) Addon() BaseAddonImpl {
+	return s.addon
+}
+
+func UnmarshalAddonImplementation(input []byte) (Addon, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +75,15 @@ func unmarshalAddonImplementation(input []byte) (Addon, error) {
 		return out, nil
 	}
 
-	out := RawAddonImpl{
+	var parent BaseAddonImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAddonImpl: %+v", err)
+	}
+
+	return RawAddonImpl{
+		addon:  parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

@@ -42,7 +42,7 @@ func ParseConnectionGatewayInstallationID(input string) (*ConnectionGatewayInsta
 	}
 
 	id := ConnectionGatewayInstallationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseConnectionGatewayInstallationIDInsensitively(input string) (*Connectio
 	}
 
 	id := ConnectionGatewayInstallationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

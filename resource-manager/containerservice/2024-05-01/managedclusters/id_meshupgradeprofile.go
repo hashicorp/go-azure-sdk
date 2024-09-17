@@ -44,7 +44,7 @@ func ParseMeshUpgradeProfileID(input string) (*MeshUpgradeProfileId, error) {
 	}
 
 	id := MeshUpgradeProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMeshUpgradeProfileIDInsensitively(input string) (*MeshUpgradeProfileId
 	}
 
 	id := MeshUpgradeProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

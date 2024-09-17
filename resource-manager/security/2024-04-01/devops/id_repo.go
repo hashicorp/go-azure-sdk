@@ -46,7 +46,7 @@ func ParseRepoID(input string) (*RepoId, error) {
 	}
 
 	id := RepoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRepoIDInsensitively(input string) (*RepoId, error) {
 	}
 
 	id := RepoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

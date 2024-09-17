@@ -41,6 +41,7 @@ func (o ListHistoryForHostingEnvironmentOperationOptions) ToHeaders() *client.He
 
 func (o ListHistoryForHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

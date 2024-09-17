@@ -14,9 +14,20 @@ type PolicyAssignmentArtifact struct {
 	Properties PolicyAssignmentArtifactProperties `json:"properties"`
 
 	// Fields inherited from Artifact
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string      `json:"id,omitempty"`
+	Kind ArtifactKind `json:"kind"`
+	Name *string      `json:"name,omitempty"`
+	Type *string      `json:"type,omitempty"`
+}
+
+func (s PolicyAssignmentArtifact) Artifact() BaseArtifactImpl {
+	return BaseArtifactImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = PolicyAssignmentArtifact{}
@@ -30,9 +41,10 @@ func (s PolicyAssignmentArtifact) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PolicyAssignmentArtifact: %+v", err)
 	}
+
 	decoded["kind"] = "policyAssignment"
 
 	encoded, err = json.Marshal(decoded)

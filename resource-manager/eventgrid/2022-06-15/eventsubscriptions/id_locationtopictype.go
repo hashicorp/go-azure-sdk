@@ -42,7 +42,7 @@ func ParseLocationTopicTypeID(input string) (*LocationTopicTypeId, error) {
 	}
 
 	id := LocationTopicTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLocationTopicTypeIDInsensitively(input string) (*LocationTopicTypeId, 
 	}
 
 	id := LocationTopicTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -40,7 +40,7 @@ func ParseExpressRoutePortsLocationID(input string) (*ExpressRoutePortsLocationI
 	}
 
 	id := ExpressRoutePortsLocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseExpressRoutePortsLocationIDInsensitively(input string) (*ExpressRouteP
 	}
 
 	id := ExpressRoutePortsLocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

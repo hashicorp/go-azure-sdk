@@ -44,7 +44,7 @@ func ParseInboundSecurityRuleID(input string) (*InboundSecurityRuleId, error) {
 	}
 
 	id := InboundSecurityRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInboundSecurityRuleIDInsensitively(input string) (*InboundSecurityRule
 	}
 
 	id := InboundSecurityRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

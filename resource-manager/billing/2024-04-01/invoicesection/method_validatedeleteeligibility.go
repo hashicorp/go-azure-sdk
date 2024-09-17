@@ -46,7 +46,6 @@ func (c InvoiceSectionClient) ValidateDeleteEligibility(ctx context.Context, id 
 
 	var model DeleteInvoiceSectionEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

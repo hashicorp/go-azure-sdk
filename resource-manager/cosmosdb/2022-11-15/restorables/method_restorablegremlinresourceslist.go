@@ -35,6 +35,7 @@ func (o RestorableGremlinResourcesListOperationOptions) ToHeaders() *client.Head
 
 func (o RestorableGremlinResourcesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c RestorablesClient) RestorableGremlinResourcesList(ctx context.Context, i
 
 	var model RestorableGremlinResourcesListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

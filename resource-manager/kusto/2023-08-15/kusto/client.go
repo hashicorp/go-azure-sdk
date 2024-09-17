@@ -15,7 +15,7 @@ type KustoClient struct {
 }
 
 func NewKustoClientWithBaseURI(sdkApi sdkEnv.Api) (*KustoClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "kusto", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "kusto", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KustoClient: %+v", err)
 	}

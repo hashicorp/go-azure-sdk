@@ -15,7 +15,7 @@ type SharedGalleryImageVersionsClient struct {
 }
 
 func NewSharedGalleryImageVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SharedGalleryImageVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sharedgalleryimageversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sharedgalleryimageversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SharedGalleryImageVersionsClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseContentKeyPolicyID(input string) (*ContentKeyPolicyId, error) {
 	}
 
 	id := ContentKeyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentKeyPolicyIDInsensitively(input string) (*ContentKeyPolicyId, er
 	}
 
 	id := ContentKeyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

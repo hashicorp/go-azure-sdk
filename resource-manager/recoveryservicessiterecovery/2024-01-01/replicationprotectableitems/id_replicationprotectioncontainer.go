@@ -46,7 +46,7 @@ func ParseReplicationProtectionContainerID(input string) (*ReplicationProtection
 	}
 
 	id := ReplicationProtectionContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicationProtectionContainerIDInsensitively(input string) (*Replicat
 	}
 
 	id := ReplicationProtectionContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

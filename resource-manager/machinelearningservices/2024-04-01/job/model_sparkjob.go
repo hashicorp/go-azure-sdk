@@ -27,6 +27,7 @@ type SparkJob struct {
 	Resources            *SparkResourceConfiguration `json:"resources,omitempty"`
 
 	// Fields inherited from JobBase
+
 	ComponentId         *string                `json:"componentId,omitempty"`
 	ComputeId           *string                `json:"computeId,omitempty"`
 	Description         *string                `json:"description,omitempty"`
@@ -34,11 +35,30 @@ type SparkJob struct {
 	ExperimentName      *string                `json:"experimentName,omitempty"`
 	Identity            IdentityConfiguration  `json:"identity"`
 	IsArchived          *bool                  `json:"isArchived,omitempty"`
+	JobType             JobType                `json:"jobType"`
 	NotificationSetting *NotificationSetting   `json:"notificationSetting,omitempty"`
 	Properties          *map[string]string     `json:"properties,omitempty"`
 	Services            *map[string]JobService `json:"services,omitempty"`
 	Status              *JobStatus             `json:"status,omitempty"`
 	Tags                *map[string]string     `json:"tags,omitempty"`
+}
+
+func (s SparkJob) JobBase() BaseJobBaseImpl {
+	return BaseJobBaseImpl{
+		ComponentId:         s.ComponentId,
+		ComputeId:           s.ComputeId,
+		Description:         s.Description,
+		DisplayName:         s.DisplayName,
+		ExperimentName:      s.ExperimentName,
+		Identity:            s.Identity,
+		IsArchived:          s.IsArchived,
+		JobType:             s.JobType,
+		NotificationSetting: s.NotificationSetting,
+		Properties:          s.Properties,
+		Services:            s.Services,
+		Status:              s.Status,
+		Tags:                s.Tags,
+	}
 }
 
 var _ json.Marshaler = SparkJob{}
@@ -52,9 +72,10 @@ func (s SparkJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SparkJob: %+v", err)
 	}
+
 	decoded["jobType"] = "Spark"
 
 	encoded, err = json.Marshal(decoded)
@@ -88,6 +109,7 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 	s.Files = decoded.Files
 	s.IsArchived = decoded.IsArchived
 	s.Jars = decoded.Jars
+	s.JobType = decoded.JobType
 	s.NotificationSetting = decoded.NotificationSetting
 	s.Properties = decoded.Properties
 	s.PyFiles = decoded.PyFiles
@@ -103,7 +125,7 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["entry"]; ok {
-		impl, err := unmarshalSparkJobEntryImplementation(v)
+		impl, err := UnmarshalSparkJobEntryImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Entry' for 'SparkJob': %+v", err)
 		}
@@ -111,7 +133,7 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["identity"]; ok {
-		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		impl, err := UnmarshalIdentityConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'SparkJob': %+v", err)
 		}
@@ -126,7 +148,7 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobInput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Inputs' for 'SparkJob': %+v", key, err)
 			}
@@ -143,7 +165,7 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobOutput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Outputs' for 'SparkJob': %+v", key, err)
 			}

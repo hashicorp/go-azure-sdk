@@ -40,7 +40,7 @@ func ParseGenerateRecommendationID(input string) (*GenerateRecommendationId, err
 	}
 
 	id := GenerateRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseGenerateRecommendationIDInsensitively(input string) (*GenerateRecommen
 	}
 
 	id := GenerateRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseVirtualEndpointID(input string) (*VirtualEndpointId, error) {
 	}
 
 	id := VirtualEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualEndpointIDInsensitively(input string) (*VirtualEndpointId, erro
 	}
 
 	id := VirtualEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

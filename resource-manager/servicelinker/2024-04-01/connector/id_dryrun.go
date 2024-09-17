@@ -44,7 +44,7 @@ func ParseDryrunID(input string) (*DryrunId, error) {
 	}
 
 	id := DryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDryrunIDInsensitively(input string) (*DryrunId, error) {
 	}
 
 	id := DryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

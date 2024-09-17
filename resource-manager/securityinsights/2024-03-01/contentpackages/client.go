@@ -15,7 +15,7 @@ type ContentPackagesClient struct {
 }
 
 func NewContentPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentPackagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "contentpackages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "contentpackages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContentPackagesClient: %+v", err)
 	}

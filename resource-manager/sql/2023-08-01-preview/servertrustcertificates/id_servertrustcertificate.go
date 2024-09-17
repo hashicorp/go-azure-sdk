@@ -44,7 +44,7 @@ func ParseServerTrustCertificateID(input string) (*ServerTrustCertificateId, err
 	}
 
 	id := ServerTrustCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerTrustCertificateIDInsensitively(input string) (*ServerTrustCerti
 	}
 
 	id := ServerTrustCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

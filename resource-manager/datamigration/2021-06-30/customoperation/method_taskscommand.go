@@ -50,7 +50,6 @@ func (c CustomOperationClient) TasksCommand(ctx context.Context, id TaskId, inpu
 
 	var model CommandProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

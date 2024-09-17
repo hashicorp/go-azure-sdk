@@ -46,7 +46,7 @@ func ParseSupportedStackID(input string) (*SupportedStackId, error) {
 	}
 
 	id := SupportedStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSupportedStackIDInsensitively(input string) (*SupportedStackId, error)
 	}
 
 	id := SupportedStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

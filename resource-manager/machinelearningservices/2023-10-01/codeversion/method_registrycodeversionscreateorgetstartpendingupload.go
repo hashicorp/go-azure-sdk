@@ -50,7 +50,6 @@ func (c CodeVersionClient) RegistryCodeVersionsCreateOrGetStartPendingUpload(ctx
 
 	var model PendingUploadResponseDto
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

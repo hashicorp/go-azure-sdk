@@ -40,7 +40,7 @@ func ParseSavingsPlanID(input string) (*SavingsPlanId, error) {
 	}
 
 	id := SavingsPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSavingsPlanIDInsensitively(input string) (*SavingsPlanId, error) {
 	}
 
 	id := SavingsPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

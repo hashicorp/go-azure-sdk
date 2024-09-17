@@ -40,7 +40,7 @@ func ParseConsumerInvitationID(input string) (*ConsumerInvitationId, error) {
 	}
 
 	id := ConsumerInvitationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseConsumerInvitationIDInsensitively(input string) (*ConsumerInvitationId
 	}
 
 	id := ConsumerInvitationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

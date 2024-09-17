@@ -15,7 +15,7 @@ type WebTestLocationsAPIsClient struct {
 }
 
 func NewWebTestLocationsAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*WebTestLocationsAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "webtestlocationsapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "webtestlocationsapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WebTestLocationsAPIsClient: %+v", err)
 	}

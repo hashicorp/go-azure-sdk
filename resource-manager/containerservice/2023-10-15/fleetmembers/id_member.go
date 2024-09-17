@@ -44,7 +44,7 @@ func ParseMemberID(input string) (*MemberId, error) {
 	}
 
 	id := MemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMemberIDInsensitively(input string) (*MemberId, error) {
 	}
 
 	id := MemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

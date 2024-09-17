@@ -44,7 +44,7 @@ func ParseEventhubID(input string) (*EventhubId, error) {
 	}
 
 	id := EventhubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEventhubIDInsensitively(input string) (*EventhubId, error) {
 	}
 
 	id := EventhubId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

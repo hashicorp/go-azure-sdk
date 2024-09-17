@@ -15,7 +15,7 @@ type SenderUsernamesClient struct {
 }
 
 func NewSenderUsernamesClientWithBaseURI(sdkApi sdkEnv.Api) (*SenderUsernamesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "senderusernames", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "senderusernames", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SenderUsernamesClient: %+v", err)
 	}

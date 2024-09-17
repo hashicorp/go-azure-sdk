@@ -44,7 +44,7 @@ func ParseLtrBackupOperationID(input string) (*LtrBackupOperationId, error) {
 	}
 
 	id := LtrBackupOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLtrBackupOperationIDInsensitively(input string) (*LtrBackupOperationId
 	}
 
 	id := LtrBackupOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

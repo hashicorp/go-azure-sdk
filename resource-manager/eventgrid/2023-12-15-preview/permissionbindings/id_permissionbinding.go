@@ -44,7 +44,7 @@ func ParsePermissionBindingID(input string) (*PermissionBindingId, error) {
 	}
 
 	id := PermissionBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePermissionBindingIDInsensitively(input string) (*PermissionBindingId, 
 	}
 
 	id := PermissionBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

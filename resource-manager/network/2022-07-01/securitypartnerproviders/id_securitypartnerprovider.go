@@ -42,7 +42,7 @@ func ParseSecurityPartnerProviderID(input string) (*SecurityPartnerProviderId, e
 	}
 
 	id := SecurityPartnerProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSecurityPartnerProviderIDInsensitively(input string) (*SecurityPartner
 	}
 
 	id := SecurityPartnerProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

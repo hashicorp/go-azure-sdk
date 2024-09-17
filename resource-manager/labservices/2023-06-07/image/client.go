@@ -15,7 +15,7 @@ type ImageClient struct {
 }
 
 func NewImageClientWithBaseURI(sdkApi sdkEnv.Api) (*ImageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "image", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "image", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ImageClient: %+v", err)
 	}

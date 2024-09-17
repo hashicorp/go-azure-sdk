@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/diskpoolzones` Documentation
 
-The `diskpoolzones` SDK allows for interaction with the Azure Resource Manager Service `storagepool` (API Version `2021-08-01`).
+The `diskpoolzones` SDK allows for interaction with Azure Resource Manager `storagepool` (API Version `2021-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

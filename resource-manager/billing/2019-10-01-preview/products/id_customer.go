@@ -40,7 +40,7 @@ func ParseCustomerID(input string) (*CustomerId, error) {
 	}
 
 	id := CustomerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseCustomerIDInsensitively(input string) (*CustomerId, error) {
 	}
 
 	id := CustomerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

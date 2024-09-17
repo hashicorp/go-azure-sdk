@@ -45,7 +45,6 @@ func (c KafkaConfigurationClient) Get(ctx context.Context, id KafkaConfiguration
 
 	var model KafkaConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseServiceGatewayID(input string) (*ServiceGatewayId, error) {
 	}
 
 	id := ServiceGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServiceGatewayIDInsensitively(input string) (*ServiceGatewayId, error)
 	}
 
 	id := ServiceGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

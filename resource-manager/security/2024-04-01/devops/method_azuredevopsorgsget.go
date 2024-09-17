@@ -45,7 +45,6 @@ func (c DevOpsClient) AzureDevOpsOrgsGet(ctx context.Context, id AzureDevOpsOrgI
 
 	var model AzureDevOpsOrg
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

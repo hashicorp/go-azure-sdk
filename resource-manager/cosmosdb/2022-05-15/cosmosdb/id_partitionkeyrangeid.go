@@ -48,7 +48,7 @@ func ParsePartitionKeyRangeIdID(input string) (*PartitionKeyRangeIdId, error) {
 	}
 
 	id := PartitionKeyRangeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParsePartitionKeyRangeIdIDInsensitively(input string) (*PartitionKeyRangeId
 	}
 
 	id := PartitionKeyRangeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

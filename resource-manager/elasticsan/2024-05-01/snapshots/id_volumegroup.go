@@ -44,7 +44,7 @@ func ParseVolumeGroupID(input string) (*VolumeGroupId, error) {
 	}
 
 	id := VolumeGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVolumeGroupIDInsensitively(input string) (*VolumeGroupId, error) {
 	}
 
 	id := VolumeGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

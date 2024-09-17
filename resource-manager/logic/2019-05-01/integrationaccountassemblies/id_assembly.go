@@ -44,7 +44,7 @@ func ParseAssemblyID(input string) (*AssemblyId, error) {
 	}
 
 	id := AssemblyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAssemblyIDInsensitively(input string) (*AssemblyId, error) {
 	}
 
 	id := AssemblyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

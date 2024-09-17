@@ -16,12 +16,26 @@ type CustomActivity struct {
 	TypeProperties    CustomActivityTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from Activity
+
 	DependsOn        *[]ActivityDependency     `json:"dependsOn,omitempty"`
 	Description      *string                   `json:"description,omitempty"`
 	Name             string                    `json:"name"`
 	OnInactiveMarkAs *ActivityOnInactiveMarkAs `json:"onInactiveMarkAs,omitempty"`
 	State            *ActivityState            `json:"state,omitempty"`
+	Type             string                    `json:"type"`
 	UserProperties   *[]UserProperty           `json:"userProperties,omitempty"`
+}
+
+func (s CustomActivity) Activity() BaseActivityImpl {
+	return BaseActivityImpl{
+		DependsOn:        s.DependsOn,
+		Description:      s.Description,
+		Name:             s.Name,
+		OnInactiveMarkAs: s.OnInactiveMarkAs,
+		State:            s.State,
+		Type:             s.Type,
+		UserProperties:   s.UserProperties,
+	}
 }
 
 var _ json.Marshaler = CustomActivity{}
@@ -35,9 +49,10 @@ func (s CustomActivity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomActivity: %+v", err)
 	}
+
 	decoded["type"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)

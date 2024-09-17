@@ -46,7 +46,7 @@ func ParseCassandraKeyspaceTableID(input string) (*CassandraKeyspaceTableId, err
 	}
 
 	id := CassandraKeyspaceTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCassandraKeyspaceTableIDInsensitively(input string) (*CassandraKeyspac
 	}
 
 	id := CassandraKeyspaceTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

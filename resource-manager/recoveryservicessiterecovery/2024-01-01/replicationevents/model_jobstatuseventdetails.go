@@ -17,6 +17,14 @@ type JobStatusEventDetails struct {
 	JobStatus          *string `json:"jobStatus,omitempty"`
 
 	// Fields inherited from EventSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s JobStatusEventDetails) EventSpecificDetails() BaseEventSpecificDetailsImpl {
+	return BaseEventSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = JobStatusEventDetails{}
@@ -30,9 +38,10 @@ func (s JobStatusEventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobStatusEventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "JobStatus"
 
 	encoded, err = json.Marshal(decoded)

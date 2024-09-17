@@ -50,7 +50,6 @@ func (c FindRestorableTimeRangesClient) RestorableTimeRangesFind(ctx context.Con
 
 	var model AzureBackupFindRestorableTimeRangesResponseResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseProviderCloudServiceID(input string) (*ProviderCloudServiceId, error) 
 	}
 
 	id := ProviderCloudServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderCloudServiceIDInsensitively(input string) (*ProviderCloudServi
 	}
 
 	id := ProviderCloudServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

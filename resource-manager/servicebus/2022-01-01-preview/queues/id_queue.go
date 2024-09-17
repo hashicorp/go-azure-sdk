@@ -44,7 +44,7 @@ func ParseQueueID(input string) (*QueueId, error) {
 	}
 
 	id := QueueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseQueueIDInsensitively(input string) (*QueueId, error) {
 	}
 
 	id := QueueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

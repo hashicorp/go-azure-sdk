@@ -44,7 +44,7 @@ func ParseLiveEventID(input string) (*LiveEventId, error) {
 	}
 
 	id := LiveEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLiveEventIDInsensitively(input string) (*LiveEventId, error) {
 	}
 
 	id := LiveEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

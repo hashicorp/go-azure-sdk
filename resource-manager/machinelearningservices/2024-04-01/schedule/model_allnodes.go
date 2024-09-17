@@ -13,6 +13,14 @@ var _ Nodes = AllNodes{}
 type AllNodes struct {
 
 	// Fields inherited from Nodes
+
+	NodesValueType NodesValueType `json:"nodesValueType"`
+}
+
+func (s AllNodes) Nodes() BaseNodesImpl {
+	return BaseNodesImpl{
+		NodesValueType: s.NodesValueType,
+	}
 }
 
 var _ json.Marshaler = AllNodes{}
@@ -26,9 +34,10 @@ func (s AllNodes) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AllNodes: %+v", err)
 	}
+
 	decoded["nodesValueType"] = "All"
 
 	encoded, err = json.Marshal(decoded)

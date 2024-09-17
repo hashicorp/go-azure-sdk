@@ -50,7 +50,6 @@ func (c DataVersionClient) CreateOrUpdate(ctx context.Context, id DataVersionId,
 
 	var model DataVersionBaseResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

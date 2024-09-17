@@ -41,6 +41,7 @@ func (o WorkspaceBackendListByWorkspaceOperationOptions) ToHeaders() *client.Hea
 
 func (o WorkspaceBackendListByWorkspaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

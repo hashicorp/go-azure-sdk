@@ -42,7 +42,7 @@ func ParseAutoScaleVCoreID(input string) (*AutoScaleVCoreId, error) {
 	}
 
 	id := AutoScaleVCoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAutoScaleVCoreIDInsensitively(input string) (*AutoScaleVCoreId, error)
 	}
 
 	id := AutoScaleVCoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

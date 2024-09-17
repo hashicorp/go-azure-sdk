@@ -45,7 +45,6 @@ func (c EnvironmentsClient) Get(ctx context.Context, id EnvironmentId) (result G
 
 	var model Environment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

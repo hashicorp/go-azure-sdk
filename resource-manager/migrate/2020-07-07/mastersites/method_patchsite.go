@@ -50,7 +50,6 @@ func (c MasterSitesClient) PatchSite(ctx context.Context, id MasterSiteId, input
 
 	var model MasterSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

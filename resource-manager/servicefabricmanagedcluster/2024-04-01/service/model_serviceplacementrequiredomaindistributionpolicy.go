@@ -14,6 +14,14 @@ type ServicePlacementRequireDomainDistributionPolicy struct {
 	DomainName string `json:"domainName"`
 
 	// Fields inherited from ServicePlacementPolicy
+
+	Type ServicePlacementPolicyType `json:"type"`
+}
+
+func (s ServicePlacementRequireDomainDistributionPolicy) ServicePlacementPolicy() BaseServicePlacementPolicyImpl {
+	return BaseServicePlacementPolicyImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ServicePlacementRequireDomainDistributionPolicy{}
@@ -27,9 +35,10 @@ func (s ServicePlacementRequireDomainDistributionPolicy) MarshalJSON() ([]byte, 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ServicePlacementRequireDomainDistributionPolicy: %+v", err)
 	}
+
 	decoded["type"] = "RequiredDomainDistribution"
 
 	encoded, err = json.Marshal(decoded)

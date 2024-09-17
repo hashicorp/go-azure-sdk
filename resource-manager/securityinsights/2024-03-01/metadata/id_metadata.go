@@ -44,7 +44,7 @@ func ParseMetadataID(input string) (*MetadataId, error) {
 	}
 
 	id := MetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMetadataIDInsensitively(input string) (*MetadataId, error) {
 	}
 
 	id := MetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

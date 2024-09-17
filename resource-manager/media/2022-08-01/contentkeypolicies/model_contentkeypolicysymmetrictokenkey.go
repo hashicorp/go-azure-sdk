@@ -14,6 +14,14 @@ type ContentKeyPolicySymmetricTokenKey struct {
 	KeyValue string `json:"keyValue"`
 
 	// Fields inherited from ContentKeyPolicyRestrictionTokenKey
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicySymmetricTokenKey) ContentKeyPolicyRestrictionTokenKey() BaseContentKeyPolicyRestrictionTokenKeyImpl {
+	return BaseContentKeyPolicyRestrictionTokenKeyImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicySymmetricTokenKey{}
@@ -27,9 +35,10 @@ func (s ContentKeyPolicySymmetricTokenKey) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicySymmetricTokenKey: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicySymmetricTokenKey"
 
 	encoded, err = json.Marshal(decoded)

@@ -46,7 +46,7 @@ func ParseAssetFilterID(input string) (*AssetFilterId, error) {
 	}
 
 	id := AssetFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAssetFilterIDInsensitively(input string) (*AssetFilterId, error) {
 	}
 
 	id := AssetFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

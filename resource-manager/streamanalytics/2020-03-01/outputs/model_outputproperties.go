@@ -37,7 +37,7 @@ func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["datasource"]; ok {
-		impl, err := unmarshalOutputDataSourceImplementation(v)
+		impl, err := UnmarshalOutputDataSourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Datasource' for 'OutputProperties': %+v", err)
 		}
@@ -45,7 +45,7 @@ func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["serialization"]; ok {
-		impl, err := unmarshalSerializationImplementation(v)
+		impl, err := UnmarshalSerializationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Serialization' for 'OutputProperties': %+v", err)
 		}

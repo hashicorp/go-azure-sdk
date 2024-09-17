@@ -44,7 +44,7 @@ func ParseVirtualNetworkPeeringID(input string) (*VirtualNetworkPeeringId, error
 	}
 
 	id := VirtualNetworkPeeringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualNetworkPeeringIDInsensitively(input string) (*VirtualNetworkPee
 	}
 
 	id := VirtualNetworkPeeringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseBmcKeySetID(input string) (*BmcKeySetId, error) {
 	}
 
 	id := BmcKeySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBmcKeySetIDInsensitively(input string) (*BmcKeySetId, error) {
 	}
 
 	id := BmcKeySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

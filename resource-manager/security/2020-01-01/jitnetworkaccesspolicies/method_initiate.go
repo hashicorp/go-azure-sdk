@@ -50,7 +50,6 @@ func (c JitNetworkAccessPoliciesClient) Initiate(ctx context.Context, id JitNetw
 
 	var model JitNetworkAccessRequest
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

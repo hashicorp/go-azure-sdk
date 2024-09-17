@@ -44,7 +44,7 @@ func ParseMongodbDatabaseID(input string) (*MongodbDatabaseId, error) {
 	}
 
 	id := MongodbDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMongodbDatabaseIDInsensitively(input string) (*MongodbDatabaseId, erro
 	}
 
 	id := MongodbDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

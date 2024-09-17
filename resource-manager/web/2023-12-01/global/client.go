@@ -15,7 +15,7 @@ type GlobalClient struct {
 }
 
 func NewGlobalClientWithBaseURI(sdkApi sdkEnv.Api) (*GlobalClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "global", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "global", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GlobalClient: %+v", err)
 	}

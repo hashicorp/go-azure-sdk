@@ -44,7 +44,7 @@ func ParseDisableSoftDeleteRequestID(input string) (*DisableSoftDeleteRequestId,
 	}
 
 	id := DisableSoftDeleteRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDisableSoftDeleteRequestIDInsensitively(input string) (*DisableSoftDel
 	}
 
 	id := DisableSoftDeleteRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

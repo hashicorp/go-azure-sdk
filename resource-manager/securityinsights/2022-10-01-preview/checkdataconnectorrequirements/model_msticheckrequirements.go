@@ -14,6 +14,14 @@ type MSTICheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s MSTICheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = MSTICheckRequirements{}
@@ -27,9 +35,10 @@ func (s MSTICheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MSTICheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "MicrosoftThreatIntelligence"
 
 	encoded, err = json.Marshal(decoded)

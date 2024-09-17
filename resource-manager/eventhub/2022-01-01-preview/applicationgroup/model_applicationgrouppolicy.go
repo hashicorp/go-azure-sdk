@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGroupPolicy interface {
+	ApplicationGroupPolicy() BaseApplicationGroupPolicyImpl
 }
 
-// RawApplicationGroupPolicyImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ApplicationGroupPolicy = BaseApplicationGroupPolicyImpl{}
+
+type BaseApplicationGroupPolicyImpl struct {
+	Name string                     `json:"name"`
+	Type ApplicationGroupPolicyType `json:"type"`
+}
+
+func (s BaseApplicationGroupPolicyImpl) ApplicationGroupPolicy() BaseApplicationGroupPolicyImpl {
+	return s
+}
+
+var _ ApplicationGroupPolicy = RawApplicationGroupPolicyImpl{}
+
+// RawApplicationGroupPolicyImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawApplicationGroupPolicyImpl struct {
-	Type   string
-	Values map[string]interface{}
+	applicationGroupPolicy BaseApplicationGroupPolicyImpl
+	Type                   string
+	Values                 map[string]interface{}
 }
 
-func unmarshalApplicationGroupPolicyImplementation(input []byte) (ApplicationGroupPolicy, error) {
+func (s RawApplicationGroupPolicyImpl) ApplicationGroupPolicy() BaseApplicationGroupPolicyImpl {
+	return s.applicationGroupPolicy
+}
+
+func UnmarshalApplicationGroupPolicyImplementation(input []byte) (ApplicationGroupPolicy, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +62,15 @@ func unmarshalApplicationGroupPolicyImplementation(input []byte) (ApplicationGro
 		return out, nil
 	}
 
-	out := RawApplicationGroupPolicyImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseApplicationGroupPolicyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseApplicationGroupPolicyImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawApplicationGroupPolicyImpl{
+		applicationGroupPolicy: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
 
 }

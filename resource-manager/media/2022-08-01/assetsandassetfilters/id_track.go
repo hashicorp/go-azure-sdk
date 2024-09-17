@@ -46,7 +46,7 @@ func ParseTrackID(input string) (*TrackId, error) {
 	}
 
 	id := TrackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTrackIDInsensitively(input string) (*TrackId, error) {
 	}
 
 	id := TrackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

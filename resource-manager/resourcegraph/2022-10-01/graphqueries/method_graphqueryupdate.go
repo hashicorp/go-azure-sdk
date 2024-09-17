@@ -49,7 +49,6 @@ func (c GraphqueriesClient) GraphQueryUpdate(ctx context.Context, id QueryId, in
 
 	var model GraphQueryResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

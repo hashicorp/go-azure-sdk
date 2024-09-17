@@ -50,7 +50,7 @@ func ParseOfferSkuVersionID(input string) (*OfferSkuVersionId, error) {
 	}
 
 	id := OfferSkuVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseOfferSkuVersionIDInsensitively(input string) (*OfferSkuVersionId, erro
 	}
 
 	id := OfferSkuVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -48,7 +48,7 @@ func ParseReplicationProtectedItemID(input string) (*ReplicationProtectedItemId,
 	}
 
 	id := ReplicationProtectedItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseReplicationProtectedItemIDInsensitively(input string) (*ReplicationPro
 	}
 
 	id := ReplicationProtectedItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

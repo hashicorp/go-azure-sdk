@@ -42,7 +42,7 @@ func ParseFluidRelayServerID(input string) (*FluidRelayServerId, error) {
 	}
 
 	id := FluidRelayServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFluidRelayServerIDInsensitively(input string) (*FluidRelayServerId, er
 	}
 
 	id := FluidRelayServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

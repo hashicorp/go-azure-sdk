@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type JobOutput interface {
+	JobOutput() BaseJobOutputImpl
 }
 
-// RawJobOutputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ JobOutput = BaseJobOutputImpl{}
+
+type BaseJobOutputImpl struct {
+	Description   *string       `json:"description,omitempty"`
+	JobOutputType JobOutputType `json:"jobOutputType"`
+}
+
+func (s BaseJobOutputImpl) JobOutput() BaseJobOutputImpl {
+	return s
+}
+
+var _ JobOutput = RawJobOutputImpl{}
+
+// RawJobOutputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawJobOutputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	jobOutput BaseJobOutputImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalJobOutputImplementation(input []byte) (JobOutput, error) {
+func (s RawJobOutputImpl) JobOutput() BaseJobOutputImpl {
+	return s.jobOutput
+}
+
+func UnmarshalJobOutputImplementation(input []byte) (JobOutput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -84,10 +102,15 @@ func unmarshalJobOutputImplementation(input []byte) (JobOutput, error) {
 		return out, nil
 	}
 
-	out := RawJobOutputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseJobOutputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobOutputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawJobOutputImpl{
+		jobOutput: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

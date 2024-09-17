@@ -42,7 +42,7 @@ func ParseArtifactScopedID(input string) (*ArtifactScopedId, error) {
 	}
 
 	id := ArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseArtifactScopedIDInsensitively(input string) (*ArtifactScopedId, error)
 	}
 
 	id := ArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

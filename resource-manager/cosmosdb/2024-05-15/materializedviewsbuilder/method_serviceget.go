@@ -45,7 +45,6 @@ func (c MaterializedViewsBuilderClient) ServiceGet(ctx context.Context, id Servi
 
 	var model ServiceResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

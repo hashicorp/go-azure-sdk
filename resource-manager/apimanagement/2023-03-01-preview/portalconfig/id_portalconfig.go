@@ -44,7 +44,7 @@ func ParsePortalConfigID(input string) (*PortalConfigId, error) {
 	}
 
 	id := PortalConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePortalConfigIDInsensitively(input string) (*PortalConfigId, error) {
 	}
 
 	id := PortalConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

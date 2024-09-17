@@ -44,7 +44,7 @@ func ParseVirtualApplianceSiteID(input string) (*VirtualApplianceSiteId, error) 
 	}
 
 	id := VirtualApplianceSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualApplianceSiteIDInsensitively(input string) (*VirtualApplianceSi
 	}
 
 	id := VirtualApplianceSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

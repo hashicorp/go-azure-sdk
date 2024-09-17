@@ -47,6 +47,7 @@ func (o ListAtSubscriptionScopeOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListAtSubscriptionScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -123,7 +124,6 @@ func (c MetricsClient) ListAtSubscriptionScope(ctx context.Context, id commonids
 
 	var model Response
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

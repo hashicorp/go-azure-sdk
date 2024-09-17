@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NCrossValidations interface {
+	NCrossValidations() BaseNCrossValidationsImpl
 }
 
-// RawNCrossValidationsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ NCrossValidations = BaseNCrossValidationsImpl{}
+
+type BaseNCrossValidationsImpl struct {
+	Mode NCrossValidationsMode `json:"mode"`
+}
+
+func (s BaseNCrossValidationsImpl) NCrossValidations() BaseNCrossValidationsImpl {
+	return s
+}
+
+var _ NCrossValidations = RawNCrossValidationsImpl{}
+
+// RawNCrossValidationsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawNCrossValidationsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	nCrossValidations BaseNCrossValidationsImpl
+	Type              string
+	Values            map[string]interface{}
 }
 
-func unmarshalNCrossValidationsImplementation(input []byte) (NCrossValidations, error) {
+func (s RawNCrossValidationsImpl) NCrossValidations() BaseNCrossValidationsImpl {
+	return s.nCrossValidations
+}
+
+func UnmarshalNCrossValidationsImplementation(input []byte) (NCrossValidations, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalNCrossValidationsImplementation(input []byte) (NCrossValidations, 
 		return out, nil
 	}
 
-	out := RawNCrossValidationsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseNCrossValidationsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseNCrossValidationsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawNCrossValidationsImpl{
+		nCrossValidations: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
 
 }

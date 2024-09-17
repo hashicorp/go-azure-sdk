@@ -42,7 +42,7 @@ func ParseFlexibleServerID(input string) (*FlexibleServerId, error) {
 	}
 
 	id := FlexibleServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFlexibleServerIDInsensitively(input string) (*FlexibleServerId, error)
 	}
 
 	id := FlexibleServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

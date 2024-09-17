@@ -42,7 +42,7 @@ func ParseHyperVSiteID(input string) (*HyperVSiteId, error) {
 	}
 
 	id := HyperVSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseHyperVSiteIDInsensitively(input string) (*HyperVSiteId, error) {
 	}
 
 	id := HyperVSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

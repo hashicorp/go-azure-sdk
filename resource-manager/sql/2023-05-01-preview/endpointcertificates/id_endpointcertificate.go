@@ -44,7 +44,7 @@ func ParseEndpointCertificateID(input string) (*EndpointCertificateId, error) {
 	}
 
 	id := EndpointCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEndpointCertificateIDInsensitively(input string) (*EndpointCertificate
 	}
 
 	id := EndpointCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

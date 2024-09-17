@@ -44,7 +44,7 @@ func ParseVideoID(input string) (*VideoId, error) {
 	}
 
 	id := VideoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVideoIDInsensitively(input string) (*VideoId, error) {
 	}
 
 	id := VideoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

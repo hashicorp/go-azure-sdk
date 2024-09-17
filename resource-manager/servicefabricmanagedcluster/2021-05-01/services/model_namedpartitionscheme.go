@@ -14,6 +14,14 @@ type NamedPartitionScheme struct {
 	Names []string `json:"names"`
 
 	// Fields inherited from Partition
+
+	PartitionScheme PartitionScheme `json:"partitionScheme"`
+}
+
+func (s NamedPartitionScheme) Partition() BasePartitionImpl {
+	return BasePartitionImpl{
+		PartitionScheme: s.PartitionScheme,
+	}
 }
 
 var _ json.Marshaler = NamedPartitionScheme{}
@@ -27,9 +35,10 @@ func (s NamedPartitionScheme) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NamedPartitionScheme: %+v", err)
 	}
+
 	decoded["partitionScheme"] = "Named"
 
 	encoded, err = json.Marshal(decoded)

@@ -44,7 +44,7 @@ func ParseFileImportID(input string) (*FileImportId, error) {
 	}
 
 	id := FileImportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFileImportIDInsensitively(input string) (*FileImportId, error) {
 	}
 
 	id := FileImportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

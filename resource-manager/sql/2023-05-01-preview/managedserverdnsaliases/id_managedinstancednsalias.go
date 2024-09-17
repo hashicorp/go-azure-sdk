@@ -44,7 +44,7 @@ func ParseManagedInstanceDnsAliasID(input string) (*ManagedInstanceDnsAliasId, e
 	}
 
 	id := ManagedInstanceDnsAliasId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstanceDnsAliasIDInsensitively(input string) (*ManagedInstance
 	}
 
 	id := ManagedInstanceDnsAliasId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

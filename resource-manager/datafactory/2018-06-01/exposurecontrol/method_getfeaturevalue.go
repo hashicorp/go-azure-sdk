@@ -50,7 +50,6 @@ func (c ExposureControlClient) GetFeatureValue(ctx context.Context, id LocationI
 
 	var model ExposureControlResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

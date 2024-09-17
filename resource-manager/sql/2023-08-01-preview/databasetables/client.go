@@ -15,7 +15,7 @@ type DatabaseTablesClient struct {
 }
 
 func NewDatabaseTablesClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseTablesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databasetables", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databasetables", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseTablesClient: %+v", err)
 	}

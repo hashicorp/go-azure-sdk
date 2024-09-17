@@ -44,7 +44,7 @@ func ParseInventoryItemID(input string) (*InventoryItemId, error) {
 	}
 
 	id := InventoryItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInventoryItemIDInsensitively(input string) (*InventoryItemId, error) {
 	}
 
 	id := InventoryItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

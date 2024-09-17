@@ -15,7 +15,7 @@ type SqlPoolsWorkloadGroupsClient struct {
 }
 
 func NewSqlPoolsWorkloadGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsWorkloadGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsworkloadgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsworkloadgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsWorkloadGroupsClient: %+v", err)
 	}

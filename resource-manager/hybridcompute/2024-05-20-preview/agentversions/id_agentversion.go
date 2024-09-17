@@ -40,7 +40,7 @@ func ParseAgentVersionID(input string) (*AgentVersionId, error) {
 	}
 
 	id := AgentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAgentVersionIDInsensitively(input string) (*AgentVersionId, error) {
 	}
 
 	id := AgentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

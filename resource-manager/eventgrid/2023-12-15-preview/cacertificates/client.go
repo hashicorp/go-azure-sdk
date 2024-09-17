@@ -15,7 +15,7 @@ type CaCertificatesClient struct {
 }
 
 func NewCaCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*CaCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "cacertificates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "cacertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CaCertificatesClient: %+v", err)
 	}

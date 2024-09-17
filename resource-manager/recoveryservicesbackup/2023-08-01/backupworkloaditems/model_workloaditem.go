@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkloadItem interface {
+	WorkloadItem() BaseWorkloadItemImpl
 }
 
-// RawWorkloadItemImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ WorkloadItem = BaseWorkloadItemImpl{}
+
+type BaseWorkloadItemImpl struct {
+	BackupManagementType *string           `json:"backupManagementType,omitempty"`
+	FriendlyName         *string           `json:"friendlyName,omitempty"`
+	ProtectionState      *ProtectionStatus `json:"protectionState,omitempty"`
+	WorkloadItemType     string            `json:"workloadItemType"`
+	WorkloadType         *string           `json:"workloadType,omitempty"`
+}
+
+func (s BaseWorkloadItemImpl) WorkloadItem() BaseWorkloadItemImpl {
+	return s
+}
+
+var _ WorkloadItem = RawWorkloadItemImpl{}
+
+// RawWorkloadItemImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawWorkloadItemImpl struct {
-	Type   string
-	Values map[string]interface{}
+	workloadItem BaseWorkloadItemImpl
+	Type         string
+	Values       map[string]interface{}
 }
 
-func unmarshalWorkloadItemImplementation(input []byte) (WorkloadItem, error) {
+func (s RawWorkloadItemImpl) WorkloadItem() BaseWorkloadItemImpl {
+	return s.workloadItem
+}
+
+func UnmarshalWorkloadItemImplementation(input []byte) (WorkloadItem, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -92,10 +113,15 @@ func unmarshalWorkloadItemImplementation(input []byte) (WorkloadItem, error) {
 		return out, nil
 	}
 
-	out := RawWorkloadItemImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseWorkloadItemImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWorkloadItemImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawWorkloadItemImpl{
+		workloadItem: parent,
+		Type:         value,
+		Values:       temp,
+	}, nil
 
 }

@@ -44,7 +44,7 @@ func ParseUeID(input string) (*UeId, error) {
 	}
 
 	id := UeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUeIDInsensitively(input string) (*UeId, error) {
 	}
 
 	id := UeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

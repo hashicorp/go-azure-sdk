@@ -44,7 +44,7 @@ func ParseCapacityPoolID(input string) (*CapacityPoolId, error) {
 	}
 
 	id := CapacityPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCapacityPoolIDInsensitively(input string) (*CapacityPoolId, error) {
 	}
 
 	id := CapacityPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

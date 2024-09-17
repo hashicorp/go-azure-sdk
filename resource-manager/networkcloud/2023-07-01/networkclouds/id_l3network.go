@@ -42,7 +42,7 @@ func ParseL3NetworkID(input string) (*L3NetworkId, error) {
 	}
 
 	id := L3NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseL3NetworkIDInsensitively(input string) (*L3NetworkId, error) {
 	}
 
 	id := L3NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

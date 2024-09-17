@@ -52,7 +52,6 @@ func (c ManagedDatabaseAdvancedThreatProtectionSettingsClient) CreateOrUpdate(ct
 
 	var model ManagedDatabaseAdvancedThreatProtection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

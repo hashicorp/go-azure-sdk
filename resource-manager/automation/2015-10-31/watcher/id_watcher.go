@@ -44,7 +44,7 @@ func ParseWatcherID(input string) (*WatcherId, error) {
 	}
 
 	id := WatcherId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWatcherIDInsensitively(input string) (*WatcherId, error) {
 	}
 
 	id := WatcherId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

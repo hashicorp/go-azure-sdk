@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Artifact
+	Model        Artifact
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c PublishedArtifactClient) Get(ctx context.Context, id VersionArtifactScop
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalArtifactImplementation(respObj)
+	model, err := UnmarshalArtifactImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

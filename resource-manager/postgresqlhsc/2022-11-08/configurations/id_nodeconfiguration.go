@@ -44,7 +44,7 @@ func ParseNodeConfigurationID(input string) (*NodeConfigurationId, error) {
 	}
 
 	id := NodeConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNodeConfigurationIDInsensitively(input string) (*NodeConfigurationId, 
 	}
 
 	id := NodeConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseMetadataSchemaID(input string) (*MetadataSchemaId, error) {
 	}
 
 	id := MetadataSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMetadataSchemaIDInsensitively(input string) (*MetadataSchemaId, error)
 	}
 
 	id := MetadataSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

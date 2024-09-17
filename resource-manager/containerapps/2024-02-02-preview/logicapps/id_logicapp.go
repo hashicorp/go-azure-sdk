@@ -44,7 +44,7 @@ func ParseLogicAppID(input string) (*LogicAppId, error) {
 	}
 
 	id := LogicAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLogicAppIDInsensitively(input string) (*LogicAppId, error) {
 	}
 
 	id := LogicAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

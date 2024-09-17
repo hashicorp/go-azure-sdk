@@ -42,7 +42,7 @@ func ParseEnrollmentAccountBillingRoleAssignmentID(input string) (*EnrollmentAcc
 	}
 
 	id := EnrollmentAccountBillingRoleAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseEnrollmentAccountBillingRoleAssignmentIDInsensitively(input string) (*
 	}
 
 	id := EnrollmentAccountBillingRoleAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

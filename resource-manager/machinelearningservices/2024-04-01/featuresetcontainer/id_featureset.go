@@ -44,7 +44,7 @@ func ParseFeatureSetID(input string) (*FeatureSetId, error) {
 	}
 
 	id := FeatureSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFeatureSetIDInsensitively(input string) (*FeatureSetId, error) {
 	}
 
 	id := FeatureSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

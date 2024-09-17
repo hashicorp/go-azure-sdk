@@ -20,6 +20,14 @@ type TabularTranslator struct {
 	TypeConversionSettings   *TypeConversionSettings `json:"typeConversionSettings,omitempty"`
 
 	// Fields inherited from CopyTranslator
+
+	Type string `json:"type"`
+}
+
+func (s TabularTranslator) CopyTranslator() BaseCopyTranslatorImpl {
+	return BaseCopyTranslatorImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TabularTranslator{}
@@ -33,9 +41,10 @@ func (s TabularTranslator) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TabularTranslator: %+v", err)
 	}
+
 	decoded["type"] = "TabularTranslator"
 
 	encoded, err = json.Marshal(decoded)

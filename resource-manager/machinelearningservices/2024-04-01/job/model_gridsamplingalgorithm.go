@@ -13,6 +13,14 @@ var _ SamplingAlgorithm = GridSamplingAlgorithm{}
 type GridSamplingAlgorithm struct {
 
 	// Fields inherited from SamplingAlgorithm
+
+	SamplingAlgorithmType SamplingAlgorithmType `json:"samplingAlgorithmType"`
+}
+
+func (s GridSamplingAlgorithm) SamplingAlgorithm() BaseSamplingAlgorithmImpl {
+	return BaseSamplingAlgorithmImpl{
+		SamplingAlgorithmType: s.SamplingAlgorithmType,
+	}
 }
 
 var _ json.Marshaler = GridSamplingAlgorithm{}
@@ -26,9 +34,10 @@ func (s GridSamplingAlgorithm) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GridSamplingAlgorithm: %+v", err)
 	}
+
 	decoded["samplingAlgorithmType"] = "Grid"
 
 	encoded, err = json.Marshal(decoded)

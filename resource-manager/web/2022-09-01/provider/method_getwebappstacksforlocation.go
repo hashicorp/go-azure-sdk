@@ -39,6 +39,7 @@ func (o GetWebAppStacksForLocationOperationOptions) ToHeaders() *client.Headers 
 
 func (o GetWebAppStacksForLocationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -44,7 +44,7 @@ func ParseBackupsV2ID(input string) (*BackupsV2Id, error) {
 	}
 
 	id := BackupsV2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupsV2IDInsensitively(input string) (*BackupsV2Id, error) {
 	}
 
 	id := BackupsV2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

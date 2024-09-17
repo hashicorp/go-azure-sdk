@@ -50,7 +50,6 @@ func (c BillingAccountClient) ValidatePaymentTerms(ctx context.Context, id Billi
 
 	var model PaymentTermsEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

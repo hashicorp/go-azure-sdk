@@ -44,7 +44,7 @@ func ParseHostingEnvironmentDiagnosticID(input string) (*HostingEnvironmentDiagn
 	}
 
 	id := HostingEnvironmentDiagnosticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHostingEnvironmentDiagnosticIDInsensitively(input string) (*HostingEnv
 	}
 
 	id := HostingEnvironmentDiagnosticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

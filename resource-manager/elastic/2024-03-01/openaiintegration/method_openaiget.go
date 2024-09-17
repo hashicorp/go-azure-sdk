@@ -45,7 +45,6 @@ func (c OpenAIIntegrationClient) OpenAIGet(ctx context.Context, id OpenAIIntegra
 
 	var model OpenAIIntegrationRPModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

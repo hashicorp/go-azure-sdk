@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/firewallrules` Documentation
 
-The `firewallrules` SDK allows for interaction with the Azure Resource Manager Service `datalakestore` (API Version `2016-11-01`).
+The `firewallrules` SDK allows for interaction with Azure Resource Manager `datalakestore` (API Version `2016-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

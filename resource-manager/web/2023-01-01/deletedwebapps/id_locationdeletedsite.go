@@ -42,7 +42,7 @@ func ParseLocationDeletedSiteID(input string) (*LocationDeletedSiteId, error) {
 	}
 
 	id := LocationDeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLocationDeletedSiteIDInsensitively(input string) (*LocationDeletedSite
 	}
 
 	id := LocationDeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

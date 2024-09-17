@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-07-01/addons` Documentation
 
-The `addons` SDK allows for interaction with the Azure Resource Manager Service `databoxedge` (API Version `2023-07-01`).
+The `addons` SDK allows for interaction with Azure Resource Manager `databoxedge` (API Version `2023-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

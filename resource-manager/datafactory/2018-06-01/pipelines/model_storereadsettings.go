@@ -10,18 +10,37 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StoreReadSettings interface {
+	StoreReadSettings() BaseStoreReadSettingsImpl
 }
 
-// RawStoreReadSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ StoreReadSettings = BaseStoreReadSettingsImpl{}
+
+type BaseStoreReadSettingsImpl struct {
+	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
+	Type                     string `json:"type"`
+}
+
+func (s BaseStoreReadSettingsImpl) StoreReadSettings() BaseStoreReadSettingsImpl {
+	return s
+}
+
+var _ StoreReadSettings = RawStoreReadSettingsImpl{}
+
+// RawStoreReadSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawStoreReadSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	storeReadSettings BaseStoreReadSettingsImpl
+	Type              string
+	Values            map[string]interface{}
 }
 
-func unmarshalStoreReadSettingsImplementation(input []byte) (StoreReadSettings, error) {
+func (s RawStoreReadSettingsImpl) StoreReadSettings() BaseStoreReadSettingsImpl {
+	return s.storeReadSettings
+}
+
+func UnmarshalStoreReadSettingsImplementation(input []byte) (StoreReadSettings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -148,10 +167,15 @@ func unmarshalStoreReadSettingsImplementation(input []byte) (StoreReadSettings, 
 		return out, nil
 	}
 
-	out := RawStoreReadSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseStoreReadSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseStoreReadSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawStoreReadSettingsImpl{
+		storeReadSettings: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
 
 }

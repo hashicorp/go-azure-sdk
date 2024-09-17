@@ -42,7 +42,7 @@ func ParseLabPlanID(input string) (*LabPlanId, error) {
 	}
 
 	id := LabPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLabPlanIDInsensitively(input string) (*LabPlanId, error) {
 	}
 
 	id := LabPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

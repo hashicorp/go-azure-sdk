@@ -44,7 +44,7 @@ func ParseTagID(input string) (*TagId, error) {
 	}
 
 	id := TagId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTagIDInsensitively(input string) (*TagId, error) {
 	}
 
 	id := TagId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseTopicSpaceID(input string) (*TopicSpaceId, error) {
 	}
 
 	id := TopicSpaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopicSpaceIDInsensitively(input string) (*TopicSpaceId, error) {
 	}
 
 	id := TopicSpaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

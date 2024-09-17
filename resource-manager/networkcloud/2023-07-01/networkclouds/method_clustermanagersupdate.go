@@ -49,7 +49,6 @@ func (c NetworkcloudsClient) ClusterManagersUpdate(ctx context.Context, id Clust
 
 	var model ClusterManager
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

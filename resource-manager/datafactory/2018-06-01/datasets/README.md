@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/datasets` Documentation
 
-The `datasets` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `datasets` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

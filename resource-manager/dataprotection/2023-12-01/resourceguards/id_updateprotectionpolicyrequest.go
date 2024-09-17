@@ -44,7 +44,7 @@ func ParseUpdateProtectionPolicyRequestID(input string) (*UpdateProtectionPolicy
 	}
 
 	id := UpdateProtectionPolicyRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUpdateProtectionPolicyRequestIDInsensitively(input string) (*UpdatePro
 	}
 
 	id := UpdateProtectionPolicyRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

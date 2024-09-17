@@ -17,7 +17,7 @@ import (
 type CreateOrUpdateByScopeOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Setting
+	Model        Setting
 }
 
 // CreateOrUpdateByScope ...
@@ -55,11 +55,11 @@ func (c SettingsClient) CreateOrUpdateByScope(ctx context.Context, id commonids.
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalSettingImplementation(respObj)
+	model, err := UnmarshalSettingImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

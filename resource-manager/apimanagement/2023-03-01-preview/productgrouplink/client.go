@@ -15,7 +15,7 @@ type ProductGroupLinkClient struct {
 }
 
 func NewProductGroupLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*ProductGroupLinkClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "productgrouplink", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "productgrouplink", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProductGroupLinkClient: %+v", err)
 	}

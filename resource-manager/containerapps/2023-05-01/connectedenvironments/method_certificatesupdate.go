@@ -49,7 +49,6 @@ func (c ConnectedEnvironmentsClient) CertificatesUpdate(ctx context.Context, id 
 
 	var model Certificate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

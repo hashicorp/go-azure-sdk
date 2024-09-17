@@ -46,7 +46,7 @@ func ParseHostnameConfigurationID(input string) (*HostnameConfigurationId, error
 	}
 
 	id := HostnameConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseHostnameConfigurationIDInsensitively(input string) (*HostnameConfigura
 	}
 
 	id := HostnameConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

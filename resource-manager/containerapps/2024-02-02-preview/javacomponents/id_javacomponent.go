@@ -44,7 +44,7 @@ func ParseJavaComponentID(input string) (*JavaComponentId, error) {
 	}
 
 	id := JavaComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseJavaComponentIDInsensitively(input string) (*JavaComponentId, error) {
 	}
 
 	id := JavaComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

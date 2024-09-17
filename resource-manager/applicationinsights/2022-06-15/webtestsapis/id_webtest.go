@@ -42,7 +42,7 @@ func ParseWebTestID(input string) (*WebTestId, error) {
 	}
 
 	id := WebTestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseWebTestIDInsensitively(input string) (*WebTestId, error) {
 	}
 
 	id := WebTestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

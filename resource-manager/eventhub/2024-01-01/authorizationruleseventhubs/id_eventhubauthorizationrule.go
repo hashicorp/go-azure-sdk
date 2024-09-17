@@ -46,7 +46,7 @@ func ParseEventhubAuthorizationRuleID(input string) (*EventhubAuthorizationRuleI
 	}
 
 	id := EventhubAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseEventhubAuthorizationRuleIDInsensitively(input string) (*EventhubAutho
 	}
 
 	id := EventhubAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

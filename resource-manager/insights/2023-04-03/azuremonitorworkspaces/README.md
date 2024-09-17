@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-04-03/azuremonitorworkspaces` Documentation
 
-The `azuremonitorworkspaces` SDK allows for interaction with the Azure Resource Manager Service `insights` (API Version `2023-04-03`).
+The `azuremonitorworkspaces` SDK allows for interaction with Azure Resource Manager `insights` (API Version `2023-04-03`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AwsOrganizationalData interface {
+	AwsOrganizationalData() BaseAwsOrganizationalDataImpl
 }
 
-// RawAwsOrganizationalDataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AwsOrganizationalData = BaseAwsOrganizationalDataImpl{}
+
+type BaseAwsOrganizationalDataImpl struct {
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s BaseAwsOrganizationalDataImpl) AwsOrganizationalData() BaseAwsOrganizationalDataImpl {
+	return s
+}
+
+var _ AwsOrganizationalData = RawAwsOrganizationalDataImpl{}
+
+// RawAwsOrganizationalDataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAwsOrganizationalDataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	awsOrganizationalData BaseAwsOrganizationalDataImpl
+	Type                  string
+	Values                map[string]interface{}
 }
 
-func unmarshalAwsOrganizationalDataImplementation(input []byte) (AwsOrganizationalData, error) {
+func (s RawAwsOrganizationalDataImpl) AwsOrganizationalData() BaseAwsOrganizationalDataImpl {
+	return s.awsOrganizationalData
+}
+
+func UnmarshalAwsOrganizationalDataImplementation(input []byte) (AwsOrganizationalData, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalAwsOrganizationalDataImplementation(input []byte) (AwsOrganization
 		return out, nil
 	}
 
-	out := RawAwsOrganizationalDataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAwsOrganizationalDataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAwsOrganizationalDataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAwsOrganizationalDataImpl{
+		awsOrganizationalData: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
 
 }

@@ -44,7 +44,7 @@ func ParseRegistryModelID(input string) (*RegistryModelId, error) {
 	}
 
 	id := RegistryModelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegistryModelIDInsensitively(input string) (*RegistryModelId, error) {
 	}
 
 	id := RegistryModelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseApplicationGatewayWebApplicationFirewallPolicyID(input string) (*Appli
 	}
 
 	id := ApplicationGatewayWebApplicationFirewallPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseApplicationGatewayWebApplicationFirewallPolicyIDInsensitively(input st
 	}
 
 	id := ApplicationGatewayWebApplicationFirewallPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

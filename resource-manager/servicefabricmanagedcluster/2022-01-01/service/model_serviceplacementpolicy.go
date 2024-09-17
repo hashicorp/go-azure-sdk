@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ServicePlacementPolicy interface {
+	ServicePlacementPolicy() BaseServicePlacementPolicyImpl
 }
 
-// RawServicePlacementPolicyImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ServicePlacementPolicy = BaseServicePlacementPolicyImpl{}
+
+type BaseServicePlacementPolicyImpl struct {
+	Type ServicePlacementPolicyType `json:"type"`
+}
+
+func (s BaseServicePlacementPolicyImpl) ServicePlacementPolicy() BaseServicePlacementPolicyImpl {
+	return s
+}
+
+var _ ServicePlacementPolicy = RawServicePlacementPolicyImpl{}
+
+// RawServicePlacementPolicyImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawServicePlacementPolicyImpl struct {
-	Type   string
-	Values map[string]interface{}
+	servicePlacementPolicy BaseServicePlacementPolicyImpl
+	Type                   string
+	Values                 map[string]interface{}
 }
 
-func unmarshalServicePlacementPolicyImplementation(input []byte) (ServicePlacementPolicy, error) {
+func (s RawServicePlacementPolicyImpl) ServicePlacementPolicy() BaseServicePlacementPolicyImpl {
+	return s.servicePlacementPolicy
+}
+
+func UnmarshalServicePlacementPolicyImplementation(input []byte) (ServicePlacementPolicy, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +93,15 @@ func unmarshalServicePlacementPolicyImplementation(input []byte) (ServicePlaceme
 		return out, nil
 	}
 
-	out := RawServicePlacementPolicyImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseServicePlacementPolicyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseServicePlacementPolicyImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawServicePlacementPolicyImpl{
+		servicePlacementPolicy: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
 
 }

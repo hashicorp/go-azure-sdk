@@ -50,7 +50,6 @@ func (c HyperVSitesClient) PatchSite(ctx context.Context, id HyperVSiteId, input
 
 	var model HyperVSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -39,7 +39,7 @@ func (s *SalesforceServiceCloudLinkedServiceTypeProperties) UnmarshalJSON(bytes 
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'SalesforceServiceCloudLinkedServiceTypeProperties': %+v", err)
 		}
@@ -47,7 +47,7 @@ func (s *SalesforceServiceCloudLinkedServiceTypeProperties) UnmarshalJSON(bytes 
 	}
 
 	if v, ok := temp["securityToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecurityToken' for 'SalesforceServiceCloudLinkedServiceTypeProperties': %+v", err)
 		}

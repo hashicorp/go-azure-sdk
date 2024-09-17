@@ -15,7 +15,7 @@ type ManagedInstanceTdeCertificatesClient struct {
 }
 
 func NewManagedInstanceTdeCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedInstanceTdeCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedinstancetdecertificates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedinstancetdecertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstanceTdeCertificatesClient: %+v", err)
 	}

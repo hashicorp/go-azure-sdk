@@ -44,7 +44,7 @@ func ParseEncryptionScopeID(input string) (*EncryptionScopeId, error) {
 	}
 
 	id := EncryptionScopeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEncryptionScopeIDInsensitively(input string) (*EncryptionScopeId, erro
 	}
 
 	id := EncryptionScopeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

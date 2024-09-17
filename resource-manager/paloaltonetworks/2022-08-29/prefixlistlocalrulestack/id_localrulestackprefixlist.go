@@ -44,7 +44,7 @@ func ParseLocalRulestackPrefixListID(input string) (*LocalRulestackPrefixListId,
 	}
 
 	id := LocalRulestackPrefixListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocalRulestackPrefixListIDInsensitively(input string) (*LocalRulestack
 	}
 
 	id := LocalRulestackPrefixListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

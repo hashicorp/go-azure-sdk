@@ -15,7 +15,7 @@ type SqlPoolsSchemasClient struct {
 }
 
 func NewSqlPoolsSchemasClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSchemasClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsschemas", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsschemas", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsSchemasClient: %+v", err)
 	}

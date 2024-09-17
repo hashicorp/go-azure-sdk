@@ -40,7 +40,7 @@ func ParseScopedManagementAssociationID(input string) (*ScopedManagementAssociat
 	}
 
 	id := ScopedManagementAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedManagementAssociationIDInsensitively(input string) (*ScopedManag
 	}
 
 	id := ScopedManagementAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

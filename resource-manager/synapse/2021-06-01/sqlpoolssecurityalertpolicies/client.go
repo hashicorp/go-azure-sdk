@@ -15,7 +15,7 @@ type SqlPoolsSecurityAlertPoliciesClient struct {
 }
 
 func NewSqlPoolsSecurityAlertPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSecurityAlertPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolssecurityalertpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolssecurityalertpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsSecurityAlertPoliciesClient: %+v", err)
 	}

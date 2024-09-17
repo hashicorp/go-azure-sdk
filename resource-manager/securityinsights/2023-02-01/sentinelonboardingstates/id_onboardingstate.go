@@ -44,7 +44,7 @@ func ParseOnboardingStateID(input string) (*OnboardingStateId, error) {
 	}
 
 	id := OnboardingStateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOnboardingStateIDInsensitively(input string) (*OnboardingStateId, erro
 	}
 
 	id := OnboardingStateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

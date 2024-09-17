@@ -14,6 +14,14 @@ type IoTCheckRequirements struct {
 	Properties *IoTCheckRequirementsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s IoTCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = IoTCheckRequirements{}
@@ -27,9 +35,10 @@ func (s IoTCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IoTCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "IOT"
 
 	encoded, err = json.Marshal(decoded)

@@ -46,7 +46,7 @@ func ParsePlacementPolicyID(input string) (*PlacementPolicyId, error) {
 	}
 
 	id := PlacementPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePlacementPolicyIDInsensitively(input string) (*PlacementPolicyId, erro
 	}
 
 	id := PlacementPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

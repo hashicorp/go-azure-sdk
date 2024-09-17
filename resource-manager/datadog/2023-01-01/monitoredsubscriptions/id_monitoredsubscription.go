@@ -44,7 +44,7 @@ func ParseMonitoredSubscriptionID(input string) (*MonitoredSubscriptionId, error
 	}
 
 	id := MonitoredSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMonitoredSubscriptionIDInsensitively(input string) (*MonitoredSubscrip
 	}
 
 	id := MonitoredSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseManagedInstancePrivateLinkResourceID(input string) (*ManagedInstancePr
 	}
 
 	id := ManagedInstancePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstancePrivateLinkResourceIDInsensitively(input string) (*Mana
 	}
 
 	id := ManagedInstancePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

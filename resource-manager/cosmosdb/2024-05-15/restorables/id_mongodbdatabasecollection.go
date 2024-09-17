@@ -46,7 +46,7 @@ func ParseMongodbDatabaseCollectionID(input string) (*MongodbDatabaseCollectionI
 	}
 
 	id := MongodbDatabaseCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseMongodbDatabaseCollectionIDInsensitively(input string) (*MongodbDataba
 	}
 
 	id := MongodbDatabaseCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

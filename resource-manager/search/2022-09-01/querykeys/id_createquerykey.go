@@ -44,7 +44,7 @@ func ParseCreateQueryKeyID(input string) (*CreateQueryKeyId, error) {
 	}
 
 	id := CreateQueryKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCreateQueryKeyIDInsensitively(input string) (*CreateQueryKeyId, error)
 	}
 
 	id := CreateQueryKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

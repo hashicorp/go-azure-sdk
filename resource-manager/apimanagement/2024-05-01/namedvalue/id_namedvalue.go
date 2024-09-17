@@ -44,7 +44,7 @@ func ParseNamedValueID(input string) (*NamedValueId, error) {
 	}
 
 	id := NamedValueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNamedValueIDInsensitively(input string) (*NamedValueId, error) {
 	}
 
 	id := NamedValueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

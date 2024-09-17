@@ -30,7 +30,7 @@ func (s *ImageSweepSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["earlyTermination"]; ok {
-		impl, err := unmarshalEarlyTerminationPolicyImplementation(v)
+		impl, err := UnmarshalEarlyTerminationPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EarlyTermination' for 'ImageSweepSettings': %+v", err)
 		}

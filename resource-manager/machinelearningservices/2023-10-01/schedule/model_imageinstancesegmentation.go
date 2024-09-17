@@ -20,9 +20,20 @@ type ImageInstanceSegmentation struct {
 	ValidationDataSize *float64                                         `json:"validationDataSize,omitempty"`
 
 	// Fields inherited from AutoMLVertical
+
 	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
 	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TaskType         TaskType        `json:"taskType"`
 	TrainingData     MLTableJobInput `json:"trainingData"`
+}
+
+func (s ImageInstanceSegmentation) AutoMLVertical() BaseAutoMLVerticalImpl {
+	return BaseAutoMLVerticalImpl{
+		LogVerbosity:     s.LogVerbosity,
+		TargetColumnName: s.TargetColumnName,
+		TaskType:         s.TaskType,
+		TrainingData:     s.TrainingData,
+	}
 }
 
 var _ json.Marshaler = ImageInstanceSegmentation{}
@@ -36,9 +47,10 @@ func (s ImageInstanceSegmentation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ImageInstanceSegmentation: %+v", err)
 	}
+
 	decoded["taskType"] = "ImageInstanceSegmentation"
 
 	encoded, err = json.Marshal(decoded)

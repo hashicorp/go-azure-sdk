@@ -44,7 +44,7 @@ func ParseConsoleID(input string) (*ConsoleId, error) {
 	}
 
 	id := ConsoleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConsoleIDInsensitively(input string) (*ConsoleId, error) {
 	}
 
 	id := ConsoleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

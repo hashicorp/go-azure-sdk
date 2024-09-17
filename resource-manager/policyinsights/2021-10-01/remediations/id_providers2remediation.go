@@ -40,7 +40,7 @@ func ParseProviders2RemediationID(input string) (*Providers2RemediationId, error
 	}
 
 	id := Providers2RemediationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviders2RemediationIDInsensitively(input string) (*Providers2Remedia
 	}
 
 	id := Providers2RemediationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

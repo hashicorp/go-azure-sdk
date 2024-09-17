@@ -44,7 +44,7 @@ func ParsePlanID(input string) (*PlanId, error) {
 	}
 
 	id := PlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePlanIDInsensitively(input string) (*PlanId, error) {
 	}
 
 	id := PlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -41,6 +41,7 @@ func (o EntitiesRelationsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o EntitiesRelationsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

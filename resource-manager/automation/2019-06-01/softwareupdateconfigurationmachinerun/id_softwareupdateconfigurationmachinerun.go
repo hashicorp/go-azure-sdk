@@ -44,7 +44,7 @@ func ParseSoftwareUpdateConfigurationMachineRunID(input string) (*SoftwareUpdate
 	}
 
 	id := SoftwareUpdateConfigurationMachineRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSoftwareUpdateConfigurationMachineRunIDInsensitively(input string) (*S
 	}
 
 	id := SoftwareUpdateConfigurationMachineRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

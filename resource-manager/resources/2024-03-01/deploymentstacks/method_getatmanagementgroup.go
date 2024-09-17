@@ -45,7 +45,6 @@ func (c DeploymentStacksClient) GetAtManagementGroup(ctx context.Context, id Pro
 
 	var model DeploymentStack
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

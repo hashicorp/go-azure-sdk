@@ -42,7 +42,7 @@ func ParseAmlFilesystemID(input string) (*AmlFilesystemId, error) {
 	}
 
 	id := AmlFilesystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAmlFilesystemIDInsensitively(input string) (*AmlFilesystemId, error) {
 	}
 
 	id := AmlFilesystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

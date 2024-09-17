@@ -46,7 +46,7 @@ func ParseVMImageOfferID(input string) (*VMImageOfferId, error) {
 	}
 
 	id := VMImageOfferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVMImageOfferIDInsensitively(input string) (*VMImageOfferId, error) {
 	}
 
 	id := VMImageOfferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -19,6 +19,14 @@ type ContentKeyPolicyFairPlayConfiguration struct {
 	RentalDuration             int64                                               `json:"rentalDuration"`
 
 	// Fields inherited from ContentKeyPolicyConfiguration
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyFairPlayConfiguration) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return BaseContentKeyPolicyConfigurationImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyFairPlayConfiguration{}
@@ -32,9 +40,10 @@ func (s ContentKeyPolicyFairPlayConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyFairPlayConfiguration: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyFairPlayConfiguration"
 
 	encoded, err = json.Marshal(decoded)

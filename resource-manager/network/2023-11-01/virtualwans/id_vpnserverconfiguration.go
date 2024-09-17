@@ -42,7 +42,7 @@ func ParseVpnServerConfigurationID(input string) (*VpnServerConfigurationId, err
 	}
 
 	id := VpnServerConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVpnServerConfigurationIDInsensitively(input string) (*VpnServerConfigu
 	}
 
 	id := VpnServerConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

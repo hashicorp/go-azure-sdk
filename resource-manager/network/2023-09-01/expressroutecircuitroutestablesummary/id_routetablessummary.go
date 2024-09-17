@@ -46,7 +46,7 @@ func ParseRouteTablesSummaryID(input string) (*RouteTablesSummaryId, error) {
 	}
 
 	id := RouteTablesSummaryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRouteTablesSummaryIDInsensitively(input string) (*RouteTablesSummaryId
 	}
 
 	id := RouteTablesSummaryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

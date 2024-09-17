@@ -42,7 +42,7 @@ func ParseOrganizationID(input string) (*OrganizationId, error) {
 	}
 
 	id := OrganizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseOrganizationIDInsensitively(input string) (*OrganizationId, error) {
 	}
 
 	id := OrganizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

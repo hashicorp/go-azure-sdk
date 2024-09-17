@@ -46,7 +46,7 @@ func ParseSlotSiteExtensionID(input string) (*SlotSiteExtensionId, error) {
 	}
 
 	id := SlotSiteExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotSiteExtensionIDInsensitively(input string) (*SlotSiteExtensionId, 
 	}
 
 	id := SlotSiteExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseFrontDoorID(input string) (*FrontDoorId, error) {
 	}
 
 	id := FrontDoorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFrontDoorIDInsensitively(input string) (*FrontDoorId, error) {
 	}
 
 	id := FrontDoorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

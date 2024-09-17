@@ -44,7 +44,7 @@ func ParseCustomerBillingRoleDefinitionID(input string) (*CustomerBillingRoleDef
 	}
 
 	id := CustomerBillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCustomerBillingRoleDefinitionIDInsensitively(input string) (*CustomerB
 	}
 
 	id := CustomerBillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

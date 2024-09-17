@@ -15,7 +15,7 @@ type DatasetsClient struct {
 }
 
 func NewDatasetsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatasetsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datasets", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datasets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatasetsClient: %+v", err)
 	}

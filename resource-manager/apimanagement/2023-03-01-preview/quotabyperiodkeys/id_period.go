@@ -46,7 +46,7 @@ func ParsePeriodID(input string) (*PeriodId, error) {
 	}
 
 	id := PeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePeriodIDInsensitively(input string) (*PeriodId, error) {
 	}
 
 	id := PeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

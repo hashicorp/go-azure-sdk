@@ -44,7 +44,7 @@ func ParseConnectedEnvironmentCertificateID(input string) (*ConnectedEnvironment
 	}
 
 	id := ConnectedEnvironmentCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectedEnvironmentCertificateIDInsensitively(input string) (*Connect
 	}
 
 	id := ConnectedEnvironmentCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

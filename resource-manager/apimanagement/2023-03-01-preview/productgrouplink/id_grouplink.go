@@ -46,7 +46,7 @@ func ParseGroupLinkID(input string) (*GroupLinkId, error) {
 	}
 
 	id := GroupLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGroupLinkIDInsensitively(input string) (*GroupLinkId, error) {
 	}
 
 	id := GroupLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

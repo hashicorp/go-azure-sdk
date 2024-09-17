@@ -15,7 +15,7 @@ type FunctionsExtensionClient struct {
 }
 
 func NewFunctionsExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*FunctionsExtensionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "functionsextension", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "functionsextension", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FunctionsExtensionClient: %+v", err)
 	}

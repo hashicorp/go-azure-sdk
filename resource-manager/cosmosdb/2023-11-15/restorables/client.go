@@ -15,7 +15,7 @@ type RestorablesClient struct {
 }
 
 func NewRestorablesClientWithBaseURI(sdkApi sdkEnv.Api) (*RestorablesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "restorables", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "restorables", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RestorablesClient: %+v", err)
 	}

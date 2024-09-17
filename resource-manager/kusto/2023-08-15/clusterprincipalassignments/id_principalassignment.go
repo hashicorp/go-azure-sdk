@@ -44,7 +44,7 @@ func ParsePrincipalAssignmentID(input string) (*PrincipalAssignmentId, error) {
 	}
 
 	id := PrincipalAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePrincipalAssignmentIDInsensitively(input string) (*PrincipalAssignment
 	}
 
 	id := PrincipalAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

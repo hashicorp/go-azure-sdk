@@ -46,7 +46,7 @@ func ParseHybridRunbookWorkerID(input string) (*HybridRunbookWorkerId, error) {
 	}
 
 	id := HybridRunbookWorkerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseHybridRunbookWorkerIDInsensitively(input string) (*HybridRunbookWorker
 	}
 
 	id := HybridRunbookWorkerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

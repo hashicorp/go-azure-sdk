@@ -46,7 +46,7 @@ func ParseBuildUserProvidedFunctionAppID(input string) (*BuildUserProvidedFuncti
 	}
 
 	id := BuildUserProvidedFunctionAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBuildUserProvidedFunctionAppIDInsensitively(input string) (*BuildUserP
 	}
 
 	id := BuildUserProvidedFunctionAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

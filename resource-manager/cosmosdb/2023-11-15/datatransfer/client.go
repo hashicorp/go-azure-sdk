@@ -15,7 +15,7 @@ type DataTransferClient struct {
 }
 
 func NewDataTransferClientWithBaseURI(sdkApi sdkEnv.Api) (*DataTransferClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datatransfer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datatransfer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataTransferClient: %+v", err)
 	}

@@ -35,6 +35,7 @@ func (o RestorableTableResourcesListOperationOptions) ToHeaders() *client.Header
 
 func (o RestorableTableResourcesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c RestorablesClient) RestorableTableResourcesList(ctx context.Context, id 
 
 	var model RestorableTableResourcesListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

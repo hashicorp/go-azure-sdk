@@ -40,7 +40,7 @@ func ParseScopedConfigurationAssignmentID(input string) (*ScopedConfigurationAss
 	}
 
 	id := ScopedConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedConfigurationAssignmentIDInsensitively(input string) (*ScopedCon
 	}
 
 	id := ScopedConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

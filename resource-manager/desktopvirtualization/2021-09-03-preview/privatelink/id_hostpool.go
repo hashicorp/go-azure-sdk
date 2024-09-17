@@ -42,7 +42,7 @@ func ParseHostPoolID(input string) (*HostPoolId, error) {
 	}
 
 	id := HostPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseHostPoolIDInsensitively(input string) (*HostPoolId, error) {
 	}
 
 	id := HostPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

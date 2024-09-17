@@ -46,7 +46,7 @@ func ParsePeeringRouteTablesSummaryID(input string) (*PeeringRouteTablesSummaryI
 	}
 
 	id := PeeringRouteTablesSummaryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePeeringRouteTablesSummaryIDInsensitively(input string) (*PeeringRouteT
 	}
 
 	id := PeeringRouteTablesSummaryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

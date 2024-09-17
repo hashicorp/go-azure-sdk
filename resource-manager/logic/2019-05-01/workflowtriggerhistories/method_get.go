@@ -45,7 +45,6 @@ func (c WorkflowTriggerHistoriesClient) Get(ctx context.Context, id HistoryId) (
 
 	var model WorkflowTriggerHistory
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

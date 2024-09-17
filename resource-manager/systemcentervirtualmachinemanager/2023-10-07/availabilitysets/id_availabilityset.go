@@ -42,7 +42,7 @@ func ParseAvailabilitySetID(input string) (*AvailabilitySetId, error) {
 	}
 
 	id := AvailabilitySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAvailabilitySetIDInsensitively(input string) (*AvailabilitySetId, erro
 	}
 
 	id := AvailabilitySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseVirtualNetworkConnectionGatewayID(input string) (*VirtualNetworkConnec
 	}
 
 	id := VirtualNetworkConnectionGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualNetworkConnectionGatewayIDInsensitively(input string) (*Virtual
 	}
 
 	id := VirtualNetworkConnectionGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

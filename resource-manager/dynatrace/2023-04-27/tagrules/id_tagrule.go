@@ -44,7 +44,7 @@ func ParseTagRuleID(input string) (*TagRuleId, error) {
 	}
 
 	id := TagRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTagRuleIDInsensitively(input string) (*TagRuleId, error) {
 	}
 
 	id := TagRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

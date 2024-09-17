@@ -46,7 +46,6 @@ func (c BackupAndExportClient) ValidateBackup(ctx context.Context, id FlexibleSe
 
 	var model ValidateBackupResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

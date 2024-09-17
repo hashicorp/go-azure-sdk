@@ -22,7 +22,7 @@ func (s *StorageConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["transportFileShareConfiguration"]; ok {
-		impl, err := unmarshalFileShareConfigurationImplementation(v)
+		impl, err := UnmarshalFileShareConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TransportFileShareConfiguration' for 'StorageConfiguration': %+v", err)
 		}

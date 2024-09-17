@@ -44,7 +44,7 @@ func ParseSimID(input string) (*SimId, error) {
 	}
 
 	id := SimId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSimIDInsensitively(input string) (*SimId, error) {
 	}
 
 	id := SimId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

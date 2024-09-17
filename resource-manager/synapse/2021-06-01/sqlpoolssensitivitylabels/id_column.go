@@ -50,7 +50,7 @@ func ParseColumnID(input string) (*ColumnId, error) {
 	}
 
 	id := ColumnId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseColumnIDInsensitively(input string) (*ColumnId, error) {
 	}
 
 	id := ColumnId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

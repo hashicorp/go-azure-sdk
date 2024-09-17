@@ -44,7 +44,7 @@ func ParseStreamingLocatorID(input string) (*StreamingLocatorId, error) {
 	}
 
 	id := StreamingLocatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStreamingLocatorIDInsensitively(input string) (*StreamingLocatorId, er
 	}
 
 	id := StreamingLocatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

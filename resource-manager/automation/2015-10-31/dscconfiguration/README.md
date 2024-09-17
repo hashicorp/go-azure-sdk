@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dscconfiguration` Documentation
 
-The `dscconfiguration` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2015-10-31`).
+The `dscconfiguration` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2015-10-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

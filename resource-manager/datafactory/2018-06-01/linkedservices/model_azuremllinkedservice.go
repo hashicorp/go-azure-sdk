@@ -14,11 +14,24 @@ type AzureMLLinkedService struct {
 	TypeProperties AzureMLLinkedServiceTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from LinkedService
+
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`
 	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Type        string                             `json:"type"`
 	Version     *string                            `json:"version,omitempty"`
+}
+
+func (s AzureMLLinkedService) LinkedService() BaseLinkedServiceImpl {
+	return BaseLinkedServiceImpl{
+		Annotations: s.Annotations,
+		ConnectVia:  s.ConnectVia,
+		Description: s.Description,
+		Parameters:  s.Parameters,
+		Type:        s.Type,
+		Version:     s.Version,
+	}
 }
 
 var _ json.Marshaler = AzureMLLinkedService{}
@@ -32,9 +45,10 @@ func (s AzureMLLinkedService) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureMLLinkedService: %+v", err)
 	}
+
 	decoded["type"] = "AzureML"
 
 	encoded, err = json.Marshal(decoded)

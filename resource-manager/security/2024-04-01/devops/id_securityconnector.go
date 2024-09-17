@@ -42,7 +42,7 @@ func ParseSecurityConnectorID(input string) (*SecurityConnectorId, error) {
 	}
 
 	id := SecurityConnectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSecurityConnectorIDInsensitively(input string) (*SecurityConnectorId, 
 	}
 
 	id := SecurityConnectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseWatchlistItemID(input string) (*WatchlistItemId, error) {
 	}
 
 	id := WatchlistItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWatchlistItemIDInsensitively(input string) (*WatchlistItemId, error) {
 	}
 
 	id := WatchlistItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

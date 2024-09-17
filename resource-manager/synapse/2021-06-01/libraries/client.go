@@ -15,7 +15,7 @@ type LibrariesClient struct {
 }
 
 func NewLibrariesClientWithBaseURI(sdkApi sdkEnv.Api) (*LibrariesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "libraries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "libraries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LibrariesClient: %+v", err)
 	}

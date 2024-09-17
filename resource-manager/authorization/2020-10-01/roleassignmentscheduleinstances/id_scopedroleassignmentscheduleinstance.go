@@ -40,7 +40,7 @@ func ParseScopedRoleAssignmentScheduleInstanceID(input string) (*ScopedRoleAssig
 	}
 
 	id := ScopedRoleAssignmentScheduleInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedRoleAssignmentScheduleInstanceIDInsensitively(input string) (*Sc
 	}
 
 	id := ScopedRoleAssignmentScheduleInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

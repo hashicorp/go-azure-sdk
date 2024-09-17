@@ -44,7 +44,7 @@ func ParseServiceTaskID(input string) (*ServiceTaskId, error) {
 	}
 
 	id := ServiceTaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServiceTaskIDInsensitively(input string) (*ServiceTaskId, error) {
 	}
 
 	id := ServiceTaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

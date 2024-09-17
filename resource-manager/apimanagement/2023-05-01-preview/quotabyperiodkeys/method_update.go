@@ -49,7 +49,6 @@ func (c QuotaByPeriodKeysClient) Update(ctx context.Context, id PeriodId, input 
 
 	var model QuotaCounterContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -48,7 +48,7 @@ func ParseDatabaseCollectionID(input string) (*DatabaseCollectionId, error) {
 	}
 
 	id := DatabaseCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseDatabaseCollectionIDInsensitively(input string) (*DatabaseCollectionId
 	}
 
 	id := DatabaseCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseQuotaID(input string) (*QuotaId, error) {
 	}
 
 	id := QuotaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseQuotaIDInsensitively(input string) (*QuotaId, error) {
 	}
 
 	id := QuotaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

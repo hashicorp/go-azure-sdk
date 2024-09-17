@@ -15,7 +15,7 @@ type ExtendedUeInformationClient struct {
 }
 
 func NewExtendedUeInformationClientWithBaseURI(sdkApi sdkEnv.Api) (*ExtendedUeInformationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "extendedueinformation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "extendedueinformation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExtendedUeInformationClient: %+v", err)
 	}

@@ -46,7 +46,7 @@ func ParseAttachedDataNetworkID(input string) (*AttachedDataNetworkId, error) {
 	}
 
 	id := AttachedDataNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAttachedDataNetworkIDInsensitively(input string) (*AttachedDataNetwork
 	}
 
 	id := AttachedDataNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

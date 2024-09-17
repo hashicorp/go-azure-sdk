@@ -14,11 +14,24 @@ type WebLinkedService struct {
 	TypeProperties WebLinkedServiceTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from LinkedService
+
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`
 	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Type        string                             `json:"type"`
 	Version     *string                            `json:"version,omitempty"`
+}
+
+func (s WebLinkedService) LinkedService() BaseLinkedServiceImpl {
+	return BaseLinkedServiceImpl{
+		Annotations: s.Annotations,
+		ConnectVia:  s.ConnectVia,
+		Description: s.Description,
+		Parameters:  s.Parameters,
+		Type:        s.Type,
+		Version:     s.Version,
+	}
 }
 
 var _ json.Marshaler = WebLinkedService{}
@@ -32,9 +45,10 @@ func (s WebLinkedService) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling WebLinkedService: %+v", err)
 	}
+
 	decoded["type"] = "Web"
 
 	encoded, err = json.Marshal(decoded)
@@ -58,6 +72,7 @@ func (s *WebLinkedService) UnmarshalJSON(bytes []byte) error {
 	s.ConnectVia = decoded.ConnectVia
 	s.Description = decoded.Description
 	s.Parameters = decoded.Parameters
+	s.Type = decoded.Type
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -66,7 +81,7 @@ func (s *WebLinkedService) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["typeProperties"]; ok {
-		impl, err := unmarshalWebLinkedServiceTypePropertiesImplementation(v)
+		impl, err := UnmarshalWebLinkedServiceTypePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TypeProperties' for 'WebLinkedService': %+v", err)
 		}

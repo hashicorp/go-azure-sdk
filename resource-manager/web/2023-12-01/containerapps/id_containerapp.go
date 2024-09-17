@@ -40,7 +40,7 @@ func ParseContainerAppID(input string) (*ContainerAppId, error) {
 	}
 
 	id := ContainerAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseContainerAppIDInsensitively(input string) (*ContainerAppId, error) {
 	}
 
 	id := ContainerAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

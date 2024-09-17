@@ -44,7 +44,7 @@ func ParseApplicationLiveViewID(input string) (*ApplicationLiveViewId, error) {
 	}
 
 	id := ApplicationLiveViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApplicationLiveViewIDInsensitively(input string) (*ApplicationLiveView
 	}
 
 	id := ApplicationLiveViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

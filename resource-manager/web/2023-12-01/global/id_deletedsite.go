@@ -40,7 +40,7 @@ func ParseDeletedSiteID(input string) (*DeletedSiteId, error) {
 	}
 
 	id := DeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseDeletedSiteIDInsensitively(input string) (*DeletedSiteId, error) {
 	}
 
 	id := DeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

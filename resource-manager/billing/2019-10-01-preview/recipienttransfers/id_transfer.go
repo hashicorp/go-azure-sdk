@@ -38,7 +38,7 @@ func ParseTransferID(input string) (*TransferId, error) {
 	}
 
 	id := TransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseTransferIDInsensitively(input string) (*TransferId, error) {
 	}
 
 	id := TransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

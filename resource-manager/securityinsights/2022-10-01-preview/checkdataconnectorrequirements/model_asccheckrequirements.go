@@ -14,6 +14,14 @@ type ASCCheckRequirements struct {
 	Properties *ASCCheckRequirementsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s ASCCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = ASCCheckRequirements{}
@@ -27,9 +35,10 @@ func (s ASCCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ASCCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "AzureSecurityCenter"
 
 	encoded, err = json.Marshal(decoded)

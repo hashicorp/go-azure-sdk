@@ -42,7 +42,7 @@ func ParseCloudExadataInfrastructureID(input string) (*CloudExadataInfrastructur
 	}
 
 	id := CloudExadataInfrastructureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCloudExadataInfrastructureIDInsensitively(input string) (*CloudExadata
 	}
 
 	id := CloudExadataInfrastructureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseCustomIPPrefixID(input string) (*CustomIPPrefixId, error) {
 	}
 
 	id := CustomIPPrefixId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomIPPrefixIDInsensitively(input string) (*CustomIPPrefixId, error)
 	}
 
 	id := CustomIPPrefixId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

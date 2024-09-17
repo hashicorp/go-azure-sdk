@@ -15,7 +15,7 @@ type IntegrationRuntimeNodesClient struct {
 }
 
 func NewIntegrationRuntimeNodesClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationRuntimeNodesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationruntimenodes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationruntimenodes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationRuntimeNodesClient: %+v", err)
 	}

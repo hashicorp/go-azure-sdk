@@ -42,7 +42,7 @@ func ParseMetricAlertID(input string) (*MetricAlertId, error) {
 	}
 
 	id := MetricAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMetricAlertIDInsensitively(input string) (*MetricAlertId, error) {
 	}
 
 	id := MetricAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

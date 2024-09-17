@@ -44,7 +44,7 @@ func ParseVCenterID(input string) (*VCenterId, error) {
 	}
 
 	id := VCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVCenterIDInsensitively(input string) (*VCenterId, error) {
 	}
 
 	id := VCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type GlobalReachConnectionsClient struct {
 }
 
 func NewGlobalReachConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*GlobalReachConnectionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "globalreachconnections", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "globalreachconnections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GlobalReachConnectionsClient: %+v", err)
 	}

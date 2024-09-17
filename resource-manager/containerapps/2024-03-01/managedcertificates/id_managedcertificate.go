@@ -44,7 +44,7 @@ func ParseManagedCertificateID(input string) (*ManagedCertificateId, error) {
 	}
 
 	id := ManagedCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedCertificateIDInsensitively(input string) (*ManagedCertificateId
 	}
 
 	id := ManagedCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseRegistryCodeVersionID(input string) (*RegistryCodeVersionId, error) {
 	}
 
 	id := RegistryCodeVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRegistryCodeVersionIDInsensitively(input string) (*RegistryCodeVersion
 	}
 
 	id := RegistryCodeVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

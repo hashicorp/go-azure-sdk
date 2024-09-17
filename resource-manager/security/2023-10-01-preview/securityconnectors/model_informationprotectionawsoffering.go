@@ -14,7 +14,16 @@ type InformationProtectionAwsOffering struct {
 	InformationProtection *InformationProtectionAwsOfferingInformationProtection `json:"informationProtection,omitempty"`
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s InformationProtectionAwsOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = InformationProtectionAwsOffering{}
@@ -28,9 +37,10 @@ func (s InformationProtectionAwsOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InformationProtectionAwsOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "InformationProtectionAws"
 
 	encoded, err = json.Marshal(decoded)

@@ -18,6 +18,14 @@ type NewProtectionProfile struct {
 	RecoveryPointHistory              *int64               `json:"recoveryPointHistory,omitempty"`
 
 	// Fields inherited from ProtectionProfileCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s NewProtectionProfile) ProtectionProfileCustomDetails() BaseProtectionProfileCustomDetailsImpl {
+	return BaseProtectionProfileCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = NewProtectionProfile{}
@@ -31,9 +39,10 @@ func (s NewProtectionProfile) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NewProtectionProfile: %+v", err)
 	}
+
 	decoded["resourceType"] = "New"
 
 	encoded, err = json.Marshal(decoded)

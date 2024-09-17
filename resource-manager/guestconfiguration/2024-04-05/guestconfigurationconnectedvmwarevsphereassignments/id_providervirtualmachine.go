@@ -42,7 +42,7 @@ func ParseProviderVirtualMachineID(input string) (*ProviderVirtualMachineId, err
 	}
 
 	id := ProviderVirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderVirtualMachineIDInsensitively(input string) (*ProviderVirtualM
 	}
 
 	id := ProviderVirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,6 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesGet(ctx context.Cont
 
 	var model NotebookWorkspace
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -50,7 +50,6 @@ func (c TriggerrunsClient) QueryByFactory(ctx context.Context, id FactoryId, inp
 
 	var model TriggerRunsQueryResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

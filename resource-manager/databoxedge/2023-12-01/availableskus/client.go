@@ -15,7 +15,7 @@ type AvailableSkusClient struct {
 }
 
 func NewAvailableSkusClientWithBaseURI(sdkApi sdkEnv.Api) (*AvailableSkusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "availableskus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "availableskus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AvailableSkusClient: %+v", err)
 	}

@@ -13,11 +13,13 @@ var _ OnlineDeployment = ManagedOnlineDeployment{}
 type ManagedOnlineDeployment struct {
 
 	// Fields inherited from OnlineDeployment
+
 	AppInsightsEnabled        *bool                          `json:"appInsightsEnabled,omitempty"`
 	CodeConfiguration         *CodeConfiguration             `json:"codeConfiguration,omitempty"`
 	DataCollector             *DataCollector                 `json:"dataCollector,omitempty"`
 	Description               *string                        `json:"description,omitempty"`
 	EgressPublicNetworkAccess *EgressPublicNetworkAccessType `json:"egressPublicNetworkAccess,omitempty"`
+	EndpointComputeType       EndpointComputeType            `json:"endpointComputeType"`
 	EnvironmentId             *string                        `json:"environmentId,omitempty"`
 	EnvironmentVariables      *map[string]string             `json:"environmentVariables,omitempty"`
 	InstanceType              *string                        `json:"instanceType,omitempty"`
@@ -31,6 +33,28 @@ type ManagedOnlineDeployment struct {
 	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
 }
 
+func (s ManagedOnlineDeployment) OnlineDeployment() BaseOnlineDeploymentImpl {
+	return BaseOnlineDeploymentImpl{
+		AppInsightsEnabled:        s.AppInsightsEnabled,
+		CodeConfiguration:         s.CodeConfiguration,
+		DataCollector:             s.DataCollector,
+		Description:               s.Description,
+		EgressPublicNetworkAccess: s.EgressPublicNetworkAccess,
+		EndpointComputeType:       s.EndpointComputeType,
+		EnvironmentId:             s.EnvironmentId,
+		EnvironmentVariables:      s.EnvironmentVariables,
+		InstanceType:              s.InstanceType,
+		LivenessProbe:             s.LivenessProbe,
+		Model:                     s.Model,
+		ModelMountPath:            s.ModelMountPath,
+		Properties:                s.Properties,
+		ProvisioningState:         s.ProvisioningState,
+		ReadinessProbe:            s.ReadinessProbe,
+		RequestSettings:           s.RequestSettings,
+		ScaleSettings:             s.ScaleSettings,
+	}
+}
+
 var _ json.Marshaler = ManagedOnlineDeployment{}
 
 func (s ManagedOnlineDeployment) MarshalJSON() ([]byte, error) {
@@ -42,9 +66,10 @@ func (s ManagedOnlineDeployment) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedOnlineDeployment: %+v", err)
 	}
+
 	decoded["endpointComputeType"] = "Managed"
 
 	encoded, err = json.Marshal(decoded)
@@ -69,6 +94,7 @@ func (s *ManagedOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 	s.DataCollector = decoded.DataCollector
 	s.Description = decoded.Description
 	s.EgressPublicNetworkAccess = decoded.EgressPublicNetworkAccess
+	s.EndpointComputeType = decoded.EndpointComputeType
 	s.EnvironmentId = decoded.EnvironmentId
 	s.EnvironmentVariables = decoded.EnvironmentVariables
 	s.InstanceType = decoded.InstanceType
@@ -86,7 +112,7 @@ func (s *ManagedOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["scaleSettings"]; ok {
-		impl, err := unmarshalOnlineScaleSettingsImplementation(v)
+		impl, err := UnmarshalOnlineScaleSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScaleSettings' for 'ManagedOnlineDeployment': %+v", err)
 		}

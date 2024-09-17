@@ -15,7 +15,7 @@ type PipelinesClient struct {
 }
 
 func NewPipelinesClientWithBaseURI(sdkApi sdkEnv.Api) (*PipelinesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "pipelines", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "pipelines", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PipelinesClient: %+v", err)
 	}

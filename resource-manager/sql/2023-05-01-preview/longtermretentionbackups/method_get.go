@@ -45,7 +45,6 @@ func (c LongTermRetentionBackupsClient) Get(ctx context.Context, id LongTermRete
 
 	var model LongTermRetentionBackup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

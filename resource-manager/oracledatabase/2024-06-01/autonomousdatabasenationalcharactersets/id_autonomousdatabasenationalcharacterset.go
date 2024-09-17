@@ -42,7 +42,7 @@ func ParseAutonomousDatabaseNationalCharacterSetID(input string) (*AutonomousDat
 	}
 
 	id := AutonomousDatabaseNationalCharacterSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAutonomousDatabaseNationalCharacterSetIDInsensitively(input string) (*
 	}
 
 	id := AutonomousDatabaseNationalCharacterSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

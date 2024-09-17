@@ -13,8 +13,18 @@ var _ DatasetStorageFormat = AvroFormat{}
 type AvroFormat struct {
 
 	// Fields inherited from DatasetStorageFormat
+
 	Deserializer *string `json:"deserializer,omitempty"`
 	Serializer   *string `json:"serializer,omitempty"`
+	Type         string  `json:"type"`
+}
+
+func (s AvroFormat) DatasetStorageFormat() BaseDatasetStorageFormatImpl {
+	return BaseDatasetStorageFormatImpl{
+		Deserializer: s.Deserializer,
+		Serializer:   s.Serializer,
+		Type:         s.Type,
+	}
 }
 
 var _ json.Marshaler = AvroFormat{}
@@ -28,9 +38,10 @@ func (s AvroFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AvroFormat: %+v", err)
 	}
+
 	decoded["type"] = "AvroFormat"
 
 	encoded, err = json.Marshal(decoded)

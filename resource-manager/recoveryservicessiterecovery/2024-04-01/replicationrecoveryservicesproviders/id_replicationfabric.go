@@ -44,7 +44,7 @@ func ParseReplicationFabricID(input string) (*ReplicationFabricId, error) {
 	}
 
 	id := ReplicationFabricId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationFabricIDInsensitively(input string) (*ReplicationFabricId, 
 	}
 
 	id := ReplicationFabricId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

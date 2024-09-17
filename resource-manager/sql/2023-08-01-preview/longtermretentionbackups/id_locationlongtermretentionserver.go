@@ -44,7 +44,7 @@ func ParseLocationLongTermRetentionServerID(input string) (*LocationLongTermRete
 	}
 
 	id := LocationLongTermRetentionServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocationLongTermRetentionServerIDInsensitively(input string) (*Locatio
 	}
 
 	id := LocationLongTermRetentionServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

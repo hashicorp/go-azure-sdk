@@ -44,7 +44,7 @@ func ParseBandwidthScheduleID(input string) (*BandwidthScheduleId, error) {
 	}
 
 	id := BandwidthScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBandwidthScheduleIDInsensitively(input string) (*BandwidthScheduleId, 
 	}
 
 	id := BandwidthScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

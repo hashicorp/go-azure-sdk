@@ -46,7 +46,7 @@ func ParseWorkspaceGroupID(input string) (*WorkspaceGroupId, error) {
 	}
 
 	id := WorkspaceGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceGroupIDInsensitively(input string) (*WorkspaceGroupId, error)
 	}
 
 	id := WorkspaceGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

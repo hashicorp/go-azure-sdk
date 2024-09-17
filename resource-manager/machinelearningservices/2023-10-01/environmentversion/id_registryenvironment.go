@@ -44,7 +44,7 @@ func ParseRegistryEnvironmentID(input string) (*RegistryEnvironmentId, error) {
 	}
 
 	id := RegistryEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegistryEnvironmentIDInsensitively(input string) (*RegistryEnvironment
 	}
 
 	id := RegistryEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -14,7 +14,16 @@ type BoolEqualsFilter struct {
 	Value *bool `json:"value,omitempty"`
 
 	// Fields inherited from Filter
-	Key *string `json:"key,omitempty"`
+
+	Key          *string            `json:"key,omitempty"`
+	OperatorType FilterOperatorType `json:"operatorType"`
+}
+
+func (s BoolEqualsFilter) Filter() BaseFilterImpl {
+	return BaseFilterImpl{
+		Key:          s.Key,
+		OperatorType: s.OperatorType,
+	}
 }
 
 var _ json.Marshaler = BoolEqualsFilter{}
@@ -28,9 +37,10 @@ func (s BoolEqualsFilter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BoolEqualsFilter: %+v", err)
 	}
+
 	decoded["operatorType"] = "BoolEquals"
 
 	encoded, err = json.Marshal(decoded)

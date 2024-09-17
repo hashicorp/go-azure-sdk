@@ -15,7 +15,7 @@ type ReplicationLogicalNetworksClient struct {
 }
 
 func NewReplicationLogicalNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationLogicalNetworksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationlogicalnetworks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationlogicalnetworks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationLogicalNetworksClient: %+v", err)
 	}

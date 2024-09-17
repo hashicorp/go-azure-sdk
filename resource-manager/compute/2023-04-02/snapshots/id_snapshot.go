@@ -42,7 +42,7 @@ func ParseSnapshotID(input string) (*SnapshotId, error) {
 	}
 
 	id := SnapshotId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSnapshotIDInsensitively(input string) (*SnapshotId, error) {
 	}
 
 	id := SnapshotId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

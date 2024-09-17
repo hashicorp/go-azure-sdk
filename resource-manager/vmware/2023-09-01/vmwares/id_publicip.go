@@ -44,7 +44,7 @@ func ParsePublicIPID(input string) (*PublicIPId, error) {
 	}
 
 	id := PublicIPId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePublicIPIDInsensitively(input string) (*PublicIPId, error) {
 	}
 
 	id := PublicIPId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

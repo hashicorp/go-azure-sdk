@@ -44,7 +44,7 @@ func ParseLocationWorkflowID(input string) (*LocationWorkflowId, error) {
 	}
 
 	id := LocationWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocationWorkflowIDInsensitively(input string) (*LocationWorkflowId, er
 	}
 
 	id := LocationWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

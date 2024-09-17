@@ -15,7 +15,7 @@ type ProxyOperationsClient struct {
 }
 
 func NewProxyOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ProxyOperationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "proxyoperations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "proxyoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProxyOperationsClient: %+v", err)
 	}

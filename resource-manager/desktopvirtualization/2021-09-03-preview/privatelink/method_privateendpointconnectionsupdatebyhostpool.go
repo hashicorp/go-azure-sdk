@@ -49,7 +49,6 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsUpdateByHostPool(ctx contex
 
 	var model PrivateEndpointConnectionWithSystemData
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

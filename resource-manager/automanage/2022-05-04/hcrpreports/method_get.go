@@ -45,7 +45,6 @@ func (c HCRPReportsClient) Get(ctx context.Context, id ConfigurationProfileAssig
 
 	var model Report
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

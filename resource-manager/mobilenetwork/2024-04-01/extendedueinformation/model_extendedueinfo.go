@@ -38,7 +38,7 @@ func (s *ExtendedUeInfo) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalExtendedUeInfoPropertiesImplementation(v)
+		impl, err := UnmarshalExtendedUeInfoPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ExtendedUeInfo': %+v", err)
 		}

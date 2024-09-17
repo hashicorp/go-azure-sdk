@@ -48,7 +48,7 @@ func ParseStoredProcedureID(input string) (*StoredProcedureId, error) {
 	}
 
 	id := StoredProcedureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseStoredProcedureIDInsensitively(input string) (*StoredProcedureId, erro
 	}
 
 	id := StoredProcedureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

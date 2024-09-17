@@ -46,7 +46,7 @@ func ParseReleaseID(input string) (*ReleaseId, error) {
 	}
 
 	id := ReleaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReleaseIDInsensitively(input string) (*ReleaseId, error) {
 	}
 
 	id := ReleaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -47,7 +47,6 @@ func (c ManagementGroupDiagnosticSettingsClient) List(ctx context.Context, id co
 
 	var model ManagementGroupDiagnosticSettingsResourceCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

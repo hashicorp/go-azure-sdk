@@ -40,7 +40,7 @@ func ParseTopLevelDomainID(input string) (*TopLevelDomainId, error) {
 	}
 
 	id := TopLevelDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseTopLevelDomainIDInsensitively(input string) (*TopLevelDomainId, error)
 	}
 
 	id := TopLevelDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

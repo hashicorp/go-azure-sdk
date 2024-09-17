@@ -46,7 +46,6 @@ func (c BlueprintAssignmentsClient) AssignmentsWhoIsBlueprint(ctx context.Contex
 
 	var model WhoIsBlueprintContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

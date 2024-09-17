@@ -14,6 +14,14 @@ type EnvironmentVariableSetup struct {
 	TypeProperties EnvironmentVariableSetupTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from CustomSetupBase
+
+	Type string `json:"type"`
+}
+
+func (s EnvironmentVariableSetup) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return BaseCustomSetupBaseImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = EnvironmentVariableSetup{}
@@ -27,9 +35,10 @@ func (s EnvironmentVariableSetup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling EnvironmentVariableSetup: %+v", err)
 	}
+
 	decoded["type"] = "EnvironmentVariableSetup"
 
 	encoded, err = json.Marshal(decoded)

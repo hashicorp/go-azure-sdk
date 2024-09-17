@@ -46,7 +46,7 @@ func ParseWorkspaceSubscriptions2ID(input string) (*WorkspaceSubscriptions2Id, e
 	}
 
 	id := WorkspaceSubscriptions2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceSubscriptions2IDInsensitively(input string) (*WorkspaceSubscr
 	}
 
 	id := WorkspaceSubscriptions2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

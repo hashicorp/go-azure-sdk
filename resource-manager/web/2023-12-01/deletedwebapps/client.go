@@ -15,7 +15,7 @@ type DeletedWebAppsClient struct {
 }
 
 func NewDeletedWebAppsClientWithBaseURI(sdkApi sdkEnv.Api) (*DeletedWebAppsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "deletedwebapps", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "deletedwebapps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedWebAppsClient: %+v", err)
 	}

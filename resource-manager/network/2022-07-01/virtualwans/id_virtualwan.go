@@ -42,7 +42,7 @@ func ParseVirtualWANID(input string) (*VirtualWANId, error) {
 	}
 
 	id := VirtualWANId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualWANIDInsensitively(input string) (*VirtualWANId, error) {
 	}
 
 	id := VirtualWANId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

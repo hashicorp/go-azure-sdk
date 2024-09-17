@@ -15,7 +15,7 @@ type MetricNamespacesClient struct {
 }
 
 func NewMetricNamespacesClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricNamespacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "metricnamespaces", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "metricnamespaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MetricNamespacesClient: %+v", err)
 	}

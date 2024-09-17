@@ -42,7 +42,7 @@ func ParseSmartDetectorAlertRuleID(input string) (*SmartDetectorAlertRuleId, err
 	}
 
 	id := SmartDetectorAlertRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSmartDetectorAlertRuleIDInsensitively(input string) (*SmartDetectorAle
 	}
 
 	id := SmartDetectorAlertRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

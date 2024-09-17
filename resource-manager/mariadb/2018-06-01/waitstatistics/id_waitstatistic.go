@@ -44,7 +44,7 @@ func ParseWaitStatisticID(input string) (*WaitStatisticId, error) {
 	}
 
 	id := WaitStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWaitStatisticIDInsensitively(input string) (*WaitStatisticId, error) {
 	}
 
 	id := WaitStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

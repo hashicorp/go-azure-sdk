@@ -44,7 +44,7 @@ func ParseDeploymentSettingID(input string) (*DeploymentSettingId, error) {
 	}
 
 	id := DeploymentSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDeploymentSettingIDInsensitively(input string) (*DeploymentSettingId, 
 	}
 
 	id := DeploymentSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

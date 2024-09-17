@@ -45,7 +45,6 @@ func (c MetadataSchemasClient) Get(ctx context.Context, id MetadataSchemaId) (re
 
 	var model MetadataSchema
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

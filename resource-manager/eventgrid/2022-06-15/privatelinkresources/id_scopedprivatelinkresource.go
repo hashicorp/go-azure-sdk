@@ -40,7 +40,7 @@ func ParseScopedPrivateLinkResourceID(input string) (*ScopedPrivateLinkResourceI
 	}
 
 	id := ScopedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedPrivateLinkResourceIDInsensitively(input string) (*ScopedPrivate
 	}
 
 	id := ScopedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type RegistryManagementClient struct {
 }
 
 func NewRegistryManagementClientWithBaseURI(sdkApi sdkEnv.Api) (*RegistryManagementClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "registrymanagement", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "registrymanagement", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RegistryManagementClient: %+v", err)
 	}

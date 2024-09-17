@@ -44,7 +44,7 @@ func ParsePython2PackageID(input string) (*Python2PackageId, error) {
 	}
 
 	id := Python2PackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePython2PackageIDInsensitively(input string) (*Python2PackageId, error)
 	}
 
 	id := Python2PackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

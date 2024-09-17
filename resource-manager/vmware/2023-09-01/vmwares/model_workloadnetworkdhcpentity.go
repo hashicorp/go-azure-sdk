@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkloadNetworkDhcpEntity interface {
+	WorkloadNetworkDhcpEntity() BaseWorkloadNetworkDhcpEntityImpl
 }
 
-// RawWorkloadNetworkDhcpEntityImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ WorkloadNetworkDhcpEntity = BaseWorkloadNetworkDhcpEntityImpl{}
+
+type BaseWorkloadNetworkDhcpEntityImpl struct {
+	DhcpType          DhcpTypeEnum                          `json:"dhcpType"`
+	DisplayName       *string                               `json:"displayName,omitempty"`
+	ProvisioningState *WorkloadNetworkDhcpProvisioningState `json:"provisioningState,omitempty"`
+	Revision          *int64                                `json:"revision,omitempty"`
+	Segments          *[]string                             `json:"segments,omitempty"`
+}
+
+func (s BaseWorkloadNetworkDhcpEntityImpl) WorkloadNetworkDhcpEntity() BaseWorkloadNetworkDhcpEntityImpl {
+	return s
+}
+
+var _ WorkloadNetworkDhcpEntity = RawWorkloadNetworkDhcpEntityImpl{}
+
+// RawWorkloadNetworkDhcpEntityImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawWorkloadNetworkDhcpEntityImpl struct {
-	Type   string
-	Values map[string]interface{}
+	workloadNetworkDhcpEntity BaseWorkloadNetworkDhcpEntityImpl
+	Type                      string
+	Values                    map[string]interface{}
 }
 
-func unmarshalWorkloadNetworkDhcpEntityImplementation(input []byte) (WorkloadNetworkDhcpEntity, error) {
+func (s RawWorkloadNetworkDhcpEntityImpl) WorkloadNetworkDhcpEntity() BaseWorkloadNetworkDhcpEntityImpl {
+	return s.workloadNetworkDhcpEntity
+}
+
+func UnmarshalWorkloadNetworkDhcpEntityImplementation(input []byte) (WorkloadNetworkDhcpEntity, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +73,15 @@ func unmarshalWorkloadNetworkDhcpEntityImplementation(input []byte) (WorkloadNet
 		return out, nil
 	}
 
-	out := RawWorkloadNetworkDhcpEntityImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseWorkloadNetworkDhcpEntityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWorkloadNetworkDhcpEntityImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawWorkloadNetworkDhcpEntityImpl{
+		workloadNetworkDhcpEntity: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
 
 }

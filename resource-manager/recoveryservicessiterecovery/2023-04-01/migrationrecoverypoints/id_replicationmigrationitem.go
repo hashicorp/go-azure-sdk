@@ -48,7 +48,7 @@ func ParseReplicationMigrationItemID(input string) (*ReplicationMigrationItemId,
 	}
 
 	id := ReplicationMigrationItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseReplicationMigrationItemIDInsensitively(input string) (*ReplicationMig
 	}
 
 	id := ReplicationMigrationItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

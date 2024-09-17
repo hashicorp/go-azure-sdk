@@ -44,7 +44,7 @@ func ParseAuthorizationProviderID(input string) (*AuthorizationProviderId, error
 	}
 
 	id := AuthorizationProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAuthorizationProviderIDInsensitively(input string) (*AuthorizationProv
 	}
 
 	id := AuthorizationProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type SqlPoolsSqlPoolTablesClient struct {
 }
 
 func NewSqlPoolsSqlPoolTablesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSqlPoolTablesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolssqlpooltables", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolssqlpooltables", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsSqlPoolTablesClient: %+v", err)
 	}

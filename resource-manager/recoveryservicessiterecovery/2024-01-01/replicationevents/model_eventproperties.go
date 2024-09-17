@@ -62,7 +62,7 @@ func (s *EventProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["eventSpecificDetails"]; ok {
-		impl, err := unmarshalEventSpecificDetailsImplementation(v)
+		impl, err := UnmarshalEventSpecificDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EventSpecificDetails' for 'EventProperties': %+v", err)
 		}
@@ -70,7 +70,7 @@ func (s *EventProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalEventProviderSpecificDetailsImplementation(v)
+		impl, err := UnmarshalEventProviderSpecificDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'EventProperties': %+v", err)
 		}

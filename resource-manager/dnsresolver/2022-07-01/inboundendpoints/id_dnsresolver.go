@@ -42,7 +42,7 @@ func ParseDnsResolverID(input string) (*DnsResolverId, error) {
 	}
 
 	id := DnsResolverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDnsResolverIDInsensitively(input string) (*DnsResolverId, error) {
 	}
 
 	id := DnsResolverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

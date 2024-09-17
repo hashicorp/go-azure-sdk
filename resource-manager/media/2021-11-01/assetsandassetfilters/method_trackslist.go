@@ -46,7 +46,6 @@ func (c AssetsAndAssetFiltersClient) TracksList(ctx context.Context, id AssetId)
 
 	var model AssetTrackCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

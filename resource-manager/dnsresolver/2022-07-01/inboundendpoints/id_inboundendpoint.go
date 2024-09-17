@@ -44,7 +44,7 @@ func ParseInboundEndpointID(input string) (*InboundEndpointId, error) {
 	}
 
 	id := InboundEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInboundEndpointIDInsensitively(input string) (*InboundEndpointId, erro
 	}
 
 	id := InboundEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

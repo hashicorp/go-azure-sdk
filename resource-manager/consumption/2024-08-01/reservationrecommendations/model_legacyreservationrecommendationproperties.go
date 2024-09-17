@@ -10,18 +10,51 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LegacyReservationRecommendationProperties interface {
+	LegacyReservationRecommendationProperties() BaseLegacyReservationRecommendationPropertiesImpl
 }
 
-// RawLegacyReservationRecommendationPropertiesImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ LegacyReservationRecommendationProperties = BaseLegacyReservationRecommendationPropertiesImpl{}
+
+type BaseLegacyReservationRecommendationPropertiesImpl struct {
+	CostWithNoReservedInstances    *float64       `json:"costWithNoReservedInstances,omitempty"`
+	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
+	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
+	InstanceFlexibilityRatio       *float64       `json:"instanceFlexibilityRatio,omitempty"`
+	LastUsageDate                  *string        `json:"lastUsageDate,omitempty"`
+	LookBackPeriod                 *string        `json:"lookBackPeriod,omitempty"`
+	MeterId                        *string        `json:"meterId,omitempty"`
+	NetSavings                     *float64       `json:"netSavings,omitempty"`
+	NormalizedSize                 *string        `json:"normalizedSize,omitempty"`
+	RecommendedQuantity            *float64       `json:"recommendedQuantity,omitempty"`
+	RecommendedQuantityNormalized  *float64       `json:"recommendedQuantityNormalized,omitempty"`
+	ResourceType                   *string        `json:"resourceType,omitempty"`
+	Scope                          string         `json:"scope"`
+	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
+	Term                           *string        `json:"term,omitempty"`
+	TotalCostWithReservedInstances *float64       `json:"totalCostWithReservedInstances,omitempty"`
+	TotalHours                     *int64         `json:"totalHours,omitempty"`
+}
+
+func (s BaseLegacyReservationRecommendationPropertiesImpl) LegacyReservationRecommendationProperties() BaseLegacyReservationRecommendationPropertiesImpl {
+	return s
+}
+
+var _ LegacyReservationRecommendationProperties = RawLegacyReservationRecommendationPropertiesImpl{}
+
+// RawLegacyReservationRecommendationPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawLegacyReservationRecommendationPropertiesImpl struct {
-	Type   string
-	Values map[string]interface{}
+	legacyReservationRecommendationProperties BaseLegacyReservationRecommendationPropertiesImpl
+	Type                                      string
+	Values                                    map[string]interface{}
 }
 
-func unmarshalLegacyReservationRecommendationPropertiesImplementation(input []byte) (LegacyReservationRecommendationProperties, error) {
+func (s RawLegacyReservationRecommendationPropertiesImpl) LegacyReservationRecommendationProperties() BaseLegacyReservationRecommendationPropertiesImpl {
+	return s.legacyReservationRecommendationProperties
+}
+
+func UnmarshalLegacyReservationRecommendationPropertiesImplementation(input []byte) (LegacyReservationRecommendationProperties, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +85,15 @@ func unmarshalLegacyReservationRecommendationPropertiesImplementation(input []by
 		return out, nil
 	}
 
-	out := RawLegacyReservationRecommendationPropertiesImpl{
+	var parent BaseLegacyReservationRecommendationPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLegacyReservationRecommendationPropertiesImpl: %+v", err)
+	}
+
+	return RawLegacyReservationRecommendationPropertiesImpl{
+		legacyReservationRecommendationProperties: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

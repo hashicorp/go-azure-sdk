@@ -44,7 +44,7 @@ func ParseServiceEndpointPolicyDefinitionID(input string) (*ServiceEndpointPolic
 	}
 
 	id := ServiceEndpointPolicyDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServiceEndpointPolicyDefinitionIDInsensitively(input string) (*Service
 	}
 
 	id := ServiceEndpointPolicyDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

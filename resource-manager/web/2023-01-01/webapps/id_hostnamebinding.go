@@ -44,7 +44,7 @@ func ParseHostNameBindingID(input string) (*HostNameBindingId, error) {
 	}
 
 	id := HostNameBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHostNameBindingIDInsensitively(input string) (*HostNameBindingId, erro
 	}
 
 	id := HostNameBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

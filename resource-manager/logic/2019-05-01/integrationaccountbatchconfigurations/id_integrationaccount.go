@@ -42,7 +42,7 @@ func ParseIntegrationAccountID(input string) (*IntegrationAccountId, error) {
 	}
 
 	id := IntegrationAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseIntegrationAccountIDInsensitively(input string) (*IntegrationAccountId
 	}
 
 	id := IntegrationAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

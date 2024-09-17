@@ -45,7 +45,6 @@ func (c ReplicationProtectionClustersClient) Get(ctx context.Context, id Replica
 
 	var model ReplicationProtectionCluster
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

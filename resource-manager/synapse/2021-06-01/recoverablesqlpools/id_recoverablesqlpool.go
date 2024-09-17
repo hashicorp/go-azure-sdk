@@ -44,7 +44,7 @@ func ParseRecoverableSqlPoolID(input string) (*RecoverableSqlPoolId, error) {
 	}
 
 	id := RecoverableSqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRecoverableSqlPoolIDInsensitively(input string) (*RecoverableSqlPoolId
 	}
 
 	id := RecoverableSqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

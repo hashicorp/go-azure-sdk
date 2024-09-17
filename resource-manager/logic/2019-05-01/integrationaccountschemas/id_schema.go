@@ -44,7 +44,7 @@ func ParseSchemaID(input string) (*SchemaId, error) {
 	}
 
 	id := SchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSchemaIDInsensitively(input string) (*SchemaId, error) {
 	}
 
 	id := SchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

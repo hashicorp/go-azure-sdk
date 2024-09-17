@@ -22,7 +22,7 @@ func (s *ServiceResourceCreateUpdateParameters) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalServiceResourceCreateUpdatePropertiesImplementation(v)
+		impl, err := UnmarshalServiceResourceCreateUpdatePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ServiceResourceCreateUpdateParameters': %+v", err)
 		}

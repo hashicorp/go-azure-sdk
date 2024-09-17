@@ -15,6 +15,14 @@ type TieringCostRehydrationInfo struct {
 	RetailRehydrationCostPerGBPerMonth float64 `json:"retailRehydrationCostPerGBPerMonth"`
 
 	// Fields inherited from TieringCostInfo
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s TieringCostRehydrationInfo) TieringCostInfo() BaseTieringCostInfoImpl {
+	return BaseTieringCostInfoImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = TieringCostRehydrationInfo{}
@@ -28,9 +36,10 @@ func (s TieringCostRehydrationInfo) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TieringCostRehydrationInfo: %+v", err)
 	}
+
 	decoded["objectType"] = "TieringCostRehydrationInfo"
 
 	encoded, err = json.Marshal(decoded)

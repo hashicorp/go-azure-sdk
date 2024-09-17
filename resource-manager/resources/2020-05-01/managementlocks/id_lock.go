@@ -40,7 +40,7 @@ func ParseLockID(input string) (*LockId, error) {
 	}
 
 	id := LockId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseLockIDInsensitively(input string) (*LockId, error) {
 	}
 
 	id := LockId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

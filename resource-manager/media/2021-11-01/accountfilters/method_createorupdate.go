@@ -50,7 +50,6 @@ func (c AccountFiltersClient) CreateOrUpdate(ctx context.Context, id AccountFilt
 
 	var model AccountFilter
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

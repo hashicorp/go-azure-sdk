@@ -44,7 +44,7 @@ func ParseSegmentID(input string) (*SegmentId, error) {
 	}
 
 	id := SegmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSegmentIDInsensitively(input string) (*SegmentId, error) {
 	}
 
 	id := SegmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

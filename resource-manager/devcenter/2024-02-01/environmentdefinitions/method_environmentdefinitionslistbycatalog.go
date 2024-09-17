@@ -39,6 +39,7 @@ func (o EnvironmentDefinitionsListByCatalogOperationOptions) ToHeaders() *client
 
 func (o EnvironmentDefinitionsListByCatalogOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

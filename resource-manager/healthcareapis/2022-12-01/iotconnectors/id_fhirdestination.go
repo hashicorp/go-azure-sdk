@@ -46,7 +46,7 @@ func ParseFhirDestinationID(input string) (*FhirDestinationId, error) {
 	}
 
 	id := FhirDestinationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseFhirDestinationIDInsensitively(input string) (*FhirDestinationId, erro
 	}
 
 	id := FhirDestinationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseRoleInstanceNetworkInterfaceID(input string) (*RoleInstanceNetworkInte
 	}
 
 	id := RoleInstanceNetworkInterfaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRoleInstanceNetworkInterfaceIDInsensitively(input string) (*RoleInstan
 	}
 
 	id := RoleInstanceNetworkInterfaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

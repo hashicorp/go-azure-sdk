@@ -15,7 +15,7 @@ type ManagedHsmKeysClient struct {
 }
 
 func NewManagedHsmKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedHsmKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedhsmkeys", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedhsmkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedHsmKeysClient: %+v", err)
 	}

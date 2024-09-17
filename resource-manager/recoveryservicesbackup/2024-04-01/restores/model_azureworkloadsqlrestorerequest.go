@@ -25,7 +25,16 @@ type AzureWorkloadSQLRestoreRequest struct {
 	UserAssignedManagedIdentityDetails *UserAssignedManagedIdentityDetails `json:"userAssignedManagedIdentityDetails,omitempty"`
 
 	// Fields inherited from RestoreRequest
+
+	ObjectType                     string    `json:"objectType"`
 	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}
+
+func (s AzureWorkloadSQLRestoreRequest) RestoreRequest() BaseRestoreRequestImpl {
+	return BaseRestoreRequestImpl{
+		ObjectType:                     s.ObjectType,
+		ResourceGuardOperationRequests: s.ResourceGuardOperationRequests,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadSQLRestoreRequest{}
@@ -39,9 +48,10 @@ func (s AzureWorkloadSQLRestoreRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadSQLRestoreRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureWorkloadSQLRestoreRequest"
 
 	encoded, err = json.Marshal(decoded)

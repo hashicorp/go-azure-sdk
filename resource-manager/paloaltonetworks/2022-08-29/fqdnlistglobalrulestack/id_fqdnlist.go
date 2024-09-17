@@ -40,7 +40,7 @@ func ParseFqdnListID(input string) (*FqdnListId, error) {
 	}
 
 	id := FqdnListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseFqdnListIDInsensitively(input string) (*FqdnListId, error) {
 	}
 
 	id := FqdnListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

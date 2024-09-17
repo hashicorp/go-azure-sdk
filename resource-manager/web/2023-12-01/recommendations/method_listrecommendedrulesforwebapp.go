@@ -41,6 +41,7 @@ func (o ListRecommendedRulesForWebAppOperationOptions) ToHeaders() *client.Heade
 
 func (o ListRecommendedRulesForWebAppOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

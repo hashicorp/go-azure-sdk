@@ -20,6 +20,14 @@ type InMageAzureV2EventDetails struct {
 	Summary          *string `json:"summary,omitempty"`
 
 	// Fields inherited from EventProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageAzureV2EventDetails) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return BaseEventProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageAzureV2EventDetails{}
@@ -33,9 +41,10 @@ func (s InMageAzureV2EventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageAzureV2EventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageAzureV2"
 
 	encoded, err = json.Marshal(decoded)

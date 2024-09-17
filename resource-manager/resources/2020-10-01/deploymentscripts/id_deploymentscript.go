@@ -42,7 +42,7 @@ func ParseDeploymentScriptID(input string) (*DeploymentScriptId, error) {
 	}
 
 	id := DeploymentScriptId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDeploymentScriptIDInsensitively(input string) (*DeploymentScriptId, er
 	}
 
 	id := DeploymentScriptId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

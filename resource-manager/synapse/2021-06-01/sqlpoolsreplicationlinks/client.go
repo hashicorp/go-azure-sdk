@@ -15,7 +15,7 @@ type SqlPoolsReplicationLinksClient struct {
 }
 
 func NewSqlPoolsReplicationLinksClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsReplicationLinksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsreplicationlinks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsreplicationlinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsReplicationLinksClient: %+v", err)
 	}

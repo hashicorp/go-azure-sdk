@@ -44,7 +44,7 @@ func ParseResourceGroupDeploymentOperationID(input string) (*ResourceGroupDeploy
 	}
 
 	id := ResourceGroupDeploymentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseResourceGroupDeploymentOperationIDInsensitively(input string) (*Resour
 	}
 
 	id := ResourceGroupDeploymentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

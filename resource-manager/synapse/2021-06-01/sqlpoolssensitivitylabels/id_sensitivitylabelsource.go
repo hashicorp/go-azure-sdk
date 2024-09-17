@@ -52,7 +52,7 @@ func ParseSensitivityLabelSourceID(input string) (*SensitivityLabelSourceId, err
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -69,7 +69,7 @@ func ParseSensitivityLabelSourceIDInsensitively(input string) (*SensitivityLabel
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

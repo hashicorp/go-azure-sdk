@@ -44,7 +44,7 @@ func ParseDotNetComponentID(input string) (*DotNetComponentId, error) {
 	}
 
 	id := DotNetComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDotNetComponentIDInsensitively(input string) (*DotNetComponentId, erro
 	}
 
 	id := DotNetComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

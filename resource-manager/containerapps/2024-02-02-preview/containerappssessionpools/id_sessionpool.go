@@ -42,7 +42,7 @@ func ParseSessionPoolID(input string) (*SessionPoolId, error) {
 	}
 
 	id := SessionPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSessionPoolIDInsensitively(input string) (*SessionPoolId, error) {
 	}
 
 	id := SessionPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

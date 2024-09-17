@@ -49,7 +49,6 @@ func (c HybridRunbookWorkerClient) Create(ctx context.Context, id HybridRunbookW
 
 	var model HybridRunbookWorker
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

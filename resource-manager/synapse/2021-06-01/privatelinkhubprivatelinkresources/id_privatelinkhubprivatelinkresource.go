@@ -44,7 +44,7 @@ func ParsePrivateLinkHubPrivateLinkResourceID(input string) (*PrivateLinkHubPriv
 	}
 
 	id := PrivateLinkHubPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePrivateLinkHubPrivateLinkResourceIDInsensitively(input string) (*Priva
 	}
 
 	id := PrivateLinkHubPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

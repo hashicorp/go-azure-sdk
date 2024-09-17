@@ -36,6 +36,7 @@ func (o ListByRequestOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c ReportsClient) ListByRequest(ctx context.Context, id ServiceId, options 
 
 	var model RequestReportCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

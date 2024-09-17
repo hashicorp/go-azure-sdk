@@ -14,7 +14,16 @@ type ScriptSecureStringExecutionParameter struct {
 	SecureValue *string `json:"secureValue,omitempty"`
 
 	// Fields inherited from ScriptExecutionParameter
-	Name string `json:"name"`
+
+	Name string                       `json:"name"`
+	Type ScriptExecutionParameterType `json:"type"`
+}
+
+func (s ScriptSecureStringExecutionParameter) ScriptExecutionParameter() BaseScriptExecutionParameterImpl {
+	return BaseScriptExecutionParameterImpl{
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ScriptSecureStringExecutionParameter{}
@@ -28,9 +37,10 @@ func (s ScriptSecureStringExecutionParameter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ScriptSecureStringExecutionParameter: %+v", err)
 	}
+
 	decoded["type"] = "SecureValue"
 
 	encoded, err = json.Marshal(decoded)

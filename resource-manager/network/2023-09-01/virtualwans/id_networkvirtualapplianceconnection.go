@@ -44,7 +44,7 @@ func ParseNetworkVirtualApplianceConnectionID(input string) (*NetworkVirtualAppl
 	}
 
 	id := NetworkVirtualApplianceConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNetworkVirtualApplianceConnectionIDInsensitively(input string) (*Netwo
 	}
 
 	id := NetworkVirtualApplianceConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

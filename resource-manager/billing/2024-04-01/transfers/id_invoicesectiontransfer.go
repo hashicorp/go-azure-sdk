@@ -44,7 +44,7 @@ func ParseInvoiceSectionTransferID(input string) (*InvoiceSectionTransferId, err
 	}
 
 	id := InvoiceSectionTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInvoiceSectionTransferIDInsensitively(input string) (*InvoiceSectionTr
 	}
 
 	id := InvoiceSectionTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

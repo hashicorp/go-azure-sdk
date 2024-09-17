@@ -42,7 +42,7 @@ func ParseCassandraClusterID(input string) (*CassandraClusterId, error) {
 	}
 
 	id := CassandraClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCassandraClusterIDInsensitively(input string) (*CassandraClusterId, er
 	}
 
 	id := CassandraClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

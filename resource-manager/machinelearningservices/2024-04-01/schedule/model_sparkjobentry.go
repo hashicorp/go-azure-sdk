@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SparkJobEntry interface {
+	SparkJobEntry() BaseSparkJobEntryImpl
 }
 
-// RawSparkJobEntryImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ SparkJobEntry = BaseSparkJobEntryImpl{}
+
+type BaseSparkJobEntryImpl struct {
+	SparkJobEntryType SparkJobEntryType `json:"sparkJobEntryType"`
+}
+
+func (s BaseSparkJobEntryImpl) SparkJobEntry() BaseSparkJobEntryImpl {
+	return s
+}
+
+var _ SparkJobEntry = RawSparkJobEntryImpl{}
+
+// RawSparkJobEntryImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawSparkJobEntryImpl struct {
-	Type   string
-	Values map[string]interface{}
+	sparkJobEntry BaseSparkJobEntryImpl
+	Type          string
+	Values        map[string]interface{}
 }
 
-func unmarshalSparkJobEntryImplementation(input []byte) (SparkJobEntry, error) {
+func (s RawSparkJobEntryImpl) SparkJobEntry() BaseSparkJobEntryImpl {
+	return s.sparkJobEntry
+}
+
+func UnmarshalSparkJobEntryImplementation(input []byte) (SparkJobEntry, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalSparkJobEntryImplementation(input []byte) (SparkJobEntry, error) {
 		return out, nil
 	}
 
-	out := RawSparkJobEntryImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseSparkJobEntryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSparkJobEntryImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawSparkJobEntryImpl{
+		sparkJobEntry: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
 
 }

@@ -46,7 +46,7 @@ func ParseVolumeID(input string) (*VolumeId, error) {
 	}
 
 	id := VolumeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVolumeIDInsensitively(input string) (*VolumeId, error) {
 	}
 
 	id := VolumeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

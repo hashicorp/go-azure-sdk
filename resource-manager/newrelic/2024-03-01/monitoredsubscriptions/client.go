@@ -15,7 +15,7 @@ type MonitoredSubscriptionsClient struct {
 }
 
 func NewMonitoredSubscriptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MonitoredSubscriptionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "monitoredsubscriptions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "monitoredsubscriptions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MonitoredSubscriptionsClient: %+v", err)
 	}

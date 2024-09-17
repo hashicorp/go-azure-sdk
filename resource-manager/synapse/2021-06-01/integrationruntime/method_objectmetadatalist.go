@@ -73,7 +73,7 @@ func (c IntegrationRuntimeClient) ObjectMetadataList(ctx context.Context, id Int
 	temp := make([]SsisObjectMetadata, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalSsisObjectMetadataImplementation(v)
+			val, err := UnmarshalSsisObjectMetadataImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for SsisObjectMetadata (%q): %+v", i, v, err)
 				return result, err

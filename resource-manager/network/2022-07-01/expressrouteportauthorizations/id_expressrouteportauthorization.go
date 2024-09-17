@@ -44,7 +44,7 @@ func ParseExpressRoutePortAuthorizationID(input string) (*ExpressRoutePortAuthor
 	}
 
 	id := ExpressRoutePortAuthorizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseExpressRoutePortAuthorizationIDInsensitively(input string) (*ExpressRo
 	}
 
 	id := ExpressRoutePortAuthorizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

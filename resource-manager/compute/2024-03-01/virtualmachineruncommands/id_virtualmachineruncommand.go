@@ -44,7 +44,7 @@ func ParseVirtualMachineRunCommandID(input string) (*VirtualMachineRunCommandId,
 	}
 
 	id := VirtualMachineRunCommandId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualMachineRunCommandIDInsensitively(input string) (*VirtualMachine
 	}
 
 	id := VirtualMachineRunCommandId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

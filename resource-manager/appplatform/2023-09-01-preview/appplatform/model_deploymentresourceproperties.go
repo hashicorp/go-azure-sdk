@@ -38,7 +38,7 @@ func (s *DeploymentResourceProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["source"]; ok {
-		impl, err := unmarshalUserSourceInfoImplementation(v)
+		impl, err := UnmarshalUserSourceInfoImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Source' for 'DeploymentResourceProperties': %+v", err)
 		}

@@ -15,7 +15,7 @@ type ManualTriggerClient struct {
 }
 
 func NewManualTriggerClientWithBaseURI(sdkApi sdkEnv.Api) (*ManualTriggerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manualtrigger", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manualtrigger", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManualTriggerClient: %+v", err)
 	}

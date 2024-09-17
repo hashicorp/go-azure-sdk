@@ -76,7 +76,7 @@ func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["customDetails"]; ok {
-		impl, err := unmarshalTaskTypeDetailsImplementation(v)
+		impl, err := UnmarshalTaskTypeDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'ASRTask': %+v", err)
 		}
@@ -84,7 +84,7 @@ func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["groupTaskCustomDetails"]; ok {
-		impl, err := unmarshalGroupTaskDetailsImplementation(v)
+		impl, err := UnmarshalGroupTaskDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'GroupTaskCustomDetails' for 'ASRTask': %+v", err)
 		}

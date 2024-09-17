@@ -46,7 +46,7 @@ func ParseSlotDeploymentID(input string) (*SlotDeploymentId, error) {
 	}
 
 	id := SlotDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotDeploymentIDInsensitively(input string) (*SlotDeploymentId, error)
 	}
 
 	id := SlotDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

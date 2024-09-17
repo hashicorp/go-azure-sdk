@@ -35,6 +35,7 @@ func (o WorkspaceTagDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceTagDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

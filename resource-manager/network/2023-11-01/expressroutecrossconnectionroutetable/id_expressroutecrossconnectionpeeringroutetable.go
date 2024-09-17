@@ -46,7 +46,7 @@ func ParseExpressRouteCrossConnectionPeeringRouteTableID(input string) (*Express
 	}
 
 	id := ExpressRouteCrossConnectionPeeringRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseExpressRouteCrossConnectionPeeringRouteTableIDInsensitively(input stri
 	}
 
 	id := ExpressRouteCrossConnectionPeeringRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

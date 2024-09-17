@@ -51,7 +51,6 @@ func (c CheckNameAvailabilityNamespacesClient) NamespacesCheckNameAvailability(c
 
 	var model CheckNameAvailabilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

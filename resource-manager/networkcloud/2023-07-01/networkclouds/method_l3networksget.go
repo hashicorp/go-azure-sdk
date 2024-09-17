@@ -45,7 +45,6 @@ func (c NetworkcloudsClient) L3NetworksGet(ctx context.Context, id L3NetworkId) 
 
 	var model L3Network
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

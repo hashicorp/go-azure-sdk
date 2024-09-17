@@ -15,7 +15,7 @@ type BenefitUtilizationSummariesClient struct {
 }
 
 func NewBenefitUtilizationSummariesClientWithBaseURI(sdkApi sdkEnv.Api) (*BenefitUtilizationSummariesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "benefitutilizationsummaries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "benefitutilizationsummaries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BenefitUtilizationSummariesClient: %+v", err)
 	}

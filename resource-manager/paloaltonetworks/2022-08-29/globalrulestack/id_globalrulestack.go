@@ -38,7 +38,7 @@ func ParseGlobalRulestackID(input string) (*GlobalRulestackId, error) {
 	}
 
 	id := GlobalRulestackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseGlobalRulestackIDInsensitively(input string) (*GlobalRulestackId, erro
 	}
 
 	id := GlobalRulestackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

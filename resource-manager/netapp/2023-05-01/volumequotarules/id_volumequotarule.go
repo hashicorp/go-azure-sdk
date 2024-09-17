@@ -48,7 +48,7 @@ func ParseVolumeQuotaRuleID(input string) (*VolumeQuotaRuleId, error) {
 	}
 
 	id := VolumeQuotaRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseVolumeQuotaRuleIDInsensitively(input string) (*VolumeQuotaRuleId, erro
 	}
 
 	id := VolumeQuotaRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

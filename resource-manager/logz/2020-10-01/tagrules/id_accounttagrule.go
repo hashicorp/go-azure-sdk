@@ -46,7 +46,7 @@ func ParseAccountTagRuleID(input string) (*AccountTagRuleId, error) {
 	}
 
 	id := AccountTagRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAccountTagRuleIDInsensitively(input string) (*AccountTagRuleId, error)
 	}
 
 	id := AccountTagRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

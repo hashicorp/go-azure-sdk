@@ -44,7 +44,7 @@ func ParseServerlessRuntimeID(input string) (*ServerlessRuntimeId, error) {
 	}
 
 	id := ServerlessRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerlessRuntimeIDInsensitively(input string) (*ServerlessRuntimeId, 
 	}
 
 	id := ServerlessRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

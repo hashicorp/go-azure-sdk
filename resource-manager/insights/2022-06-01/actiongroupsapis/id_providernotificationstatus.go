@@ -42,7 +42,7 @@ func ParseProviderNotificationStatusID(input string) (*ProviderNotificationStatu
 	}
 
 	id := ProviderNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderNotificationStatusIDInsensitively(input string) (*ProviderNoti
 	}
 
 	id := ProviderNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

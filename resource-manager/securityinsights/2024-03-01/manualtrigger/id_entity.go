@@ -44,7 +44,7 @@ func ParseEntityID(input string) (*EntityId, error) {
 	}
 
 	id := EntityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEntityIDInsensitively(input string) (*EntityId, error) {
 	}
 
 	id := EntityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

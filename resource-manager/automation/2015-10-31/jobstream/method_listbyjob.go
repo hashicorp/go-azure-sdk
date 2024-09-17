@@ -39,6 +39,7 @@ func (o ListByJobOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByJobOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

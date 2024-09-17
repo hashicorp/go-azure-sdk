@@ -14,6 +14,14 @@ type LinkedIntegrationRuntimeKeyAuthorization struct {
 	Key SecureString `json:"key"`
 
 	// Fields inherited from LinkedIntegrationRuntimeType
+
+	AuthorizationType string `json:"authorizationType"`
+}
+
+func (s LinkedIntegrationRuntimeKeyAuthorization) LinkedIntegrationRuntimeType() BaseLinkedIntegrationRuntimeTypeImpl {
+	return BaseLinkedIntegrationRuntimeTypeImpl{
+		AuthorizationType: s.AuthorizationType,
+	}
 }
 
 var _ json.Marshaler = LinkedIntegrationRuntimeKeyAuthorization{}
@@ -27,9 +35,10 @@ func (s LinkedIntegrationRuntimeKeyAuthorization) MarshalJSON() ([]byte, error) 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LinkedIntegrationRuntimeKeyAuthorization: %+v", err)
 	}
+
 	decoded["authorizationType"] = "Key"
 
 	encoded, err = json.Marshal(decoded)

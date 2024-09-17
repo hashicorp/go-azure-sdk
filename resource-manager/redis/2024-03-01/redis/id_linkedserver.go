@@ -44,7 +44,7 @@ func ParseLinkedServerID(input string) (*LinkedServerId, error) {
 	}
 
 	id := LinkedServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLinkedServerIDInsensitively(input string) (*LinkedServerId, error) {
 	}
 
 	id := LinkedServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

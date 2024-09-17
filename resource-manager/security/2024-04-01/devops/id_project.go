@@ -46,7 +46,7 @@ func ParseProjectID(input string) (*ProjectId, error) {
 	}
 
 	id := ProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProjectIDInsensitively(input string) (*ProjectId, error) {
 	}
 
 	id := ProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

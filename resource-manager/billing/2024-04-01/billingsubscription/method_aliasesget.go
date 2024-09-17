@@ -45,7 +45,6 @@ func (c BillingSubscriptionClient) AliasesGet(ctx context.Context, id BillingSub
 
 	var model BillingSubscriptionAlias
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseConnectionStringID(input string) (*ConnectionStringId, error) {
 	}
 
 	id := ConnectionStringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectionStringIDInsensitively(input string) (*ConnectionStringId, er
 	}
 
 	id := ConnectionStringId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -47,7 +47,6 @@ func (c SubscriptionsClient) ListLocations(ctx context.Context, id commonids.Sub
 
 	var model LocationListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

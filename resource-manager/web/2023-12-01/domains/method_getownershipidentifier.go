@@ -45,7 +45,6 @@ func (c DomainsClient) GetOwnershipIdentifier(ctx context.Context, id DomainOwne
 
 	var model DomainOwnershipIdentifier
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

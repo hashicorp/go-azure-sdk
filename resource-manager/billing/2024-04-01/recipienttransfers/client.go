@@ -15,7 +15,7 @@ type RecipientTransfersClient struct {
 }
 
 func NewRecipientTransfersClientWithBaseURI(sdkApi sdkEnv.Api) (*RecipientTransfersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "recipienttransfers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "recipienttransfers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RecipientTransfersClient: %+v", err)
 	}

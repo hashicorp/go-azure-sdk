@@ -15,7 +15,7 @@ type ScalingPlanPooledScheduleClient struct {
 }
 
 func NewScalingPlanPooledScheduleClientWithBaseURI(sdkApi sdkEnv.Api) (*ScalingPlanPooledScheduleClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "scalingplanpooledschedule", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "scalingplanpooledschedule", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ScalingPlanPooledScheduleClient: %+v", err)
 	}

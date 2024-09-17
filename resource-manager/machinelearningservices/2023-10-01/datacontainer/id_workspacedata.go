@@ -44,7 +44,7 @@ func ParseWorkspaceDataID(input string) (*WorkspaceDataId, error) {
 	}
 
 	id := WorkspaceDataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkspaceDataIDInsensitively(input string) (*WorkspaceDataId, error) {
 	}
 
 	id := WorkspaceDataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

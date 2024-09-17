@@ -38,6 +38,7 @@ func (o GenerateReservationDetailsReportByBillingProfileIdOperationOptions) ToHe
 
 func (o GenerateReservationDetailsReportByBillingProfileIdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

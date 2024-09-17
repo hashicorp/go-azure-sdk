@@ -42,7 +42,7 @@ func ParseVMmServerID(input string) (*VMmServerId, error) {
 	}
 
 	id := VMmServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVMmServerIDInsensitively(input string) (*VMmServerId, error) {
 	}
 
 	id := VMmServerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

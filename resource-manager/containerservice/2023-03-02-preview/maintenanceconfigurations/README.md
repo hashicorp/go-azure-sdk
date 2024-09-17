@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2023-03-02-preview/maintenanceconfigurations` Documentation
 
-The `maintenanceconfigurations` SDK allows for interaction with the Azure Resource Manager Service `containerservice` (API Version `2023-03-02-preview`).
+The `maintenanceconfigurations` SDK allows for interaction with Azure Resource Manager `containerservice` (API Version `2023-03-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

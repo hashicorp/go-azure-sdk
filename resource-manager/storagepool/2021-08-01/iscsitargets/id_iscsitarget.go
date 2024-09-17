@@ -44,7 +44,7 @@ func ParseIscsiTargetID(input string) (*IscsiTargetId, error) {
 	}
 
 	id := IscsiTargetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIscsiTargetIDInsensitively(input string) (*IscsiTargetId, error) {
 	}
 
 	id := IscsiTargetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

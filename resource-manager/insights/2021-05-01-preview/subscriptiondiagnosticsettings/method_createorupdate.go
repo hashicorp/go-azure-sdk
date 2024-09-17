@@ -49,7 +49,6 @@ func (c SubscriptionDiagnosticSettingsClient) CreateOrUpdate(ctx context.Context
 
 	var model SubscriptionDiagnosticSettingsResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

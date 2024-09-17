@@ -46,7 +46,7 @@ func ParseDataReferenceVersionID(input string) (*DataReferenceVersionId, error) 
 	}
 
 	id := DataReferenceVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDataReferenceVersionIDInsensitively(input string) (*DataReferenceVersi
 	}
 
 	id := DataReferenceVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

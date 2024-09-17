@@ -44,7 +44,7 @@ func ParseDeletedAccountID(input string) (*DeletedAccountId, error) {
 	}
 
 	id := DeletedAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDeletedAccountIDInsensitively(input string) (*DeletedAccountId, error)
 	}
 
 	id := DeletedAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

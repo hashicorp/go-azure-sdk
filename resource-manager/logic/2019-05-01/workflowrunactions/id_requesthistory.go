@@ -48,7 +48,7 @@ func ParseRequestHistoryID(input string) (*RequestHistoryId, error) {
 	}
 
 	id := RequestHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseRequestHistoryIDInsensitively(input string) (*RequestHistoryId, error)
 	}
 
 	id := RequestHistoryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type ListQnAMakerEndpointKeysClient struct {
 }
 
 func NewListQnAMakerEndpointKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*ListQnAMakerEndpointKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listqnamakerendpointkeys", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "listqnamakerendpointkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListQnAMakerEndpointKeysClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type ManagedInstancePrivateLinkResourcesClient struct {
 }
 
 func NewManagedInstancePrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedInstancePrivateLinkResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedinstanceprivatelinkresources", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedinstanceprivatelinkresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstancePrivateLinkResourcesClient: %+v", err)
 	}

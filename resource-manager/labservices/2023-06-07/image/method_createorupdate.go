@@ -49,7 +49,6 @@ func (c ImageClient) CreateOrUpdate(ctx context.Context, id ImageId, input Image
 
 	var model Image
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

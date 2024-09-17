@@ -40,7 +40,7 @@ func ParseScopedViewID(input string) (*ScopedViewId, error) {
 	}
 
 	id := ScopedViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedViewIDInsensitively(input string) (*ScopedViewId, error) {
 	}
 
 	id := ScopedViewId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

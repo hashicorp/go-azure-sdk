@@ -15,7 +15,7 @@ type NetworkcloudsClient struct {
 }
 
 func NewNetworkcloudsClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkcloudsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "networkclouds", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "networkclouds", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkcloudsClient: %+v", err)
 	}

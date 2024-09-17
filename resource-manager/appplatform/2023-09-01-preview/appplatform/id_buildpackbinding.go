@@ -48,7 +48,7 @@ func ParseBuildPackBindingID(input string) (*BuildPackBindingId, error) {
 	}
 
 	id := BuildPackBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseBuildPackBindingIDInsensitively(input string) (*BuildPackBindingId, er
 	}
 
 	id := BuildPackBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

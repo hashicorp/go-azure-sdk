@@ -46,7 +46,6 @@ func (c BuildsClient) BuildAuthTokenList(ctx context.Context, id BuildId) (resul
 
 	var model BuildToken
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

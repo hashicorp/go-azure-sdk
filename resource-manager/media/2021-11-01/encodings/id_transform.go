@@ -44,7 +44,7 @@ func ParseTransformID(input string) (*TransformId, error) {
 	}
 
 	id := TransformId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTransformIDInsensitively(input string) (*TransformId, error) {
 	}
 
 	id := TransformId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -47,7 +47,6 @@ func (c PolicyClient) PoliciesGetBySubscription(ctx context.Context, id commonid
 
 	var model SubscriptionPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

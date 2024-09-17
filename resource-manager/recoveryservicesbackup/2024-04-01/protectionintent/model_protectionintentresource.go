@@ -40,7 +40,7 @@ func (s *ProtectionIntentResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalProtectionIntentImplementation(v)
+		impl, err := UnmarshalProtectionIntentImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ProtectionIntentResource': %+v", err)
 		}

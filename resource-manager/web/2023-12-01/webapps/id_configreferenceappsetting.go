@@ -46,7 +46,7 @@ func ParseConfigReferenceAppSettingID(input string) (*ConfigReferenceAppSettingI
 	}
 
 	id := ConfigReferenceAppSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseConfigReferenceAppSettingIDInsensitively(input string) (*ConfigReferen
 	}
 
 	id := ConfigReferenceAppSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

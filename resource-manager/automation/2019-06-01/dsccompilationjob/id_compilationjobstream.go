@@ -46,7 +46,7 @@ func ParseCompilationJobStreamID(input string) (*CompilationJobStreamId, error) 
 	}
 
 	id := CompilationJobStreamId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCompilationJobStreamIDInsensitively(input string) (*CompilationJobStre
 	}
 
 	id := CompilationJobStreamId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

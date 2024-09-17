@@ -49,7 +49,6 @@ func (c WorkbooksAPIsClient) WorkbooksUpdate(ctx context.Context, id WorkbookId,
 
 	var model Workbook
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

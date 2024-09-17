@@ -15,6 +15,14 @@ type LimitObject struct {
 	Value     int64            `json:"value"`
 
 	// Fields inherited from LimitJsonObject
+
+	LimitObjectType LimitType `json:"limitObjectType"`
+}
+
+func (s LimitObject) LimitJsonObject() BaseLimitJsonObjectImpl {
+	return BaseLimitJsonObjectImpl{
+		LimitObjectType: s.LimitObjectType,
+	}
 }
 
 var _ json.Marshaler = LimitObject{}
@@ -28,9 +36,10 @@ func (s LimitObject) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LimitObject: %+v", err)
 	}
+
 	decoded["limitObjectType"] = "LimitValue"
 
 	encoded, err = json.Marshal(decoded)

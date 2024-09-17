@@ -13,6 +13,14 @@ var _ ContentKeyPolicyRestriction = ContentKeyPolicyOpenRestriction{}
 type ContentKeyPolicyOpenRestriction struct {
 
 	// Fields inherited from ContentKeyPolicyRestriction
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyOpenRestriction) ContentKeyPolicyRestriction() BaseContentKeyPolicyRestrictionImpl {
+	return BaseContentKeyPolicyRestrictionImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyOpenRestriction{}
@@ -26,9 +34,10 @@ func (s ContentKeyPolicyOpenRestriction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyOpenRestriction: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyOpenRestriction"
 
 	encoded, err = json.Marshal(decoded)

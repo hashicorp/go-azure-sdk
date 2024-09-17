@@ -44,7 +44,7 @@ func ParseMsixPackageID(input string) (*MsixPackageId, error) {
 	}
 
 	id := MsixPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMsixPackageIDInsensitively(input string) (*MsixPackageId, error) {
 	}
 
 	id := MsixPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

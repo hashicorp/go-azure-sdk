@@ -42,7 +42,7 @@ func ParseSapVirtualInstanceID(input string) (*SapVirtualInstanceId, error) {
 	}
 
 	id := SapVirtualInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSapVirtualInstanceIDInsensitively(input string) (*SapVirtualInstanceId
 	}
 
 	id := SapVirtualInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

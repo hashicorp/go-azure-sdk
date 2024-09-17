@@ -13,9 +13,11 @@ var _ BackupEngineBase = AzureBackupServerEngine{}
 type AzureBackupServerEngine struct {
 
 	// Fields inherited from BackupEngineBase
+
 	AzureBackupAgentVersion            *string                   `json:"azureBackupAgentVersion,omitempty"`
 	BackupEngineId                     *string                   `json:"backupEngineId,omitempty"`
 	BackupEngineState                  *string                   `json:"backupEngineState,omitempty"`
+	BackupEngineType                   BackupEngineType          `json:"backupEngineType"`
 	BackupManagementType               *BackupManagementType     `json:"backupManagementType,omitempty"`
 	CanReRegister                      *bool                     `json:"canReRegister,omitempty"`
 	DpmVersion                         *string                   `json:"dpmVersion,omitempty"`
@@ -25,6 +27,24 @@ type AzureBackupServerEngine struct {
 	IsAzureBackupAgentUpgradeAvailable *bool                     `json:"isAzureBackupAgentUpgradeAvailable,omitempty"`
 	IsDpmUpgradeAvailable              *bool                     `json:"isDpmUpgradeAvailable,omitempty"`
 	RegistrationStatus                 *string                   `json:"registrationStatus,omitempty"`
+}
+
+func (s AzureBackupServerEngine) BackupEngineBase() BaseBackupEngineBaseImpl {
+	return BaseBackupEngineBaseImpl{
+		AzureBackupAgentVersion:            s.AzureBackupAgentVersion,
+		BackupEngineId:                     s.BackupEngineId,
+		BackupEngineState:                  s.BackupEngineState,
+		BackupEngineType:                   s.BackupEngineType,
+		BackupManagementType:               s.BackupManagementType,
+		CanReRegister:                      s.CanReRegister,
+		DpmVersion:                         s.DpmVersion,
+		ExtendedInfo:                       s.ExtendedInfo,
+		FriendlyName:                       s.FriendlyName,
+		HealthStatus:                       s.HealthStatus,
+		IsAzureBackupAgentUpgradeAvailable: s.IsAzureBackupAgentUpgradeAvailable,
+		IsDpmUpgradeAvailable:              s.IsDpmUpgradeAvailable,
+		RegistrationStatus:                 s.RegistrationStatus,
+	}
 }
 
 var _ json.Marshaler = AzureBackupServerEngine{}
@@ -38,9 +58,10 @@ func (s AzureBackupServerEngine) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBackupServerEngine: %+v", err)
 	}
+
 	decoded["backupEngineType"] = "AzureBackupServerEngine"
 
 	encoded, err = json.Marshal(decoded)

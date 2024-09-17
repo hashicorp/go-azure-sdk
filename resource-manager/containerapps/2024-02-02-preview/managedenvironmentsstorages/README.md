@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/managedenvironmentsstorages` Documentation
 
-The `managedenvironmentsstorages` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `managedenvironmentsstorages` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

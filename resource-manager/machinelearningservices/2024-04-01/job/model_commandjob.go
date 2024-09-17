@@ -24,6 +24,7 @@ type CommandJob struct {
 	Resources            *JobResourceConfiguration `json:"resources,omitempty"`
 
 	// Fields inherited from JobBase
+
 	ComponentId         *string                `json:"componentId,omitempty"`
 	ComputeId           *string                `json:"computeId,omitempty"`
 	Description         *string                `json:"description,omitempty"`
@@ -31,11 +32,30 @@ type CommandJob struct {
 	ExperimentName      *string                `json:"experimentName,omitempty"`
 	Identity            IdentityConfiguration  `json:"identity"`
 	IsArchived          *bool                  `json:"isArchived,omitempty"`
+	JobType             JobType                `json:"jobType"`
 	NotificationSetting *NotificationSetting   `json:"notificationSetting,omitempty"`
 	Properties          *map[string]string     `json:"properties,omitempty"`
 	Services            *map[string]JobService `json:"services,omitempty"`
 	Status              *JobStatus             `json:"status,omitempty"`
 	Tags                *map[string]string     `json:"tags,omitempty"`
+}
+
+func (s CommandJob) JobBase() BaseJobBaseImpl {
+	return BaseJobBaseImpl{
+		ComponentId:         s.ComponentId,
+		ComputeId:           s.ComputeId,
+		Description:         s.Description,
+		DisplayName:         s.DisplayName,
+		ExperimentName:      s.ExperimentName,
+		Identity:            s.Identity,
+		IsArchived:          s.IsArchived,
+		JobType:             s.JobType,
+		NotificationSetting: s.NotificationSetting,
+		Properties:          s.Properties,
+		Services:            s.Services,
+		Status:              s.Status,
+		Tags:                s.Tags,
+	}
 }
 
 var _ json.Marshaler = CommandJob{}
@@ -49,9 +69,10 @@ func (s CommandJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CommandJob: %+v", err)
 	}
+
 	decoded["jobType"] = "Command"
 
 	encoded, err = json.Marshal(decoded)
@@ -81,6 +102,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 	s.EnvironmentVariables = decoded.EnvironmentVariables
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
+	s.JobType = decoded.JobType
 	s.NotificationSetting = decoded.NotificationSetting
 	s.Parameters = decoded.Parameters
 	s.Properties = decoded.Properties
@@ -96,7 +118,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["distribution"]; ok {
-		impl, err := unmarshalDistributionConfigurationImplementation(v)
+		impl, err := UnmarshalDistributionConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Distribution' for 'CommandJob': %+v", err)
 		}
@@ -104,7 +126,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["identity"]; ok {
-		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		impl, err := UnmarshalIdentityConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'CommandJob': %+v", err)
 		}
@@ -119,7 +141,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobInput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Inputs' for 'CommandJob': %+v", key, err)
 			}
@@ -129,7 +151,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["limits"]; ok {
-		impl, err := unmarshalJobLimitsImplementation(v)
+		impl, err := UnmarshalJobLimitsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Limits' for 'CommandJob': %+v", err)
 		}
@@ -144,7 +166,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobOutput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Outputs' for 'CommandJob': %+v", key, err)
 			}

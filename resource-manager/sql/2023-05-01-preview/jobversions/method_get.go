@@ -45,7 +45,6 @@ func (c JobVersionsClient) Get(ctx context.Context, id VersionId) (result GetOpe
 
 	var model Resource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

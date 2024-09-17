@@ -45,7 +45,6 @@ func (c BuildsClient) Get(ctx context.Context, id BuildId) (result GetOperationR
 
 	var model BuildResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c WorkloadNetworksClient) GetVMGroup(ctx context.Context, id VMGroupId) (r
 
 	var model WorkloadNetworkVMGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

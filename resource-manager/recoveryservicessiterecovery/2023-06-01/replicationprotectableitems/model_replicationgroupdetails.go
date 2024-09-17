@@ -13,6 +13,14 @@ var _ ConfigurationSettings = ReplicationGroupDetails{}
 type ReplicationGroupDetails struct {
 
 	// Fields inherited from ConfigurationSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s ReplicationGroupDetails) ConfigurationSettings() BaseConfigurationSettingsImpl {
+	return BaseConfigurationSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ReplicationGroupDetails{}
@@ -26,9 +34,10 @@ func (s ReplicationGroupDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ReplicationGroupDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ReplicationGroupDetails"
 
 	encoded, err = json.Marshal(decoded)

@@ -49,7 +49,7 @@ func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["clientSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'SnowflakeLinkedV2ServiceTypeProperties': %+v", err)
 		}
@@ -57,7 +57,7 @@ func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'SnowflakeLinkedV2ServiceTypeProperties': %+v", err)
 		}
@@ -65,7 +65,7 @@ func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["privateKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrivateKey' for 'SnowflakeLinkedV2ServiceTypeProperties': %+v", err)
 		}
@@ -73,7 +73,7 @@ func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["privateKeyPassphrase"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrivateKeyPassphrase' for 'SnowflakeLinkedV2ServiceTypeProperties': %+v", err)
 		}

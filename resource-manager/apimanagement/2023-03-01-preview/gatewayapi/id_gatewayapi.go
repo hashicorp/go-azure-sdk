@@ -46,7 +46,7 @@ func ParseGatewayApiID(input string) (*GatewayApiId, error) {
 	}
 
 	id := GatewayApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGatewayApiIDInsensitively(input string) (*GatewayApiId, error) {
 	}
 
 	id := GatewayApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

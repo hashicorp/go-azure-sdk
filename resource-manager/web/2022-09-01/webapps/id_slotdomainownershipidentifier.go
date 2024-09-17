@@ -46,7 +46,7 @@ func ParseSlotDomainOwnershipIdentifierID(input string) (*SlotDomainOwnershipIde
 	}
 
 	id := SlotDomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotDomainOwnershipIdentifierIDInsensitively(input string) (*SlotDomai
 	}
 
 	id := SlotDomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

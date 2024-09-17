@@ -49,7 +49,6 @@ func (c DefaultAccountClient) Set(ctx context.Context, input DefaultAccountPaylo
 
 	var model DefaultAccountPayload
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

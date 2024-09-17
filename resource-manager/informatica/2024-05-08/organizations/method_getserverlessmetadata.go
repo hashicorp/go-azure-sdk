@@ -46,7 +46,6 @@ func (c OrganizationsClient) GetServerlessMetadata(ctx context.Context, id Organ
 
 	var model ServerlessMetadataResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

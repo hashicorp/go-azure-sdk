@@ -15,7 +15,7 @@ type DataFlowsClient struct {
 }
 
 func NewDataFlowsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataFlowsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataflows", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataflows", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataFlowsClient: %+v", err)
 	}

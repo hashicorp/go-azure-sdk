@@ -44,7 +44,7 @@ func ParseNamespaceTopicID(input string) (*NamespaceTopicId, error) {
 	}
 
 	id := NamespaceTopicId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNamespaceTopicIDInsensitively(input string) (*NamespaceTopicId, error)
 	}
 
 	id := NamespaceTopicId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

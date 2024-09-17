@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/maps/2023-06-01/accounts` Documentation
 
-The `accounts` SDK allows for interaction with the Azure Resource Manager Service `maps` (API Version `2023-06-01`).
+The `accounts` SDK allows for interaction with Azure Resource Manager `maps` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

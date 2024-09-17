@@ -44,7 +44,7 @@ func ParseRestorableDroppedDatabaseID(input string) (*RestorableDroppedDatabaseI
 	}
 
 	id := RestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRestorableDroppedDatabaseIDInsensitively(input string) (*RestorableDro
 	}
 
 	id := RestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

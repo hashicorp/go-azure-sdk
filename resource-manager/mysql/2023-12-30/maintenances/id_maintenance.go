@@ -44,7 +44,7 @@ func ParseMaintenanceID(input string) (*MaintenanceId, error) {
 	}
 
 	id := MaintenanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMaintenanceIDInsensitively(input string) (*MaintenanceId, error) {
 	}
 
 	id := MaintenanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

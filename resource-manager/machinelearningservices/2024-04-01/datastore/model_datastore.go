@@ -10,18 +10,70 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Datastore interface {
+	Datastore() BaseDatastoreImpl
 }
 
-// RawDatastoreImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Datastore = BaseDatastoreImpl{}
+
+type BaseDatastoreImpl struct {
+	Credentials   DatastoreCredentials `json:"credentials"`
+	DatastoreType DatastoreType        `json:"datastoreType"`
+	Description   *string              `json:"description,omitempty"`
+	IsDefault     *bool                `json:"isDefault,omitempty"`
+	Properties    *map[string]string   `json:"properties,omitempty"`
+	Tags          *map[string]string   `json:"tags,omitempty"`
+}
+
+func (s BaseDatastoreImpl) Datastore() BaseDatastoreImpl {
+	return s
+}
+
+var _ Datastore = RawDatastoreImpl{}
+
+// RawDatastoreImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDatastoreImpl struct {
-	Type   string
-	Values map[string]interface{}
+	datastore BaseDatastoreImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalDatastoreImplementation(input []byte) (Datastore, error) {
+func (s RawDatastoreImpl) Datastore() BaseDatastoreImpl {
+	return s.datastore
+}
+
+var _ json.Unmarshaler = &BaseDatastoreImpl{}
+
+func (s *BaseDatastoreImpl) UnmarshalJSON(bytes []byte) error {
+	type alias BaseDatastoreImpl
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into BaseDatastoreImpl: %+v", err)
+	}
+
+	s.DatastoreType = decoded.DatastoreType
+	s.Description = decoded.Description
+	s.IsDefault = decoded.IsDefault
+	s.Properties = decoded.Properties
+	s.Tags = decoded.Tags
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseDatastoreImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["credentials"]; ok {
+		impl, err := UnmarshalDatastoreCredentialsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Credentials' for 'BaseDatastoreImpl': %+v", err)
+		}
+		s.Credentials = impl
+	}
+	return nil
+}
+
+func UnmarshalDatastoreImplementation(input []byte) (Datastore, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +128,15 @@ func unmarshalDatastoreImplementation(input []byte) (Datastore, error) {
 		return out, nil
 	}
 
-	out := RawDatastoreImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDatastoreImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDatastoreImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDatastoreImpl{
+		datastore: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

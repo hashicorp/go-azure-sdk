@@ -32,7 +32,7 @@ func (s *AzureSearchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["key"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Key' for 'AzureSearchLinkedServiceTypeProperties': %+v", err)
 		}

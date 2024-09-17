@@ -47,6 +47,7 @@ func (o ListAtSubscriptionScopePostOperationOptions) ToHeaders() *client.Headers
 
 func (o ListAtSubscriptionScopePostOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -127,7 +128,6 @@ func (c MetricsClient) ListAtSubscriptionScopePost(ctx context.Context, id commo
 
 	var model Response
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

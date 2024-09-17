@@ -44,7 +44,7 @@ func ParseTrustedIdProviderID(input string) (*TrustedIdProviderId, error) {
 	}
 
 	id := TrustedIdProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTrustedIdProviderIDInsensitively(input string) (*TrustedIdProviderId, 
 	}
 
 	id := TrustedIdProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

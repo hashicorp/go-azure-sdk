@@ -42,7 +42,7 @@ func ParseDashboardID(input string) (*DashboardId, error) {
 	}
 
 	id := DashboardId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDashboardIDInsensitively(input string) (*DashboardId, error) {
 	}
 
 	id := DashboardId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

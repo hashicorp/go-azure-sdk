@@ -50,7 +50,6 @@ func (c ProductClient) ValidateMoveEligibility(ctx context.Context, id ProductId
 
 	var model MoveProductEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

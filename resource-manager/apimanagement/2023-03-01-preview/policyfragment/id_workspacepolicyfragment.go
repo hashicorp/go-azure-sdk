@@ -46,7 +46,7 @@ func ParseWorkspacePolicyFragmentID(input string) (*WorkspacePolicyFragmentId, e
 	}
 
 	id := WorkspacePolicyFragmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspacePolicyFragmentIDInsensitively(input string) (*WorkspacePolicy
 	}
 
 	id := WorkspacePolicyFragmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

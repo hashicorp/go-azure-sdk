@@ -47,7 +47,6 @@ func (c LogProfilesClient) List(ctx context.Context, id commonids.SubscriptionId
 
 	var model LogProfileCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

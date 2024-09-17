@@ -17,6 +17,7 @@ type ModernSingleScopeReservationRecommendationProperties struct {
 	SubscriptionId *string `json:"subscriptionId,omitempty"`
 
 	// Fields inherited from ModernReservationRecommendationProperties
+
 	CostWithNoReservedInstances    *Amount        `json:"costWithNoReservedInstances,omitempty"`
 	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
 	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
@@ -29,10 +30,33 @@ type ModernSingleScopeReservationRecommendationProperties struct {
 	RecommendedQuantity            *float64       `json:"recommendedQuantity,omitempty"`
 	RecommendedQuantityNormalized  *float64       `json:"recommendedQuantityNormalized,omitempty"`
 	ResourceType                   *string        `json:"resourceType,omitempty"`
+	Scope                          string         `json:"scope"`
 	SkuName                        *string        `json:"skuName,omitempty"`
 	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *Amount        `json:"totalCostWithReservedInstances,omitempty"`
+}
+
+func (s ModernSingleScopeReservationRecommendationProperties) ModernReservationRecommendationProperties() BaseModernReservationRecommendationPropertiesImpl {
+	return BaseModernReservationRecommendationPropertiesImpl{
+		CostWithNoReservedInstances:    s.CostWithNoReservedInstances,
+		FirstUsageDate:                 s.FirstUsageDate,
+		InstanceFlexibilityGroup:       s.InstanceFlexibilityGroup,
+		InstanceFlexibilityRatio:       s.InstanceFlexibilityRatio,
+		Location:                       s.Location,
+		LookBackPeriod:                 s.LookBackPeriod,
+		MeterId:                        s.MeterId,
+		NetSavings:                     s.NetSavings,
+		NormalizedSize:                 s.NormalizedSize,
+		RecommendedQuantity:            s.RecommendedQuantity,
+		RecommendedQuantityNormalized:  s.RecommendedQuantityNormalized,
+		ResourceType:                   s.ResourceType,
+		Scope:                          s.Scope,
+		SkuName:                        s.SkuName,
+		SkuProperties:                  s.SkuProperties,
+		Term:                           s.Term,
+		TotalCostWithReservedInstances: s.TotalCostWithReservedInstances,
+	}
 }
 
 func (o *ModernSingleScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
@@ -58,9 +82,10 @@ func (s ModernSingleScopeReservationRecommendationProperties) MarshalJSON() ([]b
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ModernSingleScopeReservationRecommendationProperties: %+v", err)
 	}
+
 	decoded["scope"] = "Single"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type ManagementGroupDiagnosticSettingsClient struct {
 }
 
 func NewManagementGroupDiagnosticSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementGroupDiagnosticSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managementgroupdiagnosticsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managementgroupdiagnosticsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagementGroupDiagnosticSettingsClient: %+v", err)
 	}

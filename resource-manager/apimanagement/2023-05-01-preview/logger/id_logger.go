@@ -44,7 +44,7 @@ func ParseLoggerID(input string) (*LoggerId, error) {
 	}
 
 	id := LoggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLoggerIDInsensitively(input string) (*LoggerId, error) {
 	}
 
 	id := LoggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseWorkloadGroupID(input string) (*WorkloadGroupId, error) {
 	}
 
 	id := WorkloadGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkloadGroupIDInsensitively(input string) (*WorkloadGroupId, error) {
 	}
 
 	id := WorkloadGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,6 @@ func (c ProductWikiClient) Get(ctx context.Context, id ProductId) (result GetOpe
 
 	var model WikiContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

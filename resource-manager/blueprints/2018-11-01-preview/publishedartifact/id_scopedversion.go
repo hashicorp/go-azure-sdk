@@ -42,7 +42,7 @@ func ParseScopedVersionID(input string) (*ScopedVersionId, error) {
 	}
 
 	id := ScopedVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseScopedVersionIDInsensitively(input string) (*ScopedVersionId, error) {
 	}
 
 	id := ScopedVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

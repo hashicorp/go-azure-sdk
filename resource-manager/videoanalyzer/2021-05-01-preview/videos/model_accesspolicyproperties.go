@@ -30,7 +30,7 @@ func (s *AccessPolicyProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["authentication"]; ok {
-		impl, err := unmarshalAuthenticationBaseImplementation(v)
+		impl, err := UnmarshalAuthenticationBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Authentication' for 'AccessPolicyProperties': %+v", err)
 		}

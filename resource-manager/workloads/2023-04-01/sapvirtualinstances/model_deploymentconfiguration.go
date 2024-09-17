@@ -16,6 +16,14 @@ type DeploymentConfiguration struct {
 	SoftwareConfiguration       SoftwareConfiguration       `json:"softwareConfiguration"`
 
 	// Fields inherited from SAPConfiguration
+
+	ConfigurationType SAPConfigurationType `json:"configurationType"`
+}
+
+func (s DeploymentConfiguration) SAPConfiguration() BaseSAPConfigurationImpl {
+	return BaseSAPConfigurationImpl{
+		ConfigurationType: s.ConfigurationType,
+	}
 }
 
 var _ json.Marshaler = DeploymentConfiguration{}
@@ -29,9 +37,10 @@ func (s DeploymentConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DeploymentConfiguration: %+v", err)
 	}
+
 	decoded["configurationType"] = "Deployment"
 
 	encoded, err = json.Marshal(decoded)
@@ -52,6 +61,7 @@ func (s *DeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.AppLocation = decoded.AppLocation
+	s.ConfigurationType = decoded.ConfigurationType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -59,7 +69,7 @@ func (s *DeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["infrastructureConfiguration"]; ok {
-		impl, err := unmarshalInfrastructureConfigurationImplementation(v)
+		impl, err := UnmarshalInfrastructureConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'InfrastructureConfiguration' for 'DeploymentConfiguration': %+v", err)
 		}
@@ -67,7 +77,7 @@ func (s *DeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["softwareConfiguration"]; ok {
-		impl, err := unmarshalSoftwareConfigurationImplementation(v)
+		impl, err := UnmarshalSoftwareConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SoftwareConfiguration' for 'DeploymentConfiguration': %+v", err)
 		}

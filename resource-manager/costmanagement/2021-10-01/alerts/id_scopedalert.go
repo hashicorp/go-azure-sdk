@@ -40,7 +40,7 @@ func ParseScopedAlertID(input string) (*ScopedAlertId, error) {
 	}
 
 	id := ScopedAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAlertIDInsensitively(input string) (*ScopedAlertId, error) {
 	}
 
 	id := ScopedAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

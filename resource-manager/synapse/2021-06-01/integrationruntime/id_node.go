@@ -46,7 +46,7 @@ func ParseNodeID(input string) (*NodeId, error) {
 	}
 
 	id := NodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseNodeIDInsensitively(input string) (*NodeId, error) {
 	}
 
 	id := NodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

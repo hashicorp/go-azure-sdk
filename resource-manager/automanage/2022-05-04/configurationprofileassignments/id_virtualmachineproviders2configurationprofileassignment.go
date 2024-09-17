@@ -44,7 +44,7 @@ func ParseVirtualMachineProviders2ConfigurationProfileAssignmentID(input string)
 	}
 
 	id := VirtualMachineProviders2ConfigurationProfileAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualMachineProviders2ConfigurationProfileAssignmentIDInsensitively(
 	}
 
 	id := VirtualMachineProviders2ConfigurationProfileAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

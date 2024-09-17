@@ -15,7 +15,7 @@ type TransactionClient struct {
 }
 
 func NewTransactionClientWithBaseURI(sdkApi sdkEnv.Api) (*TransactionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "transaction", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "transaction", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TransactionClient: %+v", err)
 	}

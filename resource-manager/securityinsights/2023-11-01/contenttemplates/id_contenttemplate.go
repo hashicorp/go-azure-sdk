@@ -44,7 +44,7 @@ func ParseContentTemplateID(input string) (*ContentTemplateId, error) {
 	}
 
 	id := ContentTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentTemplateIDInsensitively(input string) (*ContentTemplateId, erro
 	}
 
 	id := ContentTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

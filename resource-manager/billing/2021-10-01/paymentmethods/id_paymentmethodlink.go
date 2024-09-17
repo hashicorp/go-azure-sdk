@@ -42,7 +42,7 @@ func ParsePaymentMethodLinkID(input string) (*PaymentMethodLinkId, error) {
 	}
 
 	id := PaymentMethodLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePaymentMethodLinkIDInsensitively(input string) (*PaymentMethodLinkId, 
 	}
 
 	id := PaymentMethodLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

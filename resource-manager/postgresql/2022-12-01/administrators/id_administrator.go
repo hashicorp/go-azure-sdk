@@ -44,7 +44,7 @@ func ParseAdministratorID(input string) (*AdministratorId, error) {
 	}
 
 	id := AdministratorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAdministratorIDInsensitively(input string) (*AdministratorId, error) {
 	}
 
 	id := AdministratorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

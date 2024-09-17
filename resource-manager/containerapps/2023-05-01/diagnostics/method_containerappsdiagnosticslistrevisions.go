@@ -39,6 +39,7 @@ func (o ContainerAppsDiagnosticsListRevisionsOperationOptions) ToHeaders() *clie
 
 func (o ContainerAppsDiagnosticsListRevisionsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

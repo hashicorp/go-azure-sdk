@@ -45,7 +45,6 @@ func (c SubscriptionClient) WorkspaceSubscriptionGet(ctx context.Context, id Wor
 
 	var model SubscriptionContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2022-09-09/msixpackage` Documentation
 
-The `msixpackage` SDK allows for interaction with the Azure Resource Manager Service `desktopvirtualization` (API Version `2022-09-09`).
+The `msixpackage` SDK allows for interaction with Azure Resource Manager `desktopvirtualization` (API Version `2022-09-09`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

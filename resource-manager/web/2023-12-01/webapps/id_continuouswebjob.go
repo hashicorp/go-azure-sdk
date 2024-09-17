@@ -44,7 +44,7 @@ func ParseContinuousWebJobID(input string) (*ContinuousWebJobId, error) {
 	}
 
 	id := ContinuousWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContinuousWebJobIDInsensitively(input string) (*ContinuousWebJobId, er
 	}
 
 	id := ContinuousWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

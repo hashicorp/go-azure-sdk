@@ -19,6 +19,14 @@ type AzureWorkloadSAPHanaPointInTimeRecoveryPoint struct {
 	Type                           *RestorePointType                          `json:"type,omitempty"`
 
 	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureWorkloadSAPHanaPointInTimeRecoveryPoint) RecoveryPoint() BaseRecoveryPointImpl {
+	return BaseRecoveryPointImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadSAPHanaPointInTimeRecoveryPoint{}
@@ -32,9 +40,10 @@ func (s AzureWorkloadSAPHanaPointInTimeRecoveryPoint) MarshalJSON() ([]byte, err
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadSAPHanaPointInTimeRecoveryPoint: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureWorkloadSAPHanaPointInTimeRecoveryPoint"
 
 	encoded, err = json.Marshal(decoded)

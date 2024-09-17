@@ -45,7 +45,6 @@ func (c GraphQueryClient) Get(ctx context.Context, id QueryId) (result GetOperat
 
 	var model GraphQueryResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

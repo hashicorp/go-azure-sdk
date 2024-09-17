@@ -44,7 +44,7 @@ func ParseDataCenterID(input string) (*DataCenterId, error) {
 	}
 
 	id := DataCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDataCenterIDInsensitively(input string) (*DataCenterId, error) {
 	}
 
 	id := DataCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type SecurityMLAnalyticsSettingsClient struct {
 }
 
 func NewSecurityMLAnalyticsSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecurityMLAnalyticsSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securitymlanalyticssettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "securitymlanalyticssettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecurityMLAnalyticsSettingsClient: %+v", err)
 	}

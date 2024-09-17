@@ -15,7 +15,7 @@ type MyworkbooksAPIsClient struct {
 }
 
 func NewMyworkbooksAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*MyworkbooksAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "myworkbooksapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "myworkbooksapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MyworkbooksAPIsClient: %+v", err)
 	}

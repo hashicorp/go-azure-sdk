@@ -40,7 +40,7 @@ func ParseLogProfileID(input string) (*LogProfileId, error) {
 	}
 
 	id := LogProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseLogProfileIDInsensitively(input string) (*LogProfileId, error) {
 	}
 
 	id := LogProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParsePublisherID(input string) (*PublisherId, error) {
 	}
 
 	id := PublisherId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePublisherIDInsensitively(input string) (*PublisherId, error) {
 	}
 
 	id := PublisherId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RuleAction interface {
+	RuleAction() BaseRuleActionImpl
 }
 
-// RawRuleActionImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RuleAction = BaseRuleActionImpl{}
+
+type BaseRuleActionImpl struct {
+	OdataType string `json:"odata.type"`
+}
+
+func (s BaseRuleActionImpl) RuleAction() BaseRuleActionImpl {
+	return s
+}
+
+var _ RuleAction = RawRuleActionImpl{}
+
+// RawRuleActionImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRuleActionImpl struct {
-	Type   string
-	Values map[string]interface{}
+	ruleAction BaseRuleActionImpl
+	Type       string
+	Values     map[string]interface{}
 }
 
-func unmarshalRuleActionImplementation(input []byte) (RuleAction, error) {
+func (s RawRuleActionImpl) RuleAction() BaseRuleActionImpl {
+	return s.ruleAction
+}
+
+func UnmarshalRuleActionImplementation(input []byte) (RuleAction, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalRuleActionImplementation(input []byte) (RuleAction, error) {
 		return out, nil
 	}
 
-	out := RawRuleActionImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRuleActionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRuleActionImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRuleActionImpl{
+		ruleAction: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
 
 }

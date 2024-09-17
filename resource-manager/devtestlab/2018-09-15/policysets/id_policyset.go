@@ -44,7 +44,7 @@ func ParsePolicySetID(input string) (*PolicySetId, error) {
 	}
 
 	id := PolicySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePolicySetIDInsensitively(input string) (*PolicySetId, error) {
 	}
 
 	id := PolicySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

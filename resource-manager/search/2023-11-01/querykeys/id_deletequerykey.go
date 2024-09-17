@@ -44,7 +44,7 @@ func ParseDeleteQueryKeyID(input string) (*DeleteQueryKeyId, error) {
 	}
 
 	id := DeleteQueryKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDeleteQueryKeyIDInsensitively(input string) (*DeleteQueryKeyId, error)
 	}
 
 	id := DeleteQueryKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

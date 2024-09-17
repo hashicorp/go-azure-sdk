@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualnetworks` Documentation
 
-The `virtualnetworks` SDK allows for interaction with the Azure Resource Manager Service `devtestlab` (API Version `2018-09-15`).
+The `virtualnetworks` SDK allows for interaction with Azure Resource Manager `devtestlab` (API Version `2018-09-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

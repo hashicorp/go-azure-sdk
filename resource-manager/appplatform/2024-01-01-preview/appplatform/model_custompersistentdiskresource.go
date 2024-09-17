@@ -30,7 +30,7 @@ func (s *CustomPersistentDiskResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["customPersistentDiskProperties"]; ok {
-		impl, err := unmarshalCustomPersistentDiskPropertiesImplementation(v)
+		impl, err := UnmarshalCustomPersistentDiskPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomPersistentDiskProperties' for 'CustomPersistentDiskResource': %+v", err)
 		}

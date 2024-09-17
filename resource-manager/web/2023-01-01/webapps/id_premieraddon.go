@@ -44,7 +44,7 @@ func ParsePremierAddonID(input string) (*PremierAddonId, error) {
 	}
 
 	id := PremierAddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePremierAddonIDInsensitively(input string) (*PremierAddonId, error) {
 	}
 
 	id := PremierAddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

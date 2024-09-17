@@ -15,7 +15,7 @@ type PredictionClient struct {
 }
 
 func NewPredictionClientWithBaseURI(sdkApi sdkEnv.Api) (*PredictionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "prediction", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "prediction", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PredictionClient: %+v", err)
 	}

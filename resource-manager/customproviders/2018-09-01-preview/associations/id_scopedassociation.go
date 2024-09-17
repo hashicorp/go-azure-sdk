@@ -40,7 +40,7 @@ func ParseScopedAssociationID(input string) (*ScopedAssociationId, error) {
 	}
 
 	id := ScopedAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAssociationIDInsensitively(input string) (*ScopedAssociationId, 
 	}
 
 	id := ScopedAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

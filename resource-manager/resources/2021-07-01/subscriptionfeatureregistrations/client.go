@@ -15,7 +15,7 @@ type SubscriptionFeatureRegistrationsClient struct {
 }
 
 func NewSubscriptionFeatureRegistrationsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubscriptionFeatureRegistrationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "subscriptionfeatureregistrations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "subscriptionfeatureregistrations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubscriptionFeatureRegistrationsClient: %+v", err)
 	}

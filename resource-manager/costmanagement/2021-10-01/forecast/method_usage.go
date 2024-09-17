@@ -35,6 +35,7 @@ func (o UsageOperationOptions) ToHeaders() *client.Headers {
 
 func (o UsageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -80,7 +81,6 @@ func (c ForecastClient) Usage(ctx context.Context, id commonids.ScopeId, input F
 
 	var model ForecastResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

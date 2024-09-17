@@ -16,10 +16,22 @@ type LakeHouseTableSource struct {
 	VersionAsOf       *int64       `json:"versionAsOf,omitempty"`
 
 	// Fields inherited from CopySource
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
 	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
+	Type                     string  `json:"type"`
+}
+
+func (s LakeHouseTableSource) CopySource() BaseCopySourceImpl {
+	return BaseCopySourceImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SourceRetryCount:         s.SourceRetryCount,
+		SourceRetryWait:          s.SourceRetryWait,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = LakeHouseTableSource{}
@@ -33,9 +45,10 @@ func (s LakeHouseTableSource) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LakeHouseTableSource: %+v", err)
 	}
+
 	decoded["type"] = "LakeHouseTableSource"
 
 	encoded, err = json.Marshal(decoded)

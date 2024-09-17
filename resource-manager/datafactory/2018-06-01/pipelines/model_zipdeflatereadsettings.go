@@ -14,6 +14,14 @@ type ZipDeflateReadSettings struct {
 	PreserveZipFileNameAsFolder *bool `json:"preserveZipFileNameAsFolder,omitempty"`
 
 	// Fields inherited from CompressionReadSettings
+
+	Type string `json:"type"`
+}
+
+func (s ZipDeflateReadSettings) CompressionReadSettings() BaseCompressionReadSettingsImpl {
+	return BaseCompressionReadSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ZipDeflateReadSettings{}
@@ -27,9 +35,10 @@ func (s ZipDeflateReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ZipDeflateReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "ZipDeflateReadSettings"
 
 	encoded, err = json.Marshal(decoded)

@@ -34,6 +34,7 @@ func (o GetByIdOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByIdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c RoleAssignmentsClient) GetById(ctx context.Context, id RoleIdId, options
 
 	var model RoleAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

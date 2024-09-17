@@ -48,7 +48,7 @@ func ParseSlotDiagnosticDetectorID(input string) (*SlotDiagnosticDetectorId, err
 	}
 
 	id := SlotDiagnosticDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseSlotDiagnosticDetectorIDInsensitively(input string) (*SlotDiagnosticDe
 	}
 
 	id := SlotDiagnosticDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

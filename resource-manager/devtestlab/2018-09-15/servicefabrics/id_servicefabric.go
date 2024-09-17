@@ -46,7 +46,7 @@ func ParseServiceFabricID(input string) (*ServiceFabricId, error) {
 	}
 
 	id := ServiceFabricId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseServiceFabricIDInsensitively(input string) (*ServiceFabricId, error) {
 	}
 
 	id := ServiceFabricId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

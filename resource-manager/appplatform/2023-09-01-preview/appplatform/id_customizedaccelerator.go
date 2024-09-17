@@ -46,7 +46,7 @@ func ParseCustomizedAcceleratorID(input string) (*CustomizedAcceleratorId, error
 	}
 
 	id := CustomizedAcceleratorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCustomizedAcceleratorIDInsensitively(input string) (*CustomizedAcceler
 	}
 
 	id := CustomizedAcceleratorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

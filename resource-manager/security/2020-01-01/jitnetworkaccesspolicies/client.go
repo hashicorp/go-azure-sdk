@@ -15,7 +15,7 @@ type JitNetworkAccessPoliciesClient struct {
 }
 
 func NewJitNetworkAccessPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*JitNetworkAccessPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jitnetworkaccesspolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jitnetworkaccesspolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JitNetworkAccessPoliciesClient: %+v", err)
 	}

@@ -40,7 +40,7 @@ func ParseScopedRoleAssignmentID(input string) (*ScopedRoleAssignmentId, error) 
 	}
 
 	id := ScopedRoleAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedRoleAssignmentIDInsensitively(input string) (*ScopedRoleAssignme
 	}
 
 	id := ScopedRoleAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

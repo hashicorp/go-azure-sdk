@@ -46,7 +46,7 @@ func ParseComponentVersionID(input string) (*ComponentVersionId, error) {
 	}
 
 	id := ComponentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseComponentVersionIDInsensitively(input string) (*ComponentVersionId, er
 	}
 
 	id := ComponentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/informatica/2024-05-08/serverlessruntimes` Documentation
 
-The `serverlessruntimes` SDK allows for interaction with the Azure Resource Manager Service `informatica` (API Version `2024-05-08`).
+The `serverlessruntimes` SDK allows for interaction with Azure Resource Manager `informatica` (API Version `2024-05-08`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

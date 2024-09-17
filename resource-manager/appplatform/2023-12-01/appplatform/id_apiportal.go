@@ -44,7 +44,7 @@ func ParseApiPortalID(input string) (*ApiPortalId, error) {
 	}
 
 	id := ApiPortalId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApiPortalIDInsensitively(input string) (*ApiPortalId, error) {
 	}
 
 	id := ApiPortalId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -17,6 +17,14 @@ type LogAnalyticsIdentifier struct {
 	WorkspaceSubscriptionId *string `json:"workspaceSubscriptionId,omitempty"`
 
 	// Fields inherited from ResourceIdentifier
+
+	Type ResourceIdentifierType `json:"type"`
+}
+
+func (s LogAnalyticsIdentifier) ResourceIdentifier() BaseResourceIdentifierImpl {
+	return BaseResourceIdentifierImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = LogAnalyticsIdentifier{}
@@ -30,9 +38,10 @@ func (s LogAnalyticsIdentifier) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LogAnalyticsIdentifier: %+v", err)
 	}
+
 	decoded["type"] = "LogAnalytics"
 
 	encoded, err = json.Marshal(decoded)

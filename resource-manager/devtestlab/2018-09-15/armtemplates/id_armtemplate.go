@@ -46,7 +46,7 @@ func ParseArmTemplateID(input string) (*ArmTemplateId, error) {
 	}
 
 	id := ArmTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseArmTemplateIDInsensitively(input string) (*ArmTemplateId, error) {
 	}
 
 	id := ArmTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

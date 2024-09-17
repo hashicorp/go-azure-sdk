@@ -46,7 +46,7 @@ func ParseSlotVirtualNetworkConnectionID(input string) (*SlotVirtualNetworkConne
 	}
 
 	id := SlotVirtualNetworkConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotVirtualNetworkConnectionIDInsensitively(input string) (*SlotVirtua
 	}
 
 	id := SlotVirtualNetworkConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

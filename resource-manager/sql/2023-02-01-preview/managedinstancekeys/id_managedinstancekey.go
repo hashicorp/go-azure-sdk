@@ -44,7 +44,7 @@ func ParseManagedInstanceKeyID(input string) (*ManagedInstanceKeyId, error) {
 	}
 
 	id := ManagedInstanceKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstanceKeyIDInsensitively(input string) (*ManagedInstanceKeyId
 	}
 
 	id := ManagedInstanceKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

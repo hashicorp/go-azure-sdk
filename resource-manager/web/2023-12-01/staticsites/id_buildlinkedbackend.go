@@ -46,7 +46,7 @@ func ParseBuildLinkedBackendID(input string) (*BuildLinkedBackendId, error) {
 	}
 
 	id := BuildLinkedBackendId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBuildLinkedBackendIDInsensitively(input string) (*BuildLinkedBackendId
 	}
 
 	id := BuildLinkedBackendId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseReplicationRecoveryServicesProviderID(input string) (*ReplicationRecov
 	}
 
 	id := ReplicationRecoveryServicesProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicationRecoveryServicesProviderIDInsensitively(input string) (*Rep
 	}
 
 	id := ReplicationRecoveryServicesProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

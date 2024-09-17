@@ -44,7 +44,7 @@ func ParseChannelID(input string) (*ChannelId, error) {
 	}
 
 	id := ChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseChannelIDInsensitively(input string) (*ChannelId, error) {
 	}
 
 	id := ChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

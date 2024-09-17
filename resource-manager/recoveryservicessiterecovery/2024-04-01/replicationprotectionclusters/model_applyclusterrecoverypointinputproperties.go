@@ -32,7 +32,7 @@ func (s *ApplyClusterRecoveryPointInputProperties) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalApplyClusterRecoveryPointProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalApplyClusterRecoveryPointProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ApplyClusterRecoveryPointInputProperties': %+v", err)
 		}

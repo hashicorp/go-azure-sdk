@@ -48,7 +48,7 @@ func ParseTagOperationLinkID(input string) (*TagOperationLinkId, error) {
 	}
 
 	id := TagOperationLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseTagOperationLinkIDInsensitively(input string) (*TagOperationLinkId, er
 	}
 
 	id := TagOperationLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

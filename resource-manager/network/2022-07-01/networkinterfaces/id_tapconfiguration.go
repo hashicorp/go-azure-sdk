@@ -44,7 +44,7 @@ func ParseTapConfigurationID(input string) (*TapConfigurationId, error) {
 	}
 
 	id := TapConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTapConfigurationIDInsensitively(input string) (*TapConfigurationId, er
 	}
 
 	id := TapConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

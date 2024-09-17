@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GcpOrganizationalData interface {
+	GcpOrganizationalData() BaseGcpOrganizationalDataImpl
 }
 
-// RawGcpOrganizationalDataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ GcpOrganizationalData = BaseGcpOrganizationalDataImpl{}
+
+type BaseGcpOrganizationalDataImpl struct {
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s BaseGcpOrganizationalDataImpl) GcpOrganizationalData() BaseGcpOrganizationalDataImpl {
+	return s
+}
+
+var _ GcpOrganizationalData = RawGcpOrganizationalDataImpl{}
+
+// RawGcpOrganizationalDataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawGcpOrganizationalDataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	gcpOrganizationalData BaseGcpOrganizationalDataImpl
+	Type                  string
+	Values                map[string]interface{}
 }
 
-func unmarshalGcpOrganizationalDataImplementation(input []byte) (GcpOrganizationalData, error) {
+func (s RawGcpOrganizationalDataImpl) GcpOrganizationalData() BaseGcpOrganizationalDataImpl {
+	return s.gcpOrganizationalData
+}
+
+func UnmarshalGcpOrganizationalDataImplementation(input []byte) (GcpOrganizationalData, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalGcpOrganizationalDataImplementation(input []byte) (GcpOrganization
 		return out, nil
 	}
 
-	out := RawGcpOrganizationalDataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseGcpOrganizationalDataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseGcpOrganizationalDataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawGcpOrganizationalDataImpl{
+		gcpOrganizationalData: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
 
 }

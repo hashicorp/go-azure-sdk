@@ -46,7 +46,7 @@ func ParseSecretID(input string) (*SecretId, error) {
 	}
 
 	id := SecretId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSecretIDInsensitively(input string) (*SecretId, error) {
 	}
 
 	id := SecretId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

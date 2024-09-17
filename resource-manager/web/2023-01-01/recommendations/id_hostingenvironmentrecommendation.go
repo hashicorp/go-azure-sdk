@@ -44,7 +44,7 @@ func ParseHostingEnvironmentRecommendationID(input string) (*HostingEnvironmentR
 	}
 
 	id := HostingEnvironmentRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHostingEnvironmentRecommendationIDInsensitively(input string) (*Hostin
 	}
 
 	id := HostingEnvironmentRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -14,6 +14,14 @@ type CustomSeasonality struct {
 	Value int64 `json:"value"`
 
 	// Fields inherited from Seasonality
+
+	Mode SeasonalityMode `json:"mode"`
+}
+
+func (s CustomSeasonality) Seasonality() BaseSeasonalityImpl {
+	return BaseSeasonalityImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = CustomSeasonality{}
@@ -27,9 +35,10 @@ func (s CustomSeasonality) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomSeasonality: %+v", err)
 	}
+
 	decoded["mode"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)

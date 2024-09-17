@@ -33,6 +33,7 @@ func (o UserConfirmationPasswordSendOperationOptions) ToHeaders() *client.Header
 
 func (o UserConfirmationPasswordSendOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

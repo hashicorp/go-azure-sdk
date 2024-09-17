@@ -44,7 +44,7 @@ func ParseCustomImageID(input string) (*CustomImageId, error) {
 	}
 
 	id := CustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCustomImageIDInsensitively(input string) (*CustomImageId, error) {
 	}
 
 	id := CustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

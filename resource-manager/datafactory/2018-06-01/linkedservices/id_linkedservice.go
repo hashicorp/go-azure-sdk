@@ -44,7 +44,7 @@ func ParseLinkedServiceID(input string) (*LinkedServiceId, error) {
 	}
 
 	id := LinkedServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLinkedServiceIDInsensitively(input string) (*LinkedServiceId, error) {
 	}
 
 	id := LinkedServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

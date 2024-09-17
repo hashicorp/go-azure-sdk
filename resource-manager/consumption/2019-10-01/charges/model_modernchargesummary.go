@@ -14,11 +14,24 @@ type ModernChargeSummary struct {
 	Properties ModernChargeSummaryProperties `json:"properties"`
 
 	// Fields inherited from ChargeSummary
+
 	ETag *string            `json:"eTag,omitempty"`
 	Id   *string            `json:"id,omitempty"`
+	Kind ChargeSummaryKind  `json:"kind"`
 	Name *string            `json:"name,omitempty"`
 	Tags *map[string]string `json:"tags,omitempty"`
 	Type *string            `json:"type,omitempty"`
+}
+
+func (s ModernChargeSummary) ChargeSummary() BaseChargeSummaryImpl {
+	return BaseChargeSummaryImpl{
+		ETag: s.ETag,
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Tags: s.Tags,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ModernChargeSummary{}
@@ -32,9 +45,10 @@ func (s ModernChargeSummary) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ModernChargeSummary: %+v", err)
 	}
+
 	decoded["kind"] = "modern"
 
 	encoded, err = json.Marshal(decoded)

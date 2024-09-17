@@ -44,7 +44,7 @@ func ParseOutboundFirewallRuleID(input string) (*OutboundFirewallRuleId, error) 
 	}
 
 	id := OutboundFirewallRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOutboundFirewallRuleIDInsensitively(input string) (*OutboundFirewallRu
 	}
 
 	id := OutboundFirewallRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseSynchronizationSettingID(input string) (*SynchronizationSettingId, err
 	}
 
 	id := SynchronizationSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSynchronizationSettingIDInsensitively(input string) (*SynchronizationS
 	}
 
 	id := SynchronizationSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,6 @@ func (c AlertsManagementsClient) AlertsGetHistory(ctx context.Context, id AlertI
 
 	var model AlertModification
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

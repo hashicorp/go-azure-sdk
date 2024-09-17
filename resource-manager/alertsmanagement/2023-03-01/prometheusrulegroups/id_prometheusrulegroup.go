@@ -42,7 +42,7 @@ func ParsePrometheusRuleGroupID(input string) (*PrometheusRuleGroupId, error) {
 	}
 
 	id := PrometheusRuleGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePrometheusRuleGroupIDInsensitively(input string) (*PrometheusRuleGroup
 	}
 
 	id := PrometheusRuleGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

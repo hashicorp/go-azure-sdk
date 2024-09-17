@@ -18,6 +18,14 @@ type TextTrack struct {
 	PlayerVisibility *Visibility  `json:"playerVisibility,omitempty"`
 
 	// Fields inherited from TrackBase
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s TextTrack) TrackBase() BaseTrackBaseImpl {
+	return BaseTrackBaseImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = TextTrack{}
@@ -31,9 +39,10 @@ func (s TextTrack) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TextTrack: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.TextTrack"
 
 	encoded, err = json.Marshal(decoded)

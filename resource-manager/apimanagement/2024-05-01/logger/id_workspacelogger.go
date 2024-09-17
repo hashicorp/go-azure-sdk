@@ -46,7 +46,7 @@ func ParseWorkspaceLoggerID(input string) (*WorkspaceLoggerId, error) {
 	}
 
 	id := WorkspaceLoggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceLoggerIDInsensitively(input string) (*WorkspaceLoggerId, erro
 	}
 
 	id := WorkspaceLoggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

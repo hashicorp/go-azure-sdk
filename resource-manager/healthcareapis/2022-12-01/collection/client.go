@@ -15,7 +15,7 @@ type CollectionClient struct {
 }
 
 func NewCollectionClientWithBaseURI(sdkApi sdkEnv.Api) (*CollectionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "collection", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "collection", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CollectionClient: %+v", err)
 	}

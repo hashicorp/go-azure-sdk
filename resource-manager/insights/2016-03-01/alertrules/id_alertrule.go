@@ -42,7 +42,7 @@ func ParseAlertRuleID(input string) (*AlertRuleId, error) {
 	}
 
 	id := AlertRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAlertRuleIDInsensitively(input string) (*AlertRuleId, error) {
 	}
 
 	id := AlertRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

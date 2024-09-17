@@ -50,7 +50,6 @@ func (c NamespacesClient) CreateOrUpdate(ctx context.Context, id NamespaceId, in
 
 	var model NamespaceResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

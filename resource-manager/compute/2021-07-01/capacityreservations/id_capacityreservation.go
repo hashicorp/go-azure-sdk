@@ -44,7 +44,7 @@ func ParseCapacityReservationID(input string) (*CapacityReservationId, error) {
 	}
 
 	id := CapacityReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCapacityReservationIDInsensitively(input string) (*CapacityReservation
 	}
 
 	id := CapacityReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

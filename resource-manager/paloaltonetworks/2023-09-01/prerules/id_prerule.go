@@ -40,7 +40,7 @@ func ParsePreRuleID(input string) (*PreRuleId, error) {
 	}
 
 	id := PreRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePreRuleIDInsensitively(input string) (*PreRuleId, error) {
 	}
 
 	id := PreRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

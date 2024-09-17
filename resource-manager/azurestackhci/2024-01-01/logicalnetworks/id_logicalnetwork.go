@@ -42,7 +42,7 @@ func ParseLogicalNetworkID(input string) (*LogicalNetworkId, error) {
 	}
 
 	id := LogicalNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLogicalNetworkIDInsensitively(input string) (*LogicalNetworkId, error)
 	}
 
 	id := LogicalNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

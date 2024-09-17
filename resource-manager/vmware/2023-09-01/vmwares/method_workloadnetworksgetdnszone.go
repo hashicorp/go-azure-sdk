@@ -45,7 +45,6 @@ func (c VMwaresClient) WorkloadNetworksGetDnsZone(ctx context.Context, id DnsZon
 
 	var model WorkloadNetworkDnsZone
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

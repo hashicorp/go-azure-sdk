@@ -42,7 +42,7 @@ func ParseDeletedManagedHSMID(input string) (*DeletedManagedHSMId, error) {
 	}
 
 	id := DeletedManagedHSMId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDeletedManagedHSMIDInsensitively(input string) (*DeletedManagedHSMId, 
 	}
 
 	id := DeletedManagedHSMId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

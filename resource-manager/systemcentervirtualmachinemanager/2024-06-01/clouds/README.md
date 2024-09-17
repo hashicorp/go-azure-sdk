@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2024-06-01/clouds` Documentation
 
-The `clouds` SDK allows for interaction with the Azure Resource Manager Service `systemcentervirtualmachinemanager` (API Version `2024-06-01`).
+The `clouds` SDK allows for interaction with Azure Resource Manager `systemcentervirtualmachinemanager` (API Version `2024-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

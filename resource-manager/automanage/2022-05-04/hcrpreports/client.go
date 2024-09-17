@@ -15,7 +15,7 @@ type HCRPReportsClient struct {
 }
 
 func NewHCRPReportsClientWithBaseURI(sdkApi sdkEnv.Api) (*HCRPReportsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hcrpreports", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hcrpreports", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HCRPReportsClient: %+v", err)
 	}

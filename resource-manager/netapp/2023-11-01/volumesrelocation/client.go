@@ -15,7 +15,7 @@ type VolumesRelocationClient struct {
 }
 
 func NewVolumesRelocationClientWithBaseURI(sdkApi sdkEnv.Api) (*VolumesRelocationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "volumesrelocation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "volumesrelocation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VolumesRelocationClient: %+v", err)
 	}

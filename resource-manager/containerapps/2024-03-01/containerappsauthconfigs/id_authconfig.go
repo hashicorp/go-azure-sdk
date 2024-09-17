@@ -44,7 +44,7 @@ func ParseAuthConfigID(input string) (*AuthConfigId, error) {
 	}
 
 	id := AuthConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAuthConfigIDInsensitively(input string) (*AuthConfigId, error) {
 	}
 
 	id := AuthConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

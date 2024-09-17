@@ -44,7 +44,7 @@ func ParseLocalRulestackFqdnListID(input string) (*LocalRulestackFqdnListId, err
 	}
 
 	id := LocalRulestackFqdnListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocalRulestackFqdnListIDInsensitively(input string) (*LocalRulestackFq
 	}
 
 	id := LocalRulestackFqdnListId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

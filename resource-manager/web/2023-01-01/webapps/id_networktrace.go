@@ -44,7 +44,7 @@ func ParseNetworkTraceID(input string) (*NetworkTraceId, error) {
 	}
 
 	id := NetworkTraceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNetworkTraceIDInsensitively(input string) (*NetworkTraceId, error) {
 	}
 
 	id := NetworkTraceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

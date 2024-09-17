@@ -15,7 +15,7 @@ type DistributedAvailabilityGroupsClient struct {
 }
 
 func NewDistributedAvailabilityGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*DistributedAvailabilityGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "distributedavailabilitygroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "distributedavailabilitygroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DistributedAvailabilityGroupsClient: %+v", err)
 	}

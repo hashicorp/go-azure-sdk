@@ -40,7 +40,7 @@ func (s *WorkloadItemResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalWorkloadItemImplementation(v)
+		impl, err := UnmarshalWorkloadItemImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'WorkloadItemResource': %+v", err)
 		}

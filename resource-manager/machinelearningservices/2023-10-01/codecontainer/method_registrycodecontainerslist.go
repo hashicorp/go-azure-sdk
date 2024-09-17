@@ -39,6 +39,7 @@ func (o RegistryCodeContainersListOperationOptions) ToHeaders() *client.Headers 
 
 func (o RegistryCodeContainersListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

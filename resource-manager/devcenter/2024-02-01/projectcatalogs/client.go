@@ -15,7 +15,7 @@ type ProjectCatalogsClient struct {
 }
 
 func NewProjectCatalogsClientWithBaseURI(sdkApi sdkEnv.Api) (*ProjectCatalogsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "projectcatalogs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "projectcatalogs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProjectCatalogsClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseTokenID(input string) (*TokenId, error) {
 	}
 
 	id := TokenId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTokenIDInsensitively(input string) (*TokenId, error) {
 	}
 
 	id := TokenId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

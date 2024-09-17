@@ -44,7 +44,7 @@ func ParsePublicCertificateID(input string) (*PublicCertificateId, error) {
 	}
 
 	id := PublicCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePublicCertificateIDInsensitively(input string) (*PublicCertificateId, 
 	}
 
 	id := PublicCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

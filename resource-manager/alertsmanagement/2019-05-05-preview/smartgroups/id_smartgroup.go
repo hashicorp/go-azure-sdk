@@ -40,7 +40,7 @@ func ParseSmartGroupID(input string) (*SmartGroupId, error) {
 	}
 
 	id := SmartGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSmartGroupIDInsensitively(input string) (*SmartGroupId, error) {
 	}
 
 	id := SmartGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

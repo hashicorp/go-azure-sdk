@@ -44,7 +44,7 @@ func ParseReferenceDataSetID(input string) (*ReferenceDataSetId, error) {
 	}
 
 	id := ReferenceDataSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReferenceDataSetIDInsensitively(input string) (*ReferenceDataSetId, er
 	}
 
 	id := ReferenceDataSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

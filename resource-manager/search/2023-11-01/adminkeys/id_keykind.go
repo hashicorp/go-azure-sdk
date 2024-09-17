@@ -44,7 +44,7 @@ func ParseKeyKindID(input string) (*KeyKindId, error) {
 	}
 
 	id := KeyKindId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseKeyKindIDInsensitively(input string) (*KeyKindId, error) {
 	}
 
 	id := KeyKindId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

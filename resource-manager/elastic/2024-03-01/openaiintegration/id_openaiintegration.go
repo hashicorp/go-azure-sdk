@@ -44,7 +44,7 @@ func ParseOpenAIIntegrationID(input string) (*OpenAIIntegrationId, error) {
 	}
 
 	id := OpenAIIntegrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOpenAIIntegrationIDInsensitively(input string) (*OpenAIIntegrationId, 
 	}
 
 	id := OpenAIIntegrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

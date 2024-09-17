@@ -42,7 +42,7 @@ func ParseMeshRevisionProfileID(input string) (*MeshRevisionProfileId, error) {
 	}
 
 	id := MeshRevisionProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMeshRevisionProfileIDInsensitively(input string) (*MeshRevisionProfile
 	}
 
 	id := MeshRevisionProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

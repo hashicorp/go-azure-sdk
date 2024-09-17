@@ -46,7 +46,6 @@ func (c AccountsClient) PrivateLinkResourcesList(ctx context.Context, id MediaSe
 
 	var model PrivateLinkResourceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

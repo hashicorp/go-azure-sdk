@@ -50,7 +50,6 @@ func (c GatewayListDebugCredentialsClient) GatewayListDebugCredentials(ctx conte
 
 	var model GatewayDebugCredentialsContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

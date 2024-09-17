@@ -15,7 +15,7 @@ type ExposureControlClient struct {
 }
 
 func NewExposureControlClientWithBaseURI(sdkApi sdkEnv.Api) (*ExposureControlClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "exposurecontrol", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "exposurecontrol", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExposureControlClient: %+v", err)
 	}

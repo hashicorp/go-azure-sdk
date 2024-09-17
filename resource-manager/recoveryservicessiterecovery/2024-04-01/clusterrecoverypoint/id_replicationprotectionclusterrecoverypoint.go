@@ -50,7 +50,7 @@ func ParseReplicationProtectionClusterRecoveryPointID(input string) (*Replicatio
 	}
 
 	id := ReplicationProtectionClusterRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseReplicationProtectionClusterRecoveryPointIDInsensitively(input string)
 	}
 
 	id := ReplicationProtectionClusterRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

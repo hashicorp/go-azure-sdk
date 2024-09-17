@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/cloudlinks` Documentation
 
-The `cloudlinks` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2022-05-01`).
+The `cloudlinks` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2022-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

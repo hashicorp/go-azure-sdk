@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ExportSettings interface {
+	ExportSettings() BaseExportSettingsImpl
 }
 
-// RawExportSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ExportSettings = BaseExportSettingsImpl{}
+
+type BaseExportSettingsImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseExportSettingsImpl) ExportSettings() BaseExportSettingsImpl {
+	return s
+}
+
+var _ ExportSettings = RawExportSettingsImpl{}
+
+// RawExportSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawExportSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	exportSettings BaseExportSettingsImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalExportSettingsImplementation(input []byte) (ExportSettings, error) {
+func (s RawExportSettingsImpl) ExportSettings() BaseExportSettingsImpl {
+	return s.exportSettings
+}
+
+func UnmarshalExportSettingsImplementation(input []byte) (ExportSettings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalExportSettingsImplementation(input []byte) (ExportSettings, error)
 		return out, nil
 	}
 
-	out := RawExportSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseExportSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseExportSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawExportSettingsImpl{
+		exportSettings: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

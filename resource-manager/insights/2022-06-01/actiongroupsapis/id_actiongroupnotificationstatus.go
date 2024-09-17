@@ -44,7 +44,7 @@ func ParseActionGroupNotificationStatusID(input string) (*ActionGroupNotificatio
 	}
 
 	id := ActionGroupNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseActionGroupNotificationStatusIDInsensitively(input string) (*ActionGro
 	}
 
 	id := ActionGroupNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

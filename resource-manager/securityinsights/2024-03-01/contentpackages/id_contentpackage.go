@@ -44,7 +44,7 @@ func ParseContentPackageID(input string) (*ContentPackageId, error) {
 	}
 
 	id := ContentPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentPackageIDInsensitively(input string) (*ContentPackageId, error)
 	}
 
 	id := ContentPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resourceconnector/2022-10-27/appliances` Documentation
 
-The `appliances` SDK allows for interaction with the Azure Resource Manager Service `resourceconnector` (API Version `2022-10-27`).
+The `appliances` SDK allows for interaction with Azure Resource Manager `resourceconnector` (API Version `2022-10-27`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

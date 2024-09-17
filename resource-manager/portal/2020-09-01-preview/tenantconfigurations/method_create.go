@@ -50,7 +50,6 @@ func (c TenantConfigurationsClient) Create(ctx context.Context, id TenantConfigu
 
 	var model Configuration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

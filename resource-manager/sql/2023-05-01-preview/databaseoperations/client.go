@@ -15,7 +15,7 @@ type DatabaseOperationsClient struct {
 }
 
 func NewDatabaseOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseOperationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseoperations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseOperationsClient: %+v", err)
 	}

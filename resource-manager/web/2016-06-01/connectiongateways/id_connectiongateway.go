@@ -42,7 +42,7 @@ func ParseConnectionGatewayID(input string) (*ConnectionGatewayId, error) {
 	}
 
 	id := ConnectionGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseConnectionGatewayIDInsensitively(input string) (*ConnectionGatewayId, 
 	}
 
 	id := ConnectionGatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

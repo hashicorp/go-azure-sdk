@@ -46,7 +46,7 @@ func ParseClientEncryptionKeyID(input string) (*ClientEncryptionKeyId, error) {
 	}
 
 	id := ClientEncryptionKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseClientEncryptionKeyIDInsensitively(input string) (*ClientEncryptionKey
 	}
 
 	id := ClientEncryptionKeyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

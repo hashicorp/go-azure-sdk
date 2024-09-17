@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger` Documentation
 
-The `confidentialledger` SDK allows for interaction with the Azure Resource Manager Service `confidentialledger` (API Version `2022-05-13`).
+The `confidentialledger` SDK allows for interaction with Azure Resource Manager `confidentialledger` (API Version `2022-05-13`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

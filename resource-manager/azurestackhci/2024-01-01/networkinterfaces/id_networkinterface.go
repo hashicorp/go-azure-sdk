@@ -42,7 +42,7 @@ func ParseNetworkInterfaceID(input string) (*NetworkInterfaceId, error) {
 	}
 
 	id := NetworkInterfaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseNetworkInterfaceIDInsensitively(input string) (*NetworkInterfaceId, er
 	}
 
 	id := NetworkInterfaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

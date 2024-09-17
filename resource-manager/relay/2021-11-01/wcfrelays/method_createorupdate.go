@@ -49,7 +49,6 @@ func (c WCFRelaysClient) CreateOrUpdate(ctx context.Context, id WcfRelayId, inpu
 
 	var model WcfRelay
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

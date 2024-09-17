@@ -44,7 +44,7 @@ func ParseHcxEnterpriseSiteID(input string) (*HcxEnterpriseSiteId, error) {
 	}
 
 	id := HcxEnterpriseSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHcxEnterpriseSiteIDInsensitively(input string) (*HcxEnterpriseSiteId, 
 	}
 
 	id := HcxEnterpriseSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

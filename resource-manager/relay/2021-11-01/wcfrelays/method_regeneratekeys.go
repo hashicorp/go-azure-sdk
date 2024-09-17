@@ -50,7 +50,6 @@ func (c WCFRelaysClient) RegenerateKeys(ctx context.Context, id WcfRelayAuthoriz
 
 	var model AccessKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

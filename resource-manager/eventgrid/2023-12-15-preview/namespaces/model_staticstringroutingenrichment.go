@@ -14,7 +14,16 @@ type StaticStringRoutingEnrichment struct {
 	Value *string `json:"value,omitempty"`
 
 	// Fields inherited from StaticRoutingEnrichment
-	Key *string `json:"key,omitempty"`
+
+	Key       *string                     `json:"key,omitempty"`
+	ValueType StaticRoutingEnrichmentType `json:"valueType"`
+}
+
+func (s StaticStringRoutingEnrichment) StaticRoutingEnrichment() BaseStaticRoutingEnrichmentImpl {
+	return BaseStaticRoutingEnrichmentImpl{
+		Key:       s.Key,
+		ValueType: s.ValueType,
+	}
 }
 
 var _ json.Marshaler = StaticStringRoutingEnrichment{}
@@ -28,9 +37,10 @@ func (s StaticStringRoutingEnrichment) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StaticStringRoutingEnrichment: %+v", err)
 	}
+
 	decoded["valueType"] = "String"
 
 	encoded, err = json.Marshal(decoded)

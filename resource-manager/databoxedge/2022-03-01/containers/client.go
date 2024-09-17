@@ -15,7 +15,7 @@ type ContainersClient struct {
 }
 
 func NewContainersClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "containers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "containers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContainersClient: %+v", err)
 	}

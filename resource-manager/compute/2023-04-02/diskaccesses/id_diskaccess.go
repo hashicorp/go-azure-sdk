@@ -42,7 +42,7 @@ func ParseDiskAccessID(input string) (*DiskAccessId, error) {
 	}
 
 	id := DiskAccessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDiskAccessIDInsensitively(input string) (*DiskAccessId, error) {
 	}
 
 	id := DiskAccessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

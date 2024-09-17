@@ -44,7 +44,7 @@ func ParseMongodbRoleDefinitionID(input string) (*MongodbRoleDefinitionId, error
 	}
 
 	id := MongodbRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMongodbRoleDefinitionIDInsensitively(input string) (*MongodbRoleDefini
 	}
 
 	id := MongodbRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

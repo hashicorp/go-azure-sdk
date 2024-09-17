@@ -40,7 +40,7 @@ func ParseResourceGroupID(input string) (*ResourceGroupId, error) {
 	}
 
 	id := ResourceGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseResourceGroupIDInsensitively(input string) (*ResourceGroupId, error) {
 	}
 
 	id := ResourceGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

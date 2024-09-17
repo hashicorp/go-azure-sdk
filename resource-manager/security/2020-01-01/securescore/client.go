@@ -15,7 +15,7 @@ type SecureScoreClient struct {
 }
 
 func NewSecureScoreClientWithBaseURI(sdkApi sdkEnv.Api) (*SecureScoreClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securescore", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "securescore", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecureScoreClient: %+v", err)
 	}

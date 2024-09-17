@@ -42,7 +42,7 @@ func ParseRediID(input string) (*RediId, error) {
 	}
 
 	id := RediId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRediIDInsensitively(input string) (*RediId, error) {
 	}
 
 	id := RediId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

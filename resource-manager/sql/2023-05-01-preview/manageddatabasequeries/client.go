@@ -15,7 +15,7 @@ type ManagedDatabaseQueriesClient struct {
 }
 
 func NewManagedDatabaseQueriesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseQueriesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasequeries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasequeries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseQueriesClient: %+v", err)
 	}

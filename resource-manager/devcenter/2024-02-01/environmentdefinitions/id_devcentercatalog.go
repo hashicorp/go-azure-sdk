@@ -44,7 +44,7 @@ func ParseDevCenterCatalogID(input string) (*DevCenterCatalogId, error) {
 	}
 
 	id := DevCenterCatalogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDevCenterCatalogIDInsensitively(input string) (*DevCenterCatalogId, er
 	}
 
 	id := DevCenterCatalogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

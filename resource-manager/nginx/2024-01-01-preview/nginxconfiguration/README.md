@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/nginx/2024-01-01-preview/nginxconfiguration` Documentation
 
-The `nginxconfiguration` SDK allows for interaction with the Azure Resource Manager Service `nginx` (API Version `2024-01-01-preview`).
+The `nginxconfiguration` SDK allows for interaction with Azure Resource Manager `nginx` (API Version `2024-01-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

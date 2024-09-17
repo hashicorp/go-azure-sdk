@@ -42,7 +42,7 @@ func ParseMonitorID(input string) (*MonitorId, error) {
 	}
 
 	id := MonitorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMonitorIDInsensitively(input string) (*MonitorId, error) {
 	}
 
 	id := MonitorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

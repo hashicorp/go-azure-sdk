@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-11-01/rules` Documentation
 
-The `rules` SDK allows for interaction with the Azure Resource Manager Service `servicebus` (API Version `2021-11-01`).
+The `rules` SDK allows for interaction with Azure Resource Manager `servicebus` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

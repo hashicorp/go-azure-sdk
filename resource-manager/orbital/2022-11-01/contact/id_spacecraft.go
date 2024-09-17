@@ -42,7 +42,7 @@ func ParseSpacecraftID(input string) (*SpacecraftId, error) {
 	}
 
 	id := SpacecraftId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSpacecraftIDInsensitively(input string) (*SpacecraftId, error) {
 	}
 
 	id := SpacecraftId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

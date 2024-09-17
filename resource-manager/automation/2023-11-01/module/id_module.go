@@ -44,7 +44,7 @@ func ParseModuleID(input string) (*ModuleId, error) {
 	}
 
 	id := ModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseModuleIDInsensitively(input string) (*ModuleId, error) {
 	}
 
 	id := ModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

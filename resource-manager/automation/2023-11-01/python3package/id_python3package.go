@@ -44,7 +44,7 @@ func ParsePython3PackageID(input string) (*Python3PackageId, error) {
 	}
 
 	id := Python3PackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePython3PackageIDInsensitively(input string) (*Python3PackageId, error)
 	}
 
 	id := Python3PackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

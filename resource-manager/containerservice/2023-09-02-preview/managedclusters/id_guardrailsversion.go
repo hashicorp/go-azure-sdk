@@ -42,7 +42,7 @@ func ParseGuardrailsVersionID(input string) (*GuardrailsVersionId, error) {
 	}
 
 	id := GuardrailsVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseGuardrailsVersionIDInsensitively(input string) (*GuardrailsVersionId, 
 	}
 
 	id := GuardrailsVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

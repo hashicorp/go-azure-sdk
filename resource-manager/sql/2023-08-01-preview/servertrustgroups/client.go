@@ -15,7 +15,7 @@ type ServerTrustGroupsClient struct {
 }
 
 func NewServerTrustGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerTrustGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servertrustgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servertrustgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerTrustGroupsClient: %+v", err)
 	}

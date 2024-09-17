@@ -45,7 +45,6 @@ func (c QuotaByPeriodKeysClient) Get(ctx context.Context, id PeriodId) (result G
 
 	var model QuotaCounterContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

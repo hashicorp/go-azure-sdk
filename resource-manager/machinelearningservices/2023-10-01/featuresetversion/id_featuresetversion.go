@@ -46,7 +46,7 @@ func ParseFeatureSetVersionID(input string) (*FeatureSetVersionId, error) {
 	}
 
 	id := FeatureSetVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseFeatureSetVersionIDInsensitively(input string) (*FeatureSetVersionId, 
 	}
 
 	id := FeatureSetVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

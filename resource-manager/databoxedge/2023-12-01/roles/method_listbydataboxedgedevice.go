@@ -73,7 +73,7 @@ func (c RolesClient) ListByDataBoxEdgeDevice(ctx context.Context, id DataBoxEdge
 	temp := make([]Role, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalRoleImplementation(v)
+			val, err := UnmarshalRoleImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for Role (%q): %+v", i, v, err)
 				return result, err

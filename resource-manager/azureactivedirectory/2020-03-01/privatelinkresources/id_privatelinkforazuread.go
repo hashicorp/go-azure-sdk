@@ -42,7 +42,7 @@ func ParsePrivateLinkForAzureAdID(input string) (*PrivateLinkForAzureAdId, error
 	}
 
 	id := PrivateLinkForAzureAdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePrivateLinkForAzureAdIDInsensitively(input string) (*PrivateLinkForAzu
 	}
 
 	id := PrivateLinkForAzureAdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

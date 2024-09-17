@@ -44,7 +44,7 @@ func ParseDaprSubscriptionID(input string) (*DaprSubscriptionId, error) {
 	}
 
 	id := DaprSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDaprSubscriptionIDInsensitively(input string) (*DaprSubscriptionId, er
 	}
 
 	id := DaprSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

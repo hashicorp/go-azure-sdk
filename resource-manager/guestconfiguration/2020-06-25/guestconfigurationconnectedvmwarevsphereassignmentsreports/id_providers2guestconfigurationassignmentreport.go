@@ -46,7 +46,7 @@ func ParseProviders2GuestConfigurationAssignmentReportID(input string) (*Provide
 	}
 
 	id := Providers2GuestConfigurationAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProviders2GuestConfigurationAssignmentReportIDInsensitively(input stri
 	}
 
 	id := Providers2GuestConfigurationAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

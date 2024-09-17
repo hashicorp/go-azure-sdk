@@ -44,7 +44,7 @@ func ParseLocalRuleID(input string) (*LocalRuleId, error) {
 	}
 
 	id := LocalRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocalRuleIDInsensitively(input string) (*LocalRuleId, error) {
 	}
 
 	id := LocalRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

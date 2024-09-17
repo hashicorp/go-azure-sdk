@@ -35,6 +35,7 @@ func (o WorkspaceGroupDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceGroupDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

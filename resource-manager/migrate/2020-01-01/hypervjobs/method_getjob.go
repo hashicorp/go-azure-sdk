@@ -46,7 +46,6 @@ func (c HyperVJobsClient) GetJob(ctx context.Context, id commonids.HyperVSiteJob
 
 	var model HyperVJob
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

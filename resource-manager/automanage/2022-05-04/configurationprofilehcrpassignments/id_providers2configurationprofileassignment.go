@@ -44,7 +44,7 @@ func ParseProviders2ConfigurationProfileAssignmentID(input string) (*Providers2C
 	}
 
 	id := Providers2ConfigurationProfileAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseProviders2ConfigurationProfileAssignmentIDInsensitively(input string) 
 	}
 
 	id := Providers2ConfigurationProfileAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

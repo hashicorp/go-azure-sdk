@@ -44,7 +44,7 @@ func ParseSandboxCustomImageID(input string) (*SandboxCustomImageId, error) {
 	}
 
 	id := SandboxCustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSandboxCustomImageIDInsensitively(input string) (*SandboxCustomImageId
 	}
 
 	id := SandboxCustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

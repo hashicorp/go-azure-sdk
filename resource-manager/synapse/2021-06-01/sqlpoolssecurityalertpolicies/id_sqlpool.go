@@ -44,7 +44,7 @@ func ParseSqlPoolID(input string) (*SqlPoolId, error) {
 	}
 
 	id := SqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSqlPoolIDInsensitively(input string) (*SqlPoolId, error) {
 	}
 
 	id := SqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

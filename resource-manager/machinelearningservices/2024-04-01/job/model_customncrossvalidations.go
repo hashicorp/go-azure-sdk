@@ -14,6 +14,14 @@ type CustomNCrossValidations struct {
 	Value int64 `json:"value"`
 
 	// Fields inherited from NCrossValidations
+
+	Mode NCrossValidationsMode `json:"mode"`
+}
+
+func (s CustomNCrossValidations) NCrossValidations() BaseNCrossValidationsImpl {
+	return BaseNCrossValidationsImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = CustomNCrossValidations{}
@@ -27,9 +35,10 @@ func (s CustomNCrossValidations) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomNCrossValidations: %+v", err)
 	}
+
 	decoded["mode"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)

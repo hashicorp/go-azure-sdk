@@ -36,6 +36,7 @@ func (o ListVersionsOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListVersionsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c VirtualMachineExtensionImagesClient) ListVersions(ctx context.Context, i
 
 	var model []VirtualMachineExtensionImage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

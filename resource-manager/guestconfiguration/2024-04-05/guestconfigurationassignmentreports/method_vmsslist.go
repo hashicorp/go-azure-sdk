@@ -46,7 +46,6 @@ func (c GuestConfigurationAssignmentReportsClient) VMSSList(ctx context.Context,
 
 	var model GuestConfigurationAssignmentReportList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

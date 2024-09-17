@@ -50,7 +50,6 @@ func (c DataContainerClient) CreateOrUpdate(ctx context.Context, id WorkspaceDat
 
 	var model DataContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

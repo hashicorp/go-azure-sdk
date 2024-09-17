@@ -44,7 +44,7 @@ func ParseExternalSecuritySolutionID(input string) (*ExternalSecuritySolutionId,
 	}
 
 	id := ExternalSecuritySolutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseExternalSecuritySolutionIDInsensitively(input string) (*ExternalSecuri
 	}
 
 	id := ExternalSecuritySolutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

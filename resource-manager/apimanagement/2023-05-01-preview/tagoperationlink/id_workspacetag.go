@@ -46,7 +46,7 @@ func ParseWorkspaceTagID(input string) (*WorkspaceTagId, error) {
 	}
 
 	id := WorkspaceTagId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspaceTagIDInsensitively(input string) (*WorkspaceTagId, error) {
 	}
 
 	id := WorkspaceTagId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -41,6 +41,7 @@ func (o AssetsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o AssetsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

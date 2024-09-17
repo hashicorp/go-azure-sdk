@@ -44,7 +44,7 @@ func ParseContainerAppDetectorID(input string) (*ContainerAppDetectorId, error) 
 	}
 
 	id := ContainerAppDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContainerAppDetectorIDInsensitively(input string) (*ContainerAppDetect
 	}
 
 	id := ContainerAppDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

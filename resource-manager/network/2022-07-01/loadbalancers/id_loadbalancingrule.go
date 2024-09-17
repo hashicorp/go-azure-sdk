@@ -44,7 +44,7 @@ func ParseLoadBalancingRuleID(input string) (*LoadBalancingRuleId, error) {
 	}
 
 	id := LoadBalancingRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLoadBalancingRuleIDInsensitively(input string) (*LoadBalancingRuleId, 
 	}
 
 	id := LoadBalancingRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -18,11 +18,24 @@ type StatefulServiceUpdateProperties struct {
 	TargetReplicaSetSize       *int64  `json:"targetReplicaSetSize,omitempty"`
 
 	// Fields inherited from ServiceResourceUpdateProperties
+
 	CorrelationScheme        *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
 	DefaultMoveCost          *MoveCost                            `json:"defaultMoveCost,omitempty"`
 	PlacementConstraints     *string                              `json:"placementConstraints,omitempty"`
+	ServiceKind              ServiceKind                          `json:"serviceKind"`
 	ServiceLoadMetrics       *[]ServiceLoadMetricDescription      `json:"serviceLoadMetrics,omitempty"`
 	ServicePlacementPolicies *[]ServicePlacementPolicyDescription `json:"servicePlacementPolicies,omitempty"`
+}
+
+func (s StatefulServiceUpdateProperties) ServiceResourceUpdateProperties() BaseServiceResourceUpdatePropertiesImpl {
+	return BaseServiceResourceUpdatePropertiesImpl{
+		CorrelationScheme:        s.CorrelationScheme,
+		DefaultMoveCost:          s.DefaultMoveCost,
+		PlacementConstraints:     s.PlacementConstraints,
+		ServiceKind:              s.ServiceKind,
+		ServiceLoadMetrics:       s.ServiceLoadMetrics,
+		ServicePlacementPolicies: s.ServicePlacementPolicies,
+	}
 }
 
 var _ json.Marshaler = StatefulServiceUpdateProperties{}
@@ -36,9 +49,10 @@ func (s StatefulServiceUpdateProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StatefulServiceUpdateProperties: %+v", err)
 	}
+
 	decoded["serviceKind"] = "Stateful"
 
 	encoded, err = json.Marshal(decoded)

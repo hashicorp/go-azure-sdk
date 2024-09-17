@@ -44,7 +44,7 @@ func ParseEdgeModuleID(input string) (*EdgeModuleId, error) {
 	}
 
 	id := EdgeModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEdgeModuleIDInsensitively(input string) (*EdgeModuleId, error) {
 	}
 
 	id := EdgeModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2022-08-01/schedule` Documentation
 
-The `schedule` SDK allows for interaction with the Azure Resource Manager Service `labservices` (API Version `2022-08-01`).
+The `schedule` SDK allows for interaction with Azure Resource Manager `labservices` (API Version `2022-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

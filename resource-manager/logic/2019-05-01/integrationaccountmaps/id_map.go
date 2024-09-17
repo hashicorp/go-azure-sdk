@@ -44,7 +44,7 @@ func ParseMapID(input string) (*MapId, error) {
 	}
 
 	id := MapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMapIDInsensitively(input string) (*MapId, error) {
 	}
 
 	id := MapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

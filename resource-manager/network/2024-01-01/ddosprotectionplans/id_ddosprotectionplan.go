@@ -42,7 +42,7 @@ func ParseDdosProtectionPlanID(input string) (*DdosProtectionPlanId, error) {
 	}
 
 	id := DdosProtectionPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDdosProtectionPlanIDInsensitively(input string) (*DdosProtectionPlanId
 	}
 
 	id := DdosProtectionPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

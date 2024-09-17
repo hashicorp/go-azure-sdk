@@ -16,6 +16,14 @@ type ManualActionTaskDetails struct {
 	Observation  *string `json:"observation,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s ManualActionTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ManualActionTaskDetails{}
@@ -29,9 +37,10 @@ func (s ManualActionTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManualActionTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ManualActionTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

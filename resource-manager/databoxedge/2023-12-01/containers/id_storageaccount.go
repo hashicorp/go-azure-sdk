@@ -44,7 +44,7 @@ func ParseStorageAccountID(input string) (*StorageAccountId, error) {
 	}
 
 	id := StorageAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStorageAccountIDInsensitively(input string) (*StorageAccountId, error)
 	}
 
 	id := StorageAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

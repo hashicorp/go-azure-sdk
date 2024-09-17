@@ -13,6 +13,14 @@ var _ TargetLags = AutoTargetLags{}
 type AutoTargetLags struct {
 
 	// Fields inherited from TargetLags
+
+	Mode TargetLagsMode `json:"mode"`
+}
+
+func (s AutoTargetLags) TargetLags() BaseTargetLagsImpl {
+	return BaseTargetLagsImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = AutoTargetLags{}
@@ -26,9 +34,10 @@ func (s AutoTargetLags) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutoTargetLags: %+v", err)
 	}
+
 	decoded["mode"] = "Auto"
 
 	encoded, err = json.Marshal(decoded)

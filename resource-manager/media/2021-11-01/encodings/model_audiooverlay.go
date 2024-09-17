@@ -13,12 +13,26 @@ var _ Overlay = AudioOverlay{}
 type AudioOverlay struct {
 
 	// Fields inherited from Overlay
+
 	AudioGainLevel  *float64 `json:"audioGainLevel,omitempty"`
 	End             *string  `json:"end,omitempty"`
 	FadeInDuration  *string  `json:"fadeInDuration,omitempty"`
 	FadeOutDuration *string  `json:"fadeOutDuration,omitempty"`
 	InputLabel      string   `json:"inputLabel"`
+	OdataType       string   `json:"@odata.type"`
 	Start           *string  `json:"start,omitempty"`
+}
+
+func (s AudioOverlay) Overlay() BaseOverlayImpl {
+	return BaseOverlayImpl{
+		AudioGainLevel:  s.AudioGainLevel,
+		End:             s.End,
+		FadeInDuration:  s.FadeInDuration,
+		FadeOutDuration: s.FadeOutDuration,
+		InputLabel:      s.InputLabel,
+		OdataType:       s.OdataType,
+		Start:           s.Start,
+	}
 }
 
 var _ json.Marshaler = AudioOverlay{}
@@ -32,9 +46,10 @@ func (s AudioOverlay) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AudioOverlay: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.AudioOverlay"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type WorkspaceManagedSqlServerServerEncryptionProtectorClient struct {
 }
 
 func NewWorkspaceManagedSqlServerServerEncryptionProtectorClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerServerEncryptionProtectorClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacemanagedsqlserverserverencryptionprotector", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserverserverencryptionprotector", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerServerEncryptionProtectorClient: %+v", err)
 	}

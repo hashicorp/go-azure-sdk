@@ -39,7 +39,7 @@ func (s *WebActivityAuthentication) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'WebActivityAuthentication': %+v", err)
 		}
@@ -47,7 +47,7 @@ func (s *WebActivityAuthentication) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["pfx"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Pfx' for 'WebActivityAuthentication': %+v", err)
 		}

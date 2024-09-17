@@ -46,7 +46,6 @@ func (c ReplicationEligibilityResultsClient) Get(ctx context.Context, id Virtual
 
 	var model ReplicationEligibilityResults
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

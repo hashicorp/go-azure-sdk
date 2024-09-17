@@ -15,7 +15,7 @@ type JobTargetGroupsClient struct {
 }
 
 func NewJobTargetGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobTargetGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jobtargetgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jobtargetgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobTargetGroupsClient: %+v", err)
 	}

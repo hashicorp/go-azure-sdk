@@ -45,7 +45,6 @@ func (c CodeContainerClient) Get(ctx context.Context, id CodeId) (result GetOper
 
 	var model CodeContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

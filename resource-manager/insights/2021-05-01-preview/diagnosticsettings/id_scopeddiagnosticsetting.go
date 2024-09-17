@@ -40,7 +40,7 @@ func ParseScopedDiagnosticSettingID(input string) (*ScopedDiagnosticSettingId, e
 	}
 
 	id := ScopedDiagnosticSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedDiagnosticSettingIDInsensitively(input string) (*ScopedDiagnosti
 	}
 
 	id := ScopedDiagnosticSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

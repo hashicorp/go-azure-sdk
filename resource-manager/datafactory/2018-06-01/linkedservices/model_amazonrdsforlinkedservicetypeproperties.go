@@ -32,7 +32,7 @@ func (s *AmazonRdsForLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) er
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'AmazonRdsForLinkedServiceTypeProperties': %+v", err)
 		}

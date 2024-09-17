@@ -44,7 +44,7 @@ func ParseDevCenterDevBoxDefinitionID(input string) (*DevCenterDevBoxDefinitionI
 	}
 
 	id := DevCenterDevBoxDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDevCenterDevBoxDefinitionIDInsensitively(input string) (*DevCenterDevB
 	}
 
 	id := DevCenterDevBoxDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

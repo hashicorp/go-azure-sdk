@@ -16,10 +16,22 @@ type FileEventTrigger struct {
 	Properties FileTriggerProperties `json:"properties"`
 
 	// Fields inherited from Trigger
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       TriggerEventType       `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s FileEventTrigger) Trigger() BaseTriggerImpl {
+	return BaseTriggerImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = FileEventTrigger{}
@@ -33,9 +45,10 @@ func (s FileEventTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FileEventTrigger: %+v", err)
 	}
+
 	decoded["kind"] = "FileEvent"
 
 	encoded, err = json.Marshal(decoded)

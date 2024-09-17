@@ -44,7 +44,7 @@ func ParseTopologyID(input string) (*TopologyId, error) {
 	}
 
 	id := TopologyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopologyIDInsensitively(input string) (*TopologyId, error) {
 	}
 
 	id := TopologyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

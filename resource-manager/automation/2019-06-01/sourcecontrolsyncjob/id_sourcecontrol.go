@@ -44,7 +44,7 @@ func ParseSourceControlID(input string) (*SourceControlId, error) {
 	}
 
 	id := SourceControlId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSourceControlIDInsensitively(input string) (*SourceControlId, error) {
 	}
 
 	id := SourceControlId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

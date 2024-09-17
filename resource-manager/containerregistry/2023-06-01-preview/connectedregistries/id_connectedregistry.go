@@ -44,7 +44,7 @@ func ParseConnectedRegistryID(input string) (*ConnectedRegistryId, error) {
 	}
 
 	id := ConnectedRegistryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectedRegistryIDInsensitively(input string) (*ConnectedRegistryId, 
 	}
 
 	id := ConnectedRegistryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

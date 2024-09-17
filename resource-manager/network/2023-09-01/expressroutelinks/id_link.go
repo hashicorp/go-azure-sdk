@@ -44,7 +44,7 @@ func ParseLinkID(input string) (*LinkId, error) {
 	}
 
 	id := LinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLinkIDInsensitively(input string) (*LinkId, error) {
 	}
 
 	id := LinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

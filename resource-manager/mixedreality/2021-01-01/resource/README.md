@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/resource` Documentation
 
-The `resource` SDK allows for interaction with the Azure Resource Manager Service `mixedreality` (API Version `2021-01-01`).
+The `resource` SDK allows for interaction with Azure Resource Manager `mixedreality` (API Version `2021-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

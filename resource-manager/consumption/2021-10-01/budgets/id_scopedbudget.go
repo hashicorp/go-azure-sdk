@@ -40,7 +40,7 @@ func ParseScopedBudgetID(input string) (*ScopedBudgetId, error) {
 	}
 
 	id := ScopedBudgetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedBudgetIDInsensitively(input string) (*ScopedBudgetId, error) {
 	}
 
 	id := ScopedBudgetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

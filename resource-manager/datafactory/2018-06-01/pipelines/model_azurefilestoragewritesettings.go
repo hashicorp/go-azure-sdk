@@ -13,10 +13,22 @@ var _ StoreWriteSettings = AzureFileStorageWriteSettings{}
 type AzureFileStorageWriteSettings struct {
 
 	// Fields inherited from StoreWriteSettings
+
 	CopyBehavior             *string         `json:"copyBehavior,omitempty"`
 	DisableMetricsCollection *bool           `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64          `json:"maxConcurrentConnections,omitempty"`
 	Metadata                 *[]MetadataItem `json:"metadata,omitempty"`
+	Type                     string          `json:"type"`
+}
+
+func (s AzureFileStorageWriteSettings) StoreWriteSettings() BaseStoreWriteSettingsImpl {
+	return BaseStoreWriteSettingsImpl{
+		CopyBehavior:             s.CopyBehavior,
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		Metadata:                 s.Metadata,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureFileStorageWriteSettings{}
@@ -30,9 +42,10 @@ func (s AzureFileStorageWriteSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureFileStorageWriteSettings: %+v", err)
 	}
+
 	decoded["type"] = "AzureFileStorageWriteSettings"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type EntityQueriesClient struct {
 }
 
 func NewEntityQueriesClientWithBaseURI(sdkApi sdkEnv.Api) (*EntityQueriesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "entityqueries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "entityqueries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EntityQueriesClient: %+v", err)
 	}

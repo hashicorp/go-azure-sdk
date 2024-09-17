@@ -14,8 +14,15 @@ type FabricReplicationGroupTaskDetails struct {
 	SkippedReason       *string `json:"skippedReason,omitempty"`
 	SkippedReasonString *string `json:"skippedReasonString,omitempty"`
 
-	// Fields inherited from JobTaskDetails
-	JobTask *JobEntity `json:"jobTask,omitempty"`
+	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s FabricReplicationGroupTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = FabricReplicationGroupTaskDetails{}
@@ -29,9 +36,10 @@ func (s FabricReplicationGroupTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FabricReplicationGroupTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "FabricReplicationGroupTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

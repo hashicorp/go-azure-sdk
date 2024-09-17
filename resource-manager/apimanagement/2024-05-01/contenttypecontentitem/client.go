@@ -15,7 +15,7 @@ type ContentTypeContentItemClient struct {
 }
 
 func NewContentTypeContentItemClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentTypeContentItemClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "contenttypecontentitem", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "contenttypecontentitem", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContentTypeContentItemClient: %+v", err)
 	}

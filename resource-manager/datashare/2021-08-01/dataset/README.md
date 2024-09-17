@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/dataset` Documentation
 
-The `dataset` SDK allows for interaction with the Azure Resource Manager Service `datashare` (API Version `2021-08-01`).
+The `dataset` SDK allows for interaction with Azure Resource Manager `datashare` (API Version `2021-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

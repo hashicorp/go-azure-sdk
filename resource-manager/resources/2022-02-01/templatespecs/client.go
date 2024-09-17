@@ -15,7 +15,7 @@ type TemplateSpecsClient struct {
 }
 
 func NewTemplateSpecsClientWithBaseURI(sdkApi sdkEnv.Api) (*TemplateSpecsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "templatespecs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "templatespecs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TemplateSpecsClient: %+v", err)
 	}

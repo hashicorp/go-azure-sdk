@@ -40,7 +40,7 @@ func (s *ILRRequestResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalILRRequestImplementation(v)
+		impl, err := UnmarshalILRRequestImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ILRRequestResource': %+v", err)
 		}

@@ -15,7 +15,7 @@ type ApiRevisionClient struct {
 }
 
 func NewApiRevisionClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiRevisionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apirevision", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apirevision", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiRevisionClient: %+v", err)
 	}

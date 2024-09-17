@@ -46,7 +46,7 @@ func ParseBuildDatabaseConnectionID(input string) (*BuildDatabaseConnectionId, e
 	}
 
 	id := BuildDatabaseConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBuildDatabaseConnectionIDInsensitively(input string) (*BuildDatabaseCo
 	}
 
 	id := BuildDatabaseConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

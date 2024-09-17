@@ -44,7 +44,7 @@ func ParseCatalogID(input string) (*CatalogId, error) {
 	}
 
 	id := CatalogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCatalogIDInsensitively(input string) (*CatalogId, error) {
 	}
 
 	id := CatalogId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

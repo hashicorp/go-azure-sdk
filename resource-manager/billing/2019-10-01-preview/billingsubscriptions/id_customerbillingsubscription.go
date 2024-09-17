@@ -42,7 +42,7 @@ func ParseCustomerBillingSubscriptionID(input string) (*CustomerBillingSubscript
 	}
 
 	id := CustomerBillingSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomerBillingSubscriptionIDInsensitively(input string) (*CustomerBil
 	}
 
 	id := CustomerBillingSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -49,7 +49,7 @@ func (s *CosmosDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["accountKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccountKey' for 'CosmosDbLinkedServiceTypeProperties': %+v", err)
 		}
@@ -57,7 +57,7 @@ func (s *CosmosDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["servicePrincipalCredential"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalCredential' for 'CosmosDbLinkedServiceTypeProperties': %+v", err)
 		}

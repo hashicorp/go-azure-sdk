@@ -44,7 +44,7 @@ func ParsePooledScheduleID(input string) (*PooledScheduleId, error) {
 	}
 
 	id := PooledScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePooledScheduleIDInsensitively(input string) (*PooledScheduleId, error)
 	}
 
 	id := PooledScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

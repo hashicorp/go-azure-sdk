@@ -38,7 +38,7 @@ func (s *OutboundRuleBasicResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalOutboundRuleImplementation(v)
+		impl, err := UnmarshalOutboundRuleImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'OutboundRuleBasicResource': %+v", err)
 		}

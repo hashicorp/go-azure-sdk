@@ -44,7 +44,7 @@ func ParseWebJobID(input string) (*WebJobId, error) {
 	}
 
 	id := WebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWebJobIDInsensitively(input string) (*WebJobId, error) {
 	}
 
 	id := WebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

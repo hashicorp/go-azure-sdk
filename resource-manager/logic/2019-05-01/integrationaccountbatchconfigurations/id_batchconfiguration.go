@@ -44,7 +44,7 @@ func ParseBatchConfigurationID(input string) (*BatchConfigurationId, error) {
 	}
 
 	id := BatchConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBatchConfigurationIDInsensitively(input string) (*BatchConfigurationId
 	}
 
 	id := BatchConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

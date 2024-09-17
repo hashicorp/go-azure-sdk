@@ -44,7 +44,7 @@ func ParseScriptActionID(input string) (*ScriptActionId, error) {
 	}
 
 	id := ScriptActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseScriptActionIDInsensitively(input string) (*ScriptActionId, error) {
 	}
 
 	id := ScriptActionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type GlobalParametersClient struct {
 }
 
 func NewGlobalParametersClientWithBaseURI(sdkApi sdkEnv.Api) (*GlobalParametersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "globalparameters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "globalparameters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GlobalParametersClient: %+v", err)
 	}

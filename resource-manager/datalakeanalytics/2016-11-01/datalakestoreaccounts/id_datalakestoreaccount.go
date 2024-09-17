@@ -44,7 +44,7 @@ func ParseDataLakeStoreAccountID(input string) (*DataLakeStoreAccountId, error) 
 	}
 
 	id := DataLakeStoreAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDataLakeStoreAccountIDInsensitively(input string) (*DataLakeStoreAccou
 	}
 
 	id := DataLakeStoreAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

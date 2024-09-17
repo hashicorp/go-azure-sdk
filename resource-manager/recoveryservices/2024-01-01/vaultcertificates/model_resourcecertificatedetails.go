@@ -10,18 +10,43 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ResourceCertificateDetails interface {
+	ResourceCertificateDetails() BaseResourceCertificateDetailsImpl
 }
 
-// RawResourceCertificateDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ResourceCertificateDetails = BaseResourceCertificateDetailsImpl{}
+
+type BaseResourceCertificateDetailsImpl struct {
+	AuthType     string  `json:"authType"`
+	Certificate  *string `json:"certificate,omitempty"`
+	FriendlyName *string `json:"friendlyName,omitempty"`
+	Issuer       *string `json:"issuer,omitempty"`
+	ResourceId   *int64  `json:"resourceId,omitempty"`
+	Subject      *string `json:"subject,omitempty"`
+	Thumbprint   *string `json:"thumbprint,omitempty"`
+	ValidFrom    *string `json:"validFrom,omitempty"`
+	ValidTo      *string `json:"validTo,omitempty"`
+}
+
+func (s BaseResourceCertificateDetailsImpl) ResourceCertificateDetails() BaseResourceCertificateDetailsImpl {
+	return s
+}
+
+var _ ResourceCertificateDetails = RawResourceCertificateDetailsImpl{}
+
+// RawResourceCertificateDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawResourceCertificateDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	resourceCertificateDetails BaseResourceCertificateDetailsImpl
+	Type                       string
+	Values                     map[string]interface{}
 }
 
-func unmarshalResourceCertificateDetailsImplementation(input []byte) (ResourceCertificateDetails, error) {
+func (s RawResourceCertificateDetailsImpl) ResourceCertificateDetails() BaseResourceCertificateDetailsImpl {
+	return s.resourceCertificateDetails
+}
+
+func UnmarshalResourceCertificateDetailsImplementation(input []byte) (ResourceCertificateDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +77,15 @@ func unmarshalResourceCertificateDetailsImplementation(input []byte) (ResourceCe
 		return out, nil
 	}
 
-	out := RawResourceCertificateDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseResourceCertificateDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseResourceCertificateDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawResourceCertificateDetailsImpl{
+		resourceCertificateDetails: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
 
 }

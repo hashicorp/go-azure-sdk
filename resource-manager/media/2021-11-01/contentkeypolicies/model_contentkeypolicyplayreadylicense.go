@@ -73,7 +73,7 @@ func (s *ContentKeyPolicyPlayReadyLicense) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["contentKeyLocation"]; ok {
-		impl, err := unmarshalContentKeyPolicyPlayReadyContentKeyLocationImplementation(v)
+		impl, err := UnmarshalContentKeyPolicyPlayReadyContentKeyLocationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ContentKeyLocation' for 'ContentKeyPolicyPlayReadyLicense': %+v", err)
 		}

@@ -45,7 +45,6 @@ func (c PacketCoreControlPlaneVersionClient) Get(ctx context.Context, id PacketC
 
 	var model PacketCoreControlPlaneVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseCustomApiID(input string) (*CustomApiId, error) {
 	}
 
 	id := CustomApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomApiIDInsensitively(input string) (*CustomApiId, error) {
 	}
 
 	id := CustomApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

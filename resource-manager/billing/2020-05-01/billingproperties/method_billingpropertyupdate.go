@@ -51,7 +51,6 @@ func (c BillingPropertiesClient) BillingPropertyUpdate(ctx context.Context, id c
 
 	var model BillingProperty
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

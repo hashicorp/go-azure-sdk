@@ -44,7 +44,7 @@ func ParseGuestConfigurationAssignmentID(input string) (*GuestConfigurationAssig
 	}
 
 	id := GuestConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGuestConfigurationAssignmentIDInsensitively(input string) (*GuestConfi
 	}
 
 	id := GuestConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

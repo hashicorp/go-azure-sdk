@@ -44,7 +44,7 @@ func ParseRouteFilterRuleID(input string) (*RouteFilterRuleId, error) {
 	}
 
 	id := RouteFilterRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRouteFilterRuleIDInsensitively(input string) (*RouteFilterRuleId, erro
 	}
 
 	id := RouteFilterRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

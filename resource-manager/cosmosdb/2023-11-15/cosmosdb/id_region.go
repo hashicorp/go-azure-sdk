@@ -44,7 +44,7 @@ func ParseRegionID(input string) (*RegionId, error) {
 	}
 
 	id := RegionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegionIDInsensitively(input string) (*RegionId, error) {
 	}
 
 	id := RegionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

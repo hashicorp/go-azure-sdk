@@ -15,7 +15,7 @@ type VoiceservicesClient struct {
 }
 
 func NewVoiceservicesClientWithBaseURI(sdkApi sdkEnv.Api) (*VoiceservicesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "voiceservices", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "voiceservices", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VoiceservicesClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseConfigurationPolicyGroupID(input string) (*ConfigurationPolicyGroupId,
 	}
 
 	id := ConfigurationPolicyGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConfigurationPolicyGroupIDInsensitively(input string) (*ConfigurationP
 	}
 
 	id := ConfigurationPolicyGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

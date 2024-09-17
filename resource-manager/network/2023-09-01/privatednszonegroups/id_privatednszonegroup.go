@@ -44,7 +44,7 @@ func ParsePrivateDnsZoneGroupID(input string) (*PrivateDnsZoneGroupId, error) {
 	}
 
 	id := PrivateDnsZoneGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePrivateDnsZoneGroupIDInsensitively(input string) (*PrivateDnsZoneGroup
 	}
 
 	id := PrivateDnsZoneGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

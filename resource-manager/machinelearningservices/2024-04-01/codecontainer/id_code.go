@@ -44,7 +44,7 @@ func ParseCodeID(input string) (*CodeId, error) {
 	}
 
 	id := CodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCodeIDInsensitively(input string) (*CodeId, error) {
 	}
 
 	id := CodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

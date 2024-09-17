@@ -45,7 +45,7 @@ func (s *EventSubscriptionFilter) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]AdvancedFilter, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalAdvancedFilterImplementation(val)
+			impl, err := UnmarshalAdvancedFilterImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'AdvancedFilters' for 'EventSubscriptionFilter': %+v", i, err)
 			}

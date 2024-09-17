@@ -46,7 +46,7 @@ func ParseDataMaskingPolicyRuleID(input string) (*DataMaskingPolicyRuleId, error
 	}
 
 	id := DataMaskingPolicyRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDataMaskingPolicyRuleIDInsensitively(input string) (*DataMaskingPolicy
 	}
 
 	id := DataMaskingPolicyRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

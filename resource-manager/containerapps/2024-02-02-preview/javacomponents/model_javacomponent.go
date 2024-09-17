@@ -38,7 +38,7 @@ func (s *JavaComponent) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalJavaComponentPropertiesImplementation(v)
+		impl, err := UnmarshalJavaComponentPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'JavaComponent': %+v", err)
 		}

@@ -46,7 +46,7 @@ func ParseDiskRestorePointID(input string) (*DiskRestorePointId, error) {
 	}
 
 	id := DiskRestorePointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDiskRestorePointIDInsensitively(input string) (*DiskRestorePointId, er
 	}
 
 	id := DiskRestorePointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -46,7 +46,7 @@ func ParseCloudEndpointID(input string) (*CloudEndpointId, error) {
 	}
 
 	id := CloudEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCloudEndpointIDInsensitively(input string) (*CloudEndpointId, error) {
 	}
 
 	id := CloudEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

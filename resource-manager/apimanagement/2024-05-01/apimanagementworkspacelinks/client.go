@@ -15,7 +15,7 @@ type ApiManagementWorkspaceLinksClient struct {
 }
 
 func NewApiManagementWorkspaceLinksClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiManagementWorkspaceLinksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apimanagementworkspacelinks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apimanagementworkspacelinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiManagementWorkspaceLinksClient: %+v", err)
 	}

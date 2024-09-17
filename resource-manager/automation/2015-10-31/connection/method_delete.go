@@ -46,7 +46,6 @@ func (c ConnectionClient) Delete(ctx context.Context, id ConnectionId) (result D
 
 	var model Connection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

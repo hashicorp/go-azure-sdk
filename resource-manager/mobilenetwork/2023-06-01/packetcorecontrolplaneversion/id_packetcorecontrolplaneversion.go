@@ -38,7 +38,7 @@ func ParsePacketCoreControlPlaneVersionID(input string) (*PacketCoreControlPlane
 	}
 
 	id := PacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParsePacketCoreControlPlaneVersionIDInsensitively(input string) (*PacketCor
 	}
 
 	id := PacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

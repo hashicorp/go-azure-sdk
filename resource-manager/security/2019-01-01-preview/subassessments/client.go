@@ -15,7 +15,7 @@ type SubAssessmentsClient struct {
 }
 
 func NewSubAssessmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubAssessmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "subassessments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "subassessments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubAssessmentsClient: %+v", err)
 	}

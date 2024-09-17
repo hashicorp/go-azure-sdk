@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ILRRequest interface {
+	ILRRequest() BaseILRRequestImpl
 }
 
-// RawILRRequestImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ILRRequest = BaseILRRequestImpl{}
+
+type BaseILRRequestImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseILRRequestImpl) ILRRequest() BaseILRRequestImpl {
+	return s
+}
+
+var _ ILRRequest = RawILRRequestImpl{}
+
+// RawILRRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawILRRequestImpl struct {
-	Type   string
-	Values map[string]interface{}
+	iLRRequest BaseILRRequestImpl
+	Type       string
+	Values     map[string]interface{}
 }
 
-func unmarshalILRRequestImplementation(input []byte) (ILRRequest, error) {
+func (s RawILRRequestImpl) ILRRequest() BaseILRRequestImpl {
+	return s.iLRRequest
+}
+
+func UnmarshalILRRequestImplementation(input []byte) (ILRRequest, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalILRRequestImplementation(input []byte) (ILRRequest, error) {
 		return out, nil
 	}
 
-	out := RawILRRequestImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseILRRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseILRRequestImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawILRRequestImpl{
+		iLRRequest: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
 
 }

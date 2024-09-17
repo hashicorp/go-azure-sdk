@@ -44,7 +44,7 @@ func ParseVirtualHubRouteTableID(input string) (*VirtualHubRouteTableId, error) 
 	}
 
 	id := VirtualHubRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualHubRouteTableIDInsensitively(input string) (*VirtualHubRouteTab
 	}
 
 	id := VirtualHubRouteTableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

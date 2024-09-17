@@ -15,9 +15,20 @@ type SsisEnvironment struct {
 	Variables *[]SsisVariable `json:"variables,omitempty"`
 
 	// Fields inherited from SsisObjectMetadata
-	Description *string `json:"description,omitempty"`
-	Id          *int64  `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	Description *string                `json:"description,omitempty"`
+	Id          *int64                 `json:"id,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Type        SsisObjectMetadataType `json:"type"`
+}
+
+func (s SsisEnvironment) SsisObjectMetadata() BaseSsisObjectMetadataImpl {
+	return BaseSsisObjectMetadataImpl{
+		Description: s.Description,
+		Id:          s.Id,
+		Name:        s.Name,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = SsisEnvironment{}
@@ -31,9 +42,10 @@ func (s SsisEnvironment) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SsisEnvironment: %+v", err)
 	}
+
 	decoded["type"] = "Environment"
 
 	encoded, err = json.Marshal(decoded)

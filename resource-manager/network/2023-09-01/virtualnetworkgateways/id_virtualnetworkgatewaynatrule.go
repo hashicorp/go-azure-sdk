@@ -44,7 +44,7 @@ func ParseVirtualNetworkGatewayNatRuleID(input string) (*VirtualNetworkGatewayNa
 	}
 
 	id := VirtualNetworkGatewayNatRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualNetworkGatewayNatRuleIDInsensitively(input string) (*VirtualNet
 	}
 
 	id := VirtualNetworkGatewayNatRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

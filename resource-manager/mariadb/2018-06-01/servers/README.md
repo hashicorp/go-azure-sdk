@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/servers` Documentation
 
-The `servers` SDK allows for interaction with the Azure Resource Manager Service `mariadb` (API Version `2018-06-01`).
+The `servers` SDK allows for interaction with Azure Resource Manager `mariadb` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityQueryItem interface {
+	EntityQueryItem() BaseEntityQueryItemImpl
 }
 
-// RawEntityQueryItemImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EntityQueryItem = BaseEntityQueryItemImpl{}
+
+type BaseEntityQueryItemImpl struct {
+	Id   *string         `json:"id,omitempty"`
+	Kind EntityQueryKind `json:"kind"`
+	Name *string         `json:"name,omitempty"`
+	Type *string         `json:"type,omitempty"`
+}
+
+func (s BaseEntityQueryItemImpl) EntityQueryItem() BaseEntityQueryItemImpl {
+	return s
+}
+
+var _ EntityQueryItem = RawEntityQueryItemImpl{}
+
+// RawEntityQueryItemImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEntityQueryItemImpl struct {
-	Type   string
-	Values map[string]interface{}
+	entityQueryItem BaseEntityQueryItemImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalEntityQueryItemImplementation(input []byte) (EntityQueryItem, error) {
+func (s RawEntityQueryItemImpl) EntityQueryItem() BaseEntityQueryItemImpl {
+	return s.entityQueryItem
+}
+
+func UnmarshalEntityQueryItemImplementation(input []byte) (EntityQueryItem, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +64,15 @@ func unmarshalEntityQueryItemImplementation(input []byte) (EntityQueryItem, erro
 		return out, nil
 	}
 
-	out := RawEntityQueryItemImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEntityQueryItemImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEntityQueryItemImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEntityQueryItemImpl{
+		entityQueryItem: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

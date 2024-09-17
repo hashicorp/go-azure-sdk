@@ -45,7 +45,6 @@ func (c SharedGalleryImageVersionsClient) Get(ctx context.Context, id VersionId)
 
 	var model SharedGalleryImageVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

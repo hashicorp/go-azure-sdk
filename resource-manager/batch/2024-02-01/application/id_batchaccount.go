@@ -42,7 +42,7 @@ func ParseBatchAccountID(input string) (*BatchAccountId, error) {
 	}
 
 	id := BatchAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseBatchAccountIDInsensitively(input string) (*BatchAccountId, error) {
 	}
 
 	id := BatchAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

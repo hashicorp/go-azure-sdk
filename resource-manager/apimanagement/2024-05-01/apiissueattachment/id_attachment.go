@@ -48,7 +48,7 @@ func ParseAttachmentID(input string) (*AttachmentId, error) {
 	}
 
 	id := AttachmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseAttachmentIDInsensitively(input string) (*AttachmentId, error) {
 	}
 
 	id := AttachmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseContainerGroupID(input string) (*ContainerGroupId, error) {
 	}
 
 	id := ContainerGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseContainerGroupIDInsensitively(input string) (*ContainerGroupId, error)
 	}
 
 	id := ContainerGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

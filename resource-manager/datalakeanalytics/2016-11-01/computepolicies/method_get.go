@@ -45,7 +45,6 @@ func (c ComputePoliciesClient) Get(ctx context.Context, id ComputePolicyId) (res
 
 	var model ComputePolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

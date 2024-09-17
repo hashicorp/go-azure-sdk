@@ -46,7 +46,7 @@ func ParseProviderShareSubscriptionID(input string) (*ProviderShareSubscriptionI
 	}
 
 	id := ProviderShareSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProviderShareSubscriptionIDInsensitively(input string) (*ProviderShare
 	}
 
 	id := ProviderShareSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

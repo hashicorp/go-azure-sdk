@@ -46,7 +46,7 @@ func ParseProtectionContainerID(input string) (*ProtectionContainerId, error) {
 	}
 
 	id := ProtectionContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProtectionContainerIDInsensitively(input string) (*ProtectionContainer
 	}
 
 	id := ProtectionContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

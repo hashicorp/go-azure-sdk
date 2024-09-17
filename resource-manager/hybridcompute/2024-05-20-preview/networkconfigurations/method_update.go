@@ -51,7 +51,6 @@ func (c NetworkConfigurationsClient) Update(ctx context.Context, id commonids.Sc
 
 	var model NetworkConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

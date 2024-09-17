@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AutoMLVertical interface {
+	AutoMLVertical() BaseAutoMLVerticalImpl
 }
 
-// RawAutoMLVerticalImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AutoMLVertical = BaseAutoMLVerticalImpl{}
+
+type BaseAutoMLVerticalImpl struct {
+	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
+	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TaskType         TaskType        `json:"taskType"`
+	TrainingData     MLTableJobInput `json:"trainingData"`
+}
+
+func (s BaseAutoMLVerticalImpl) AutoMLVertical() BaseAutoMLVerticalImpl {
+	return s
+}
+
+var _ AutoMLVertical = RawAutoMLVerticalImpl{}
+
+// RawAutoMLVerticalImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAutoMLVerticalImpl struct {
-	Type   string
-	Values map[string]interface{}
+	autoMLVertical BaseAutoMLVerticalImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalAutoMLVerticalImplementation(input []byte) (AutoMLVertical, error) {
+func (s RawAutoMLVerticalImpl) AutoMLVertical() BaseAutoMLVerticalImpl {
+	return s.autoMLVertical
+}
+
+func UnmarshalAutoMLVerticalImplementation(input []byte) (AutoMLVertical, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -116,10 +136,15 @@ func unmarshalAutoMLVerticalImplementation(input []byte) (AutoMLVertical, error)
 		return out, nil
 	}
 
-	out := RawAutoMLVerticalImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAutoMLVerticalImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAutoMLVerticalImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAutoMLVerticalImpl{
+		autoMLVertical: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

@@ -42,7 +42,7 @@ func ParseSubscriptionFeatureRegistrationID(input string) (*SubscriptionFeatureR
 	}
 
 	id := SubscriptionFeatureRegistrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSubscriptionFeatureRegistrationIDInsensitively(input string) (*Subscri
 	}
 
 	id := SubscriptionFeatureRegistrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

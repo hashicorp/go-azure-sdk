@@ -44,7 +44,7 @@ func ParseImportJobID(input string) (*ImportJobId, error) {
 	}
 
 	id := ImportJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseImportJobIDInsensitively(input string) (*ImportJobId, error) {
 	}
 
 	id := ImportJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

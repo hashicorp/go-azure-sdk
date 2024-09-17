@@ -45,7 +45,6 @@ func (c RecoverableSqlPoolsClient) WorkspaceManagedSqlServerRecoverableSqlPoolsG
 
 	var model RecoverableSqlPool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

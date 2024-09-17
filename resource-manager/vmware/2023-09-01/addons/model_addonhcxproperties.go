@@ -14,7 +14,16 @@ type AddonHcxProperties struct {
 	Offer string `json:"offer"`
 
 	// Fields inherited from AddonProperties
+
+	AddonType         AddonType               `json:"addonType"`
 	ProvisioningState *AddonProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s AddonHcxProperties) AddonProperties() BaseAddonPropertiesImpl {
+	return BaseAddonPropertiesImpl{
+		AddonType:         s.AddonType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = AddonHcxProperties{}
@@ -28,9 +37,10 @@ func (s AddonHcxProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AddonHcxProperties: %+v", err)
 	}
+
 	decoded["addonType"] = "HCX"
 
 	encoded, err = json.Marshal(decoded)

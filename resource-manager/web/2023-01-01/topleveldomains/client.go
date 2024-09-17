@@ -15,7 +15,7 @@ type TopLevelDomainsClient struct {
 }
 
 func NewTopLevelDomainsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopLevelDomainsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topleveldomains", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "topleveldomains", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopLevelDomainsClient: %+v", err)
 	}

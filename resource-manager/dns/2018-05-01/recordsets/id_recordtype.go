@@ -46,7 +46,7 @@ func ParseRecordTypeID(input string) (*RecordTypeId, error) {
 	}
 
 	id := RecordTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRecordTypeIDInsensitively(input string) (*RecordTypeId, error) {
 	}
 
 	id := RecordTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

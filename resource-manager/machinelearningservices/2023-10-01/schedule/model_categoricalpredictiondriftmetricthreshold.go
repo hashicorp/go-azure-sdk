@@ -14,7 +14,16 @@ type CategoricalPredictionDriftMetricThreshold struct {
 	Metric CategoricalPredictionDriftMetric `json:"metric"`
 
 	// Fields inherited from PredictionDriftMetricThresholdBase
-	Threshold *MonitoringThreshold `json:"threshold,omitempty"`
+
+	DataType  MonitoringFeatureDataType `json:"dataType"`
+	Threshold *MonitoringThreshold      `json:"threshold,omitempty"`
+}
+
+func (s CategoricalPredictionDriftMetricThreshold) PredictionDriftMetricThresholdBase() BasePredictionDriftMetricThresholdBaseImpl {
+	return BasePredictionDriftMetricThresholdBaseImpl{
+		DataType:  s.DataType,
+		Threshold: s.Threshold,
+	}
 }
 
 var _ json.Marshaler = CategoricalPredictionDriftMetricThreshold{}
@@ -28,9 +37,10 @@ func (s CategoricalPredictionDriftMetricThreshold) MarshalJSON() ([]byte, error)
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CategoricalPredictionDriftMetricThreshold: %+v", err)
 	}
+
 	decoded["dataType"] = "Categorical"
 
 	encoded, err = json.Marshal(decoded)

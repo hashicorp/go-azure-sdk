@@ -44,7 +44,7 @@ func ParseVariableID(input string) (*VariableId, error) {
 	}
 
 	id := VariableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVariableIDInsensitively(input string) (*VariableId, error) {
 	}
 
 	id := VariableId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

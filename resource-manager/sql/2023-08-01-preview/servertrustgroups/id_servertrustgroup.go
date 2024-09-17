@@ -44,7 +44,7 @@ func ParseServerTrustGroupID(input string) (*ServerTrustGroupId, error) {
 	}
 
 	id := ServerTrustGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerTrustGroupIDInsensitively(input string) (*ServerTrustGroupId, er
 	}
 
 	id := ServerTrustGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

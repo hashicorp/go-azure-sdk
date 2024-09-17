@@ -46,7 +46,7 @@ func ParseDatabasePrincipalAssignmentID(input string) (*DatabasePrincipalAssignm
 	}
 
 	id := DatabasePrincipalAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDatabasePrincipalAssignmentIDInsensitively(input string) (*DatabasePri
 	}
 
 	id := DatabasePrincipalAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

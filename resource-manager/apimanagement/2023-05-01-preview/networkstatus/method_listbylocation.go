@@ -46,7 +46,6 @@ func (c NetworkStatusClient) ListByLocation(ctx context.Context, id LocationId) 
 
 	var model NetworkStatusContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

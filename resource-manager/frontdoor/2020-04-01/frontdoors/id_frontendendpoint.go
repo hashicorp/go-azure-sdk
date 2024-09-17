@@ -44,7 +44,7 @@ func ParseFrontendEndpointID(input string) (*FrontendEndpointId, error) {
 	}
 
 	id := FrontendEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFrontendEndpointIDInsensitively(input string) (*FrontendEndpointId, er
 	}
 
 	id := FrontendEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -45,7 +45,6 @@ func (c BillingRoleAssignmentsClient) GetByBillingProfile(ctx context.Context, i
 
 	var model BillingRoleAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

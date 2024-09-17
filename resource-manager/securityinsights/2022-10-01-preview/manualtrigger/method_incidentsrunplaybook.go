@@ -50,7 +50,6 @@ func (c ManualTriggerClient) IncidentsRunPlaybook(ctx context.Context, id Incide
 
 	var model interface{}
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

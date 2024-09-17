@@ -42,7 +42,7 @@ func ParseIPAllocationID(input string) (*IPAllocationId, error) {
 	}
 
 	id := IPAllocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseIPAllocationIDInsensitively(input string) (*IPAllocationId, error) {
 	}
 
 	id := IPAllocationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

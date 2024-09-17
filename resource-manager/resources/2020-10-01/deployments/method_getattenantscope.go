@@ -45,7 +45,6 @@ func (c DeploymentsClient) GetAtTenantScope(ctx context.Context, id DeploymentId
 
 	var model DeploymentExtended
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -35,6 +35,7 @@ func (o AnnotationsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o AnnotationsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c ComponentAnnotationsAPIsClient) AnnotationsList(ctx context.Context, id 
 
 	var model AnnotationsListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

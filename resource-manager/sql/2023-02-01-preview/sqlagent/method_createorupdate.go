@@ -51,7 +51,6 @@ func (c SqlAgentClient) CreateOrUpdate(ctx context.Context, id commonids.SqlMana
 
 	var model SqlAgentConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

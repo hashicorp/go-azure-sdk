@@ -15,7 +15,7 @@ type ServiceFabricsClient struct {
 }
 
 func NewServiceFabricsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceFabricsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servicefabrics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servicefabrics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServiceFabricsClient: %+v", err)
 	}

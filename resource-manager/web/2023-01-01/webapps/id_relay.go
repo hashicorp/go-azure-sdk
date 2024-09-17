@@ -46,7 +46,7 @@ func ParseRelayID(input string) (*RelayId, error) {
 	}
 
 	id := RelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRelayIDInsensitively(input string) (*RelayId, error) {
 	}
 
 	id := RelayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

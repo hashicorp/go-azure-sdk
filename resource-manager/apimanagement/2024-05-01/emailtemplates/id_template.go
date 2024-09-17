@@ -44,7 +44,7 @@ func ParseTemplateID(input string) (*TemplateId, error) {
 	}
 
 	id := TemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTemplateIDInsensitively(input string) (*TemplateId, error) {
 	}
 
 	id := TemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

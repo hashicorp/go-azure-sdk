@@ -46,7 +46,6 @@ func (c PrivateEndpointConnectionsClient) ListByDatabaseAccount(ctx context.Cont
 
 	var model PrivateEndpointConnectionListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

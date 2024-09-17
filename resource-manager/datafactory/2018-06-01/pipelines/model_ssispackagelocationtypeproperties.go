@@ -42,7 +42,7 @@ func (s *SSISPackageLocationTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["packagePassword"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PackagePassword' for 'SSISPackageLocationTypeProperties': %+v", err)
 		}

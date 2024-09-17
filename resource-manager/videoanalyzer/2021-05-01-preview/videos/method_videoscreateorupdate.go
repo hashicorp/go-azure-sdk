@@ -50,7 +50,6 @@ func (c VideosClient) VideosCreateOrUpdate(ctx context.Context, id VideoId, inpu
 
 	var model VideoEntity
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

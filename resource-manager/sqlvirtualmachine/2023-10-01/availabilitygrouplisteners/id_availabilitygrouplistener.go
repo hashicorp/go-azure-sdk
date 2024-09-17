@@ -44,7 +44,7 @@ func ParseAvailabilityGroupListenerID(input string) (*AvailabilityGroupListenerI
 	}
 
 	id := AvailabilityGroupListenerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAvailabilityGroupListenerIDInsensitively(input string) (*AvailabilityG
 	}
 
 	id := AvailabilityGroupListenerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

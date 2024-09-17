@@ -42,7 +42,7 @@ func ParseWorkbookID(input string) (*WorkbookId, error) {
 	}
 
 	id := WorkbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseWorkbookIDInsensitively(input string) (*WorkbookId, error) {
 	}
 
 	id := WorkbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

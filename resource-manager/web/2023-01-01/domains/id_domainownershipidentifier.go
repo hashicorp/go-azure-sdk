@@ -44,7 +44,7 @@ func ParseDomainOwnershipIdentifierID(input string) (*DomainOwnershipIdentifierI
 	}
 
 	id := DomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDomainOwnershipIdentifierIDInsensitively(input string) (*DomainOwnersh
 	}
 
 	id := DomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

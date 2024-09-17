@@ -14,10 +14,12 @@ type KubernetesOnlineDeployment struct {
 	ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements,omitempty"`
 
 	// Fields inherited from OnlineDeployment
+
 	AppInsightsEnabled        *bool                          `json:"appInsightsEnabled,omitempty"`
 	CodeConfiguration         *CodeConfiguration             `json:"codeConfiguration,omitempty"`
 	Description               *string                        `json:"description,omitempty"`
 	EgressPublicNetworkAccess *EgressPublicNetworkAccessType `json:"egressPublicNetworkAccess,omitempty"`
+	EndpointComputeType       EndpointComputeType            `json:"endpointComputeType"`
 	EnvironmentId             *string                        `json:"environmentId,omitempty"`
 	EnvironmentVariables      *map[string]string             `json:"environmentVariables,omitempty"`
 	InstanceType              *string                        `json:"instanceType,omitempty"`
@@ -31,6 +33,27 @@ type KubernetesOnlineDeployment struct {
 	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
 }
 
+func (s KubernetesOnlineDeployment) OnlineDeployment() BaseOnlineDeploymentImpl {
+	return BaseOnlineDeploymentImpl{
+		AppInsightsEnabled:        s.AppInsightsEnabled,
+		CodeConfiguration:         s.CodeConfiguration,
+		Description:               s.Description,
+		EgressPublicNetworkAccess: s.EgressPublicNetworkAccess,
+		EndpointComputeType:       s.EndpointComputeType,
+		EnvironmentId:             s.EnvironmentId,
+		EnvironmentVariables:      s.EnvironmentVariables,
+		InstanceType:              s.InstanceType,
+		LivenessProbe:             s.LivenessProbe,
+		Model:                     s.Model,
+		ModelMountPath:            s.ModelMountPath,
+		Properties:                s.Properties,
+		ProvisioningState:         s.ProvisioningState,
+		ReadinessProbe:            s.ReadinessProbe,
+		RequestSettings:           s.RequestSettings,
+		ScaleSettings:             s.ScaleSettings,
+	}
+}
+
 var _ json.Marshaler = KubernetesOnlineDeployment{}
 
 func (s KubernetesOnlineDeployment) MarshalJSON() ([]byte, error) {
@@ -42,9 +65,10 @@ func (s KubernetesOnlineDeployment) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling KubernetesOnlineDeployment: %+v", err)
 	}
+
 	decoded["endpointComputeType"] = "Kubernetes"
 
 	encoded, err = json.Marshal(decoded)
@@ -69,6 +93,7 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 	s.ContainerResourceRequirements = decoded.ContainerResourceRequirements
 	s.Description = decoded.Description
 	s.EgressPublicNetworkAccess = decoded.EgressPublicNetworkAccess
+	s.EndpointComputeType = decoded.EndpointComputeType
 	s.EnvironmentId = decoded.EnvironmentId
 	s.EnvironmentVariables = decoded.EnvironmentVariables
 	s.InstanceType = decoded.InstanceType
@@ -86,7 +111,7 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["scaleSettings"]; ok {
-		impl, err := unmarshalOnlineScaleSettingsImplementation(v)
+		impl, err := UnmarshalOnlineScaleSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScaleSettings' for 'KubernetesOnlineDeployment': %+v", err)
 		}

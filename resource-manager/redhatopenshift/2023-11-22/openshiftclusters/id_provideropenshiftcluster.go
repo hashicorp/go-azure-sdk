@@ -42,7 +42,7 @@ func ParseProviderOpenShiftClusterID(input string) (*ProviderOpenShiftClusterId,
 	}
 
 	id := ProviderOpenShiftClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderOpenShiftClusterIDInsensitively(input string) (*ProviderOpenSh
 	}
 
 	id := ProviderOpenShiftClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

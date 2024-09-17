@@ -44,7 +44,7 @@ func ParseShareID(input string) (*ShareId, error) {
 	}
 
 	id := ShareId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseShareIDInsensitively(input string) (*ShareId, error) {
 	}
 
 	id := ShareId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

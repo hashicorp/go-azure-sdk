@@ -15,7 +15,7 @@ type SharesClient struct {
 }
 
 func NewSharesClientWithBaseURI(sdkApi sdkEnv.Api) (*SharesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "shares", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "shares", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SharesClient: %+v", err)
 	}

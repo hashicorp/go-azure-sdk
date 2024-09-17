@@ -38,6 +38,7 @@ func (o PredictiveMetricGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o PredictiveMetricGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -90,7 +91,6 @@ func (c MetricsClient) PredictiveMetricGet(ctx context.Context, id AutoScaleSett
 
 	var model PredictiveResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

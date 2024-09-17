@@ -50,7 +50,6 @@ func (c JobClient) CreateOrUpdate(ctx context.Context, id JobId, input JobBaseRe
 
 	var model JobBaseResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,7 @@ func ParseSlotPublicCertificateID(input string) (*SlotPublicCertificateId, error
 	}
 
 	id := SlotPublicCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotPublicCertificateIDInsensitively(input string) (*SlotPublicCertifi
 	}
 
 	id := SlotPublicCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

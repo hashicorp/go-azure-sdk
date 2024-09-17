@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BatchDeploymentConfiguration interface {
+	BatchDeploymentConfiguration() BaseBatchDeploymentConfigurationImpl
 }
 
-// RawBatchDeploymentConfigurationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ BatchDeploymentConfiguration = BaseBatchDeploymentConfigurationImpl{}
+
+type BaseBatchDeploymentConfigurationImpl struct {
+	DeploymentConfigurationType BatchDeploymentConfigurationType `json:"deploymentConfigurationType"`
+}
+
+func (s BaseBatchDeploymentConfigurationImpl) BatchDeploymentConfiguration() BaseBatchDeploymentConfigurationImpl {
+	return s
+}
+
+var _ BatchDeploymentConfiguration = RawBatchDeploymentConfigurationImpl{}
+
+// RawBatchDeploymentConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawBatchDeploymentConfigurationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	batchDeploymentConfiguration BaseBatchDeploymentConfigurationImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalBatchDeploymentConfigurationImplementation(input []byte) (BatchDeploymentConfiguration, error) {
+func (s RawBatchDeploymentConfigurationImpl) BatchDeploymentConfiguration() BaseBatchDeploymentConfigurationImpl {
+	return s.batchDeploymentConfiguration
+}
+
+func UnmarshalBatchDeploymentConfigurationImplementation(input []byte) (BatchDeploymentConfiguration, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalBatchDeploymentConfigurationImplementation(input []byte) (BatchDep
 		return out, nil
 	}
 
-	out := RawBatchDeploymentConfigurationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseBatchDeploymentConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBatchDeploymentConfigurationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawBatchDeploymentConfigurationImpl{
+		batchDeploymentConfiguration: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

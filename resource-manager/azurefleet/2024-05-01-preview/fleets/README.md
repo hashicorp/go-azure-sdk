@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/azurefleet/2024-05-01-preview/fleets` Documentation
 
-The `fleets` SDK allows for interaction with the Azure Resource Manager Service `azurefleet` (API Version `2024-05-01-preview`).
+The `fleets` SDK allows for interaction with Azure Resource Manager `azurefleet` (API Version `2024-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

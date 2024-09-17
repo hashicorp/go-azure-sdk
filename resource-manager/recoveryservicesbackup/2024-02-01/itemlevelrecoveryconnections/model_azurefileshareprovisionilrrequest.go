@@ -15,6 +15,14 @@ type AzureFileShareProvisionILRRequest struct {
 	SourceResourceId *string `json:"sourceResourceId,omitempty"`
 
 	// Fields inherited from ILRRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureFileShareProvisionILRRequest) ILRRequest() BaseILRRequestImpl {
+	return BaseILRRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureFileShareProvisionILRRequest{}
@@ -28,9 +36,10 @@ func (s AzureFileShareProvisionILRRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureFileShareProvisionILRRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureFileShareProvisionILRRequest"
 
 	encoded, err = json.Marshal(decoded)

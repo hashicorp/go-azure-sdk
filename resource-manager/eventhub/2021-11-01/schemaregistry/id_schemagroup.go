@@ -44,7 +44,7 @@ func ParseSchemaGroupID(input string) (*SchemaGroupId, error) {
 	}
 
 	id := SchemaGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSchemaGroupIDInsensitively(input string) (*SchemaGroupId, error) {
 	}
 
 	id := SchemaGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

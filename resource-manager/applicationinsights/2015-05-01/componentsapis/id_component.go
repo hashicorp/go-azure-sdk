@@ -42,7 +42,7 @@ func ParseComponentID(input string) (*ComponentId, error) {
 	}
 
 	id := ComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseComponentIDInsensitively(input string) (*ComponentId, error) {
 	}
 
 	id := ComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

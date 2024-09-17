@@ -41,7 +41,7 @@ func (s *Filters) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Overlay, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalOverlayImplementation(val)
+			impl, err := UnmarshalOverlayImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Overlays' for 'Filters': %+v", i, err)
 			}

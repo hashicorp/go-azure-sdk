@@ -46,7 +46,7 @@ func ParseWcfRelayAuthorizationRuleID(input string) (*WcfRelayAuthorizationRuleI
 	}
 
 	id := WcfRelayAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWcfRelayAuthorizationRuleIDInsensitively(input string) (*WcfRelayAutho
 	}
 
 	id := WcfRelayAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

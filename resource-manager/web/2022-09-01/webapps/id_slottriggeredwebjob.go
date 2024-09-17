@@ -46,7 +46,7 @@ func ParseSlotTriggeredWebJobID(input string) (*SlotTriggeredWebJobId, error) {
 	}
 
 	id := SlotTriggeredWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotTriggeredWebJobIDInsensitively(input string) (*SlotTriggeredWebJob
 	}
 
 	id := SlotTriggeredWebJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -16,10 +16,22 @@ type BlobContainerDataSetMapping struct {
 	Properties BlobContainerMappingProperties `json:"properties"`
 
 	// Fields inherited from DataSetMapping
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       DataSetMappingKind     `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BlobContainerDataSetMapping) DataSetMapping() BaseDataSetMappingImpl {
+	return BaseDataSetMappingImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = BlobContainerDataSetMapping{}
@@ -33,9 +45,10 @@ func (s BlobContainerDataSetMapping) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BlobContainerDataSetMapping: %+v", err)
 	}
+
 	decoded["kind"] = "Container"
 
 	encoded, err = json.Marshal(decoded)

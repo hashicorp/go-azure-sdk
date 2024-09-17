@@ -50,7 +50,7 @@ func ParseRepetitionID(input string) (*RepetitionId, error) {
 	}
 
 	id := RepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseRepetitionIDInsensitively(input string) (*RepetitionId, error) {
 	}
 
 	id := RepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

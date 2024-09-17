@@ -46,7 +46,7 @@ func ParseCatalogEnvironmentDefinitionID(input string) (*CatalogEnvironmentDefin
 	}
 
 	id := CatalogEnvironmentDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseCatalogEnvironmentDefinitionIDInsensitively(input string) (*CatalogEnv
 	}
 
 	id := CatalogEnvironmentDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

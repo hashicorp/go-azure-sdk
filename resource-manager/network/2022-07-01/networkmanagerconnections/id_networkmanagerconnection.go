@@ -40,7 +40,7 @@ func ParseNetworkManagerConnectionID(input string) (*NetworkManagerConnectionId,
 	}
 
 	id := NetworkManagerConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseNetworkManagerConnectionIDInsensitively(input string) (*NetworkManager
 	}
 
 	id := NetworkManagerConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

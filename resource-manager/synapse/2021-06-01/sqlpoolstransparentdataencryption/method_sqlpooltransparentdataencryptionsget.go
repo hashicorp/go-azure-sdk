@@ -46,7 +46,6 @@ func (c SqlPoolsTransparentDataEncryptionClient) SqlPoolTransparentDataEncryptio
 
 	var model TransparentDataEncryption
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

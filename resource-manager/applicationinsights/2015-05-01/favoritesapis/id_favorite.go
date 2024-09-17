@@ -44,7 +44,7 @@ func ParseFavoriteID(input string) (*FavoriteId, error) {
 	}
 
 	id := FavoriteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFavoriteIDInsensitively(input string) (*FavoriteId, error) {
 	}
 
 	id := FavoriteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

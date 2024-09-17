@@ -42,7 +42,7 @@ func ParseStorageMoverID(input string) (*StorageMoverId, error) {
 	}
 
 	id := StorageMoverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseStorageMoverIDInsensitively(input string) (*StorageMoverId, error) {
 	}
 
 	id := StorageMoverId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

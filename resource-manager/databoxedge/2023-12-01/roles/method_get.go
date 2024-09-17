@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Role
+	Model        Role
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c RolesClient) Get(ctx context.Context, id RoleId) (result GetOperationRes
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalRoleImplementation(respObj)
+	model, err := UnmarshalRoleImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

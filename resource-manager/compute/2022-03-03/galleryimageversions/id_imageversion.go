@@ -46,7 +46,7 @@ func ParseImageVersionID(input string) (*ImageVersionId, error) {
 	}
 
 	id := ImageVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseImageVersionIDInsensitively(input string) (*ImageVersionId, error) {
 	}
 
 	id := ImageVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

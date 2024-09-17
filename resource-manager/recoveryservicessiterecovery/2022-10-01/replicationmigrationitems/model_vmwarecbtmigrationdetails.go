@@ -51,6 +51,14 @@ type VMwareCbtMigrationDetails struct {
 	VMwareMachineId                       *string                          `json:"vmwareMachineId,omitempty"`
 
 	// Fields inherited from MigrationProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtMigrationDetails) MigrationProviderSpecificSettings() BaseMigrationProviderSpecificSettingsImpl {
+	return BaseMigrationProviderSpecificSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtMigrationDetails{}
@@ -64,9 +72,10 @@ func (s VMwareCbtMigrationDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtMigrationDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

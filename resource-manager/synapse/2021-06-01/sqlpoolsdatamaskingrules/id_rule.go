@@ -46,7 +46,7 @@ func ParseRuleID(input string) (*RuleId, error) {
 	}
 
 	id := RuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRuleIDInsensitively(input string) (*RuleId, error) {
 	}
 
 	id := RuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

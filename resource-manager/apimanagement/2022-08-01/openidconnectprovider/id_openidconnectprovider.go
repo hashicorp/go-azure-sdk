@@ -44,7 +44,7 @@ func ParseOpenidConnectProviderID(input string) (*OpenidConnectProviderId, error
 	}
 
 	id := OpenidConnectProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOpenidConnectProviderIDInsensitively(input string) (*OpenidConnectProv
 	}
 
 	id := OpenidConnectProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

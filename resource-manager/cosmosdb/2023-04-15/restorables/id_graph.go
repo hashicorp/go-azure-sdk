@@ -46,7 +46,7 @@ func ParseGraphID(input string) (*GraphId, error) {
 	}
 
 	id := GraphId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGraphIDInsensitively(input string) (*GraphId, error) {
 	}
 
 	id := GraphId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

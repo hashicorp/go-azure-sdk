@@ -44,7 +44,7 @@ func ParseIdentityProviderID(input string) (*IdentityProviderId, error) {
 	}
 
 	id := IdentityProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIdentityProviderIDInsensitively(input string) (*IdentityProviderId, er
 	}
 
 	id := IdentityProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

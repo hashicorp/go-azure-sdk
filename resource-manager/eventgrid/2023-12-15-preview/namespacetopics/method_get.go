@@ -45,7 +45,6 @@ func (c NamespaceTopicsClient) Get(ctx context.Context, id NamespaceTopicId) (re
 
 	var model NamespaceTopic
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

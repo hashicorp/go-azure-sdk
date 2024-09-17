@@ -42,7 +42,7 @@ func ParseDatabaseAccountID(input string) (*DatabaseAccountId, error) {
 	}
 
 	id := DatabaseAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDatabaseAccountIDInsensitively(input string) (*DatabaseAccountId, erro
 	}
 
 	id := DatabaseAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

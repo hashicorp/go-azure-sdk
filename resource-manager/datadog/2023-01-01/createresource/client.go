@@ -15,7 +15,7 @@ type CreateResourceClient struct {
 }
 
 func NewCreateResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*CreateResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "createresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "createresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CreateResourceClient: %+v", err)
 	}

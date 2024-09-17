@@ -44,7 +44,7 @@ func ParseCollectorPolicyID(input string) (*CollectorPolicyId, error) {
 	}
 
 	id := CollectorPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCollectorPolicyIDInsensitively(input string) (*CollectorPolicyId, erro
 	}
 
 	id := CollectorPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

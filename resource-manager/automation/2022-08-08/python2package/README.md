@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/python2package` Documentation
 
-The `python2package` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2022-08-08`).
+The `python2package` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2022-08-08`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

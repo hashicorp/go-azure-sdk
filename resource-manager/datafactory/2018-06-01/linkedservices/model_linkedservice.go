@@ -10,18 +10,40 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LinkedService interface {
+	LinkedService() BaseLinkedServiceImpl
 }
 
-// RawLinkedServiceImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ LinkedService = BaseLinkedServiceImpl{}
+
+type BaseLinkedServiceImpl struct {
+	Annotations *[]interface{}                     `json:"annotations,omitempty"`
+	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
+	Description *string                            `json:"description,omitempty"`
+	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Type        string                             `json:"type"`
+	Version     *string                            `json:"version,omitempty"`
+}
+
+func (s BaseLinkedServiceImpl) LinkedService() BaseLinkedServiceImpl {
+	return s
+}
+
+var _ LinkedService = RawLinkedServiceImpl{}
+
+// RawLinkedServiceImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawLinkedServiceImpl struct {
-	Type   string
-	Values map[string]interface{}
+	linkedService BaseLinkedServiceImpl
+	Type          string
+	Values        map[string]interface{}
 }
 
-func unmarshalLinkedServiceImplementation(input []byte) (LinkedService, error) {
+func (s RawLinkedServiceImpl) LinkedService() BaseLinkedServiceImpl {
+	return s.linkedService
+}
+
+func UnmarshalLinkedServiceImplementation(input []byte) (LinkedService, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -1004,10 +1026,15 @@ func unmarshalLinkedServiceImplementation(input []byte) (LinkedService, error) {
 		return out, nil
 	}
 
-	out := RawLinkedServiceImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseLinkedServiceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLinkedServiceImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawLinkedServiceImpl{
+		linkedService: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
 
 }

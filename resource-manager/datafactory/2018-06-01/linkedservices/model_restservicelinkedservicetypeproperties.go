@@ -64,7 +64,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["clientSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}
@@ -72,7 +72,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}
@@ -80,7 +80,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["servicePrincipalEmbeddedCert"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCert' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}
@@ -88,7 +88,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["servicePrincipalEmbeddedCertPassword"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCertPassword' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}
@@ -96,7 +96,7 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalKey' for 'RestServiceLinkedServiceTypeProperties': %+v", err)
 		}

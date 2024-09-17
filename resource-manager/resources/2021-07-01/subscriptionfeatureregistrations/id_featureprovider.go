@@ -40,7 +40,7 @@ func ParseFeatureProviderID(input string) (*FeatureProviderId, error) {
 	}
 
 	id := FeatureProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseFeatureProviderIDInsensitively(input string) (*FeatureProviderId, erro
 	}
 
 	id := FeatureProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

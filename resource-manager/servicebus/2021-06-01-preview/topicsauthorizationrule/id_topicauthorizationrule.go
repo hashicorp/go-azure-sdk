@@ -46,7 +46,7 @@ func ParseTopicAuthorizationRuleID(input string) (*TopicAuthorizationRuleId, err
 	}
 
 	id := TopicAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTopicAuthorizationRuleIDInsensitively(input string) (*TopicAuthorizati
 	}
 
 	id := TopicAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -50,7 +50,6 @@ func (c CodeContainerClient) CreateOrUpdate(ctx context.Context, id CodeId, inpu
 
 	var model CodeContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

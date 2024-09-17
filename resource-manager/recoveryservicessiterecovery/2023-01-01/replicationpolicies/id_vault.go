@@ -42,7 +42,7 @@ func ParseVaultID(input string) (*VaultId, error) {
 	}
 
 	id := VaultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVaultIDInsensitively(input string) (*VaultId, error) {
 	}
 
 	id := VaultId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

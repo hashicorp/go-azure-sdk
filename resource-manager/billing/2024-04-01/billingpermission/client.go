@@ -15,7 +15,7 @@ type BillingPermissionClient struct {
 }
 
 func NewBillingPermissionClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingPermissionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "billingpermission", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "billingpermission", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BillingPermissionClient: %+v", err)
 	}

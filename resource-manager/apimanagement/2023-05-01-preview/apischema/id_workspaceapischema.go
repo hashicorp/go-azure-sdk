@@ -48,7 +48,7 @@ func ParseWorkspaceApiSchemaID(input string) (*WorkspaceApiSchemaId, error) {
 	}
 
 	id := WorkspaceApiSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseWorkspaceApiSchemaIDInsensitively(input string) (*WorkspaceApiSchemaId
 	}
 
 	id := WorkspaceApiSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

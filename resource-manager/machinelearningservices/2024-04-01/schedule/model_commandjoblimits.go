@@ -13,7 +13,16 @@ var _ JobLimits = CommandJobLimits{}
 type CommandJobLimits struct {
 
 	// Fields inherited from JobLimits
-	Timeout *string `json:"timeout,omitempty"`
+
+	JobLimitsType JobLimitsType `json:"jobLimitsType"`
+	Timeout       *string       `json:"timeout,omitempty"`
+}
+
+func (s CommandJobLimits) JobLimits() BaseJobLimitsImpl {
+	return BaseJobLimitsImpl{
+		JobLimitsType: s.JobLimitsType,
+		Timeout:       s.Timeout,
+	}
 }
 
 var _ json.Marshaler = CommandJobLimits{}
@@ -27,9 +36,10 @@ func (s CommandJobLimits) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CommandJobLimits: %+v", err)
 	}
+
 	decoded["jobLimitsType"] = "Command"
 
 	encoded, err = json.Marshal(decoded)

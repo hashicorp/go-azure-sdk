@@ -46,7 +46,7 @@ func ParsePrivateEndpointID(input string) (*PrivateEndpointId, error) {
 	}
 
 	id := PrivateEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePrivateEndpointIDInsensitively(input string) (*PrivateEndpointId, erro
 	}
 
 	id := PrivateEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -89,7 +89,7 @@ func (s *AzureSqlDatabaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 	}
 
 	if v, ok := temp["servicePrincipalCredential"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalCredential' for 'AzureSqlDatabaseLinkedServiceTypeProperties': %+v", err)
 		}
@@ -97,7 +97,7 @@ func (s *AzureSqlDatabaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalKey' for 'AzureSqlDatabaseLinkedServiceTypeProperties': %+v", err)
 		}

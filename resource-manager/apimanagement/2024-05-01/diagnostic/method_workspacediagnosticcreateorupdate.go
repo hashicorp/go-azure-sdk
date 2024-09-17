@@ -36,6 +36,7 @@ func (o WorkspaceDiagnosticCreateOrUpdateOperationOptions) ToHeaders() *client.H
 
 func (o WorkspaceDiagnosticCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c DiagnosticClient) WorkspaceDiagnosticCreateOrUpdate(ctx context.Context,
 
 	var model DiagnosticContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

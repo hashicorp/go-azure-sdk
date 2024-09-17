@@ -15,7 +15,7 @@ type RealUserMetricsClient struct {
 }
 
 func NewRealUserMetricsClientWithBaseURI(sdkApi sdkEnv.Api) (*RealUserMetricsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "realusermetrics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "realusermetrics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RealUserMetricsClient: %+v", err)
 	}

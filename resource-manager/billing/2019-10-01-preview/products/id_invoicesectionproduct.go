@@ -44,7 +44,7 @@ func ParseInvoiceSectionProductID(input string) (*InvoiceSectionProductId, error
 	}
 
 	id := InvoiceSectionProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInvoiceSectionProductIDInsensitively(input string) (*InvoiceSectionPro
 	}
 
 	id := InvoiceSectionProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

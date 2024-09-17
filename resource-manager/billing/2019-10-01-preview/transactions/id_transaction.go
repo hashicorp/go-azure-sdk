@@ -42,7 +42,7 @@ func ParseTransactionID(input string) (*TransactionId, error) {
 	}
 
 	id := TransactionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseTransactionIDInsensitively(input string) (*TransactionId, error) {
 	}
 
 	id := TransactionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type MachineRunCommandsClient struct {
 }
 
 func NewMachineRunCommandsClientWithBaseURI(sdkApi sdkEnv.Api) (*MachineRunCommandsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "machineruncommands", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "machineruncommands", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MachineRunCommandsClient: %+v", err)
 	}

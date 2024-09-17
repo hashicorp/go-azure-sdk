@@ -42,7 +42,7 @@ func ParseCapacityID(input string) (*CapacityId, error) {
 	}
 
 	id := CapacityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCapacityIDInsensitively(input string) (*CapacityId, error) {
 	}
 
 	id := CapacityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

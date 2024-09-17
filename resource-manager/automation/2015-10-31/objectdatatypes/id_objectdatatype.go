@@ -44,7 +44,7 @@ func ParseObjectDataTypeID(input string) (*ObjectDataTypeId, error) {
 	}
 
 	id := ObjectDataTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseObjectDataTypeIDInsensitively(input string) (*ObjectDataTypeId, error)
 	}
 
 	id := ObjectDataTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

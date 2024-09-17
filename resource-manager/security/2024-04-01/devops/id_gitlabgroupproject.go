@@ -46,7 +46,7 @@ func ParseGitLabGroupProjectID(input string) (*GitLabGroupProjectId, error) {
 	}
 
 	id := GitLabGroupProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGitLabGroupProjectIDInsensitively(input string) (*GitLabGroupProjectId
 	}
 
 	id := GitLabGroupProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

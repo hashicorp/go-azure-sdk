@@ -46,7 +46,6 @@ func (c ProjectCatalogsClient) GetSyncErrorDetails(ctx context.Context, id Catal
 
 	var model SyncErrorDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

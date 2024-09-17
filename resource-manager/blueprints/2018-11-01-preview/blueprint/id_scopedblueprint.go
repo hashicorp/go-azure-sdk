@@ -40,7 +40,7 @@ func ParseScopedBlueprintID(input string) (*ScopedBlueprintId, error) {
 	}
 
 	id := ScopedBlueprintId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedBlueprintIDInsensitively(input string) (*ScopedBlueprintId, erro
 	}
 
 	id := ScopedBlueprintId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

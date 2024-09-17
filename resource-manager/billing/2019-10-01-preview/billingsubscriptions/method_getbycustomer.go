@@ -45,7 +45,6 @@ func (c BillingSubscriptionsClient) GetByCustomer(ctx context.Context, id Custom
 
 	var model BillingSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

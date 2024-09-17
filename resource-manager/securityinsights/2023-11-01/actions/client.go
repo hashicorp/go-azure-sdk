@@ -15,7 +15,7 @@ type ActionsClient struct {
 }
 
 func NewActionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ActionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "actions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "actions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ActionsClient: %+v", err)
 	}

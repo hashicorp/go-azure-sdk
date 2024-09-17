@@ -15,7 +15,7 @@ type DataConnectorsDisconnectClient struct {
 }
 
 func NewDataConnectorsDisconnectClientWithBaseURI(sdkApi sdkEnv.Api) (*DataConnectorsDisconnectClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataconnectorsdisconnect", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataconnectorsdisconnect", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataConnectorsDisconnectClient: %+v", err)
 	}

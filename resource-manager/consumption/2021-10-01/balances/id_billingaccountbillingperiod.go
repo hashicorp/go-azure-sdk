@@ -40,7 +40,7 @@ func ParseBillingAccountBillingPeriodID(input string) (*BillingAccountBillingPer
 	}
 
 	id := BillingAccountBillingPeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseBillingAccountBillingPeriodIDInsensitively(input string) (*BillingAcco
 	}
 
 	id := BillingAccountBillingPeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

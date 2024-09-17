@@ -44,7 +44,7 @@ func ParseLiveOutputOperationID(input string) (*LiveOutputOperationId, error) {
 	}
 
 	id := LiveOutputOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLiveOutputOperationIDInsensitively(input string) (*LiveOutputOperation
 	}
 
 	id := LiveOutputOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

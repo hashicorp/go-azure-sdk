@@ -44,7 +44,7 @@ func ParseGremlinDatabaseID(input string) (*GremlinDatabaseId, error) {
 	}
 
 	id := GremlinDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGremlinDatabaseIDInsensitively(input string) (*GremlinDatabaseId, erro
 	}
 
 	id := GremlinDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

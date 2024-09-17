@@ -42,7 +42,7 @@ func ParseGrafanaID(input string) (*GrafanaId, error) {
 	}
 
 	id := GrafanaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseGrafanaIDInsensitively(input string) (*GrafanaId, error) {
 	}
 
 	id := GrafanaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

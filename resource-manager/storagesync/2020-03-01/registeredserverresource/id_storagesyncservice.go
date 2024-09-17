@@ -42,7 +42,7 @@ func ParseStorageSyncServiceID(input string) (*StorageSyncServiceId, error) {
 	}
 
 	id := StorageSyncServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseStorageSyncServiceIDInsensitively(input string) (*StorageSyncServiceId
 	}
 
 	id := StorageSyncServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

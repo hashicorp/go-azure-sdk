@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-10-01/datastores` Documentation
 
-The `datastores` SDK allows for interaction with the Azure Resource Manager Service `connectedvmware` (API Version `2023-10-01`).
+The `datastores` SDK allows for interaction with Azure Resource Manager `connectedvmware` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

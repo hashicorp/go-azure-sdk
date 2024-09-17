@@ -45,7 +45,6 @@ func (c StorageTaskAssignmentsClient) Get(ctx context.Context, id StorageTaskAss
 
 	var model StorageTaskAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

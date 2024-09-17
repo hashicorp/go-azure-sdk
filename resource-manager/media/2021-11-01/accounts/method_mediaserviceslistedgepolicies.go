@@ -50,7 +50,6 @@ func (c AccountsClient) MediaservicesListEdgePolicies(ctx context.Context, id Me
 
 	var model EdgePolicies
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

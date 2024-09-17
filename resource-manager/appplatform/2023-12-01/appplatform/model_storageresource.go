@@ -38,7 +38,7 @@ func (s *StorageResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalStoragePropertiesImplementation(v)
+		impl, err := UnmarshalStoragePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'StorageResource': %+v", err)
 		}

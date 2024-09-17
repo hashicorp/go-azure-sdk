@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/healthbot/2023-05-01/healthbots` Documentation
 
-The `healthbots` SDK allows for interaction with the Azure Resource Manager Service `healthbot` (API Version `2023-05-01`).
+The `healthbots` SDK allows for interaction with Azure Resource Manager `healthbot` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

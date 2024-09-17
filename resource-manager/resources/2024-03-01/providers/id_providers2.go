@@ -40,7 +40,7 @@ func ParseProviders2ID(input string) (*Providers2Id, error) {
 	}
 
 	id := Providers2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviders2IDInsensitively(input string) (*Providers2Id, error) {
 	}
 
 	id := Providers2Id{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

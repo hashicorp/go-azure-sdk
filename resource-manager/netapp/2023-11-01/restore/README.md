@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2023-11-01/restore` Documentation
 
-The `restore` SDK allows for interaction with the Azure Resource Manager Service `netapp` (API Version `2023-11-01`).
+The `restore` SDK allows for interaction with Azure Resource Manager `netapp` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

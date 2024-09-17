@@ -42,7 +42,7 @@ func ParseRemoteRenderingAccountID(input string) (*RemoteRenderingAccountId, err
 	}
 
 	id := RemoteRenderingAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRemoteRenderingAccountIDInsensitively(input string) (*RemoteRenderingA
 	}
 
 	id := RemoteRenderingAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

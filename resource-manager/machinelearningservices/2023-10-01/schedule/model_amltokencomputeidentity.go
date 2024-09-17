@@ -13,6 +13,14 @@ var _ MonitorComputeIdentityBase = AmlTokenComputeIdentity{}
 type AmlTokenComputeIdentity struct {
 
 	// Fields inherited from MonitorComputeIdentityBase
+
+	ComputeIdentityType MonitorComputeIdentityType `json:"computeIdentityType"`
+}
+
+func (s AmlTokenComputeIdentity) MonitorComputeIdentityBase() BaseMonitorComputeIdentityBaseImpl {
+	return BaseMonitorComputeIdentityBaseImpl{
+		ComputeIdentityType: s.ComputeIdentityType,
+	}
 }
 
 var _ json.Marshaler = AmlTokenComputeIdentity{}
@@ -26,9 +34,10 @@ func (s AmlTokenComputeIdentity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AmlTokenComputeIdentity: %+v", err)
 	}
+
 	decoded["computeIdentityType"] = "AmlToken"
 
 	encoded, err = json.Marshal(decoded)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-06-01/smartdetectoralertrules` Documentation
 
-The `smartdetectoralertrules` SDK allows for interaction with the Azure Resource Manager Service `alertsmanagement` (API Version `2019-06-01`).
+The `smartdetectoralertrules` SDK allows for interaction with Azure Resource Manager `alertsmanagement` (API Version `2019-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

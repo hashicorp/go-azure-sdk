@@ -50,7 +50,6 @@ func (c StandardOperationClient) TasksCreateOrUpdate(ctx context.Context, id Tas
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

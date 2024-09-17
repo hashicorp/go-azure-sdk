@@ -42,7 +42,7 @@ func ParseQueryPackID(input string) (*QueryPackId, error) {
 	}
 
 	id := QueryPackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseQueryPackIDInsensitively(input string) (*QueryPackId, error) {
 	}
 
 	id := QueryPackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

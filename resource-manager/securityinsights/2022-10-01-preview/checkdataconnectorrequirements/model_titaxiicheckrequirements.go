@@ -14,6 +14,14 @@ type TiTaxiiCheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s TiTaxiiCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = TiTaxiiCheckRequirements{}
@@ -27,9 +35,10 @@ func (s TiTaxiiCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TiTaxiiCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "ThreatIntelligenceTaxii"
 
 	encoded, err = json.Marshal(decoded)

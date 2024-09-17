@@ -40,7 +40,7 @@ func ParseScopedAgentPoolID(input string) (*ScopedAgentPoolId, error) {
 	}
 
 	id := ScopedAgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAgentPoolIDInsensitively(input string) (*ScopedAgentPoolId, erro
 	}
 
 	id := ScopedAgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

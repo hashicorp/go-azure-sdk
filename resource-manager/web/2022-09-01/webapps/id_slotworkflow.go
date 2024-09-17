@@ -46,7 +46,7 @@ func ParseSlotWorkflowID(input string) (*SlotWorkflowId, error) {
 	}
 
 	id := SlotWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotWorkflowIDInsensitively(input string) (*SlotWorkflowId, error) {
 	}
 
 	id := SlotWorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

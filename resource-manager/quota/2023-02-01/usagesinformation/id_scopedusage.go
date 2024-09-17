@@ -40,7 +40,7 @@ func ParseScopedUsageID(input string) (*ScopedUsageId, error) {
 	}
 
 	id := ScopedUsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedUsageIDInsensitively(input string) (*ScopedUsageId, error) {
 	}
 
 	id := ScopedUsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

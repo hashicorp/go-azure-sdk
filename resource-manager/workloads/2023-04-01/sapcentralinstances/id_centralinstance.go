@@ -44,7 +44,7 @@ func ParseCentralInstanceID(input string) (*CentralInstanceId, error) {
 	}
 
 	id := CentralInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCentralInstanceIDInsensitively(input string) (*CentralInstanceId, erro
 	}
 
 	id := CentralInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

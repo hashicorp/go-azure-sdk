@@ -44,7 +44,7 @@ func ParseAccessID(input string) (*AccessId, error) {
 	}
 
 	id := AccessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccessIDInsensitively(input string) (*AccessId, error) {
 	}
 
 	id := AccessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContentKeyPolicyConfiguration interface {
+	ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl
 }
 
-// RawContentKeyPolicyConfigurationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ContentKeyPolicyConfiguration = BaseContentKeyPolicyConfigurationImpl{}
+
+type BaseContentKeyPolicyConfigurationImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseContentKeyPolicyConfigurationImpl) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return s
+}
+
+var _ ContentKeyPolicyConfiguration = RawContentKeyPolicyConfigurationImpl{}
+
+// RawContentKeyPolicyConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawContentKeyPolicyConfigurationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	contentKeyPolicyConfiguration BaseContentKeyPolicyConfigurationImpl
+	Type                          string
+	Values                        map[string]interface{}
 }
 
-func unmarshalContentKeyPolicyConfigurationImplementation(input []byte) (ContentKeyPolicyConfiguration, error) {
+func (s RawContentKeyPolicyConfigurationImpl) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return s.contentKeyPolicyConfiguration
+}
+
+func UnmarshalContentKeyPolicyConfigurationImplementation(input []byte) (ContentKeyPolicyConfiguration, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +93,15 @@ func unmarshalContentKeyPolicyConfigurationImplementation(input []byte) (Content
 		return out, nil
 	}
 
-	out := RawContentKeyPolicyConfigurationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseContentKeyPolicyConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseContentKeyPolicyConfigurationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawContentKeyPolicyConfigurationImpl{
+		contentKeyPolicyConfiguration: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
 
 }

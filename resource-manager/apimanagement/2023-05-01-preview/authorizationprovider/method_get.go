@@ -45,7 +45,6 @@ func (c AuthorizationProviderClient) Get(ctx context.Context, id AuthorizationPr
 
 	var model AuthorizationProviderContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

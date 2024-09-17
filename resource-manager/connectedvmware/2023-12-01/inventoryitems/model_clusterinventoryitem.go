@@ -13,10 +13,22 @@ var _ InventoryItemProperties = ClusterInventoryItem{}
 type ClusterInventoryItem struct {
 
 	// Fields inherited from InventoryItemProperties
+
+	InventoryType     InventoryType      `json:"inventoryType"`
 	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
 	MoName            *string            `json:"moName,omitempty"`
 	MoRefId           *string            `json:"moRefId,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s ClusterInventoryItem) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return BaseInventoryItemPropertiesImpl{
+		InventoryType:     s.InventoryType,
+		ManagedResourceId: s.ManagedResourceId,
+		MoName:            s.MoName,
+		MoRefId:           s.MoRefId,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = ClusterInventoryItem{}
@@ -30,9 +42,10 @@ func (s ClusterInventoryItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ClusterInventoryItem: %+v", err)
 	}
+
 	decoded["inventoryType"] = "Cluster"
 
 	encoded, err = json.Marshal(decoded)

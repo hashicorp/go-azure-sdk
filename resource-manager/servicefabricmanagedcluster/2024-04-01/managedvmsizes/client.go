@@ -15,7 +15,7 @@ type ManagedVMSizesClient struct {
 }
 
 func NewManagedVMSizesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedVMSizesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedvmsizes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedvmsizes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedVMSizesClient: %+v", err)
 	}

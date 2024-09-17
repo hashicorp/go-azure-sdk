@@ -48,7 +48,7 @@ func ParseWorkloadClassifierID(input string) (*WorkloadClassifierId, error) {
 	}
 
 	id := WorkloadClassifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseWorkloadClassifierIDInsensitively(input string) (*WorkloadClassifierId
 	}
 
 	id := WorkloadClassifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

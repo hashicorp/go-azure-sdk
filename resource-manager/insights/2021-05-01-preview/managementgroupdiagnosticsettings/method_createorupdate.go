@@ -49,7 +49,6 @@ func (c ManagementGroupDiagnosticSettingsClient) CreateOrUpdate(ctx context.Cont
 
 	var model ManagementGroupDiagnosticSettingsResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,6 @@ func (c TriggersClient) GetEventSubscriptionStatus(ctx context.Context, id Trigg
 
 	var model TriggerSubscriptionOperationStatus
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

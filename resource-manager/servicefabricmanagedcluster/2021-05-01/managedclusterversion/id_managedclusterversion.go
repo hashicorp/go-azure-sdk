@@ -42,7 +42,7 @@ func ParseManagedClusterVersionID(input string) (*ManagedClusterVersionId, error
 	}
 
 	id := ManagedClusterVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseManagedClusterVersionIDInsensitively(input string) (*ManagedClusterVer
 	}
 
 	id := ManagedClusterVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

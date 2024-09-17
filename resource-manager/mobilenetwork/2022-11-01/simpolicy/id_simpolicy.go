@@ -44,7 +44,7 @@ func ParseSimPolicyID(input string) (*SimPolicyId, error) {
 	}
 
 	id := SimPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSimPolicyIDInsensitively(input string) (*SimPolicyId, error) {
 	}
 
 	id := SimPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

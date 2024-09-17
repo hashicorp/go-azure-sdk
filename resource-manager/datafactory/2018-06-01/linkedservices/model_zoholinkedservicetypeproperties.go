@@ -40,7 +40,7 @@ func (s *ZohoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["accessToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccessToken' for 'ZohoLinkedServiceTypeProperties': %+v", err)
 		}

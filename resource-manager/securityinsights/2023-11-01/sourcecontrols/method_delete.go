@@ -50,7 +50,6 @@ func (c SourceControlsClient) Delete(ctx context.Context, id SourceControlId, in
 
 	var model Warning
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

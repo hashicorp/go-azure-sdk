@@ -44,7 +44,7 @@ func ParseBackupResourceGuardProxyID(input string) (*BackupResourceGuardProxyId,
 	}
 
 	id := BackupResourceGuardProxyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupResourceGuardProxyIDInsensitively(input string) (*BackupResource
 	}
 
 	id := BackupResourceGuardProxyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

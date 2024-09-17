@@ -49,7 +49,6 @@ func (c NotificationHubsClient) CreateOrUpdateAuthorizationRule(ctx context.Cont
 
 	var model SharedAccessAuthorizationRuleResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

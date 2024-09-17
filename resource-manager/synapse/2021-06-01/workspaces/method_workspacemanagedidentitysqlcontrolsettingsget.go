@@ -46,7 +46,6 @@ func (c WorkspacesClient) WorkspaceManagedIdentitySqlControlSettingsGet(ctx cont
 
 	var model ManagedIdentitySqlControlSettingsModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

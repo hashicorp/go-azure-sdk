@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/openshiftversions` Documentation
 
-The `openshiftversions` SDK allows for interaction with the Azure Resource Manager Service `redhatopenshift` (API Version `2023-09-04`).
+The `openshiftversions` SDK allows for interaction with Azure Resource Manager `redhatopenshift` (API Version `2023-09-04`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -15,7 +15,7 @@ type SqlPoolsBlobAuditingClient struct {
 }
 
 func NewSqlPoolsBlobAuditingClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsBlobAuditingClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsblobauditing", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsblobauditing", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsBlobAuditingClient: %+v", err)
 	}

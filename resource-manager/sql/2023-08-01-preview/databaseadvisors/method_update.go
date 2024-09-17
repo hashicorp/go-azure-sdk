@@ -49,7 +49,6 @@ func (c DatabaseAdvisorsClient) Update(ctx context.Context, id DatabaseAdvisorId
 
 	var model Advisor
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

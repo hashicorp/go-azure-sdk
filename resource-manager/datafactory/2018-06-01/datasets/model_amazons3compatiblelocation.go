@@ -15,8 +15,18 @@ type AmazonS3CompatibleLocation struct {
 	Version    *string `json:"version,omitempty"`
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s AmazonS3CompatibleLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = AmazonS3CompatibleLocation{}
@@ -30,9 +40,10 @@ func (s AmazonS3CompatibleLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AmazonS3CompatibleLocation: %+v", err)
 	}
+
 	decoded["type"] = "AmazonS3CompatibleLocation"
 
 	encoded, err = json.Marshal(decoded)

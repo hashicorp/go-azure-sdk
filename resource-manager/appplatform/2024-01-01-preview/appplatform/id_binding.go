@@ -46,7 +46,7 @@ func ParseBindingID(input string) (*BindingId, error) {
 	}
 
 	id := BindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBindingIDInsensitively(input string) (*BindingId, error) {
 	}
 
 	id := BindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseVMwareSiteID(input string) (*VMwareSiteId, error) {
 	}
 
 	id := VMwareSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVMwareSiteIDInsensitively(input string) (*VMwareSiteId, error) {
 	}
 
 	id := VMwareSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

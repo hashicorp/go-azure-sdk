@@ -40,7 +40,7 @@ func (s *AzureBatchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["accessKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccessKey' for 'AzureBatchLinkedServiceTypeProperties': %+v", err)
 		}

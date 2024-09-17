@@ -48,7 +48,7 @@ func ParseProtectedItemID(input string) (*ProtectedItemId, error) {
 	}
 
 	id := ProtectedItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseProtectedItemIDInsensitively(input string) (*ProtectedItemId, error) {
 	}
 
 	id := ProtectedItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

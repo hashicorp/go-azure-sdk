@@ -42,7 +42,7 @@ func ParseDbSystemShapeID(input string) (*DbSystemShapeId, error) {
 	}
 
 	id := DbSystemShapeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDbSystemShapeIDInsensitively(input string) (*DbSystemShapeId, error) {
 	}
 
 	id := DbSystemShapeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

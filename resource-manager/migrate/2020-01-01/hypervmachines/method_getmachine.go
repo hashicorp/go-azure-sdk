@@ -46,7 +46,6 @@ func (c HyperVMachinesClient) GetMachine(ctx context.Context, id commonids.Hyper
 
 	var model HyperVMachine
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

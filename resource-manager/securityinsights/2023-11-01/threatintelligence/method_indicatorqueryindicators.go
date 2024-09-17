@@ -73,7 +73,7 @@ func (c ThreatIntelligenceClient) IndicatorQueryIndicators(ctx context.Context, 
 	temp := make([]ThreatIntelligenceInformation, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalThreatIntelligenceInformationImplementation(v)
+			val, err := UnmarshalThreatIntelligenceInformationImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for ThreatIntelligenceInformation (%q): %+v", i, v, err)
 				return result, err

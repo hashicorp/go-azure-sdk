@@ -50,7 +50,6 @@ func (c AlertRulesAPIsClient) AlertRulesUpdate(ctx context.Context, id AlertRule
 
 	var model AlertRuleResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseLongTermRetentionDatabaseID(input string) (*LongTermRetentionDatabaseI
 	}
 
 	id := LongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLongTermRetentionDatabaseIDInsensitively(input string) (*LongTermReten
 	}
 
 	id := LongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

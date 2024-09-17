@@ -46,7 +46,7 @@ func ParseInstanceProcessID(input string) (*InstanceProcessId, error) {
 	}
 
 	id := InstanceProcessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseInstanceProcessIDInsensitively(input string) (*InstanceProcessId, erro
 	}
 
 	id := InstanceProcessId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

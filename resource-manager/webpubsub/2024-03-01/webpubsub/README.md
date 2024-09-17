@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/webpubsub/2024-03-01/webpubsub` Documentation
 
-The `webpubsub` SDK allows for interaction with the Azure Resource Manager Service `webpubsub` (API Version `2024-03-01`).
+The `webpubsub` SDK allows for interaction with Azure Resource Manager `webpubsub` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

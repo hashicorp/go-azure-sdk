@@ -37,7 +37,7 @@ func (s *RoutingEnrichments) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]StaticRoutingEnrichment, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalStaticRoutingEnrichmentImplementation(val)
+			impl, err := UnmarshalStaticRoutingEnrichmentImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Static' for 'RoutingEnrichments': %+v", i, err)
 			}

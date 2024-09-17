@@ -45,7 +45,6 @@ func (c LocationBasedCapabilityClient) SetGet(ctx context.Context, id Capability
 
 	var model Capability
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

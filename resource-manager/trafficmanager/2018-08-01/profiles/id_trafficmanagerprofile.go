@@ -42,7 +42,7 @@ func ParseTrafficManagerProfileID(input string) (*TrafficManagerProfileId, error
 	}
 
 	id := TrafficManagerProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseTrafficManagerProfileIDInsensitively(input string) (*TrafficManagerPro
 	}
 
 	id := TrafficManagerProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

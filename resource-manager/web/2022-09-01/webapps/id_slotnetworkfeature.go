@@ -46,7 +46,7 @@ func ParseSlotNetworkFeatureID(input string) (*SlotNetworkFeatureId, error) {
 	}
 
 	id := SlotNetworkFeatureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSlotNetworkFeatureIDInsensitively(input string) (*SlotNetworkFeatureId
 	}
 
 	id := SlotNetworkFeatureId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

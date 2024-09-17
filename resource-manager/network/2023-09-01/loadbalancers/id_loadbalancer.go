@@ -42,7 +42,7 @@ func ParseLoadBalancerID(input string) (*LoadBalancerId, error) {
 	}
 
 	id := LoadBalancerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLoadBalancerIDInsensitively(input string) (*LoadBalancerId, error) {
 	}
 
 	id := LoadBalancerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

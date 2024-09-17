@@ -40,7 +40,7 @@ func ParseScopedRoleEligibilityScheduleRequestID(input string) (*ScopedRoleEligi
 	}
 
 	id := ScopedRoleEligibilityScheduleRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedRoleEligibilityScheduleRequestIDInsensitively(input string) (*Sc
 	}
 
 	id := ScopedRoleEligibilityScheduleRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

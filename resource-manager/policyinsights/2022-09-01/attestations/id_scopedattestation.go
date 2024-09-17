@@ -40,7 +40,7 @@ func ParseScopedAttestationID(input string) (*ScopedAttestationId, error) {
 	}
 
 	id := ScopedAttestationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAttestationIDInsensitively(input string) (*ScopedAttestationId, 
 	}
 
 	id := ScopedAttestationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

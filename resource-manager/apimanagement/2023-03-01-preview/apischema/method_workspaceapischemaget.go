@@ -45,7 +45,6 @@ func (c ApiSchemaClient) WorkspaceApiSchemaGet(ctx context.Context, id Workspace
 
 	var model SchemaContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

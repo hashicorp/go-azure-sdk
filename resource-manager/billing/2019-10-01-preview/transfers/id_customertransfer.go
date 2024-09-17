@@ -44,7 +44,7 @@ func ParseCustomerTransferID(input string) (*CustomerTransferId, error) {
 	}
 
 	id := CustomerTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCustomerTransferIDInsensitively(input string) (*CustomerTransferId, er
 	}
 
 	id := CustomerTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

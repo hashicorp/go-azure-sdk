@@ -15,12 +15,26 @@ type ParquetSink struct {
 	StoreSettings  StoreWriteSettings    `json:"storeSettings"`
 
 	// Fields inherited from CopySink
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
 	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+	Type                     string  `json:"type"`
 	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
 	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
+}
+
+func (s ParquetSink) CopySink() BaseCopySinkImpl {
+	return BaseCopySinkImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SinkRetryCount:           s.SinkRetryCount,
+		SinkRetryWait:            s.SinkRetryWait,
+		Type:                     s.Type,
+		WriteBatchSize:           s.WriteBatchSize,
+		WriteBatchTimeout:        s.WriteBatchTimeout,
+	}
 }
 
 var _ json.Marshaler = ParquetSink{}
@@ -34,9 +48,10 @@ func (s ParquetSink) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ParquetSink: %+v", err)
 	}
+
 	decoded["type"] = "ParquetSink"
 
 	encoded, err = json.Marshal(decoded)
@@ -61,6 +76,7 @@ func (s *ParquetSink) UnmarshalJSON(bytes []byte) error {
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SinkRetryCount = decoded.SinkRetryCount
 	s.SinkRetryWait = decoded.SinkRetryWait
+	s.Type = decoded.Type
 	s.WriteBatchSize = decoded.WriteBatchSize
 	s.WriteBatchTimeout = decoded.WriteBatchTimeout
 
@@ -70,7 +86,7 @@ func (s *ParquetSink) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["storeSettings"]; ok {
-		impl, err := unmarshalStoreWriteSettingsImplementation(v)
+		impl, err := UnmarshalStoreWriteSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'StoreSettings' for 'ParquetSink': %+v", err)
 		}

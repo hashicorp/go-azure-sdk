@@ -15,7 +15,16 @@ type UriFolderJobOutput struct {
 	Uri  *string             `json:"uri,omitempty"`
 
 	// Fields inherited from JobOutput
-	Description *string `json:"description,omitempty"`
+
+	Description   *string       `json:"description,omitempty"`
+	JobOutputType JobOutputType `json:"jobOutputType"`
+}
+
+func (s UriFolderJobOutput) JobOutput() BaseJobOutputImpl {
+	return BaseJobOutputImpl{
+		Description:   s.Description,
+		JobOutputType: s.JobOutputType,
+	}
 }
 
 var _ json.Marshaler = UriFolderJobOutput{}
@@ -29,9 +38,10 @@ func (s UriFolderJobOutput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UriFolderJobOutput: %+v", err)
 	}
+
 	decoded["jobOutputType"] = "uri_folder"
 
 	encoded, err = json.Marshal(decoded)

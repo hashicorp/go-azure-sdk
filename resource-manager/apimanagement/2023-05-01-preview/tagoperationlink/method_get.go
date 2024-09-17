@@ -45,7 +45,6 @@ func (c TagOperationLinkClient) Get(ctx context.Context, id OperationLinkId) (re
 
 	var model TagOperationLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

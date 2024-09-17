@@ -44,7 +44,7 @@ func ParseSecurityAdminConfigurationID(input string) (*SecurityAdminConfiguratio
 	}
 
 	id := SecurityAdminConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSecurityAdminConfigurationIDInsensitively(input string) (*SecurityAdmi
 	}
 
 	id := SecurityAdminConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

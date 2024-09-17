@@ -46,7 +46,6 @@ func (c ServersClient) ListByCluster(ctx context.Context, id ServerGroupsv2Id) (
 
 	var model ClusterServerListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

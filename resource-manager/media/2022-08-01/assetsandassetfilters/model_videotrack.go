@@ -13,6 +13,14 @@ var _ TrackBase = VideoTrack{}
 type VideoTrack struct {
 
 	// Fields inherited from TrackBase
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s VideoTrack) TrackBase() BaseTrackBaseImpl {
+	return BaseTrackBaseImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = VideoTrack{}
@@ -26,9 +34,10 @@ func (s VideoTrack) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VideoTrack: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.VideoTrack"
 
 	encoded, err = json.Marshal(decoded)

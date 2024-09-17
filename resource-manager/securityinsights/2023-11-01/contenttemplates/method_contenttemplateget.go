@@ -45,7 +45,6 @@ func (c ContentTemplatesClient) ContentTemplateGet(ctx context.Context, id Conte
 
 	var model TemplateModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

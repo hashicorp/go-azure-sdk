@@ -44,7 +44,7 @@ func ParseCreatorID(input string) (*CreatorId, error) {
 	}
 
 	id := CreatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCreatorIDInsensitively(input string) (*CreatorId, error) {
 	}
 
 	id := CreatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

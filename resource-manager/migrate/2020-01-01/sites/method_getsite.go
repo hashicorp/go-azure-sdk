@@ -45,7 +45,6 @@ func (c SitesClient) GetSite(ctx context.Context, id VMwareSiteId) (result GetSi
 
 	var model VMwareSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

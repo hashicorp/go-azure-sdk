@@ -18,6 +18,14 @@ type XmlReadSettings struct {
 	ValidationMode        *string                 `json:"validationMode,omitempty"`
 
 	// Fields inherited from FormatReadSettings
+
+	Type string `json:"type"`
+}
+
+func (s XmlReadSettings) FormatReadSettings() BaseFormatReadSettingsImpl {
+	return BaseFormatReadSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = XmlReadSettings{}
@@ -31,9 +39,10 @@ func (s XmlReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling XmlReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "XmlReadSettings"
 
 	encoded, err = json.Marshal(decoded)
@@ -56,6 +65,7 @@ func (s *XmlReadSettings) UnmarshalJSON(bytes []byte) error {
 	s.DetectDataType = decoded.DetectDataType
 	s.NamespacePrefixes = decoded.NamespacePrefixes
 	s.Namespaces = decoded.Namespaces
+	s.Type = decoded.Type
 	s.ValidationMode = decoded.ValidationMode
 
 	var temp map[string]json.RawMessage
@@ -64,7 +74,7 @@ func (s *XmlReadSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["compressionProperties"]; ok {
-		impl, err := unmarshalCompressionReadSettingsImplementation(v)
+		impl, err := UnmarshalCompressionReadSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CompressionProperties' for 'XmlReadSettings': %+v", err)
 		}

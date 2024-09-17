@@ -44,7 +44,7 @@ func ParseDataflowID(input string) (*DataflowId, error) {
 	}
 
 	id := DataflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDataflowIDInsensitively(input string) (*DataflowId, error) {
 	}
 
 	id := DataflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

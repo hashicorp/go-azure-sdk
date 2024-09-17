@@ -42,7 +42,7 @@ func ParseIPGroupID(input string) (*IPGroupId, error) {
 	}
 
 	id := IPGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseIPGroupIDInsensitively(input string) (*IPGroupId, error) {
 	}
 
 	id := IPGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

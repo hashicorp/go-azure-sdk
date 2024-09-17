@@ -36,6 +36,7 @@ func (o UsageBySubscriptionSkuOperationOptions) ToHeaders() *client.Headers {
 
 func (o UsageBySubscriptionSkuOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c UsagesClient) UsageBySubscriptionSku(ctx context.Context, id UsageId, op
 
 	var model QuotaUsageResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

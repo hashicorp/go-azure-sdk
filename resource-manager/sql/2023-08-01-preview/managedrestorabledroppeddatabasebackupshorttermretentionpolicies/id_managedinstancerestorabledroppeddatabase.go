@@ -44,7 +44,7 @@ func ParseManagedInstanceRestorableDroppedDatabaseID(input string) (*ManagedInst
 	}
 
 	id := ManagedInstanceRestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstanceRestorableDroppedDatabaseIDInsensitively(input string) 
 	}
 
 	id := ManagedInstanceRestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

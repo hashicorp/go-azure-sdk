@@ -15,8 +15,18 @@ type OracleCloudStorageLocation struct {
 	Version    *string `json:"version,omitempty"`
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s OracleCloudStorageLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = OracleCloudStorageLocation{}
@@ -30,9 +40,10 @@ func (s OracleCloudStorageLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OracleCloudStorageLocation: %+v", err)
 	}
+
 	decoded["type"] = "OracleCloudStorageLocation"
 
 	encoded, err = json.Marshal(decoded)

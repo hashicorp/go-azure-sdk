@@ -49,7 +49,6 @@ func (c ActionRulesClient) Update(ctx context.Context, id ActionRuleId, input Pa
 
 	var model ActionRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

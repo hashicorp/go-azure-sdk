@@ -42,7 +42,7 @@ func ParseDedicatedHSMID(input string) (*DedicatedHSMId, error) {
 	}
 
 	id := DedicatedHSMId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDedicatedHSMIDInsensitively(input string) (*DedicatedHSMId, error) {
 	}
 
 	id := DedicatedHSMId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseFormulaID(input string) (*FormulaId, error) {
 	}
 
 	id := FormulaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFormulaIDInsensitively(input string) (*FormulaId, error) {
 	}
 
 	id := FormulaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

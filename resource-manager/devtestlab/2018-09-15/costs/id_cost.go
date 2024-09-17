@@ -44,7 +44,7 @@ func ParseCostID(input string) (*CostId, error) {
 	}
 
 	id := CostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCostIDInsensitively(input string) (*CostId, error) {
 	}
 
 	id := CostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

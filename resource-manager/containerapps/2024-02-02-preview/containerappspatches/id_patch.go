@@ -44,7 +44,7 @@ func ParsePatchID(input string) (*PatchId, error) {
 	}
 
 	id := PatchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePatchIDInsensitively(input string) (*PatchId, error) {
 	}
 
 	id := PatchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

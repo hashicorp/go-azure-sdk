@@ -40,7 +40,7 @@ func ParseScopedPolicyAssignmentID(input string) (*ScopedPolicyAssignmentId, err
 	}
 
 	id := ScopedPolicyAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedPolicyAssignmentIDInsensitively(input string) (*ScopedPolicyAssi
 	}
 
 	id := ScopedPolicyAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

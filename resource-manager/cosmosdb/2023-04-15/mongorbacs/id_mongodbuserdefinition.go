@@ -44,7 +44,7 @@ func ParseMongodbUserDefinitionID(input string) (*MongodbUserDefinitionId, error
 	}
 
 	id := MongodbUserDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMongodbUserDefinitionIDInsensitively(input string) (*MongodbUserDefini
 	}
 
 	id := MongodbUserDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

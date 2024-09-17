@@ -40,7 +40,7 @@ func ParseTagNameID(input string) (*TagNameId, error) {
 	}
 
 	id := TagNameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseTagNameIDInsensitively(input string) (*TagNameId, error) {
 	}
 
 	id := TagNameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

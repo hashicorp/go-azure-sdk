@@ -44,7 +44,7 @@ func ParseFeatureStoreEntityID(input string) (*FeatureStoreEntityId, error) {
 	}
 
 	id := FeatureStoreEntityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFeatureStoreEntityIDInsensitively(input string) (*FeatureStoreEntityId
 	}
 
 	id := FeatureStoreEntityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

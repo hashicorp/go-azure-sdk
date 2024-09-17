@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/environments` Documentation
 
-The `environments` SDK allows for interaction with the Azure Resource Manager Service `apicenter` (API Version `2024-03-15-preview`).
+The `environments` SDK allows for interaction with Azure Resource Manager `apicenter` (API Version `2024-03-15-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

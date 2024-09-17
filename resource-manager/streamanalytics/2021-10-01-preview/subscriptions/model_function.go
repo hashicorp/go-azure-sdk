@@ -34,7 +34,7 @@ func (s *Function) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalFunctionPropertiesImplementation(v)
+		impl, err := UnmarshalFunctionPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'Function': %+v", err)
 		}

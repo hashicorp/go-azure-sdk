@@ -44,7 +44,7 @@ func ParseAuthorizationRuleID(input string) (*AuthorizationRuleId, error) {
 	}
 
 	id := AuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAuthorizationRuleIDInsensitively(input string) (*AuthorizationRuleId, 
 	}
 
 	id := AuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type CapacityReservationClient struct {
 }
 
 func NewCapacityReservationClientWithBaseURI(sdkApi sdkEnv.Api) (*CapacityReservationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "capacityreservation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "capacityreservation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CapacityReservationClient: %+v", err)
 	}

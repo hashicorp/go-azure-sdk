@@ -46,7 +46,7 @@ func ParseVirtualMachineExtensionID(input string) (*VirtualMachineExtensionId, e
 	}
 
 	id := VirtualMachineExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualMachineExtensionIDInsensitively(input string) (*VirtualMachineE
 	}
 
 	id := VirtualMachineExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

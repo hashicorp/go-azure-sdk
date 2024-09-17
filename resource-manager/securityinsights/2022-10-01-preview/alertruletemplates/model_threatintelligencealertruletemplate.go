@@ -16,10 +16,22 @@ type ThreatIntelligenceAlertRuleTemplate struct {
 	Properties *ThreatIntelligenceAlertRuleTemplateProperties `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRuleTemplate
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       AlertRuleKind          `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s ThreatIntelligenceAlertRuleTemplate) AlertRuleTemplate() BaseAlertRuleTemplateImpl {
+	return BaseAlertRuleTemplateImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ThreatIntelligenceAlertRuleTemplate{}
@@ -33,9 +45,10 @@ func (s ThreatIntelligenceAlertRuleTemplate) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ThreatIntelligenceAlertRuleTemplate: %+v", err)
 	}
+
 	decoded["kind"] = "ThreatIntelligence"
 
 	encoded, err = json.Marshal(decoded)

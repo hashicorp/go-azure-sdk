@@ -14,10 +14,22 @@ type AadExternalSecuritySolution struct {
 	Properties *AadSolutionProperties `json:"properties,omitempty"`
 
 	// Fields inherited from ExternalSecuritySolution
-	Id       *string `json:"id,omitempty"`
-	Location *string `json:"location,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	Type     *string `json:"type,omitempty"`
+
+	Id       *string                       `json:"id,omitempty"`
+	Kind     *ExternalSecuritySolutionKind `json:"kind,omitempty"`
+	Location *string                       `json:"location,omitempty"`
+	Name     *string                       `json:"name,omitempty"`
+	Type     *string                       `json:"type,omitempty"`
+}
+
+func (s AadExternalSecuritySolution) ExternalSecuritySolution() BaseExternalSecuritySolutionImpl {
+	return BaseExternalSecuritySolutionImpl{
+		Id:       s.Id,
+		Kind:     s.Kind,
+		Location: s.Location,
+		Name:     s.Name,
+		Type:     s.Type,
+	}
 }
 
 var _ json.Marshaler = AadExternalSecuritySolution{}
@@ -31,9 +43,10 @@ func (s AadExternalSecuritySolution) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AadExternalSecuritySolution: %+v", err)
 	}
+
 	decoded["kind"] = "AAD"
 
 	encoded, err = json.Marshal(decoded)

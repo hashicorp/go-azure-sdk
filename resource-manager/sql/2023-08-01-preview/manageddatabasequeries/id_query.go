@@ -46,7 +46,7 @@ func ParseQueryID(input string) (*QueryId, error) {
 	}
 
 	id := QueryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseQueryIDInsensitively(input string) (*QueryId, error) {
 	}
 
 	id := QueryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -50,7 +50,6 @@ func (c POSTClient) ServicesCheckNameAvailability(ctx context.Context, id Locati
 
 	var model NameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

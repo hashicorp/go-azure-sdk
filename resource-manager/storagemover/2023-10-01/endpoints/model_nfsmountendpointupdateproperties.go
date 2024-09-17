@@ -13,7 +13,16 @@ var _ EndpointBaseUpdateProperties = NfsMountEndpointUpdateProperties{}
 type NfsMountEndpointUpdateProperties struct {
 
 	// Fields inherited from EndpointBaseUpdateProperties
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	EndpointType EndpointType `json:"endpointType"`
+}
+
+func (s NfsMountEndpointUpdateProperties) EndpointBaseUpdateProperties() BaseEndpointBaseUpdatePropertiesImpl {
+	return BaseEndpointBaseUpdatePropertiesImpl{
+		Description:  s.Description,
+		EndpointType: s.EndpointType,
+	}
 }
 
 var _ json.Marshaler = NfsMountEndpointUpdateProperties{}
@@ -27,9 +36,10 @@ func (s NfsMountEndpointUpdateProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NfsMountEndpointUpdateProperties: %+v", err)
 	}
+
 	decoded["endpointType"] = "NfsMount"
 
 	encoded, err = json.Marshal(decoded)

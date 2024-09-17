@@ -44,7 +44,7 @@ func ParseStatusID(input string) (*StatusId, error) {
 	}
 
 	id := StatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStatusIDInsensitively(input string) (*StatusId, error) {
 	}
 
 	id := StatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type ScriptCmdletsClient struct {
 }
 
 func NewScriptCmdletsClientWithBaseURI(sdkApi sdkEnv.Api) (*ScriptCmdletsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "scriptcmdlets", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "scriptcmdlets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ScriptCmdletsClient: %+v", err)
 	}

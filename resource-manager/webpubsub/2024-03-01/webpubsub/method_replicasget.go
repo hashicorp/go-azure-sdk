@@ -45,7 +45,6 @@ func (c WebPubSubClient) ReplicasGet(ctx context.Context, id ReplicaId) (result 
 
 	var model Replica
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

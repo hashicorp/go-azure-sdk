@@ -45,7 +45,6 @@ func (c FeatureClient) Get(ctx context.Context, id FeatureId) (result GetOperati
 
 	var model FeatureResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

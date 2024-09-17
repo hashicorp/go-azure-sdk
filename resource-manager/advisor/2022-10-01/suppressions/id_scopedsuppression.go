@@ -42,7 +42,7 @@ func ParseScopedSuppressionID(input string) (*ScopedSuppressionId, error) {
 	}
 
 	id := ScopedSuppressionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseScopedSuppressionIDInsensitively(input string) (*ScopedSuppressionId, 
 	}
 
 	id := ScopedSuppressionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

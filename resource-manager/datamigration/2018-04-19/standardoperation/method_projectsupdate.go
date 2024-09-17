@@ -49,7 +49,6 @@ func (c StandardOperationClient) ProjectsUpdate(ctx context.Context, id ProjectI
 
 	var model Project
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

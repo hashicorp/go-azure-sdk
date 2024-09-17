@@ -50,7 +50,6 @@ func (c EntitiesClient) Expand(ctx context.Context, id EntityId, input EntityExp
 
 	var model EntityExpandResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

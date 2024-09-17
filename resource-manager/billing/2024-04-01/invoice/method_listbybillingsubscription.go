@@ -46,6 +46,7 @@ func (o ListByBillingSubscriptionOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByBillingSubscriptionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

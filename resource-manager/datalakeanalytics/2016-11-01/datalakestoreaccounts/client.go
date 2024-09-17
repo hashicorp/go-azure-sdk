@@ -15,7 +15,7 @@ type DataLakeStoreAccountsClient struct {
 }
 
 func NewDataLakeStoreAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataLakeStoreAccountsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datalakestoreaccounts", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datalakestoreaccounts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataLakeStoreAccountsClient: %+v", err)
 	}

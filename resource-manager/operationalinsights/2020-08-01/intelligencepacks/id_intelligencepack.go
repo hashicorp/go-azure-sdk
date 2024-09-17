@@ -44,7 +44,7 @@ func ParseIntelligencePackID(input string) (*IntelligencePackId, error) {
 	}
 
 	id := IntelligencePackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIntelligencePackIDInsensitively(input string) (*IntelligencePackId, er
 	}
 
 	id := IntelligencePackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

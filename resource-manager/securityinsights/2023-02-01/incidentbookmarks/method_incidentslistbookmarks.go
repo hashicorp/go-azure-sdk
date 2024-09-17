@@ -46,7 +46,6 @@ func (c IncidentBookmarksClient) IncidentsListBookmarks(ctx context.Context, id 
 
 	var model IncidentBookmarkList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

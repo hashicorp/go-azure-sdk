@@ -15,7 +15,7 @@ type SavingsPlanClient struct {
 }
 
 func NewSavingsPlanClientWithBaseURI(sdkApi sdkEnv.Api) (*SavingsPlanClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "savingsplan", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "savingsplan", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SavingsPlanClient: %+v", err)
 	}

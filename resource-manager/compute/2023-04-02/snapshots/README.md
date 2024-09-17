@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/snapshots` Documentation
 
-The `snapshots` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2023-04-02`).
+The `snapshots` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2023-04-02`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

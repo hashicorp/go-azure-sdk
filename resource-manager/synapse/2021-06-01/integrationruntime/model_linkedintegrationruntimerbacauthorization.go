@@ -14,6 +14,14 @@ type LinkedIntegrationRuntimeRbacAuthorization struct {
 	ResourceId string `json:"resourceId"`
 
 	// Fields inherited from LinkedIntegrationRuntimeType
+
+	AuthorizationType string `json:"authorizationType"`
+}
+
+func (s LinkedIntegrationRuntimeRbacAuthorization) LinkedIntegrationRuntimeType() BaseLinkedIntegrationRuntimeTypeImpl {
+	return BaseLinkedIntegrationRuntimeTypeImpl{
+		AuthorizationType: s.AuthorizationType,
+	}
 }
 
 var _ json.Marshaler = LinkedIntegrationRuntimeRbacAuthorization{}
@@ -27,9 +35,10 @@ func (s LinkedIntegrationRuntimeRbacAuthorization) MarshalJSON() ([]byte, error)
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LinkedIntegrationRuntimeRbacAuthorization: %+v", err)
 	}
+
 	decoded["authorizationType"] = "RBAC"
 
 	encoded, err = json.Marshal(decoded)

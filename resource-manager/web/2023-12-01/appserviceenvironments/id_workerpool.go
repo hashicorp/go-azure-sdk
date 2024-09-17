@@ -44,7 +44,7 @@ func ParseWorkerPoolID(input string) (*WorkerPoolId, error) {
 	}
 
 	id := WorkerPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkerPoolIDInsensitively(input string) (*WorkerPoolId, error) {
 	}
 
 	id := WorkerPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

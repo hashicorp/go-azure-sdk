@@ -45,7 +45,6 @@ func (c BatchDeploymentClient) Get(ctx context.Context, id DeploymentId) (result
 
 	var model BatchDeploymentTrackedResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

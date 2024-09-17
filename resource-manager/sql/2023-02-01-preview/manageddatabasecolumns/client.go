@@ -15,7 +15,7 @@ type ManagedDatabaseColumnsClient struct {
 }
 
 func NewManagedDatabaseColumnsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseColumnsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasecolumns", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasecolumns", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseColumnsClient: %+v", err)
 	}

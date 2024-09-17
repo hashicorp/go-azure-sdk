@@ -42,7 +42,7 @@ func ParseVirtualNetworkTapID(input string) (*VirtualNetworkTapId, error) {
 	}
 
 	id := VirtualNetworkTapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualNetworkTapIDInsensitively(input string) (*VirtualNetworkTapId, 
 	}
 
 	id := VirtualNetworkTapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

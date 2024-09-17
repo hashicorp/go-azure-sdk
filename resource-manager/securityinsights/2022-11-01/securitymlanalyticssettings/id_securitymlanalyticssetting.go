@@ -44,7 +44,7 @@ func ParseSecurityMLAnalyticsSettingID(input string) (*SecurityMLAnalyticsSettin
 	}
 
 	id := SecurityMLAnalyticsSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSecurityMLAnalyticsSettingIDInsensitively(input string) (*SecurityMLAn
 	}
 
 	id := SecurityMLAnalyticsSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

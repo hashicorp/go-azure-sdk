@@ -15,7 +15,7 @@ type NotebookWorkspacesResourceClient struct {
 }
 
 func NewNotebookWorkspacesResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*NotebookWorkspacesResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "notebookworkspacesresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "notebookworkspacesresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NotebookWorkspacesResourceClient: %+v", err)
 	}

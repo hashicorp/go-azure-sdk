@@ -13,7 +13,16 @@ var _ EndpointBaseUpdateProperties = AzureStorageSmbFileShareEndpointUpdatePrope
 type AzureStorageSmbFileShareEndpointUpdateProperties struct {
 
 	// Fields inherited from EndpointBaseUpdateProperties
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	EndpointType EndpointType `json:"endpointType"`
+}
+
+func (s AzureStorageSmbFileShareEndpointUpdateProperties) EndpointBaseUpdateProperties() BaseEndpointBaseUpdatePropertiesImpl {
+	return BaseEndpointBaseUpdatePropertiesImpl{
+		Description:  s.Description,
+		EndpointType: s.EndpointType,
+	}
 }
 
 var _ json.Marshaler = AzureStorageSmbFileShareEndpointUpdateProperties{}
@@ -27,9 +36,10 @@ func (s AzureStorageSmbFileShareEndpointUpdateProperties) MarshalJSON() ([]byte,
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureStorageSmbFileShareEndpointUpdateProperties: %+v", err)
 	}
+
 	decoded["endpointType"] = "AzureStorageSmbFileShare"
 
 	encoded, err = json.Marshal(decoded)

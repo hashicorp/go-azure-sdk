@@ -15,7 +15,7 @@ type VMIngestionDetailsClient struct {
 }
 
 func NewVMIngestionDetailsClientWithBaseURI(sdkApi sdkEnv.Api) (*VMIngestionDetailsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vmingestiondetails", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vmingestiondetails", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMIngestionDetailsClient: %+v", err)
 	}

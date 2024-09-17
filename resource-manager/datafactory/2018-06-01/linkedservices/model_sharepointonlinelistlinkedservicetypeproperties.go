@@ -40,7 +40,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	}
 
 	if v, ok := temp["servicePrincipalEmbeddedCert"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCert' for 'SharePointOnlineListLinkedServiceTypeProperties': %+v", err)
 		}
@@ -48,7 +48,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	}
 
 	if v, ok := temp["servicePrincipalEmbeddedCertPassword"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalEmbeddedCertPassword' for 'SharePointOnlineListLinkedServiceTypeProperties': %+v", err)
 		}
@@ -56,7 +56,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalKey' for 'SharePointOnlineListLinkedServiceTypeProperties': %+v", err)
 		}

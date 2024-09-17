@@ -45,7 +45,6 @@ func (c RoleAssignmentsClient) GetById(ctx context.Context, id RoleIdId) (result
 
 	var model RoleAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

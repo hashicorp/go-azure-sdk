@@ -42,7 +42,7 @@ func ParseExpressRouteCircuitID(input string) (*ExpressRouteCircuitId, error) {
 	}
 
 	id := ExpressRouteCircuitId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseExpressRouteCircuitIDInsensitively(input string) (*ExpressRouteCircuit
 	}
 
 	id := ExpressRouteCircuitId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

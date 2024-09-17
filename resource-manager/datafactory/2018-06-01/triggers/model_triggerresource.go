@@ -36,7 +36,7 @@ func (s *TriggerResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalTriggerImplementation(v)
+		impl, err := UnmarshalTriggerImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'TriggerResource': %+v", err)
 		}

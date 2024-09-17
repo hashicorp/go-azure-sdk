@@ -16,8 +16,18 @@ type RestoreTargetInfo struct {
 	DatasourceSetInfo         *DatasourceSet  `json:"datasourceSetInfo,omitempty"`
 
 	// Fields inherited from RestoreTargetInfoBase
+
+	ObjectType      string         `json:"objectType"`
 	RecoveryOption  RecoveryOption `json:"recoveryOption"`
 	RestoreLocation *string        `json:"restoreLocation,omitempty"`
+}
+
+func (s RestoreTargetInfo) RestoreTargetInfoBase() BaseRestoreTargetInfoBaseImpl {
+	return BaseRestoreTargetInfoBaseImpl{
+		ObjectType:      s.ObjectType,
+		RecoveryOption:  s.RecoveryOption,
+		RestoreLocation: s.RestoreLocation,
+	}
 }
 
 var _ json.Marshaler = RestoreTargetInfo{}
@@ -31,9 +41,10 @@ func (s RestoreTargetInfo) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling RestoreTargetInfo: %+v", err)
 	}
+
 	decoded["objectType"] = "RestoreTargetInfo"
 
 	encoded, err = json.Marshal(decoded)
@@ -55,6 +66,7 @@ func (s *RestoreTargetInfo) UnmarshalJSON(bytes []byte) error {
 
 	s.DatasourceInfo = decoded.DatasourceInfo
 	s.DatasourceSetInfo = decoded.DatasourceSetInfo
+	s.ObjectType = decoded.ObjectType
 	s.RecoveryOption = decoded.RecoveryOption
 	s.RestoreLocation = decoded.RestoreLocation
 
@@ -64,7 +76,7 @@ func (s *RestoreTargetInfo) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["datasourceAuthCredentials"]; ok {
-		impl, err := unmarshalAuthCredentialsImplementation(v)
+		impl, err := UnmarshalAuthCredentialsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DatasourceAuthCredentials' for 'RestoreTargetInfo': %+v", err)
 		}

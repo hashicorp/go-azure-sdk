@@ -40,7 +40,7 @@ func ParseAssociatedTenantID(input string) (*AssociatedTenantId, error) {
 	}
 
 	id := AssociatedTenantId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAssociatedTenantIDInsensitively(input string) (*AssociatedTenantId, er
 	}
 
 	id := AssociatedTenantId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

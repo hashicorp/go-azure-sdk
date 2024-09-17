@@ -42,7 +42,7 @@ func ParseActivityLogAlertID(input string) (*ActivityLogAlertId, error) {
 	}
 
 	id := ActivityLogAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseActivityLogAlertIDInsensitively(input string) (*ActivityLogAlertId, er
 	}
 
 	id := ActivityLogAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

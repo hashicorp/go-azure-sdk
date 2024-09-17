@@ -44,7 +44,7 @@ func ParsePowerShell72ModuleID(input string) (*PowerShell72ModuleId, error) {
 	}
 
 	id := PowerShell72ModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePowerShell72ModuleIDInsensitively(input string) (*PowerShell72ModuleId
 	}
 
 	id := PowerShell72ModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

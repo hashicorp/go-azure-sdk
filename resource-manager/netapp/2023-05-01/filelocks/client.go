@@ -15,7 +15,7 @@ type FileLocksClient struct {
 }
 
 func NewFileLocksClientWithBaseURI(sdkApi sdkEnv.Api) (*FileLocksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "filelocks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "filelocks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FileLocksClient: %+v", err)
 	}

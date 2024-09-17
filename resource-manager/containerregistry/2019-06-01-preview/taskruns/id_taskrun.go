@@ -44,7 +44,7 @@ func ParseTaskRunID(input string) (*TaskRunId, error) {
 	}
 
 	id := TaskRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTaskRunIDInsensitively(input string) (*TaskRunId, error) {
 	}
 
 	id := TaskRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

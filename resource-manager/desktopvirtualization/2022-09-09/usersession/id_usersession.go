@@ -46,7 +46,7 @@ func ParseUserSessionID(input string) (*UserSessionId, error) {
 	}
 
 	id := UserSessionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseUserSessionIDInsensitively(input string) (*UserSessionId, error) {
 	}
 
 	id := UserSessionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

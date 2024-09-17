@@ -47,7 +47,6 @@ func (c UpdatesClient) List(ctx context.Context, id commonids.ScopeId) (result L
 
 	var model ListUpdatesResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

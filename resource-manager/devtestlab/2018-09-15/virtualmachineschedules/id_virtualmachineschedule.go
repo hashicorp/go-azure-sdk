@@ -46,7 +46,7 @@ func ParseVirtualMachineScheduleID(input string) (*VirtualMachineScheduleId, err
 	}
 
 	id := VirtualMachineScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualMachineScheduleIDInsensitively(input string) (*VirtualMachineSc
 	}
 
 	id := VirtualMachineScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -42,7 +42,7 @@ func ParseProviderConfigurationAssignmentID(input string) (*ProviderConfiguratio
 	}
 
 	id := ProviderConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderConfigurationAssignmentIDInsensitively(input string) (*Provide
 	}
 
 	id := ProviderConfigurationAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

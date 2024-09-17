@@ -46,7 +46,7 @@ func ParseUpdateRunID(input string) (*UpdateRunId, error) {
 	}
 
 	id := UpdateRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseUpdateRunIDInsensitively(input string) (*UpdateRunId, error) {
 	}
 
 	id := UpdateRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

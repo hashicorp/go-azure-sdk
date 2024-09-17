@@ -36,6 +36,7 @@ func (o WorkspaceLoggerUpdateOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceLoggerUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c LoggerClient) WorkspaceLoggerUpdate(ctx context.Context, id WorkspaceLog
 
 	var model LoggerContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

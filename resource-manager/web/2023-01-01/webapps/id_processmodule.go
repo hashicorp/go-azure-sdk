@@ -48,7 +48,7 @@ func ParseProcessModuleID(input string) (*ProcessModuleId, error) {
 	}
 
 	id := ProcessModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseProcessModuleIDInsensitively(input string) (*ProcessModuleId, error) {
 	}
 
 	id := ProcessModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

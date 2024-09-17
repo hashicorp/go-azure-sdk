@@ -44,7 +44,7 @@ func ParseSyncGroupID(input string) (*SyncGroupId, error) {
 	}
 
 	id := SyncGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSyncGroupIDInsensitively(input string) (*SyncGroupId, error) {
 	}
 
 	id := SyncGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

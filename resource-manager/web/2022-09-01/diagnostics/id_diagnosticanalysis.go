@@ -48,7 +48,7 @@ func ParseDiagnosticAnalysisID(input string) (*DiagnosticAnalysisId, error) {
 	}
 
 	id := DiagnosticAnalysisId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseDiagnosticAnalysisIDInsensitively(input string) (*DiagnosticAnalysisId
 	}
 
 	id := DiagnosticAnalysisId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -15,7 +15,7 @@ type AvailableServiceTiersClient struct {
 }
 
 func NewAvailableServiceTiersClientWithBaseURI(sdkApi sdkEnv.Api) (*AvailableServiceTiersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "availableservicetiers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "availableservicetiers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AvailableServiceTiersClient: %+v", err)
 	}

@@ -40,6 +40,7 @@ func (o WorkspaceConnectionsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceConnectionsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

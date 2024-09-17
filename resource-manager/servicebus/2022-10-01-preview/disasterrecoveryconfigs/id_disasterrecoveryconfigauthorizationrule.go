@@ -46,7 +46,7 @@ func ParseDisasterRecoveryConfigAuthorizationRuleID(input string) (*DisasterReco
 	}
 
 	id := DisasterRecoveryConfigAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(input string) (
 	}
 
 	id := DisasterRecoveryConfigAuthorizationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

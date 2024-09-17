@@ -38,7 +38,7 @@ func ParseOsTypeID(input string) (*OsTypeId, error) {
 	}
 
 	id := OsTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseOsTypeIDInsensitively(input string) (*OsTypeId, error) {
 	}
 
 	id := OsTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

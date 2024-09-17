@@ -45,7 +45,6 @@ func (c MyworkbooksAPIsClient) MyWorkbooksGet(ctx context.Context, id MyWorkbook
 
 	var model MyWorkbook
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type DimensionsClient struct {
 }
 
 func NewDimensionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DimensionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dimensions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dimensions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DimensionsClient: %+v", err)
 	}

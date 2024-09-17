@@ -45,7 +45,6 @@ func (c ServerAdvisorsClient) Get(ctx context.Context, id AdvisorId) (result Get
 
 	var model Advisor
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

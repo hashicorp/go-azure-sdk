@@ -46,7 +46,7 @@ func ParseReplicaID(input string) (*ReplicaId, error) {
 	}
 
 	id := ReplicaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicaIDInsensitively(input string) (*ReplicaId, error) {
 	}
 
 	id := ReplicaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

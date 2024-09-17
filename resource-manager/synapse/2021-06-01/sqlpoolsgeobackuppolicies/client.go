@@ -15,7 +15,7 @@ type SqlPoolsGeoBackupPoliciesClient struct {
 }
 
 func NewSqlPoolsGeoBackupPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsGeoBackupPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsgeobackuppolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsgeobackuppolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsGeoBackupPoliciesClient: %+v", err)
 	}

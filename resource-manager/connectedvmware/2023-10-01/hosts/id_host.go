@@ -42,7 +42,7 @@ func ParseHostID(input string) (*HostId, error) {
 	}
 
 	id := HostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseHostIDInsensitively(input string) (*HostId, error) {
 	}
 
 	id := HostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -14,7 +14,16 @@ type LiteralJobInput struct {
 	Value string `json:"value"`
 
 	// Fields inherited from JobInput
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	JobInputType JobInputType `json:"jobInputType"`
+}
+
+func (s LiteralJobInput) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		Description:  s.Description,
+		JobInputType: s.JobInputType,
+	}
 }
 
 var _ json.Marshaler = LiteralJobInput{}
@@ -28,9 +37,10 @@ func (s LiteralJobInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LiteralJobInput: %+v", err)
 	}
+
 	decoded["jobInputType"] = "literal"
 
 	encoded, err = json.Marshal(decoded)

@@ -45,7 +45,6 @@ func (c SqlPoolsSqlPoolColumnsClient) SqlPoolColumnsGet(ctx context.Context, id 
 
 	var model SqlPoolColumn
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

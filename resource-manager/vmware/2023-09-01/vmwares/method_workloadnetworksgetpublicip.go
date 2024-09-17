@@ -45,7 +45,6 @@ func (c VMwaresClient) WorkloadNetworksGetPublicIP(ctx context.Context, id Publi
 
 	var model WorkloadNetworkPublicIP
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

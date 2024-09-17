@@ -15,7 +15,7 @@ type DiskPoolZonesClient struct {
 }
 
 func NewDiskPoolZonesClientWithBaseURI(sdkApi sdkEnv.Api) (*DiskPoolZonesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "diskpoolzones", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "diskpoolzones", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DiskPoolZonesClient: %+v", err)
 	}

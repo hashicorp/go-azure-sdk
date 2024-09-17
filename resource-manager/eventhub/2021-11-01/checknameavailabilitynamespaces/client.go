@@ -15,7 +15,7 @@ type CheckNameAvailabilityNamespacesClient struct {
 }
 
 func NewCheckNameAvailabilityNamespacesClientWithBaseURI(sdkApi sdkEnv.Api) (*CheckNameAvailabilityNamespacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "checknameavailabilitynamespaces", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "checknameavailabilitynamespaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CheckNameAvailabilityNamespacesClient: %+v", err)
 	}

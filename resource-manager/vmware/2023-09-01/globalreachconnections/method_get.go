@@ -45,7 +45,6 @@ func (c GlobalReachConnectionsClient) Get(ctx context.Context, id GlobalReachCon
 
 	var model GlobalReachConnection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

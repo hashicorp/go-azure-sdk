@@ -44,7 +44,7 @@ func ParseCommunityGalleryImageID(input string) (*CommunityGalleryImageId, error
 	}
 
 	id := CommunityGalleryImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCommunityGalleryImageIDInsensitively(input string) (*CommunityGalleryI
 	}
 
 	id := CommunityGalleryImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

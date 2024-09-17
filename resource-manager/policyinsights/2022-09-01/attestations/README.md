@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2022-09-01/attestations` Documentation
 
-The `attestations` SDK allows for interaction with the Azure Resource Manager Service `policyinsights` (API Version `2022-09-01`).
+The `attestations` SDK allows for interaction with Azure Resource Manager `policyinsights` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

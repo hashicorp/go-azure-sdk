@@ -44,7 +44,7 @@ func ParseScopeMapID(input string) (*ScopeMapId, error) {
 	}
 
 	id := ScopeMapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseScopeMapIDInsensitively(input string) (*ScopeMapId, error) {
 	}
 
 	id := ScopeMapId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

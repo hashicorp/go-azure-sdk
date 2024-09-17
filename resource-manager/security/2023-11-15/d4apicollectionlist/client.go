@@ -15,7 +15,7 @@ type D4APICollectionListClient struct {
 }
 
 func NewD4APICollectionListClientWithBaseURI(sdkApi sdkEnv.Api) (*D4APICollectionListClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "d4apicollectionlist", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "d4apicollectionlist", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating D4APICollectionListClient: %+v", err)
 	}

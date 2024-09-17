@@ -46,7 +46,7 @@ func ParseTriggerID(input string) (*TriggerId, error) {
 	}
 
 	id := TriggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTriggerIDInsensitively(input string) (*TriggerId, error) {
 	}
 
 	id := TriggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

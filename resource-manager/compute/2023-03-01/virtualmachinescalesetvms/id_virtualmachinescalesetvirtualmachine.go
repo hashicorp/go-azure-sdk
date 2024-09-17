@@ -44,7 +44,7 @@ func ParseVirtualMachineScaleSetVirtualMachineID(input string) (*VirtualMachineS
 	}
 
 	id := VirtualMachineScaleSetVirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualMachineScaleSetVirtualMachineIDInsensitively(input string) (*Vi
 	}
 
 	id := VirtualMachineScaleSetVirtualMachineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

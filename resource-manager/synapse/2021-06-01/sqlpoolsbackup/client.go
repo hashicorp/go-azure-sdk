@@ -15,7 +15,7 @@ type SqlPoolsBackupClient struct {
 }
 
 func NewSqlPoolsBackupClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsBackupClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsbackup", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsbackup", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsBackupClient: %+v", err)
 	}

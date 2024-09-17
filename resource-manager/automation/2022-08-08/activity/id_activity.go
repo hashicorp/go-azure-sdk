@@ -46,7 +46,7 @@ func ParseActivityID(input string) (*ActivityId, error) {
 	}
 
 	id := ActivityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseActivityIDInsensitively(input string) (*ActivityId, error) {
 	}
 
 	id := ActivityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

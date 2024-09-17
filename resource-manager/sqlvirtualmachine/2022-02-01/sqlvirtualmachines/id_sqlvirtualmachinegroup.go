@@ -42,7 +42,7 @@ func ParseSqlVirtualMachineGroupID(input string) (*SqlVirtualMachineGroupId, err
 	}
 
 	id := SqlVirtualMachineGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSqlVirtualMachineGroupIDInsensitively(input string) (*SqlVirtualMachin
 	}
 
 	id := SqlVirtualMachineGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

@@ -44,7 +44,7 @@ func ParseOperationIdID(input string) (*OperationIdId, error) {
 	}
 
 	id := OperationIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOperationIdIDInsensitively(input string) (*OperationIdId, error) {
 	}
 
 	id := OperationIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 

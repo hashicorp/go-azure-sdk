@@ -45,7 +45,6 @@ func (c EnvironmentVersionClient) Get(ctx context.Context, id EnvironmentVersion
 
 	var model EnvironmentVersionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

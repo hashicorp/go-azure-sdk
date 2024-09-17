@@ -46,7 +46,6 @@ func (c NetAppResourceClient) QueryRegionInfo(ctx context.Context, id LocationId
 
 	var model RegionInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

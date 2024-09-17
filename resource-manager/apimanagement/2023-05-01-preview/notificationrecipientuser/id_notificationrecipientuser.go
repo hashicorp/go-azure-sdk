@@ -48,7 +48,7 @@ func ParseNotificationRecipientUserID(input string) (*NotificationRecipientUserI
 	}
 
 	id := NotificationRecipientUserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseNotificationRecipientUserIDInsensitively(input string) (*NotificationR
 	}
 
 	id := NotificationRecipientUserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
