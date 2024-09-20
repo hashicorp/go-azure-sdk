@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-03-01/diagnostics` Documentation
 
-The `diagnostics` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-03-01`).
+The `diagnostics` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewContainerAppDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "detectorValue")
+id := diagnostics.NewContainerAppDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "detectorName")
 
 read, err := client.ContainerAppsDiagnosticsGetDetector(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewRevisionsApiRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "revisionValue")
+id := diagnostics.NewRevisionsApiRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.ContainerAppsDiagnosticsGetRevision(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue")
+id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.ContainerAppsDiagnosticsGetRoot(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue")
+id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.ContainerAppsDiagnosticsListDetectors(ctx, id)` can be used to do batched pagination
 items, err := client.ContainerAppsDiagnosticsListDetectorsComplete(ctx, id)
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue")
+id := diagnostics.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.ContainerAppsDiagnosticsListRevisions(ctx, id, diagnostics.DefaultContainerAppsDiagnosticsListRevisionsOperationOptions())` can be used to do batched pagination
 items, err := client.ContainerAppsDiagnosticsListRevisionsComplete(ctx, id, diagnostics.DefaultContainerAppsDiagnosticsListRevisionsOperationOptions())
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobValue", "detectorValue")
+id := diagnostics.NewDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "detectorName")
 
 read, err := client.JobsGetDetector(ctx, id)
 if err != nil {
@@ -122,7 +122,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobValue")
+id := diagnostics.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName")
 
 // alternatively `client.JobsListDetectors(ctx, id)` can be used to do batched pagination
 items, err := client.JobsListDetectorsComplete(ctx, id)
@@ -139,7 +139,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobValue", "detectorPropertyValue")
+id := diagnostics.NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "apiName")
 
 read, err := client.JobsProxyGet(ctx, id)
 if err != nil {
@@ -155,7 +155,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "detectorValue")
+id := diagnostics.NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "detectorName")
 
 read, err := client.ManagedEnvironmentDiagnosticsGetDetector(ctx, id)
 if err != nil {
@@ -171,7 +171,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue")
+id := diagnostics.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
 
 // alternatively `client.ManagedEnvironmentDiagnosticsListDetectors(ctx, id)` can be used to do batched pagination
 items, err := client.ManagedEnvironmentDiagnosticsListDetectorsComplete(ctx, id)
@@ -188,7 +188,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue")
+id := diagnostics.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
 
 read, err := client.ManagedEnvironmentsDiagnosticsGetRoot(ctx, id)
 if err != nil {

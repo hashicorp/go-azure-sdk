@@ -49,7 +49,6 @@ func (c FileSystemsClient) Update(ctx context.Context, id FileSystemId, input Li
 
 	var model LiftrBaseStorageFileSystemResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -104,7 +104,7 @@ func (s *DatabaseAccountGetProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["backupPolicy"]; ok {
-		impl, err := unmarshalBackupPolicyImplementation(v)
+		impl, err := UnmarshalBackupPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'BackupPolicy' for 'DatabaseAccountGetProperties': %+v", err)
 		}

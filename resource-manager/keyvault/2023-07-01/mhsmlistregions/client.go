@@ -15,7 +15,7 @@ type MHSMListRegionsClient struct {
 }
 
 func NewMHSMListRegionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMListRegionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mhsmlistregions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "mhsmlistregions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MHSMListRegionsClient: %+v", err)
 	}

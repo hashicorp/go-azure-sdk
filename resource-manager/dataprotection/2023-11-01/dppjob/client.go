@@ -15,7 +15,7 @@ type DppJobClient struct {
 }
 
 func NewDppJobClientWithBaseURI(sdkApi sdkEnv.Api) (*DppJobClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dppjob", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dppjob", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DppJobClient: %+v", err)
 	}

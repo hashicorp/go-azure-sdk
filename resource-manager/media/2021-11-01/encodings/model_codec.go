@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Codec interface {
+	Codec() BaseCodecImpl
 }
 
-// RawCodecImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Codec = BaseCodecImpl{}
+
+type BaseCodecImpl struct {
+	Label     *string `json:"label,omitempty"`
+	OdataType string  `json:"@odata.type"`
+}
+
+func (s BaseCodecImpl) Codec() BaseCodecImpl {
+	return s
+}
+
+var _ Codec = RawCodecImpl{}
+
+// RawCodecImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCodecImpl struct {
+	codec  BaseCodecImpl
 	Type   string
 	Values map[string]interface{}
 }
 
-func unmarshalCodecImplementation(input []byte) (Codec, error) {
+func (s RawCodecImpl) Codec() BaseCodecImpl {
+	return s.codec
+}
+
+func UnmarshalCodecImplementation(input []byte) (Codec, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -116,10 +134,15 @@ func unmarshalCodecImplementation(input []byte) (Codec, error) {
 		return out, nil
 	}
 
-	out := RawCodecImpl{
+	var parent BaseCodecImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCodecImpl: %+v", err)
+	}
+
+	return RawCodecImpl{
+		codec:  parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

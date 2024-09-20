@@ -15,7 +15,7 @@ type NetAppResourceClient struct {
 }
 
 func NewNetAppResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*NetAppResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "netappresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "netappresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetAppResourceClient: %+v", err)
 	}

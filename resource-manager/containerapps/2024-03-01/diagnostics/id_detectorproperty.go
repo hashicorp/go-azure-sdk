@@ -44,7 +44,7 @@ func ParseDetectorPropertyID(input string) (*DetectorPropertyId, error) {
 	}
 
 	id := DetectorPropertyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDetectorPropertyIDInsensitively(input string) (*DetectorPropertyId, er
 	}
 
 	id := DetectorPropertyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DetectorPropertyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
-		resourceids.UserSpecifiedSegment("jobName", "jobValue"),
+		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 		resourceids.StaticSegment("staticDetectorProperties", "detectorProperties", "detectorProperties"),
-		resourceids.UserSpecifiedSegment("detectorPropertyName", "detectorPropertyValue"),
+		resourceids.UserSpecifiedSegment("detectorPropertyName", "apiName"),
 	}
 }
 

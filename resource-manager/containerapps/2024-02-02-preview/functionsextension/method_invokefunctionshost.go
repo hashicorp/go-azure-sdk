@@ -46,7 +46,6 @@ func (c FunctionsExtensionClient) InvokeFunctionsHost(ctx context.Context, id Fu
 
 	var model string
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

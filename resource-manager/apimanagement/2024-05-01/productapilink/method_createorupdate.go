@@ -50,7 +50,6 @@ func (c ProductApiLinkClient) CreateOrUpdate(ctx context.Context, id ProductApiL
 
 	var model ProductApiLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -14,7 +14,16 @@ type MultiBitrateFormat struct {
 	OutputFiles *[]OutputFile `json:"outputFiles,omitempty"`
 
 	// Fields inherited from Format
+
 	FilenamePattern string `json:"filenamePattern"`
+	OdataType       string `json:"@odata.type"`
+}
+
+func (s MultiBitrateFormat) Format() BaseFormatImpl {
+	return BaseFormatImpl{
+		FilenamePattern: s.FilenamePattern,
+		OdataType:       s.OdataType,
+	}
 }
 
 var _ json.Marshaler = MultiBitrateFormat{}
@@ -28,9 +37,10 @@ func (s MultiBitrateFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MultiBitrateFormat: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.MultiBitrateFormat"
 
 	encoded, err = json.Marshal(decoded)

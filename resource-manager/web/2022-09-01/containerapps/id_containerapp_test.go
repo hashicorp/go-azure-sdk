@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ContainerAppId{}
 
 func TestNewContainerAppID(t *testing.T) {
-	id := NewContainerAppID("12345678-1234-9876-4563-123456789012", "containerAppValue")
+	id := NewContainerAppID("12345678-1234-9876-4563-123456789012", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ContainerAppName != "containerAppValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppValue")
+	if id.ContainerAppName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "name")
 	}
 }
 
 func TestFormatContainerAppID(t *testing.T) {
-	actual := NewContainerAppID("12345678-1234-9876-4563-123456789012", "containerAppValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/containerAppValue"
+	actual := NewContainerAppID("12345678-1234-9876-4563-123456789012", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseContainerAppID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/name",
 			Expected: &ContainerAppId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				ContainerAppName: "containerAppValue",
+				ContainerAppName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/containerAppValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/name/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseContainerAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/name",
 			Expected: &ContainerAppId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				ContainerAppName: "containerAppValue",
+				ContainerAppName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/containerAppValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/containerApps/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/nAmE",
 			Expected: &ContainerAppId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				ContainerAppName: "cOnTaInErApPvAlUe",
+				ContainerAppName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/nAmE/extra",
 			Error: true,
 		},
 	}

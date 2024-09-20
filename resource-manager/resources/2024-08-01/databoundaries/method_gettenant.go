@@ -45,7 +45,6 @@ func (c DataBoundariesClient) GetTenant(ctx context.Context) (result GetTenantOp
 
 	var model DataBoundaryDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

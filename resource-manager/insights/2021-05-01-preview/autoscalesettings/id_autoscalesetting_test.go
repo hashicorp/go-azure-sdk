@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AutoScaleSettingId{}
 
 func TestNewAutoScaleSettingID(t *testing.T) {
-	id := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleSettingValue")
+	id := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoscaleSettingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAutoScaleSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutoScaleSettingName != "autoScaleSettingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleSettingName'", id.AutoScaleSettingName, "autoScaleSettingValue")
+	if id.AutoScaleSettingName != "autoscaleSettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleSettingName'", id.AutoScaleSettingName, "autoscaleSettingName")
 	}
 }
 
 func TestFormatAutoScaleSettingID(t *testing.T) {
-	actual := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleSettingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue"
+	actual := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoscaleSettingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAutoScaleSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingName",
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AutoScaleSettingName: "autoScaleSettingValue",
+				AutoScaleSettingName: "autoscaleSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAutoScaleSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingName",
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AutoScaleSettingName: "autoScaleSettingValue",
+				AutoScaleSettingName: "autoscaleSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aUtOsCaLeSeTtInGs/aUtOsCaLeSeTtInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aUtOsCaLeSeTtInGs/aUtOsCaLeSeTtInGnAmE",
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				AutoScaleSettingName: "aUtOsCaLeSeTtInGvAlUe",
+				AutoScaleSettingName: "aUtOsCaLeSeTtInGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aUtOsCaLeSeTtInGs/aUtOsCaLeSeTtInGvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aUtOsCaLeSeTtInGs/aUtOsCaLeSeTtInGnAmE/extra",
 			Error: true,
 		},
 	}

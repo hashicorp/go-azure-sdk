@@ -23,8 +23,18 @@ type AzureBlobStorageReadSettings struct {
 	WildcardFolderPath         *string `json:"wildcardFolderPath,omitempty"`
 
 	// Fields inherited from StoreReadSettings
+
 	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
+	Type                     string `json:"type"`
+}
+
+func (s AzureBlobStorageReadSettings) StoreReadSettings() BaseStoreReadSettingsImpl {
+	return BaseStoreReadSettingsImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureBlobStorageReadSettings{}
@@ -38,9 +48,10 @@ func (s AzureBlobStorageReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBlobStorageReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "AzureBlobStorageReadSettings"
 
 	encoded, err = json.Marshal(decoded)

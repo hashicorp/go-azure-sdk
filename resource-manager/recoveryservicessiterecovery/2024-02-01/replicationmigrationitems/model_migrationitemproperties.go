@@ -93,7 +93,7 @@ func (s *MigrationItemProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalMigrationProviderSpecificSettingsImplementation(v)
+		impl, err := UnmarshalMigrationProviderSpecificSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'MigrationItemProperties': %+v", err)
 		}

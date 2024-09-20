@@ -15,7 +15,7 @@ type RestorableDroppedSqlPoolsClient struct {
 }
 
 func NewRestorableDroppedSqlPoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*RestorableDroppedSqlPoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "restorabledroppedsqlpools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "restorabledroppedsqlpools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RestorableDroppedSqlPoolsClient: %+v", err)
 	}

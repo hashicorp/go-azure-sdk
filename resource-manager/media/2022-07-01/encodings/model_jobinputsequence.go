@@ -14,6 +14,14 @@ type JobInputSequence struct {
 	Inputs *[]JobInputClip `json:"inputs,omitempty"`
 
 	// Fields inherited from JobInput
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s JobInputSequence) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = JobInputSequence{}
@@ -27,9 +35,10 @@ func (s JobInputSequence) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobInputSequence: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JobInputSequence"
 
 	encoded, err = json.Marshal(decoded)

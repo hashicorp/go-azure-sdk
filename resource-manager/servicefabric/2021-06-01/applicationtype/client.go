@@ -15,7 +15,7 @@ type ApplicationTypeClient struct {
 }
 
 func NewApplicationTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationTypeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "applicationtype", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "applicationtype", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApplicationTypeClient: %+v", err)
 	}

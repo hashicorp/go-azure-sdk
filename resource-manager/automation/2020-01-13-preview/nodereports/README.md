@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/nodereports` Documentation
 
-The `nodereports` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2020-01-13-preview`).
+The `nodereports` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2020-01-13-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := nodereports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue", "reportIdValue")
+id := nodereports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId", "reportId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := nodereports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue", "reportIdValue")
+id := nodereports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId", "reportId")
 
 read, err := client.GetContent(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := nodereports.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue")
+id := nodereports.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId")
 
 // alternatively `client.ListByNode(ctx, id, nodereports.DefaultListByNodeOperationOptions())` can be used to do batched pagination
 items, err := client.ListByNodeComplete(ctx, id, nodereports.DefaultListByNodeOperationOptions())

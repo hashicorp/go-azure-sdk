@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/invoices` Documentation
 
-The `invoices` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `invoices` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingSubscriptionInvoiceID("subscriptionIdValue", "invoiceValue")
+id := invoices.NewBillingSubscriptionInvoiceID("subscriptionId", "invoiceName")
 
 if err := client.DownloadBillingSubscriptionInvoiceThenPoll(ctx, id, invoices.DefaultDownloadBillingSubscriptionInvoiceOperationOptions()); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.DownloadBillingSubscriptionInvoiceThenPoll(ctx, id, invoices.De
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoices.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 if err := client.DownloadInvoiceThenPoll(ctx, id, invoices.DefaultDownloadInvoiceOperationOptions()); err != nil {
 	// handle the error
@@ -48,7 +48,7 @@ if err := client.DownloadInvoiceThenPoll(ctx, id, invoices.DefaultDownloadInvoic
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingAccountID("billingAccountValue")
+id := invoices.NewBillingAccountID("billingAccountName")
 var payload []string
 
 if err := client.DownloadMultipleBillingProfileInvoicesThenPoll(ctx, id, payload); err != nil {
@@ -61,7 +61,7 @@ if err := client.DownloadMultipleBillingProfileInvoicesThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingSubscriptionID("subscriptionIdValue")
+id := invoices.NewBillingSubscriptionID("subscriptionId")
 var payload []string
 
 if err := client.DownloadMultipleBillingSubscriptionInvoicesThenPoll(ctx, id, payload); err != nil {
@@ -74,7 +74,7 @@ if err := client.DownloadMultipleBillingSubscriptionInvoicesThenPoll(ctx, id, pa
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoices.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -90,7 +90,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoices.NewInvoiceID("invoiceValue")
+id := invoices.NewInvoiceID("invoiceName")
 
 read, err := client.GetById(ctx, id)
 if err != nil {
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingSubscriptionInvoiceID("subscriptionIdValue", "invoiceValue")
+id := invoices.NewBillingSubscriptionInvoiceID("subscriptionId", "invoiceName")
 
 read, err := client.GetBySubscriptionAndInvoiceId(ctx, id)
 if err != nil {
@@ -122,7 +122,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingAccountID("billingAccountValue")
+id := invoices.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, invoices.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, invoices.DefaultListByBillingAccountOperationOptions())
@@ -139,7 +139,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := invoices.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, invoices.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, invoices.DefaultListByBillingProfileOperationOptions())
@@ -156,7 +156,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := invoices.NewBillingSubscriptionID("subscriptionIdValue")
+id := invoices.NewBillingSubscriptionID("subscriptionId")
 
 // alternatively `client.ListByBillingSubscription(ctx, id, invoices.DefaultListByBillingSubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingSubscriptionComplete(ctx, id, invoices.DefaultListByBillingSubscriptionOperationOptions())

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FrontendIPConfigurationId{}
 
 func TestNewFrontendIPConfigurationID(t *testing.T) {
-	id := NewFrontendIPConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue", "frontendIPConfigurationValue")
+	id := NewFrontendIPConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "frontendIPConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFrontendIPConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LoadBalancerName != "loadBalancerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerValue")
+	if id.LoadBalancerName != "loadBalancerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerName")
 	}
 
-	if id.FrontendIPConfigurationName != "frontendIPConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FrontendIPConfigurationName'", id.FrontendIPConfigurationName, "frontendIPConfigurationValue")
+	if id.FrontendIPConfigurationName != "frontendIPConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FrontendIPConfigurationName'", id.FrontendIPConfigurationName, "frontendIPConfigurationName")
 	}
 }
 
 func TestFormatFrontendIPConfigurationID(t *testing.T) {
-	actual := NewFrontendIPConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue", "frontendIPConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations/frontendIPConfigurationValue"
+	actual := NewFrontendIPConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "frontendIPConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations/frontendIPConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFrontendIPConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations/frontendIPConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations/frontendIPConfigurationName",
 			Expected: &FrontendIPConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				LoadBalancerName:            "loadBalancerValue",
-				FrontendIPConfigurationName: "frontendIPConfigurationValue",
+				LoadBalancerName:            "loadBalancerName",
+				FrontendIPConfigurationName: "frontendIPConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations/frontendIPConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations/frontendIPConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFrontendIPConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/fRoNtEnDiPcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/fRoNtEnDiPcOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations/frontendIPConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations/frontendIPConfigurationName",
 			Expected: &FrontendIPConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				LoadBalancerName:            "loadBalancerValue",
-				FrontendIPConfigurationName: "frontendIPConfigurationValue",
+				LoadBalancerName:            "loadBalancerName",
+				FrontendIPConfigurationName: "frontendIPConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/frontendIPConfigurations/frontendIPConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/frontendIPConfigurations/frontendIPConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/fRoNtEnDiPcOnFiGuRaTiOnS/fRoNtEnDiPcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/fRoNtEnDiPcOnFiGuRaTiOnS/fRoNtEnDiPcOnFiGuRaTiOnNaMe",
 			Expected: &FrontendIPConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				LoadBalancerName:            "lOaDbAlAnCeRvAlUe",
-				FrontendIPConfigurationName: "fRoNtEnDiPcOnFiGuRaTiOnVaLuE",
+				LoadBalancerName:            "lOaDbAlAnCeRnAmE",
+				FrontendIPConfigurationName: "fRoNtEnDiPcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/fRoNtEnDiPcOnFiGuRaTiOnS/fRoNtEnDiPcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/fRoNtEnDiPcOnFiGuRaTiOnS/fRoNtEnDiPcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

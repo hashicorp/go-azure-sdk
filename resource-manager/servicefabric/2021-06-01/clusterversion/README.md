@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/clusterversion` Documentation
 
-The `clusterversion` SDK allows for interaction with the Azure Resource Manager Service `servicefabric` (API Version `2021-06-01`).
+The `clusterversion` SDK allows for interaction with Azure Resource Manager `servicefabric` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue")
+id := clusterversion.NewClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "clusterVersion")
 
 // alternatively `client.Get(ctx, id)` can be used to do batched pagination
 items, err := client.GetComplete(ctx, id)
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux", "clusterVersionValue")
+id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "Linux", "clusterVersion")
 
 // alternatively `client.GetByEnvironment(ctx, id)` can be used to do batched pagination
 items, err := client.GetByEnvironmentComplete(ctx, id)
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := clusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "locationValue", "Linux")
+id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "location", "Linux")
 
 // alternatively `client.ListByEnvironment(ctx, id)` can be used to do batched pagination
 items, err := client.ListByEnvironmentComplete(ctx, id)

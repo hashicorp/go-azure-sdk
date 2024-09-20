@@ -44,7 +44,7 @@ func ParseMachinePoolID(input string) (*MachinePoolId, error) {
 	}
 
 	id := MachinePoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMachinePoolIDInsensitively(input string) (*MachinePoolId, error) {
 	}
 
 	id := MachinePoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MachinePoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRedHatOpenShift", "Microsoft.RedHatOpenShift", "Microsoft.RedHatOpenShift"),
 		resourceids.StaticSegment("staticOpenShiftClusters", "openShiftClusters", "openShiftClusters"),
-		resourceids.UserSpecifiedSegment("openShiftClusterName", "openShiftClusterValue"),
+		resourceids.UserSpecifiedSegment("openShiftClusterName", "resourceName"),
 		resourceids.StaticSegment("staticMachinePool", "machinePool", "machinePool"),
-		resourceids.UserSpecifiedSegment("machinePoolName", "machinePoolValue"),
+		resourceids.UserSpecifiedSegment("machinePoolName", "childResourceName"),
 	}
 }
 

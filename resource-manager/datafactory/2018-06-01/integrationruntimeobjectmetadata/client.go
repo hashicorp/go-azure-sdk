@@ -15,7 +15,7 @@ type IntegrationRuntimeObjectMetadataClient struct {
 }
 
 func NewIntegrationRuntimeObjectMetadataClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationRuntimeObjectMetadataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationruntimeobjectmetadata", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationruntimeobjectmetadata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationRuntimeObjectMetadataClient: %+v", err)
 	}

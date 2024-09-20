@@ -15,7 +15,7 @@ type ChangeDataCaptureClient struct {
 }
 
 func NewChangeDataCaptureClientWithBaseURI(sdkApi sdkEnv.Api) (*ChangeDataCaptureClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "changedatacapture", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "changedatacapture", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ChangeDataCaptureClient: %+v", err)
 	}

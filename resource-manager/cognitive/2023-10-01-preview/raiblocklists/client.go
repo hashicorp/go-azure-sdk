@@ -15,7 +15,7 @@ type RaiBlocklistsClient struct {
 }
 
 func NewRaiBlocklistsClientWithBaseURI(sdkApi sdkEnv.Api) (*RaiBlocklistsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "raiblocklists", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "raiblocklists", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RaiBlocklistsClient: %+v", err)
 	}

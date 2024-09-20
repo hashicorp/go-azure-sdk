@@ -51,7 +51,6 @@ func (c ConfigurationsClient) CreateInSubscription(ctx context.Context, id commo
 
 	var model ConfigData
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ContactId{}
 
 func TestNewContactID(t *testing.T) {
-	id := NewContactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spacecraftValue", "contactValue")
+	id := NewContactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spacecraftName", "contactName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewContactID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SpacecraftName != "spacecraftValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SpacecraftName'", id.SpacecraftName, "spacecraftValue")
+	if id.SpacecraftName != "spacecraftName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpacecraftName'", id.SpacecraftName, "spacecraftName")
 	}
 
-	if id.ContactName != "contactValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactName'", id.ContactName, "contactValue")
+	if id.ContactName != "contactName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactName'", id.ContactName, "contactName")
 	}
 }
 
 func TestFormatContactID(t *testing.T) {
-	actual := NewContactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spacecraftValue", "contactValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts/contactValue"
+	actual := NewContactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spacecraftName", "contactName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts/contactName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseContactID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts/contactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts/contactName",
 			Expected: &ContactId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SpacecraftName:    "spacecraftValue",
-				ContactName:       "contactValue",
+				SpacecraftName:    "spacecraftName",
+				ContactName:       "contactName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts/contactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts/contactName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseContactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTvAlUe/cOnTaCtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTnAmE/cOnTaCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts/contactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts/contactName",
 			Expected: &ContactId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SpacecraftName:    "spacecraftValue",
-				ContactName:       "contactValue",
+				SpacecraftName:    "spacecraftName",
+				ContactName:       "contactName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftValue/contacts/contactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/spacecrafts/spacecraftName/contacts/contactName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTvAlUe/cOnTaCtS/cOnTaCtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTnAmE/cOnTaCtS/cOnTaCtNaMe",
 			Expected: &ContactId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SpacecraftName:    "sPaCeCrAfTvAlUe",
-				ContactName:       "cOnTaCtVaLuE",
+				SpacecraftName:    "sPaCeCrAfTnAmE",
+				ContactName:       "cOnTaCtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTvAlUe/cOnTaCtS/cOnTaCtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/sPaCeCrAfTs/sPaCeCrAfTnAmE/cOnTaCtS/cOnTaCtNaMe/extra",
 			Error: true,
 		},
 	}

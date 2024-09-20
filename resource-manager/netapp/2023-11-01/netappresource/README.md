@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2023-11-01/netappresource` Documentation
 
-The `netappresource` SDK allows for interaction with the Azure Resource Manager Service `netapp` (API Version `2023-11-01`).
+The `netappresource` SDK allows for interaction with Azure Resource Manager `netapp` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := netappresource.FilePathAvailabilityRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := netappresource.ResourceNameAvailabilityRequest{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := netappresource.QuotaAvailabilityRequest{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := netappresource.QueryNetworkSiblingSetRequest{
 	// ...
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.QueryRegionInfo(ctx, id)
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaLimitValue")
+id := netappresource.NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "location", "quotaLimitName")
 
 read, err := client.QuotaLimitsGet(ctx, id)
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.QuotaLimitsList(ctx, id)
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.RegionInfosGet(ctx, id)
 if err != nil {
@@ -172,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 // alternatively `client.RegionInfosList(ctx, id)` can be used to do batched pagination
 items, err := client.RegionInfosListComplete(ctx, id)
@@ -189,7 +189,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := netappresource.UpdateNetworkSiblingSetRequest{
 	// ...

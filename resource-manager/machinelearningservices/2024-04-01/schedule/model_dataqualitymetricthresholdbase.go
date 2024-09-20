@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataQualityMetricThresholdBase interface {
+	DataQualityMetricThresholdBase() BaseDataQualityMetricThresholdBaseImpl
 }
 
-// RawDataQualityMetricThresholdBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataQualityMetricThresholdBase = BaseDataQualityMetricThresholdBaseImpl{}
+
+type BaseDataQualityMetricThresholdBaseImpl struct {
+	DataType  MonitoringFeatureDataType `json:"dataType"`
+	Threshold *MonitoringThreshold      `json:"threshold,omitempty"`
+}
+
+func (s BaseDataQualityMetricThresholdBaseImpl) DataQualityMetricThresholdBase() BaseDataQualityMetricThresholdBaseImpl {
+	return s
+}
+
+var _ DataQualityMetricThresholdBase = RawDataQualityMetricThresholdBaseImpl{}
+
+// RawDataQualityMetricThresholdBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataQualityMetricThresholdBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataQualityMetricThresholdBase BaseDataQualityMetricThresholdBaseImpl
+	Type                           string
+	Values                         map[string]interface{}
 }
 
-func unmarshalDataQualityMetricThresholdBaseImplementation(input []byte) (DataQualityMetricThresholdBase, error) {
+func (s RawDataQualityMetricThresholdBaseImpl) DataQualityMetricThresholdBase() BaseDataQualityMetricThresholdBaseImpl {
+	return s.dataQualityMetricThresholdBase
+}
+
+func UnmarshalDataQualityMetricThresholdBaseImplementation(input []byte) (DataQualityMetricThresholdBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalDataQualityMetricThresholdBaseImplementation(input []byte) (DataQu
 		return out, nil
 	}
 
-	out := RawDataQualityMetricThresholdBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataQualityMetricThresholdBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataQualityMetricThresholdBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataQualityMetricThresholdBaseImpl{
+		dataQualityMetricThresholdBase: parent,
+		Type:                           value,
+		Values:                         temp,
+	}, nil
 
 }

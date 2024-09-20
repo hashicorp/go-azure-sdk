@@ -50,7 +50,6 @@ func (c CustomOperationClient) CheckMigrationNameAvailability(ctx context.Contex
 
 	var model MigrationNameAvailabilityResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

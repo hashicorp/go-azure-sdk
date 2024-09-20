@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MaintenanceConfigurationId{}
 
 func TestNewMaintenanceConfigurationID(t *testing.T) {
-	id := NewMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "maintenanceConfigurationValue")
+	id := NewMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewMaintenanceConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MaintenanceConfigurationName != "maintenanceConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MaintenanceConfigurationName'", id.MaintenanceConfigurationName, "maintenanceConfigurationValue")
+	if id.MaintenanceConfigurationName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MaintenanceConfigurationName'", id.MaintenanceConfigurationName, "resourceName")
 	}
 }
 
 func TestFormatMaintenanceConfigurationID(t *testing.T) {
-	actual := NewMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "maintenanceConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/maintenanceConfigurationValue"
+	actual := NewMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/resourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseMaintenanceConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/maintenanceConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/resourceName",
 			Expected: &MaintenanceConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				MaintenanceConfigurationName: "maintenanceConfigurationValue",
+				MaintenanceConfigurationName: "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/maintenanceConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/resourceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseMaintenanceConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/maintenanceConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/resourceName",
 			Expected: &MaintenanceConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				MaintenanceConfigurationName: "maintenanceConfigurationValue",
+				MaintenanceConfigurationName: "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/maintenanceConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/maintenanceConfigurations/resourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/mAiNtEnAnCeCoNfIgUrAtIoNs/mAiNtEnAnCeCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/mAiNtEnAnCeCoNfIgUrAtIoNs/rEsOuRcEnAmE",
 			Expected: &MaintenanceConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				MaintenanceConfigurationName: "mAiNtEnAnCeCoNfIgUrAtIoNvAlUe",
+				MaintenanceConfigurationName: "rEsOuRcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/mAiNtEnAnCeCoNfIgUrAtIoNs/mAiNtEnAnCeCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/mAiNtEnAnCeCoNfIgUrAtIoNs/rEsOuRcEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -14,7 +14,16 @@ type InlineWorkflowTaskDetails struct {
 	WorkflowIds *[]string `json:"workflowIds,omitempty"`
 
 	// Fields inherited from GroupTaskDetails
-	ChildTasks *[]ASRTask `json:"childTasks,omitempty"`
+
+	ChildTasks   *[]ASRTask `json:"childTasks,omitempty"`
+	InstanceType string     `json:"instanceType"`
+}
+
+func (s InlineWorkflowTaskDetails) GroupTaskDetails() BaseGroupTaskDetailsImpl {
+	return BaseGroupTaskDetailsImpl{
+		ChildTasks:   s.ChildTasks,
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InlineWorkflowTaskDetails{}
@@ -28,9 +37,10 @@ func (s InlineWorkflowTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InlineWorkflowTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InlineWorkflowTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

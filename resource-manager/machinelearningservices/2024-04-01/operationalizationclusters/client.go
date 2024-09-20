@@ -15,7 +15,7 @@ type OperationalizationClustersClient struct {
 }
 
 func NewOperationalizationClustersClientWithBaseURI(sdkApi sdkEnv.Api) (*OperationalizationClustersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "operationalizationclusters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "operationalizationclusters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OperationalizationClustersClient: %+v", err)
 	}

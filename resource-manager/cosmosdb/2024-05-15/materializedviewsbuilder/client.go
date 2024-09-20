@@ -15,7 +15,7 @@ type MaterializedViewsBuilderClient struct {
 }
 
 func NewMaterializedViewsBuilderClientWithBaseURI(sdkApi sdkEnv.Api) (*MaterializedViewsBuilderClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "materializedviewsbuilder", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "materializedviewsbuilder", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MaterializedViewsBuilderClient: %+v", err)
 	}

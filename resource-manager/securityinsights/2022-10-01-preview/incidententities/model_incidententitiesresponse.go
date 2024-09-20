@@ -37,7 +37,7 @@ func (s *IncidentEntitiesResponse) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Entity, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalEntityImplementation(val)
+			impl, err := UnmarshalEntityImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Entities' for 'IncidentEntitiesResponse': %+v", i, err)
 			}

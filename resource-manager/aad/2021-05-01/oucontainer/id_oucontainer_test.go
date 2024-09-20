@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OuContainerId{}
 
 func TestNewOuContainerID(t *testing.T) {
-	id := NewOuContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceValue", "ouContainerValue")
+	id := NewOuContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceName", "ouContainerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewOuContainerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DomainServiceName != "domainServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainServiceName'", id.DomainServiceName, "domainServiceValue")
+	if id.DomainServiceName != "domainServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainServiceName'", id.DomainServiceName, "domainServiceName")
 	}
 
-	if id.OuContainerName != "ouContainerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OuContainerName'", id.OuContainerName, "ouContainerValue")
+	if id.OuContainerName != "ouContainerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OuContainerName'", id.OuContainerName, "ouContainerName")
 	}
 }
 
 func TestFormatOuContainerID(t *testing.T) {
-	actual := NewOuContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceValue", "ouContainerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer/ouContainerValue"
+	actual := NewOuContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceName", "ouContainerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer/ouContainerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseOuContainerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer/ouContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer/ouContainerName",
 			Expected: &OuContainerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainServiceName: "domainServiceValue",
-				OuContainerName:   "ouContainerValue",
+				DomainServiceName: "domainServiceName",
+				OuContainerName:   "ouContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer/ouContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer/ouContainerName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseOuContainerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE/oUcOnTaInEr",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe/oUcOnTaInEr",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer/ouContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer/ouContainerName",
 			Expected: &OuContainerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainServiceName: "domainServiceValue",
-				OuContainerName:   "ouContainerValue",
+				DomainServiceName: "domainServiceName",
+				OuContainerName:   "ouContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/ouContainer/ouContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/ouContainer/ouContainerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE/oUcOnTaInEr/oUcOnTaInErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe/oUcOnTaInEr/oUcOnTaInErNaMe",
 			Expected: &OuContainerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DomainServiceName: "dOmAiNsErViCeVaLuE",
-				OuContainerName:   "oUcOnTaInErVaLuE",
+				DomainServiceName: "dOmAiNsErViCeNaMe",
+				OuContainerName:   "oUcOnTaInErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE/oUcOnTaInEr/oUcOnTaInErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe/oUcOnTaInEr/oUcOnTaInErNaMe/extra",
 			Error: true,
 		},
 	}

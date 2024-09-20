@@ -15,7 +15,7 @@ type ProviderOperationsMetadataClient struct {
 }
 
 func NewProviderOperationsMetadataClientWithBaseURI(sdkApi sdkEnv.Api) (*ProviderOperationsMetadataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "provideroperationsmetadata", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "provideroperationsmetadata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProviderOperationsMetadataClient: %+v", err)
 	}

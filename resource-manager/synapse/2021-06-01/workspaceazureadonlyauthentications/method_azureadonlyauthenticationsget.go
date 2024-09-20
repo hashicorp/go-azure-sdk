@@ -46,7 +46,6 @@ func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsGet
 
 	var model AzureADOnlyAuthentication
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

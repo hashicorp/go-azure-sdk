@@ -40,7 +40,7 @@ func ParseSavingsPlanID(input string) (*SavingsPlanId, error) {
 	}
 
 	id := SavingsPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSavingsPlanIDInsensitively(input string) (*SavingsPlanId, error) {
 	}
 
 	id := SavingsPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id SavingsPlanId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBillingBenefits", "Microsoft.BillingBenefits", "Microsoft.BillingBenefits"),
 		resourceids.StaticSegment("staticSavingsPlanOrders", "savingsPlanOrders", "savingsPlanOrders"),
-		resourceids.UserSpecifiedSegment("savingsPlanOrderId", "savingsPlanOrderIdValue"),
+		resourceids.UserSpecifiedSegment("savingsPlanOrderId", "savingsPlanOrderId"),
 		resourceids.StaticSegment("staticSavingsPlans", "savingsPlans", "savingsPlans"),
-		resourceids.UserSpecifiedSegment("savingsPlanId", "savingsPlanIdValue"),
+		resourceids.UserSpecifiedSegment("savingsPlanId", "savingsPlanId"),
 	}
 }
 

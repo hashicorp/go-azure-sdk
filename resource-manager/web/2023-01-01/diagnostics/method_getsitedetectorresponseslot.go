@@ -36,6 +36,7 @@ func (o GetSiteDetectorResponseSlotOperationOptions) ToHeaders() *client.Headers
 
 func (o GetSiteDetectorResponseSlotOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c DiagnosticsClient) GetSiteDetectorResponseSlot(ctx context.Context, id S
 
 	var model DetectorResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

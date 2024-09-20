@@ -15,7 +15,7 @@ type AttachedDataNetworksClient struct {
 }
 
 func NewAttachedDataNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*AttachedDataNetworksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "attacheddatanetworks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "attacheddatanetworks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AttachedDataNetworksClient: %+v", err)
 	}

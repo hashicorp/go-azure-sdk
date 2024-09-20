@@ -16,7 +16,16 @@ type RecoveryPlanGroupTaskDetails struct {
 	RpGroupType *string `json:"rpGroupType,omitempty"`
 
 	// Fields inherited from GroupTaskDetails
-	ChildTasks *[]ASRTask `json:"childTasks,omitempty"`
+
+	ChildTasks   *[]ASRTask `json:"childTasks,omitempty"`
+	InstanceType string     `json:"instanceType"`
+}
+
+func (s RecoveryPlanGroupTaskDetails) GroupTaskDetails() BaseGroupTaskDetailsImpl {
+	return BaseGroupTaskDetailsImpl{
+		ChildTasks:   s.ChildTasks,
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = RecoveryPlanGroupTaskDetails{}
@@ -30,9 +39,10 @@ func (s RecoveryPlanGroupTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling RecoveryPlanGroupTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "RecoveryPlanGroupTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

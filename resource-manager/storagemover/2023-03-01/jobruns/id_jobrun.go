@@ -48,7 +48,7 @@ func ParseJobRunID(input string) (*JobRunId, error) {
 	}
 
 	id := JobRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseJobRunIDInsensitively(input string) (*JobRunId, error) {
 	}
 
 	id := JobRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id JobRunId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStorageMover", "Microsoft.StorageMover", "Microsoft.StorageMover"),
 		resourceids.StaticSegment("staticStorageMovers", "storageMovers", "storageMovers"),
-		resourceids.UserSpecifiedSegment("storageMoverName", "storageMoverValue"),
+		resourceids.UserSpecifiedSegment("storageMoverName", "storageMoverName"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
-		resourceids.UserSpecifiedSegment("projectName", "projectValue"),
+		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 		resourceids.StaticSegment("staticJobDefinitions", "jobDefinitions", "jobDefinitions"),
-		resourceids.UserSpecifiedSegment("jobDefinitionName", "jobDefinitionValue"),
+		resourceids.UserSpecifiedSegment("jobDefinitionName", "jobDefinitionName"),
 		resourceids.StaticSegment("staticJobRuns", "jobRuns", "jobRuns"),
-		resourceids.UserSpecifiedSegment("jobRunName", "jobRunValue"),
+		resourceids.UserSpecifiedSegment("jobRunName", "jobRunName"),
 	}
 }
 

@@ -42,7 +42,7 @@ func ParseBillingProfileBillingRoleDefinitionID(input string) (*BillingProfileBi
 	}
 
 	id := BillingProfileBillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseBillingProfileBillingRoleDefinitionIDInsensitively(input string) (*Bil
 	}
 
 	id := BillingProfileBillingRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -111,11 +111,11 @@ func (id BillingProfileBillingRoleDefinitionId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
-		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileValue"),
+		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileName"),
 		resourceids.StaticSegment("staticBillingRoleDefinitions", "billingRoleDefinitions", "billingRoleDefinitions"),
-		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "billingRoleDefinitionValue"),
+		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "roleDefinitionName"),
 	}
 }
 

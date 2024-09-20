@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroleassignment` Documentation
 
-The `billingroleassignment` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `billingroleassignment` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingAccountID("billingAccountValue")
+id := billingroleassignment.NewBillingAccountID("billingAccountName")
 
 payload := billingroleassignment.BillingRoleAssignmentProperties{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateByBillingAccountThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingroleassignment.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := billingroleassignment.BillingRoleAssignmentProperties{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CreateByBillingProfileThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingroleassignment.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 payload := billingroleassignment.BillingRoleAssignmentProperties{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CreateByCustomerThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingroleassignment.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 payload := billingroleassignment.BillingRoleAssignmentProperties{
 	// ...
@@ -92,7 +92,7 @@ if err := client.CreateByInvoiceSectionThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountName", "billingRoleAssignmentName")
 
 payload := billingroleassignment.BillingRoleAssignment{
 	// ...
@@ -109,7 +109,7 @@ if err := client.CreateOrUpdateByBillingAccountThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountValue", "departmentValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountName", "departmentName", "billingRoleAssignmentName")
 
 payload := billingroleassignment.BillingRoleAssignment{
 	// ...
@@ -126,7 +126,7 @@ if err := client.CreateOrUpdateByDepartmentThenPoll(ctx, id, payload); err != ni
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountValue", "enrollmentAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountName", "enrollmentAccountName", "billingRoleAssignmentName")
 
 payload := billingroleassignment.BillingRoleAssignment{
 	// ...
@@ -143,7 +143,7 @@ if err := client.CreateOrUpdateByEnrollmentAccountThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByBillingAccount(ctx, id)
 if err != nil {
@@ -159,7 +159,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewBillingProfileBillingRoleAssignmentID("billingAccountName", "billingProfileName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByBillingProfile(ctx, id)
 if err != nil {
@@ -175,7 +175,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewCustomerBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "customerValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewCustomerBillingRoleAssignmentID("billingAccountName", "billingProfileName", "customerName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByCustomer(ctx, id)
 if err != nil {
@@ -191,7 +191,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountValue", "departmentValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountName", "departmentName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByDepartment(ctx, id)
 if err != nil {
@@ -207,7 +207,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountValue", "enrollmentAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountName", "enrollmentAccountName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByEnrollmentAccount(ctx, id)
 if err != nil {
@@ -223,7 +223,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewInvoiceSectionBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewInvoiceSectionBillingRoleAssignmentID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByInvoiceSection(ctx, id)
 if err != nil {
@@ -239,7 +239,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewBillingRoleAssignmentID("billingAccountName", "billingRoleAssignmentName")
 
 read, err := client.GetByBillingAccount(ctx, id)
 if err != nil {
@@ -255,7 +255,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewBillingProfileBillingRoleAssignmentID("billingAccountName", "billingProfileName", "billingRoleAssignmentName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {
@@ -271,7 +271,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewCustomerBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "customerValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewCustomerBillingRoleAssignmentID("billingAccountName", "billingProfileName", "customerName", "billingRoleAssignmentName")
 
 read, err := client.GetByCustomer(ctx, id)
 if err != nil {
@@ -287,7 +287,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountValue", "departmentValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewDepartmentBillingRoleAssignmentID("billingAccountName", "departmentName", "billingRoleAssignmentName")
 
 read, err := client.GetByDepartment(ctx, id)
 if err != nil {
@@ -303,7 +303,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountValue", "enrollmentAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewEnrollmentAccountBillingRoleAssignmentID("billingAccountName", "enrollmentAccountName", "billingRoleAssignmentName")
 
 read, err := client.GetByEnrollmentAccount(ctx, id)
 if err != nil {
@@ -319,7 +319,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewInvoiceSectionBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingRoleAssignmentValue")
+id := billingroleassignment.NewInvoiceSectionBillingRoleAssignmentID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleAssignmentName")
 
 read, err := client.GetByInvoiceSection(ctx, id)
 if err != nil {
@@ -335,7 +335,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingAccountID("billingAccountValue")
+id := billingroleassignment.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, billingroleassignment.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, billingroleassignment.DefaultListByBillingAccountOperationOptions())
@@ -352,7 +352,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingroleassignment.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, billingroleassignment.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, billingroleassignment.DefaultListByBillingProfileOperationOptions())
@@ -369,7 +369,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingroleassignment.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 // alternatively `client.ListByCustomer(ctx, id, billingroleassignment.DefaultListByCustomerOperationOptions())` can be used to do batched pagination
 items, err := client.ListByCustomerComplete(ctx, id, billingroleassignment.DefaultListByCustomerOperationOptions())
@@ -386,7 +386,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewDepartmentID("billingAccountValue", "departmentValue")
+id := billingroleassignment.NewDepartmentID("billingAccountName", "departmentName")
 
 // alternatively `client.ListByDepartment(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDepartmentComplete(ctx, id)
@@ -403,7 +403,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := billingroleassignment.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 // alternatively `client.ListByEnrollmentAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByEnrollmentAccountComplete(ctx, id)
@@ -420,7 +420,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingroleassignment.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ListByInvoiceSection(ctx, id, billingroleassignment.DefaultListByInvoiceSectionOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInvoiceSectionComplete(ctx, id, billingroleassignment.DefaultListByInvoiceSectionOperationOptions())
@@ -437,7 +437,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingAccountID("billingAccountValue")
+id := billingroleassignment.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ResolveByBillingAccount(ctx, id, billingroleassignment.DefaultResolveByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ResolveByBillingAccountComplete(ctx, id, billingroleassignment.DefaultResolveByBillingAccountOperationOptions())
@@ -454,7 +454,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingroleassignment.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ResolveByBillingProfile(ctx, id, billingroleassignment.DefaultResolveByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ResolveByBillingProfileComplete(ctx, id, billingroleassignment.DefaultResolveByBillingProfileOperationOptions())
@@ -471,7 +471,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingroleassignment.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 // alternatively `client.ResolveByCustomer(ctx, id, billingroleassignment.DefaultResolveByCustomerOperationOptions())` can be used to do batched pagination
 items, err := client.ResolveByCustomerComplete(ctx, id, billingroleassignment.DefaultResolveByCustomerOperationOptions())
@@ -488,7 +488,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignment.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingroleassignment.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ResolveByInvoiceSection(ctx, id, billingroleassignment.DefaultResolveByInvoiceSectionOperationOptions())` can be used to do batched pagination
 items, err := client.ResolveByInvoiceSectionComplete(ctx, id, billingroleassignment.DefaultResolveByInvoiceSectionOperationOptions())

@@ -45,7 +45,6 @@ func (c EventCategoriesClient) List(ctx context.Context) (result ListOperationRe
 
 	var model EventCategoryCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

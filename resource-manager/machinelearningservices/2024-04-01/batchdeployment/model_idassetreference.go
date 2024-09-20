@@ -14,6 +14,14 @@ type IdAssetReference struct {
 	AssetId string `json:"assetId"`
 
 	// Fields inherited from AssetReferenceBase
+
+	ReferenceType ReferenceType `json:"referenceType"`
+}
+
+func (s IdAssetReference) AssetReferenceBase() BaseAssetReferenceBaseImpl {
+	return BaseAssetReferenceBaseImpl{
+		ReferenceType: s.ReferenceType,
+	}
 }
 
 var _ json.Marshaler = IdAssetReference{}
@@ -27,9 +35,10 @@ func (s IdAssetReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IdAssetReference: %+v", err)
 	}
+
 	decoded["referenceType"] = "Id"
 
 	encoded, err = json.Marshal(decoded)

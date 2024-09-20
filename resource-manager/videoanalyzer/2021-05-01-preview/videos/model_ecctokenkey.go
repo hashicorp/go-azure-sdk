@@ -16,7 +16,16 @@ type EccTokenKey struct {
 	Y   string              `json:"y"`
 
 	// Fields inherited from TokenKey
-	Kid string `json:"kid"`
+
+	Kid  string `json:"kid"`
+	Type string `json:"@type"`
+}
+
+func (s EccTokenKey) TokenKey() BaseTokenKeyImpl {
+	return BaseTokenKeyImpl{
+		Kid:  s.Kid,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = EccTokenKey{}
@@ -30,9 +39,10 @@ func (s EccTokenKey) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling EccTokenKey: %+v", err)
 	}
+
 	decoded["@type"] = "#Microsoft.VideoAnalyzer.EccTokenKey"
 
 	encoded, err = json.Marshal(decoded)

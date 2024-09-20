@@ -46,7 +46,6 @@ func (c KeysClient) Get(ctx context.Context, id commonids.KeyVaultKeyId) (result
 
 	var model Key
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

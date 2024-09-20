@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ManagedPrivateEndpointId{}
 
 func TestNewManagedPrivateEndpointID(t *testing.T) {
-	id := NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "managedPrivateEndpointValue")
+	id := NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "managedPrivateEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewManagedPrivateEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.ManagedPrivateEndpointName != "managedPrivateEndpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedPrivateEndpointName'", id.ManagedPrivateEndpointName, "managedPrivateEndpointValue")
+	if id.ManagedPrivateEndpointName != "managedPrivateEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedPrivateEndpointName'", id.ManagedPrivateEndpointName, "managedPrivateEndpointName")
 	}
 }
 
 func TestFormatManagedPrivateEndpointID(t *testing.T) {
-	actual := NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "managedPrivateEndpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints/managedPrivateEndpointValue"
+	actual := NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "managedPrivateEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints/managedPrivateEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseManagedPrivateEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints/managedPrivateEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints/managedPrivateEndpointName",
 			Expected: &ManagedPrivateEndpointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ClusterName:                "clusterValue",
-				ManagedPrivateEndpointName: "managedPrivateEndpointValue",
+				ClusterName:                "clusterName",
+				ManagedPrivateEndpointName: "managedPrivateEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints/managedPrivateEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints/managedPrivateEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseManagedPrivateEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/mAnAgEdPrIvAtEeNdPoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/mAnAgEdPrIvAtEeNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints/managedPrivateEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints/managedPrivateEndpointName",
 			Expected: &ManagedPrivateEndpointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ClusterName:                "clusterValue",
-				ManagedPrivateEndpointName: "managedPrivateEndpointValue",
+				ClusterName:                "clusterName",
+				ManagedPrivateEndpointName: "managedPrivateEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/managedPrivateEndpoints/managedPrivateEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/managedPrivateEndpoints/managedPrivateEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/mAnAgEdPrIvAtEeNdPoInTs/mAnAgEdPrIvAtEeNdPoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/mAnAgEdPrIvAtEeNdPoInTs/mAnAgEdPrIvAtEeNdPoInTnAmE",
 			Expected: &ManagedPrivateEndpointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:                "cLuStErVaLuE",
-				ManagedPrivateEndpointName: "mAnAgEdPrIvAtEeNdPoInTvAlUe",
+				ClusterName:                "cLuStErNaMe",
+				ManagedPrivateEndpointName: "mAnAgEdPrIvAtEeNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/mAnAgEdPrIvAtEeNdPoInTs/mAnAgEdPrIvAtEeNdPoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/mAnAgEdPrIvAtEeNdPoInTs/mAnAgEdPrIvAtEeNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

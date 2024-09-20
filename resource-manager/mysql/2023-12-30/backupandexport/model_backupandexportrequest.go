@@ -30,7 +30,7 @@ func (s *BackupAndExportRequest) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["targetDetails"]; ok {
-		impl, err := unmarshalBackupStoreDetailsImplementation(v)
+		impl, err := UnmarshalBackupStoreDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetDetails' for 'BackupAndExportRequest': %+v", err)
 		}

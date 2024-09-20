@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automanage/2022-05-04/reports` Documentation
 
-The `reports` SDK allows for interaction with the Azure Resource Manager Service `automanage` (API Version `2022-05-04`).
+The `reports` SDK allows for interaction with Azure Resource Manager `automanage` (API Version `2022-05-04`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reports.NewProviders2ConfigurationProfileAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "configurationProfileAssignmentValue", "reportValue")
+id := reports.NewProviders2ConfigurationProfileAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "configurationProfileAssignmentName", "reportName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reports.NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "configurationProfileAssignmentValue")
+id := reports.NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "configurationProfileAssignmentName")
 
 read, err := client.ListByConfigurationProfileAssignments(ctx, id)
 if err != nil {

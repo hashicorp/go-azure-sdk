@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ResourceProviderId{}
 
 func TestNewResourceProviderID(t *testing.T) {
-	id := NewResourceProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderValue")
+	id := NewResourceProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewResourceProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceProviderName != "resourceProviderValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderName'", id.ResourceProviderName, "resourceProviderValue")
+	if id.ResourceProviderName != "resourceProviderName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderName'", id.ResourceProviderName, "resourceProviderName")
 	}
 }
 
 func TestFormatResourceProviderID(t *testing.T) {
-	actual := NewResourceProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderValue"
+	actual := NewResourceProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseResourceProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderName",
 			Expected: &ResourceProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ResourceProviderName: "resourceProviderValue",
+				ResourceProviderName: "resourceProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseResourceProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderName",
 			Expected: &ResourceProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ResourceProviderName: "resourceProviderValue",
+				ResourceProviderName: "resourceProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CustomProviders/resourceProviders/resourceProviderName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/rEsOuRcEpRoViDeRs/rEsOuRcEpRoViDeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/rEsOuRcEpRoViDeRs/rEsOuRcEpRoViDeRnAmE",
 			Expected: &ResourceProviderId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceProviderName: "rEsOuRcEpRoViDeRvAlUe",
+				ResourceProviderName: "rEsOuRcEpRoViDeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/rEsOuRcEpRoViDeRs/rEsOuRcEpRoViDeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/rEsOuRcEpRoViDeRs/rEsOuRcEpRoViDeRnAmE/extra",
 			Error: true,
 		},
 	}

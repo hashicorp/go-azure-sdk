@@ -13,12 +13,26 @@ var _ DataVersionBase = UriFolderDataVersion{}
 type UriFolderDataVersion struct {
 
 	// Fields inherited from DataVersionBase
+
+	DataType    DataType           `json:"dataType"`
 	DataUri     string             `json:"dataUri"`
 	Description *string            `json:"description,omitempty"`
 	IsAnonymous *bool              `json:"isAnonymous,omitempty"`
 	IsArchived  *bool              `json:"isArchived,omitempty"`
 	Properties  *map[string]string `json:"properties,omitempty"`
 	Tags        *map[string]string `json:"tags,omitempty"`
+}
+
+func (s UriFolderDataVersion) DataVersionBase() BaseDataVersionBaseImpl {
+	return BaseDataVersionBaseImpl{
+		DataType:    s.DataType,
+		DataUri:     s.DataUri,
+		Description: s.Description,
+		IsAnonymous: s.IsAnonymous,
+		IsArchived:  s.IsArchived,
+		Properties:  s.Properties,
+		Tags:        s.Tags,
+	}
 }
 
 var _ json.Marshaler = UriFolderDataVersion{}
@@ -32,9 +46,10 @@ func (s UriFolderDataVersion) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UriFolderDataVersion: %+v", err)
 	}
+
 	decoded["dataType"] = "uri_folder"
 
 	encoded, err = json.Marshal(decoded)

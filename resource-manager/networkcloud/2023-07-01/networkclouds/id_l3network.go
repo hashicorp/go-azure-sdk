@@ -42,7 +42,7 @@ func ParseL3NetworkID(input string) (*L3NetworkId, error) {
 	}
 
 	id := L3NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseL3NetworkIDInsensitively(input string) (*L3NetworkId, error) {
 	}
 
 	id := L3NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id L3NetworkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticL3Networks", "l3Networks", "l3Networks"),
-		resourceids.UserSpecifiedSegment("l3NetworkName", "l3NetworkValue"),
+		resourceids.UserSpecifiedSegment("l3NetworkName", "l3NetworkName"),
 	}
 }
 

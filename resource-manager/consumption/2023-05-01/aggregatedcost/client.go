@@ -15,7 +15,7 @@ type AggregatedCostClient struct {
 }
 
 func NewAggregatedCostClientWithBaseURI(sdkApi sdkEnv.Api) (*AggregatedCostClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "aggregatedcost", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "aggregatedcost", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AggregatedCostClient: %+v", err)
 	}

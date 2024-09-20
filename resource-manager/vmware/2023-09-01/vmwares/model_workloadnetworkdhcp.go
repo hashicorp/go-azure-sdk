@@ -38,7 +38,7 @@ func (s *WorkloadNetworkDhcp) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalWorkloadNetworkDhcpEntityImplementation(v)
+		impl, err := UnmarshalWorkloadNetworkDhcpEntityImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'WorkloadNetworkDhcp': %+v", err)
 		}

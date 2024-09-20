@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2021-10-01/billingsubscriptionsaliases` Documentation
 
-The `billingsubscriptionsaliases` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2021-10-01`).
+The `billingsubscriptionsaliases` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2021-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountValue", "billingSubscriptionAliasValue")
+id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
 
 payload := billingsubscriptionsaliases.BillingSubscriptionAlias{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountValue", "billingSubscriptionAliasValue")
+id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptionsaliases.NewBillingAccountID("billingAccountValue")
+id := billingsubscriptionsaliases.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id)

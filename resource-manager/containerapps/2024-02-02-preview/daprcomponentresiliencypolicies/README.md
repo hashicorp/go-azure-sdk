@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/daprcomponentresiliencypolicies` Documentation
 
-The `daprcomponentresiliencypolicies` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `daprcomponentresiliencypolicies` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue", "resiliencyPolicyValue")
+id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName", "name")
 
 payload := daprcomponentresiliencypolicies.DaprComponentResiliencyPolicy{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue", "resiliencyPolicyValue")
+id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue", "resiliencyPolicyValue")
+id := daprcomponentresiliencypolicies.NewDaprComponentResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName", "name")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprcomponentresiliencypolicies.NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue")
+id := daprcomponentresiliencypolicies.NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

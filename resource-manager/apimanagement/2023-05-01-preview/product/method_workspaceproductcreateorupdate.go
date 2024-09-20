@@ -36,6 +36,7 @@ func (o WorkspaceProductCreateOrUpdateOperationOptions) ToHeaders() *client.Head
 
 func (o WorkspaceProductCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c ProductClient) WorkspaceProductCreateOrUpdate(ctx context.Context, id Wo
 
 	var model ProductContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

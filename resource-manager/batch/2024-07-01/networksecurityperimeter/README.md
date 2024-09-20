@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/networksecurityperimeter` Documentation
 
-The `networksecurityperimeter` SDK allows for interaction with the Azure Resource Manager Service `batch` (API Version `2024-07-01`).
+The `networksecurityperimeter` SDK allows for interaction with Azure Resource Manager `batch` (API Version `2024-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "networkSecurityPerimeterConfigurationValue")
+id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
 
 read, err := client.GetConfiguration(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue")
+id := networksecurityperimeter.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.ListConfigurations(ctx, id)` can be used to do batched pagination
 items, err := client.ListConfigurationsComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "networkSecurityPerimeterConfigurationValue")
+id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
 
 if err := client.ReconcileConfigurationThenPoll(ctx, id); err != nil {
 	// handle the error

@@ -43,6 +43,7 @@ func (o ResolveByBillingAccountOperationOptions) ToHeaders() *client.Headers {
 
 func (o ResolveByBillingAccountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

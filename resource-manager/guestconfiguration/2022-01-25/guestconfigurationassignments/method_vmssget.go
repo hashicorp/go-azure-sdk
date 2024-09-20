@@ -45,7 +45,6 @@ func (c GuestConfigurationAssignmentsClient) VMSSGet(ctx context.Context, id Gue
 
 	var model GuestConfigurationAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

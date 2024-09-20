@@ -19,6 +19,7 @@ type AutoMLJob struct {
 	TaskDetails          AutoMLVertical            `json:"taskDetails"`
 
 	// Fields inherited from JobBase
+
 	ComponentId         *string                `json:"componentId,omitempty"`
 	ComputeId           *string                `json:"computeId,omitempty"`
 	Description         *string                `json:"description,omitempty"`
@@ -26,11 +27,30 @@ type AutoMLJob struct {
 	ExperimentName      *string                `json:"experimentName,omitempty"`
 	Identity            IdentityConfiguration  `json:"identity"`
 	IsArchived          *bool                  `json:"isArchived,omitempty"`
+	JobType             JobType                `json:"jobType"`
 	NotificationSetting *NotificationSetting   `json:"notificationSetting,omitempty"`
 	Properties          *map[string]string     `json:"properties,omitempty"`
 	Services            *map[string]JobService `json:"services,omitempty"`
 	Status              *JobStatus             `json:"status,omitempty"`
 	Tags                *map[string]string     `json:"tags,omitempty"`
+}
+
+func (s AutoMLJob) JobBase() BaseJobBaseImpl {
+	return BaseJobBaseImpl{
+		ComponentId:         s.ComponentId,
+		ComputeId:           s.ComputeId,
+		Description:         s.Description,
+		DisplayName:         s.DisplayName,
+		ExperimentName:      s.ExperimentName,
+		Identity:            s.Identity,
+		IsArchived:          s.IsArchived,
+		JobType:             s.JobType,
+		NotificationSetting: s.NotificationSetting,
+		Properties:          s.Properties,
+		Services:            s.Services,
+		Status:              s.Status,
+		Tags:                s.Tags,
+	}
 }
 
 var _ json.Marshaler = AutoMLJob{}
@@ -44,9 +64,10 @@ func (s AutoMLJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutoMLJob: %+v", err)
 	}
+
 	decoded["jobType"] = "AutoML"
 
 	encoded, err = json.Marshal(decoded)
@@ -74,6 +95,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 	s.EnvironmentVariables = decoded.EnvironmentVariables
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
+	s.JobType = decoded.JobType
 	s.NotificationSetting = decoded.NotificationSetting
 	s.Properties = decoded.Properties
 	s.QueueSettings = decoded.QueueSettings
@@ -88,7 +110,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["identity"]; ok {
-		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		impl, err := UnmarshalIdentityConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'AutoMLJob': %+v", err)
 		}
@@ -103,7 +125,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobOutput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Outputs' for 'AutoMLJob': %+v", key, err)
 			}
@@ -113,7 +135,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["taskDetails"]; ok {
-		impl, err := unmarshalAutoMLVerticalImplementation(v)
+		impl, err := UnmarshalAutoMLVerticalImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TaskDetails' for 'AutoMLJob': %+v", err)
 		}

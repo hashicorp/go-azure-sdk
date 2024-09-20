@@ -15,7 +15,7 @@ type DatabaseExtensionsClient struct {
 }
 
 func NewDatabaseExtensionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseExtensionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseextensions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseextensions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseExtensionsClient: %+v", err)
 	}

@@ -47,7 +47,6 @@ func (c AdvisorScoreClient) List(ctx context.Context, id commonids.SubscriptionI
 
 	var model AdvisorScoreResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

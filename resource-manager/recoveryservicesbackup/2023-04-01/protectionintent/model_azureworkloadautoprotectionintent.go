@@ -13,11 +13,24 @@ var _ ProtectionIntent = AzureWorkloadAutoProtectionIntent{}
 type AzureWorkloadAutoProtectionIntent struct {
 
 	// Fields inherited from ProtectionIntent
-	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
-	ItemId               *string               `json:"itemId,omitempty"`
-	PolicyId             *string               `json:"policyId,omitempty"`
-	ProtectionState      *ProtectionStatus     `json:"protectionState,omitempty"`
-	SourceResourceId     *string               `json:"sourceResourceId,omitempty"`
+
+	BackupManagementType     *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ItemId                   *string                  `json:"itemId,omitempty"`
+	PolicyId                 *string                  `json:"policyId,omitempty"`
+	ProtectionIntentItemType ProtectionIntentItemType `json:"protectionIntentItemType"`
+	ProtectionState          *ProtectionStatus        `json:"protectionState,omitempty"`
+	SourceResourceId         *string                  `json:"sourceResourceId,omitempty"`
+}
+
+func (s AzureWorkloadAutoProtectionIntent) ProtectionIntent() BaseProtectionIntentImpl {
+	return BaseProtectionIntentImpl{
+		BackupManagementType:     s.BackupManagementType,
+		ItemId:                   s.ItemId,
+		PolicyId:                 s.PolicyId,
+		ProtectionIntentItemType: s.ProtectionIntentItemType,
+		ProtectionState:          s.ProtectionState,
+		SourceResourceId:         s.SourceResourceId,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadAutoProtectionIntent{}
@@ -31,9 +44,10 @@ func (s AzureWorkloadAutoProtectionIntent) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadAutoProtectionIntent: %+v", err)
 	}
+
 	decoded["protectionIntentItemType"] = "AzureWorkloadAutoProtectionIntent"
 
 	encoded, err = json.Marshal(decoded)

@@ -50,7 +50,6 @@ func (c SourceControlConfigurationClient) CreateOrUpdate(ctx context.Context, id
 
 	var model SourceControlConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

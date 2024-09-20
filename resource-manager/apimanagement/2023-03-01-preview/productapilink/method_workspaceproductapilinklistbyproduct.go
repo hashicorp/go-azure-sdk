@@ -41,6 +41,7 @@ func (o WorkspaceProductApiLinkListByProductOperationOptions) ToHeaders() *clien
 
 func (o WorkspaceProductApiLinkListByProductOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

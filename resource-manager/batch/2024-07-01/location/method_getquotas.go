@@ -46,7 +46,6 @@ func (c LocationClient) GetQuotas(ctx context.Context, id LocationId) (result Ge
 
 	var model BatchLocationQuota
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c SubscriptionDiagnosticSettingsClient) Get(ctx context.Context, id Diagno
 
 	var model SubscriptionDiagnosticSettingsResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

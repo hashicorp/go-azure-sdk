@@ -15,7 +15,7 @@ type CreditsClient struct {
 }
 
 func NewCreditsClientWithBaseURI(sdkApi sdkEnv.Api) (*CreditsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "credits", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "credits", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CreditsClient: %+v", err)
 	}

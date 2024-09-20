@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingRoleDefinitionId{}
 
 func TestNewBillingRoleDefinitionID(t *testing.T) {
-	id := NewBillingRoleDefinitionID("billingAccountValue", "billingRoleDefinitionValue")
+	id := NewBillingRoleDefinitionID("billingAccountName", "billingRoleDefinitionName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.BillingRoleDefinitionName != "billingRoleDefinitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "billingRoleDefinitionValue")
+	if id.BillingRoleDefinitionName != "billingRoleDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "billingRoleDefinitionName")
 	}
 }
 
 func TestFormatBillingRoleDefinitionID(t *testing.T) {
-	actual := NewBillingRoleDefinitionID("billingAccountValue", "billingRoleDefinitionValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions/billingRoleDefinitionValue"
+	actual := NewBillingRoleDefinitionID("billingAccountName", "billingRoleDefinitionName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseBillingRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions/billingRoleDefinitionValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &BillingRoleDefinitionId{
-				BillingAccountName:        "billingAccountValue",
-				BillingRoleDefinitionName: "billingRoleDefinitionValue",
+				BillingAccountName:        "billingAccountName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions/billingRoleDefinitionValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseBillingRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgRoLeDeFiNiTiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions/billingRoleDefinitionValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &BillingRoleDefinitionId{
-				BillingAccountName:        "billingAccountValue",
-				BillingRoleDefinitionName: "billingRoleDefinitionValue",
+				BillingAccountName:        "billingAccountName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingRoleDefinitions/billingRoleDefinitionValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe",
 			Expected: &BillingRoleDefinitionId{
-				BillingAccountName:        "bIlLiNgAcCoUnTvAlUe",
-				BillingRoleDefinitionName: "bIlLiNgRoLeDeFiNiTiOnVaLuE",
+				BillingAccountName:        "bIlLiNgAcCoUnTnAmE",
+				BillingRoleDefinitionName: "bIlLiNgRoLeDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

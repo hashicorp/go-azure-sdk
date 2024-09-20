@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/logz/2020-10-01/subaccount` Documentation
 
-The `subaccount` SDK allows for interaction with the Azure Resource Manager Service `logz` (API Version `2020-10-01`).
+The `subaccount` SDK allows for interaction with Azure Resource Manager `logz` (API Version `2020-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 payload := subaccount.LogzMonitorResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := subaccount.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 // alternatively `client.ListMonitoredResources(ctx, id)` can be used to do batched pagination
 items, err := client.ListMonitoredResourcesComplete(ctx, id)
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 payload := subaccount.LogzMonitorResourceUpdateParameters{
 	// ...

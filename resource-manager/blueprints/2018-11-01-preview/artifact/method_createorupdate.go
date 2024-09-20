@@ -15,7 +15,7 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Artifact
+	Model        Artifact
 }
 
 // CreateOrUpdate ...
@@ -52,11 +52,11 @@ func (c ArtifactClient) CreateOrUpdate(ctx context.Context, id ArtifactScopedId,
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalArtifactImplementation(respObj)
+	model, err := UnmarshalArtifactImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

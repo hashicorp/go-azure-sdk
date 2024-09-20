@@ -37,6 +37,7 @@ func (o DownloadInvoiceOperationOptions) ToHeaders() *client.Headers {
 
 func (o DownloadInvoiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

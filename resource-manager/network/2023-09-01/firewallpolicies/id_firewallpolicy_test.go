@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FirewallPolicyId{}
 
 func TestNewFirewallPolicyID(t *testing.T) {
-	id := NewFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "firewallPolicyValue")
+	id := NewFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "firewallPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewFirewallPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FirewallPolicyName != "firewallPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FirewallPolicyName'", id.FirewallPolicyName, "firewallPolicyValue")
+	if id.FirewallPolicyName != "firewallPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FirewallPolicyName'", id.FirewallPolicyName, "firewallPolicyName")
 	}
 }
 
 func TestFormatFirewallPolicyID(t *testing.T) {
-	actual := NewFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "firewallPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyValue"
+	actual := NewFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "firewallPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseFirewallPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyName",
 			Expected: &FirewallPolicyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FirewallPolicyName: "firewallPolicyValue",
+				FirewallPolicyName: "firewallPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseFirewallPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyName",
 			Expected: &FirewallPolicyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FirewallPolicyName: "firewallPolicyValue",
+				FirewallPolicyName: "firewallPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/firewallPolicies/firewallPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fIrEwAlLpOlIcIeS/fIrEwAlLpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fIrEwAlLpOlIcIeS/fIrEwAlLpOlIcYnAmE",
 			Expected: &FirewallPolicyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				FirewallPolicyName: "fIrEwAlLpOlIcYvAlUe",
+				FirewallPolicyName: "fIrEwAlLpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fIrEwAlLpOlIcIeS/fIrEwAlLpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fIrEwAlLpOlIcIeS/fIrEwAlLpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

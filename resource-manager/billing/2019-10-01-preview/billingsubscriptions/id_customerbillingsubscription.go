@@ -42,7 +42,7 @@ func ParseCustomerBillingSubscriptionID(input string) (*CustomerBillingSubscript
 	}
 
 	id := CustomerBillingSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomerBillingSubscriptionIDInsensitively(input string) (*CustomerBil
 	}
 
 	id := CustomerBillingSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -111,11 +111,11 @@ func (id CustomerBillingSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticCustomers", "customers", "customers"),
-		resourceids.UserSpecifiedSegment("customerName", "customerValue"),
+		resourceids.UserSpecifiedSegment("customerName", "customerName"),
 		resourceids.StaticSegment("staticBillingSubscriptions", "billingSubscriptions", "billingSubscriptions"),
-		resourceids.UserSpecifiedSegment("billingSubscriptionName", "billingSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("billingSubscriptionName", "billingSubscriptionName"),
 	}
 }
 

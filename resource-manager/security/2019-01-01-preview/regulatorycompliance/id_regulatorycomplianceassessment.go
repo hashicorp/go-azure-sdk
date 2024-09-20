@@ -44,7 +44,7 @@ func ParseRegulatoryComplianceAssessmentID(input string) (*RegulatoryComplianceA
 	}
 
 	id := RegulatoryComplianceAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegulatoryComplianceAssessmentIDInsensitively(input string) (*Regulato
 	}
 
 	id := RegulatoryComplianceAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -119,11 +119,11 @@ func (id RegulatoryComplianceAssessmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticRegulatoryComplianceStandards", "regulatoryComplianceStandards", "regulatoryComplianceStandards"),
-		resourceids.UserSpecifiedSegment("regulatoryComplianceStandardName", "regulatoryComplianceStandardValue"),
+		resourceids.UserSpecifiedSegment("regulatoryComplianceStandardName", "regulatoryComplianceStandardName"),
 		resourceids.StaticSegment("staticRegulatoryComplianceControls", "regulatoryComplianceControls", "regulatoryComplianceControls"),
-		resourceids.UserSpecifiedSegment("regulatoryComplianceControlName", "regulatoryComplianceControlValue"),
+		resourceids.UserSpecifiedSegment("regulatoryComplianceControlName", "regulatoryComplianceControlName"),
 		resourceids.StaticSegment("staticRegulatoryComplianceAssessments", "regulatoryComplianceAssessments", "regulatoryComplianceAssessments"),
-		resourceids.UserSpecifiedSegment("regulatoryComplianceAssessmentName", "regulatoryComplianceAssessmentValue"),
+		resourceids.UserSpecifiedSegment("regulatoryComplianceAssessmentName", "regulatoryComplianceAssessmentName"),
 	}
 }
 

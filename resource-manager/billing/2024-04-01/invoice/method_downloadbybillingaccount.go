@@ -37,6 +37,7 @@ func (o DownloadByBillingAccountOperationOptions) ToHeaders() *client.Headers {
 
 func (o DownloadByBillingAccountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

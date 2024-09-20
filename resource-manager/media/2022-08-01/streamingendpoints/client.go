@@ -15,7 +15,7 @@ type StreamingEndpointsClient struct {
 }
 
 func NewStreamingEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*StreamingEndpointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "streamingendpoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "streamingendpoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StreamingEndpointsClient: %+v", err)
 	}

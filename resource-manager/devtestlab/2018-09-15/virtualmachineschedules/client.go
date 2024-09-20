@@ -15,7 +15,7 @@ type VirtualMachineSchedulesClient struct {
 }
 
 func NewVirtualMachineSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineSchedulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachineschedules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachineschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineSchedulesClient: %+v", err)
 	}

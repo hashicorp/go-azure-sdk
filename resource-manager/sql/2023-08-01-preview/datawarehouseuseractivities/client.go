@@ -15,7 +15,7 @@ type DataWarehouseUserActivitiesClient struct {
 }
 
 func NewDataWarehouseUserActivitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*DataWarehouseUserActivitiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datawarehouseuseractivities", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datawarehouseuseractivities", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataWarehouseUserActivitiesClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseServerTrustGroupID(input string) (*ServerTrustGroupId, error) {
 	}
 
 	id := ServerTrustGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerTrustGroupIDInsensitively(input string) (*ServerTrustGroupId, er
 	}
 
 	id := ServerTrustGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ServerTrustGroupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticServerTrustGroups", "serverTrustGroups", "serverTrustGroups"),
-		resourceids.UserSpecifiedSegment("serverTrustGroupName", "serverTrustGroupValue"),
+		resourceids.UserSpecifiedSegment("serverTrustGroupName", "serverTrustGroupName"),
 	}
 }
 

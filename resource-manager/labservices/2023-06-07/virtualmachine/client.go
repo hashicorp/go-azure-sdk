@@ -15,7 +15,7 @@ type VirtualMachineClient struct {
 }
 
 func NewVirtualMachineClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachine", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachine", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseDataLakeStoreAccountID(input string) (*DataLakeStoreAccountId, error) 
 	}
 
 	id := DataLakeStoreAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDataLakeStoreAccountIDInsensitively(input string) (*DataLakeStoreAccou
 	}
 
 	id := DataLakeStoreAccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DataLakeStoreAccountId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataLakeAnalytics", "Microsoft.DataLakeAnalytics", "Microsoft.DataLakeAnalytics"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticDataLakeStoreAccounts", "dataLakeStoreAccounts", "dataLakeStoreAccounts"),
-		resourceids.UserSpecifiedSegment("dataLakeStoreAccountName", "dataLakeStoreAccountValue"),
+		resourceids.UserSpecifiedSegment("dataLakeStoreAccountName", "dataLakeStoreAccountName"),
 	}
 }
 

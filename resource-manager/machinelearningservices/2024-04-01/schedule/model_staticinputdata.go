@@ -16,10 +16,22 @@ type StaticInputData struct {
 	WindowStart              string  `json:"windowStart"`
 
 	// Fields inherited from MonitoringInputDataBase
-	Columns      *map[string]string `json:"columns,omitempty"`
-	DataContext  *string            `json:"dataContext,omitempty"`
-	JobInputType JobInputType       `json:"jobInputType"`
-	Uri          string             `json:"uri"`
+
+	Columns       *map[string]string      `json:"columns,omitempty"`
+	DataContext   *string                 `json:"dataContext,omitempty"`
+	InputDataType MonitoringInputDataType `json:"inputDataType"`
+	JobInputType  JobInputType            `json:"jobInputType"`
+	Uri           string                  `json:"uri"`
+}
+
+func (s StaticInputData) MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl {
+	return BaseMonitoringInputDataBaseImpl{
+		Columns:       s.Columns,
+		DataContext:   s.DataContext,
+		InputDataType: s.InputDataType,
+		JobInputType:  s.JobInputType,
+		Uri:           s.Uri,
+	}
 }
 
 var _ json.Marshaler = StaticInputData{}
@@ -33,9 +45,10 @@ func (s StaticInputData) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StaticInputData: %+v", err)
 	}
+
 	decoded["inputDataType"] = "Static"
 
 	encoded, err = json.Marshal(decoded)

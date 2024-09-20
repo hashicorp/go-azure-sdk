@@ -45,7 +45,6 @@ func (c WorkloadNetworksClient) GetPublicIP(ctx context.Context, id PublicIPId) 
 
 	var model WorkloadNetworkPublicIP
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

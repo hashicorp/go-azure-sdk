@@ -45,7 +45,6 @@ func (c WorkflowVersionsClient) Get(ctx context.Context, id VersionId) (result G
 
 	var model WorkflowVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

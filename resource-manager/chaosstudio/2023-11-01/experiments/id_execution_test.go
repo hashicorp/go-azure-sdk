@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExecutionId{}
 
 func TestNewExecutionID(t *testing.T) {
-	id := NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "executionIdValue")
+	id := NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentName", "executionId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewExecutionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ExperimentName != "experimentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExperimentName'", id.ExperimentName, "experimentValue")
+	if id.ExperimentName != "experimentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExperimentName'", id.ExperimentName, "experimentName")
 	}
 
-	if id.ExecutionId != "executionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExecutionId'", id.ExecutionId, "executionIdValue")
+	if id.ExecutionId != "executionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExecutionId'", id.ExecutionId, "executionId")
 	}
 }
 
 func TestFormatExecutionID(t *testing.T) {
-	actual := NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "executionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions/executionIdValue"
+	actual := NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentName", "executionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions/executionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseExecutionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions/executionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions/executionId",
 			Expected: &ExecutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ExperimentName:    "experimentValue",
-				ExecutionId:       "executionIdValue",
+				ExperimentName:    "experimentName",
+				ExecutionId:       "executionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions/executionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions/executionId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseExecutionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe/eXeCuTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE/eXeCuTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions/executionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions/executionId",
 			Expected: &ExecutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ExperimentName:    "experimentValue",
-				ExecutionId:       "executionIdValue",
+				ExperimentName:    "experimentName",
+				ExecutionId:       "executionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/executions/executionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/executions/executionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe/eXeCuTiOnS/eXeCuTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE/eXeCuTiOnS/eXeCuTiOnId",
 			Expected: &ExecutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ExperimentName:    "eXpErImEnTvAlUe",
-				ExecutionId:       "eXeCuTiOnIdVaLuE",
+				ExperimentName:    "eXpErImEnTnAmE",
+				ExecutionId:       "eXeCuTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe/eXeCuTiOnS/eXeCuTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE/eXeCuTiOnS/eXeCuTiOnId/extra",
 			Error: true,
 		},
 	}

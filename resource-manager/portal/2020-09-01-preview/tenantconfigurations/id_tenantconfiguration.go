@@ -38,7 +38,7 @@ func ParseTenantConfigurationID(input string) (*TenantConfigurationId, error) {
 	}
 
 	id := TenantConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseTenantConfigurationIDInsensitively(input string) (*TenantConfiguration
 	}
 
 	id := TenantConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id TenantConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPortal", "Microsoft.Portal", "Microsoft.Portal"),
 		resourceids.StaticSegment("staticTenantConfigurations", "tenantConfigurations", "tenantConfigurations"),
-		resourceids.UserSpecifiedSegment("tenantConfigurationName", "tenantConfigurationValue"),
+		resourceids.UserSpecifiedSegment("tenantConfigurationName", "configurationName"),
 	}
 }
 

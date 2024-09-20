@@ -45,7 +45,6 @@ func (c LibrariesClient) LibraryGet(ctx context.Context, id LibraryId) (result L
 
 	var model LibraryResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

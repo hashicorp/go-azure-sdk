@@ -34,6 +34,7 @@ func (o ExternalCloudProviderUsageOperationOptions) ToHeaders() *client.Headers 
 
 func (o ExternalCloudProviderUsageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c ForecastClient) ExternalCloudProviderUsage(ctx context.Context, id Exter
 
 	var model ForecastResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

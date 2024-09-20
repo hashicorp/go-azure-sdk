@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OpenAIIntegrationId{}
 
 func TestNewOpenAIIntegrationID(t *testing.T) {
-	id := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue")
+	id := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewOpenAIIntegrationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.OpenAIIntegrationName != "openAIIntegrationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OpenAIIntegrationName'", id.OpenAIIntegrationName, "openAIIntegrationValue")
+	if id.OpenAIIntegrationName != "integrationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OpenAIIntegrationName'", id.OpenAIIntegrationName, "integrationName")
 	}
 }
 
 func TestFormatOpenAIIntegrationID(t *testing.T) {
-	actual := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations/openAIIntegrationValue"
+	actual := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseOpenAIIntegrationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations/openAIIntegrationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				MonitorName:           "monitorValue",
-				OpenAIIntegrationName: "openAIIntegrationValue",
+				MonitorName:           "monitorName",
+				OpenAIIntegrationName: "integrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations/openAIIntegrationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseOpenAIIntegrationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/oPeNaIiNtEgRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations/openAIIntegrationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				MonitorName:           "monitorValue",
-				OpenAIIntegrationName: "openAIIntegrationValue",
+				MonitorName:           "monitorName",
+				OpenAIIntegrationName: "integrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/openAIIntegrations/openAIIntegrationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/oPeNaIiNtEgRaTiOnS/oPeNaIiNtEgRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/iNtEgRaTiOnNaMe",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:           "mOnItOrVaLuE",
-				OpenAIIntegrationName: "oPeNaIiNtEgRaTiOnVaLuE",
+				MonitorName:           "mOnItOrNaMe",
+				OpenAIIntegrationName: "iNtEgRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/oPeNaIiNtEgRaTiOnS/oPeNaIiNtEgRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/iNtEgRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c WorkloadNetworksClient) GetVirtualMachine(ctx context.Context, id Defaul
 
 	var model WorkloadNetworkVirtualMachine
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

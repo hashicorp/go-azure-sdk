@@ -45,7 +45,6 @@ func (c DaprSubscriptionsClient) Get(ctx context.Context, id DaprSubscriptionId)
 
 	var model DaprSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

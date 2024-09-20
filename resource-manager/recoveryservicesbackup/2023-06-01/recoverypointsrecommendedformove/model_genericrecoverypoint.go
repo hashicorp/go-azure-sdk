@@ -18,6 +18,14 @@ type GenericRecoveryPoint struct {
 	RecoveryPointType           *string                  `json:"recoveryPointType,omitempty"`
 
 	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s GenericRecoveryPoint) RecoveryPoint() BaseRecoveryPointImpl {
+	return BaseRecoveryPointImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = GenericRecoveryPoint{}
@@ -31,9 +39,10 @@ func (s GenericRecoveryPoint) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GenericRecoveryPoint: %+v", err)
 	}
+
 	decoded["objectType"] = "GenericRecoveryPoint"
 
 	encoded, err = json.Marshal(decoded)

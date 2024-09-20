@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConsoleId{}
 
 func TestNewConsoleID(t *testing.T) {
-	id := NewConsoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "consoleValue")
+	id := NewConsoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "consoleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConsoleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualMachineName != "virtualMachineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
+	if id.VirtualMachineName != "virtualMachineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineName")
 	}
 
-	if id.ConsoleName != "consoleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConsoleName'", id.ConsoleName, "consoleValue")
+	if id.ConsoleName != "consoleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConsoleName'", id.ConsoleName, "consoleName")
 	}
 }
 
 func TestFormatConsoleID(t *testing.T) {
-	actual := NewConsoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "consoleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles/consoleValue"
+	actual := NewConsoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "consoleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles/consoleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConsoleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles/consoleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles/consoleName",
 			Expected: &ConsoleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualMachineName: "virtualMachineValue",
-				ConsoleName:        "consoleValue",
+				VirtualMachineName: "virtualMachineName",
+				ConsoleName:        "consoleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles/consoleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles/consoleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConsoleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/cOnSoLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/cOnSoLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles/consoleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles/consoleName",
 			Expected: &ConsoleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualMachineName: "virtualMachineValue",
-				ConsoleName:        "consoleValue",
+				VirtualMachineName: "virtualMachineName",
+				ConsoleName:        "consoleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineValue/consoles/consoleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/virtualMachines/virtualMachineName/consoles/consoleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/cOnSoLeS/cOnSoLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/cOnSoLeS/cOnSoLeNaMe",
 			Expected: &ConsoleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualMachineName: "vIrTuAlMaChInEvAlUe",
-				ConsoleName:        "cOnSoLeVaLuE",
+				VirtualMachineName: "vIrTuAlMaChInEnAmE",
+				ConsoleName:        "cOnSoLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/cOnSoLeS/cOnSoLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/cOnSoLeS/cOnSoLeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -14,6 +14,14 @@ type CSharpFunctionRetrieveDefaultDefinitionParameters struct {
 	BindingRetrievalProperties *CSharpFunctionBindingRetrievalProperties `json:"bindingRetrievalProperties,omitempty"`
 
 	// Fields inherited from FunctionRetrieveDefaultDefinitionParameters
+
+	BindingType string `json:"bindingType"`
+}
+
+func (s CSharpFunctionRetrieveDefaultDefinitionParameters) FunctionRetrieveDefaultDefinitionParameters() BaseFunctionRetrieveDefaultDefinitionParametersImpl {
+	return BaseFunctionRetrieveDefaultDefinitionParametersImpl{
+		BindingType: s.BindingType,
+	}
 }
 
 var _ json.Marshaler = CSharpFunctionRetrieveDefaultDefinitionParameters{}
@@ -27,9 +35,10 @@ func (s CSharpFunctionRetrieveDefaultDefinitionParameters) MarshalJSON() ([]byte
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CSharpFunctionRetrieveDefaultDefinitionParameters: %+v", err)
 	}
+
 	decoded["bindingType"] = "Microsoft.StreamAnalytics/CLRUdf"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type SqlPoolsSensitivityLabelsClient struct {
 }
 
 func NewSqlPoolsSensitivityLabelsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSensitivityLabelsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolssensitivitylabels", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolssensitivitylabels", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsSensitivityLabelsClient: %+v", err)
 	}

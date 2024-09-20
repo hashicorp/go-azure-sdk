@@ -45,7 +45,6 @@ func (c PrivateLinkHubsClient) PrivateEndpointConnectionsPrivateLinkHubGet(ctx c
 
 	var model PrivateEndpointConnectionForPrivateLinkHub
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

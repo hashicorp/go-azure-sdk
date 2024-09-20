@@ -15,7 +15,7 @@ type POSTClient struct {
 }
 
 func NewPOSTClientWithBaseURI(sdkApi sdkEnv.Api) (*POSTClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "post", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "post", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating POSTClient: %+v", err)
 	}

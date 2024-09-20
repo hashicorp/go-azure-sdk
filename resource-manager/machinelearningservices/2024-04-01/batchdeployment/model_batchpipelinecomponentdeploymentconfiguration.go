@@ -17,6 +17,14 @@ type BatchPipelineComponentDeploymentConfiguration struct {
 	Tags        *map[string]string `json:"tags,omitempty"`
 
 	// Fields inherited from BatchDeploymentConfiguration
+
+	DeploymentConfigurationType BatchDeploymentConfigurationType `json:"deploymentConfigurationType"`
+}
+
+func (s BatchPipelineComponentDeploymentConfiguration) BatchDeploymentConfiguration() BaseBatchDeploymentConfigurationImpl {
+	return BaseBatchDeploymentConfigurationImpl{
+		DeploymentConfigurationType: s.DeploymentConfigurationType,
+	}
 }
 
 var _ json.Marshaler = BatchPipelineComponentDeploymentConfiguration{}
@@ -30,9 +38,10 @@ func (s BatchPipelineComponentDeploymentConfiguration) MarshalJSON() ([]byte, er
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BatchPipelineComponentDeploymentConfiguration: %+v", err)
 	}
+
 	decoded["deploymentConfigurationType"] = "PipelineComponent"
 
 	encoded, err = json.Marshal(decoded)

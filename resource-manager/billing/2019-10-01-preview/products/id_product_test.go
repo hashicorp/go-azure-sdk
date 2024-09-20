@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ProductId{}
 
 func TestNewProductID(t *testing.T) {
-	id := NewProductID("billingAccountValue", "customerValue", "productValue")
+	id := NewProductID("billingAccountName", "customerName", "productName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.CustomerName != "customerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomerName'", id.CustomerName, "customerValue")
+	if id.CustomerName != "customerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomerName'", id.CustomerName, "customerName")
 	}
 
-	if id.ProductName != "productValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProductName'", id.ProductName, "productValue")
+	if id.ProductName != "productName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProductName'", id.ProductName, "productName")
 	}
 }
 
 func TestFormatProductID(t *testing.T) {
-	actual := NewProductID("billingAccountValue", "customerValue", "productValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products/productValue"
+	actual := NewProductID("billingAccountName", "customerName", "productName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products/productName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,36 +63,36 @@ func TestParseProductID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products/productValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products/productName",
 			Expected: &ProductId{
-				BillingAccountName: "billingAccountValue",
-				CustomerName:       "customerValue",
-				ProductName:        "productValue",
+				BillingAccountName: "billingAccountName",
+				CustomerName:       "customerName",
+				ProductName:        "productName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products/productValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products/productName/extra",
 			Error: true,
 		},
 	}
@@ -169,70 +169,70 @@ func TestParseProductIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/pRoDuCtS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/pRoDuCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products/productValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products/productName",
 			Expected: &ProductId{
-				BillingAccountName: "billingAccountValue",
-				CustomerName:       "customerValue",
-				ProductName:        "productValue",
+				BillingAccountName: "billingAccountName",
+				CustomerName:       "customerName",
+				ProductName:        "productName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/products/productValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/products/productName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/pRoDuCtS/pRoDuCtVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/pRoDuCtS/pRoDuCtNaMe",
 			Expected: &ProductId{
-				BillingAccountName: "bIlLiNgAcCoUnTvAlUe",
-				CustomerName:       "cUsToMeRvAlUe",
-				ProductName:        "pRoDuCtVaLuE",
+				BillingAccountName: "bIlLiNgAcCoUnTnAmE",
+				CustomerName:       "cUsToMeRnAmE",
+				ProductName:        "pRoDuCtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/pRoDuCtS/pRoDuCtVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/pRoDuCtS/pRoDuCtNaMe/extra",
 			Error: true,
 		},
 	}

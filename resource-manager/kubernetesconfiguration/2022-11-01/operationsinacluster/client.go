@@ -15,7 +15,7 @@ type OperationsInAClusterClient struct {
 }
 
 func NewOperationsInAClusterClientWithBaseURI(sdkApi sdkEnv.Api) (*OperationsInAClusterClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "operationsinacluster", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "operationsinacluster", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OperationsInAClusterClient: %+v", err)
 	}

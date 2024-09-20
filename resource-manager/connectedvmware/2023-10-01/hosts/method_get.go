@@ -45,7 +45,6 @@ func (c HostsClient) Get(ctx context.Context, id HostId) (result GetOperationRes
 
 	var model Host
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

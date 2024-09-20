@@ -15,7 +15,7 @@ type SqlAgentClient struct {
 }
 
 func NewSqlAgentClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlAgentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlagent", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlagent", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlAgentClient: %+v", err)
 	}

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TrackDescriptor interface {
+	TrackDescriptor() BaseTrackDescriptorImpl
 }
 
-// RawTrackDescriptorImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TrackDescriptor = BaseTrackDescriptorImpl{}
+
+type BaseTrackDescriptorImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseTrackDescriptorImpl) TrackDescriptor() BaseTrackDescriptorImpl {
+	return s
+}
+
+var _ TrackDescriptor = RawTrackDescriptorImpl{}
+
+// RawTrackDescriptorImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTrackDescriptorImpl struct {
-	Type   string
-	Values map[string]interface{}
+	trackDescriptor BaseTrackDescriptorImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalTrackDescriptorImplementation(input []byte) (TrackDescriptor, error) {
+func (s RawTrackDescriptorImpl) TrackDescriptor() BaseTrackDescriptorImpl {
+	return s.trackDescriptor
+}
+
+func UnmarshalTrackDescriptorImplementation(input []byte) (TrackDescriptor, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -84,10 +101,15 @@ func unmarshalTrackDescriptorImplementation(input []byte) (TrackDescriptor, erro
 		return out, nil
 	}
 
-	out := RawTrackDescriptorImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTrackDescriptorImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTrackDescriptorImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTrackDescriptorImpl{
+		trackDescriptor: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

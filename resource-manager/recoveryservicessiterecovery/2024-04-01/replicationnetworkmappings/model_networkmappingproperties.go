@@ -44,7 +44,7 @@ func (s *NetworkMappingProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["fabricSpecificSettings"]; ok {
-		impl, err := unmarshalNetworkMappingFabricSpecificSettingsImplementation(v)
+		impl, err := UnmarshalNetworkMappingFabricSpecificSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'FabricSpecificSettings' for 'NetworkMappingProperties': %+v", err)
 		}

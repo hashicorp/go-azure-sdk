@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ScopedAssignmentOperationId{}
 
 func TestNewScopedAssignmentOperationID(t *testing.T) {
-	id := NewScopedAssignmentOperationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintAssignmentValue", "assignmentOperationValue")
+	id := NewScopedAssignmentOperationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assignmentName", "assignmentOperationName")
 
 	if id.ResourceScope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceScope'", id.ResourceScope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.BlueprintAssignmentName != "blueprintAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BlueprintAssignmentName'", id.BlueprintAssignmentName, "blueprintAssignmentValue")
+	if id.BlueprintAssignmentName != "assignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BlueprintAssignmentName'", id.BlueprintAssignmentName, "assignmentName")
 	}
 
-	if id.AssignmentOperationName != "assignmentOperationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssignmentOperationName'", id.AssignmentOperationName, "assignmentOperationValue")
+	if id.AssignmentOperationName != "assignmentOperationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssignmentOperationName'", id.AssignmentOperationName, "assignmentOperationName")
 	}
 }
 
 func TestFormatScopedAssignmentOperationID(t *testing.T) {
-	actual := NewScopedAssignmentOperationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintAssignmentValue", "assignmentOperationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations/assignmentOperationValue"
+	actual := NewScopedAssignmentOperationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assignmentName", "assignmentOperationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations/assignmentOperationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -68,26 +68,26 @@ func TestParseScopedAssignmentOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations/assignmentOperationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations/assignmentOperationName",
 			Expected: &ScopedAssignmentOperationId{
 				ResourceScope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BlueprintAssignmentName: "blueprintAssignmentValue",
-				AssignmentOperationName: "assignmentOperationValue",
+				BlueprintAssignmentName: "assignmentName",
+				AssignmentOperationName: "assignmentOperationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations/assignmentOperationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations/assignmentOperationName/extra",
 			Error: true,
 		},
 	}
@@ -174,50 +174,50 @@ func TestParseScopedAssignmentOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/bLuEpRiNtAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/aSsIgNmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/bLuEpRiNtAsSiGnMeNtVaLuE/aSsIgNmEnToPeRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/aSsIgNmEnTnAmE/aSsIgNmEnToPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations/assignmentOperationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations/assignmentOperationName",
 			Expected: &ScopedAssignmentOperationId{
 				ResourceScope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BlueprintAssignmentName: "blueprintAssignmentValue",
-				AssignmentOperationName: "assignmentOperationValue",
+				BlueprintAssignmentName: "assignmentName",
+				AssignmentOperationName: "assignmentOperationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/blueprintAssignmentValue/assignmentOperations/assignmentOperationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprintAssignments/assignmentName/assignmentOperations/assignmentOperationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/bLuEpRiNtAsSiGnMeNtVaLuE/aSsIgNmEnToPeRaTiOnS/aSsIgNmEnToPeRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/aSsIgNmEnTnAmE/aSsIgNmEnToPeRaTiOnS/aSsIgNmEnToPeRaTiOnNaMe",
 			Expected: &ScopedAssignmentOperationId{
 				ResourceScope:           "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				BlueprintAssignmentName: "bLuEpRiNtAsSiGnMeNtVaLuE",
-				AssignmentOperationName: "aSsIgNmEnToPeRaTiOnVaLuE",
+				BlueprintAssignmentName: "aSsIgNmEnTnAmE",
+				AssignmentOperationName: "aSsIgNmEnToPeRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/bLuEpRiNtAsSiGnMeNtVaLuE/aSsIgNmEnToPeRaTiOnS/aSsIgNmEnToPeRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtAsSiGnMeNtS/aSsIgNmEnTnAmE/aSsIgNmEnToPeRaTiOnS/aSsIgNmEnToPeRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

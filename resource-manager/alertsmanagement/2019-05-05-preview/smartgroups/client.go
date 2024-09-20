@@ -15,7 +15,7 @@ type SmartGroupsClient struct {
 }
 
 func NewSmartGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SmartGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "smartgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "smartgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SmartGroupsClient: %+v", err)
 	}

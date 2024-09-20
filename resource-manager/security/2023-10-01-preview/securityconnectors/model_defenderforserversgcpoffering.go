@@ -19,7 +19,16 @@ type DefenderForServersGcpOffering struct {
 	VaAutoProvisioning  *DefenderForServersGcpOfferingVaAutoProvisioning  `json:"vaAutoProvisioning,omitempty"`
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s DefenderForServersGcpOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = DefenderForServersGcpOffering{}
@@ -33,9 +42,10 @@ func (s DefenderForServersGcpOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DefenderForServersGcpOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "DefenderForServersGcp"
 
 	encoded, err = json.Marshal(decoded)

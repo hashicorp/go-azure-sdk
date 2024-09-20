@@ -36,6 +36,7 @@ func (o WorkspaceApiDiagnosticUpdateOperationOptions) ToHeaders() *client.Header
 
 func (o WorkspaceApiDiagnosticUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c ApiDiagnosticClient) WorkspaceApiDiagnosticUpdate(ctx context.Context, i
 
 	var model DiagnosticContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

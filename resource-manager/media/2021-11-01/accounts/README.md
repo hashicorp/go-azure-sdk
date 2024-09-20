@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/media/2021-11-01/accounts` Documentation
 
-The `accounts` SDK allows for interaction with the Azure Resource Manager Service `media` (API Version `2021-11-01`).
+The `accounts` SDK allows for interaction with Azure Resource Manager `media` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := accounts.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := accounts.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := accounts.CheckNameAvailabilityInput{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.MediaService{
 	// ...
@@ -63,7 +63,7 @@ if err := client.MediaservicesCreateOrUpdateThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.MediaservicesDelete(ctx, id)
 if err != nil {
@@ -79,7 +79,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.MediaservicesGet(ctx, id)
 if err != nil {
@@ -129,7 +129,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.ListEdgePoliciesInput{
 	// ...
@@ -150,7 +150,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.SyncStorageKeysInput{
 	// ...
@@ -171,7 +171,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.MediaServiceUpdate{
 	// ...
@@ -188,7 +188,7 @@ if err := client.MediaservicesUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "privateEndpointConnectionValue")
+id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "name")
 
 payload := accounts.PrivateEndpointConnection{
 	// ...
@@ -209,7 +209,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "privateEndpointConnectionValue")
+id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "name")
 
 read, err := client.PrivateEndpointConnectionsDelete(ctx, id)
 if err != nil {
@@ -225,7 +225,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "privateEndpointConnectionValue")
+id := accounts.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "name")
 
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -241,7 +241,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.PrivateEndpointConnectionsList(ctx, id)
 if err != nil {
@@ -257,7 +257,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "privateLinkResourceValue")
+id := accounts.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "name")
 
 read, err := client.PrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -273,7 +273,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := accounts.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.PrivateLinkResourcesList(ctx, id)
 if err != nil {

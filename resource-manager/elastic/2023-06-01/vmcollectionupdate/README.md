@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmcollectionupdate` Documentation
 
-The `vmcollectionupdate` SDK allows for interaction with the Azure Resource Manager Service `elastic` (API Version `2023-06-01`).
+The `vmcollectionupdate` SDK allows for interaction with Azure Resource Manager `elastic` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vmcollectionupdate.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := vmcollectionupdate.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 payload := vmcollectionupdate.VMCollectionUpdate{
 	// ...

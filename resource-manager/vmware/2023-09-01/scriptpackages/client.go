@@ -15,7 +15,7 @@ type ScriptPackagesClient struct {
 }
 
 func NewScriptPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*ScriptPackagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "scriptpackages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "scriptpackages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ScriptPackagesClient: %+v", err)
 	}

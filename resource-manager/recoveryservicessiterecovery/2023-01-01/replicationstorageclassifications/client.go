@@ -15,7 +15,7 @@ type ReplicationStorageClassificationsClient struct {
 }
 
 func NewReplicationStorageClassificationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationStorageClassificationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationstorageclassifications", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationstorageclassifications", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationStorageClassificationsClient: %+v", err)
 	}

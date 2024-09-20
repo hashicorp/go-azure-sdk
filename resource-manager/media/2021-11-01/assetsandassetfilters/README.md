@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/media/2021-11-01/assetsandassetfilters` Documentation
 
-The `assetsandassetfilters` SDK allows for interaction with the Azure Resource Manager Service `media` (API Version `2021-11-01`).
+The `assetsandassetfilters` SDK allows for interaction with Azure Resource Manager `media` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "assetFilterValue")
+id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "filterName")
 
 payload := assetsandassetfilters.AssetFilter{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "assetFilterValue")
+id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "filterName")
 
 read, err := client.AssetFiltersDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "assetFilterValue")
+id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "filterName")
 
 read, err := client.AssetFiltersGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 // alternatively `client.AssetFiltersList(ctx, id)` can be used to do batched pagination
 items, err := client.AssetFiltersListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "assetFilterValue")
+id := assetsandassetfilters.NewAssetFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "filterName")
 
 payload := assetsandassetfilters.AssetFilter{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 payload := assetsandassetfilters.Asset{
 	// ...
@@ -136,7 +136,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 read, err := client.AssetsDelete(ctx, id)
 if err != nil {
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 read, err := client.AssetsGet(ctx, id)
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 read, err := client.AssetsGetEncryptionKey(ctx, id)
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
+id := assetsandassetfilters.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.AssetsList(ctx, id, assetsandassetfilters.DefaultAssetsListOperationOptions())` can be used to do batched pagination
 items, err := client.AssetsListComplete(ctx, id, assetsandassetfilters.DefaultAssetsListOperationOptions())
@@ -201,7 +201,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 payload := assetsandassetfilters.ListContainerSasInput{
 	// ...
@@ -222,7 +222,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 read, err := client.AssetsListStreamingLocators(ctx, id)
 if err != nil {
@@ -238,7 +238,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 payload := assetsandassetfilters.Asset{
 	// ...
@@ -259,7 +259,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "trackValue")
+id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "trackName")
 
 payload := assetsandassetfilters.AssetTrack{
 	// ...
@@ -276,7 +276,7 @@ if err := client.TracksCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "trackValue")
+id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "trackName")
 
 if err := client.TracksDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -288,7 +288,7 @@ if err := client.TracksDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "trackValue")
+id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "trackName")
 
 read, err := client.TracksGet(ctx, id)
 if err != nil {
@@ -304,7 +304,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue")
+id := assetsandassetfilters.NewAssetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName")
 
 read, err := client.TracksList(ctx, id)
 if err != nil {
@@ -320,7 +320,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "trackValue")
+id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "trackName")
 
 payload := assetsandassetfilters.AssetTrack{
 	// ...
@@ -337,7 +337,7 @@ if err := client.TracksUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "assetValue", "trackValue")
+id := assetsandassetfilters.NewTrackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "assetName", "trackName")
 
 if err := client.TracksUpdateTrackDataThenPoll(ctx, id); err != nil {
 	// handle the error

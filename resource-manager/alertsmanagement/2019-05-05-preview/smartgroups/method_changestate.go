@@ -34,6 +34,7 @@ func (o ChangeStateOperationOptions) ToHeaders() *client.Headers {
 
 func (o ChangeStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c SmartGroupsClient) ChangeState(ctx context.Context, id SmartGroupId, opt
 
 	var model SmartGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

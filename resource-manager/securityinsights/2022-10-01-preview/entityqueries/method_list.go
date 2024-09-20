@@ -40,6 +40,7 @@ func (o ListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -101,7 +102,7 @@ func (c EntityQueriesClient) List(ctx context.Context, id WorkspaceId, options L
 	temp := make([]EntityQuery, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalEntityQueryImplementation(v)
+			val, err := UnmarshalEntityQueryImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for EntityQuery (%q): %+v", i, v, err)
 				return result, err

@@ -20,6 +20,14 @@ type ActivityTimelineItem struct {
 	Title                string `json:"title"`
 
 	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}
+
+func (s ActivityTimelineItem) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return BaseEntityTimelineItemImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = ActivityTimelineItem{}
@@ -33,9 +41,10 @@ func (s ActivityTimelineItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ActivityTimelineItem: %+v", err)
 	}
+
 	decoded["kind"] = "Activity"
 
 	encoded, err = json.Marshal(decoded)

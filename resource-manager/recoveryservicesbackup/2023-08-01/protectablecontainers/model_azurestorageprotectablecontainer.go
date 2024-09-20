@@ -13,10 +13,22 @@ var _ ProtectableContainer = AzureStorageProtectableContainer{}
 type AzureStorageProtectableContainer struct {
 
 	// Fields inherited from ProtectableContainer
-	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
-	ContainerId          *string               `json:"containerId,omitempty"`
-	FriendlyName         *string               `json:"friendlyName,omitempty"`
-	HealthStatus         *string               `json:"healthStatus,omitempty"`
+
+	BackupManagementType     *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ContainerId              *string                  `json:"containerId,omitempty"`
+	FriendlyName             *string                  `json:"friendlyName,omitempty"`
+	HealthStatus             *string                  `json:"healthStatus,omitempty"`
+	ProtectableContainerType ProtectableContainerType `json:"protectableContainerType"`
+}
+
+func (s AzureStorageProtectableContainer) ProtectableContainer() BaseProtectableContainerImpl {
+	return BaseProtectableContainerImpl{
+		BackupManagementType:     s.BackupManagementType,
+		ContainerId:              s.ContainerId,
+		FriendlyName:             s.FriendlyName,
+		HealthStatus:             s.HealthStatus,
+		ProtectableContainerType: s.ProtectableContainerType,
+	}
 }
 
 var _ json.Marshaler = AzureStorageProtectableContainer{}
@@ -30,9 +42,10 @@ func (s AzureStorageProtectableContainer) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureStorageProtectableContainer: %+v", err)
 	}
+
 	decoded["protectableContainerType"] = "StorageContainer"
 
 	encoded, err = json.Marshal(decoded)

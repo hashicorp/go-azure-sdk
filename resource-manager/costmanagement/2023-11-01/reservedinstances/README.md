@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-11-01/reservedinstances` Documentation
 
-The `reservedinstances` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2023-11-01`).
+The `reservedinstances` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reservedinstances.NewBillingAccountID("billingAccountIdValue")
+id := reservedinstances.NewBillingAccountID("billingAccountId")
 
 if err := client.GenerateReservationDetailsReportByBillingAccountIdThenPoll(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingAccountIdOperationOptions()); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.GenerateReservationDetailsReportByBillingAccountIdThenPoll(ctx,
 
 ```go
 ctx := context.TODO()
-id := reservedinstances.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := reservedinstances.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 if err := client.GenerateReservationDetailsReportByBillingProfileIdThenPoll(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingProfileIdOperationOptions()); err != nil {
 	// handle the error

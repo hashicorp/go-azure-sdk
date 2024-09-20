@@ -49,7 +49,6 @@ func (c ServiceFabricSchedulesClient) Update(ctx context.Context, id ServiceFabr
 
 	var model Schedule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

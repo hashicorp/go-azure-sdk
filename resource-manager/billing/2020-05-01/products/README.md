@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/products` Documentation
 
-The `products` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `products` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := products.NewProductID("billingAccountValue", "productValue")
+id := products.NewProductID("billingAccountName", "productName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := products.NewBillingAccountID("billingAccountValue")
+id := products.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, products.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, products.DefaultListByBillingAccountOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := products.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := products.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, products.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, products.DefaultListByBillingProfileOperationOptions())
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := products.NewCustomerID("billingAccountValue", "customerValue")
+id := products.NewCustomerID("billingAccountName", "customerName")
 
 // alternatively `client.ListByCustomer(ctx, id)` can be used to do batched pagination
 items, err := client.ListByCustomerComplete(ctx, id)
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := products.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := products.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ListByInvoiceSection(ctx, id, products.DefaultListByInvoiceSectionOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInvoiceSectionComplete(ctx, id, products.DefaultListByInvoiceSectionOperationOptions())
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := products.NewProductID("billingAccountValue", "productValue")
+id := products.NewProductID("billingAccountName", "productName")
 
 payload := products.TransferProductRequestProperties{
 	// ...
@@ -129,7 +129,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := products.NewProductID("billingAccountValue", "productValue")
+id := products.NewProductID("billingAccountName", "productName")
 
 payload := products.Product{
 	// ...

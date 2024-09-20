@@ -52,7 +52,7 @@ func ParseSensitivityLabelSourceID(input string) (*SensitivityLabelSourceId, err
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -69,7 +69,7 @@ func ParseSensitivityLabelSourceIDInsensitively(input string) (*SensitivityLabel
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -153,15 +153,15 @@ func (id SensitivityLabelSourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
-		resourceids.UserSpecifiedSegment("databaseName", "databaseValue"),
+		resourceids.UserSpecifiedSegment("databaseName", "databaseName"),
 		resourceids.StaticSegment("staticSchemas", "schemas", "schemas"),
-		resourceids.UserSpecifiedSegment("schemaName", "schemaValue"),
+		resourceids.UserSpecifiedSegment("schemaName", "schemaName"),
 		resourceids.StaticSegment("staticTables", "tables", "tables"),
-		resourceids.UserSpecifiedSegment("tableName", "tableValue"),
+		resourceids.UserSpecifiedSegment("tableName", "tableName"),
 		resourceids.StaticSegment("staticColumns", "columns", "columns"),
-		resourceids.UserSpecifiedSegment("columnName", "columnValue"),
+		resourceids.UserSpecifiedSegment("columnName", "columnName"),
 		resourceids.StaticSegment("staticSensitivityLabels", "sensitivityLabels", "sensitivityLabels"),
 		resourceids.ConstantSegment("sensitivityLabelSource", PossibleValuesForSensitivityLabelSource(), "current"),
 	}

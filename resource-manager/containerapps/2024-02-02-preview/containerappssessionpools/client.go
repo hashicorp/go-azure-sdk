@@ -15,7 +15,7 @@ type ContainerAppsSessionPoolsClient struct {
 }
 
 func NewContainerAppsSessionPoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerAppsSessionPoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "containerappssessionpools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "containerappssessionpools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContainerAppsSessionPoolsClient: %+v", err)
 	}

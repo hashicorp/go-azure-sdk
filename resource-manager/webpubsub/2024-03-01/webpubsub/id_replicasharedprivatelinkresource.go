@@ -46,7 +46,7 @@ func ParseReplicaSharedPrivateLinkResourceID(input string) (*ReplicaSharedPrivat
 	}
 
 	id := ReplicaSharedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReplicaSharedPrivateLinkResourceIDInsensitively(input string) (*Replic
 	}
 
 	id := ReplicaSharedPrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id ReplicaSharedPrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSignalRService", "Microsoft.SignalRService", "Microsoft.SignalRService"),
 		resourceids.StaticSegment("staticWebPubSub", "webPubSub", "webPubSub"),
-		resourceids.UserSpecifiedSegment("webPubSubName", "webPubSubValue"),
+		resourceids.UserSpecifiedSegment("webPubSubName", "resourceName"),
 		resourceids.StaticSegment("staticReplicas", "replicas", "replicas"),
-		resourceids.UserSpecifiedSegment("replicaName", "replicaValue"),
+		resourceids.UserSpecifiedSegment("replicaName", "replicaName"),
 		resourceids.StaticSegment("staticSharedPrivateLinkResources", "sharedPrivateLinkResources", "sharedPrivateLinkResources"),
-		resourceids.UserSpecifiedSegment("sharedPrivateLinkResourceName", "sharedPrivateLinkResourceValue"),
+		resourceids.UserSpecifiedSegment("sharedPrivateLinkResourceName", "sharedPrivateLinkResourceName"),
 	}
 }
 

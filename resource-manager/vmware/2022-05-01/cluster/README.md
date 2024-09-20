@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/cluster` Documentation
 
-The `cluster` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2022-05-01`).
+The `cluster` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2022-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := cluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue")
+id := cluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName")
 
 read, err := client.ListZones(ctx, id)
 if err != nil {

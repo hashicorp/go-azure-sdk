@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CommunicationsGatewayId{}
 
 func TestNewCommunicationsGatewayID(t *testing.T) {
-	id := NewCommunicationsGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationsGatewayValue")
+	id := NewCommunicationsGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationsGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCommunicationsGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CommunicationsGatewayName != "communicationsGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommunicationsGatewayName'", id.CommunicationsGatewayName, "communicationsGatewayValue")
+	if id.CommunicationsGatewayName != "communicationsGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommunicationsGatewayName'", id.CommunicationsGatewayName, "communicationsGatewayName")
 	}
 }
 
 func TestFormatCommunicationsGatewayID(t *testing.T) {
-	actual := NewCommunicationsGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationsGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayValue"
+	actual := NewCommunicationsGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationsGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCommunicationsGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayName",
 			Expected: &CommunicationsGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				CommunicationsGatewayName: "communicationsGatewayValue",
+				CommunicationsGatewayName: "communicationsGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCommunicationsGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayName",
 			Expected: &CommunicationsGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				CommunicationsGatewayName: "communicationsGatewayValue",
+				CommunicationsGatewayName: "communicationsGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.VoiceServices/communicationsGateways/communicationsGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.vOiCeSeRvIcEs/cOmMuNiCaTiOnSgAtEwAyS/cOmMuNiCaTiOnSgAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.vOiCeSeRvIcEs/cOmMuNiCaTiOnSgAtEwAyS/cOmMuNiCaTiOnSgAtEwAyNaMe",
 			Expected: &CommunicationsGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				CommunicationsGatewayName: "cOmMuNiCaTiOnSgAtEwAyVaLuE",
+				CommunicationsGatewayName: "cOmMuNiCaTiOnSgAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.vOiCeSeRvIcEs/cOmMuNiCaTiOnSgAtEwAyS/cOmMuNiCaTiOnSgAtEwAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.vOiCeSeRvIcEs/cOmMuNiCaTiOnSgAtEwAyS/cOmMuNiCaTiOnSgAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

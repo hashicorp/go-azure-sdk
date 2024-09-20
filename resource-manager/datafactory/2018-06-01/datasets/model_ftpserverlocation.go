@@ -13,8 +13,18 @@ var _ DatasetLocation = FtpServerLocation{}
 type FtpServerLocation struct {
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s FtpServerLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = FtpServerLocation{}
@@ -28,9 +38,10 @@ func (s FtpServerLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FtpServerLocation: %+v", err)
 	}
+
 	decoded["type"] = "FtpServerLocation"
 
 	encoded, err = json.Marshal(decoded)

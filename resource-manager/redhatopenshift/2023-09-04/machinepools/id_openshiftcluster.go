@@ -42,7 +42,7 @@ func ParseOpenShiftClusterID(input string) (*OpenShiftClusterId, error) {
 	}
 
 	id := OpenShiftClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseOpenShiftClusterIDInsensitively(input string) (*OpenShiftClusterId, er
 	}
 
 	id := OpenShiftClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id OpenShiftClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRedHatOpenShift", "Microsoft.RedHatOpenShift", "Microsoft.RedHatOpenShift"),
 		resourceids.StaticSegment("staticOpenShiftCluster", "openShiftCluster", "openShiftCluster"),
-		resourceids.UserSpecifiedSegment("openShiftClusterName", "openShiftClusterValue"),
+		resourceids.UserSpecifiedSegment("openShiftClusterName", "resourceName"),
 	}
 }
 

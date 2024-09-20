@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PricingId{}
 
 func TestNewPricingID(t *testing.T) {
-	id := NewPricingID("12345678-1234-9876-4563-123456789012", "pricingValue")
+	id := NewPricingID("12345678-1234-9876-4563-123456789012", "pricingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PricingName != "pricingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PricingName'", id.PricingName, "pricingValue")
+	if id.PricingName != "pricingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PricingName'", id.PricingName, "pricingName")
 	}
 }
 
 func TestFormatPricingID(t *testing.T) {
-	actual := NewPricingID("12345678-1234-9876-4563-123456789012", "pricingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingValue"
+	actual := NewPricingID("12345678-1234-9876-4563-123456789012", "pricingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParsePricingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingName",
 			Expected: &PricingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PricingName:    "pricingValue",
+				PricingName:    "pricingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParsePricingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingName",
 			Expected: &PricingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PricingName:    "pricingValue",
+				PricingName:    "pricingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/pricings/pricingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgNaMe",
 			Expected: &PricingId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PricingName:    "pRiCiNgVaLuE",
+				PricingName:    "pRiCiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ProviderAssessmentMetadataId{}
 
 func TestNewProviderAssessmentMetadataID(t *testing.T) {
-	id := NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataValue")
+	id := NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AssessmentMetadataName != "assessmentMetadataValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssessmentMetadataName'", id.AssessmentMetadataName, "assessmentMetadataValue")
+	if id.AssessmentMetadataName != "assessmentMetadataName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssessmentMetadataName'", id.AssessmentMetadataName, "assessmentMetadataName")
 	}
 }
 
 func TestFormatProviderAssessmentMetadataID(t *testing.T) {
-	actual := NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue"
+	actual := NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseProviderAssessmentMetadataID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName",
 			Expected: &ProviderAssessmentMetadataId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				AssessmentMetadataName: "assessmentMetadataValue",
+				AssessmentMetadataName: "assessmentMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseProviderAssessmentMetadataIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName",
 			Expected: &ProviderAssessmentMetadataId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				AssessmentMetadataName: "assessmentMetadataValue",
+				AssessmentMetadataName: "assessmentMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAnAmE",
 			Expected: &ProviderAssessmentMetadataId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				AssessmentMetadataName: "aSsEsSmEnTmEtAdAtAvAlUe",
+				AssessmentMetadataName: "aSsEsSmEnTmEtAdAtAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAnAmE/extra",
 			Error: true,
 		},
 	}

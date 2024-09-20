@@ -42,7 +42,7 @@ func ParseDiskPoolID(input string) (*DiskPoolId, error) {
 	}
 
 	id := DiskPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDiskPoolIDInsensitively(input string) (*DiskPoolId, error) {
 	}
 
 	id := DiskPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id DiskPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStoragePool", "Microsoft.StoragePool", "Microsoft.StoragePool"),
 		resourceids.StaticSegment("staticDiskPools", "diskPools", "diskPools"),
-		resourceids.UserSpecifiedSegment("diskPoolName", "diskPoolValue"),
+		resourceids.UserSpecifiedSegment("diskPoolName", "diskPoolName"),
 	}
 }
 

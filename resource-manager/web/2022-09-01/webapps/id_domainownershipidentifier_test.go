@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DomainOwnershipIdentifierId{}
 
 func TestNewDomainOwnershipIdentifierID(t *testing.T) {
-	id := NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "domainOwnershipIdentifierValue")
+	id := NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "domainOwnershipIdentifierName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDomainOwnershipIdentifierID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.DomainOwnershipIdentifierName != "domainOwnershipIdentifierValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainOwnershipIdentifierName'", id.DomainOwnershipIdentifierName, "domainOwnershipIdentifierValue")
+	if id.DomainOwnershipIdentifierName != "domainOwnershipIdentifierName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainOwnershipIdentifierName'", id.DomainOwnershipIdentifierName, "domainOwnershipIdentifierName")
 	}
 }
 
 func TestFormatDomainOwnershipIdentifierID(t *testing.T) {
-	actual := NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "domainOwnershipIdentifierValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue"
+	actual := NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "domainOwnershipIdentifierName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers/domainOwnershipIdentifierName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDomainOwnershipIdentifierID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers/domainOwnershipIdentifierName",
 			Expected: &DomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SiteName:                      "siteValue",
-				DomainOwnershipIdentifierName: "domainOwnershipIdentifierValue",
+				SiteName:                      "name",
+				DomainOwnershipIdentifierName: "domainOwnershipIdentifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers/domainOwnershipIdentifierName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDomainOwnershipIdentifierIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/dOmAiNoWnErShIpIdEnTiFiErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/dOmAiNoWnErShIpIdEnTiFiErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers/domainOwnershipIdentifierName",
 			Expected: &DomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SiteName:                      "siteValue",
-				DomainOwnershipIdentifierName: "domainOwnershipIdentifierValue",
+				SiteName:                      "name",
+				DomainOwnershipIdentifierName: "domainOwnershipIdentifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/domainOwnershipIdentifiers/domainOwnershipIdentifierName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErNaMe",
 			Expected: &DomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:                      "sItEvAlUe",
-				DomainOwnershipIdentifierName: "dOmAiNoWnErShIpIdEnTiFiErVaLuE",
+				SiteName:                      "nAmE",
+				DomainOwnershipIdentifierName: "dOmAiNoWnErShIpIdEnTiFiErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErNaMe/extra",
 			Error: true,
 		},
 	}

@@ -40,6 +40,7 @@ func (o GetOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -96,7 +97,6 @@ func (c ReservationRecommendationDetailsClient) Get(ctx context.Context, id comm
 
 	var model ReservationRecommendationDetailsModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

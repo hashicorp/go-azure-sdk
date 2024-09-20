@@ -41,6 +41,7 @@ func (o AuthorizationListByAuthorizationProviderOperationOptions) ToHeaders() *c
 
 func (o AuthorizationListByAuthorizationProviderOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

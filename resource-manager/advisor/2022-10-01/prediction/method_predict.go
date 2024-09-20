@@ -51,7 +51,6 @@ func (c PredictionClient) Predict(ctx context.Context, id commonids.Subscription
 
 	var model PredictionResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

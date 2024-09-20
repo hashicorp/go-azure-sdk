@@ -15,7 +15,7 @@ type ReplicationMigrationItemsClient struct {
 }
 
 func NewReplicationMigrationItemsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationMigrationItemsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationmigrationitems", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationmigrationitems", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationMigrationItemsClient: %+v", err)
 	}

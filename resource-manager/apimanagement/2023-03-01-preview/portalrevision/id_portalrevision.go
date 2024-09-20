@@ -44,7 +44,7 @@ func ParsePortalRevisionID(input string) (*PortalRevisionId, error) {
 	}
 
 	id := PortalRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePortalRevisionIDInsensitively(input string) (*PortalRevisionId, error)
 	}
 
 	id := PortalRevisionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PortalRevisionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticPortalRevisions", "portalRevisions", "portalRevisions"),
-		resourceids.UserSpecifiedSegment("portalRevisionId", "portalRevisionIdValue"),
+		resourceids.UserSpecifiedSegment("portalRevisionId", "portalRevisionId"),
 	}
 }
 

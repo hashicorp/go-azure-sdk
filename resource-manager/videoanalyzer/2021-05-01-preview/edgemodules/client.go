@@ -15,7 +15,7 @@ type EdgeModulesClient struct {
 }
 
 func NewEdgeModulesClientWithBaseURI(sdkApi sdkEnv.Api) (*EdgeModulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "edgemodules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "edgemodules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EdgeModulesClient: %+v", err)
 	}

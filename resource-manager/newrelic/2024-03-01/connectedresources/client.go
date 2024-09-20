@@ -15,7 +15,7 @@ type ConnectedResourcesClient struct {
 }
 
 func NewConnectedResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*ConnectedResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "connectedresources", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "connectedresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConnectedResourcesClient: %+v", err)
 	}

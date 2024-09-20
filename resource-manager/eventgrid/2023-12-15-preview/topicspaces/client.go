@@ -15,7 +15,7 @@ type TopicSpacesClient struct {
 }
 
 func NewTopicSpacesClientWithBaseURI(sdkApi sdkEnv.Api) (*TopicSpacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topicspaces", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "topicspaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopicSpacesClient: %+v", err)
 	}

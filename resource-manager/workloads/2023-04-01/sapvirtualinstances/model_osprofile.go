@@ -32,7 +32,7 @@ func (s *OSProfile) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["osConfiguration"]; ok {
-		impl, err := unmarshalOSConfigurationImplementation(v)
+		impl, err := UnmarshalOSConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'OsConfiguration' for 'OSProfile': %+v", err)
 		}

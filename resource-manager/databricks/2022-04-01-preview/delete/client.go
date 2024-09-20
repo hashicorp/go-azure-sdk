@@ -15,7 +15,7 @@ type DELETEClient struct {
 }
 
 func NewDELETEClientWithBaseURI(sdkApi sdkEnv.Api) (*DELETEClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "delete", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "delete", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DELETEClient: %+v", err)
 	}

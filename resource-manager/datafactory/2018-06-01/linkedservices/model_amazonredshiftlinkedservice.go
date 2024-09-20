@@ -14,11 +14,24 @@ type AmazonRedshiftLinkedService struct {
 	TypeProperties AmazonRedshiftLinkedServiceTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from LinkedService
+
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`
 	ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Type        string                             `json:"type"`
 	Version     *string                            `json:"version,omitempty"`
+}
+
+func (s AmazonRedshiftLinkedService) LinkedService() BaseLinkedServiceImpl {
+	return BaseLinkedServiceImpl{
+		Annotations: s.Annotations,
+		ConnectVia:  s.ConnectVia,
+		Description: s.Description,
+		Parameters:  s.Parameters,
+		Type:        s.Type,
+		Version:     s.Version,
+	}
 }
 
 var _ json.Marshaler = AmazonRedshiftLinkedService{}
@@ -32,9 +45,10 @@ func (s AmazonRedshiftLinkedService) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AmazonRedshiftLinkedService: %+v", err)
 	}
+
 	decoded["type"] = "AmazonRedshift"
 
 	encoded, err = json.Marshal(decoded)

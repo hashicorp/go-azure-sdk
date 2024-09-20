@@ -50,7 +50,6 @@ func (c ApplicationPackageClient) Activate(ctx context.Context, id VersionId, in
 
 	var model ApplicationPackage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

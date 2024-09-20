@@ -42,7 +42,7 @@ func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["accessToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccessToken' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
 		}
@@ -50,7 +50,7 @@ func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["accessTokenSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccessTokenSecret' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
 		}
@@ -58,7 +58,7 @@ func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["consumerSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ConsumerSecret' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
 		}

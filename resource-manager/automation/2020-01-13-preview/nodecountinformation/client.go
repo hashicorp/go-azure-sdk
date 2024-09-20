@@ -15,7 +15,7 @@ type NodeCountInformationClient struct {
 }
 
 func NewNodeCountInformationClientWithBaseURI(sdkApi sdkEnv.Api) (*NodeCountInformationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "nodecountinformation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "nodecountinformation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NodeCountInformationClient: %+v", err)
 	}

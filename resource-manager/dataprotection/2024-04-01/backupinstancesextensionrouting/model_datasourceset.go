@@ -42,7 +42,7 @@ func (s *DatasourceSet) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["resourceProperties"]; ok {
-		impl, err := unmarshalBaseResourcePropertiesImplementation(v)
+		impl, err := UnmarshalBaseResourcePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ResourceProperties' for 'DatasourceSet': %+v", err)
 		}

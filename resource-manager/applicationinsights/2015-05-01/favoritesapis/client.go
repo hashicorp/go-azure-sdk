@@ -15,7 +15,7 @@ type FavoritesAPIsClient struct {
 }
 
 func NewFavoritesAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*FavoritesAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "favoritesapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "favoritesapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FavoritesAPIsClient: %+v", err)
 	}

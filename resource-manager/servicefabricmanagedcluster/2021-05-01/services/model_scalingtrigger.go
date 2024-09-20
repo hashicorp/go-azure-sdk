@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScalingTrigger interface {
+	ScalingTrigger() BaseScalingTriggerImpl
 }
 
-// RawScalingTriggerImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ScalingTrigger = BaseScalingTriggerImpl{}
+
+type BaseScalingTriggerImpl struct {
+	Kind ServiceScalingTriggerKind `json:"kind"`
+}
+
+func (s BaseScalingTriggerImpl) ScalingTrigger() BaseScalingTriggerImpl {
+	return s
+}
+
+var _ ScalingTrigger = RawScalingTriggerImpl{}
+
+// RawScalingTriggerImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawScalingTriggerImpl struct {
-	Type   string
-	Values map[string]interface{}
+	scalingTrigger BaseScalingTriggerImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error) {
+func (s RawScalingTriggerImpl) ScalingTrigger() BaseScalingTriggerImpl {
+	return s.scalingTrigger
+}
+
+func UnmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error)
 		return out, nil
 	}
 
-	out := RawScalingTriggerImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseScalingTriggerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScalingTriggerImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawScalingTriggerImpl{
+		scalingTrigger: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

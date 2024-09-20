@@ -17,6 +17,14 @@ type JwtAuthentication struct {
 	Keys      *[]TokenKey   `json:"keys,omitempty"`
 
 	// Fields inherited from AuthenticationBase
+
+	Type string `json:"@type"`
+}
+
+func (s JwtAuthentication) AuthenticationBase() BaseAuthenticationBaseImpl {
+	return BaseAuthenticationBaseImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = JwtAuthentication{}
@@ -30,9 +38,10 @@ func (s JwtAuthentication) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JwtAuthentication: %+v", err)
 	}
+
 	decoded["@type"] = "#Microsoft.VideoAnalyzer.JwtAuthentication"
 
 	encoded, err = json.Marshal(decoded)
@@ -55,6 +64,7 @@ func (s *JwtAuthentication) UnmarshalJSON(bytes []byte) error {
 	s.Audiences = decoded.Audiences
 	s.Claims = decoded.Claims
 	s.Issuers = decoded.Issuers
+	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -69,7 +79,7 @@ func (s *JwtAuthentication) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]TokenKey, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalTokenKeyImplementation(val)
+			impl, err := UnmarshalTokenKeyImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Keys' for 'JwtAuthentication': %+v", i, err)
 			}

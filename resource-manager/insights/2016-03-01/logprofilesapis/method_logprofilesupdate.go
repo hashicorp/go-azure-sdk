@@ -49,7 +49,6 @@ func (c LogProfilesAPIsClient) LogProfilesUpdate(ctx context.Context, id LogProf
 
 	var model LogProfileResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

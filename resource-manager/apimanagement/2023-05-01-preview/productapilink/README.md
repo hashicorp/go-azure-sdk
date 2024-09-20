@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/productapilink` Documentation
 
-The `productapilink` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `productapilink` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId", "apiLinkId")
 
 payload := productapilink.ProductApiLinkContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId", "apiLinkId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId", "apiLinkId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := productapilink.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 // alternatively `client.ListByProduct(ctx, id, productapilink.DefaultListByProductOperationOptions())` can be used to do batched pagination
 items, err := client.ListByProductComplete(ctx, id, productapilink.DefaultListByProductOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId", "apiLinkId")
 
 payload := productapilink.ProductApiLinkContract{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId", "apiLinkId")
 
 read, err := client.WorkspaceProductApiLinkDelete(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue", "apiLinkIdValue")
+id := productapilink.NewWorkspaceProductApiLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId", "apiLinkId")
 
 read, err := client.WorkspaceProductApiLinkGet(ctx, id)
 if err != nil {
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapilink.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := productapilink.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 // alternatively `client.WorkspaceProductApiLinkListByProduct(ctx, id, productapilink.DefaultWorkspaceProductApiLinkListByProductOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceProductApiLinkListByProductComplete(ctx, id, productapilink.DefaultWorkspaceProductApiLinkListByProductOperationOptions())

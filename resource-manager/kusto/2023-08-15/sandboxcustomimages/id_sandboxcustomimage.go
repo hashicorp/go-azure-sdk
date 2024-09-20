@@ -44,7 +44,7 @@ func ParseSandboxCustomImageID(input string) (*SandboxCustomImageId, error) {
 	}
 
 	id := SandboxCustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSandboxCustomImageIDInsensitively(input string) (*SandboxCustomImageId
 	}
 
 	id := SandboxCustomImageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id SandboxCustomImageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKusto", "Microsoft.Kusto", "Microsoft.Kusto"),
 		resourceids.StaticSegment("staticClusters", "clusters", "clusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("clusterName", "clusterName"),
 		resourceids.StaticSegment("staticSandboxCustomImages", "sandboxCustomImages", "sandboxCustomImages"),
-		resourceids.UserSpecifiedSegment("sandboxCustomImageName", "sandboxCustomImageValue"),
+		resourceids.UserSpecifiedSegment("sandboxCustomImageName", "sandboxCustomImageName"),
 	}
 }
 

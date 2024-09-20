@@ -46,7 +46,6 @@ func (c IntegrationRuntimesClient) ListAuthKeys(ctx context.Context, id Integrat
 
 	var model IntegrationRuntimeAuthKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

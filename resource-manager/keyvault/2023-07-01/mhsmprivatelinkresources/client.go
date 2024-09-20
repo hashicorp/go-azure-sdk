@@ -15,7 +15,7 @@ type MHSMPrivateLinkResourcesClient struct {
 }
 
 func NewMHSMPrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMPrivateLinkResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mhsmprivatelinkresources", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "mhsmprivatelinkresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MHSMPrivateLinkResourcesClient: %+v", err)
 	}

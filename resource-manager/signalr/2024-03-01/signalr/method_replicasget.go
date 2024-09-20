@@ -45,7 +45,6 @@ func (c SignalRClient) ReplicasGet(ctx context.Context, id ReplicaId) (result Re
 
 	var model Replica
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

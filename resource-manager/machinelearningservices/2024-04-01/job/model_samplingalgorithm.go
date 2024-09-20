@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SamplingAlgorithm interface {
+	SamplingAlgorithm() BaseSamplingAlgorithmImpl
 }
 
-// RawSamplingAlgorithmImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ SamplingAlgorithm = BaseSamplingAlgorithmImpl{}
+
+type BaseSamplingAlgorithmImpl struct {
+	SamplingAlgorithmType SamplingAlgorithmType `json:"samplingAlgorithmType"`
+}
+
+func (s BaseSamplingAlgorithmImpl) SamplingAlgorithm() BaseSamplingAlgorithmImpl {
+	return s
+}
+
+var _ SamplingAlgorithm = RawSamplingAlgorithmImpl{}
+
+// RawSamplingAlgorithmImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawSamplingAlgorithmImpl struct {
-	Type   string
-	Values map[string]interface{}
+	samplingAlgorithm BaseSamplingAlgorithmImpl
+	Type              string
+	Values            map[string]interface{}
 }
 
-func unmarshalSamplingAlgorithmImplementation(input []byte) (SamplingAlgorithm, error) {
+func (s RawSamplingAlgorithmImpl) SamplingAlgorithm() BaseSamplingAlgorithmImpl {
+	return s.samplingAlgorithm
+}
+
+func UnmarshalSamplingAlgorithmImplementation(input []byte) (SamplingAlgorithm, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalSamplingAlgorithmImplementation(input []byte) (SamplingAlgorithm, 
 		return out, nil
 	}
 
-	out := RawSamplingAlgorithmImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseSamplingAlgorithmImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSamplingAlgorithmImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawSamplingAlgorithmImpl{
+		samplingAlgorithm: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
 
 }

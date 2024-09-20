@@ -15,7 +15,7 @@ type OfficeConsentsClient struct {
 }
 
 func NewOfficeConsentsClientWithBaseURI(sdkApi sdkEnv.Api) (*OfficeConsentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "officeconsents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "officeconsents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OfficeConsentsClient: %+v", err)
 	}

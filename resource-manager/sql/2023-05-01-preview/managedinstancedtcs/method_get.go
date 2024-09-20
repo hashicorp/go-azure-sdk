@@ -47,7 +47,6 @@ func (c ManagedInstanceDtcsClient) Get(ctx context.Context, id commonids.SqlMana
 
 	var model ManagedInstanceDtc
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

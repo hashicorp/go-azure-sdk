@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TrunkedNetworkId{}
 
 func TestNewTrunkedNetworkID(t *testing.T) {
-	id := NewTrunkedNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trunkedNetworkValue")
+	id := NewTrunkedNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trunkedNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewTrunkedNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.TrunkedNetworkName != "trunkedNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TrunkedNetworkName'", id.TrunkedNetworkName, "trunkedNetworkValue")
+	if id.TrunkedNetworkName != "trunkedNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrunkedNetworkName'", id.TrunkedNetworkName, "trunkedNetworkName")
 	}
 }
 
 func TestFormatTrunkedNetworkID(t *testing.T) {
-	actual := NewTrunkedNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trunkedNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkValue"
+	actual := NewTrunkedNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trunkedNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseTrunkedNetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkName",
 			Expected: &TrunkedNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				TrunkedNetworkName: "trunkedNetworkValue",
+				TrunkedNetworkName: "trunkedNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseTrunkedNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkName",
 			Expected: &TrunkedNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				TrunkedNetworkName: "trunkedNetworkValue",
+				TrunkedNetworkName: "trunkedNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/trunkedNetworks/trunkedNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/tRuNkEdNeTwOrKs/tRuNkEdNeTwOrKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/tRuNkEdNeTwOrKs/tRuNkEdNeTwOrKnAmE",
 			Expected: &TrunkedNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				TrunkedNetworkName: "tRuNkEdNeTwOrKvAlUe",
+				TrunkedNetworkName: "tRuNkEdNeTwOrKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/tRuNkEdNeTwOrKs/tRuNkEdNeTwOrKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/tRuNkEdNeTwOrKs/tRuNkEdNeTwOrKnAmE/extra",
 			Error: true,
 		},
 	}

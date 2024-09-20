@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &JobDefinitionId{}
 
 func TestNewJobDefinitionID(t *testing.T) {
-	id := NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "projectValue", "jobDefinitionValue")
+	id := NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "projectName", "jobDefinitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewJobDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageMoverName != "storageMoverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverValue")
+	if id.StorageMoverName != "storageMoverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverName")
 	}
 
-	if id.ProjectName != "projectValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectValue")
+	if id.ProjectName != "projectName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectName")
 	}
 
-	if id.JobDefinitionName != "jobDefinitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'JobDefinitionName'", id.JobDefinitionName, "jobDefinitionValue")
+	if id.JobDefinitionName != "jobDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'JobDefinitionName'", id.JobDefinitionName, "jobDefinitionName")
 	}
 }
 
 func TestFormatJobDefinitionID(t *testing.T) {
-	actual := NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "projectValue", "jobDefinitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions/jobDefinitionValue"
+	actual := NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "projectName", "jobDefinitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions/jobDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseJobDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions/jobDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions/jobDefinitionName",
 			Expected: &JobDefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
-				ProjectName:       "projectValue",
-				JobDefinitionName: "jobDefinitionValue",
+				StorageMoverName:  "storageMoverName",
+				ProjectName:       "projectName",
+				JobDefinitionName: "jobDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions/jobDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions/jobDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseJobDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/pRoJeCtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/pRoJeCtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/pRoJeCtS/pRoJeCtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/pRoJeCtS/pRoJeCtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/pRoJeCtS/pRoJeCtVaLuE/jObDeFiNiTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/pRoJeCtS/pRoJeCtNaMe/jObDeFiNiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions/jobDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions/jobDefinitionName",
 			Expected: &JobDefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
-				ProjectName:       "projectValue",
-				JobDefinitionName: "jobDefinitionValue",
+				StorageMoverName:  "storageMoverName",
+				ProjectName:       "projectName",
+				JobDefinitionName: "jobDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/projects/projectValue/jobDefinitions/jobDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/projects/projectName/jobDefinitions/jobDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/pRoJeCtS/pRoJeCtVaLuE/jObDeFiNiTiOnS/jObDeFiNiTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/pRoJeCtS/pRoJeCtNaMe/jObDeFiNiTiOnS/jObDeFiNiTiOnNaMe",
 			Expected: &JobDefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageMoverName:  "sToRaGeMoVeRvAlUe",
-				ProjectName:       "pRoJeCtVaLuE",
-				JobDefinitionName: "jObDeFiNiTiOnVaLuE",
+				StorageMoverName:  "sToRaGeMoVeRnAmE",
+				ProjectName:       "pRoJeCtNaMe",
+				JobDefinitionName: "jObDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/pRoJeCtS/pRoJeCtVaLuE/jObDeFiNiTiOnS/jObDeFiNiTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/pRoJeCtS/pRoJeCtNaMe/jObDeFiNiTiOnS/jObDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

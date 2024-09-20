@@ -45,7 +45,6 @@ func (c ApplyUpdatesClient) GetParent(ctx context.Context, id ScopedApplyUpdateI
 
 	var model ApplyUpdate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

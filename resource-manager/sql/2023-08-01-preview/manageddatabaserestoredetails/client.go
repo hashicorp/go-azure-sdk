@@ -15,7 +15,7 @@ type ManagedDatabaseRestoreDetailsClient struct {
 }
 
 func NewManagedDatabaseRestoreDetailsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseRestoreDetailsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabaserestoredetails", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabaserestoredetails", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseRestoreDetailsClient: %+v", err)
 	}

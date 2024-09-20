@@ -45,7 +45,6 @@ func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsGetByProjectCatalog(
 
 	var model EnvironmentDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -40,6 +40,7 @@ func (o SqlPoolSensitivityLabelsListRecommendedOperationOptions) ToHeaders() *cl
 
 func (o SqlPoolSensitivityLabelsListRecommendedOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

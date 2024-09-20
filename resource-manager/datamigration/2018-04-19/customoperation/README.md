@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/customoperation` Documentation
 
-The `customoperation` SDK allows for interaction with the Azure Resource Manager Service `datamigration` (API Version `2018-04-19`).
+The `customoperation` SDK allows for interaction with Azure Resource Manager `datamigration` (API Version `2018-04-19`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 read, err := client.ServicesCheckStatus(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 payload := customoperation.NameAvailabilityRequest{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -73,7 +73,7 @@ if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := customoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -85,7 +85,7 @@ if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := customoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+id := customoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksCancel(ctx, id)
 if err != nil {

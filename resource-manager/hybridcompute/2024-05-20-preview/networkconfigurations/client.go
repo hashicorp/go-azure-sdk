@@ -15,7 +15,7 @@ type NetworkConfigurationsClient struct {
 }
 
 func NewNetworkConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkConfigurationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "networkconfigurations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "networkconfigurations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkConfigurationsClient: %+v", err)
 	}

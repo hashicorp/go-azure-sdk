@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount` Documentation
 
-The `billingaccount` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `billingaccount` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 var payload []PaymentTerm
 
 if err := client.AddPaymentTermsThenPoll(ctx, id, payload); err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 var payload string
 
 if err := client.CancelPaymentTermsThenPoll(ctx, id, payload); err != nil {
@@ -70,7 +70,7 @@ if err := client.CancelPaymentTermsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 
 read, err := client.ConfirmTransition(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -119,7 +119,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListInvoiceSectionsByCreateSubscriptionPermission(ctx, id, billingaccount.DefaultListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions())` can be used to do batched pagination
 items, err := client.ListInvoiceSectionsByCreateSubscriptionPermissionComplete(ctx, id, billingaccount.DefaultListInvoiceSectionsByCreateSubscriptionPermissionOperationOptions())
@@ -136,7 +136,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 
 payload := billingaccount.BillingAccountPatch{
 	// ...
@@ -153,7 +153,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingaccount.NewBillingAccountID("billingAccountValue")
+id := billingaccount.NewBillingAccountID("billingAccountName")
 var payload []PaymentTerm
 
 read, err := client.ValidatePaymentTerms(ctx, id, payload)

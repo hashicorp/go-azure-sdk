@@ -45,7 +45,6 @@ func (c TimeZonesClient) Get(ctx context.Context, id TimeZoneId) (result GetOper
 
 	var model TimeZone
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

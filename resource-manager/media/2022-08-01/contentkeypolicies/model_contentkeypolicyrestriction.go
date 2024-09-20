@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContentKeyPolicyRestriction interface {
+	ContentKeyPolicyRestriction() BaseContentKeyPolicyRestrictionImpl
 }
 
-// RawContentKeyPolicyRestrictionImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ContentKeyPolicyRestriction = BaseContentKeyPolicyRestrictionImpl{}
+
+type BaseContentKeyPolicyRestrictionImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseContentKeyPolicyRestrictionImpl) ContentKeyPolicyRestriction() BaseContentKeyPolicyRestrictionImpl {
+	return s
+}
+
+var _ ContentKeyPolicyRestriction = RawContentKeyPolicyRestrictionImpl{}
+
+// RawContentKeyPolicyRestrictionImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawContentKeyPolicyRestrictionImpl struct {
-	Type   string
-	Values map[string]interface{}
+	contentKeyPolicyRestriction BaseContentKeyPolicyRestrictionImpl
+	Type                        string
+	Values                      map[string]interface{}
 }
 
-func unmarshalContentKeyPolicyRestrictionImplementation(input []byte) (ContentKeyPolicyRestriction, error) {
+func (s RawContentKeyPolicyRestrictionImpl) ContentKeyPolicyRestriction() BaseContentKeyPolicyRestrictionImpl {
+	return s.contentKeyPolicyRestriction
+}
+
+func UnmarshalContentKeyPolicyRestrictionImplementation(input []byte) (ContentKeyPolicyRestriction, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalContentKeyPolicyRestrictionImplementation(input []byte) (ContentKe
 		return out, nil
 	}
 
-	out := RawContentKeyPolicyRestrictionImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseContentKeyPolicyRestrictionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseContentKeyPolicyRestrictionImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawContentKeyPolicyRestrictionImpl{
+		contentKeyPolicyRestriction: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
 
 }

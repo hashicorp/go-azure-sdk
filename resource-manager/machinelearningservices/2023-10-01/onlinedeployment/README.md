@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2023-10-01/onlinedeployment` Documentation
 
-The `onlinedeployment` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2023-10-01`).
+The `onlinedeployment` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 payload := onlinedeployment.OnlineDeploymentTrackedResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 payload := onlinedeployment.DeploymentLogsRequest{
 	// ...
@@ -90,7 +90,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue")
+id := onlinedeployment.NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName")
 
 // alternatively `client.List(ctx, id, onlinedeployment.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, onlinedeployment.DefaultListOperationOptions())
@@ -107,7 +107,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 // alternatively `client.ListSkus(ctx, id, onlinedeployment.DefaultListSkusOperationOptions())` can be used to do batched pagination
 items, err := client.ListSkusComplete(ctx, id, onlinedeployment.DefaultListSkusOperationOptions())
@@ -124,7 +124,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onlineEndpointValue", "deploymentValue")
+id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName", "deploymentName")
 
 payload := onlinedeployment.PartialMinimalTrackedResourceWithSku{
 	// ...

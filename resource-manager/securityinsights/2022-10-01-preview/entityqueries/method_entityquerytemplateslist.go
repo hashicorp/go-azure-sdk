@@ -40,6 +40,7 @@ func (o EntityQueryTemplatesListOperationOptions) ToHeaders() *client.Headers {
 
 func (o EntityQueryTemplatesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -101,7 +102,7 @@ func (c EntityQueriesClient) EntityQueryTemplatesList(ctx context.Context, id Wo
 	temp := make([]EntityQueryTemplate, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalEntityQueryTemplateImplementation(v)
+			val, err := UnmarshalEntityQueryTemplateImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for EntityQueryTemplate (%q): %+v", i, v, err)
 				return result, err

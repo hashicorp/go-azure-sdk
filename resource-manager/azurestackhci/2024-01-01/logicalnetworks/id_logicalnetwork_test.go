@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LogicalNetworkId{}
 
 func TestNewLogicalNetworkID(t *testing.T) {
-	id := NewLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "logicalNetworkValue")
+	id := NewLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "logicalNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLogicalNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LogicalNetworkName != "logicalNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LogicalNetworkName'", id.LogicalNetworkName, "logicalNetworkValue")
+	if id.LogicalNetworkName != "logicalNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LogicalNetworkName'", id.LogicalNetworkName, "logicalNetworkName")
 	}
 }
 
 func TestFormatLogicalNetworkID(t *testing.T) {
-	actual := NewLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "logicalNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkValue"
+	actual := NewLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "logicalNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLogicalNetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkName",
 			Expected: &LogicalNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				LogicalNetworkName: "logicalNetworkValue",
+				LogicalNetworkName: "logicalNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLogicalNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkName",
 			Expected: &LogicalNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				LogicalNetworkName: "logicalNetworkValue",
+				LogicalNetworkName: "logicalNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/logicalNetworks/logicalNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/lOgIcAlNeTwOrKs/lOgIcAlNeTwOrKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/lOgIcAlNeTwOrKs/lOgIcAlNeTwOrKnAmE",
 			Expected: &LogicalNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				LogicalNetworkName: "lOgIcAlNeTwOrKvAlUe",
+				LogicalNetworkName: "lOgIcAlNeTwOrKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/lOgIcAlNeTwOrKs/lOgIcAlNeTwOrKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/lOgIcAlNeTwOrKs/lOgIcAlNeTwOrKnAmE/extra",
 			Error: true,
 		},
 	}

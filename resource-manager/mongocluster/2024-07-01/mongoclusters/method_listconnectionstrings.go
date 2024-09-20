@@ -46,7 +46,6 @@ func (c MongoClustersClient) ListConnectionStrings(ctx context.Context, id Mongo
 
 	var model ListConnectionStringsResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

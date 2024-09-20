@@ -33,6 +33,7 @@ func (o DisableRecommendationForHostingEnvironmentOperationOptions) ToHeaders() 
 
 func (o DisableRecommendationForHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

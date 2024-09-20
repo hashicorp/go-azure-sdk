@@ -14,6 +14,14 @@ type AzureResourceIdentifier struct {
 	AzureResourceId *string `json:"azureResourceId,omitempty"`
 
 	// Fields inherited from ResourceIdentifier
+
+	Type ResourceIdentifierType `json:"type"`
+}
+
+func (s AzureResourceIdentifier) ResourceIdentifier() BaseResourceIdentifierImpl {
+	return BaseResourceIdentifierImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureResourceIdentifier{}
@@ -27,9 +35,10 @@ func (s AzureResourceIdentifier) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureResourceIdentifier: %+v", err)
 	}
+
 	decoded["type"] = "AzureResource"
 
 	encoded, err = json.Marshal(decoded)

@@ -44,7 +44,7 @@ func ParseReplicationEventID(input string) (*ReplicationEventId, error) {
 	}
 
 	id := ReplicationEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationEventIDInsensitively(input string) (*ReplicationEventId, er
 	}
 
 	id := ReplicationEventId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ReplicationEventId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationEvents", "replicationEvents", "replicationEvents"),
-		resourceids.UserSpecifiedSegment("replicationEventName", "replicationEventValue"),
+		resourceids.UserSpecifiedSegment("replicationEventName", "eventName"),
 	}
 }
 

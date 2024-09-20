@@ -44,7 +44,7 @@ func ParseShareID(input string) (*ShareId, error) {
 	}
 
 	id := ShareId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseShareIDInsensitively(input string) (*ShareId, error) {
 	}
 
 	id := ShareId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ShareId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceValue"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticShares", "shares", "shares"),
-		resourceids.UserSpecifiedSegment("shareName", "shareValue"),
+		resourceids.UserSpecifiedSegment("shareName", "name"),
 	}
 }
 

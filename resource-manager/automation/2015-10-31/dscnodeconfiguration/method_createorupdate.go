@@ -49,7 +49,6 @@ func (c DscNodeConfigurationClient) CreateOrUpdate(ctx context.Context, id NodeC
 
 	var model DscNodeConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,6 @@ func (c LocationsClient) CheckQuotaAvailability(ctx context.Context, id Location
 
 	var model Quota
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type RoutingInfoClient struct {
 }
 
 func NewRoutingInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*RoutingInfoClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "routinginfo", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "routinginfo", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RoutingInfoClient: %+v", err)
 	}

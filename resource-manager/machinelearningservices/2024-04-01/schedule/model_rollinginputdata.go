@@ -16,10 +16,22 @@ type RollingInputData struct {
 	WindowSize               string  `json:"windowSize"`
 
 	// Fields inherited from MonitoringInputDataBase
-	Columns      *map[string]string `json:"columns,omitempty"`
-	DataContext  *string            `json:"dataContext,omitempty"`
-	JobInputType JobInputType       `json:"jobInputType"`
-	Uri          string             `json:"uri"`
+
+	Columns       *map[string]string      `json:"columns,omitempty"`
+	DataContext   *string                 `json:"dataContext,omitempty"`
+	InputDataType MonitoringInputDataType `json:"inputDataType"`
+	JobInputType  JobInputType            `json:"jobInputType"`
+	Uri           string                  `json:"uri"`
+}
+
+func (s RollingInputData) MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl {
+	return BaseMonitoringInputDataBaseImpl{
+		Columns:       s.Columns,
+		DataContext:   s.DataContext,
+		InputDataType: s.InputDataType,
+		JobInputType:  s.JobInputType,
+		Uri:           s.Uri,
+	}
 }
 
 var _ json.Marshaler = RollingInputData{}
@@ -33,9 +45,10 @@ func (s RollingInputData) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling RollingInputData: %+v", err)
 	}
+
 	decoded["inputDataType"] = "Rolling"
 
 	encoded, err = json.Marshal(decoded)

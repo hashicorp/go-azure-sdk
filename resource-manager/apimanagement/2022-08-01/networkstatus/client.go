@@ -15,7 +15,7 @@ type NetworkStatusClient struct {
 }
 
 func NewNetworkStatusClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkStatusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "networkstatus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "networkstatus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkStatusClient: %+v", err)
 	}

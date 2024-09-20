@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ResourcePoolId{}
 
 func TestNewResourcePoolID(t *testing.T) {
-	id := NewResourcePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourcePoolValue")
+	id := NewResourcePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourcePoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewResourcePoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourcePoolName != "resourcePoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourcePoolName'", id.ResourcePoolName, "resourcePoolValue")
+	if id.ResourcePoolName != "resourcePoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourcePoolName'", id.ResourcePoolName, "resourcePoolName")
 	}
 }
 
 func TestFormatResourcePoolID(t *testing.T) {
-	actual := NewResourcePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourcePoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolValue"
+	actual := NewResourcePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourcePoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseResourcePoolID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolName",
 			Expected: &ResourcePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourcePoolName:  "resourcePoolValue",
+				ResourcePoolName:  "resourcePoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseResourcePoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolName",
 			Expected: &ResourcePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourcePoolName:  "resourcePoolValue",
+				ResourcePoolName:  "resourcePoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/resourcePools/resourcePoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/rEsOuRcEpOoLs/rEsOuRcEpOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/rEsOuRcEpOoLs/rEsOuRcEpOoLnAmE",
 			Expected: &ResourcePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourcePoolName:  "rEsOuRcEpOoLvAlUe",
+				ResourcePoolName:  "rEsOuRcEpOoLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/rEsOuRcEpOoLs/rEsOuRcEpOoLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/rEsOuRcEpOoLs/rEsOuRcEpOoLnAmE/extra",
 			Error: true,
 		},
 	}

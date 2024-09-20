@@ -17,13 +17,28 @@ type JobOutputAsset struct {
 	AssetName string `json:"assetName"`
 
 	// Fields inherited from JobOutput
+
 	EndTime        *string   `json:"endTime,omitempty"`
 	Error          *JobError `json:"error,omitempty"`
 	Label          *string   `json:"label,omitempty"`
+	OdataType      string    `json:"@odata.type"`
 	PresetOverride Preset    `json:"presetOverride"`
 	Progress       *int64    `json:"progress,omitempty"`
 	StartTime      *string   `json:"startTime,omitempty"`
 	State          *JobState `json:"state,omitempty"`
+}
+
+func (s JobOutputAsset) JobOutput() BaseJobOutputImpl {
+	return BaseJobOutputImpl{
+		EndTime:        s.EndTime,
+		Error:          s.Error,
+		Label:          s.Label,
+		OdataType:      s.OdataType,
+		PresetOverride: s.PresetOverride,
+		Progress:       s.Progress,
+		StartTime:      s.StartTime,
+		State:          s.State,
+	}
 }
 
 func (o *JobOutputAsset) GetEndTimeAsTime() (*time.Time, error) {
@@ -61,9 +76,10 @@ func (s JobOutputAsset) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobOutputAsset: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JobOutputAsset"
 
 	encoded, err = json.Marshal(decoded)
@@ -87,6 +103,7 @@ func (s *JobOutputAsset) UnmarshalJSON(bytes []byte) error {
 	s.EndTime = decoded.EndTime
 	s.Error = decoded.Error
 	s.Label = decoded.Label
+	s.OdataType = decoded.OdataType
 	s.Progress = decoded.Progress
 	s.StartTime = decoded.StartTime
 	s.State = decoded.State
@@ -97,7 +114,7 @@ func (s *JobOutputAsset) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["presetOverride"]; ok {
-		impl, err := unmarshalPresetImplementation(v)
+		impl, err := UnmarshalPresetImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PresetOverride' for 'JobOutputAsset': %+v", err)
 		}

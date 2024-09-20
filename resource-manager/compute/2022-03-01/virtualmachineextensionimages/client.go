@@ -15,7 +15,7 @@ type VirtualMachineExtensionImagesClient struct {
 }
 
 func NewVirtualMachineExtensionImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineExtensionImagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachineextensionimages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachineextensionimages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineExtensionImagesClient: %+v", err)
 	}

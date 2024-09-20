@@ -13,6 +13,14 @@ var _ FormatWriteSettings = IcebergWriteSettings{}
 type IcebergWriteSettings struct {
 
 	// Fields inherited from FormatWriteSettings
+
+	Type string `json:"type"`
+}
+
+func (s IcebergWriteSettings) FormatWriteSettings() BaseFormatWriteSettingsImpl {
+	return BaseFormatWriteSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = IcebergWriteSettings{}
@@ -26,9 +34,10 @@ func (s IcebergWriteSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IcebergWriteSettings: %+v", err)
 	}
+
 	decoded["type"] = "IcebergWriteSettings"
 
 	encoded, err = json.Marshal(decoded)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/backuprestore` Documentation
 
-The `backuprestore` SDK allows for interaction with the Azure Resource Manager Service `storagesync` (API Version `2020-03-01`).
+The `backuprestore` SDK allows for interaction with Azure Resource Manager `storagesync` (API Version `2020-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := backuprestore.BackupRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CloudEndpointsPostBackupThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := backuprestore.PostRestoreRequest{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CloudEndpointsPostRestoreThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := backuprestore.BackupRequest{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CloudEndpointsPreBackupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := backuprestore.PreRestoreRequest{
 	// ...
@@ -92,7 +92,7 @@ if err := client.CloudEndpointsPreRestoreThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := backuprestore.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 read, err := client.CloudEndpointsrestoreheartbeat(ctx, id)
 if err != nil {

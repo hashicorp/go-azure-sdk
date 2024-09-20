@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProximityPlacementGroupId{}
 
 func TestNewProximityPlacementGroupID(t *testing.T) {
-	id := NewProximityPlacementGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "proximityPlacementGroupValue")
+	id := NewProximityPlacementGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "proximityPlacementGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewProximityPlacementGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ProximityPlacementGroupName != "proximityPlacementGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProximityPlacementGroupName'", id.ProximityPlacementGroupName, "proximityPlacementGroupValue")
+	if id.ProximityPlacementGroupName != "proximityPlacementGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProximityPlacementGroupName'", id.ProximityPlacementGroupName, "proximityPlacementGroupName")
 	}
 }
 
 func TestFormatProximityPlacementGroupID(t *testing.T) {
-	actual := NewProximityPlacementGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "proximityPlacementGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupValue"
+	actual := NewProximityPlacementGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "proximityPlacementGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseProximityPlacementGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupName",
 			Expected: &ProximityPlacementGroupId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ProximityPlacementGroupName: "proximityPlacementGroupValue",
+				ProximityPlacementGroupName: "proximityPlacementGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseProximityPlacementGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupName",
 			Expected: &ProximityPlacementGroupId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ProximityPlacementGroupName: "proximityPlacementGroupValue",
+				ProximityPlacementGroupName: "proximityPlacementGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/proximityPlacementGroups/proximityPlacementGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/pRoXiMiTyPlAcEmEnTgRoUpS/pRoXiMiTyPlAcEmEnTgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/pRoXiMiTyPlAcEmEnTgRoUpS/pRoXiMiTyPlAcEmEnTgRoUpNaMe",
 			Expected: &ProximityPlacementGroupId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				ProximityPlacementGroupName: "pRoXiMiTyPlAcEmEnTgRoUpVaLuE",
+				ProximityPlacementGroupName: "pRoXiMiTyPlAcEmEnTgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/pRoXiMiTyPlAcEmEnTgRoUpS/pRoXiMiTyPlAcEmEnTgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/pRoXiMiTyPlAcEmEnTgRoUpS/pRoXiMiTyPlAcEmEnTgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

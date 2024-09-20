@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/hypervcluster` Documentation
 
-The `hypervcluster` SDK allows for interaction with the Azure Resource Manager Service `migrate` (API Version `2020-07-07`).
+The `hypervcluster` SDK allows for interaction with Azure Resource Manager `migrate` (API Version `2020-07-07`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervcluster.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.GetAllClustersInSite(ctx, id, hypervcluster.DefaultGetAllClustersInSiteOperationOptions())` can be used to do batched pagination
 items, err := client.GetAllClustersInSiteComplete(ctx, id, hypervcluster.DefaultGetAllClustersInSiteOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue", "clusterValue")
+id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName")
 
 read, err := client.GetCluster(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue", "clusterValue")
+id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName")
 
 payload := hypervcluster.HyperVCluster{
 	// ...

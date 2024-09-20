@@ -46,7 +46,7 @@ func ParseScriptCmdletID(input string) (*ScriptCmdletId, error) {
 	}
 
 	id := ScriptCmdletId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseScriptCmdletIDInsensitively(input string) (*ScriptCmdletId, error) {
 	}
 
 	id := ScriptCmdletId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id ScriptCmdletId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticScriptPackages", "scriptPackages", "scriptPackages"),
-		resourceids.UserSpecifiedSegment("scriptPackageName", "scriptPackageValue"),
+		resourceids.UserSpecifiedSegment("scriptPackageName", "scriptPackageName"),
 		resourceids.StaticSegment("staticScriptCmdlets", "scriptCmdlets", "scriptCmdlets"),
-		resourceids.UserSpecifiedSegment("scriptCmdletName", "scriptCmdletValue"),
+		resourceids.UserSpecifiedSegment("scriptCmdletName", "scriptCmdletName"),
 	}
 }
 

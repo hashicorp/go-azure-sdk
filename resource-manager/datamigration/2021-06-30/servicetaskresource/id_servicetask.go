@@ -44,7 +44,7 @@ func ParseServiceTaskID(input string) (*ServiceTaskId, error) {
 	}
 
 	id := ServiceTaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServiceTaskIDInsensitively(input string) (*ServiceTaskId, error) {
 	}
 
 	id := ServiceTaskId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -117,13 +117,13 @@ func (id ServiceTaskId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
-		resourceids.UserSpecifiedSegment("resourceGroupName", "resourceGroupValue"),
+		resourceids.UserSpecifiedSegment("resourceGroupName", "groupName"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataMigration", "Microsoft.DataMigration", "Microsoft.DataMigration"),
 		resourceids.StaticSegment("staticServices", "services", "services"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticServiceTasks", "serviceTasks", "serviceTasks"),
-		resourceids.UserSpecifiedSegment("serviceTaskName", "serviceTaskValue"),
+		resourceids.UserSpecifiedSegment("serviceTaskName", "taskName"),
 	}
 }
 

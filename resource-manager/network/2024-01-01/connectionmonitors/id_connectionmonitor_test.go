@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectionMonitorId{}
 
 func TestNewConnectionMonitorID(t *testing.T) {
-	id := NewConnectionMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "connectionMonitorValue")
+	id := NewConnectionMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "connectionMonitorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConnectionMonitorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkWatcherName != "networkWatcherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherValue")
+	if id.NetworkWatcherName != "networkWatcherName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherName")
 	}
 
-	if id.ConnectionMonitorName != "connectionMonitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectionMonitorName'", id.ConnectionMonitorName, "connectionMonitorValue")
+	if id.ConnectionMonitorName != "connectionMonitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectionMonitorName'", id.ConnectionMonitorName, "connectionMonitorName")
 	}
 }
 
 func TestFormatConnectionMonitorID(t *testing.T) {
-	actual := NewConnectionMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "connectionMonitorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors/connectionMonitorValue"
+	actual := NewConnectionMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "connectionMonitorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors/connectionMonitorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConnectionMonitorID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors/connectionMonitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors/connectionMonitorName",
 			Expected: &ConnectionMonitorId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				NetworkWatcherName:    "networkWatcherValue",
-				ConnectionMonitorName: "connectionMonitorValue",
+				NetworkWatcherName:    "networkWatcherName",
+				ConnectionMonitorName: "connectionMonitorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors/connectionMonitorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors/connectionMonitorName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConnectionMonitorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/cOnNeCtIoNmOnItOrS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/cOnNeCtIoNmOnItOrS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors/connectionMonitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors/connectionMonitorName",
 			Expected: &ConnectionMonitorId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				NetworkWatcherName:    "networkWatcherValue",
-				ConnectionMonitorName: "connectionMonitorValue",
+				NetworkWatcherName:    "networkWatcherName",
+				ConnectionMonitorName: "connectionMonitorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/connectionMonitors/connectionMonitorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/connectionMonitors/connectionMonitorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/cOnNeCtIoNmOnItOrS/cOnNeCtIoNmOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/cOnNeCtIoNmOnItOrS/cOnNeCtIoNmOnItOrNaMe",
 			Expected: &ConnectionMonitorId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkWatcherName:    "nEtWoRkWaTcHeRvAlUe",
-				ConnectionMonitorName: "cOnNeCtIoNmOnItOrVaLuE",
+				NetworkWatcherName:    "nEtWoRkWaTcHeRnAmE",
+				ConnectionMonitorName: "cOnNeCtIoNmOnItOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/cOnNeCtIoNmOnItOrS/cOnNeCtIoNmOnItOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/cOnNeCtIoNmOnItOrS/cOnNeCtIoNmOnItOrNaMe/extra",
 			Error: true,
 		},
 	}

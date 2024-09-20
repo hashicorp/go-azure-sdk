@@ -46,7 +46,6 @@ func (c DeploymentInfoClient) List(ctx context.Context, id MonitorId) (result Li
 
 	var model DeploymentInfoResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

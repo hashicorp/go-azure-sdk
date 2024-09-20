@@ -51,7 +51,6 @@ func (c SandboxCustomImagesClient) CheckNameAvailability(ctx context.Context, id
 
 	var model CheckNameResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

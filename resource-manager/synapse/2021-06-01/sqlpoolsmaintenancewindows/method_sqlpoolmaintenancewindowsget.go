@@ -34,6 +34,7 @@ func (o SqlPoolMaintenanceWindowsGetOperationOptions) ToHeaders() *client.Header
 
 func (o SqlPoolMaintenanceWindowsGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c SqlPoolsMaintenanceWindowsClient) SqlPoolMaintenanceWindowsGet(ctx conte
 
 	var model MaintenanceWindows
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

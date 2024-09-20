@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SiteId{}
 
 func TestNewSiteID(t *testing.T) {
-	id := NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "siteValue")
+	id := NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "siteName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MobileNetworkName != "mobileNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkValue")
+	if id.MobileNetworkName != "mobileNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkName")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "siteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteName")
 	}
 }
 
 func TestFormatSiteID(t *testing.T) {
-	actual := NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "siteValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites/siteValue"
+	actual := NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "siteName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites/siteName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSiteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites/siteName",
 			Expected: &SiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				SiteName:          "siteValue",
+				MobileNetworkName: "mobileNetworkName",
+				SiteName:          "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites/siteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites/siteName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sItEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sItEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites/siteName",
 			Expected: &SiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				SiteName:          "siteValue",
+				MobileNetworkName: "mobileNetworkName",
+				SiteName:          "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/sites/siteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/sites/siteName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sItEs/sItEnAmE",
 			Expected: &SiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MobileNetworkName: "mObIlEnEtWoRkVaLuE",
-				SiteName:          "sItEvAlUe",
+				MobileNetworkName: "mObIlEnEtWoRkNaMe",
+				SiteName:          "sItEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sItEs/sItEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sItEs/sItEnAmE/extra",
 			Error: true,
 		},
 	}

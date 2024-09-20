@@ -15,7 +15,7 @@ type AccountFiltersClient struct {
 }
 
 func NewAccountFiltersClientWithBaseURI(sdkApi sdkEnv.Api) (*AccountFiltersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "accountfilters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "accountfilters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AccountFiltersClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SmartDetectorAlertRuleId{}
 
 func TestNewSmartDetectorAlertRuleID(t *testing.T) {
-	id := NewSmartDetectorAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "smartDetectorAlertRuleValue")
+	id := NewSmartDetectorAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSmartDetectorAlertRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SmartDetectorAlertRuleName != "smartDetectorAlertRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SmartDetectorAlertRuleName'", id.SmartDetectorAlertRuleName, "smartDetectorAlertRuleValue")
+	if id.SmartDetectorAlertRuleName != "alertRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SmartDetectorAlertRuleName'", id.SmartDetectorAlertRuleName, "alertRuleName")
 	}
 }
 
 func TestFormatSmartDetectorAlertRuleID(t *testing.T) {
-	actual := NewSmartDetectorAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "smartDetectorAlertRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/smartDetectorAlertRuleValue"
+	actual := NewSmartDetectorAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/alertRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSmartDetectorAlertRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/smartDetectorAlertRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/alertRuleName",
 			Expected: &SmartDetectorAlertRuleId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SmartDetectorAlertRuleName: "smartDetectorAlertRuleValue",
+				SmartDetectorAlertRuleName: "alertRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/smartDetectorAlertRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/alertRuleName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSmartDetectorAlertRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/smartDetectorAlertRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/alertRuleName",
 			Expected: &SmartDetectorAlertRuleId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SmartDetectorAlertRuleName: "smartDetectorAlertRuleValue",
+				SmartDetectorAlertRuleName: "alertRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/smartDetectorAlertRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/alertRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtDeTeCtOrAlErTrUlEs/sMaRtDeTeCtOrAlErTrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtDeTeCtOrAlErTrUlEs/aLeRtRuLeNaMe",
 			Expected: &SmartDetectorAlertRuleId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				SmartDetectorAlertRuleName: "sMaRtDeTeCtOrAlErTrUlEvAlUe",
+				SmartDetectorAlertRuleName: "aLeRtRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtDeTeCtOrAlErTrUlEs/sMaRtDeTeCtOrAlErTrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtDeTeCtOrAlErTrUlEs/aLeRtRuLeNaMe/extra",
 			Error: true,
 		},
 	}

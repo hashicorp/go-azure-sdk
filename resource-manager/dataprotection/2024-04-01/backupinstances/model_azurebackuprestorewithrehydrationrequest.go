@@ -16,11 +16,24 @@ type AzureBackupRestoreWithRehydrationRequest struct {
 	RehydrationRetentionDuration string              `json:"rehydrationRetentionDuration"`
 
 	// Fields inherited from AzureBackupRestoreRequest
+
 	IdentityDetails                *IdentityDetails      `json:"identityDetails,omitempty"`
+	ObjectType                     string                `json:"objectType"`
 	ResourceGuardOperationRequests *[]string             `json:"resourceGuardOperationRequests,omitempty"`
 	RestoreTargetInfo              RestoreTargetInfoBase `json:"restoreTargetInfo"`
 	SourceDataStoreType            SourceDataStoreType   `json:"sourceDataStoreType"`
 	SourceResourceId               *string               `json:"sourceResourceId,omitempty"`
+}
+
+func (s AzureBackupRestoreWithRehydrationRequest) AzureBackupRestoreRequest() BaseAzureBackupRestoreRequestImpl {
+	return BaseAzureBackupRestoreRequestImpl{
+		IdentityDetails:                s.IdentityDetails,
+		ObjectType:                     s.ObjectType,
+		ResourceGuardOperationRequests: s.ResourceGuardOperationRequests,
+		RestoreTargetInfo:              s.RestoreTargetInfo,
+		SourceDataStoreType:            s.SourceDataStoreType,
+		SourceResourceId:               s.SourceResourceId,
+	}
 }
 
 var _ json.Marshaler = AzureBackupRestoreWithRehydrationRequest{}
@@ -34,9 +47,10 @@ func (s AzureBackupRestoreWithRehydrationRequest) MarshalJSON() ([]byte, error) 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBackupRestoreWithRehydrationRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureBackupRestoreWithRehydrationRequest"
 
 	encoded, err = json.Marshal(decoded)
@@ -57,6 +71,7 @@ func (s *AzureBackupRestoreWithRehydrationRequest) UnmarshalJSON(bytes []byte) e
 	}
 
 	s.IdentityDetails = decoded.IdentityDetails
+	s.ObjectType = decoded.ObjectType
 	s.RecoveryPointId = decoded.RecoveryPointId
 	s.RehydrationPriority = decoded.RehydrationPriority
 	s.RehydrationRetentionDuration = decoded.RehydrationRetentionDuration
@@ -70,7 +85,7 @@ func (s *AzureBackupRestoreWithRehydrationRequest) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["restoreTargetInfo"]; ok {
-		impl, err := unmarshalRestoreTargetInfoBaseImplementation(v)
+		impl, err := UnmarshalRestoreTargetInfoBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RestoreTargetInfo' for 'AzureBackupRestoreWithRehydrationRequest': %+v", err)
 		}

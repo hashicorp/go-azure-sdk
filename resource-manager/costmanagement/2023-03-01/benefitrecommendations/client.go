@@ -15,7 +15,7 @@ type BenefitRecommendationsClient struct {
 }
 
 func NewBenefitRecommendationsClientWithBaseURI(sdkApi sdkEnv.Api) (*BenefitRecommendationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "benefitrecommendations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "benefitrecommendations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BenefitRecommendationsClient: %+v", err)
 	}

@@ -50,7 +50,6 @@ func (c KafkaConfigurationClient) CreateOrUpdate(ctx context.Context, id KafkaCo
 
 	var model KafkaConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

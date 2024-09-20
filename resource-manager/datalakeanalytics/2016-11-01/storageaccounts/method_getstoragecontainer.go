@@ -45,7 +45,6 @@ func (c StorageAccountsClient) GetStorageContainer(ctx context.Context, id Conta
 
 	var model StorageContainer
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -40,7 +40,7 @@ func (s *RecoveryPointResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalRecoveryPointImplementation(v)
+		impl, err := UnmarshalRecoveryPointImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'RecoveryPointResource': %+v", err)
 		}

@@ -15,7 +15,7 @@ type ListTenantConfigurationViolationsOperationsClient struct {
 }
 
 func NewListTenantConfigurationViolationsOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ListTenantConfigurationViolationsOperationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listtenantconfigurationviolationsoperations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "listtenantconfigurationviolationsoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListTenantConfigurationViolationsOperationsClient: %+v", err)
 	}

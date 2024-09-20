@@ -41,6 +41,7 @@ func (o ListBySavingsPlanIdOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListBySavingsPlanIdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -105,7 +106,7 @@ func (c BenefitUtilizationSummariesClient) ListBySavingsPlanId(ctx context.Conte
 	temp := make([]BenefitUtilizationSummary, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalBenefitUtilizationSummaryImplementation(v)
+			val, err := UnmarshalBenefitUtilizationSummaryImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for BenefitUtilizationSummary (%q): %+v", i, v, err)
 				return result, err

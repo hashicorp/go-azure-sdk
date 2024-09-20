@@ -15,7 +15,7 @@ type ServerTrustCertificatesClient struct {
 }
 
 func NewServerTrustCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerTrustCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servertrustcertificates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servertrustcertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerTrustCertificatesClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseSyncIdentityProviderID(input string) (*SyncIdentityProviderId, error) 
 	}
 
 	id := SyncIdentityProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSyncIdentityProviderIDInsensitively(input string) (*SyncIdentityProvid
 	}
 
 	id := SyncIdentityProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id SyncIdentityProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRedHatOpenShift", "Microsoft.RedHatOpenShift", "Microsoft.RedHatOpenShift"),
 		resourceids.StaticSegment("staticOpenShiftClusters", "openShiftClusters", "openShiftClusters"),
-		resourceids.UserSpecifiedSegment("openShiftClusterName", "openShiftClusterValue"),
+		resourceids.UserSpecifiedSegment("openShiftClusterName", "resourceName"),
 		resourceids.StaticSegment("staticSyncIdentityProvider", "syncIdentityProvider", "syncIdentityProvider"),
-		resourceids.UserSpecifiedSegment("syncIdentityProviderName", "syncIdentityProviderValue"),
+		resourceids.UserSpecifiedSegment("syncIdentityProviderName", "childResourceName"),
 	}
 }
 

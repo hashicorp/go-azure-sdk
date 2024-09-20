@@ -43,6 +43,7 @@ func (o RegistryDataVersionsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o RegistryDataVersionsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

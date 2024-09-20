@@ -44,7 +44,7 @@ func ParseAuthConfigID(input string) (*AuthConfigId, error) {
 	}
 
 	id := AuthConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAuthConfigIDInsensitively(input string) (*AuthConfigId, error) {
 	}
 
 	id := AuthConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AuthConfigId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "containerAppValue"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticAuthConfigs", "authConfigs", "authConfigs"),
-		resourceids.UserSpecifiedSegment("authConfigName", "authConfigValue"),
+		resourceids.UserSpecifiedSegment("authConfigName", "authConfigName"),
 	}
 }
 

@@ -45,7 +45,6 @@ func (c SecureScoreClient) Get(ctx context.Context, id SecureScoreId) (result Ge
 
 	var model SecureScoreItem
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

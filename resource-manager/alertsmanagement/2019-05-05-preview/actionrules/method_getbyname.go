@@ -45,7 +45,6 @@ func (c ActionRulesClient) GetByName(ctx context.Context, id ActionRuleId) (resu
 
 	var model ActionRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

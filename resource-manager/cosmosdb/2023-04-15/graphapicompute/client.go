@@ -15,7 +15,7 @@ type GraphAPIComputeClient struct {
 }
 
 func NewGraphAPIComputeClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphAPIComputeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "graphapicompute", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "graphapicompute", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GraphAPIComputeClient: %+v", err)
 	}

@@ -49,7 +49,6 @@ func (c WCFRelaysClient) CreateOrUpdateAuthorizationRule(ctx context.Context, id
 
 	var model AuthorizationRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

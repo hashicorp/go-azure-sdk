@@ -44,7 +44,7 @@ func ParseGuestAgentID(input string) (*GuestAgentId, error) {
 	}
 
 	id := GuestAgentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGuestAgentIDInsensitively(input string) (*GuestAgentId, error) {
 	}
 
 	id := GuestAgentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id GuestAgentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineName"),
 		resourceids.StaticSegment("staticGuestAgents", "guestAgents", "guestAgents"),
-		resourceids.UserSpecifiedSegment("guestAgentName", "guestAgentValue"),
+		resourceids.UserSpecifiedSegment("guestAgentName", "name"),
 	}
 }
 

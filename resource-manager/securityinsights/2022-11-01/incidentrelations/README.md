@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/incidentrelations` Documentation
 
-The `incidentrelations` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2022-11-01`).
+The `incidentrelations` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2022-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
+id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "relationName")
 
 payload := incidentrelations.Relation{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
+id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "relationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
+id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "relationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue")
+id := incidentrelations.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId")
 
 // alternatively `client.List(ctx, id, incidentrelations.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, incidentrelations.DefaultListOperationOptions())

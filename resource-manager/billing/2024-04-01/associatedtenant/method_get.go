@@ -45,7 +45,6 @@ func (c AssociatedTenantClient) Get(ctx context.Context, id AssociatedTenantId) 
 
 	var model AssociatedTenant
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

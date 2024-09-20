@@ -42,7 +42,7 @@ func ParseMongoClusterID(input string) (*MongoClusterId, error) {
 	}
 
 	id := MongoClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMongoClusterIDInsensitively(input string) (*MongoClusterId, error) {
 	}
 
 	id := MongoClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id MongoClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticMongoClusters", "mongoClusters", "mongoClusters"),
-		resourceids.UserSpecifiedSegment("mongoClusterName", "mongoClusterValue"),
+		resourceids.UserSpecifiedSegment("mongoClusterName", "mongoClusterName"),
 	}
 }
 

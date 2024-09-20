@@ -42,7 +42,7 @@ func ParseCapabilitySetID(input string) (*CapabilitySetId, error) {
 	}
 
 	id := CapabilitySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCapabilitySetIDInsensitively(input string) (*CapabilitySetId, error) {
 	}
 
 	id := CapabilitySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id CapabilitySetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMySQL", "Microsoft.DBforMySQL", "Microsoft.DBforMySQL"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticCapabilitySets", "capabilitySets", "capabilitySets"),
-		resourceids.UserSpecifiedSegment("capabilitySetName", "capabilitySetValue"),
+		resourceids.UserSpecifiedSegment("capabilitySetName", "capabilitySetName"),
 	}
 }
 

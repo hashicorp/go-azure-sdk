@@ -49,7 +49,6 @@ func (c JobClient) Create(ctx context.Context, id JobId, input JobCreateParamete
 
 	var model Job
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -14,6 +14,14 @@ type ExistingRecoveryRecoveryResourceGroup struct {
 	RecoveryResourceGroupId *string `json:"recoveryResourceGroupId,omitempty"`
 
 	// Fields inherited from RecoveryResourceGroupCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s ExistingRecoveryRecoveryResourceGroup) RecoveryResourceGroupCustomDetails() BaseRecoveryResourceGroupCustomDetailsImpl {
+	return BaseRecoveryResourceGroupCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = ExistingRecoveryRecoveryResourceGroup{}
@@ -27,9 +35,10 @@ func (s ExistingRecoveryRecoveryResourceGroup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExistingRecoveryRecoveryResourceGroup: %+v", err)
 	}
+
 	decoded["resourceType"] = "Existing"
 
 	encoded, err = json.Marshal(decoded)

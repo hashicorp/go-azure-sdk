@@ -46,7 +46,6 @@ func (c NodeReportsClient) GetContent(ctx context.Context, id ReportId) (result 
 
 	var model interface{}
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

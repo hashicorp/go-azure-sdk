@@ -47,7 +47,7 @@ func (s *ClusterRecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalClusterProviderSpecificRecoveryPointDetailsImplementation(v)
+		impl, err := UnmarshalClusterProviderSpecificRecoveryPointDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ClusterRecoveryPointProperties': %+v", err)
 		}

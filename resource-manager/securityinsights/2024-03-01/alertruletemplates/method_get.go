@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *AlertRuleTemplate
+	Model        AlertRuleTemplate
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c AlertRuleTemplatesClient) Get(ctx context.Context, id AlertRuleTemplateI
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalAlertRuleTemplateImplementation(respObj)
+	model, err := UnmarshalAlertRuleTemplateImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

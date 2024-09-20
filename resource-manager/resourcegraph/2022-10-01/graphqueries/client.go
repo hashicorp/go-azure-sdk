@@ -15,7 +15,7 @@ type GraphqueriesClient struct {
 }
 
 func NewGraphqueriesClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphqueriesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "graphqueries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "graphqueries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GraphqueriesClient: %+v", err)
 	}

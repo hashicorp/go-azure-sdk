@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TaskTypeDetails interface {
+	TaskTypeDetails() BaseTaskTypeDetailsImpl
 }
 
-// RawTaskTypeDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TaskTypeDetails = BaseTaskTypeDetailsImpl{}
+
+type BaseTaskTypeDetailsImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseTaskTypeDetailsImpl) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return s
+}
+
+var _ TaskTypeDetails = RawTaskTypeDetailsImpl{}
+
+// RawTaskTypeDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTaskTypeDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	taskTypeDetails BaseTaskTypeDetailsImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalTaskTypeDetailsImplementation(input []byte) (TaskTypeDetails, error) {
+func (s RawTaskTypeDetailsImpl) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return s.taskTypeDetails
+}
+
+func UnmarshalTaskTypeDetailsImplementation(input []byte) (TaskTypeDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -84,10 +101,15 @@ func unmarshalTaskTypeDetailsImplementation(input []byte) (TaskTypeDetails, erro
 		return out, nil
 	}
 
-	out := RawTaskTypeDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTaskTypeDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTaskTypeDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTaskTypeDetailsImpl{
+		taskTypeDetails: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

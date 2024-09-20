@@ -50,7 +50,7 @@ func (s *ClusterResourceProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["maintenanceScheduleConfiguration"]; ok {
-		impl, err := unmarshalMaintenanceScheduleConfigurationImplementation(v)
+		impl, err := UnmarshalMaintenanceScheduleConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'MaintenanceScheduleConfiguration' for 'ClusterResourceProperties': %+v", err)
 		}

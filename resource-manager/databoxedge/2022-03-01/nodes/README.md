@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/nodes` Documentation
 
-The `nodes` SDK allows for interaction with the Azure Resource Manager Service `databoxedge` (API Version `2022-03-01`).
+The `nodes` SDK allows for interaction with Azure Resource Manager `databoxedge` (API Version `2022-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := nodes.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := nodes.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 // alternatively `client.ListByDataBoxEdgeDevice(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDataBoxEdgeDeviceComplete(ctx, id)

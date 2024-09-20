@@ -15,7 +15,7 @@ type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient stru
 }
 
 func NewManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedrestorabledroppeddatabasebackupshorttermretentionpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedrestorabledroppeddatabasebackupshorttermretentionpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient: %+v", err)
 	}

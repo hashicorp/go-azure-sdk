@@ -17,6 +17,14 @@ type SelectAudioTrackByAttribute struct {
 	FilterValue    *string         `json:"filterValue,omitempty"`
 
 	// Fields inherited from TrackDescriptor
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s SelectAudioTrackByAttribute) TrackDescriptor() BaseTrackDescriptorImpl {
+	return BaseTrackDescriptorImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = SelectAudioTrackByAttribute{}
@@ -30,9 +38,10 @@ func (s SelectAudioTrackByAttribute) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SelectAudioTrackByAttribute: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.SelectAudioTrackByAttribute"
 
 	encoded, err = json.Marshal(decoded)

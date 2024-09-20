@@ -29,7 +29,7 @@ func (s *GetQueriesResponse) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]EntityQueryItem, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalEntityQueryItemImplementation(val)
+			impl, err := UnmarshalEntityQueryItemImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Value' for 'GetQueriesResponse': %+v", i, err)
 			}

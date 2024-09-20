@@ -15,7 +15,7 @@ type GuestConfigurationConnectedVMwarevSphereAssignmentsClient struct {
 }
 
 func NewGuestConfigurationConnectedVMwarevSphereAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*GuestConfigurationConnectedVMwarevSphereAssignmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "guestconfigurationconnectedvmwarevsphereassignments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "guestconfigurationconnectedvmwarevsphereassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GuestConfigurationConnectedVMwarevSphereAssignmentsClient: %+v", err)
 	}

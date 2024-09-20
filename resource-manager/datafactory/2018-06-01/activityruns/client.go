@@ -15,7 +15,7 @@ type ActivityrunsClient struct {
 }
 
 func NewActivityrunsClientWithBaseURI(sdkApi sdkEnv.Api) (*ActivityrunsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "activityruns", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "activityruns", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ActivityrunsClient: %+v", err)
 	}

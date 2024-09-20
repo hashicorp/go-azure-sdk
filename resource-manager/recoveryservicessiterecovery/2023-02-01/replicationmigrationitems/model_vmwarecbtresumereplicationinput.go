@@ -14,6 +14,14 @@ type VMwareCbtResumeReplicationInput struct {
 	DeleteMigrationResources *string `json:"deleteMigrationResources,omitempty"`
 
 	// Fields inherited from ResumeReplicationProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtResumeReplicationInput) ResumeReplicationProviderSpecificInput() BaseResumeReplicationProviderSpecificInputImpl {
+	return BaseResumeReplicationProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtResumeReplicationInput{}
@@ -27,9 +35,10 @@ func (s VMwareCbtResumeReplicationInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtResumeReplicationInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

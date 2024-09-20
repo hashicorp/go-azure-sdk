@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AlertId{}
 
 func TestNewAlertID(t *testing.T) {
-	id := NewAlertID("12345678-1234-9876-4563-123456789012", "alertIdValue")
+	id := NewAlertID("12345678-1234-9876-4563-123456789012", "alertId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AlertId != "alertIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertId'", id.AlertId, "alertIdValue")
+	if id.AlertId != "alertId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AlertId'", id.AlertId, "alertId")
 	}
 }
 
 func TestFormatAlertID(t *testing.T) {
-	actual := NewAlertID("12345678-1234-9876-4563-123456789012", "alertIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertIdValue"
+	actual := NewAlertID("12345678-1234-9876-4563-123456789012", "alertId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAlertID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertId",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AlertId:        "alertIdValue",
+				AlertId:        "alertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertId/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAlertIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertId",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AlertId:        "alertIdValue",
+				AlertId:        "alertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/alerts/alertId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aLeRtS/aLeRtIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aLeRtS/aLeRtId",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AlertId:        "aLeRtIdVaLuE",
+				AlertId:        "aLeRtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aLeRtS/aLeRtIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aLeRtS/aLeRtId/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScriptActionId{}
 
 func TestNewScriptActionID(t *testing.T) {
-	id := NewScriptActionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "scriptActionValue")
+	id := NewScriptActionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "scriptName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewScriptActionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.ScriptActionName != "scriptActionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScriptActionName'", id.ScriptActionName, "scriptActionValue")
+	if id.ScriptActionName != "scriptName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScriptActionName'", id.ScriptActionName, "scriptName")
 	}
 }
 
 func TestFormatScriptActionID(t *testing.T) {
-	actual := NewScriptActionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "scriptActionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions/scriptActionValue"
+	actual := NewScriptActionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "scriptName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions/scriptName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseScriptActionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions/scriptActionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions/scriptName",
 			Expected: &ScriptActionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ScriptActionName:  "scriptActionValue",
+				ClusterName:       "clusterName",
+				ScriptActionName:  "scriptName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions/scriptActionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions/scriptName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseScriptActionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTaCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTaCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions/scriptActionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions/scriptName",
 			Expected: &ScriptActionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ScriptActionName:  "scriptActionValue",
+				ClusterName:       "clusterName",
+				ScriptActionName:  "scriptName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptActions/scriptActionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptActions/scriptName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTaCtIoNs/sCrIpTaCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTaCtIoNs/sCrIpTnAmE",
 			Expected: &ScriptActionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				ScriptActionName:  "sCrIpTaCtIoNvAlUe",
+				ClusterName:       "cLuStErNaMe",
+				ScriptActionName:  "sCrIpTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTaCtIoNs/sCrIpTaCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTaCtIoNs/sCrIpTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &Providers2BillingPeriodId{}
 
 func TestNewProviders2BillingPeriodID(t *testing.T) {
-	id := NewProviders2BillingPeriodID("managementGroupIdValue", "billingPeriodValue")
+	id := NewProviders2BillingPeriodID("managementGroupId", "billingPeriodName")
 
-	if id.ManagementGroupId != "managementGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
+	if id.ManagementGroupId != "managementGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupId")
 	}
 
-	if id.BillingPeriodName != "billingPeriodValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodValue")
+	if id.BillingPeriodName != "billingPeriodName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodName")
 	}
 }
 
 func TestFormatProviders2BillingPeriodID(t *testing.T) {
-	actual := NewProviders2BillingPeriodID("managementGroupIdValue", "billingPeriodValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods/billingPeriodValue"
+	actual := NewProviders2BillingPeriodID("managementGroupId", "billingPeriodName").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods/billingPeriodName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParseProviders2BillingPeriodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods/billingPeriodValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods/billingPeriodName",
 			Expected: &Providers2BillingPeriodId{
-				ManagementGroupId: "managementGroupIdValue",
-				BillingPeriodName: "billingPeriodValue",
+				ManagementGroupId: "managementGroupId",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods/billingPeriodValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParseProviders2BillingPeriodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.bIlLiNg",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.bIlLiNg",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods/billingPeriodValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods/billingPeriodName",
 			Expected: &Providers2BillingPeriodId{
-				ManagementGroupId: "managementGroupIdValue",
-				BillingPeriodName: "billingPeriodValue",
+				ManagementGroupId: "managementGroupId",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Billing/billingPeriods/billingPeriodValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Billing/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe",
 			Expected: &Providers2BillingPeriodId{
-				ManagementGroupId: "mAnAgEmEnTgRoUpIdVaLuE",
-				BillingPeriodName: "bIlLiNgPeRiOdVaLuE",
+				ManagementGroupId: "mAnAgEmEnTgRoUpId",
+				BillingPeriodName: "bIlLiNgPeRiOdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe/extra",
 			Error: true,
 		},
 	}

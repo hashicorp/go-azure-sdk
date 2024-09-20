@@ -45,7 +45,6 @@ func (c MarketplaceSubscriptionClient) Get(ctx context.Context, id MarketplaceSu
 
 	var model MarketplaceSubscriptionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

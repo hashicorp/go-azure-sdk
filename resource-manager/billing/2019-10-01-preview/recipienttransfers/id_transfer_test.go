@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &TransferId{}
 
 func TestNewTransferID(t *testing.T) {
-	id := NewTransferID("transferValue")
+	id := NewTransferID("transferName")
 
-	if id.TransferName != "transferValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TransferName'", id.TransferName, "transferValue")
+	if id.TransferName != "transferName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TransferName'", id.TransferName, "transferName")
 	}
 }
 
 func TestFormatTransferID(t *testing.T) {
-	actual := NewTransferID("transferValue").ID()
-	expected := "/providers/Microsoft.Billing/transfers/transferValue"
+	actual := NewTransferID("transferName").ID()
+	expected := "/providers/Microsoft.Billing/transfers/transferName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseTransferID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/transfers/transferValue",
+			Input: "/providers/Microsoft.Billing/transfers/transferName",
 			Expected: &TransferId{
-				TransferName: "transferValue",
+				TransferName: "transferName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/transfers/transferValue/extra",
+			Input: "/providers/Microsoft.Billing/transfers/transferName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseTransferIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/transfers/transferValue",
+			Input: "/providers/Microsoft.Billing/transfers/transferName",
 			Expected: &TransferId{
-				TransferName: "transferValue",
+				TransferName: "transferName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/transfers/transferValue/extra",
+			Input: "/providers/Microsoft.Billing/transfers/transferName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/tRaNsFeRs/tRaNsFeRvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/tRaNsFeRs/tRaNsFeRnAmE",
 			Expected: &TransferId{
-				TransferName: "tRaNsFeRvAlUe",
+				TransferName: "tRaNsFeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/tRaNsFeRs/tRaNsFeRvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/tRaNsFeRs/tRaNsFeRnAmE/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &Providers2NetworkManagerConnectionId{}
 
 func TestNewProviders2NetworkManagerConnectionID(t *testing.T) {
-	id := NewProviders2NetworkManagerConnectionID("managementGroupIdValue", "networkManagerConnectionValue")
+	id := NewProviders2NetworkManagerConnectionID("managementGroupId", "networkManagerConnectionName")
 
-	if id.ManagementGroupId != "managementGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
+	if id.ManagementGroupId != "managementGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupId")
 	}
 
-	if id.NetworkManagerConnectionName != "networkManagerConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerConnectionName'", id.NetworkManagerConnectionName, "networkManagerConnectionValue")
+	if id.NetworkManagerConnectionName != "networkManagerConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerConnectionName'", id.NetworkManagerConnectionName, "networkManagerConnectionName")
 	}
 }
 
 func TestFormatProviders2NetworkManagerConnectionID(t *testing.T) {
-	actual := NewProviders2NetworkManagerConnectionID("managementGroupIdValue", "networkManagerConnectionValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue"
+	actual := NewProviders2NetworkManagerConnectionID("managementGroupId", "networkManagerConnectionName").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParseProviders2NetworkManagerConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName",
 			Expected: &Providers2NetworkManagerConnectionId{
-				ManagementGroupId:            "managementGroupIdValue",
-				NetworkManagerConnectionName: "networkManagerConnectionValue",
+				ManagementGroupId:            "managementGroupId",
+				NetworkManagerConnectionName: "networkManagerConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParseProviders2NetworkManagerConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.nEtWoRk",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.nEtWoRk",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName",
 			Expected: &Providers2NetworkManagerConnectionId{
-				ManagementGroupId:            "managementGroupIdValue",
-				NetworkManagerConnectionName: "networkManagerConnectionValue",
+				ManagementGroupId:            "managementGroupId",
+				NetworkManagerConnectionName: "networkManagerConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNnAmE",
 			Expected: &Providers2NetworkManagerConnectionId{
-				ManagementGroupId:            "mAnAgEmEnTgRoUpIdVaLuE",
-				NetworkManagerConnectionName: "nEtWoRkMaNaGeRcOnNeCtIoNvAlUe",
+				ManagementGroupId:            "mAnAgEmEnTgRoUpId",
+				NetworkManagerConnectionName: "nEtWoRkMaNaGeRcOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

@@ -46,7 +46,7 @@ func ParseReportID(input string) (*ReportId, error) {
 	}
 
 	id := ReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseReportIDInsensitively(input string) (*ReportId, error) {
 	}
 
 	id := ReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id ReportId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticMachines", "machines", "machines"),
-		resourceids.UserSpecifiedSegment("machineName", "machineValue"),
+		resourceids.UserSpecifiedSegment("machineName", "machineName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftGuestConfiguration", "Microsoft.GuestConfiguration", "Microsoft.GuestConfiguration"),
 		resourceids.StaticSegment("staticGuestConfigurationAssignments", "guestConfigurationAssignments", "guestConfigurationAssignments"),
-		resourceids.UserSpecifiedSegment("guestConfigurationAssignmentName", "guestConfigurationAssignmentValue"),
+		resourceids.UserSpecifiedSegment("guestConfigurationAssignmentName", "guestConfigurationAssignmentName"),
 		resourceids.StaticSegment("staticReports", "reports", "reports"),
-		resourceids.UserSpecifiedSegment("reportId", "reportIdValue"),
+		resourceids.UserSpecifiedSegment("reportId", "reportId"),
 	}
 }
 

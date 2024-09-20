@@ -15,7 +15,7 @@ type ComponentContainerClient struct {
 }
 
 func NewComponentContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "componentcontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "componentcontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComponentContainerClient: %+v", err)
 	}

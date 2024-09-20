@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeploymentId{}
 
 func TestNewDeploymentID(t *testing.T) {
-	id := NewDeploymentID("deploymentValue")
+	id := NewDeploymentID("deploymentName")
 
-	if id.DeploymentName != "deploymentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentValue")
+	if id.DeploymentName != "deploymentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentName")
 	}
 }
 
 func TestFormatDeploymentID(t *testing.T) {
-	actual := NewDeploymentID("deploymentValue").ID()
-	expected := "/providers/Microsoft.Resources/deployments/deploymentValue"
+	actual := NewDeploymentID("deploymentName").ID()
+	expected := "/providers/Microsoft.Resources/deployments/deploymentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeploymentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName",
 			Expected: &DeploymentId{
-				DeploymentName: "deploymentValue",
+				DeploymentName: "deploymentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/extra",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeploymentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName",
 			Expected: &DeploymentId{
-				DeploymentName: "deploymentValue",
+				DeploymentName: "deploymentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/extra",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE",
 			Expected: &DeploymentId{
-				DeploymentName: "dEpLoYmEnTvAlUe",
+				DeploymentName: "dEpLoYmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/extra",
 			Error: true,
 		},
 	}

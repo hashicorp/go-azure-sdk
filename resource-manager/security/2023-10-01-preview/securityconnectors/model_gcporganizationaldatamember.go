@@ -15,6 +15,14 @@ type GcpOrganizationalDataMember struct {
 	ParentHierarchyId       *string `json:"parentHierarchyId,omitempty"`
 
 	// Fields inherited from GcpOrganizationalData
+
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s GcpOrganizationalDataMember) GcpOrganizationalData() BaseGcpOrganizationalDataImpl {
+	return BaseGcpOrganizationalDataImpl{
+		OrganizationMembershipType: s.OrganizationMembershipType,
+	}
 }
 
 var _ json.Marshaler = GcpOrganizationalDataMember{}
@@ -28,9 +36,10 @@ func (s GcpOrganizationalDataMember) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GcpOrganizationalDataMember: %+v", err)
 	}
+
 	decoded["organizationMembershipType"] = "Member"
 
 	encoded, err = json.Marshal(decoded)

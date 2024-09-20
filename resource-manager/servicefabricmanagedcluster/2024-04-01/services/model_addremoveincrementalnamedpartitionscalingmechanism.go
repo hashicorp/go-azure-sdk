@@ -16,6 +16,14 @@ type AddRemoveIncrementalNamedPartitionScalingMechanism struct {
 	ScaleIncrement    int64 `json:"scaleIncrement"`
 
 	// Fields inherited from ScalingMechanism
+
+	Kind ServiceScalingMechanismKind `json:"kind"`
+}
+
+func (s AddRemoveIncrementalNamedPartitionScalingMechanism) ScalingMechanism() BaseScalingMechanismImpl {
+	return BaseScalingMechanismImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AddRemoveIncrementalNamedPartitionScalingMechanism{}
@@ -29,9 +37,10 @@ func (s AddRemoveIncrementalNamedPartitionScalingMechanism) MarshalJSON() ([]byt
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AddRemoveIncrementalNamedPartitionScalingMechanism: %+v", err)
 	}
+
 	decoded["kind"] = "AddRemoveIncrementalNamedPartition"
 
 	encoded, err = json.Marshal(decoded)

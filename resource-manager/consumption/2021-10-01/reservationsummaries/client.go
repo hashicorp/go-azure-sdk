@@ -15,7 +15,7 @@ type ReservationSummariesClient struct {
 }
 
 func NewReservationSummariesClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservationSummariesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "reservationsummaries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "reservationsummaries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReservationSummariesClient: %+v", err)
 	}

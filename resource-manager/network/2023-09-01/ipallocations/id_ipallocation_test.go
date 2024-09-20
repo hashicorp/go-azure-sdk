@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IPAllocationId{}
 
 func TestNewIPAllocationID(t *testing.T) {
-	id := NewIPAllocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ipAllocationValue")
+	id := NewIPAllocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ipAllocationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewIPAllocationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.IpAllocationName != "ipAllocationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IpAllocationName'", id.IpAllocationName, "ipAllocationValue")
+	if id.IpAllocationName != "ipAllocationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IpAllocationName'", id.IpAllocationName, "ipAllocationName")
 	}
 }
 
 func TestFormatIPAllocationID(t *testing.T) {
-	actual := NewIPAllocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ipAllocationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationValue"
+	actual := NewIPAllocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ipAllocationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseIPAllocationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationName",
 			Expected: &IPAllocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				IpAllocationName:  "ipAllocationValue",
+				IpAllocationName:  "ipAllocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseIPAllocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationName",
 			Expected: &IPAllocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				IpAllocationName:  "ipAllocationValue",
+				IpAllocationName:  "ipAllocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ipAllocations/ipAllocationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/iPaLlOcAtIoNs/iPaLlOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/iPaLlOcAtIoNs/iPaLlOcAtIoNnAmE",
 			Expected: &IPAllocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				IpAllocationName:  "iPaLlOcAtIoNvAlUe",
+				IpAllocationName:  "iPaLlOcAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/iPaLlOcAtIoNs/iPaLlOcAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/iPaLlOcAtIoNs/iPaLlOcAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

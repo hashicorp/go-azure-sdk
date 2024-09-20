@@ -50,7 +50,6 @@ func (c FabricCapacitiesClient) CheckNameAvailability(ctx context.Context, id Lo
 
 	var model CheckNameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DeploymentScriptId{}
 
 func TestNewDeploymentScriptID(t *testing.T) {
-	id := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentScriptValue")
+	id := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scriptName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDeploymentScriptID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DeploymentScriptName != "deploymentScriptValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentScriptName'", id.DeploymentScriptName, "deploymentScriptValue")
+	if id.DeploymentScriptName != "scriptName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentScriptName'", id.DeploymentScriptName, "scriptName")
 	}
 }
 
 func TestFormatDeploymentScriptID(t *testing.T) {
-	actual := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentScriptValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue"
+	actual := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scriptName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDeploymentScriptID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptName",
 			Expected: &DeploymentScriptId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DeploymentScriptName: "deploymentScriptValue",
+				DeploymentScriptName: "scriptName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDeploymentScriptIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptName",
 			Expected: &DeploymentScriptId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DeploymentScriptName: "deploymentScriptValue",
+				DeploymentScriptName: "scriptName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/dEpLoYmEnTsCrIpTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/sCrIpTnAmE",
 			Expected: &DeploymentScriptId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				DeploymentScriptName: "dEpLoYmEnTsCrIpTvAlUe",
+				DeploymentScriptName: "sCrIpTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/dEpLoYmEnTsCrIpTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/sCrIpTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -35,6 +35,7 @@ func (o GetRuleDetailsByWebAppOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetRuleDetailsByWebAppOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c RecommendationsClient) GetRuleDetailsByWebApp(ctx context.Context, id Si
 
 	var model RecommendationRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

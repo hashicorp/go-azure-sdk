@@ -50,7 +50,6 @@ func (c SecretsClient) Update(ctx context.Context, id SecretId, input SecretPatc
 
 	var model Secret
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

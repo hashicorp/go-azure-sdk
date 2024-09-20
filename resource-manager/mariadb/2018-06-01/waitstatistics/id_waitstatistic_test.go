@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WaitStatisticId{}
 
 func TestNewWaitStatisticID(t *testing.T) {
-	id := NewWaitStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "waitStatisticsIdValue")
+	id := NewWaitStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "waitStatisticsId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewWaitStatisticID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.WaitStatisticsId != "waitStatisticsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WaitStatisticsId'", id.WaitStatisticsId, "waitStatisticsIdValue")
+	if id.WaitStatisticsId != "waitStatisticsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WaitStatisticsId'", id.WaitStatisticsId, "waitStatisticsId")
 	}
 }
 
 func TestFormatWaitStatisticID(t *testing.T) {
-	actual := NewWaitStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "waitStatisticsIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics/waitStatisticsIdValue"
+	actual := NewWaitStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "waitStatisticsId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics/waitStatisticsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseWaitStatisticID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics/waitStatisticsIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics/waitStatisticsId",
 			Expected: &WaitStatisticId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				WaitStatisticsId:  "waitStatisticsIdValue",
+				ServerName:        "serverName",
+				WaitStatisticsId:  "waitStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics/waitStatisticsIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics/waitStatisticsId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseWaitStatisticIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/wAiTsTaTiStIcS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/wAiTsTaTiStIcS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics/waitStatisticsIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics/waitStatisticsId",
 			Expected: &WaitStatisticId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				WaitStatisticsId:  "waitStatisticsIdValue",
+				ServerName:        "serverName",
+				WaitStatisticsId:  "waitStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/waitStatistics/waitStatisticsIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/waitStatistics/waitStatisticsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/wAiTsTaTiStIcS/wAiTsTaTiStIcSiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/wAiTsTaTiStIcS/wAiTsTaTiStIcSiD",
 			Expected: &WaitStatisticId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				WaitStatisticsId:  "wAiTsTaTiStIcSiDvAlUe",
+				ServerName:        "sErVeRnAmE",
+				WaitStatisticsId:  "wAiTsTaTiStIcSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/wAiTsTaTiStIcS/wAiTsTaTiStIcSiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/wAiTsTaTiStIcS/wAiTsTaTiStIcSiD/extra",
 			Error: true,
 		},
 	}

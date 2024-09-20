@@ -44,7 +44,7 @@ func ParseExportConfigurationID(input string) (*ExportConfigurationId, error) {
 	}
 
 	id := ExportConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseExportConfigurationIDInsensitively(input string) (*ExportConfiguration
 	}
 
 	id := ExportConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ExportConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticComponents", "components", "components"),
-		resourceids.UserSpecifiedSegment("componentName", "componentValue"),
+		resourceids.UserSpecifiedSegment("componentName", "resourceName"),
 		resourceids.StaticSegment("staticExportConfiguration", "exportConfiguration", "exportConfiguration"),
-		resourceids.UserSpecifiedSegment("exportId", "exportIdValue"),
+		resourceids.UserSpecifiedSegment("exportId", "exportId"),
 	}
 }
 

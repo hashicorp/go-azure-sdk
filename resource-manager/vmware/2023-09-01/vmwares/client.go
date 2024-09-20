@@ -15,7 +15,7 @@ type VMwaresClient struct {
 }
 
 func NewVMwaresClientWithBaseURI(sdkApi sdkEnv.Api) (*VMwaresClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vmwares", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vmwares", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMwaresClient: %+v", err)
 	}

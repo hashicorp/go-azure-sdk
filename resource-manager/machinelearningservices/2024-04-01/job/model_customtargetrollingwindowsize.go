@@ -14,6 +14,14 @@ type CustomTargetRollingWindowSize struct {
 	Value int64 `json:"value"`
 
 	// Fields inherited from TargetRollingWindowSize
+
+	Mode TargetRollingWindowSizeMode `json:"mode"`
+}
+
+func (s CustomTargetRollingWindowSize) TargetRollingWindowSize() BaseTargetRollingWindowSizeImpl {
+	return BaseTargetRollingWindowSizeImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = CustomTargetRollingWindowSize{}
@@ -27,9 +35,10 @@ func (s CustomTargetRollingWindowSize) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomTargetRollingWindowSize: %+v", err)
 	}
+
 	decoded["mode"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)

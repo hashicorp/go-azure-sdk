@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &SecureScoreId{}
 
 func TestNewSecureScoreID(t *testing.T) {
-	id := NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreValue")
+	id := NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.SecureScoreName != "secureScoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecureScoreName'", id.SecureScoreName, "secureScoreValue")
+	if id.SecureScoreName != "secureScoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecureScoreName'", id.SecureScoreName, "secureScoreName")
 	}
 }
 
 func TestFormatSecureScoreID(t *testing.T) {
-	actual := NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreValue"
+	actual := NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseSecureScoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreName",
 			Expected: &SecureScoreId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				SecureScoreName: "secureScoreValue",
+				SecureScoreName: "secureScoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseSecureScoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreName",
 			Expected: &SecureScoreId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				SecureScoreName: "secureScoreValue",
+				SecureScoreName: "secureScoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/secureScores/secureScoreName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrEsCoReS/sEcUrEsCoReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrEsCoReS/sEcUrEsCoReNaMe",
 			Expected: &SecureScoreId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				SecureScoreName: "sEcUrEsCoReVaLuE",
+				SecureScoreName: "sEcUrEsCoReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrEsCoReS/sEcUrEsCoReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrEsCoReS/sEcUrEsCoReNaMe/extra",
 			Error: true,
 		},
 	}

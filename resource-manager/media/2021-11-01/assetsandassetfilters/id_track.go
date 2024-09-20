@@ -46,7 +46,7 @@ func ParseTrackID(input string) (*TrackId, error) {
 	}
 
 	id := TrackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTrackIDInsensitively(input string) (*TrackId, error) {
 	}
 
 	id := TrackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id TrackId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticAssets", "assets", "assets"),
-		resourceids.UserSpecifiedSegment("assetName", "assetValue"),
+		resourceids.UserSpecifiedSegment("assetName", "assetName"),
 		resourceids.StaticSegment("staticTracks", "tracks", "tracks"),
-		resourceids.UserSpecifiedSegment("trackName", "trackValue"),
+		resourceids.UserSpecifiedSegment("trackName", "trackName"),
 	}
 }
 

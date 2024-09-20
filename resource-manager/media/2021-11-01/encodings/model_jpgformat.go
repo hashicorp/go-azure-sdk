@@ -13,7 +13,16 @@ var _ Format = JpgFormat{}
 type JpgFormat struct {
 
 	// Fields inherited from Format
+
 	FilenamePattern string `json:"filenamePattern"`
+	OdataType       string `json:"@odata.type"`
+}
+
+func (s JpgFormat) Format() BaseFormatImpl {
+	return BaseFormatImpl{
+		FilenamePattern: s.FilenamePattern,
+		OdataType:       s.OdataType,
+	}
 }
 
 var _ json.Marshaler = JpgFormat{}
@@ -27,9 +36,10 @@ func (s JpgFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JpgFormat: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JpgFormat"
 
 	encoded, err = json.Marshal(decoded)

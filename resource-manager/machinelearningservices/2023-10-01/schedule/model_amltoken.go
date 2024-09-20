@@ -13,6 +13,14 @@ var _ IdentityConfiguration = AmlToken{}
 type AmlToken struct {
 
 	// Fields inherited from IdentityConfiguration
+
+	IdentityType IdentityConfigurationType `json:"identityType"`
+}
+
+func (s AmlToken) IdentityConfiguration() BaseIdentityConfigurationImpl {
+	return BaseIdentityConfigurationImpl{
+		IdentityType: s.IdentityType,
+	}
 }
 
 var _ json.Marshaler = AmlToken{}
@@ -26,9 +34,10 @@ func (s AmlToken) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AmlToken: %+v", err)
 	}
+
 	decoded["identityType"] = "AMLToken"
 
 	encoded, err = json.Marshal(decoded)

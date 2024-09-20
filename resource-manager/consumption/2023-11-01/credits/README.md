@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2023-11-01/credits` Documentation
 
-The `credits` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2023-11-01`).
+The `credits` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := credits.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := credits.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 read, err := client.Get(ctx, id)
 if err != nil {

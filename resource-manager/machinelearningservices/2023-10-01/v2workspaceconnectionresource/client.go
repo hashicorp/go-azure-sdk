@@ -15,7 +15,7 @@ type V2WorkspaceConnectionResourceClient struct {
 }
 
 func NewV2WorkspaceConnectionResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*V2WorkspaceConnectionResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "v2workspaceconnectionresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "v2workspaceconnectionresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating V2WorkspaceConnectionResourceClient: %+v", err)
 	}

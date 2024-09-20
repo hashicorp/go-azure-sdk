@@ -44,7 +44,7 @@ func ParseConfigConnectionID(input string) (*ConfigConnectionId, error) {
 	}
 
 	id := ConfigConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConfigConnectionIDInsensitively(input string) (*ConfigConnectionId, er
 	}
 
 	id := ConfigConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ConfigConnectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticGateways", "gateways", "gateways"),
-		resourceids.UserSpecifiedSegment("gatewayName", "gatewayValue"),
+		resourceids.UserSpecifiedSegment("gatewayName", "gatewayName"),
 		resourceids.StaticSegment("staticConfigConnections", "configConnections", "configConnections"),
-		resourceids.UserSpecifiedSegment("configConnectionName", "configConnectionValue"),
+		resourceids.UserSpecifiedSegment("configConnectionName", "configConnectionName"),
 	}
 }
 

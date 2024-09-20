@@ -45,7 +45,6 @@ func (c ReplicationMigrationItemsClient) Get(ctx context.Context, id Replication
 
 	var model MigrationItem
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

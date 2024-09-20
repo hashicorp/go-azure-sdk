@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RouteFilterId{}
 
 func TestNewRouteFilterID(t *testing.T) {
-	id := NewRouteFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterValue")
+	id := NewRouteFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewRouteFilterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RouteFilterName != "routeFilterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterName'", id.RouteFilterName, "routeFilterValue")
+	if id.RouteFilterName != "routeFilterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterName'", id.RouteFilterName, "routeFilterName")
 	}
 }
 
 func TestFormatRouteFilterID(t *testing.T) {
-	actual := NewRouteFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue"
+	actual := NewRouteFilterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseRouteFilterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName",
 			Expected: &RouteFilterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteFilterName:   "routeFilterValue",
+				RouteFilterName:   "routeFilterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseRouteFilterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName",
 			Expected: &RouteFilterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteFilterName:   "routeFilterValue",
+				RouteFilterName:   "routeFilterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe",
 			Expected: &RouteFilterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RouteFilterName:   "rOuTeFiLtErVaLuE",
+				RouteFilterName:   "rOuTeFiLtErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe/extra",
 			Error: true,
 		},
 	}

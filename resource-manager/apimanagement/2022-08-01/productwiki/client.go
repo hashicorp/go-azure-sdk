@@ -15,7 +15,7 @@ type ProductWikiClient struct {
 }
 
 func NewProductWikiClientWithBaseURI(sdkApi sdkEnv.Api) (*ProductWikiClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "productwiki", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "productwiki", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProductWikiClient: %+v", err)
 	}

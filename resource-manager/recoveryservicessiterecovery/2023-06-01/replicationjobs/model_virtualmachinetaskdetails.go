@@ -14,8 +14,15 @@ type VirtualMachineTaskDetails struct {
 	SkippedReason       *string `json:"skippedReason,omitempty"`
 	SkippedReasonString *string `json:"skippedReasonString,omitempty"`
 
-	// Fields inherited from JobTaskDetails
-	JobTask *JobEntity `json:"jobTask,omitempty"`
+	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VirtualMachineTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VirtualMachineTaskDetails{}
@@ -29,9 +36,10 @@ func (s VirtualMachineTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VirtualMachineTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VirtualMachineTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

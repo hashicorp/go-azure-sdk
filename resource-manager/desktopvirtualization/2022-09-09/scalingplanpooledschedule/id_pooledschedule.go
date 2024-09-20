@@ -44,7 +44,7 @@ func ParsePooledScheduleID(input string) (*PooledScheduleId, error) {
 	}
 
 	id := PooledScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePooledScheduleIDInsensitively(input string) (*PooledScheduleId, error)
 	}
 
 	id := PooledScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PooledScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDesktopVirtualization", "Microsoft.DesktopVirtualization", "Microsoft.DesktopVirtualization"),
 		resourceids.StaticSegment("staticScalingPlans", "scalingPlans", "scalingPlans"),
-		resourceids.UserSpecifiedSegment("scalingPlanName", "scalingPlanValue"),
+		resourceids.UserSpecifiedSegment("scalingPlanName", "scalingPlanName"),
 		resourceids.StaticSegment("staticPooledSchedules", "pooledSchedules", "pooledSchedules"),
-		resourceids.UserSpecifiedSegment("pooledScheduleName", "pooledScheduleValue"),
+		resourceids.UserSpecifiedSegment("pooledScheduleName", "scalingPlanScheduleName"),
 	}
 }
 

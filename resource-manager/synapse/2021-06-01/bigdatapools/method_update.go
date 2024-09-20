@@ -49,7 +49,6 @@ func (c BigDataPoolsClient) Update(ctx context.Context, id BigDataPoolId, input 
 
 	var model BigDataPoolResourceInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -48,7 +48,6 @@ func (c ApplyUpdatesClient) CreateOrUpdate(ctx context.Context, id commonids.Sco
 
 	var model ApplyUpdate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

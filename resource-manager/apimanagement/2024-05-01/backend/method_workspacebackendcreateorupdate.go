@@ -36,6 +36,7 @@ func (o WorkspaceBackendCreateOrUpdateOperationOptions) ToHeaders() *client.Head
 
 func (o WorkspaceBackendCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c BackendClient) WorkspaceBackendCreateOrUpdate(ctx context.Context, id Wo
 
 	var model BackendContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

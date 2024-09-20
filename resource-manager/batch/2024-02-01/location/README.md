@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-02-01/location` Documentation
 
-The `location` SDK allows for interaction with the Azure Resource Manager Service `batch` (API Version `2024-02-01`).
+The `location` SDK allows for interaction with Azure Resource Manager `batch` (API Version `2024-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.GetQuotas(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListSupportedCloudServiceSkus(ctx, id, location.DefaultListSupportedCloudServiceSkusOperationOptions())` can be used to do batched pagination
 items, err := client.ListSupportedCloudServiceSkusComplete(ctx, id, location.DefaultListSupportedCloudServiceSkusOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := location.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListSupportedVirtualMachineSkus(ctx, id, location.DefaultListSupportedVirtualMachineSkusOperationOptions())` can be used to do batched pagination
 items, err := client.ListSupportedVirtualMachineSkusComplete(ctx, id, location.DefaultListSupportedVirtualMachineSkusOperationOptions())

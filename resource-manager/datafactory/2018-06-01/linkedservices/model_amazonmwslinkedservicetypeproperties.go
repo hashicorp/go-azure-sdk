@@ -45,7 +45,7 @@ func (s *AmazonMWSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 	}
 
 	if v, ok := temp["mwsAuthToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'MwsAuthToken' for 'AmazonMWSLinkedServiceTypeProperties': %+v", err)
 		}
@@ -53,7 +53,7 @@ func (s *AmazonMWSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 	}
 
 	if v, ok := temp["secretKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecretKey' for 'AmazonMWSLinkedServiceTypeProperties': %+v", err)
 		}

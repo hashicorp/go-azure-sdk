@@ -46,7 +46,7 @@ func ParseBookmarkRelationID(input string) (*BookmarkRelationId, error) {
 	}
 
 	id := BookmarkRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBookmarkRelationIDInsensitively(input string) (*BookmarkRelationId, er
 	}
 
 	id := BookmarkRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id BookmarkRelationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationalInsights", "Microsoft.OperationalInsights", "Microsoft.OperationalInsights"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticBookmarks", "bookmarks", "bookmarks"),
-		resourceids.UserSpecifiedSegment("bookmarkId", "bookmarkIdValue"),
+		resourceids.UserSpecifiedSegment("bookmarkId", "bookmarkId"),
 		resourceids.StaticSegment("staticRelations", "relations", "relations"),
-		resourceids.UserSpecifiedSegment("relationName", "relationValue"),
+		resourceids.UserSpecifiedSegment("relationName", "relationName"),
 	}
 }
 

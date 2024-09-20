@@ -15,7 +15,7 @@ type IscsiTargetsClient struct {
 }
 
 func NewIscsiTargetsClientWithBaseURI(sdkApi sdkEnv.Api) (*IscsiTargetsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "iscsitargets", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "iscsitargets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IscsiTargetsClient: %+v", err)
 	}

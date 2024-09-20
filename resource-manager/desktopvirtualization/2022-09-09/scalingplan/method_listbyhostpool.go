@@ -41,6 +41,7 @@ func (o ListByHostPoolOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByHostPoolOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

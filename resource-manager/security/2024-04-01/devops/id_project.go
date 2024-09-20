@@ -46,7 +46,7 @@ func ParseProjectID(input string) (*ProjectId, error) {
 	}
 
 	id := ProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProjectIDInsensitively(input string) (*ProjectId, error) {
 	}
 
 	id := ProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id ProjectId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticSecurityConnectors", "securityConnectors", "securityConnectors"),
-		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorValue"),
+		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorName"),
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticAzureDevOpsOrgs", "azureDevOpsOrgs", "azureDevOpsOrgs"),
-		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "azureDevOpsOrgValue"),
+		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "orgName"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
-		resourceids.UserSpecifiedSegment("projectName", "projectValue"),
+		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 	}
 }
 

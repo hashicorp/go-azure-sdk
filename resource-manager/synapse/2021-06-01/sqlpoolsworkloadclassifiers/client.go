@@ -15,7 +15,7 @@ type SqlPoolsWorkloadClassifiersClient struct {
 }
 
 func NewSqlPoolsWorkloadClassifiersClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsWorkloadClassifiersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsworkloadclassifiers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsworkloadclassifiers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsWorkloadClassifiersClient: %+v", err)
 	}

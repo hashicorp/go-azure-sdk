@@ -34,6 +34,7 @@ func (o WorkspaceProductPolicyGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceProductPolicyGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c ProductPolicyClient) WorkspaceProductPolicyGet(ctx context.Context, id W
 
 	var model PolicyContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

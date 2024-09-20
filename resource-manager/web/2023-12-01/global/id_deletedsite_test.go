@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeletedSiteId{}
 
 func TestNewDeletedSiteID(t *testing.T) {
-	id := NewDeletedSiteID("12345678-1234-9876-4563-123456789012", "deletedSiteIdValue")
+	id := NewDeletedSiteID("12345678-1234-9876-4563-123456789012", "deletedSiteId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.DeletedSiteId != "deletedSiteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedSiteId'", id.DeletedSiteId, "deletedSiteIdValue")
+	if id.DeletedSiteId != "deletedSiteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedSiteId'", id.DeletedSiteId, "deletedSiteId")
 	}
 }
 
 func TestFormatDeletedSiteID(t *testing.T) {
-	actual := NewDeletedSiteID("12345678-1234-9876-4563-123456789012", "deletedSiteIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteIdValue"
+	actual := NewDeletedSiteID("12345678-1234-9876-4563-123456789012", "deletedSiteId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseDeletedSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteId",
 			Expected: &DeletedSiteId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				DeletedSiteId:  "deletedSiteIdValue",
+				DeletedSiteId:  "deletedSiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteId/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseDeletedSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteId",
 			Expected: &DeletedSiteId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				DeletedSiteId:  "deletedSiteIdValue",
+				DeletedSiteId:  "deletedSiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/deletedSites/deletedSiteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/dElEtEdSiTeS/dElEtEdSiTeIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/dElEtEdSiTeS/dElEtEdSiTeId",
 			Expected: &DeletedSiteId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				DeletedSiteId:  "dElEtEdSiTeIdVaLuE",
+				DeletedSiteId:  "dElEtEdSiTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/dElEtEdSiTeS/dElEtEdSiTeIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/dElEtEdSiTeS/dElEtEdSiTeId/extra",
 			Error: true,
 		},
 	}

@@ -51,7 +51,6 @@ func (c CheckPolicyRestrictionsClient) PolicyRestrictionsCheckAtResourceGroupSco
 
 	var model CheckRestrictionsResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

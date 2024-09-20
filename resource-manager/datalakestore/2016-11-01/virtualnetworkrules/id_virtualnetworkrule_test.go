@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkRuleId{}
 
 func TestNewVirtualNetworkRuleID(t *testing.T) {
-	id := NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue")
+	id := NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.VirtualNetworkRuleName != "virtualNetworkRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkRuleName'", id.VirtualNetworkRuleName, "virtualNetworkRuleValue")
+	if id.VirtualNetworkRuleName != "virtualNetworkRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkRuleName'", id.VirtualNetworkRuleName, "virtualNetworkRuleName")
 	}
 }
 
 func TestFormatVirtualNetworkRuleID(t *testing.T) {
-	actual := NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules/virtualNetworkRuleValue"
+	actual := NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules/virtualNetworkRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules/virtualNetworkRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules/virtualNetworkRuleName",
 			Expected: &VirtualNetworkRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AccountName:            "accountValue",
-				VirtualNetworkRuleName: "virtualNetworkRuleValue",
+				AccountName:            "accountName",
+				VirtualNetworkRuleName: "virtualNetworkRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules/virtualNetworkRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/vIrTuAlNeTwOrKrUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/vIrTuAlNeTwOrKrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules/virtualNetworkRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules/virtualNetworkRuleName",
 			Expected: &VirtualNetworkRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AccountName:            "accountValue",
-				VirtualNetworkRuleName: "virtualNetworkRuleValue",
+				AccountName:            "accountName",
+				VirtualNetworkRuleName: "virtualNetworkRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/virtualNetworkRules/virtualNetworkRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/vIrTuAlNeTwOrKrUlEs/vIrTuAlNeTwOrKrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/vIrTuAlNeTwOrKrUlEs/vIrTuAlNeTwOrKrUlEnAmE",
 			Expected: &VirtualNetworkRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:            "aCcOuNtVaLuE",
-				VirtualNetworkRuleName: "vIrTuAlNeTwOrKrUlEvAlUe",
+				AccountName:            "aCcOuNtNaMe",
+				VirtualNetworkRuleName: "vIrTuAlNeTwOrKrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/vIrTuAlNeTwOrKrUlEs/vIrTuAlNeTwOrKrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/vIrTuAlNeTwOrKrUlEs/vIrTuAlNeTwOrKrUlEnAmE/extra",
 			Error: true,
 		},
 	}

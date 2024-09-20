@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = &SubscriptionId{}
 
 func TestNewSubscriptionID(t *testing.T) {
-	id := NewSubscriptionID("groupIdValue", "12345678-1234-9876-4563-123456789012")
+	id := NewSubscriptionID("groupId", "12345678-1234-9876-4563-123456789012")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
@@ -24,8 +24,8 @@ func TestNewSubscriptionID(t *testing.T) {
 }
 
 func TestFormatSubscriptionID(t *testing.T) {
-	actual := NewSubscriptionID("groupIdValue", "12345678-1234-9876-4563-123456789012").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions/12345678-1234-9876-4563-123456789012"
+	actual := NewSubscriptionID("groupId", "12345678-1234-9876-4563-123456789012").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/groupId/subscriptions/12345678-1234-9876-4563-123456789012"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions/12345678-1234-9876-4563-123456789012",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions/12345678-1234-9876-4563-123456789012",
 			Expected: &SubscriptionId{
-				GroupId:        "groupIdValue",
+				GroupId:        "groupId",
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions/12345678-1234-9876-4563-123456789012/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions/12345678-1234-9876-4563-123456789012/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/sUbScRiPtIoNs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/sUbScRiPtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions/12345678-1234-9876-4563-123456789012",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions/12345678-1234-9876-4563-123456789012",
 			Expected: &SubscriptionId{
-				GroupId:        "groupIdValue",
+				GroupId:        "groupId",
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/subscriptions/12345678-1234-9876-4563-123456789012/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/subscriptions/12345678-1234-9876-4563-123456789012/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012",
 			Expected: &SubscriptionId{
-				GroupId:        "gRoUpIdVaLuE",
+				GroupId:        "gRoUpId",
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/extra",
 			Error: true,
 		},
 	}

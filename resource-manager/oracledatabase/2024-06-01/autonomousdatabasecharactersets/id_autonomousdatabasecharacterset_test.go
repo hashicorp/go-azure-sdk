@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &AutonomousDatabaseCharacterSetId{}
 
 func TestNewAutonomousDatabaseCharacterSetID(t *testing.T) {
-	id := NewAutonomousDatabaseCharacterSetID("12345678-1234-9876-4563-123456789012", "locationValue", "autonomousDatabaseCharacterSetValue")
+	id := NewAutonomousDatabaseCharacterSetID("12345678-1234-9876-4563-123456789012", "location", "adbscharsetname")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.AutonomousDatabaseCharacterSetName != "autonomousDatabaseCharacterSetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDatabaseCharacterSetName'", id.AutonomousDatabaseCharacterSetName, "autonomousDatabaseCharacterSetValue")
+	if id.AutonomousDatabaseCharacterSetName != "adbscharsetname" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDatabaseCharacterSetName'", id.AutonomousDatabaseCharacterSetName, "adbscharsetname")
 	}
 }
 
 func TestFormatAutonomousDatabaseCharacterSetID(t *testing.T) {
-	actual := NewAutonomousDatabaseCharacterSetID("12345678-1234-9876-4563-123456789012", "locationValue", "autonomousDatabaseCharacterSetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets/autonomousDatabaseCharacterSetValue"
+	actual := NewAutonomousDatabaseCharacterSetID("12345678-1234-9876-4563-123456789012", "location", "adbscharsetname").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets/adbscharsetname"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseAutonomousDatabaseCharacterSetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets/autonomousDatabaseCharacterSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets/adbscharsetname",
 			Expected: &AutonomousDatabaseCharacterSetId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				LocationName:                       "locationValue",
-				AutonomousDatabaseCharacterSetName: "autonomousDatabaseCharacterSetValue",
+				LocationName:                       "location",
+				AutonomousDatabaseCharacterSetName: "adbscharsetname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets/autonomousDatabaseCharacterSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets/adbscharsetname/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseAutonomousDatabaseCharacterSetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets/autonomousDatabaseCharacterSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets/adbscharsetname",
 			Expected: &AutonomousDatabaseCharacterSetId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				LocationName:                       "locationValue",
-				AutonomousDatabaseCharacterSetName: "autonomousDatabaseCharacterSetValue",
+				LocationName:                       "location",
+				AutonomousDatabaseCharacterSetName: "adbscharsetname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDatabaseCharacterSets/autonomousDatabaseCharacterSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDatabaseCharacterSets/adbscharsetname/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs/aDbScHaRsEtNaMe",
 			Expected: &AutonomousDatabaseCharacterSetId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				LocationName:                       "lOcAtIoNvAlUe",
-				AutonomousDatabaseCharacterSetName: "aUtOnOmOuSdAtAbAsEcHaRaCtErSeTvAlUe",
+				LocationName:                       "lOcAtIoN",
+				AutonomousDatabaseCharacterSetName: "aDbScHaRsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdAtAbAsEcHaRaCtErSeTs/aDbScHaRsEtNaMe/extra",
 			Error: true,
 		},
 	}

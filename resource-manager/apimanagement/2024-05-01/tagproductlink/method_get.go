@@ -45,7 +45,6 @@ func (c TagProductLinkClient) Get(ctx context.Context, id ProductLinkId) (result
 
 	var model TagProductLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

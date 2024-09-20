@@ -38,7 +38,7 @@ func (s *SalesforceServiceCloudV2LinkedServiceTypeProperties) UnmarshalJSON(byte
 	}
 
 	if v, ok := temp["clientSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'SalesforceServiceCloudV2LinkedServiceTypeProperties': %+v", err)
 		}

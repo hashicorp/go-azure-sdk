@@ -38,7 +38,7 @@ func (s *ReplicationProtectionIntentProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalReplicationProtectionIntentProviderSpecificSettingsImplementation(v)
+		impl, err := UnmarshalReplicationProtectionIntentProviderSpecificSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ReplicationProtectionIntentProperties': %+v", err)
 		}

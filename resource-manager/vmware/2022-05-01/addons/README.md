@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/addons` Documentation
 
-The `addons` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2022-05-01`).
+The `addons` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2022-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "addonValue")
+id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "addonName")
 
 payload := addons.Addon{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "addonValue")
+id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "addonName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "addonValue")
+id := addons.NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "addonName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := addons.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := addons.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

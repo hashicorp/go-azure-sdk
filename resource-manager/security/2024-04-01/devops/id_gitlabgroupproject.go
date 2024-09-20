@@ -46,7 +46,7 @@ func ParseGitLabGroupProjectID(input string) (*GitLabGroupProjectId, error) {
 	}
 
 	id := GitLabGroupProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseGitLabGroupProjectIDInsensitively(input string) (*GitLabGroupProjectId
 	}
 
 	id := GitLabGroupProjectId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id GitLabGroupProjectId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticSecurityConnectors", "securityConnectors", "securityConnectors"),
-		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorValue"),
+		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorName"),
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticGitLabGroups", "gitLabGroups", "gitLabGroups"),
-		resourceids.UserSpecifiedSegment("gitLabGroupName", "gitLabGroupValue"),
+		resourceids.UserSpecifiedSegment("gitLabGroupName", "groupFQName"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
-		resourceids.UserSpecifiedSegment("projectName", "projectValue"),
+		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 	}
 }
 

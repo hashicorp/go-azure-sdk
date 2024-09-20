@@ -15,7 +15,7 @@ type SyncAgentsClient struct {
 }
 
 func NewSyncAgentsClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncAgentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "syncagents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "syncagents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SyncAgentsClient: %+v", err)
 	}

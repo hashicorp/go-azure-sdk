@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/api` Documentation
 
-The `api` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `api` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 payload := api.ApiCreateOrUpdateParameter{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload, api.DefaultCreateOrUpd
 
 ```go
 ctx := context.TODO()
-id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 if err := client.DeleteThenPoll(ctx, id, api.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id, api.DefaultDeleteOperationOptions()); e
 
 ```go
 ctx := context.TODO()
-id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := api.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id, api.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, api.DefaultListByServiceOperationOptions())
@@ -102,7 +102,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := api.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 payload := api.ApiUpdateContract{
 	// ...
@@ -123,7 +123,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 payload := api.ApiCreateOrUpdateParameter{
 	// ...
@@ -140,7 +140,7 @@ if err := client.WorkspaceApiCreateOrUpdateThenPoll(ctx, id, payload, api.Defaul
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 read, err := client.WorkspaceApiDelete(ctx, id, api.DefaultWorkspaceApiDeleteOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 read, err := client.WorkspaceApiGet(ctx, id)
 if err != nil {
@@ -172,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 read, err := client.WorkspaceApiGetEntityTag(ctx, id)
 if err != nil {
@@ -188,7 +188,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := api.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceApiListByService(ctx, id, api.DefaultWorkspaceApiListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceApiListByServiceComplete(ctx, id, api.DefaultWorkspaceApiListByServiceOperationOptions())
@@ -205,7 +205,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 payload := api.ApiUpdateContract{
 	// ...

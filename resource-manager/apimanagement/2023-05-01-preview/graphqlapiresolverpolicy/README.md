@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/graphqlapiresolverpolicy` Documentation
 
-The `graphqlapiresolverpolicy` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `graphqlapiresolverpolicy` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "resolverIdValue")
+id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "resolverId")
 
 payload := graphqlapiresolverpolicy.PolicyContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "resolverIdValue")
+id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "resolverId")
 
 read, err := client.Delete(ctx, id, graphqlapiresolverpolicy.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "resolverIdValue")
+id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "resolverId")
 
 read, err := client.Get(ctx, id, graphqlapiresolverpolicy.DefaultGetOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "resolverIdValue")
+id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "resolverId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "resolverIdValue")
+id := graphqlapiresolverpolicy.NewResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "resolverId")
 
 // alternatively `client.ListByResolver(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResolverComplete(ctx, id)

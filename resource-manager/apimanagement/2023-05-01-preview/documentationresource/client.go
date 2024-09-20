@@ -15,7 +15,7 @@ type DocumentationResourceClient struct {
 }
 
 func NewDocumentationResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*DocumentationResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "documentationresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "documentationresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DocumentationResourceClient: %+v", err)
 	}

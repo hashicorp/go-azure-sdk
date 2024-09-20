@@ -46,7 +46,6 @@ func (c DscCompilationJobClient) Get(ctx context.Context, id commonids.Automatio
 
 	var model DscCompilationJob
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

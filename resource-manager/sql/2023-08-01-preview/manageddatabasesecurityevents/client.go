@@ -15,7 +15,7 @@ type ManagedDatabaseSecurityEventsClient struct {
 }
 
 func NewManagedDatabaseSecurityEventsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseSecurityEventsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasesecurityevents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasesecurityevents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseSecurityEventsClient: %+v", err)
 	}

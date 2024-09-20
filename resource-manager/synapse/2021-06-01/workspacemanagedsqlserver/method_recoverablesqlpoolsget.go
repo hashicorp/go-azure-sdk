@@ -45,7 +45,6 @@ func (c WorkspaceManagedSqlServerClient) RecoverableSqlPoolsGet(ctx context.Cont
 
 	var model RecoverableSqlPool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/diskpools` Documentation
 
-The `diskpools` SDK allows for interaction with the Azure Resource Manager Service `storagepool` (API Version `2021-08-01`).
+The `diskpools` SDK allows for interaction with Azure Resource Manager `storagepool` (API Version `2021-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 payload := diskpools.DiskPoolCreate{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 if err := client.DeallocateThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeallocateThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -66,7 +66,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -116,7 +116,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 // alternatively `client.ListOutboundNetworkDependenciesEndpoints(ctx, id)` can be used to do batched pagination
 items, err := client.ListOutboundNetworkDependenciesEndpointsComplete(ctx, id)
@@ -133,7 +133,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -145,7 +145,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 payload := diskpools.DiskPoolUpdate{
 	// ...
@@ -162,7 +162,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName")
 
 if err := client.UpgradeThenPoll(ctx, id); err != nil {
 	// handle the error

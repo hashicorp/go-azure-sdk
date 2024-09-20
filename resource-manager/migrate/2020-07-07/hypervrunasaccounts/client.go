@@ -15,7 +15,7 @@ type HyperVRunAsAccountsClient struct {
 }
 
 func NewHyperVRunAsAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVRunAsAccountsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervrunasaccounts", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervrunasaccounts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVRunAsAccountsClient: %+v", err)
 	}

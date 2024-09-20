@@ -15,7 +15,7 @@ type LocationClient struct {
 }
 
 func NewLocationClientWithBaseURI(sdkApi sdkEnv.Api) (*LocationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "location", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "location", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LocationClient: %+v", err)
 	}

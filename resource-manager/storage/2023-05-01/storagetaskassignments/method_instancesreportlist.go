@@ -41,6 +41,7 @@ func (o InstancesReportListOperationOptions) ToHeaders() *client.Headers {
 
 func (o InstancesReportListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

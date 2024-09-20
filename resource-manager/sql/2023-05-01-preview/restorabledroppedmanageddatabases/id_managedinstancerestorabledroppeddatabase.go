@@ -44,7 +44,7 @@ func ParseManagedInstanceRestorableDroppedDatabaseID(input string) (*ManagedInst
 	}
 
 	id := ManagedInstanceRestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstanceRestorableDroppedDatabaseIDInsensitively(input string) 
 	}
 
 	id := ManagedInstanceRestorableDroppedDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ManagedInstanceRestorableDroppedDatabaseId) Segments() []resourceids.Se
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticRestorableDroppedDatabases", "restorableDroppedDatabases", "restorableDroppedDatabases"),
-		resourceids.UserSpecifiedSegment("restorableDroppedDatabaseId", "restorableDroppedDatabaseIdValue"),
+		resourceids.UserSpecifiedSegment("restorableDroppedDatabaseId", "restorableDroppedDatabaseId"),
 	}
 }
 

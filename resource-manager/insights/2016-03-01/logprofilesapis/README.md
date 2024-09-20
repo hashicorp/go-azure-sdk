@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/logprofilesapis` Documentation
 
-The `logprofilesapis` SDK allows for interaction with the Azure Resource Manager Service `insights` (API Version `2016-03-01`).
+The `logprofilesapis` SDK allows for interaction with Azure Resource Manager `insights` (API Version `2016-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := logprofilesapis.NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileValue")
+id := logprofilesapis.NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileName")
 
 payload := logprofilesapis.LogProfileResourcePatch{
 	// ...

@@ -40,7 +40,7 @@ func ParseScopedManagementAssociationID(input string) (*ScopedManagementAssociat
 	}
 
 	id := ScopedManagementAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedManagementAssociationIDInsensitively(input string) (*ScopedManag
 	}
 
 	id := ScopedManagementAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedManagementAssociationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationsManagement", "Microsoft.OperationsManagement", "Microsoft.OperationsManagement"),
 		resourceids.StaticSegment("staticManagementAssociations", "managementAssociations", "managementAssociations"),
-		resourceids.UserSpecifiedSegment("managementAssociationName", "managementAssociationValue"),
+		resourceids.UserSpecifiedSegment("managementAssociationName", "managementAssociationName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ClusterManagerId{}
 
 func TestNewClusterManagerID(t *testing.T) {
-	id := NewClusterManagerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterManagerValue")
+	id := NewClusterManagerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterManagerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewClusterManagerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterManagerName != "clusterManagerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterManagerName'", id.ClusterManagerName, "clusterManagerValue")
+	if id.ClusterManagerName != "clusterManagerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterManagerName'", id.ClusterManagerName, "clusterManagerName")
 	}
 }
 
 func TestFormatClusterManagerID(t *testing.T) {
-	actual := NewClusterManagerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterManagerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerValue"
+	actual := NewClusterManagerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterManagerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseClusterManagerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerName",
 			Expected: &ClusterManagerId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ClusterManagerName: "clusterManagerValue",
+				ClusterManagerName: "clusterManagerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseClusterManagerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerName",
 			Expected: &ClusterManagerId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ClusterManagerName: "clusterManagerValue",
+				ClusterManagerName: "clusterManagerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusterManagers/clusterManagerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErMaNaGeRs/cLuStErMaNaGeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErMaNaGeRs/cLuStErMaNaGeRnAmE",
 			Expected: &ClusterManagerId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterManagerName: "cLuStErMaNaGeRvAlUe",
+				ClusterManagerName: "cLuStErMaNaGeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErMaNaGeRs/cLuStErMaNaGeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErMaNaGeRs/cLuStErMaNaGeRnAmE/extra",
 			Error: true,
 		},
 	}

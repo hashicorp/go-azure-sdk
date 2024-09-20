@@ -46,7 +46,6 @@ func (c VMHostClient) SubAccountVMHostPayload(ctx context.Context, id AccountId)
 
 	var model VMExtensionPayload
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

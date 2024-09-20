@@ -14,10 +14,22 @@ type PATAuthTypeWorkspaceConnectionProperties struct {
 	Credentials *WorkspaceConnectionPersonalAccessToken `json:"credentials,omitempty"`
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
+
+	AuthType    ConnectionAuthType  `json:"authType"`
 	Category    *ConnectionCategory `json:"category,omitempty"`
 	Target      *string             `json:"target,omitempty"`
 	Value       *string             `json:"value,omitempty"`
 	ValueFormat *ValueFormat        `json:"valueFormat,omitempty"`
+}
+
+func (s PATAuthTypeWorkspaceConnectionProperties) WorkspaceConnectionPropertiesV2() BaseWorkspaceConnectionPropertiesV2Impl {
+	return BaseWorkspaceConnectionPropertiesV2Impl{
+		AuthType:    s.AuthType,
+		Category:    s.Category,
+		Target:      s.Target,
+		Value:       s.Value,
+		ValueFormat: s.ValueFormat,
+	}
 }
 
 var _ json.Marshaler = PATAuthTypeWorkspaceConnectionProperties{}
@@ -31,9 +43,10 @@ func (s PATAuthTypeWorkspaceConnectionProperties) MarshalJSON() ([]byte, error) 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PATAuthTypeWorkspaceConnectionProperties: %+v", err)
 	}
+
 	decoded["authType"] = "PAT"
 
 	encoded, err = json.Marshal(decoded)

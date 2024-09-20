@@ -45,7 +45,6 @@ func (c OperationProgressClient) Get(ctx context.Context, id OperationProgressId
 
 	var model OperationProgressResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

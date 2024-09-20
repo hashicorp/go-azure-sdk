@@ -46,7 +46,6 @@ func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManag
 
 	var model EncryptionProtector
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

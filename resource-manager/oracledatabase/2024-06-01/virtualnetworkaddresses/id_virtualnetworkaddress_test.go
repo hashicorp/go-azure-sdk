@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkAddressId{}
 
 func TestNewVirtualNetworkAddressID(t *testing.T) {
-	id := NewVirtualNetworkAddressID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudVmClusterValue", "virtualNetworkAddressValue")
+	id := NewVirtualNetworkAddressID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudvmclustername", "virtualnetworkaddressname")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkAddressID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CloudVmClusterName != "cloudVmClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudVmClusterName'", id.CloudVmClusterName, "cloudVmClusterValue")
+	if id.CloudVmClusterName != "cloudvmclustername" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudVmClusterName'", id.CloudVmClusterName, "cloudvmclustername")
 	}
 
-	if id.VirtualNetworkAddressName != "virtualNetworkAddressValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkAddressName'", id.VirtualNetworkAddressName, "virtualNetworkAddressValue")
+	if id.VirtualNetworkAddressName != "virtualnetworkaddressname" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkAddressName'", id.VirtualNetworkAddressName, "virtualnetworkaddressname")
 	}
 }
 
 func TestFormatVirtualNetworkAddressID(t *testing.T) {
-	actual := NewVirtualNetworkAddressID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudVmClusterValue", "virtualNetworkAddressValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses/virtualNetworkAddressValue"
+	actual := NewVirtualNetworkAddressID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudvmclustername", "virtualnetworkaddressname").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses/virtualnetworkaddressname"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkAddressID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses/virtualNetworkAddressValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses/virtualnetworkaddressname",
 			Expected: &VirtualNetworkAddressId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				CloudVmClusterName:        "cloudVmClusterValue",
-				VirtualNetworkAddressName: "virtualNetworkAddressValue",
+				CloudVmClusterName:        "cloudvmclustername",
+				VirtualNetworkAddressName: "virtualnetworkaddressname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses/virtualNetworkAddressValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses/virtualnetworkaddressname/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkAddressIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRvAlUe/vIrTuAlNeTwOrKaDdReSsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/vIrTuAlNeTwOrKaDdReSsEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses/virtualNetworkAddressValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses/virtualnetworkaddressname",
 			Expected: &VirtualNetworkAddressId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				CloudVmClusterName:        "cloudVmClusterValue",
-				VirtualNetworkAddressName: "virtualNetworkAddressValue",
+				CloudVmClusterName:        "cloudvmclustername",
+				VirtualNetworkAddressName: "virtualnetworkaddressname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterValue/virtualNetworkAddresses/virtualNetworkAddressValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/virtualNetworkAddresses/virtualnetworkaddressname/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRvAlUe/vIrTuAlNeTwOrKaDdReSsEs/vIrTuAlNeTwOrKaDdReSsVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/vIrTuAlNeTwOrKaDdReSsEs/vIrTuAlNeTwOrKaDdReSsNaMe",
 			Expected: &VirtualNetworkAddressId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				CloudVmClusterName:        "cLoUdVmClUsTeRvAlUe",
-				VirtualNetworkAddressName: "vIrTuAlNeTwOrKaDdReSsVaLuE",
+				CloudVmClusterName:        "cLoUdVmClUsTeRnAmE",
+				VirtualNetworkAddressName: "vIrTuAlNeTwOrKaDdReSsNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRvAlUe/vIrTuAlNeTwOrKaDdReSsEs/vIrTuAlNeTwOrKaDdReSsVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/vIrTuAlNeTwOrKaDdReSsEs/vIrTuAlNeTwOrKaDdReSsNaMe/extra",
 			Error: true,
 		},
 	}

@@ -67,7 +67,7 @@ func (s *MetricAlertProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["criteria"]; ok {
-		impl, err := unmarshalMetricAlertCriteriaImplementation(v)
+		impl, err := UnmarshalMetricAlertCriteriaImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Criteria' for 'MetricAlertProperties': %+v", err)
 		}

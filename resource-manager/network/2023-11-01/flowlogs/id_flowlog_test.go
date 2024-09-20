@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FlowLogId{}
 
 func TestNewFlowLogID(t *testing.T) {
-	id := NewFlowLogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "flowLogValue")
+	id := NewFlowLogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "flowLogName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFlowLogID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkWatcherName != "networkWatcherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherValue")
+	if id.NetworkWatcherName != "networkWatcherName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherName")
 	}
 
-	if id.FlowLogName != "flowLogValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FlowLogName'", id.FlowLogName, "flowLogValue")
+	if id.FlowLogName != "flowLogName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FlowLogName'", id.FlowLogName, "flowLogName")
 	}
 }
 
 func TestFormatFlowLogID(t *testing.T) {
-	actual := NewFlowLogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "flowLogValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs/flowLogValue"
+	actual := NewFlowLogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "flowLogName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs/flowLogName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFlowLogID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs/flowLogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs/flowLogName",
 			Expected: &FlowLogId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkWatcherName: "networkWatcherValue",
-				FlowLogName:        "flowLogValue",
+				NetworkWatcherName: "networkWatcherName",
+				FlowLogName:        "flowLogName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs/flowLogValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs/flowLogName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFlowLogIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/fLoWlOgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/fLoWlOgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs/flowLogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs/flowLogName",
 			Expected: &FlowLogId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkWatcherName: "networkWatcherValue",
-				FlowLogName:        "flowLogValue",
+				NetworkWatcherName: "networkWatcherName",
+				FlowLogName:        "flowLogName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/flowLogs/flowLogValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/flowLogs/flowLogName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/fLoWlOgS/fLoWlOgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/fLoWlOgS/fLoWlOgNaMe",
 			Expected: &FlowLogId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkWatcherName: "nEtWoRkWaTcHeRvAlUe",
-				FlowLogName:        "fLoWlOgVaLuE",
+				NetworkWatcherName: "nEtWoRkWaTcHeRnAmE",
+				FlowLogName:        "fLoWlOgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/fLoWlOgS/fLoWlOgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/fLoWlOgS/fLoWlOgNaMe/extra",
 			Error: true,
 		},
 	}

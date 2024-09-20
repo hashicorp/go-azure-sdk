@@ -40,7 +40,7 @@ func ParseAssociatedTenantID(input string) (*AssociatedTenantId, error) {
 	}
 
 	id := AssociatedTenantId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAssociatedTenantIDInsensitively(input string) (*AssociatedTenantId, er
 	}
 
 	id := AssociatedTenantId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id AssociatedTenantId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticAssociatedTenants", "associatedTenants", "associatedTenants"),
-		resourceids.UserSpecifiedSegment("associatedTenantName", "associatedTenantValue"),
+		resourceids.UserSpecifiedSegment("associatedTenantName", "associatedTenantName"),
 	}
 }
 

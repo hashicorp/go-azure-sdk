@@ -45,7 +45,6 @@ func (c ContainerAppsPatchesClient) Get(ctx context.Context, id PatchId) (result
 
 	var model ContainerAppsPatchResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

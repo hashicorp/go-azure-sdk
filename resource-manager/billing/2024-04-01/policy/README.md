@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/policy` Documentation
 
-The `policy` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `policy` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingAccountID("billingAccountValue")
+id := policy.NewBillingAccountID("billingAccountName")
 
 payload := policy.BillingAccountPolicy{
 	// ...
@@ -42,7 +42,7 @@ if err := client.PoliciesCreateOrUpdateByBillingAccountThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := policy.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := policy.BillingProfilePolicy{
 	// ...
@@ -59,7 +59,7 @@ if err := client.PoliciesCreateOrUpdateByBillingProfileThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := policy.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 payload := policy.CustomerPolicy{
 	// ...
@@ -76,7 +76,7 @@ if err := client.PoliciesCreateOrUpdateByCustomerThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := policy.NewCustomerID("billingAccountValue", "customerValue")
+id := policy.NewCustomerID("billingAccountName", "customerName")
 
 payload := policy.CustomerPolicy{
 	// ...
@@ -93,7 +93,7 @@ if err := client.PoliciesCreateOrUpdateByCustomerAtBillingAccountThenPoll(ctx, i
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingAccountID("billingAccountValue")
+id := policy.NewBillingAccountID("billingAccountName")
 
 read, err := client.PoliciesGetByBillingAccount(ctx, id)
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := policy.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.PoliciesGetByBillingProfile(ctx, id)
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policy.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := policy.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 read, err := client.PoliciesGetByCustomer(ctx, id)
 if err != nil {
@@ -141,7 +141,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policy.NewCustomerID("billingAccountValue", "customerValue")
+id := policy.NewCustomerID("billingAccountName", "customerName")
 
 read, err := client.PoliciesGetByCustomerAtBillingAccount(ctx, id)
 if err != nil {

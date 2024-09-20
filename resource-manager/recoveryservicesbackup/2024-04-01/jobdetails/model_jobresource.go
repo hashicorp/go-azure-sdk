@@ -40,7 +40,7 @@ func (s *JobResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalJobImplementation(v)
+		impl, err := UnmarshalJobImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'JobResource': %+v", err)
 		}

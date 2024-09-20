@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DefinitionId{}
 
 func TestNewDefinitionID(t *testing.T) {
-	id := NewDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue", "definitionValue")
+	id := NewDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName", "definitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,30 +22,30 @@ func TestNewDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.ServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.ApiName != "apiValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApiName'", id.ApiName, "apiValue")
+	if id.ApiName != "apiName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApiName'", id.ApiName, "apiName")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 
-	if id.DefinitionName != "definitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DefinitionName'", id.DefinitionName, "definitionValue")
+	if id.DefinitionName != "definitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DefinitionName'", id.DefinitionName, "definitionName")
 	}
 }
 
 func TestFormatDefinitionID(t *testing.T) {
-	actual := NewDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue", "definitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions/definitionValue"
+	actual := NewDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName", "definitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions/definitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -99,60 +99,60 @@ func TestParseDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions/definitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions/definitionName",
 			Expected: &DefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				WorkspaceName:     "workspaceValue",
-				ApiName:           "apiValue",
-				VersionName:       "versionValue",
-				DefinitionName:    "definitionValue",
+				ServiceName:       "serviceName",
+				WorkspaceName:     "workspaceName",
+				ApiName:           "apiName",
+				VersionName:       "versionName",
+				DefinitionName:    "definitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions/definitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions/definitionName/extra",
 			Error: true,
 		},
 	}
@@ -285,118 +285,118 @@ func TestParseDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe/vErSiOnS/vErSiOnNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE/vErSiOnS/vErSiOnVaLuE/dEfInItIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe/vErSiOnS/vErSiOnNaMe/dEfInItIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions/definitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions/definitionName",
 			Expected: &DefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				WorkspaceName:     "workspaceValue",
-				ApiName:           "apiValue",
-				VersionName:       "versionValue",
-				DefinitionName:    "definitionValue",
+				ServiceName:       "serviceName",
+				WorkspaceName:     "workspaceName",
+				ApiName:           "apiName",
+				VersionName:       "versionName",
+				DefinitionName:    "definitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/workspaces/workspaceValue/apis/apiValue/versions/versionValue/definitions/definitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/workspaces/workspaceName/apis/apiName/versions/versionName/definitions/definitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE/vErSiOnS/vErSiOnVaLuE/dEfInItIoNs/dEfInItIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe/vErSiOnS/vErSiOnNaMe/dEfInItIoNs/dEfInItIoNnAmE",
 			Expected: &DefinitionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:       "sErViCeVaLuE",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
-				ApiName:           "aPiVaLuE",
-				VersionName:       "vErSiOnVaLuE",
-				DefinitionName:    "dEfInItIoNvAlUe",
+				ServiceName:       "sErViCeNaMe",
+				WorkspaceName:     "wOrKsPaCeNaMe",
+				ApiName:           "aPiNaMe",
+				VersionName:       "vErSiOnNaMe",
+				DefinitionName:    "dEfInItIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/wOrKsPaCeS/wOrKsPaCeVaLuE/aPiS/aPiVaLuE/vErSiOnS/vErSiOnVaLuE/dEfInItIoNs/dEfInItIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeNaMe/aPiS/aPiNaMe/vErSiOnS/vErSiOnNaMe/dEfInItIoNs/dEfInItIoNnAmE/extra",
 			Error: true,
 		},
 	}

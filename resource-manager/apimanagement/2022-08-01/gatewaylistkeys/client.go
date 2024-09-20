@@ -15,7 +15,7 @@ type GatewayListKeysClient struct {
 }
 
 func NewGatewayListKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayListKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewaylistkeys", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewaylistkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayListKeysClient: %+v", err)
 	}

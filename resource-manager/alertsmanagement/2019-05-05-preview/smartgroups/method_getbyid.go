@@ -45,7 +45,6 @@ func (c SmartGroupsClient) GetById(ctx context.Context, id SmartGroupId) (result
 
 	var model SmartGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

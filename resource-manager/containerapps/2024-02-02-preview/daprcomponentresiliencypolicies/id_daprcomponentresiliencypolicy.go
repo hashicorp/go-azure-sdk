@@ -46,7 +46,7 @@ func ParseDaprComponentResiliencyPolicyID(input string) (*DaprComponentResilienc
 	}
 
 	id := DaprComponentResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDaprComponentResiliencyPolicyIDInsensitively(input string) (*DaprCompo
 	}
 
 	id := DaprComponentResiliencyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id DaprComponentResiliencyPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticManagedEnvironments", "managedEnvironments", "managedEnvironments"),
-		resourceids.UserSpecifiedSegment("managedEnvironmentName", "managedEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("managedEnvironmentName", "environmentName"),
 		resourceids.StaticSegment("staticDaprComponents", "daprComponents", "daprComponents"),
-		resourceids.UserSpecifiedSegment("daprComponentName", "daprComponentValue"),
+		resourceids.UserSpecifiedSegment("daprComponentName", "componentName"),
 		resourceids.StaticSegment("staticResiliencyPolicies", "resiliencyPolicies", "resiliencyPolicies"),
-		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "resiliencyPolicyValue"),
+		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "name"),
 	}
 }
 

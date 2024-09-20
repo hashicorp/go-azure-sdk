@@ -19,6 +19,14 @@ type JobInputHTTP struct {
 	Start            ClipTime           `json:"start"`
 
 	// Fields inherited from JobInput
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s JobInputHTTP) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = JobInputHTTP{}
@@ -32,9 +40,10 @@ func (s JobInputHTTP) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobInputHTTP: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JobInputHttp"
 
 	encoded, err = json.Marshal(decoded)
@@ -57,6 +66,7 @@ func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
 	s.BaseUri = decoded.BaseUri
 	s.Files = decoded.Files
 	s.Label = decoded.Label
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -64,7 +74,7 @@ func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["end"]; ok {
-		impl, err := unmarshalClipTimeImplementation(v)
+		impl, err := UnmarshalClipTimeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'End' for 'JobInputHTTP': %+v", err)
 		}
@@ -79,7 +89,7 @@ func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]InputDefinition, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalInputDefinitionImplementation(val)
+			impl, err := UnmarshalInputDefinitionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'InputDefinitions' for 'JobInputHTTP': %+v", i, err)
 			}
@@ -89,7 +99,7 @@ func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["start"]; ok {
-		impl, err := unmarshalClipTimeImplementation(v)
+		impl, err := UnmarshalClipTimeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Start' for 'JobInputHTTP': %+v", err)
 		}

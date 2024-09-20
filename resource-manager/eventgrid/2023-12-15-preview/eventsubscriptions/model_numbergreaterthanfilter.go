@@ -14,7 +14,16 @@ type NumberGreaterThanFilter struct {
 	Value *float64 `json:"value,omitempty"`
 
 	// Fields inherited from Filter
-	Key *string `json:"key,omitempty"`
+
+	Key          *string            `json:"key,omitempty"`
+	OperatorType FilterOperatorType `json:"operatorType"`
+}
+
+func (s NumberGreaterThanFilter) Filter() BaseFilterImpl {
+	return BaseFilterImpl{
+		Key:          s.Key,
+		OperatorType: s.OperatorType,
+	}
 }
 
 var _ json.Marshaler = NumberGreaterThanFilter{}
@@ -28,9 +37,10 @@ func (s NumberGreaterThanFilter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NumberGreaterThanFilter: %+v", err)
 	}
+
 	decoded["operatorType"] = "NumberGreaterThan"
 
 	encoded, err = json.Marshal(decoded)

@@ -44,7 +44,7 @@ func ParseCaCertificateID(input string) (*CaCertificateId, error) {
 	}
 
 	id := CaCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCaCertificateIDInsensitively(input string) (*CaCertificateId, error) {
 	}
 
 	id := CaCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id CaCertificateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftEventGrid", "Microsoft.EventGrid", "Microsoft.EventGrid"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
-		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
+		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticCaCertificates", "caCertificates", "caCertificates"),
-		resourceids.UserSpecifiedSegment("caCertificateName", "caCertificateValue"),
+		resourceids.UserSpecifiedSegment("caCertificateName", "caCertificateName"),
 	}
 }
 

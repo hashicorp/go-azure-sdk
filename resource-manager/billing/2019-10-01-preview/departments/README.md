@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/departments` Documentation
 
-The `departments` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `departments` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := departments.NewDepartmentID("billingAccountValue", "departmentValue")
+id := departments.NewDepartmentID("billingAccountName", "departmentName")
 
 read, err := client.Get(ctx, id, departments.DefaultGetOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := departments.NewBillingAccountID("billingAccountValue")
+id := departments.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccountName(ctx, id, departments.DefaultListByBillingAccountNameOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountNameComplete(ctx, id, departments.DefaultListByBillingAccountNameOperationOptions())

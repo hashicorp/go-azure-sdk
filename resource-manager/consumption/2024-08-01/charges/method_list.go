@@ -38,6 +38,7 @@ func (o ListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -87,7 +88,6 @@ func (c ChargesClient) List(ctx context.Context, id commonids.ScopeId, options L
 
 	var model ChargesListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

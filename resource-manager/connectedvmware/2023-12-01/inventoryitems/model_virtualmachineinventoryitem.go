@@ -37,10 +37,22 @@ type VirtualMachineInventoryItem struct {
 	ToolsVersionStatus      *string                  `json:"toolsVersionStatus,omitempty"`
 
 	// Fields inherited from InventoryItemProperties
+
+	InventoryType     InventoryType      `json:"inventoryType"`
 	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
 	MoName            *string            `json:"moName,omitempty"`
 	MoRefId           *string            `json:"moRefId,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s VirtualMachineInventoryItem) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return BaseInventoryItemPropertiesImpl{
+		InventoryType:     s.InventoryType,
+		ManagedResourceId: s.ManagedResourceId,
+		MoName:            s.MoName,
+		MoRefId:           s.MoRefId,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = VirtualMachineInventoryItem{}
@@ -54,9 +66,10 @@ func (s VirtualMachineInventoryItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VirtualMachineInventoryItem: %+v", err)
 	}
+
 	decoded["inventoryType"] = "VirtualMachine"
 
 	encoded, err = json.Marshal(decoded)

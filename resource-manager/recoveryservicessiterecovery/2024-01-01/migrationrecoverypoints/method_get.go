@@ -45,7 +45,6 @@ func (c MigrationRecoveryPointsClient) Get(ctx context.Context, id MigrationReco
 
 	var model MigrationRecoveryPoint
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

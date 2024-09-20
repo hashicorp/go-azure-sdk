@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingprofile` Documentation
 
-The `billingprofile` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `billingprofile` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingprofile.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofile.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := billingprofile.BillingProfile{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofile.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofile.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofile.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofile.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofile.NewBillingAccountID("billingAccountValue")
+id := billingprofile.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, billingprofile.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, billingprofile.DefaultListByBillingAccountOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingprofile.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofile.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.ValidateDeleteEligibility(ctx, id)
 if err != nil {

@@ -15,7 +15,7 @@ type PUTClient struct {
 }
 
 func NewPUTClientWithBaseURI(sdkApi sdkEnv.Api) (*PUTClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "put", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "put", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PUTClient: %+v", err)
 	}

@@ -45,7 +45,6 @@ func (c CertificateClient) WorkspaceCertificateGet(ctx context.Context, id Works
 
 	var model CertificateContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

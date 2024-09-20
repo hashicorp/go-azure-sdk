@@ -44,7 +44,7 @@ func ParseReplicaID(input string) (*ReplicaId, error) {
 	}
 
 	id := ReplicaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicaIDInsensitively(input string) (*ReplicaId, error) {
 	}
 
 	id := ReplicaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ReplicaId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSignalRService", "Microsoft.SignalRService", "Microsoft.SignalRService"),
 		resourceids.StaticSegment("staticWebPubSub", "webPubSub", "webPubSub"),
-		resourceids.UserSpecifiedSegment("webPubSubName", "webPubSubValue"),
+		resourceids.UserSpecifiedSegment("webPubSubName", "resourceName"),
 		resourceids.StaticSegment("staticReplicas", "replicas", "replicas"),
-		resourceids.UserSpecifiedSegment("replicaName", "replicaValue"),
+		resourceids.UserSpecifiedSegment("replicaName", "replicaName"),
 	}
 }
 

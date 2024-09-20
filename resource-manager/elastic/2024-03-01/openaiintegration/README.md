@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2024-03-01/openaiintegration` Documentation
 
-The `openaiintegration` SDK allows for interaction with the Azure Resource Manager Service `elastic` (API Version `2024-03-01`).
+The `openaiintegration` SDK allows for interaction with Azure Resource Manager `elastic` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
 
 payload := openaiintegration.OpenAIIntegrationRPModel{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
 
 read, err := client.OpenAIDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
 
 read, err := client.OpenAIGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "openAIIntegrationValue")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
 
 read, err := client.OpenAIGetStatus(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := openaiintegration.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 // alternatively `client.OpenAIList(ctx, id)` can be used to do batched pagination
 items, err := client.OpenAIListComplete(ctx, id)

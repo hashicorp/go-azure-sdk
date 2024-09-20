@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OrganizationId{}
 
 func TestNewOrganizationID(t *testing.T) {
-	id := NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+	id := NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewOrganizationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.OrganizationName != "organizationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OrganizationName'", id.OrganizationName, "organizationValue")
+	if id.OrganizationName != "organizationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OrganizationName'", id.OrganizationName, "organizationName")
 	}
 }
 
 func TestFormatOrganizationID(t *testing.T) {
-	actual := NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue"
+	actual := NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseOrganizationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName",
 			Expected: &OrganizationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				OrganizationName:  "organizationValue",
+				OrganizationName:  "organizationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseOrganizationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName",
 			Expected: &OrganizationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				OrganizationName:  "organizationValue",
+				OrganizationName:  "organizationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE",
 			Expected: &OrganizationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				OrganizationName:  "oRgAnIzAtIoNvAlUe",
+				OrganizationName:  "oRgAnIzAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

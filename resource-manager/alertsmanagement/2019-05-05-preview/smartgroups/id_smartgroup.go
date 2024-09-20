@@ -40,7 +40,7 @@ func ParseSmartGroupID(input string) (*SmartGroupId, error) {
 	}
 
 	id := SmartGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSmartGroupIDInsensitively(input string) (*SmartGroupId, error) {
 	}
 
 	id := SmartGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id SmartGroupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAlertsManagement", "Microsoft.AlertsManagement", "Microsoft.AlertsManagement"),
 		resourceids.StaticSegment("staticSmartGroups", "smartGroups", "smartGroups"),
-		resourceids.UserSpecifiedSegment("smartGroupId", "smartGroupIdValue"),
+		resourceids.UserSpecifiedSegment("smartGroupId", "smartGroupId"),
 	}
 }
 

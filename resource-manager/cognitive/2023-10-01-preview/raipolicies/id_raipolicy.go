@@ -44,7 +44,7 @@ func ParseRaiPolicyID(input string) (*RaiPolicyId, error) {
 	}
 
 	id := RaiPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRaiPolicyIDInsensitively(input string) (*RaiPolicyId, error) {
 	}
 
 	id := RaiPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id RaiPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCognitiveServices", "Microsoft.CognitiveServices", "Microsoft.CognitiveServices"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticRaiPolicies", "raiPolicies", "raiPolicies"),
-		resourceids.UserSpecifiedSegment("raiPolicyName", "raiPolicyValue"),
+		resourceids.UserSpecifiedSegment("raiPolicyName", "raiPolicyName"),
 	}
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2023-05-01/balances` Documentation
 
-The `balances` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2023-05-01`).
+The `balances` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := balances.NewBillingAccountID("billingAccountIdValue")
+id := balances.NewBillingAccountID("billingAccountId")
 
 read, err := client.GetByBillingAccount(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := balances.NewBillingAccountBillingPeriodID("billingAccountIdValue", "billingPeriodValue")
+id := balances.NewBillingAccountBillingPeriodID("billingAccountId", "billingPeriodName")
 
 read, err := client.GetForBillingPeriodByBillingAccount(ctx, id)
 if err != nil {

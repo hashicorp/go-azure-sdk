@@ -44,7 +44,7 @@ func ParseMarketplaceSubscriptionID(input string) (*MarketplaceSubscriptionId, e
 	}
 
 	id := MarketplaceSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMarketplaceSubscriptionIDInsensitively(input string) (*MarketplaceSubs
 	}
 
 	id := MarketplaceSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MarketplaceSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticMarketplaceSubscriptions", "marketplaceSubscriptions", "marketplaceSubscriptions"),
-		resourceids.UserSpecifiedSegment("marketplaceSubscriptionName", "marketplaceSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("marketplaceSubscriptionName", "name"),
 	}
 }
 

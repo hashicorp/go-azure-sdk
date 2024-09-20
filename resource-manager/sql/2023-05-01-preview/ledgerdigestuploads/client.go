@@ -15,7 +15,7 @@ type LedgerDigestUploadsClient struct {
 }
 
 func NewLedgerDigestUploadsClientWithBaseURI(sdkApi sdkEnv.Api) (*LedgerDigestUploadsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "ledgerdigestuploads", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "ledgerdigestuploads", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LedgerDigestUploadsClient: %+v", err)
 	}

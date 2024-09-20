@@ -44,7 +44,7 @@ func ParseStatusID(input string) (*StatusId, error) {
 	}
 
 	id := StatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStatusIDInsensitively(input string) (*StatusId, error) {
 	}
 
 	id := StatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StatusId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticMetricAlerts", "metricAlerts", "metricAlerts"),
-		resourceids.UserSpecifiedSegment("metricAlertName", "metricAlertValue"),
+		resourceids.UserSpecifiedSegment("metricAlertName", "ruleName"),
 		resourceids.StaticSegment("staticStatus", "status", "status"),
-		resourceids.UserSpecifiedSegment("statusName", "statusValue"),
+		resourceids.UserSpecifiedSegment("statusName", "statusName"),
 	}
 }
 

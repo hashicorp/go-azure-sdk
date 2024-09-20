@@ -46,7 +46,6 @@ func (c MonitoredSubscriptionsClient) List(ctx context.Context, id MonitorId) (r
 
 	var model MonitoredSubscriptionPropertiesList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

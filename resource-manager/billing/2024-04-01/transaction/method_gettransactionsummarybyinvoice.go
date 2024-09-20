@@ -35,6 +35,7 @@ func (o GetTransactionSummaryByInvoiceOperationOptions) ToHeaders() *client.Head
 
 func (o GetTransactionSummaryByInvoiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c TransactionClient) GetTransactionSummaryByInvoice(ctx context.Context, i
 
 	var model TransactionSummary
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

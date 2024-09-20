@@ -46,7 +46,6 @@ func (c BillingProfileClient) ValidateDeleteEligibility(ctx context.Context, id 
 
 	var model DeleteBillingProfileEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

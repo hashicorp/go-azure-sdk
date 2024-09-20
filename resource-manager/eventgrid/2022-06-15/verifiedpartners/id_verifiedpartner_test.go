@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &VerifiedPartnerId{}
 
 func TestNewVerifiedPartnerID(t *testing.T) {
-	id := NewVerifiedPartnerID("verifiedPartnerValue")
+	id := NewVerifiedPartnerID("verifiedPartnerName")
 
-	if id.VerifiedPartnerName != "verifiedPartnerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VerifiedPartnerName'", id.VerifiedPartnerName, "verifiedPartnerValue")
+	if id.VerifiedPartnerName != "verifiedPartnerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VerifiedPartnerName'", id.VerifiedPartnerName, "verifiedPartnerName")
 	}
 }
 
 func TestFormatVerifiedPartnerID(t *testing.T) {
-	actual := NewVerifiedPartnerID("verifiedPartnerValue").ID()
-	expected := "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerValue"
+	actual := NewVerifiedPartnerID("verifiedPartnerName").ID()
+	expected := "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseVerifiedPartnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerValue",
+			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerName",
 			Expected: &VerifiedPartnerId{
-				VerifiedPartnerName: "verifiedPartnerValue",
+				VerifiedPartnerName: "verifiedPartnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerValue/extra",
+			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseVerifiedPartnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerValue",
+			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerName",
 			Expected: &VerifiedPartnerId{
-				VerifiedPartnerName: "verifiedPartnerValue",
+				VerifiedPartnerName: "verifiedPartnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerValue/extra",
+			Input: "/providers/Microsoft.EventGrid/verifiedPartners/verifiedPartnerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/vErIfIeDpArTnErS/vErIfIeDpArTnErVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/vErIfIeDpArTnErS/vErIfIeDpArTnErNaMe",
 			Expected: &VerifiedPartnerId{
-				VerifiedPartnerName: "vErIfIeDpArTnErVaLuE",
+				VerifiedPartnerName: "vErIfIeDpArTnErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/vErIfIeDpArTnErS/vErIfIeDpArTnErVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/vErIfIeDpArTnErS/vErIfIeDpArTnErNaMe/extra",
 			Error: true,
 		},
 	}

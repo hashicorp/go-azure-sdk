@@ -46,7 +46,7 @@ func ParseAnalysisID(input string) (*AnalysisId, error) {
 	}
 
 	id := AnalysisId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAnalysisIDInsensitively(input string) (*AnalysisId, error) {
 	}
 
 	id := AnalysisId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id AnalysisId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteName", "siteValue"),
+		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticDiagnostics", "diagnostics", "diagnostics"),
-		resourceids.UserSpecifiedSegment("diagnosticName", "diagnosticValue"),
+		resourceids.UserSpecifiedSegment("diagnosticName", "diagnosticCategory"),
 		resourceids.StaticSegment("staticAnalyses", "analyses", "analyses"),
-		resourceids.UserSpecifiedSegment("analysisName", "analysisValue"),
+		resourceids.UserSpecifiedSegment("analysisName", "analysisName"),
 	}
 }
 

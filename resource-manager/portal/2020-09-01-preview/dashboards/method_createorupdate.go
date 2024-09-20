@@ -50,7 +50,6 @@ func (c DashboardsClient) CreateOrUpdate(ctx context.Context, id DashboardId, in
 
 	var model Dashboard
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseServerlessRuntimeID(input string) (*ServerlessRuntimeId, error) {
 	}
 
 	id := ServerlessRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerlessRuntimeIDInsensitively(input string) (*ServerlessRuntimeId, 
 	}
 
 	id := ServerlessRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ServerlessRuntimeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticInformaticaDataManagement", "Informatica.DataManagement", "Informatica.DataManagement"),
 		resourceids.StaticSegment("staticOrganizations", "organizations", "organizations"),
-		resourceids.UserSpecifiedSegment("organizationName", "organizationValue"),
+		resourceids.UserSpecifiedSegment("organizationName", "organizationName"),
 		resourceids.StaticSegment("staticServerlessRuntimes", "serverlessRuntimes", "serverlessRuntimes"),
-		resourceids.UserSpecifiedSegment("serverlessRuntimeName", "serverlessRuntimeValue"),
+		resourceids.UserSpecifiedSegment("serverlessRuntimeName", "serverlessRuntimeName"),
 	}
 }
 

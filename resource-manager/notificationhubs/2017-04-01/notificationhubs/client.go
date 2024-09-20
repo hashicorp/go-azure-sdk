@@ -15,7 +15,7 @@ type NotificationHubsClient struct {
 }
 
 func NewNotificationHubsClientWithBaseURI(sdkApi sdkEnv.Api) (*NotificationHubsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "notificationhubs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "notificationhubs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NotificationHubsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type ConfigurationNamesClient struct {
 }
 
 func NewConfigurationNamesClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfigurationNamesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "configurationnames", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "configurationnames", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConfigurationNamesClient: %+v", err)
 	}

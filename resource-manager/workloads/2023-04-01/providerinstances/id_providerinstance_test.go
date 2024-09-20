@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProviderInstanceId{}
 
 func TestNewProviderInstanceID(t *testing.T) {
-	id := NewProviderInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "providerInstanceValue")
+	id := NewProviderInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "providerInstanceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewProviderInstanceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.ProviderInstanceName != "providerInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderInstanceName'", id.ProviderInstanceName, "providerInstanceValue")
+	if id.ProviderInstanceName != "providerInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderInstanceName'", id.ProviderInstanceName, "providerInstanceName")
 	}
 }
 
 func TestFormatProviderInstanceID(t *testing.T) {
-	actual := NewProviderInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "providerInstanceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances/providerInstanceValue"
+	actual := NewProviderInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "providerInstanceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances/providerInstanceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseProviderInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances/providerInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances/providerInstanceName",
 			Expected: &ProviderInstanceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				MonitorName:          "monitorValue",
-				ProviderInstanceName: "providerInstanceValue",
+				MonitorName:          "monitorName",
+				ProviderInstanceName: "providerInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances/providerInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances/providerInstanceName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseProviderInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrVaLuE/pRoViDeRiNsTaNcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrNaMe/pRoViDeRiNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances/providerInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances/providerInstanceName",
 			Expected: &ProviderInstanceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				MonitorName:          "monitorValue",
-				ProviderInstanceName: "providerInstanceValue",
+				MonitorName:          "monitorName",
+				ProviderInstanceName: "providerInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorValue/providerInstances/providerInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/monitors/monitorName/providerInstances/providerInstanceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrVaLuE/pRoViDeRiNsTaNcEs/pRoViDeRiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrNaMe/pRoViDeRiNsTaNcEs/pRoViDeRiNsTaNcEnAmE",
 			Expected: &ProviderInstanceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:          "mOnItOrVaLuE",
-				ProviderInstanceName: "pRoViDeRiNsTaNcEvAlUe",
+				MonitorName:          "mOnItOrNaMe",
+				ProviderInstanceName: "pRoViDeRiNsTaNcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrVaLuE/pRoViDeRiNsTaNcEs/pRoViDeRiNsTaNcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/mOnItOrS/mOnItOrNaMe/pRoViDeRiNsTaNcEs/pRoViDeRiNsTaNcEnAmE/extra",
 			Error: true,
 		},
 	}

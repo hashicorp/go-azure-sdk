@@ -44,7 +44,7 @@ func ParseContainerAppDetectorID(input string) (*ContainerAppDetectorId, error) 
 	}
 
 	id := ContainerAppDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContainerAppDetectorIDInsensitively(input string) (*ContainerAppDetect
 	}
 
 	id := ContainerAppDetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ContainerAppDetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "containerAppValue"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
-		resourceids.UserSpecifiedSegment("detectorName", "detectorValue"),
+		resourceids.UserSpecifiedSegment("detectorName", "detectorName"),
 	}
 }
 

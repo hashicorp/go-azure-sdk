@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/virtualnetworkrules` Documentation
 
-The `virtualnetworkrules` SDK allows for interaction with the Azure Resource Manager Service `datalakestore` (API Version `2016-11-01`).
+The `virtualnetworkrules` SDK allows for interaction with Azure Resource Manager `datalakestore` (API Version `2016-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue")
+id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName")
 
 payload := virtualnetworkrules.CreateOrUpdateVirtualNetworkRuleParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue")
+id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue")
+id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := virtualnetworkrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.ListByAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByAccountComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "virtualNetworkRuleValue")
+id := virtualnetworkrules.NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "virtualNetworkRuleName")
 
 payload := virtualnetworkrules.UpdateVirtualNetworkRuleParameters{
 	// ...

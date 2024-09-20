@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FhirDestinationId{}
 
 func TestNewFhirDestinationID(t *testing.T) {
-	id := NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue", "fhirDestinationValue")
+	id := NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "iotConnectorName", "fhirDestinationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewFhirDestinationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.IotConnectorName != "iotConnectorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IotConnectorName'", id.IotConnectorName, "iotConnectorValue")
+	if id.IotConnectorName != "iotConnectorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IotConnectorName'", id.IotConnectorName, "iotConnectorName")
 	}
 
-	if id.FhirDestinationName != "fhirDestinationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FhirDestinationName'", id.FhirDestinationName, "fhirDestinationValue")
+	if id.FhirDestinationName != "fhirDestinationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FhirDestinationName'", id.FhirDestinationName, "fhirDestinationName")
 	}
 }
 
 func TestFormatFhirDestinationID(t *testing.T) {
-	actual := NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue", "fhirDestinationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations/fhirDestinationValue"
+	actual := NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "iotConnectorName", "fhirDestinationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations/fhirDestinationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseFhirDestinationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations/fhirDestinationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations/fhirDestinationName",
 			Expected: &FhirDestinationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				WorkspaceName:       "workspaceValue",
-				IotConnectorName:    "iotConnectorValue",
-				FhirDestinationName: "fhirDestinationValue",
+				WorkspaceName:       "workspaceName",
+				IotConnectorName:    "iotConnectorName",
+				FhirDestinationName: "fhirDestinationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations/fhirDestinationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations/fhirDestinationName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseFhirDestinationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/iOtCoNnEcToRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/iOtCoNnEcToRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/iOtCoNnEcToRs/iOtCoNnEcToRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/iOtCoNnEcToRs/iOtCoNnEcToRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/iOtCoNnEcToRs/iOtCoNnEcToRvAlUe/fHiRdEsTiNaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/iOtCoNnEcToRs/iOtCoNnEcToRnAmE/fHiRdEsTiNaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations/fhirDestinationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations/fhirDestinationName",
 			Expected: &FhirDestinationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				WorkspaceName:       "workspaceValue",
-				IotConnectorName:    "iotConnectorValue",
-				FhirDestinationName: "fhirDestinationValue",
+				WorkspaceName:       "workspaceName",
+				IotConnectorName:    "iotConnectorName",
+				FhirDestinationName: "fhirDestinationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/iotConnectors/iotConnectorValue/fhirDestinations/fhirDestinationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName/fhirDestinations/fhirDestinationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/iOtCoNnEcToRs/iOtCoNnEcToRvAlUe/fHiRdEsTiNaTiOnS/fHiRdEsTiNaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/iOtCoNnEcToRs/iOtCoNnEcToRnAmE/fHiRdEsTiNaTiOnS/fHiRdEsTiNaTiOnNaMe",
 			Expected: &FhirDestinationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:       "wOrKsPaCeVaLuE",
-				IotConnectorName:    "iOtCoNnEcToRvAlUe",
-				FhirDestinationName: "fHiRdEsTiNaTiOnVaLuE",
+				WorkspaceName:       "wOrKsPaCeNaMe",
+				IotConnectorName:    "iOtCoNnEcToRnAmE",
+				FhirDestinationName: "fHiRdEsTiNaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/iOtCoNnEcToRs/iOtCoNnEcToRvAlUe/fHiRdEsTiNaTiOnS/fHiRdEsTiNaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/iOtCoNnEcToRs/iOtCoNnEcToRnAmE/fHiRdEsTiNaTiOnS/fHiRdEsTiNaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

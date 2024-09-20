@@ -46,7 +46,6 @@ func (c OrganizationsClient) GetAllServerlessRuntimes(ctx context.Context, id Or
 
 	var model InformaticaServerlessRuntimeResourceList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

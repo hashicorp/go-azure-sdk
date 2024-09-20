@@ -42,6 +42,7 @@ func (o ListResourcesOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListResourcesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

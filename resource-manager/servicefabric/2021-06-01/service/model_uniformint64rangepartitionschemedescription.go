@@ -16,6 +16,14 @@ type UniformInt64RangePartitionSchemeDescription struct {
 	LowKey  string `json:"lowKey"`
 
 	// Fields inherited from PartitionSchemeDescription
+
+	PartitionScheme PartitionScheme `json:"partitionScheme"`
+}
+
+func (s UniformInt64RangePartitionSchemeDescription) PartitionSchemeDescription() BasePartitionSchemeDescriptionImpl {
+	return BasePartitionSchemeDescriptionImpl{
+		PartitionScheme: s.PartitionScheme,
+	}
 }
 
 var _ json.Marshaler = UniformInt64RangePartitionSchemeDescription{}
@@ -29,9 +37,10 @@ func (s UniformInt64RangePartitionSchemeDescription) MarshalJSON() ([]byte, erro
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UniformInt64RangePartitionSchemeDescription: %+v", err)
 	}
+
 	decoded["partitionScheme"] = "UniformInt64Range"
 
 	encoded, err = json.Marshal(decoded)

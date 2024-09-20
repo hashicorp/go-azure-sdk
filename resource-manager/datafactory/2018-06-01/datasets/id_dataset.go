@@ -44,7 +44,7 @@ func ParseDatasetID(input string) (*DatasetId, error) {
 	}
 
 	id := DatasetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDatasetIDInsensitively(input string) (*DatasetId, error) {
 	}
 
 	id := DatasetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DatasetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataFactory", "Microsoft.DataFactory", "Microsoft.DataFactory"),
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
-		resourceids.UserSpecifiedSegment("factoryName", "factoryValue"),
+		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticDatasets", "datasets", "datasets"),
-		resourceids.UserSpecifiedSegment("datasetName", "datasetValue"),
+		resourceids.UserSpecifiedSegment("datasetName", "datasetName"),
 	}
 }
 

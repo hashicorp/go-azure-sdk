@@ -45,7 +45,6 @@ func (c SyncGroupsClient) Get(ctx context.Context, id SyncGroupId) (result GetOp
 
 	var model SyncGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

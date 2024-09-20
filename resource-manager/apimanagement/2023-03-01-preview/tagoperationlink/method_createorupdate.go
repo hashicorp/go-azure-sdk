@@ -50,7 +50,6 @@ func (c TagOperationLinkClient) CreateOrUpdate(ctx context.Context, id Operation
 
 	var model TagOperationLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

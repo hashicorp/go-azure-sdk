@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/artifacts` Documentation
 
-The `artifacts` SDK allows for interaction with the Azure Resource Manager Service `devtestlab` (API Version `2018-09-15`).
+The `artifacts` SDK allows for interaction with Azure Resource Manager `devtestlab` (API Version `2018-09-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "artifactValue")
+id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "name")
 
 payload := artifacts.GenerateArmTemplateRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "artifactValue")
+id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "name")
 
 read, err := client.Get(ctx, id, artifacts.DefaultGetOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue")
+id := artifacts.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName")
 
 // alternatively `client.List(ctx, id, artifacts.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, artifacts.DefaultListOperationOptions())

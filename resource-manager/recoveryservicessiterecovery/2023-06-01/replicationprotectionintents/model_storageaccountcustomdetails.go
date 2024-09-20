@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StorageAccountCustomDetails interface {
+	StorageAccountCustomDetails() BaseStorageAccountCustomDetailsImpl
 }
 
-// RawStorageAccountCustomDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ StorageAccountCustomDetails = BaseStorageAccountCustomDetailsImpl{}
+
+type BaseStorageAccountCustomDetailsImpl struct {
+	ResourceType string `json:"resourceType"`
+}
+
+func (s BaseStorageAccountCustomDetailsImpl) StorageAccountCustomDetails() BaseStorageAccountCustomDetailsImpl {
+	return s
+}
+
+var _ StorageAccountCustomDetails = RawStorageAccountCustomDetailsImpl{}
+
+// RawStorageAccountCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawStorageAccountCustomDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	storageAccountCustomDetails BaseStorageAccountCustomDetailsImpl
+	Type                        string
+	Values                      map[string]interface{}
 }
 
-func unmarshalStorageAccountCustomDetailsImplementation(input []byte) (StorageAccountCustomDetails, error) {
+func (s RawStorageAccountCustomDetailsImpl) StorageAccountCustomDetails() BaseStorageAccountCustomDetailsImpl {
+	return s.storageAccountCustomDetails
+}
+
+func UnmarshalStorageAccountCustomDetailsImplementation(input []byte) (StorageAccountCustomDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalStorageAccountCustomDetailsImplementation(input []byte) (StorageAc
 		return out, nil
 	}
 
-	out := RawStorageAccountCustomDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseStorageAccountCustomDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseStorageAccountCustomDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawStorageAccountCustomDetailsImpl{
+		storageAccountCustomDetails: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
 
 }

@@ -40,6 +40,7 @@ func (o ListSupportedCloudServiceSkusOperationOptions) ToHeaders() *client.Heade
 
 func (o ListSupportedCloudServiceSkusOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

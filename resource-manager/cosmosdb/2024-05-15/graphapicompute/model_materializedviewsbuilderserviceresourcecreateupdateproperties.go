@@ -13,8 +13,18 @@ var _ ServiceResourceCreateUpdateProperties = MaterializedViewsBuilderServiceRes
 type MaterializedViewsBuilderServiceResourceCreateUpdateProperties struct {
 
 	// Fields inherited from ServiceResourceCreateUpdateProperties
+
 	InstanceCount *int64       `json:"instanceCount,omitempty"`
 	InstanceSize  *ServiceSize `json:"instanceSize,omitempty"`
+	ServiceType   ServiceType  `json:"serviceType"`
+}
+
+func (s MaterializedViewsBuilderServiceResourceCreateUpdateProperties) ServiceResourceCreateUpdateProperties() BaseServiceResourceCreateUpdatePropertiesImpl {
+	return BaseServiceResourceCreateUpdatePropertiesImpl{
+		InstanceCount: s.InstanceCount,
+		InstanceSize:  s.InstanceSize,
+		ServiceType:   s.ServiceType,
+	}
 }
 
 var _ json.Marshaler = MaterializedViewsBuilderServiceResourceCreateUpdateProperties{}
@@ -28,9 +38,10 @@ func (s MaterializedViewsBuilderServiceResourceCreateUpdateProperties) MarshalJS
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MaterializedViewsBuilderServiceResourceCreateUpdateProperties: %+v", err)
 	}
+
 	decoded["serviceType"] = "MaterializedViewsBuilder"
 
 	encoded, err = json.Marshal(decoded)

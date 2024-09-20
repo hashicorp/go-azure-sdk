@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimes` Documentation
 
-The `integrationruntimes` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `integrationruntimes` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 payload := integrationruntimes.CreateLinkedIntegrationRuntimeRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 payload := integrationruntimes.IntegrationRuntimeResource{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.Get(ctx, id, integrationruntimes.DefaultGetOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.GetConnectionInfo(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.GetMonitoringData(ctx, id)
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.GetStatus(ctx, id)
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.ListAuthKeys(ctx, id)
 if err != nil {
@@ -162,7 +162,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := integrationruntimes.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 // alternatively `client.ListByFactory(ctx, id)` can be used to do batched pagination
 items, err := client.ListByFactoryComplete(ctx, id)
@@ -179,7 +179,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.ListOutboundNetworkDependenciesEndpoints(ctx, id)
 if err != nil {
@@ -195,7 +195,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 payload := integrationruntimes.IntegrationRuntimeRegenerateKeyParameters{
 	// ...
@@ -216,7 +216,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 payload := integrationruntimes.LinkedIntegrationRuntimeRequest{
 	// ...
@@ -237,7 +237,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -249,7 +249,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -261,7 +261,7 @@ if err := client.StopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.SyncCredentials(ctx, id)
 if err != nil {
@@ -277,7 +277,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 payload := integrationruntimes.UpdateIntegrationRuntimeRequest{
 	// ...
@@ -298,7 +298,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 read, err := client.Upgrade(ctx, id)
 if err != nil {

@@ -34,6 +34,14 @@ type IaasVMRecoveryPoint struct {
 	Zones                           *zones.Schema                              `json:"zones,omitempty"`
 
 	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s IaasVMRecoveryPoint) RecoveryPoint() BaseRecoveryPointImpl {
+	return BaseRecoveryPointImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = IaasVMRecoveryPoint{}
@@ -47,9 +55,10 @@ func (s IaasVMRecoveryPoint) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IaasVMRecoveryPoint: %+v", err)
 	}
+
 	decoded["objectType"] = "IaasVMRecoveryPoint"
 
 	encoded, err = json.Marshal(decoded)

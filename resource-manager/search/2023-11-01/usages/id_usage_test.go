@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UsageId{}
 
 func TestNewUsageID(t *testing.T) {
-	id := NewUsageID("12345678-1234-9876-4563-123456789012", "locationValue", "usageValue")
+	id := NewUsageID("12345678-1234-9876-4563-123456789012", "location", "skuName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.UsageName != "usageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UsageName'", id.UsageName, "usageValue")
+	if id.UsageName != "skuName" {
+		t.Fatalf("Expected %q but got %q for Segment 'UsageName'", id.UsageName, "skuName")
 	}
 }
 
 func TestFormatUsageID(t *testing.T) {
-	actual := NewUsageID("12345678-1234-9876-4563-123456789012", "locationValue", "usageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages/usageValue"
+	actual := NewUsageID("12345678-1234-9876-4563-123456789012", "location", "skuName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages/skuName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseUsageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages/usageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages/skuName",
 			Expected: &UsageId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				UsageName:      "usageValue",
+				LocationName:   "location",
+				UsageName:      "skuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages/usageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages/skuName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseUsageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoNvAlUe/uSaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoN/uSaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages/usageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages/skuName",
 			Expected: &UsageId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				UsageName:      "usageValue",
+				LocationName:   "location",
+				UsageName:      "skuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/locationValue/usages/usageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Search/locations/location/usages/skuName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoNvAlUe/uSaGeS/uSaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoN/uSaGeS/sKuNaMe",
 			Expected: &UsageId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				UsageName:      "uSaGeVaLuE",
+				LocationName:   "lOcAtIoN",
+				UsageName:      "sKuNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoNvAlUe/uSaGeS/uSaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEaRcH/lOcAtIoNs/lOcAtIoN/uSaGeS/sKuNaMe/extra",
 			Error: true,
 		},
 	}

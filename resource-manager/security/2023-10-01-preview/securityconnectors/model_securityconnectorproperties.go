@@ -50,7 +50,7 @@ func (s *SecurityConnectorProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["environmentData"]; ok {
-		impl, err := unmarshalEnvironmentDataImplementation(v)
+		impl, err := UnmarshalEnvironmentDataImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EnvironmentData' for 'SecurityConnectorProperties': %+v", err)
 		}
@@ -65,7 +65,7 @@ func (s *SecurityConnectorProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]CloudOffering, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalCloudOfferingImplementation(val)
+			impl, err := UnmarshalCloudOfferingImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Offerings' for 'SecurityConnectorProperties': %+v", i, err)
 			}

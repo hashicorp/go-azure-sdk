@@ -33,7 +33,7 @@ func (s *MonitorDefinition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["computeConfiguration"]; ok {
-		impl, err := unmarshalMonitorComputeConfigurationBaseImplementation(v)
+		impl, err := UnmarshalMonitorComputeConfigurationBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ComputeConfiguration' for 'MonitorDefinition': %+v", err)
 		}
@@ -48,7 +48,7 @@ func (s *MonitorDefinition) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]MonitoringSignalBase)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalMonitoringSignalBaseImplementation(val)
+			impl, err := UnmarshalMonitoringSignalBaseImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Signals' for 'MonitorDefinition': %+v", key, err)
 			}

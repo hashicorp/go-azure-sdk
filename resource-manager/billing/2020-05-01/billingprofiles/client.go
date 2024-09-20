@@ -15,7 +15,7 @@ type BillingProfilesClient struct {
 }
 
 func NewBillingProfilesClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingProfilesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "billingprofiles", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "billingprofiles", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BillingProfilesClient: %+v", err)
 	}

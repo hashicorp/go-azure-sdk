@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/restorabledroppedsqlpools` Documentation
 
-The `restorabledroppedsqlpools` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `restorabledroppedsqlpools` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := restorabledroppedsqlpools.NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "restorableDroppedSqlPoolIdValue")
+id := restorabledroppedsqlpools.NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "restorableDroppedSqlPoolId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorabledroppedsqlpools.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := restorabledroppedsqlpools.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.ListByWorkspace(ctx, id)
 if err != nil {

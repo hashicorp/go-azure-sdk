@@ -45,7 +45,6 @@ func (c StandardOperationClient) FilesGet(ctx context.Context, id FileId) (resul
 
 	var model ProjectFile
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

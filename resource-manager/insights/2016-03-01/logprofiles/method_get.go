@@ -45,7 +45,6 @@ func (c LogProfilesClient) Get(ctx context.Context, id LogProfileId) (result Get
 
 	var model LogProfileResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type AppResiliencyClient struct {
 }
 
 func NewAppResiliencyClientWithBaseURI(sdkApi sdkEnv.Api) (*AppResiliencyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "appresiliency", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "appresiliency", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AppResiliencyClient: %+v", err)
 	}

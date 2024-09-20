@@ -15,7 +15,7 @@ type ClientGroupsClient struct {
 }
 
 func NewClientGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*ClientGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "clientgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "clientgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ClientGroupsClient: %+v", err)
 	}

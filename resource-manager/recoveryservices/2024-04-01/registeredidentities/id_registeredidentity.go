@@ -44,7 +44,7 @@ func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
 	}
 
 	id := RegisteredIdentityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegisteredIdentityIDInsensitively(input string) (*RegisteredIdentityId
 	}
 
 	id := RegisteredIdentityId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id RegisteredIdentityId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticRegisteredIdentities", "registeredIdentities", "registeredIdentities"),
-		resourceids.UserSpecifiedSegment("registeredIdentityName", "registeredIdentityValue"),
+		resourceids.UserSpecifiedSegment("registeredIdentityName", "identityName"),
 	}
 }
 

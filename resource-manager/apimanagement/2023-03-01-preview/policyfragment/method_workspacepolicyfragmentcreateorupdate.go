@@ -39,6 +39,7 @@ func (o WorkspacePolicyFragmentCreateOrUpdateOperationOptions) ToHeaders() *clie
 
 func (o WorkspacePolicyFragmentCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

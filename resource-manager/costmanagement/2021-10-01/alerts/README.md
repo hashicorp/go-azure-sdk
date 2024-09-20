@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-10-01/alerts` Documentation
 
-The `alerts` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2021-10-01`).
+The `alerts` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2021-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := alerts.NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertIdValue")
+id := alerts.NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertId")
 
 payload := alerts.DismissAlertPayload{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertIdValue")
+id := alerts.NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -79,7 +79,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+id := alerts.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderId")
 
 // alternatively `client.ListExternal(ctx, id)` can be used to do batched pagination
 items, err := client.ListExternalComplete(ctx, id)

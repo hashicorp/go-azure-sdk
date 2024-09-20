@@ -45,7 +45,6 @@ func (c CloudLinksClient) Get(ctx context.Context, id CloudLinkId) (result GetOp
 
 	var model CloudLink
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

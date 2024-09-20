@@ -47,7 +47,6 @@ func (c EventHubsClustersAvailableClusterRegionsClient) ClustersListAvailableClu
 
 	var model AvailableClustersList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

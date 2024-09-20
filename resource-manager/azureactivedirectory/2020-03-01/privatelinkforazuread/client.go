@@ -15,7 +15,7 @@ type PrivateLinkForAzureAdClient struct {
 }
 
 func NewPrivateLinkForAzureAdClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkForAzureAdClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "privatelinkforazuread", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinkforazuread", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PrivateLinkForAzureAdClient: %+v", err)
 	}

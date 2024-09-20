@@ -42,7 +42,7 @@ func ParseMasterSiteID(input string) (*MasterSiteId, error) {
 	}
 
 	id := MasterSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMasterSiteIDInsensitively(input string) (*MasterSiteId, error) {
 	}
 
 	id := MasterSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id MasterSiteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOffAzure", "Microsoft.OffAzure", "Microsoft.OffAzure"),
 		resourceids.StaticSegment("staticMasterSites", "masterSites", "masterSites"),
-		resourceids.UserSpecifiedSegment("masterSiteName", "masterSiteValue"),
+		resourceids.UserSpecifiedSegment("masterSiteName", "siteName"),
 	}
 }
 

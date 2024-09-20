@@ -42,7 +42,7 @@ func ParseCloudServicesNetworkID(input string) (*CloudServicesNetworkId, error) 
 	}
 
 	id := CloudServicesNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCloudServicesNetworkIDInsensitively(input string) (*CloudServicesNetwo
 	}
 
 	id := CloudServicesNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id CloudServicesNetworkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticCloudServicesNetworks", "cloudServicesNetworks", "cloudServicesNetworks"),
-		resourceids.UserSpecifiedSegment("cloudServicesNetworkName", "cloudServicesNetworkValue"),
+		resourceids.UserSpecifiedSegment("cloudServicesNetworkName", "cloudServicesNetworkName"),
 	}
 }
 

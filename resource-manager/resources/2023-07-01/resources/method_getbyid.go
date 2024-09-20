@@ -46,7 +46,6 @@ func (c ResourcesClient) GetById(ctx context.Context, id commonids.ScopeId) (res
 
 	var model GenericResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

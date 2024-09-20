@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2022-09-09/msixpackage` Documentation
 
-The `msixpackage` SDK allows for interaction with the Azure Resource Manager Service `desktopvirtualization` (API Version `2022-09-09`).
+The `msixpackage` SDK allows for interaction with Azure Resource Manager `desktopvirtualization` (API Version `2022-09-09`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue")
+id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "msixPackageFullName")
 
 payload := msixpackage.MSIXPackage{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue")
+id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "msixPackageFullName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue")
+id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "msixPackageFullName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := msixpackage.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue")
+id := msixpackage.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName")
 
 // alternatively `client.List(ctx, id, msixpackage.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, msixpackage.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue")
+id := msixpackage.NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "msixPackageFullName")
 
 payload := msixpackage.MSIXPackagePatch{
 	// ...

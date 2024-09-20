@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/builds` Documentation
 
-The `builds` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `builds` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderValue", "buildValue")
+id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderName", "buildName")
 
 read, err := client.BuildAuthTokenList(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := builds.NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderValue")
+id := builds.NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderName")
 
 // alternatively `client.ByBuilderResourceList(ctx, id)` can be used to do batched pagination
 items, err := client.ByBuilderResourceListComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderValue", "buildValue")
+id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderName", "buildName")
 
 payload := builds.BuildResource{
 	// ...
@@ -74,7 +74,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderValue", "buildValue")
+id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderName", "buildName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -86,7 +86,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderValue", "buildValue")
+id := builds.NewBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "builderName", "buildName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

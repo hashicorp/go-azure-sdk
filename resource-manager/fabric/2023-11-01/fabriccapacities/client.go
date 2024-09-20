@@ -15,7 +15,7 @@ type FabricCapacitiesClient struct {
 }
 
 func NewFabricCapacitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*FabricCapacitiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "fabriccapacities", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "fabriccapacities", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FabricCapacitiesClient: %+v", err)
 	}

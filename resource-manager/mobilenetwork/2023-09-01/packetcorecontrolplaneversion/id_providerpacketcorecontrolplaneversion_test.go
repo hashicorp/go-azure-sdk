@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ProviderPacketCoreControlPlaneVersionId{}
 
 func TestNewProviderPacketCoreControlPlaneVersionID(t *testing.T) {
-	id := NewProviderPacketCoreControlPlaneVersionID("12345678-1234-9876-4563-123456789012", "packetCoreControlPlaneVersionValue")
+	id := NewProviderPacketCoreControlPlaneVersionID("12345678-1234-9876-4563-123456789012", "versionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PacketCoreControlPlaneVersionName != "packetCoreControlPlaneVersionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneVersionName'", id.PacketCoreControlPlaneVersionName, "packetCoreControlPlaneVersionValue")
+	if id.PacketCoreControlPlaneVersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneVersionName'", id.PacketCoreControlPlaneVersionName, "versionName")
 	}
 }
 
 func TestFormatProviderPacketCoreControlPlaneVersionID(t *testing.T) {
-	actual := NewProviderPacketCoreControlPlaneVersionID("12345678-1234-9876-4563-123456789012", "packetCoreControlPlaneVersionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue"
+	actual := NewProviderPacketCoreControlPlaneVersionID("12345678-1234-9876-4563-123456789012", "versionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseProviderPacketCoreControlPlaneVersionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionName",
 			Expected: &ProviderPacketCoreControlPlaneVersionId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
-				PacketCoreControlPlaneVersionName: "packetCoreControlPlaneVersionValue",
+				PacketCoreControlPlaneVersionName: "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseProviderPacketCoreControlPlaneVersionIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionName",
 			Expected: &ProviderPacketCoreControlPlaneVersionId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
-				PacketCoreControlPlaneVersionName: "packetCoreControlPlaneVersionValue",
+				PacketCoreControlPlaneVersionName: "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/vErSiOnNaMe",
 			Expected: &ProviderPacketCoreControlPlaneVersionId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
-				PacketCoreControlPlaneVersionName: "pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE",
+				PacketCoreControlPlaneVersionName: "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

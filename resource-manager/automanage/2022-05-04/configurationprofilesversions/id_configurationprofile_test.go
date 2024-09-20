@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConfigurationProfileId{}
 
 func TestNewConfigurationProfileID(t *testing.T) {
-	id := NewConfigurationProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationProfileValue")
+	id := NewConfigurationProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationProfileName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewConfigurationProfileID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConfigurationProfileName != "configurationProfileValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationProfileName'", id.ConfigurationProfileName, "configurationProfileValue")
+	if id.ConfigurationProfileName != "configurationProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationProfileName'", id.ConfigurationProfileName, "configurationProfileName")
 	}
 }
 
 func TestFormatConfigurationProfileID(t *testing.T) {
-	actual := NewConfigurationProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationProfileValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileValue"
+	actual := NewConfigurationProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationProfileName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseConfigurationProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileName",
 			Expected: &ConfigurationProfileId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ConfigurationProfileName: "configurationProfileValue",
+				ConfigurationProfileName: "configurationProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseConfigurationProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileName",
 			Expected: &ConfigurationProfileId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ConfigurationProfileName: "configurationProfileValue",
+				ConfigurationProfileName: "configurationProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AutoManage/configurationProfiles/configurationProfileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEs/cOnFiGuRaTiOnPrOfIlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEs/cOnFiGuRaTiOnPrOfIlEnAmE",
 			Expected: &ConfigurationProfileId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				ConfigurationProfileName: "cOnFiGuRaTiOnPrOfIlEvAlUe",
+				ConfigurationProfileName: "cOnFiGuRaTiOnPrOfIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEs/cOnFiGuRaTiOnPrOfIlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEs/cOnFiGuRaTiOnPrOfIlEnAmE/extra",
 			Error: true,
 		},
 	}

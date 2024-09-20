@@ -50,7 +50,7 @@ func ParseMigrationRecoveryPointID(input string) (*MigrationRecoveryPointId, err
 	}
 
 	id := MigrationRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseMigrationRecoveryPointIDInsensitively(input string) (*MigrationRecover
 	}
 
 	id := MigrationRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -139,15 +139,15 @@ func (id MigrationRecoveryPointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "fabricName"),
 		resourceids.StaticSegment("staticReplicationProtectionContainers", "replicationProtectionContainers", "replicationProtectionContainers"),
-		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "replicationProtectionContainerValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "protectionContainerName"),
 		resourceids.StaticSegment("staticReplicationMigrationItems", "replicationMigrationItems", "replicationMigrationItems"),
-		resourceids.UserSpecifiedSegment("replicationMigrationItemName", "replicationMigrationItemValue"),
+		resourceids.UserSpecifiedSegment("replicationMigrationItemName", "migrationItemName"),
 		resourceids.StaticSegment("staticMigrationRecoveryPoints", "migrationRecoveryPoints", "migrationRecoveryPoints"),
-		resourceids.UserSpecifiedSegment("migrationRecoveryPointName", "migrationRecoveryPointValue"),
+		resourceids.UserSpecifiedSegment("migrationRecoveryPointName", "migrationRecoveryPointName"),
 	}
 }
 

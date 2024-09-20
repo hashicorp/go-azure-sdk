@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &CapabilitySetId{}
 
 func TestNewCapabilitySetID(t *testing.T) {
-	id := NewCapabilitySetID("12345678-1234-9876-4563-123456789012", "locationValue", "capabilitySetValue")
+	id := NewCapabilitySetID("12345678-1234-9876-4563-123456789012", "locationName", "capabilitySetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.CapabilitySetName != "capabilitySetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CapabilitySetName'", id.CapabilitySetName, "capabilitySetValue")
+	if id.CapabilitySetName != "capabilitySetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CapabilitySetName'", id.CapabilitySetName, "capabilitySetName")
 	}
 }
 
 func TestFormatCapabilitySetID(t *testing.T) {
-	actual := NewCapabilitySetID("12345678-1234-9876-4563-123456789012", "locationValue", "capabilitySetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets/capabilitySetValue"
+	actual := NewCapabilitySetID("12345678-1234-9876-4563-123456789012", "locationName", "capabilitySetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets/capabilitySetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseCapabilitySetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets/capabilitySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets/capabilitySetName",
 			Expected: &CapabilitySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				CapabilitySetName: "capabilitySetValue",
+				LocationName:      "locationName",
+				CapabilitySetName: "capabilitySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets/capabilitySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets/capabilitySetName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseCapabilitySetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNvAlUe/cApAbIlItYsEtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNnAmE/cApAbIlItYsEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets/capabilitySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets/capabilitySetName",
 			Expected: &CapabilitySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				CapabilitySetName: "capabilitySetValue",
+				LocationName:      "locationName",
+				CapabilitySetName: "capabilitySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationValue/capabilitySets/capabilitySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforMySQL/locations/locationName/capabilitySets/capabilitySetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNvAlUe/cApAbIlItYsEtS/cApAbIlItYsEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNnAmE/cApAbIlItYsEtS/cApAbIlItYsEtNaMe",
 			Expected: &CapabilitySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "lOcAtIoNvAlUe",
-				CapabilitySetName: "cApAbIlItYsEtVaLuE",
+				LocationName:      "lOcAtIoNnAmE",
+				CapabilitySetName: "cApAbIlItYsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNvAlUe/cApAbIlItYsEtS/cApAbIlItYsEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/lOcAtIoNs/lOcAtIoNnAmE/cApAbIlItYsEtS/cApAbIlItYsEtNaMe/extra",
 			Error: true,
 		},
 	}

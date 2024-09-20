@@ -39,7 +39,7 @@ func (s *NotificationSetting) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]Webhook)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalWebhookImplementation(val)
+			impl, err := UnmarshalWebhookImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'WebHooks' for 'NotificationSetting': %+v", key, err)
 			}

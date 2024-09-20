@@ -45,7 +45,6 @@ func (c SharesClient) Get(ctx context.Context, id ShareId) (result GetOperationR
 
 	var model Share
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

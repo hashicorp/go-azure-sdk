@@ -42,7 +42,7 @@ func (s *RoutingRuleProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["routeConfiguration"]; ok {
-		impl, err := unmarshalRouteConfigurationImplementation(v)
+		impl, err := UnmarshalRouteConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RouteConfiguration' for 'RoutingRuleProperties': %+v", err)
 		}

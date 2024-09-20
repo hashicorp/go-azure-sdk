@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/users` Documentation
 
-The `users` SDK allows for interaction with the Azure Resource Manager Service `databoxedge` (API Version `2022-03-01`).
+The `users` SDK allows for interaction with Azure Resource Manager `databoxedge` (API Version `2022-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue", "userValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "name")
 
 payload := users.User{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue", "userValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "name")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue", "userValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "name")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := users.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 // alternatively `client.ListByDataBoxEdgeDevice(ctx, id, users.DefaultListByDataBoxEdgeDeviceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDataBoxEdgeDeviceComplete(ctx, id, users.DefaultListByDataBoxEdgeDeviceOperationOptions())

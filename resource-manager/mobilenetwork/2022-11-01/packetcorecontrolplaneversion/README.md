@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcorecontrolplaneversion` Documentation
 
-The `packetcorecontrolplaneversion` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2022-11-01`).
+The `packetcorecontrolplaneversion` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2022-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionID("packetCoreControlPlaneVersionValue")
+id := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionID("versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

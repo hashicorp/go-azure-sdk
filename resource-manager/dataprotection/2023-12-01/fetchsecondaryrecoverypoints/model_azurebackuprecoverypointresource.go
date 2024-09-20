@@ -38,7 +38,7 @@ func (s *AzureBackupRecoveryPointResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalAzureBackupRecoveryPointImplementation(v)
+		impl, err := UnmarshalAzureBackupRecoveryPointImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'AzureBackupRecoveryPointResource': %+v", err)
 		}

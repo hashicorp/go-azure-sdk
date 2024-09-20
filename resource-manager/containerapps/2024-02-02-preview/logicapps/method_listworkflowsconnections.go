@@ -46,7 +46,6 @@ func (c LogicAppsClient) ListWorkflowsConnections(ctx context.Context, id LogicA
 
 	var model WorkflowEnvelope
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

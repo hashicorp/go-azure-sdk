@@ -44,7 +44,7 @@ func ParseFavoriteID(input string) (*FavoriteId, error) {
 	}
 
 	id := FavoriteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFavoriteIDInsensitively(input string) (*FavoriteId, error) {
 	}
 
 	id := FavoriteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id FavoriteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticComponents", "components", "components"),
-		resourceids.UserSpecifiedSegment("componentName", "componentValue"),
+		resourceids.UserSpecifiedSegment("componentName", "resourceName"),
 		resourceids.StaticSegment("staticFavorites", "favorites", "favorites"),
-		resourceids.UserSpecifiedSegment("favoriteId", "favoriteIdValue"),
+		resourceids.UserSpecifiedSegment("favoriteId", "favoriteId"),
 	}
 }
 

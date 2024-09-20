@@ -45,7 +45,6 @@ func (c TagApiLinkClient) WorkspaceTagApiLinkGet(ctx context.Context, id TagApiL
 
 	var model TagApiLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

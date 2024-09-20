@@ -15,6 +15,14 @@ type FeatureValidationRequest struct {
 	FeatureType *FeatureType `json:"featureType,omitempty"`
 
 	// Fields inherited from FeatureValidationRequestBase
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s FeatureValidationRequest) FeatureValidationRequestBase() BaseFeatureValidationRequestBaseImpl {
+	return BaseFeatureValidationRequestBaseImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = FeatureValidationRequest{}
@@ -28,9 +36,10 @@ func (s FeatureValidationRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FeatureValidationRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "FeatureValidationRequest"
 
 	encoded, err = json.Marshal(decoded)

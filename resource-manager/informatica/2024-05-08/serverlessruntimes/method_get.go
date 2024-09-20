@@ -45,7 +45,6 @@ func (c ServerlessRuntimesClient) Get(ctx context.Context, id ServerlessRuntimeI
 
 	var model InformaticaServerlessRuntimeResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

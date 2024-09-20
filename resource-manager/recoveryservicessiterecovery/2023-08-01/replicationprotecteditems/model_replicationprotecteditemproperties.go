@@ -113,7 +113,7 @@ func (s *ReplicationProtectedItemProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalReplicationProviderSpecificSettingsImplementation(v)
+		impl, err := UnmarshalReplicationProviderSpecificSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ReplicationProtectedItemProperties': %+v", err)
 		}

@@ -15,7 +15,7 @@ type ContentKeyPoliciesClient struct {
 }
 
 func NewContentKeyPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentKeyPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "contentkeypolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "contentkeypolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContentKeyPoliciesClient: %+v", err)
 	}

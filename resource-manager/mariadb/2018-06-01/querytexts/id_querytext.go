@@ -44,7 +44,7 @@ func ParseQueryTextID(input string) (*QueryTextId, error) {
 	}
 
 	id := QueryTextId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseQueryTextIDInsensitively(input string) (*QueryTextId, error) {
 	}
 
 	id := QueryTextId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id QueryTextId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMariaDB", "Microsoft.DBforMariaDB", "Microsoft.DBforMariaDB"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticQueryTexts", "queryTexts", "queryTexts"),
-		resourceids.UserSpecifiedSegment("queryId", "queryIdValue"),
+		resourceids.UserSpecifiedSegment("queryId", "queryId"),
 	}
 }
 

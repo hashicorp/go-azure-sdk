@@ -15,7 +15,7 @@ type AuthorizationConfirmConsentCodeClient struct {
 }
 
 func NewAuthorizationConfirmConsentCodeClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationConfirmConsentCodeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "authorizationconfirmconsentcode", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationconfirmconsentcode", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AuthorizationConfirmConsentCodeClient: %+v", err)
 	}

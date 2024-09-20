@@ -45,7 +45,6 @@ func (c WorkflowRunOperationsClient) Get(ctx context.Context, id OperationId) (r
 
 	var model WorkflowRun
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

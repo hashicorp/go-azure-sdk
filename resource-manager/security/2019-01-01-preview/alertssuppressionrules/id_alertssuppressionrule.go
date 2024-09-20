@@ -40,7 +40,7 @@ func ParseAlertsSuppressionRuleID(input string) (*AlertsSuppressionRuleId, error
 	}
 
 	id := AlertsSuppressionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAlertsSuppressionRuleIDInsensitively(input string) (*AlertsSuppression
 	}
 
 	id := AlertsSuppressionRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id AlertsSuppressionRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticAlertsSuppressionRules", "alertsSuppressionRules", "alertsSuppressionRules"),
-		resourceids.UserSpecifiedSegment("alertsSuppressionRuleName", "alertsSuppressionRuleValue"),
+		resourceids.UserSpecifiedSegment("alertsSuppressionRuleName", "alertsSuppressionRuleName"),
 	}
 }
 

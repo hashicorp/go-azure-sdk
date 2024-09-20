@@ -15,7 +15,7 @@ type ComputeClient struct {
 }
 
 func NewComputeClientWithBaseURI(sdkApi sdkEnv.Api) (*ComputeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "compute", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "compute", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComputeClient: %+v", err)
 	}

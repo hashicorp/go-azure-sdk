@@ -50,7 +50,6 @@ func (c ArtifactsClient) GenerateArmTemplate(ctx context.Context, id ArtifactId,
 
 	var model ArmTemplateInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

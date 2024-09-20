@@ -45,7 +45,6 @@ func (c CaCertificatesClient) Get(ctx context.Context, id CaCertificateId) (resu
 
 	var model CaCertificate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

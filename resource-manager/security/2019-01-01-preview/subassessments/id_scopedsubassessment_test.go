@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ScopedSubAssessmentId{}
 
 func TestNewScopedSubAssessmentID(t *testing.T) {
-	id := NewScopedSubAssessmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assessmentValue", "subAssessmentValue")
+	id := NewScopedSubAssessmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assessmentName", "subAssessmentName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.AssessmentName != "assessmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssessmentName'", id.AssessmentName, "assessmentValue")
+	if id.AssessmentName != "assessmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssessmentName'", id.AssessmentName, "assessmentName")
 	}
 
-	if id.SubAssessmentName != "subAssessmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SubAssessmentName'", id.SubAssessmentName, "subAssessmentValue")
+	if id.SubAssessmentName != "subAssessmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubAssessmentName'", id.SubAssessmentName, "subAssessmentName")
 	}
 }
 
 func TestFormatScopedSubAssessmentID(t *testing.T) {
-	actual := NewScopedSubAssessmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assessmentValue", "subAssessmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments/subAssessmentValue"
+	actual := NewScopedSubAssessmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "assessmentName", "subAssessmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments/subAssessmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -68,26 +68,26 @@ func TestParseScopedSubAssessmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments/subAssessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments/subAssessmentName",
 			Expected: &ScopedSubAssessmentId{
 				Scope:             "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AssessmentName:    "assessmentValue",
-				SubAssessmentName: "subAssessmentValue",
+				AssessmentName:    "assessmentName",
+				SubAssessmentName: "subAssessmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments/subAssessmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments/subAssessmentName/extra",
 			Error: true,
 		},
 	}
@@ -174,50 +174,50 @@ func TestParseScopedSubAssessmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTvAlUe/sUbAsSeSsMeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTnAmE/sUbAsSeSsMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments/subAssessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments/subAssessmentName",
 			Expected: &ScopedSubAssessmentId{
 				Scope:             "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AssessmentName:    "assessmentValue",
-				SubAssessmentName: "subAssessmentValue",
+				AssessmentName:    "assessmentName",
+				SubAssessmentName: "subAssessmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentValue/subAssessments/subAssessmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Security/assessments/assessmentName/subAssessments/subAssessmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTvAlUe/sUbAsSeSsMeNtS/sUbAsSeSsMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTnAmE/sUbAsSeSsMeNtS/sUbAsSeSsMeNtNaMe",
 			Expected: &ScopedSubAssessmentId{
 				Scope:             "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				AssessmentName:    "aSsEsSmEnTvAlUe",
-				SubAssessmentName: "sUbAsSeSsMeNtVaLuE",
+				AssessmentName:    "aSsEsSmEnTnAmE",
+				SubAssessmentName: "sUbAsSeSsMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTvAlUe/sUbAsSeSsMeNtS/sUbAsSeSsMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTs/aSsEsSmEnTnAmE/sUbAsSeSsMeNtS/sUbAsSeSsMeNtNaMe/extra",
 			Error: true,
 		},
 	}

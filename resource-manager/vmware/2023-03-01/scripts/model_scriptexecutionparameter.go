@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScriptExecutionParameter interface {
+	ScriptExecutionParameter() BaseScriptExecutionParameterImpl
 }
 
-// RawScriptExecutionParameterImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ScriptExecutionParameter = BaseScriptExecutionParameterImpl{}
+
+type BaseScriptExecutionParameterImpl struct {
+	Name string                       `json:"name"`
+	Type ScriptExecutionParameterType `json:"type"`
+}
+
+func (s BaseScriptExecutionParameterImpl) ScriptExecutionParameter() BaseScriptExecutionParameterImpl {
+	return s
+}
+
+var _ ScriptExecutionParameter = RawScriptExecutionParameterImpl{}
+
+// RawScriptExecutionParameterImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawScriptExecutionParameterImpl struct {
-	Type   string
-	Values map[string]interface{}
+	scriptExecutionParameter BaseScriptExecutionParameterImpl
+	Type                     string
+	Values                   map[string]interface{}
 }
 
-func unmarshalScriptExecutionParameterImplementation(input []byte) (ScriptExecutionParameter, error) {
+func (s RawScriptExecutionParameterImpl) ScriptExecutionParameter() BaseScriptExecutionParameterImpl {
+	return s.scriptExecutionParameter
+}
+
+func UnmarshalScriptExecutionParameterImplementation(input []byte) (ScriptExecutionParameter, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +78,15 @@ func unmarshalScriptExecutionParameterImplementation(input []byte) (ScriptExecut
 		return out, nil
 	}
 
-	out := RawScriptExecutionParameterImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseScriptExecutionParameterImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScriptExecutionParameterImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawScriptExecutionParameterImpl{
+		scriptExecutionParameter: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
 
 }

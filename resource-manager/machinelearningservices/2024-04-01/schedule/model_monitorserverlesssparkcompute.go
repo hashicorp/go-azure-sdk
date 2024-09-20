@@ -16,6 +16,14 @@ type MonitorServerlessSparkCompute struct {
 	RuntimeVersion  string                     `json:"runtimeVersion"`
 
 	// Fields inherited from MonitorComputeConfigurationBase
+
+	ComputeType MonitorComputeType `json:"computeType"`
+}
+
+func (s MonitorServerlessSparkCompute) MonitorComputeConfigurationBase() BaseMonitorComputeConfigurationBaseImpl {
+	return BaseMonitorComputeConfigurationBaseImpl{
+		ComputeType: s.ComputeType,
+	}
 }
 
 var _ json.Marshaler = MonitorServerlessSparkCompute{}
@@ -29,9 +37,10 @@ func (s MonitorServerlessSparkCompute) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MonitorServerlessSparkCompute: %+v", err)
 	}
+
 	decoded["computeType"] = "ServerlessSpark"
 
 	encoded, err = json.Marshal(decoded)
@@ -51,6 +60,7 @@ func (s *MonitorServerlessSparkCompute) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into MonitorServerlessSparkCompute: %+v", err)
 	}
 
+	s.ComputeType = decoded.ComputeType
 	s.InstanceType = decoded.InstanceType
 	s.RuntimeVersion = decoded.RuntimeVersion
 
@@ -60,7 +70,7 @@ func (s *MonitorServerlessSparkCompute) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["computeIdentity"]; ok {
-		impl, err := unmarshalMonitorComputeIdentityBaseImplementation(v)
+		impl, err := UnmarshalMonitorComputeIdentityBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ComputeIdentity' for 'MonitorServerlessSparkCompute': %+v", err)
 		}

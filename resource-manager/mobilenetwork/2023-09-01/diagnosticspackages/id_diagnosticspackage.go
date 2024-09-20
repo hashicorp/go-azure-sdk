@@ -44,7 +44,7 @@ func ParseDiagnosticsPackageID(input string) (*DiagnosticsPackageId, error) {
 	}
 
 	id := DiagnosticsPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDiagnosticsPackageIDInsensitively(input string) (*DiagnosticsPackageId
 	}
 
 	id := DiagnosticsPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DiagnosticsPackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMobileNetwork", "Microsoft.MobileNetwork", "Microsoft.MobileNetwork"),
 		resourceids.StaticSegment("staticPacketCoreControlPlanes", "packetCoreControlPlanes", "packetCoreControlPlanes"),
-		resourceids.UserSpecifiedSegment("packetCoreControlPlaneName", "packetCoreControlPlaneValue"),
+		resourceids.UserSpecifiedSegment("packetCoreControlPlaneName", "packetCoreControlPlaneName"),
 		resourceids.StaticSegment("staticDiagnosticsPackages", "diagnosticsPackages", "diagnosticsPackages"),
-		resourceids.UserSpecifiedSegment("diagnosticsPackageName", "diagnosticsPackageValue"),
+		resourceids.UserSpecifiedSegment("diagnosticsPackageName", "diagnosticsPackageName"),
 	}
 }
 

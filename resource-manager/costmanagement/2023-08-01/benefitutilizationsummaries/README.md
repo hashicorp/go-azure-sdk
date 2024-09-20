@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitutilizationsummaries` Documentation
 
-The `benefitutilizationsummaries` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2023-08-01`).
+The `benefitutilizationsummaries` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummaries.NewBillingAccountID("billingAccountIdValue")
+id := benefitutilizationsummaries.NewBillingAccountID("billingAccountId")
 
 // alternatively `client.ListByBillingAccountId(ctx, id, benefitutilizationsummaries.DefaultListByBillingAccountIdOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountIdComplete(ctx, id, benefitutilizationsummaries.DefaultListByBillingAccountIdOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummaries.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := benefitutilizationsummaries.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 // alternatively `client.ListByBillingProfileId(ctx, id, benefitutilizationsummaries.DefaultListByBillingProfileIdOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileIdComplete(ctx, id, benefitutilizationsummaries.DefaultListByBillingProfileIdOperationOptions())
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummaries.NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue")
+id := benefitutilizationsummaries.NewSavingsPlanID("savingsPlanOrderId", "savingsPlanId")
 
 // alternatively `client.ListBySavingsPlanId(ctx, id, benefitutilizationsummaries.DefaultListBySavingsPlanIdOperationOptions())` can be used to do batched pagination
 items, err := client.ListBySavingsPlanIdComplete(ctx, id, benefitutilizationsummaries.DefaultListBySavingsPlanIdOperationOptions())
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummaries.NewSavingsPlanOrderID("savingsPlanOrderIdValue")
+id := benefitutilizationsummaries.NewSavingsPlanOrderID("savingsPlanOrderId")
 
 // alternatively `client.ListBySavingsPlanOrder(ctx, id, benefitutilizationsummaries.DefaultListBySavingsPlanOrderOperationOptions())` can be used to do batched pagination
 items, err := client.ListBySavingsPlanOrderComplete(ctx, id, benefitutilizationsummaries.DefaultListBySavingsPlanOrderOperationOptions())

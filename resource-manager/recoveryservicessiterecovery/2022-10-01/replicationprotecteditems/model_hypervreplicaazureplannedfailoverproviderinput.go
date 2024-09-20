@@ -16,6 +16,14 @@ type HyperVReplicaAzurePlannedFailoverProviderInput struct {
 	SecondaryKekCertificatePfx *string `json:"secondaryKekCertificatePfx,omitempty"`
 
 	// Fields inherited from PlannedFailoverProviderSpecificFailoverInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s HyperVReplicaAzurePlannedFailoverProviderInput) PlannedFailoverProviderSpecificFailoverInput() BasePlannedFailoverProviderSpecificFailoverInputImpl {
+	return BasePlannedFailoverProviderSpecificFailoverInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = HyperVReplicaAzurePlannedFailoverProviderInput{}
@@ -29,9 +37,10 @@ func (s HyperVReplicaAzurePlannedFailoverProviderInput) MarshalJSON() ([]byte, e
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling HyperVReplicaAzurePlannedFailoverProviderInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "HyperVReplicaAzure"
 
 	encoded, err = json.Marshal(decoded)

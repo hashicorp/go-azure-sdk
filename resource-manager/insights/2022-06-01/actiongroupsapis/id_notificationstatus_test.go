@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &NotificationStatusId{}
 
 func TestNewNotificationStatusID(t *testing.T) {
-	id := NewNotificationStatusID("12345678-1234-9876-4563-123456789012", "notificationIdValue")
+	id := NewNotificationStatusID("12345678-1234-9876-4563-123456789012", "notificationId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.NotificationId != "notificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationIdValue")
+	if id.NotificationId != "notificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationId")
 	}
 }
 
 func TestFormatNotificationStatusID(t *testing.T) {
-	actual := NewNotificationStatusID("12345678-1234-9876-4563-123456789012", "notificationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationIdValue"
+	actual := NewNotificationStatusID("12345678-1234-9876-4563-123456789012", "notificationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseNotificationStatusID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationId",
 			Expected: &NotificationStatusId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				NotificationId: "notificationIdValue",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationId/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseNotificationStatusIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationId",
 			Expected: &NotificationStatusId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				NotificationId: "notificationIdValue",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/notificationStatus/notificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/nOtIfIcAtIoNsTaTuS/nOtIfIcAtIoNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/nOtIfIcAtIoNsTaTuS/nOtIfIcAtIoNiD",
 			Expected: &NotificationStatusId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				NotificationId: "nOtIfIcAtIoNiDvAlUe",
+				NotificationId: "nOtIfIcAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/nOtIfIcAtIoNsTaTuS/nOtIfIcAtIoNiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/nOtIfIcAtIoNsTaTuS/nOtIfIcAtIoNiD/extra",
 			Error: true,
 		},
 	}

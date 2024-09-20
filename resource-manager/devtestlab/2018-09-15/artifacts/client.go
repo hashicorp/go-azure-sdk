@@ -15,7 +15,7 @@ type ArtifactsClient struct {
 }
 
 func NewArtifactsClientWithBaseURI(sdkApi sdkEnv.Api) (*ArtifactsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "artifacts", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "artifacts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ArtifactsClient: %+v", err)
 	}

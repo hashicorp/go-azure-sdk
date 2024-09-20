@@ -40,7 +40,7 @@ func ParseCostAllocationRuleID(input string) (*CostAllocationRuleId, error) {
 	}
 
 	id := CostAllocationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseCostAllocationRuleIDInsensitively(input string) (*CostAllocationRuleId
 	}
 
 	id := CostAllocationRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,11 +105,11 @@ func (id CostAllocationRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountIdValue"),
+		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountId"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCostManagement", "Microsoft.CostManagement", "Microsoft.CostManagement"),
 		resourceids.StaticSegment("staticCostAllocationRules", "costAllocationRules", "costAllocationRules"),
-		resourceids.UserSpecifiedSegment("costAllocationRuleName", "costAllocationRuleValue"),
+		resourceids.UserSpecifiedSegment("costAllocationRuleName", "ruleName"),
 	}
 }
 

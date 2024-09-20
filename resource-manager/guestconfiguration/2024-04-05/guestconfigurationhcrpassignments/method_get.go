@@ -45,7 +45,6 @@ func (c GuestConfigurationHCRPAssignmentsClient) Get(ctx context.Context, id Pro
 
 	var model GuestConfigurationAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -35,6 +35,7 @@ func (o WorkspaceGlobalSchemaDeleteOperationOptions) ToHeaders() *client.Headers
 
 func (o WorkspaceGlobalSchemaDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

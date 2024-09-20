@@ -45,7 +45,6 @@ func (c VirtualMachineExtensionImagesClient) Get(ctx context.Context, id Version
 
 	var model VirtualMachineExtensionImage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

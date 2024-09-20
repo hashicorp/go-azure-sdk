@@ -16,7 +16,7 @@ import (
 type DataProtectionCheckFeatureSupportOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *FeatureValidationResponseBase
+	Model        FeatureValidationResponseBase
 }
 
 // DataProtectionCheckFeatureSupport ...
@@ -53,11 +53,11 @@ func (c DppFeatureSupportClient) DataProtectionCheckFeatureSupport(ctx context.C
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalFeatureValidationResponseBaseImplementation(respObj)
+	model, err := UnmarshalFeatureValidationResponseBaseImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

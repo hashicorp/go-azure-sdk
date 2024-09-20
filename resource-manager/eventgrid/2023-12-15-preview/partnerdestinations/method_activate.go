@@ -46,7 +46,6 @@ func (c PartnerDestinationsClient) Activate(ctx context.Context, id PartnerDesti
 
 	var model PartnerDestination
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

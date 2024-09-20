@@ -14,6 +14,14 @@ type VMwareCbtResyncInput struct {
 	SkipCbtReset string `json:"skipCbtReset"`
 
 	// Fields inherited from ResyncProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtResyncInput) ResyncProviderSpecificInput() BaseResyncProviderSpecificInputImpl {
+	return BaseResyncProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtResyncInput{}
@@ -27,9 +35,10 @@ func (s VMwareCbtResyncInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtResyncInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

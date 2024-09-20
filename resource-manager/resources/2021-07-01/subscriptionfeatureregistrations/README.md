@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2021-07-01/subscriptionfeatureregistrations` Documentation
 
-The `subscriptionfeatureregistrations` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2021-07-01`).
+The `subscriptionfeatureregistrations` SDK allows for interaction with Azure Resource Manager `resources` (API Version `2021-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderValue", "subscriptionFeatureRegistrationValue")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
 
 payload := subscriptionfeatureregistrations.SubscriptionFeatureRegistration{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderValue", "subscriptionFeatureRegistrationValue")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderValue", "subscriptionFeatureRegistrationValue")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewFeatureProviderID("12345678-1234-9876-4563-123456789012", "featureProviderValue")
+id := subscriptionfeatureregistrations.NewFeatureProviderID("12345678-1234-9876-4563-123456789012", "providerNamespace")
 
 // alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id)

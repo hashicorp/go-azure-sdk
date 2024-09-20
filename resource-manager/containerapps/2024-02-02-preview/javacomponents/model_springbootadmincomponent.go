@@ -14,9 +14,20 @@ type SpringBootAdminComponent struct {
 	Ingress *JavaComponentIngress `json:"ingress,omitempty"`
 
 	// Fields inherited from JavaComponentProperties
+
+	ComponentType     JavaComponentType                     `json:"componentType"`
 	Configurations    *[]JavaComponentConfigurationProperty `json:"configurations,omitempty"`
 	ProvisioningState *JavaComponentProvisioningState       `json:"provisioningState,omitempty"`
 	ServiceBinds      *[]JavaComponentServiceBind           `json:"serviceBinds,omitempty"`
+}
+
+func (s SpringBootAdminComponent) JavaComponentProperties() BaseJavaComponentPropertiesImpl {
+	return BaseJavaComponentPropertiesImpl{
+		ComponentType:     s.ComponentType,
+		Configurations:    s.Configurations,
+		ProvisioningState: s.ProvisioningState,
+		ServiceBinds:      s.ServiceBinds,
+	}
 }
 
 var _ json.Marshaler = SpringBootAdminComponent{}
@@ -30,9 +41,10 @@ func (s SpringBootAdminComponent) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SpringBootAdminComponent: %+v", err)
 	}
+
 	decoded["componentType"] = "SpringBootAdmin"
 
 	encoded, err = json.Marshal(decoded)

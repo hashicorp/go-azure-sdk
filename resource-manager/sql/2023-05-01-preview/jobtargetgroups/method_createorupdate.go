@@ -50,7 +50,6 @@ func (c JobTargetGroupsClient) CreateOrUpdate(ctx context.Context, id TargetGrou
 
 	var model JobTargetGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

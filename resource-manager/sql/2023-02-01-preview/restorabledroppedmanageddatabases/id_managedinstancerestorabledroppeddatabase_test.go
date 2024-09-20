@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ManagedInstanceRestorableDroppedDatabaseId{}
 
 func TestNewManagedInstanceRestorableDroppedDatabaseID(t *testing.T) {
-	id := NewManagedInstanceRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "restorableDroppedDatabaseIdValue")
+	id := NewManagedInstanceRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "restorableDroppedDatabaseId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewManagedInstanceRestorableDroppedDatabaseID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedInstanceName != "managedInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceValue")
+	if id.ManagedInstanceName != "managedInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.RestorableDroppedDatabaseId != "restorableDroppedDatabaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedDatabaseId'", id.RestorableDroppedDatabaseId, "restorableDroppedDatabaseIdValue")
+	if id.RestorableDroppedDatabaseId != "restorableDroppedDatabaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedDatabaseId'", id.RestorableDroppedDatabaseId, "restorableDroppedDatabaseId")
 	}
 }
 
 func TestFormatManagedInstanceRestorableDroppedDatabaseID(t *testing.T) {
-	actual := NewManagedInstanceRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "restorableDroppedDatabaseIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue"
+	actual := NewManagedInstanceRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "restorableDroppedDatabaseId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases/restorableDroppedDatabaseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseManagedInstanceRestorableDroppedDatabaseID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases/restorableDroppedDatabaseId",
 			Expected: &ManagedInstanceRestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ManagedInstanceName:         "managedInstanceValue",
-				RestorableDroppedDatabaseId: "restorableDroppedDatabaseIdValue",
+				ManagedInstanceName:         "managedInstanceName",
+				RestorableDroppedDatabaseId: "restorableDroppedDatabaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases/restorableDroppedDatabaseId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseManagedInstanceRestorableDroppedDatabaseIDInsensitively(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/rEsToRaBlEdRoPpEdDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/rEsToRaBlEdRoPpEdDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases/restorableDroppedDatabaseId",
 			Expected: &ManagedInstanceRestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ManagedInstanceName:         "managedInstanceValue",
-				RestorableDroppedDatabaseId: "restorableDroppedDatabaseIdValue",
+				ManagedInstanceName:         "managedInstanceName",
+				RestorableDroppedDatabaseId: "restorableDroppedDatabaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/restorableDroppedDatabases/restorableDroppedDatabaseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeId",
 			Expected: &ManagedInstanceRestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedInstanceName:         "mAnAgEdInStAnCeVaLuE",
-				RestorableDroppedDatabaseId: "rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE",
+				ManagedInstanceName:         "mAnAgEdInStAnCeNaMe",
+				RestorableDroppedDatabaseId: "rEsToRaBlEdRoPpEdDaTaBaSeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeId/extra",
 			Error: true,
 		},
 	}

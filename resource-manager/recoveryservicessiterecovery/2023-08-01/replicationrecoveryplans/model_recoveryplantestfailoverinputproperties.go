@@ -41,7 +41,7 @@ func (s *RecoveryPlanTestFailoverInputProperties) UnmarshalJSON(bytes []byte) er
 
 		output := make([]RecoveryPlanProviderSpecificFailoverInput, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRecoveryPlanProviderSpecificFailoverInputImplementation(val)
+			impl, err := UnmarshalRecoveryPlanProviderSpecificFailoverInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ProviderSpecificDetails' for 'RecoveryPlanTestFailoverInputProperties': %+v", i, err)
 			}

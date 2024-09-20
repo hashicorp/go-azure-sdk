@@ -18,6 +18,14 @@ type JobInputClip struct {
 	Start            ClipTime           `json:"start"`
 
 	// Fields inherited from JobInput
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s JobInputClip) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = JobInputClip{}
@@ -31,9 +39,10 @@ func (s JobInputClip) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobInputClip: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.JobInputClip"
 
 	encoded, err = json.Marshal(decoded)
@@ -55,6 +64,7 @@ func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
 
 	s.Files = decoded.Files
 	s.Label = decoded.Label
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -62,7 +72,7 @@ func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["end"]; ok {
-		impl, err := unmarshalClipTimeImplementation(v)
+		impl, err := UnmarshalClipTimeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'End' for 'JobInputClip': %+v", err)
 		}
@@ -77,7 +87,7 @@ func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]InputDefinition, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalInputDefinitionImplementation(val)
+			impl, err := UnmarshalInputDefinitionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'InputDefinitions' for 'JobInputClip': %+v", i, err)
 			}
@@ -87,7 +97,7 @@ func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["start"]; ok {
-		impl, err := unmarshalClipTimeImplementation(v)
+		impl, err := UnmarshalClipTimeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Start' for 'JobInputClip': %+v", err)
 		}

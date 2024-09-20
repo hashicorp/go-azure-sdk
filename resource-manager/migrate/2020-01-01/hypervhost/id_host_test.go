@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HostId{}
 
 func TestNewHostID(t *testing.T) {
-	id := NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue", "hostValue")
+	id := NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "hostName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHostID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.HyperVSiteName != "hyperVSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HyperVSiteName'", id.HyperVSiteName, "hyperVSiteValue")
+	if id.HyperVSiteName != "siteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HyperVSiteName'", id.HyperVSiteName, "siteName")
 	}
 
-	if id.HostName != "hostValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HostName'", id.HostName, "hostValue")
+	if id.HostName != "hostName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HostName'", id.HostName, "hostName")
 	}
 }
 
 func TestFormatHostID(t *testing.T) {
-	actual := NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue", "hostValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts/hostValue"
+	actual := NewHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "hostName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts/hostName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHostID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts/hostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts/hostName",
 			Expected: &HostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HyperVSiteName:    "hyperVSiteValue",
-				HostName:          "hostValue",
+				HyperVSiteName:    "siteName",
+				HostName:          "hostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts/hostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts/hostName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHostIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEvAlUe/hOsTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/hOsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts/hostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts/hostName",
 			Expected: &HostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HyperVSiteName:    "hyperVSiteValue",
-				HostName:          "hostValue",
+				HyperVSiteName:    "siteName",
+				HostName:          "hostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteValue/hosts/hostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/hosts/hostName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEvAlUe/hOsTs/hOsTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/hOsTs/hOsTnAmE",
 			Expected: &HostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				HyperVSiteName:    "hYpErVsItEvAlUe",
-				HostName:          "hOsTvAlUe",
+				HyperVSiteName:    "sItEnAmE",
+				HostName:          "hOsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEvAlUe/hOsTs/hOsTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/hOsTs/hOsTnAmE/extra",
 			Error: true,
 		},
 	}

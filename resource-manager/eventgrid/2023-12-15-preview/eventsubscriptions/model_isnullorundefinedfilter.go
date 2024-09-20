@@ -13,7 +13,16 @@ var _ Filter = IsNullOrUndefinedFilter{}
 type IsNullOrUndefinedFilter struct {
 
 	// Fields inherited from Filter
-	Key *string `json:"key,omitempty"`
+
+	Key          *string            `json:"key,omitempty"`
+	OperatorType FilterOperatorType `json:"operatorType"`
+}
+
+func (s IsNullOrUndefinedFilter) Filter() BaseFilterImpl {
+	return BaseFilterImpl{
+		Key:          s.Key,
+		OperatorType: s.OperatorType,
+	}
 }
 
 var _ json.Marshaler = IsNullOrUndefinedFilter{}
@@ -27,9 +36,10 @@ func (s IsNullOrUndefinedFilter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IsNullOrUndefinedFilter: %+v", err)
 	}
+
 	decoded["operatorType"] = "IsNullOrUndefined"
 
 	encoded, err = json.Marshal(decoded)

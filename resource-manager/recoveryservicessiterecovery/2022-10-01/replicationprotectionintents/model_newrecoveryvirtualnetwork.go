@@ -15,6 +15,14 @@ type NewRecoveryVirtualNetwork struct {
 	RecoveryVirtualNetworkResourceGroupName *string `json:"recoveryVirtualNetworkResourceGroupName,omitempty"`
 
 	// Fields inherited from RecoveryVirtualNetworkCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s NewRecoveryVirtualNetwork) RecoveryVirtualNetworkCustomDetails() BaseRecoveryVirtualNetworkCustomDetailsImpl {
+	return BaseRecoveryVirtualNetworkCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = NewRecoveryVirtualNetwork{}
@@ -28,9 +36,10 @@ func (s NewRecoveryVirtualNetwork) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NewRecoveryVirtualNetwork: %+v", err)
 	}
+
 	decoded["resourceType"] = "New"
 
 	encoded, err = json.Marshal(decoded)

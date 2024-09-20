@@ -18,6 +18,14 @@ type ManagedIdentityCredential struct {
 	UserManagedIdentityTenantId    *string `json:"userManagedIdentityTenantId,omitempty"`
 
 	// Fields inherited from DataReferenceCredential
+
+	CredentialType DataReferenceCredentialType `json:"credentialType"`
+}
+
+func (s ManagedIdentityCredential) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return BaseDataReferenceCredentialImpl{
+		CredentialType: s.CredentialType,
+	}
 }
 
 var _ json.Marshaler = ManagedIdentityCredential{}
@@ -31,9 +39,10 @@ func (s ManagedIdentityCredential) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedIdentityCredential: %+v", err)
 	}
+
 	decoded["credentialType"] = "ManagedIdentity"
 
 	encoded, err = json.Marshal(decoded)

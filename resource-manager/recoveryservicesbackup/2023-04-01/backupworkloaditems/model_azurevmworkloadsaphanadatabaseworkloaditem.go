@@ -18,10 +18,22 @@ type AzureVMWorkloadSAPHanaDatabaseWorkloadItem struct {
 	Subinquireditemcount *int64  `json:"subinquireditemcount,omitempty"`
 
 	// Fields inherited from WorkloadItem
+
 	BackupManagementType *string           `json:"backupManagementType,omitempty"`
 	FriendlyName         *string           `json:"friendlyName,omitempty"`
 	ProtectionState      *ProtectionStatus `json:"protectionState,omitempty"`
+	WorkloadItemType     string            `json:"workloadItemType"`
 	WorkloadType         *string           `json:"workloadType,omitempty"`
+}
+
+func (s AzureVMWorkloadSAPHanaDatabaseWorkloadItem) WorkloadItem() BaseWorkloadItemImpl {
+	return BaseWorkloadItemImpl{
+		BackupManagementType: s.BackupManagementType,
+		FriendlyName:         s.FriendlyName,
+		ProtectionState:      s.ProtectionState,
+		WorkloadItemType:     s.WorkloadItemType,
+		WorkloadType:         s.WorkloadType,
+	}
 }
 
 var _ json.Marshaler = AzureVMWorkloadSAPHanaDatabaseWorkloadItem{}
@@ -35,9 +47,10 @@ func (s AzureVMWorkloadSAPHanaDatabaseWorkloadItem) MarshalJSON() ([]byte, error
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureVMWorkloadSAPHanaDatabaseWorkloadItem: %+v", err)
 	}
+
 	decoded["workloadItemType"] = "SAPHanaDatabase"
 
 	encoded, err = json.Marshal(decoded)

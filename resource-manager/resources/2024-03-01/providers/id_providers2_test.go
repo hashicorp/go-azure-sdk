@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &Providers2Id{}
 
 func TestNewProviders2ID(t *testing.T) {
-	id := NewProviders2ID("groupIdValue", "providerValue")
+	id := NewProviders2ID("groupId", "resourceProviderNamespace")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ProviderName != "providerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
+	if id.ProviderName != "resourceProviderNamespace" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "resourceProviderNamespace")
 	}
 }
 
 func TestFormatProviders2ID(t *testing.T) {
-	actual := NewProviders2ID("groupIdValue", "providerValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue"
+	actual := NewProviders2ID("groupId", "resourceProviderNamespace").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/groupId/providers/resourceProviderNamespace"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseProviders2ID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/resourceProviderNamespace",
 			Expected: &Providers2Id{
-				GroupId:      "groupIdValue",
-				ProviderName: "providerValue",
+				GroupId:      "groupId",
+				ProviderName: "resourceProviderNamespace",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/resourceProviderNamespace/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseProviders2IDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/resourceProviderNamespace",
 			Expected: &Providers2Id{
-				GroupId:      "groupIdValue",
-				ProviderName: "providerValue",
+				GroupId:      "groupId",
+				ProviderName: "resourceProviderNamespace",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/resourceProviderNamespace/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/pRoViDeRvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe",
 			Expected: &Providers2Id{
-				GroupId:      "gRoUpIdVaLuE",
-				ProviderName: "pRoViDeRvAlUe",
+				GroupId:      "gRoUpId",
+				ProviderName: "rEsOuRcEpRoViDeRnAmEsPaCe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/pRoViDeRvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/extra",
 			Error: true,
 		},
 	}

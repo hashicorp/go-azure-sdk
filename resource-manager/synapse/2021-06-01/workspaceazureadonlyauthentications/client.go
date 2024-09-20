@@ -15,7 +15,7 @@ type WorkspaceAzureADOnlyAuthenticationsClient struct {
 }
 
 func NewWorkspaceAzureADOnlyAuthenticationsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceAzureADOnlyAuthenticationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspaceazureadonlyauthentications", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspaceazureadonlyauthentications", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceAzureADOnlyAuthenticationsClient: %+v", err)
 	}

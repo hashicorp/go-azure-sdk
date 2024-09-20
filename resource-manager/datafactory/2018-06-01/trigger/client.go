@@ -15,7 +15,7 @@ type TriggerClient struct {
 }
 
 func NewTriggerClientWithBaseURI(sdkApi sdkEnv.Api) (*TriggerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "trigger", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "trigger", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TriggerClient: %+v", err)
 	}

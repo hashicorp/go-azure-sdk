@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BareMetalMachineId{}
 
 func TestNewBareMetalMachineID(t *testing.T) {
-	id := NewBareMetalMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bareMetalMachineValue")
+	id := NewBareMetalMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bareMetalMachineName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewBareMetalMachineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BareMetalMachineName != "bareMetalMachineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BareMetalMachineName'", id.BareMetalMachineName, "bareMetalMachineValue")
+	if id.BareMetalMachineName != "bareMetalMachineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BareMetalMachineName'", id.BareMetalMachineName, "bareMetalMachineName")
 	}
 }
 
 func TestFormatBareMetalMachineID(t *testing.T) {
-	actual := NewBareMetalMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bareMetalMachineValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineValue"
+	actual := NewBareMetalMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bareMetalMachineName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseBareMetalMachineID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineName",
 			Expected: &BareMetalMachineId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				BareMetalMachineName: "bareMetalMachineValue",
+				BareMetalMachineName: "bareMetalMachineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseBareMetalMachineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineName",
 			Expected: &BareMetalMachineId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				BareMetalMachineName: "bareMetalMachineValue",
+				BareMetalMachineName: "bareMetalMachineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/bareMetalMachines/bareMetalMachineName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/bArEmEtAlMaChInEs/bArEmEtAlMaChInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/bArEmEtAlMaChInEs/bArEmEtAlMaChInEnAmE",
 			Expected: &BareMetalMachineId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				BareMetalMachineName: "bArEmEtAlMaChInEvAlUe",
+				BareMetalMachineName: "bArEmEtAlMaChInEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/bArEmEtAlMaChInEs/bArEmEtAlMaChInEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/bArEmEtAlMaChInEs/bArEmEtAlMaChInEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type JobInput interface {
+	JobInput() BaseJobInputImpl
 }
 
-// RawJobInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ JobInput = BaseJobInputImpl{}
+
+type BaseJobInputImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseJobInputImpl) JobInput() BaseJobInputImpl {
+	return s
+}
+
+var _ JobInput = RawJobInputImpl{}
+
+// RawJobInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawJobInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	jobInput BaseJobInputImpl
+	Type     string
+	Values   map[string]interface{}
 }
 
-func unmarshalJobInputImplementation(input []byte) (JobInput, error) {
+func (s RawJobInputImpl) JobInput() BaseJobInputImpl {
+	return s.jobInput
+}
+
+func UnmarshalJobInputImplementation(input []byte) (JobInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +93,15 @@ func unmarshalJobInputImplementation(input []byte) (JobInput, error) {
 		return out, nil
 	}
 
-	out := RawJobInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseJobInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawJobInputImpl{
+		jobInput: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
 
 }

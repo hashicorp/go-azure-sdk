@@ -15,7 +15,7 @@ type DataVersionRegistryClient struct {
 }
 
 func NewDataVersionRegistryClientWithBaseURI(sdkApi sdkEnv.Api) (*DataVersionRegistryClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataversionregistry", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataversionregistry", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataVersionRegistryClient: %+v", err)
 	}

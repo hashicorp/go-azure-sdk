@@ -39,6 +39,7 @@ func (o ListAtManagementGroupScopeOperationOptions) ToHeaders() *client.Headers 
 
 func (o ListAtManagementGroupScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

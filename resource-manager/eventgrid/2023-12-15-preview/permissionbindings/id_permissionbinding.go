@@ -44,7 +44,7 @@ func ParsePermissionBindingID(input string) (*PermissionBindingId, error) {
 	}
 
 	id := PermissionBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePermissionBindingIDInsensitively(input string) (*PermissionBindingId, 
 	}
 
 	id := PermissionBindingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PermissionBindingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftEventGrid", "Microsoft.EventGrid", "Microsoft.EventGrid"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
-		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
+		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticPermissionBindings", "permissionBindings", "permissionBindings"),
-		resourceids.UserSpecifiedSegment("permissionBindingName", "permissionBindingValue"),
+		resourceids.UserSpecifiedSegment("permissionBindingName", "permissionBindingName"),
 	}
 }
 

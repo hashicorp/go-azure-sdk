@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SimPolicyId{}
 
 func TestNewSimPolicyID(t *testing.T) {
-	id := NewSimPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "simPolicyValue")
+	id := NewSimPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "simPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSimPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MobileNetworkName != "mobileNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkValue")
+	if id.MobileNetworkName != "mobileNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkName")
 	}
 
-	if id.SimPolicyName != "simPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SimPolicyName'", id.SimPolicyName, "simPolicyValue")
+	if id.SimPolicyName != "simPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SimPolicyName'", id.SimPolicyName, "simPolicyName")
 	}
 }
 
 func TestFormatSimPolicyID(t *testing.T) {
-	actual := NewSimPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "simPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies/simPolicyValue"
+	actual := NewSimPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "simPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies/simPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSimPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies/simPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies/simPolicyName",
 			Expected: &SimPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				SimPolicyName:     "simPolicyValue",
+				MobileNetworkName: "mobileNetworkName",
+				SimPolicyName:     "simPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies/simPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies/simPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSimPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sImPoLiCiEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sImPoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies/simPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies/simPolicyName",
 			Expected: &SimPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				SimPolicyName:     "simPolicyValue",
+				MobileNetworkName: "mobileNetworkName",
+				SimPolicyName:     "simPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/simPolicies/simPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/simPolicies/simPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sImPoLiCiEs/sImPoLiCyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sImPoLiCiEs/sImPoLiCyNaMe",
 			Expected: &SimPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MobileNetworkName: "mObIlEnEtWoRkVaLuE",
-				SimPolicyName:     "sImPoLiCyVaLuE",
+				MobileNetworkName: "mObIlEnEtWoRkNaMe",
+				SimPolicyName:     "sImPoLiCyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/sImPoLiCiEs/sImPoLiCyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/sImPoLiCiEs/sImPoLiCyNaMe/extra",
 			Error: true,
 		},
 	}

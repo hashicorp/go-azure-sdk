@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/logger` Documentation
 
-The `logger` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `logger` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "loggerIdValue")
+id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "loggerId")
 
 payload := logger.LoggerContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "loggerIdValue")
+id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "loggerId")
 
 read, err := client.Delete(ctx, id, logger.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "loggerIdValue")
+id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "loggerId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "loggerIdValue")
+id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "loggerId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := logger.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id, logger.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, logger.DefaultListByServiceOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "loggerIdValue")
+id := logger.NewLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "loggerId")
 
 payload := logger.LoggerUpdateContract{
 	// ...
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "loggerIdValue")
+id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "loggerId")
 
 payload := logger.LoggerContract{
 	// ...
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "loggerIdValue")
+id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "loggerId")
 
 read, err := client.WorkspaceLoggerDelete(ctx, id, logger.DefaultWorkspaceLoggerDeleteOperationOptions())
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "loggerIdValue")
+id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "loggerId")
 
 read, err := client.WorkspaceLoggerGet(ctx, id)
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "loggerIdValue")
+id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "loggerId")
 
 read, err := client.WorkspaceLoggerGetEntityTag(ctx, id)
 if err != nil {
@@ -200,7 +200,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := logger.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceLoggerListByWorkspace(ctx, id, logger.DefaultWorkspaceLoggerListByWorkspaceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceLoggerListByWorkspaceComplete(ctx, id, logger.DefaultWorkspaceLoggerListByWorkspaceOperationOptions())
@@ -217,7 +217,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "loggerIdValue")
+id := logger.NewWorkspaceLoggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "loggerId")
 
 payload := logger.LoggerUpdateContract{
 	// ...

@@ -16,11 +16,24 @@ type ExpansionEntityQuery struct {
 	Properties *ExpansionEntityQueriesProperties `json:"properties,omitempty"`
 
 	// Fields inherited from EntityQuery
+
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
+	Kind       EntityQueryKind        `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s ExpansionEntityQuery) EntityQuery() BaseEntityQueryImpl {
+	return BaseEntityQueryImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ExpansionEntityQuery{}
@@ -34,9 +47,10 @@ func (s ExpansionEntityQuery) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExpansionEntityQuery: %+v", err)
 	}
+
 	decoded["kind"] = "Expansion"
 
 	encoded, err = json.Marshal(decoded)

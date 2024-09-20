@@ -45,7 +45,6 @@ func (c PrivateLinkResourceClient) GetByGroupId(ctx context.Context, id PrivateL
 
 	var model PrivateLinkResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

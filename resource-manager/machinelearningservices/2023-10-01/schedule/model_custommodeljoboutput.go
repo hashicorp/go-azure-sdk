@@ -15,7 +15,16 @@ type CustomModelJobOutput struct {
 	Uri  *string             `json:"uri,omitempty"`
 
 	// Fields inherited from JobOutput
-	Description *string `json:"description,omitempty"`
+
+	Description   *string       `json:"description,omitempty"`
+	JobOutputType JobOutputType `json:"jobOutputType"`
+}
+
+func (s CustomModelJobOutput) JobOutput() BaseJobOutputImpl {
+	return BaseJobOutputImpl{
+		Description:   s.Description,
+		JobOutputType: s.JobOutputType,
+	}
 }
 
 var _ json.Marshaler = CustomModelJobOutput{}
@@ -29,9 +38,10 @@ func (s CustomModelJobOutput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomModelJobOutput: %+v", err)
 	}
+
 	decoded["jobOutputType"] = "custom_model"
 
 	encoded, err = json.Marshal(decoded)

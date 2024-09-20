@@ -13,9 +13,20 @@ var _ SsisObjectMetadata = SsisFolder{}
 type SsisFolder struct {
 
 	// Fields inherited from SsisObjectMetadata
-	Description *string `json:"description,omitempty"`
-	Id          *int64  `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	Description *string                `json:"description,omitempty"`
+	Id          *int64                 `json:"id,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Type        SsisObjectMetadataType `json:"type"`
+}
+
+func (s SsisFolder) SsisObjectMetadata() BaseSsisObjectMetadataImpl {
+	return BaseSsisObjectMetadataImpl{
+		Description: s.Description,
+		Id:          s.Id,
+		Name:        s.Name,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = SsisFolder{}
@@ -29,9 +40,10 @@ func (s SsisFolder) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SsisFolder: %+v", err)
 	}
+
 	decoded["type"] = "Folder"
 
 	encoded, err = json.Marshal(decoded)

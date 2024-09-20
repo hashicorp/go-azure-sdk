@@ -49,7 +49,6 @@ func (c SecurityConnectorsClient) Update(ctx context.Context, id SecurityConnect
 
 	var model SecurityConnector
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

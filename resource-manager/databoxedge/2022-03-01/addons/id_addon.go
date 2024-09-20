@@ -46,7 +46,7 @@ func ParseAddonID(input string) (*AddonId, error) {
 	}
 
 	id := AddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAddonIDInsensitively(input string) (*AddonId, error) {
 	}
 
 	id := AddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id AddonId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceValue"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticRoles", "roles", "roles"),
-		resourceids.UserSpecifiedSegment("roleName", "roleValue"),
+		resourceids.UserSpecifiedSegment("roleName", "roleName"),
 		resourceids.StaticSegment("staticAddons", "addons", "addons"),
-		resourceids.UserSpecifiedSegment("addonName", "addonValue"),
+		resourceids.UserSpecifiedSegment("addonName", "addonName"),
 	}
 }
 

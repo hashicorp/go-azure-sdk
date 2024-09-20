@@ -35,6 +35,7 @@ func (o WorkspacePolicyFragmentDeleteOperationOptions) ToHeaders() *client.Heade
 
 func (o WorkspacePolicyFragmentDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

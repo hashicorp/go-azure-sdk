@@ -9,18 +9,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackupStoreDetails interface {
+	BackupStoreDetails() BaseBackupStoreDetailsImpl
 }
 
-// RawBackupStoreDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ BackupStoreDetails = BaseBackupStoreDetailsImpl{}
+
+type BaseBackupStoreDetailsImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseBackupStoreDetailsImpl) BackupStoreDetails() BaseBackupStoreDetailsImpl {
+	return s
+}
+
+var _ BackupStoreDetails = RawBackupStoreDetailsImpl{}
+
+// RawBackupStoreDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawBackupStoreDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	backupStoreDetails BaseBackupStoreDetailsImpl
+	Type               string
+	Values             map[string]interface{}
 }
 
-func unmarshalBackupStoreDetailsImplementation(input []byte) (BackupStoreDetails, error) {
+func (s RawBackupStoreDetailsImpl) BackupStoreDetails() BaseBackupStoreDetailsImpl {
+	return s.backupStoreDetails
+}
+
+func UnmarshalBackupStoreDetailsImplementation(input []byte) (BackupStoreDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -35,10 +52,15 @@ func unmarshalBackupStoreDetailsImplementation(input []byte) (BackupStoreDetails
 		return nil, nil
 	}
 
-	out := RawBackupStoreDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseBackupStoreDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBackupStoreDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawBackupStoreDetailsImpl{
+		backupStoreDetails: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
 
 }

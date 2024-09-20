@@ -49,7 +49,6 @@ func (c AutoscaleAPIsClient) AutoscaleSettingsUpdate(ctx context.Context, id Aut
 
 	var model AutoscaleSettingResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

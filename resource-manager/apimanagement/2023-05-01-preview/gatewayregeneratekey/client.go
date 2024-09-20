@@ -15,7 +15,7 @@ type GatewayRegenerateKeyClient struct {
 }
 
 func NewGatewayRegenerateKeyClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayRegenerateKeyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewayregeneratekey", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewayregeneratekey", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayRegenerateKeyClient: %+v", err)
 	}

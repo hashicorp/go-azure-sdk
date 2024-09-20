@@ -15,7 +15,7 @@ type ServerConfigurationOptionsClient struct {
 }
 
 func NewServerConfigurationOptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerConfigurationOptionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverconfigurationoptions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverconfigurationoptions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerConfigurationOptionsClient: %+v", err)
 	}

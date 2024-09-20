@@ -36,7 +36,7 @@ func (s *IntegrationRuntimeResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalIntegrationRuntimeImplementation(v)
+		impl, err := UnmarshalIntegrationRuntimeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'IntegrationRuntimeResource': %+v", err)
 		}

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &QuotaLimitId{}
 
 func TestNewQuotaLimitID(t *testing.T) {
-	id := NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaLimitValue")
+	id := NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "location", "quotaLimitName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.QuotaLimitName != "quotaLimitValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'QuotaLimitName'", id.QuotaLimitName, "quotaLimitValue")
+	if id.QuotaLimitName != "quotaLimitName" {
+		t.Fatalf("Expected %q but got %q for Segment 'QuotaLimitName'", id.QuotaLimitName, "quotaLimitName")
 	}
 }
 
 func TestFormatQuotaLimitID(t *testing.T) {
-	actual := NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaLimitValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue"
+	actual := NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "location", "quotaLimitName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits/quotaLimitName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseQuotaLimitID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits/quotaLimitName",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				QuotaLimitName: "quotaLimitValue",
+				LocationName:   "location",
+				QuotaLimitName: "quotaLimitName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits/quotaLimitName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseQuotaLimitIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaLiMiTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoN/qUoTaLiMiTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits/quotaLimitName",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				QuotaLimitName: "quotaLimitValue",
+				LocationName:   "location",
+				QuotaLimitName: "quotaLimitName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/location/quotaLimits/quotaLimitName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaLiMiTs/qUoTaLiMiTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoN/qUoTaLiMiTs/qUoTaLiMiTnAmE",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				QuotaLimitName: "qUoTaLiMiTvAlUe",
+				LocationName:   "lOcAtIoN",
+				QuotaLimitName: "qUoTaLiMiTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaLiMiTs/qUoTaLiMiTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoN/qUoTaLiMiTs/qUoTaLiMiTnAmE/extra",
 			Error: true,
 		},
 	}

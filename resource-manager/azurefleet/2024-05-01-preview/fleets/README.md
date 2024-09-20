@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/azurefleet/2024-05-01-preview/fleets` Documentation
 
-The `fleets` SDK allows for interaction with the Azure Resource Manager Service `azurefleet` (API Version `2024-05-01-preview`).
+The `fleets` SDK allows for interaction with Azure Resource Manager `azurefleet` (API Version `2024-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 payload := fleets.Fleet{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 // alternatively `client.ListVirtualMachineScaleSets(ctx, id)` can be used to do batched pagination
 items, err := client.ListVirtualMachineScaleSetsComplete(ctx, id)
@@ -121,7 +121,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+id := fleets.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 payload := fleets.FleetUpdate{
 	// ...

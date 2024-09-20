@@ -38,7 +38,7 @@ func (s *Endpoint) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalEndpointBasePropertiesImplementation(v)
+		impl, err := UnmarshalEndpointBasePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'Endpoint': %+v", err)
 		}

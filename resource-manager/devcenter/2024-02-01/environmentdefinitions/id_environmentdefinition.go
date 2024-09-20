@@ -46,7 +46,7 @@ func ParseEnvironmentDefinitionID(input string) (*EnvironmentDefinitionId, error
 	}
 
 	id := EnvironmentDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseEnvironmentDefinitionIDInsensitively(input string) (*EnvironmentDefini
 	}
 
 	id := EnvironmentDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id EnvironmentDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevCenter", "Microsoft.DevCenter", "Microsoft.DevCenter"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
-		resourceids.UserSpecifiedSegment("projectName", "projectValue"),
+		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 		resourceids.StaticSegment("staticCatalogs", "catalogs", "catalogs"),
-		resourceids.UserSpecifiedSegment("catalogName", "catalogValue"),
+		resourceids.UserSpecifiedSegment("catalogName", "catalogName"),
 		resourceids.StaticSegment("staticEnvironmentDefinitions", "environmentDefinitions", "environmentDefinitions"),
-		resourceids.UserSpecifiedSegment("environmentDefinitionName", "environmentDefinitionValue"),
+		resourceids.UserSpecifiedSegment("environmentDefinitionName", "environmentDefinitionName"),
 	}
 }
 

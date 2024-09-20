@@ -46,7 +46,6 @@ func (c ServiceFabricsClient) ListApplicableSchedules(ctx context.Context, id Se
 
 	var model ApplicableSchedule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

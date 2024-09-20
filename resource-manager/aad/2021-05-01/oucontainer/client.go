@@ -15,7 +15,7 @@ type OuContainerClient struct {
 }
 
 func NewOuContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*OuContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "oucontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "oucontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OuContainerClient: %+v", err)
 	}

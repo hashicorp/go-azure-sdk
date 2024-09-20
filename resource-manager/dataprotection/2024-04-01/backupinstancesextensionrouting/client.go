@@ -15,7 +15,7 @@ type BackupInstancesExtensionRoutingClient struct {
 }
 
 func NewBackupInstancesExtensionRoutingClientWithBaseURI(sdkApi sdkEnv.Api) (*BackupInstancesExtensionRoutingClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "backupinstancesextensionrouting", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "backupinstancesextensionrouting", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BackupInstancesExtensionRoutingClient: %+v", err)
 	}

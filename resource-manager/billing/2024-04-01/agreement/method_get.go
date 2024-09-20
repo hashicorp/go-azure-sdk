@@ -45,7 +45,6 @@ func (c AgreementClient) Get(ctx context.Context, id AgreementId) (result GetOpe
 
 	var model Agreement
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

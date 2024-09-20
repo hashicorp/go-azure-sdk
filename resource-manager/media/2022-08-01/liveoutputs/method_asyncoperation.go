@@ -45,7 +45,6 @@ func (c LiveOutputsClient) AsyncOperation(ctx context.Context, id LiveOutputOper
 
 	var model AsyncOperationResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

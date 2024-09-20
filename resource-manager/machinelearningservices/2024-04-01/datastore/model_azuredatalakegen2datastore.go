@@ -20,11 +20,24 @@ type AzureDataLakeGen2Datastore struct {
 	SubscriptionId                *string                        `json:"subscriptionId,omitempty"`
 
 	// Fields inherited from Datastore
-	Credentials DatastoreCredentials `json:"credentials"`
-	Description *string              `json:"description,omitempty"`
-	IsDefault   *bool                `json:"isDefault,omitempty"`
-	Properties  *map[string]string   `json:"properties,omitempty"`
-	Tags        *map[string]string   `json:"tags,omitempty"`
+
+	Credentials   DatastoreCredentials `json:"credentials"`
+	DatastoreType DatastoreType        `json:"datastoreType"`
+	Description   *string              `json:"description,omitempty"`
+	IsDefault     *bool                `json:"isDefault,omitempty"`
+	Properties    *map[string]string   `json:"properties,omitempty"`
+	Tags          *map[string]string   `json:"tags,omitempty"`
+}
+
+func (s AzureDataLakeGen2Datastore) Datastore() BaseDatastoreImpl {
+	return BaseDatastoreImpl{
+		Credentials:   s.Credentials,
+		DatastoreType: s.DatastoreType,
+		Description:   s.Description,
+		IsDefault:     s.IsDefault,
+		Properties:    s.Properties,
+		Tags:          s.Tags,
+	}
 }
 
 var _ json.Marshaler = AzureDataLakeGen2Datastore{}
@@ -38,9 +51,10 @@ func (s AzureDataLakeGen2Datastore) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureDataLakeGen2Datastore: %+v", err)
 	}
+
 	decoded["datastoreType"] = "AzureDataLakeGen2"
 
 	encoded, err = json.Marshal(decoded)
@@ -61,6 +75,7 @@ func (s *AzureDataLakeGen2Datastore) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.AccountName = decoded.AccountName
+	s.DatastoreType = decoded.DatastoreType
 	s.Description = decoded.Description
 	s.Endpoint = decoded.Endpoint
 	s.Filesystem = decoded.Filesystem
@@ -78,7 +93,7 @@ func (s *AzureDataLakeGen2Datastore) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["credentials"]; ok {
-		impl, err := unmarshalDatastoreCredentialsImplementation(v)
+		impl, err := UnmarshalDatastoreCredentialsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Credentials' for 'AzureDataLakeGen2Datastore': %+v", err)
 		}

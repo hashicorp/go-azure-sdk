@@ -15,7 +15,7 @@ type AssetsAndAssetFiltersClient struct {
 }
 
 func NewAssetsAndAssetFiltersClientWithBaseURI(sdkApi sdkEnv.Api) (*AssetsAndAssetFiltersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "assetsandassetfilters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "assetsandassetfilters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AssetsAndAssetFiltersClient: %+v", err)
 	}

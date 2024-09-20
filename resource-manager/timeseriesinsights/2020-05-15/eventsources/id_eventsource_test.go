@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EventSourceId{}
 
 func TestNewEventSourceID(t *testing.T) {
-	id := NewEventSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "eventSourceValue")
+	id := NewEventSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "eventSourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewEventSourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.EnvironmentName != "environmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentValue")
+	if id.EnvironmentName != "environmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentName")
 	}
 
-	if id.EventSourceName != "eventSourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventSourceName'", id.EventSourceName, "eventSourceValue")
+	if id.EventSourceName != "eventSourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventSourceName'", id.EventSourceName, "eventSourceName")
 	}
 }
 
 func TestFormatEventSourceID(t *testing.T) {
-	actual := NewEventSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "eventSourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources/eventSourceValue"
+	actual := NewEventSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "eventSourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources/eventSourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseEventSourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources/eventSourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources/eventSourceName",
 			Expected: &EventSourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				EventSourceName:   "eventSourceValue",
+				EnvironmentName:   "environmentName",
+				EventSourceName:   "eventSourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources/eventSourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources/eventSourceName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseEventSourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/eVeNtSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/eVeNtSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources/eventSourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources/eventSourceName",
 			Expected: &EventSourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				EventSourceName:   "eventSourceValue",
+				EnvironmentName:   "environmentName",
+				EventSourceName:   "eventSourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/eventSources/eventSourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/eventSources/eventSourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/eVeNtSoUrCeS/eVeNtSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/eVeNtSoUrCeS/eVeNtSoUrCeNaMe",
 			Expected: &EventSourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				EnvironmentName:   "eNvIrOnMeNtVaLuE",
-				EventSourceName:   "eVeNtSoUrCeVaLuE",
+				EnvironmentName:   "eNvIrOnMeNtNaMe",
+				EventSourceName:   "eVeNtSoUrCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/eVeNtSoUrCeS/eVeNtSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/eVeNtSoUrCeS/eVeNtSoUrCeNaMe/extra",
 			Error: true,
 		},
 	}

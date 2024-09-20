@@ -34,6 +34,7 @@ func (o ServiceTasksGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o ServiceTasksGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c GETClient) ServiceTasksGet(ctx context.Context, id ServiceTaskId, option
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

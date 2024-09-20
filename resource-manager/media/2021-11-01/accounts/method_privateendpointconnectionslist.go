@@ -46,7 +46,6 @@ func (c AccountsClient) PrivateEndpointConnectionsList(ctx context.Context, id M
 
 	var model PrivateEndpointConnectionListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

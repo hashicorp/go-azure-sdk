@@ -15,7 +15,7 @@ type IncrementalRestorePointsClient struct {
 }
 
 func NewIncrementalRestorePointsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncrementalRestorePointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "incrementalrestorepoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "incrementalrestorepoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IncrementalRestorePointsClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseGlobalReachConnectionID(input string) (*GlobalReachConnectionId, error
 	}
 
 	id := GlobalReachConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGlobalReachConnectionIDInsensitively(input string) (*GlobalReachConnec
 	}
 
 	id := GlobalReachConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id GlobalReachConnectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticGlobalReachConnections", "globalReachConnections", "globalReachConnections"),
-		resourceids.UserSpecifiedSegment("globalReachConnectionName", "globalReachConnectionValue"),
+		resourceids.UserSpecifiedSegment("globalReachConnectionName", "globalReachConnectionName"),
 	}
 }
 

@@ -13,7 +13,16 @@ var _ Format = ImageFormat{}
 type ImageFormat struct {
 
 	// Fields inherited from Format
+
 	FilenamePattern string `json:"filenamePattern"`
+	OdataType       string `json:"@odata.type"`
+}
+
+func (s ImageFormat) Format() BaseFormatImpl {
+	return BaseFormatImpl{
+		FilenamePattern: s.FilenamePattern,
+		OdataType:       s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ImageFormat{}
@@ -27,9 +36,10 @@ func (s ImageFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ImageFormat: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ImageFormat"
 
 	encoded, err = json.Marshal(decoded)

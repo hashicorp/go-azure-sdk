@@ -16,6 +16,14 @@ type PermissionsMissingDryrunPrerequisiteResult struct {
 	Scope           *string   `json:"scope,omitempty"`
 
 	// Fields inherited from DryrunPrerequisiteResult
+
+	Type DryrunPrerequisiteResultType `json:"type"`
+}
+
+func (s PermissionsMissingDryrunPrerequisiteResult) DryrunPrerequisiteResult() BaseDryrunPrerequisiteResultImpl {
+	return BaseDryrunPrerequisiteResultImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = PermissionsMissingDryrunPrerequisiteResult{}
@@ -29,9 +37,10 @@ func (s PermissionsMissingDryrunPrerequisiteResult) MarshalJSON() ([]byte, error
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PermissionsMissingDryrunPrerequisiteResult: %+v", err)
 	}
+
 	decoded["type"] = "permissionsMissing"
 
 	encoded, err = json.Marshal(decoded)

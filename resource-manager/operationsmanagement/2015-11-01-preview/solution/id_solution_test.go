@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SolutionId{}
 
 func TestNewSolutionID(t *testing.T) {
-	id := NewSolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "solutionValue")
+	id := NewSolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "solutionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSolutionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SolutionName != "solutionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SolutionName'", id.SolutionName, "solutionValue")
+	if id.SolutionName != "solutionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SolutionName'", id.SolutionName, "solutionName")
 	}
 }
 
 func TestFormatSolutionID(t *testing.T) {
-	actual := NewSolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "solutionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionValue"
+	actual := NewSolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "solutionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSolutionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionName",
 			Expected: &SolutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SolutionName:      "solutionValue",
+				SolutionName:      "solutionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSolutionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionName",
 			Expected: &SolutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SolutionName:      "solutionValue",
+				SolutionName:      "solutionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/solutions/solutionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/sOlUtIoNs/sOlUtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/sOlUtIoNs/sOlUtIoNnAmE",
 			Expected: &SolutionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SolutionName:      "sOlUtIoNvAlUe",
+				SolutionName:      "sOlUtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/sOlUtIoNs/sOlUtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/sOlUtIoNs/sOlUtIoNnAmE/extra",
 			Error: true,
 		},
 	}

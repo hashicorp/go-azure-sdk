@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ExternalSecuritySolution
+	Model        ExternalSecuritySolution
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c ExternalSecuritySolutionsClient) Get(ctx context.Context, id ExternalSec
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalExternalSecuritySolutionImplementation(respObj)
+	model, err := UnmarshalExternalSecuritySolutionImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

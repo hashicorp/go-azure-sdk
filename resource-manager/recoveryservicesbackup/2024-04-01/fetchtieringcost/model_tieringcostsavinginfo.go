@@ -17,6 +17,14 @@ type TieringCostSavingInfo struct {
 	TargetTierSizeIncreaseInBytes     int64   `json:"targetTierSizeIncreaseInBytes"`
 
 	// Fields inherited from TieringCostInfo
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s TieringCostSavingInfo) TieringCostInfo() BaseTieringCostInfoImpl {
+	return BaseTieringCostInfoImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = TieringCostSavingInfo{}
@@ -30,9 +38,10 @@ func (s TieringCostSavingInfo) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TieringCostSavingInfo: %+v", err)
 	}
+
 	decoded["objectType"] = "TieringCostSavingInfo"
 
 	encoded, err = json.Marshal(decoded)

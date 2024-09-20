@@ -46,7 +46,6 @@ func (c VirtualMachineExtensionImagesClient) ListTypes(ctx context.Context, id P
 
 	var model []VirtualMachineExtensionImage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

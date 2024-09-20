@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedBudgetId{}
 
 func TestNewScopedBudgetID(t *testing.T) {
-	id := NewScopedBudgetID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "budgetValue")
+	id := NewScopedBudgetID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "budgetName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.BudgetName != "budgetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BudgetName'", id.BudgetName, "budgetValue")
+	if id.BudgetName != "budgetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BudgetName'", id.BudgetName, "budgetName")
 	}
 }
 
 func TestFormatScopedBudgetID(t *testing.T) {
-	actual := NewScopedBudgetID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "budgetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetValue"
+	actual := NewScopedBudgetID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "budgetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedBudgetID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetName",
 			Expected: &ScopedBudgetId{
 				Scope:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BudgetName: "budgetValue",
+				BudgetName: "budgetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedBudgetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetName",
 			Expected: &ScopedBudgetId{
 				Scope:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BudgetName: "budgetValue",
+				BudgetName: "budgetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Consumption/budgets/budgetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOnSuMpTiOn/bUdGeTs/bUdGeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOnSuMpTiOn/bUdGeTs/bUdGeTnAmE",
 			Expected: &ScopedBudgetId{
 				Scope:      "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				BudgetName: "bUdGeTvAlUe",
+				BudgetName: "bUdGeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOnSuMpTiOn/bUdGeTs/bUdGeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOnSuMpTiOn/bUdGeTs/bUdGeTnAmE/extra",
 			Error: true,
 		},
 	}

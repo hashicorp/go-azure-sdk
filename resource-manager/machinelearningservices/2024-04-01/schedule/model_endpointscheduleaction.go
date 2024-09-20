@@ -14,6 +14,14 @@ type EndpointScheduleAction struct {
 	EndpointInvocationDefinition interface{} `json:"endpointInvocationDefinition"`
 
 	// Fields inherited from ScheduleActionBase
+
+	ActionType ScheduleActionType `json:"actionType"`
+}
+
+func (s EndpointScheduleAction) ScheduleActionBase() BaseScheduleActionBaseImpl {
+	return BaseScheduleActionBaseImpl{
+		ActionType: s.ActionType,
+	}
 }
 
 var _ json.Marshaler = EndpointScheduleAction{}
@@ -27,9 +35,10 @@ func (s EndpointScheduleAction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling EndpointScheduleAction: %+v", err)
 	}
+
 	decoded["actionType"] = "InvokeBatchEndpoint"
 
 	encoded, err = json.Marshal(decoded)

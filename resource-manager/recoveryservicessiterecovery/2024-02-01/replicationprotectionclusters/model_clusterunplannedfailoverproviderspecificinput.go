@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClusterUnplannedFailoverProviderSpecificInput interface {
+	ClusterUnplannedFailoverProviderSpecificInput() BaseClusterUnplannedFailoverProviderSpecificInputImpl
 }
 
-// RawClusterUnplannedFailoverProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ClusterUnplannedFailoverProviderSpecificInput = BaseClusterUnplannedFailoverProviderSpecificInputImpl{}
+
+type BaseClusterUnplannedFailoverProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseClusterUnplannedFailoverProviderSpecificInputImpl) ClusterUnplannedFailoverProviderSpecificInput() BaseClusterUnplannedFailoverProviderSpecificInputImpl {
+	return s
+}
+
+var _ ClusterUnplannedFailoverProviderSpecificInput = RawClusterUnplannedFailoverProviderSpecificInputImpl{}
+
+// RawClusterUnplannedFailoverProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawClusterUnplannedFailoverProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	clusterUnplannedFailoverProviderSpecificInput BaseClusterUnplannedFailoverProviderSpecificInputImpl
+	Type                                          string
+	Values                                        map[string]interface{}
 }
 
-func unmarshalClusterUnplannedFailoverProviderSpecificInputImplementation(input []byte) (ClusterUnplannedFailoverProviderSpecificInput, error) {
+func (s RawClusterUnplannedFailoverProviderSpecificInputImpl) ClusterUnplannedFailoverProviderSpecificInput() BaseClusterUnplannedFailoverProviderSpecificInputImpl {
+	return s.clusterUnplannedFailoverProviderSpecificInput
+}
+
+func UnmarshalClusterUnplannedFailoverProviderSpecificInputImplementation(input []byte) (ClusterUnplannedFailoverProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalClusterUnplannedFailoverProviderSpecificInputImplementation(input 
 		return out, nil
 	}
 
-	out := RawClusterUnplannedFailoverProviderSpecificInputImpl{
+	var parent BaseClusterUnplannedFailoverProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseClusterUnplannedFailoverProviderSpecificInputImpl: %+v", err)
+	}
+
+	return RawClusterUnplannedFailoverProviderSpecificInputImpl{
+		clusterUnplannedFailoverProviderSpecificInput: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

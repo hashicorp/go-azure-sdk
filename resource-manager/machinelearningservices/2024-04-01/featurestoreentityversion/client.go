@@ -15,7 +15,7 @@ type FeaturestoreEntityVersionClient struct {
 }
 
 func NewFeaturestoreEntityVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*FeaturestoreEntityVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "featurestoreentityversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "featurestoreentityversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FeaturestoreEntityVersionClient: %+v", err)
 	}

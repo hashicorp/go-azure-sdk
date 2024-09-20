@@ -44,7 +44,7 @@ func ParseScriptExecutionID(input string) (*ScriptExecutionId, error) {
 	}
 
 	id := ScriptExecutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseScriptExecutionIDInsensitively(input string) (*ScriptExecutionId, erro
 	}
 
 	id := ScriptExecutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ScriptExecutionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticScriptExecutions", "scriptExecutions", "scriptExecutions"),
-		resourceids.UserSpecifiedSegment("scriptExecutionName", "scriptExecutionValue"),
+		resourceids.UserSpecifiedSegment("scriptExecutionName", "scriptExecutionName"),
 	}
 }
 

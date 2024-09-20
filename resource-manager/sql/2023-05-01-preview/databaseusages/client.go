@@ -15,7 +15,7 @@ type DatabaseUsagesClient struct {
 }
 
 func NewDatabaseUsagesClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseUsagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseusages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseusages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseUsagesClient: %+v", err)
 	}

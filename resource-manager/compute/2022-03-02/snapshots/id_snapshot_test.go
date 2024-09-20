@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SnapshotId{}
 
 func TestNewSnapshotID(t *testing.T) {
-	id := NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "snapshotValue")
+	id := NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "snapshotName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSnapshotID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SnapshotName != "snapshotValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SnapshotName'", id.SnapshotName, "snapshotValue")
+	if id.SnapshotName != "snapshotName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SnapshotName'", id.SnapshotName, "snapshotName")
 	}
 }
 
 func TestFormatSnapshotID(t *testing.T) {
-	actual := NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "snapshotValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotValue"
+	actual := NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "snapshotName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSnapshotID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotName",
 			Expected: &SnapshotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SnapshotName:      "snapshotValue",
+				SnapshotName:      "snapshotName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSnapshotIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotName",
 			Expected: &SnapshotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SnapshotName:      "snapshotValue",
+				SnapshotName:      "snapshotName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/snapshots/snapshotName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sNaPsHoTs/sNaPsHoTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sNaPsHoTs/sNaPsHoTnAmE",
 			Expected: &SnapshotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SnapshotName:      "sNaPsHoTvAlUe",
+				SnapshotName:      "sNaPsHoTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sNaPsHoTs/sNaPsHoTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sNaPsHoTs/sNaPsHoTnAmE/extra",
 			Error: true,
 		},
 	}

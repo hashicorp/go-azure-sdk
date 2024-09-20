@@ -15,7 +15,7 @@ type ChangeDetectionClient struct {
 }
 
 func NewChangeDetectionClientWithBaseURI(sdkApi sdkEnv.Api) (*ChangeDetectionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "changedetection", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "changedetection", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ChangeDetectionClient: %+v", err)
 	}

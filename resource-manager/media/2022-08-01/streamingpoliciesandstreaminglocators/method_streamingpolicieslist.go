@@ -41,6 +41,7 @@ func (o StreamingPoliciesListOperationOptions) ToHeaders() *client.Headers {
 
 func (o StreamingPoliciesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -44,7 +44,7 @@ func ParseHybridIdentityMetadataID(input string) (*HybridIdentityMetadataId, err
 	}
 
 	id := HybridIdentityMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHybridIdentityMetadataIDInsensitively(input string) (*HybridIdentityMe
 	}
 
 	id := HybridIdentityMetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id HybridIdentityMetadataId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticMachines", "machines", "machines"),
-		resourceids.UserSpecifiedSegment("machineName", "machineValue"),
+		resourceids.UserSpecifiedSegment("machineName", "machineName"),
 		resourceids.StaticSegment("staticHybridIdentityMetadata", "hybridIdentityMetadata", "hybridIdentityMetadata"),
-		resourceids.UserSpecifiedSegment("hybridIdentityMetadataName", "hybridIdentityMetadataValue"),
+		resourceids.UserSpecifiedSegment("hybridIdentityMetadataName", "metadataName"),
 	}
 }
 

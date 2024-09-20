@@ -46,7 +46,6 @@ func (c NamespaceTopicsClient) ListSharedAccessKeys(ctx context.Context, id Name
 
 	var model TopicSharedAccessKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type OnlineDeploymentClient struct {
 }
 
 func NewOnlineDeploymentClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineDeploymentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "onlinedeployment", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "onlinedeployment", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OnlineDeploymentClient: %+v", err)
 	}

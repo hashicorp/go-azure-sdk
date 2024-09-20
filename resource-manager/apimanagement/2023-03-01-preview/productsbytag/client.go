@@ -15,7 +15,7 @@ type ProductsByTagClient struct {
 }
 
 func NewProductsByTagClientWithBaseURI(sdkApi sdkEnv.Api) (*ProductsByTagClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "productsbytag", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "productsbytag", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProductsByTagClient: %+v", err)
 	}

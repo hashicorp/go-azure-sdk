@@ -15,7 +15,7 @@ type MSIXPackageClient struct {
 }
 
 func NewMSIXPackageClientWithBaseURI(sdkApi sdkEnv.Api) (*MSIXPackageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "msixpackage", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "msixpackage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MSIXPackageClient: %+v", err)
 	}

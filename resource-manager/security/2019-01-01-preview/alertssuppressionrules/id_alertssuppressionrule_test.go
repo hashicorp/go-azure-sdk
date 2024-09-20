@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AlertsSuppressionRuleId{}
 
 func TestNewAlertsSuppressionRuleID(t *testing.T) {
-	id := NewAlertsSuppressionRuleID("12345678-1234-9876-4563-123456789012", "alertsSuppressionRuleValue")
+	id := NewAlertsSuppressionRuleID("12345678-1234-9876-4563-123456789012", "alertsSuppressionRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AlertsSuppressionRuleName != "alertsSuppressionRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertsSuppressionRuleName'", id.AlertsSuppressionRuleName, "alertsSuppressionRuleValue")
+	if id.AlertsSuppressionRuleName != "alertsSuppressionRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AlertsSuppressionRuleName'", id.AlertsSuppressionRuleName, "alertsSuppressionRuleName")
 	}
 }
 
 func TestFormatAlertsSuppressionRuleID(t *testing.T) {
-	actual := NewAlertsSuppressionRuleID("12345678-1234-9876-4563-123456789012", "alertsSuppressionRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleValue"
+	actual := NewAlertsSuppressionRuleID("12345678-1234-9876-4563-123456789012", "alertsSuppressionRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAlertsSuppressionRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleName",
 			Expected: &AlertsSuppressionRuleId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				AlertsSuppressionRuleName: "alertsSuppressionRuleValue",
+				AlertsSuppressionRuleName: "alertsSuppressionRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAlertsSuppressionRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleName",
 			Expected: &AlertsSuppressionRuleId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				AlertsSuppressionRuleName: "alertsSuppressionRuleValue",
+				AlertsSuppressionRuleName: "alertsSuppressionRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/alertsSuppressionRules/alertsSuppressionRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aLeRtSsUpPrEsSiOnRuLeS/aLeRtSsUpPrEsSiOnRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aLeRtSsUpPrEsSiOnRuLeS/aLeRtSsUpPrEsSiOnRuLeNaMe",
 			Expected: &AlertsSuppressionRuleId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				AlertsSuppressionRuleName: "aLeRtSsUpPrEsSiOnRuLeVaLuE",
+				AlertsSuppressionRuleName: "aLeRtSsUpPrEsSiOnRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aLeRtSsUpPrEsSiOnRuLeS/aLeRtSsUpPrEsSiOnRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/aLeRtSsUpPrEsSiOnRuLeS/aLeRtSsUpPrEsSiOnRuLeNaMe/extra",
 			Error: true,
 		},
 	}

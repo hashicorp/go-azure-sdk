@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2022-09-01/attestations` Documentation
 
-The `attestations` SDK allows for interaction with the Azure Resource Manager Service `policyinsights` (API Version `2022-09-01`).
+The `attestations` SDK allows for interaction with Azure Resource Manager `policyinsights` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
+id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationName")
 
 payload := attestations.Attestation{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateAtResourceThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
+id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationName")
 
 payload := attestations.Attestation{
 	// ...
@@ -59,7 +59,7 @@ if err := client.CreateOrUpdateAtResourceGroupThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
+id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationName")
 
 payload := attestations.Attestation{
 	// ...
@@ -76,7 +76,7 @@ if err := client.CreateOrUpdateAtSubscriptionThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
+id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationName")
 
 read, err := client.DeleteAtResource(ctx, id)
 if err != nil {
@@ -92,7 +92,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
+id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationName")
 
 read, err := client.DeleteAtResourceGroup(ctx, id)
 if err != nil {
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
+id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationName")
 
 read, err := client.DeleteAtSubscription(ctx, id)
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
+id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationName")
 
 read, err := client.GetAtResource(ctx, id)
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
+id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationName")
 
 read, err := client.GetAtResourceGroup(ctx, id)
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
+id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationName")
 
 read, err := client.GetAtSubscription(ctx, id)
 if err != nil {

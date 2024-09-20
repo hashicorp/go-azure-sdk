@@ -44,7 +44,7 @@ func ParseRegistryCodeID(input string) (*RegistryCodeId, error) {
 	}
 
 	id := RegistryCodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRegistryCodeIDInsensitively(input string) (*RegistryCodeId, error) {
 	}
 
 	id := RegistryCodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id RegistryCodeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticRegistries", "registries", "registries"),
-		resourceids.UserSpecifiedSegment("registryName", "registryValue"),
+		resourceids.UserSpecifiedSegment("registryName", "registryName"),
 		resourceids.StaticSegment("staticCodes", "codes", "codes"),
-		resourceids.UserSpecifiedSegment("codeName", "codeValue"),
+		resourceids.UserSpecifiedSegment("codeName", "codeName"),
 	}
 }
 

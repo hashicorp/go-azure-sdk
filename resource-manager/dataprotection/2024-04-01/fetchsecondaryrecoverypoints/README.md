@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/fetchsecondaryrecoverypoints` Documentation
 
-The `fetchsecondaryrecoverypoints` SDK allows for interaction with the Azure Resource Manager Service `dataprotection` (API Version `2024-04-01`).
+The `fetchsecondaryrecoverypoints` SDK allows for interaction with Azure Resource Manager `dataprotection` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := fetchsecondaryrecoverypoints.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue")
+id := fetchsecondaryrecoverypoints.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
 
 payload := fetchsecondaryrecoverypoints.FetchSecondaryRPsRequestParameters{
 	// ...

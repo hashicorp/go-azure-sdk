@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &RegulatoryComplianceControlId{}
 
 func TestNewRegulatoryComplianceControlID(t *testing.T) {
-	id := NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue")
+	id := NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.RegulatoryComplianceStandardName != "regulatoryComplianceStandardValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceStandardName'", id.RegulatoryComplianceStandardName, "regulatoryComplianceStandardValue")
+	if id.RegulatoryComplianceStandardName != "regulatoryComplianceStandardName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceStandardName'", id.RegulatoryComplianceStandardName, "regulatoryComplianceStandardName")
 	}
 
-	if id.RegulatoryComplianceControlName != "regulatoryComplianceControlValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceControlName'", id.RegulatoryComplianceControlName, "regulatoryComplianceControlValue")
+	if id.RegulatoryComplianceControlName != "regulatoryComplianceControlName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceControlName'", id.RegulatoryComplianceControlName, "regulatoryComplianceControlName")
 	}
 }
 
 func TestFormatRegulatoryComplianceControlID(t *testing.T) {
-	actual := NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue"
+	actual := NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseRegulatoryComplianceControlID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName",
 			Expected: &RegulatoryComplianceControlId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName: "regulatoryComplianceStandardValue",
-				RegulatoryComplianceControlName:  "regulatoryComplianceControlValue",
+				RegulatoryComplianceStandardName: "regulatoryComplianceStandardName",
+				RegulatoryComplianceControlName:  "regulatoryComplianceControlName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseRegulatoryComplianceControlIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName",
 			Expected: &RegulatoryComplianceControlId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName: "regulatoryComplianceStandardValue",
-				RegulatoryComplianceControlName:  "regulatoryComplianceControlValue",
+				RegulatoryComplianceStandardName: "regulatoryComplianceStandardName",
+				RegulatoryComplianceControlName:  "regulatoryComplianceControlName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe",
 			Expected: &RegulatoryComplianceControlId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName: "rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe",
-				RegulatoryComplianceControlName:  "rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE",
+				RegulatoryComplianceStandardName: "rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE",
+				RegulatoryComplianceControlName:  "rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe/extra",
 			Error: true,
 		},
 	}

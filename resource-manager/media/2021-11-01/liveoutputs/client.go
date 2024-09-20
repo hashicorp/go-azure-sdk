@@ -15,7 +15,7 @@ type LiveOutputsClient struct {
 }
 
 func NewLiveOutputsClientWithBaseURI(sdkApi sdkEnv.Api) (*LiveOutputsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "liveoutputs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "liveoutputs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LiveOutputsClient: %+v", err)
 	}

@@ -50,7 +50,6 @@ func (c BillingSubscriptionClient) ValidateMoveEligibility(ctx context.Context, 
 
 	var model MoveBillingSubscriptionEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

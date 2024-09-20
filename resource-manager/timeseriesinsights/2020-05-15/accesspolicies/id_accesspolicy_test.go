@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccessPolicyId{}
 
 func TestNewAccessPolicyID(t *testing.T) {
-	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "accessPolicyValue")
+	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "accessPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAccessPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.EnvironmentName != "environmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentValue")
+	if id.EnvironmentName != "environmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentName")
 	}
 
-	if id.AccessPolicyName != "accessPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPolicyName'", id.AccessPolicyName, "accessPolicyValue")
+	if id.AccessPolicyName != "accessPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPolicyName'", id.AccessPolicyName, "accessPolicyName")
 	}
 }
 
 func TestFormatAccessPolicyID(t *testing.T) {
-	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "accessPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies/accessPolicyValue"
+	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "accessPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies/accessPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAccessPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies/accessPolicyName",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				AccessPolicyName:  "accessPolicyValue",
+				EnvironmentName:   "environmentName",
+				AccessPolicyName:  "accessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies/accessPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAccessPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/aCcEsSpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/aCcEsSpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies/accessPolicyName",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				AccessPolicyName:  "accessPolicyValue",
+				EnvironmentName:   "environmentName",
+				AccessPolicyName:  "accessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/accessPolicies/accessPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/aCcEsSpOlIcIeS/aCcEsSpOlIcYnAmE",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				EnvironmentName:   "eNvIrOnMeNtVaLuE",
-				AccessPolicyName:  "aCcEsSpOlIcYvAlUe",
+				EnvironmentName:   "eNvIrOnMeNtNaMe",
+				AccessPolicyName:  "aCcEsSpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/aCcEsSpOlIcIeS/aCcEsSpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

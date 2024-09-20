@@ -58,7 +58,7 @@ func (s *GatewayProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["responseCacheProperties"]; ok {
-		impl, err := unmarshalGatewayResponseCachePropertiesImplementation(v)
+		impl, err := UnmarshalGatewayResponseCachePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ResponseCacheProperties' for 'GatewayProperties': %+v", err)
 		}

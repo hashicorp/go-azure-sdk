@@ -45,7 +45,6 @@ func (c ProductGroupLinkClient) Get(ctx context.Context, id GroupLinkId) (result
 
 	var model ProductGroupLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

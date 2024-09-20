@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Artifact interface {
+	Artifact() BaseArtifactImpl
 }
 
-// RawArtifactImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Artifact = BaseArtifactImpl{}
+
+type BaseArtifactImpl struct {
+	Id   *string      `json:"id,omitempty"`
+	Kind ArtifactKind `json:"kind"`
+	Name *string      `json:"name,omitempty"`
+	Type *string      `json:"type,omitempty"`
+}
+
+func (s BaseArtifactImpl) Artifact() BaseArtifactImpl {
+	return s
+}
+
+var _ Artifact = RawArtifactImpl{}
+
+// RawArtifactImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawArtifactImpl struct {
-	Type   string
-	Values map[string]interface{}
+	artifact BaseArtifactImpl
+	Type     string
+	Values   map[string]interface{}
 }
 
-func unmarshalArtifactImplementation(input []byte) (Artifact, error) {
+func (s RawArtifactImpl) Artifact() BaseArtifactImpl {
+	return s.artifact
+}
+
+func UnmarshalArtifactImplementation(input []byte) (Artifact, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +80,15 @@ func unmarshalArtifactImplementation(input []byte) (Artifact, error) {
 		return out, nil
 	}
 
-	out := RawArtifactImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseArtifactImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseArtifactImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawArtifactImpl{
+		artifact: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
 
 }

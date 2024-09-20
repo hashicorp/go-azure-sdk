@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/managedcertificates` Documentation
 
-The `managedcertificates` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `managedcertificates` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "managedCertificateValue")
+id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "managedCertificateName")
 
 payload := managedcertificates.ManagedCertificate{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "managedCertificateValue")
+id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "managedCertificateName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "managedCertificateValue")
+id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "managedCertificateName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedcertificates.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue")
+id := managedcertificates.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "managedCertificateValue")
+id := managedcertificates.NewManagedCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "managedCertificateName")
 
 payload := managedcertificates.ManagedCertificatePatch{
 	// ...

@@ -15,7 +15,7 @@ type PerformConnectivityCheckClient struct {
 }
 
 func NewPerformConnectivityCheckClientWithBaseURI(sdkApi sdkEnv.Api) (*PerformConnectivityCheckClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "performconnectivitycheck", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "performconnectivitycheck", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PerformConnectivityCheckClient: %+v", err)
 	}

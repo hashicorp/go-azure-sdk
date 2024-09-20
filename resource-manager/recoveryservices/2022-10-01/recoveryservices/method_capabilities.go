@@ -50,7 +50,6 @@ func (c RecoveryServicesClient) Capabilities(ctx context.Context, id LocationId,
 
 	var model CapabilitiesResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

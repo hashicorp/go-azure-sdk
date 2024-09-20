@@ -15,7 +15,7 @@ type ConsumerInvitationClient struct {
 }
 
 func NewConsumerInvitationClientWithBaseURI(sdkApi sdkEnv.Api) (*ConsumerInvitationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "consumerinvitation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "consumerinvitation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConsumerInvitationClient: %+v", err)
 	}

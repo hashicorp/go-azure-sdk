@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InventoryItemId{}
 
 func TestNewInventoryItemID(t *testing.T) {
-	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterValue", "inventoryItemValue")
+	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewInventoryItemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VCenterName != "vCenterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vCenterValue")
+	if id.VCenterName != "vcenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vcenterName")
 	}
 
-	if id.InventoryItemName != "inventoryItemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InventoryItemName'", id.InventoryItemName, "inventoryItemValue")
+	if id.InventoryItemName != "inventoryItemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InventoryItemName'", id.InventoryItemName, "inventoryItemName")
 	}
 }
 
 func TestFormatInventoryItemID(t *testing.T) {
-	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterValue", "inventoryItemValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems/inventoryItemValue"
+	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseInventoryItemID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems/inventoryItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vCenterValue",
-				InventoryItemName: "inventoryItemValue",
+				VCenterName:       "vcenterName",
+				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems/inventoryItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseInventoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErVaLuE/iNvEnToRyItEmS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErNaMe/iNvEnToRyItEmS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems/inventoryItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vCenterValue",
-				InventoryItemName: "inventoryItemValue",
+				VCenterName:       "vcenterName",
+				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterValue/inventoryItems/inventoryItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErVaLuE/iNvEnToRyItEmS/iNvEnToRyItEmVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmNaMe",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VCenterName:       "vCeNtErVaLuE",
-				InventoryItemName: "iNvEnToRyItEmVaLuE",
+				VCenterName:       "vCeNtErNaMe",
+				InventoryItemName: "iNvEnToRyItEmNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErVaLuE/iNvEnToRyItEmS/iNvEnToRyItEmVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vCeNtErS/vCeNtErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmNaMe/extra",
 			Error: true,
 		},
 	}

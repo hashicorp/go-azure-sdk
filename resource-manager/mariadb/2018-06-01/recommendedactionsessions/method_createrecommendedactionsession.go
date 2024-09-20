@@ -36,6 +36,7 @@ func (o CreateRecommendedActionSessionOperationOptions) ToHeaders() *client.Head
 
 func (o CreateRecommendedActionSessionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

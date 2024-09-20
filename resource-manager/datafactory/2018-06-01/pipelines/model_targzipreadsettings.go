@@ -14,6 +14,14 @@ type TarGZipReadSettings struct {
 	PreserveCompressionFileNameAsFolder *bool `json:"preserveCompressionFileNameAsFolder,omitempty"`
 
 	// Fields inherited from CompressionReadSettings
+
+	Type string `json:"type"`
+}
+
+func (s TarGZipReadSettings) CompressionReadSettings() BaseCompressionReadSettingsImpl {
+	return BaseCompressionReadSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TarGZipReadSettings{}
@@ -27,9 +35,10 @@ func (s TarGZipReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TarGZipReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "TarGZipReadSettings"
 
 	encoded, err = json.Marshal(decoded)

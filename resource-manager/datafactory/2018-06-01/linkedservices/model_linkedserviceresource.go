@@ -36,7 +36,7 @@ func (s *LinkedServiceResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalLinkedServiceImplementation(v)
+		impl, err := UnmarshalLinkedServiceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'LinkedServiceResource': %+v", err)
 		}

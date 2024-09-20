@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InstancePoolId{}
 
 func TestNewInstancePoolID(t *testing.T) {
-	id := NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolValue")
+	id := NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewInstancePoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.InstancePoolName != "instancePoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InstancePoolName'", id.InstancePoolName, "instancePoolValue")
+	if id.InstancePoolName != "instancePoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InstancePoolName'", id.InstancePoolName, "instancePoolName")
 	}
 }
 
 func TestFormatInstancePoolID(t *testing.T) {
-	actual := NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolValue"
+	actual := NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseInstancePoolID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolName",
 			Expected: &InstancePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				InstancePoolName:  "instancePoolValue",
+				InstancePoolName:  "instancePoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseInstancePoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolName",
 			Expected: &InstancePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				InstancePoolName:  "instancePoolValue",
+				InstancePoolName:  "instancePoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/instancePools/instancePoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/iNsTaNcEpOoLs/iNsTaNcEpOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/iNsTaNcEpOoLs/iNsTaNcEpOoLnAmE",
 			Expected: &InstancePoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				InstancePoolName:  "iNsTaNcEpOoLvAlUe",
+				InstancePoolName:  "iNsTaNcEpOoLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/iNsTaNcEpOoLs/iNsTaNcEpOoLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/iNsTaNcEpOoLs/iNsTaNcEpOoLnAmE/extra",
 			Error: true,
 		},
 	}

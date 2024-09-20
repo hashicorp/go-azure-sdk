@@ -46,7 +46,6 @@ func (c DeploymentStacksClient) ExportTemplateAtResourceGroup(ctx context.Contex
 
 	var model DeploymentStackTemplateDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

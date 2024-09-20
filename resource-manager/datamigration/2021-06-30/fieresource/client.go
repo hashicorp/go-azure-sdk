@@ -15,7 +15,7 @@ type FieResourceClient struct {
 }
 
 func NewFieResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*FieResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "fieresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "fieresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FieResourceClient: %+v", err)
 	}

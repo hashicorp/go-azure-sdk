@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClusterTestFailoverProviderSpecificInput interface {
+	ClusterTestFailoverProviderSpecificInput() BaseClusterTestFailoverProviderSpecificInputImpl
 }
 
-// RawClusterTestFailoverProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ClusterTestFailoverProviderSpecificInput = BaseClusterTestFailoverProviderSpecificInputImpl{}
+
+type BaseClusterTestFailoverProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseClusterTestFailoverProviderSpecificInputImpl) ClusterTestFailoverProviderSpecificInput() BaseClusterTestFailoverProviderSpecificInputImpl {
+	return s
+}
+
+var _ ClusterTestFailoverProviderSpecificInput = RawClusterTestFailoverProviderSpecificInputImpl{}
+
+// RawClusterTestFailoverProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawClusterTestFailoverProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	clusterTestFailoverProviderSpecificInput BaseClusterTestFailoverProviderSpecificInputImpl
+	Type                                     string
+	Values                                   map[string]interface{}
 }
 
-func unmarshalClusterTestFailoverProviderSpecificInputImplementation(input []byte) (ClusterTestFailoverProviderSpecificInput, error) {
+func (s RawClusterTestFailoverProviderSpecificInputImpl) ClusterTestFailoverProviderSpecificInput() BaseClusterTestFailoverProviderSpecificInputImpl {
+	return s.clusterTestFailoverProviderSpecificInput
+}
+
+func UnmarshalClusterTestFailoverProviderSpecificInputImplementation(input []byte) (ClusterTestFailoverProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalClusterTestFailoverProviderSpecificInputImplementation(input []byt
 		return out, nil
 	}
 
-	out := RawClusterTestFailoverProviderSpecificInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseClusterTestFailoverProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseClusterTestFailoverProviderSpecificInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawClusterTestFailoverProviderSpecificInputImpl{
+		clusterTestFailoverProviderSpecificInput: parent,
+		Type:                                     value,
+		Values:                                   temp,
+	}, nil
 
 }

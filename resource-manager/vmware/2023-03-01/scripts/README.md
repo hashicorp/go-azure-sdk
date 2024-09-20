@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2023-03-01/scripts` Documentation
 
-The `scripts` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2023-03-01`).
+The `scripts` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2023-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptPackageValue", "scriptCmdletValue")
+id := scripts.NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptPackageName", "scriptCmdletName")
 
 read, err := client.ScriptCmdletsGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptPackageValue")
+id := scripts.NewScriptPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptPackageName")
 
 // alternatively `client.ScriptCmdletsList(ctx, id)` can be used to do batched pagination
 items, err := client.ScriptCmdletsListComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptExecutionValue")
+id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptExecutionName")
 
 payload := scripts.ScriptExecution{
 	// ...
@@ -74,7 +74,7 @@ if err := client.ScriptExecutionsCreateOrUpdateThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptExecutionValue")
+id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptExecutionName")
 
 if err := client.ScriptExecutionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -86,7 +86,7 @@ if err := client.ScriptExecutionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptExecutionValue")
+id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptExecutionName")
 
 read, err := client.ScriptExecutionsGet(ctx, id)
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptExecutionValue")
+id := scripts.NewScriptExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptExecutionName")
 var payload []ScriptOutputStreamType
 
 read, err := client.ScriptExecutionsGetExecutionLogs(ctx, id, payload)
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := scripts.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.ScriptExecutionsList(ctx, id)` can be used to do batched pagination
 items, err := client.ScriptExecutionsListComplete(ctx, id)
@@ -136,7 +136,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewScriptPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptPackageValue")
+id := scripts.NewScriptPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptPackageName")
 
 read, err := client.ScriptPackagesGet(ctx, id)
 if err != nil {
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := scripts.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := scripts.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.ScriptPackagesList(ctx, id)` can be used to do batched pagination
 items, err := client.ScriptPackagesListComplete(ctx, id)

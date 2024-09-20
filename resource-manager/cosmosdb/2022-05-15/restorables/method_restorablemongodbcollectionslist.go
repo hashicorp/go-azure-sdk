@@ -34,6 +34,7 @@ func (o RestorableMongodbCollectionsListOperationOptions) ToHeaders() *client.He
 
 func (o RestorableMongodbCollectionsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c RestorablesClient) RestorableMongodbCollectionsList(ctx context.Context,
 
 	var model RestorableMongodbCollectionsListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

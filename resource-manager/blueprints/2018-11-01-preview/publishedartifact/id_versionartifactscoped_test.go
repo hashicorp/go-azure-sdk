@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &VersionArtifactScopedId{}
 
 func TestNewVersionArtifactScopedID(t *testing.T) {
-	id := NewVersionArtifactScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintValue", "versionIdValue", "artifactValue")
+	id := NewVersionArtifactScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintName", "versionId", "artifactName")
 
 	if id.ResourceScope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceScope'", id.ResourceScope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.BlueprintName != "blueprintValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BlueprintName'", id.BlueprintName, "blueprintValue")
+	if id.BlueprintName != "blueprintName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BlueprintName'", id.BlueprintName, "blueprintName")
 	}
 
-	if id.VersionId != "versionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionId'", id.VersionId, "versionIdValue")
+	if id.VersionId != "versionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionId'", id.VersionId, "versionId")
 	}
 
-	if id.ArtifactName != "artifactValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ArtifactName'", id.ArtifactName, "artifactValue")
+	if id.ArtifactName != "artifactName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ArtifactName'", id.ArtifactName, "artifactName")
 	}
 }
 
 func TestFormatVersionArtifactScopedID(t *testing.T) {
-	actual := NewVersionArtifactScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintValue", "versionIdValue", "artifactValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts/artifactValue"
+	actual := NewVersionArtifactScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "blueprintName", "versionId", "artifactName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts/artifactName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -72,37 +72,37 @@ func TestParseVersionArtifactScopedID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts/artifactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts/artifactName",
 			Expected: &VersionArtifactScopedId{
 				ResourceScope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BlueprintName: "blueprintValue",
-				VersionId:     "versionIdValue",
-				ArtifactName:  "artifactValue",
+				BlueprintName: "blueprintName",
+				VersionId:     "versionId",
+				ArtifactName:  "artifactName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts/artifactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts/artifactName/extra",
 			Error: true,
 		},
 	}
@@ -193,72 +193,72 @@ func TestParseVersionArtifactScopedIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE/vErSiOnS/vErSiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe/vErSiOnS/vErSiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE/vErSiOnS/vErSiOnIdVaLuE/aRtIfAcTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe/vErSiOnS/vErSiOnId/aRtIfAcTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts/artifactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts/artifactName",
 			Expected: &VersionArtifactScopedId{
 				ResourceScope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				BlueprintName: "blueprintValue",
-				VersionId:     "versionIdValue",
-				ArtifactName:  "artifactValue",
+				BlueprintName: "blueprintName",
+				VersionId:     "versionId",
+				ArtifactName:  "artifactName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintValue/versions/versionIdValue/artifacts/artifactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Blueprint/blueprints/blueprintName/versions/versionId/artifacts/artifactName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE/vErSiOnS/vErSiOnIdVaLuE/aRtIfAcTs/aRtIfAcTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe/vErSiOnS/vErSiOnId/aRtIfAcTs/aRtIfAcTnAmE",
 			Expected: &VersionArtifactScopedId{
 				ResourceScope: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				BlueprintName: "bLuEpRiNtVaLuE",
-				VersionId:     "vErSiOnIdVaLuE",
-				ArtifactName:  "aRtIfAcTvAlUe",
+				BlueprintName: "bLuEpRiNtNaMe",
+				VersionId:     "vErSiOnId",
+				ArtifactName:  "aRtIfAcTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtVaLuE/vErSiOnS/vErSiOnIdVaLuE/aRtIfAcTs/aRtIfAcTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.bLuEpRiNt/bLuEpRiNtS/bLuEpRiNtNaMe/vErSiOnS/vErSiOnId/aRtIfAcTs/aRtIfAcTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2022-01-10-preview/hybrididentitymetadata` Documentation
 
-The `hybrididentitymetadata` SDK allows for interaction with the Azure Resource Manager Service `connectedvmware` (API Version `2022-01-10-preview`).
+The `hybrididentitymetadata` SDK allows for interaction with Azure Resource Manager `connectedvmware` (API Version `2022-01-10-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "hybridIdentityMetadataValue")
+id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "metadataName")
 
 payload := hybrididentitymetadata.HybridIdentityMetadata{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "hybridIdentityMetadataValue")
+id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "metadataName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "hybridIdentityMetadataValue")
+id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "metadataName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue")
+id := hybrididentitymetadata.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
 
 // alternatively `client.ListByVM(ctx, id)` can be used to do batched pagination
 items, err := client.ListByVMComplete(ctx, id)

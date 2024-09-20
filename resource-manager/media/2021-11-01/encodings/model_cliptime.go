@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClipTime interface {
+	ClipTime() BaseClipTimeImpl
 }
 
-// RawClipTimeImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ClipTime = BaseClipTimeImpl{}
+
+type BaseClipTimeImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseClipTimeImpl) ClipTime() BaseClipTimeImpl {
+	return s
+}
+
+var _ ClipTime = RawClipTimeImpl{}
+
+// RawClipTimeImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawClipTimeImpl struct {
-	Type   string
-	Values map[string]interface{}
+	clipTime BaseClipTimeImpl
+	Type     string
+	Values   map[string]interface{}
 }
 
-func unmarshalClipTimeImplementation(input []byte) (ClipTime, error) {
+func (s RawClipTimeImpl) ClipTime() BaseClipTimeImpl {
+	return s.clipTime
+}
+
+func UnmarshalClipTimeImplementation(input []byte) (ClipTime, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalClipTimeImplementation(input []byte) (ClipTime, error) {
 		return out, nil
 	}
 
-	out := RawClipTimeImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseClipTimeImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseClipTimeImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawClipTimeImpl{
+		clipTime: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
 
 }

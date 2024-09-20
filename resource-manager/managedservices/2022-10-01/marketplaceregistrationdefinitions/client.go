@@ -15,7 +15,7 @@ type MarketplaceRegistrationDefinitionsClient struct {
 }
 
 func NewMarketplaceRegistrationDefinitionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MarketplaceRegistrationDefinitionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "marketplaceregistrationdefinitions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "marketplaceregistrationdefinitions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MarketplaceRegistrationDefinitionsClient: %+v", err)
 	}

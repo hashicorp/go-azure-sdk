@@ -42,6 +42,7 @@ func (o WorkspacePolicyFragmentListByServiceOperationOptions) ToHeaders() *clien
 
 func (o WorkspacePolicyFragmentListByServiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

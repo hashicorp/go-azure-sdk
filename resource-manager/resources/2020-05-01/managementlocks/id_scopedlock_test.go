@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedLockId{}
 
 func TestNewScopedLockID(t *testing.T) {
-	id := NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
+	id := NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.LockName != "lockValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LockName'", id.LockName, "lockValue")
+	if id.LockName != "lockName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LockName'", id.LockName, "lockName")
 	}
 }
 
 func TestFormatScopedLockID(t *testing.T) {
-	actual := NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockValue"
+	actual := NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedLockID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockName",
 			Expected: &ScopedLockId{
 				Scope:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				LockName: "lockValue",
+				LockName: "lockName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedLockIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockName",
 			Expected: &ScopedLockId{
 				Scope:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				LockName: "lockValue",
+				LockName: "lockName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/locks/lockName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKnAmE",
 			Expected: &ScopedLockId{
 				Scope:    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				LockName: "lOcKvAlUe",
+				LockName: "lOcKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKnAmE/extra",
 			Error: true,
 		},
 	}

@@ -49,7 +49,6 @@ func (c SubscriptionFeatureRegistrationsClient) CreateOrUpdate(ctx context.Conte
 
 	var model SubscriptionFeatureRegistration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

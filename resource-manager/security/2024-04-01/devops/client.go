@@ -15,7 +15,7 @@ type DevOpsClient struct {
 }
 
 func NewDevOpsClientWithBaseURI(sdkApi sdkEnv.Api) (*DevOpsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "devops", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "devops", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DevOpsClient: %+v", err)
 	}

@@ -45,7 +45,6 @@ func (c ApplyUpdatesClient) Get(ctx context.Context, id ScopedApplyUpdateId) (re
 
 	var model ApplyUpdate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

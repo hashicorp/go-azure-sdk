@@ -44,7 +44,7 @@ func ParseStreamingPolicyID(input string) (*StreamingPolicyId, error) {
 	}
 
 	id := StreamingPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStreamingPolicyIDInsensitively(input string) (*StreamingPolicyId, erro
 	}
 
 	id := StreamingPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StreamingPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticStreamingPolicies", "streamingPolicies", "streamingPolicies"),
-		resourceids.UserSpecifiedSegment("streamingPolicyName", "streamingPolicyValue"),
+		resourceids.UserSpecifiedSegment("streamingPolicyName", "streamingPolicyName"),
 	}
 }
 

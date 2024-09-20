@@ -15,7 +15,7 @@ type SubVolumesClient struct {
 }
 
 func NewSubVolumesClientWithBaseURI(sdkApi sdkEnv.Api) (*SubVolumesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "subvolumes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "subvolumes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubVolumesClient: %+v", err)
 	}

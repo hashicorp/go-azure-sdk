@@ -15,7 +15,7 @@ type BookmarksClient struct {
 }
 
 func NewBookmarksClientWithBaseURI(sdkApi sdkEnv.Api) (*BookmarksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "bookmarks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "bookmarks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BookmarksClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type TenantBackfillClient struct {
 }
 
 func NewTenantBackfillClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantBackfillClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tenantbackfill", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "tenantbackfill", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TenantBackfillClient: %+v", err)
 	}

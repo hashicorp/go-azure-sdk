@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryAvailabilitySetCustomDetails interface {
+	RecoveryAvailabilitySetCustomDetails() BaseRecoveryAvailabilitySetCustomDetailsImpl
 }
 
-// RawRecoveryAvailabilitySetCustomDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RecoveryAvailabilitySetCustomDetails = BaseRecoveryAvailabilitySetCustomDetailsImpl{}
+
+type BaseRecoveryAvailabilitySetCustomDetailsImpl struct {
+	ResourceType string `json:"resourceType"`
+}
+
+func (s BaseRecoveryAvailabilitySetCustomDetailsImpl) RecoveryAvailabilitySetCustomDetails() BaseRecoveryAvailabilitySetCustomDetailsImpl {
+	return s
+}
+
+var _ RecoveryAvailabilitySetCustomDetails = RawRecoveryAvailabilitySetCustomDetailsImpl{}
+
+// RawRecoveryAvailabilitySetCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRecoveryAvailabilitySetCustomDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	recoveryAvailabilitySetCustomDetails BaseRecoveryAvailabilitySetCustomDetailsImpl
+	Type                                 string
+	Values                               map[string]interface{}
 }
 
-func unmarshalRecoveryAvailabilitySetCustomDetailsImplementation(input []byte) (RecoveryAvailabilitySetCustomDetails, error) {
+func (s RawRecoveryAvailabilitySetCustomDetailsImpl) RecoveryAvailabilitySetCustomDetails() BaseRecoveryAvailabilitySetCustomDetailsImpl {
+	return s.recoveryAvailabilitySetCustomDetails
+}
+
+func UnmarshalRecoveryAvailabilitySetCustomDetailsImplementation(input []byte) (RecoveryAvailabilitySetCustomDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalRecoveryAvailabilitySetCustomDetailsImplementation(input []byte) (
 		return out, nil
 	}
 
-	out := RawRecoveryAvailabilitySetCustomDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRecoveryAvailabilitySetCustomDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryAvailabilitySetCustomDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRecoveryAvailabilitySetCustomDetailsImpl{
+		recoveryAvailabilitySetCustomDetails: parent,
+		Type:                                 value,
+		Values:                               temp,
+	}, nil
 
 }

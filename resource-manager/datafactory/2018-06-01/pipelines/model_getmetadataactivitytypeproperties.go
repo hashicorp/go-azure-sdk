@@ -33,7 +33,7 @@ func (s *GetMetadataActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["formatSettings"]; ok {
-		impl, err := unmarshalFormatReadSettingsImplementation(v)
+		impl, err := UnmarshalFormatReadSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'FormatSettings' for 'GetMetadataActivityTypeProperties': %+v", err)
 		}
@@ -41,7 +41,7 @@ func (s *GetMetadataActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["storeSettings"]; ok {
-		impl, err := unmarshalStoreReadSettingsImplementation(v)
+		impl, err := UnmarshalStoreReadSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'StoreSettings' for 'GetMetadataActivityTypeProperties': %+v", err)
 		}

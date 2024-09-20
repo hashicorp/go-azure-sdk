@@ -15,7 +15,7 @@ type ServiceFabricSchedulesClient struct {
 }
 
 func NewServiceFabricSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceFabricSchedulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servicefabricschedules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servicefabricschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServiceFabricSchedulesClient: %+v", err)
 	}

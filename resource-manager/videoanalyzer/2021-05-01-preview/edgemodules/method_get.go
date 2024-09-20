@@ -45,7 +45,6 @@ func (c EdgeModulesClient) Get(ctx context.Context, id EdgeModuleId) (result Get
 
 	var model EdgeModuleEntity
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type ManagedApplyMaintenanceWindowClient struct {
 }
 
 func NewManagedApplyMaintenanceWindowClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedApplyMaintenanceWindowClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedapplymaintenancewindow", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedapplymaintenancewindow", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedApplyMaintenanceWindowClient: %+v", err)
 	}

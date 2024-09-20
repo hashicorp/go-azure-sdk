@@ -52,7 +52,6 @@ func (c NetworkConfigurationsClient) CreateOrUpdate(ctx context.Context, id comm
 
 	var model NetworkConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

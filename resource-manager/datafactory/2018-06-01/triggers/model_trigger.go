@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Trigger interface {
+	Trigger() BaseTriggerImpl
 }
 
-// RawTriggerImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Trigger = BaseTriggerImpl{}
+
+type BaseTriggerImpl struct {
+	Annotations  *[]interface{}       `json:"annotations,omitempty"`
+	Description  *string              `json:"description,omitempty"`
+	RuntimeState *TriggerRuntimeState `json:"runtimeState,omitempty"`
+	Type         string               `json:"type"`
+}
+
+func (s BaseTriggerImpl) Trigger() BaseTriggerImpl {
+	return s
+}
+
+var _ Trigger = RawTriggerImpl{}
+
+// RawTriggerImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTriggerImpl struct {
-	Type   string
-	Values map[string]interface{}
+	trigger BaseTriggerImpl
+	Type    string
+	Values  map[string]interface{}
 }
 
-func unmarshalTriggerImplementation(input []byte) (Trigger, error) {
+func (s RawTriggerImpl) Trigger() BaseTriggerImpl {
+	return s.trigger
+}
+
+func UnmarshalTriggerImplementation(input []byte) (Trigger, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -100,10 +120,15 @@ func unmarshalTriggerImplementation(input []byte) (Trigger, error) {
 		return out, nil
 	}
 
-	out := RawTriggerImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTriggerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTriggerImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTriggerImpl{
+		trigger: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
 
 }

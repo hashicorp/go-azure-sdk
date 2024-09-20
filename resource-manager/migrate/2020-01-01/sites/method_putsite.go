@@ -50,7 +50,6 @@ func (c SitesClient) PutSite(ctx context.Context, id VMwareSiteId, input VMwareS
 
 	var model VMwareSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

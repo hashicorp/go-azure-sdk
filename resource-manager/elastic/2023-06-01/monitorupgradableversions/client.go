@@ -15,7 +15,7 @@ type MonitorUpgradableVersionsClient struct {
 }
 
 func NewMonitorUpgradableVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MonitorUpgradableVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "monitorupgradableversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "monitorupgradableversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MonitorUpgradableVersionsClient: %+v", err)
 	}

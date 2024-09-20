@@ -14,6 +14,14 @@ type ServicePlacementPreferPrimaryDomainPolicy struct {
 	DomainName string `json:"domainName"`
 
 	// Fields inherited from ServicePlacementPolicy
+
+	Type ServicePlacementPolicyType `json:"type"`
+}
+
+func (s ServicePlacementPreferPrimaryDomainPolicy) ServicePlacementPolicy() BaseServicePlacementPolicyImpl {
+	return BaseServicePlacementPolicyImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ServicePlacementPreferPrimaryDomainPolicy{}
@@ -27,9 +35,10 @@ func (s ServicePlacementPreferPrimaryDomainPolicy) MarshalJSON() ([]byte, error)
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ServicePlacementPreferPrimaryDomainPolicy: %+v", err)
 	}
+
 	decoded["type"] = "PreferredPrimaryDomain"
 
 	encoded, err = json.Marshal(decoded)

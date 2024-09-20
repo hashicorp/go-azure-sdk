@@ -15,7 +15,7 @@ type ResetQueryPerformanceInsightDataClient struct {
 }
 
 func NewResetQueryPerformanceInsightDataClientWithBaseURI(sdkApi sdkEnv.Api) (*ResetQueryPerformanceInsightDataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "resetqueryperformanceinsightdata", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "resetqueryperformanceinsightdata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ResetQueryPerformanceInsightDataClient: %+v", err)
 	}

@@ -15,7 +15,16 @@ type UriFolderJobInput struct {
 	Uri  string             `json:"uri"`
 
 	// Fields inherited from JobInput
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	JobInputType JobInputType `json:"jobInputType"`
+}
+
+func (s UriFolderJobInput) JobInput() BaseJobInputImpl {
+	return BaseJobInputImpl{
+		Description:  s.Description,
+		JobInputType: s.JobInputType,
+	}
 }
 
 var _ json.Marshaler = UriFolderJobInput{}
@@ -29,9 +38,10 @@ func (s UriFolderJobInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UriFolderJobInput: %+v", err)
 	}
+
 	decoded["jobInputType"] = "uri_folder"
 
 	encoded, err = json.Marshal(decoded)

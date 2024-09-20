@@ -14,7 +14,16 @@ type AutomationRuleAddIncidentTaskAction struct {
 	ActionConfiguration *AddIncidentTaskActionProperties `json:"actionConfiguration,omitempty"`
 
 	// Fields inherited from AutomationRuleAction
-	Order int64 `json:"order"`
+
+	ActionType ActionType `json:"actionType"`
+	Order      int64      `json:"order"`
+}
+
+func (s AutomationRuleAddIncidentTaskAction) AutomationRuleAction() BaseAutomationRuleActionImpl {
+	return BaseAutomationRuleActionImpl{
+		ActionType: s.ActionType,
+		Order:      s.Order,
+	}
 }
 
 var _ json.Marshaler = AutomationRuleAddIncidentTaskAction{}
@@ -28,9 +37,10 @@ func (s AutomationRuleAddIncidentTaskAction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutomationRuleAddIncidentTaskAction: %+v", err)
 	}
+
 	decoded["actionType"] = "AddIncidentTask"
 
 	encoded, err = json.Marshal(decoded)

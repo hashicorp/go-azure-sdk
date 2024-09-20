@@ -15,7 +15,7 @@ type ServerlessRuntimesClient struct {
 }
 
 func NewServerlessRuntimesClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerlessRuntimesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverlessruntimes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverlessruntimes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerlessRuntimesClient: %+v", err)
 	}

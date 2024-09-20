@@ -15,7 +15,7 @@ type ComponentWorkItemConfigsAPIsClient struct {
 }
 
 func NewComponentWorkItemConfigsAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentWorkItemConfigsAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "componentworkitemconfigsapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "componentworkitemconfigsapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComponentWorkItemConfigsAPIsClient: %+v", err)
 	}

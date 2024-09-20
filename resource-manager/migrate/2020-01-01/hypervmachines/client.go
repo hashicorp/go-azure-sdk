@@ -15,7 +15,7 @@ type HyperVMachinesClient struct {
 }
 
 func NewHyperVMachinesClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVMachinesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervmachines", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervmachines", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVMachinesClient: %+v", err)
 	}

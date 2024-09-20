@@ -46,7 +46,6 @@ func (c LocationBasedPerformanceTierClient) List(ctx context.Context, id Locatio
 
 	var model PerformanceTierListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

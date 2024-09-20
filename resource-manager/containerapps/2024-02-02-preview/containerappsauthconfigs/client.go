@@ -15,7 +15,7 @@ type ContainerAppsAuthConfigsClient struct {
 }
 
 func NewContainerAppsAuthConfigsClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerAppsAuthConfigsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "containerappsauthconfigs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "containerappsauthconfigs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContainerAppsAuthConfigsClient: %+v", err)
 	}

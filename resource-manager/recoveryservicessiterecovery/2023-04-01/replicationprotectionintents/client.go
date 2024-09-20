@@ -15,7 +15,7 @@ type ReplicationProtectionIntentsClient struct {
 }
 
 func NewReplicationProtectionIntentsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationProtectionIntentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationprotectionintents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationprotectionintents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationProtectionIntentsClient: %+v", err)
 	}

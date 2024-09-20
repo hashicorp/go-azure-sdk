@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TemplateSpecVersionId{}
 
 func TestNewTemplateSpecVersionID(t *testing.T) {
-	id := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecValue", "versionValue")
+	id := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "templateSpecVersion")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTemplateSpecVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.TemplateSpecName != "templateSpecValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TemplateSpecName'", id.TemplateSpecName, "templateSpecValue")
+	if id.TemplateSpecName != "templateSpecName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TemplateSpecName'", id.TemplateSpecName, "templateSpecName")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "templateSpecVersion" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "templateSpecVersion")
 	}
 }
 
 func TestFormatTemplateSpecVersionID(t *testing.T) {
-	actual := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions/versionValue"
+	actual := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "templateSpecVersion").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTemplateSpecVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				TemplateSpecName:  "templateSpecValue",
-				VersionName:       "versionValue",
+				TemplateSpecName:  "templateSpecName",
+				VersionName:       "templateSpecVersion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTemplateSpecVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCvAlUe/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				TemplateSpecName:  "templateSpecValue",
-				VersionName:       "versionValue",
+				TemplateSpecName:  "templateSpecName",
+				VersionName:       "templateSpecVersion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCvAlUe/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/tEmPlAtEsPeCvErSiOn",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				TemplateSpecName:  "tEmPlAtEsPeCvAlUe",
-				VersionName:       "vErSiOnVaLuE",
+				TemplateSpecName:  "tEmPlAtEsPeCnAmE",
+				VersionName:       "tEmPlAtEsPeCvErSiOn",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCvAlUe/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/tEmPlAtEsPeCvErSiOn/extra",
 			Error: true,
 		},
 	}

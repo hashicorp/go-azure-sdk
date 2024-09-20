@@ -32,7 +32,7 @@ func (s *CreateProtectionContainerMappingInputProperties) UnmarshalJSON(bytes []
 	}
 
 	if v, ok := temp["providerSpecificInput"]; ok {
-		impl, err := unmarshalReplicationProviderSpecificContainerMappingInputImplementation(v)
+		impl, err := UnmarshalReplicationProviderSpecificContainerMappingInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificInput' for 'CreateProtectionContainerMappingInputProperties': %+v", err)
 		}

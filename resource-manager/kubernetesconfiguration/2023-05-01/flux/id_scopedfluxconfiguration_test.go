@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedFluxConfigurationId{}
 
 func TestNewScopedFluxConfigurationID(t *testing.T) {
-	id := NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue")
+	id := NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.FluxConfigurationName != "fluxConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FluxConfigurationName'", id.FluxConfigurationName, "fluxConfigurationValue")
+	if id.FluxConfigurationName != "fluxConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FluxConfigurationName'", id.FluxConfigurationName, "fluxConfigurationName")
 	}
 }
 
 func TestFormatScopedFluxConfigurationID(t *testing.T) {
-	actual := NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue"
+	actual := NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedFluxConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationName",
 			Expected: &ScopedFluxConfigurationId{
 				Scope:                 "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				FluxConfigurationName: "fluxConfigurationValue",
+				FluxConfigurationName: "fluxConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedFluxConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationName",
 			Expected: &ScopedFluxConfigurationId{
 				Scope:                 "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				FluxConfigurationName: "fluxConfigurationValue",
+				FluxConfigurationName: "fluxConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnNaMe",
 			Expected: &ScopedFluxConfigurationId{
 				Scope:                 "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				FluxConfigurationName: "fLuXcOnFiGuRaTiOnVaLuE",
+				FluxConfigurationName: "fLuXcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

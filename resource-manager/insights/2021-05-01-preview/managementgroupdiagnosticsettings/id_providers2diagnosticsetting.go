@@ -40,7 +40,7 @@ func ParseProviders2DiagnosticSettingID(input string) (*Providers2DiagnosticSett
 	}
 
 	id := Providers2DiagnosticSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviders2DiagnosticSettingIDInsensitively(input string) (*Providers2D
 	}
 
 	id := Providers2DiagnosticSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,11 +105,11 @@ func (id Providers2DiagnosticSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftManagement", "Microsoft.Management", "Microsoft.Management"),
 		resourceids.StaticSegment("staticManagementGroups", "managementGroups", "managementGroups"),
-		resourceids.UserSpecifiedSegment("managementGroupId", "managementGroupIdValue"),
+		resourceids.UserSpecifiedSegment("managementGroupId", "managementGroupId"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticDiagnosticSettings", "diagnosticSettings", "diagnosticSettings"),
-		resourceids.UserSpecifiedSegment("diagnosticSettingName", "diagnosticSettingValue"),
+		resourceids.UserSpecifiedSegment("diagnosticSettingName", "name"),
 	}
 }
 

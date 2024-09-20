@@ -39,6 +39,7 @@ func (o GetAllHostsInSiteOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetAllHostsInSiteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

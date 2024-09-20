@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UpdateStrategyId{}
 
 func TestNewUpdateStrategyID(t *testing.T) {
-	id := NewUpdateStrategyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "updateStrategyValue")
+	id := NewUpdateStrategyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "updateStrategyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewUpdateStrategyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FleetName != "fleetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetValue")
+	if id.FleetName != "fleetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetName")
 	}
 
-	if id.UpdateStrategyName != "updateStrategyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UpdateStrategyName'", id.UpdateStrategyName, "updateStrategyValue")
+	if id.UpdateStrategyName != "updateStrategyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'UpdateStrategyName'", id.UpdateStrategyName, "updateStrategyName")
 	}
 }
 
 func TestFormatUpdateStrategyID(t *testing.T) {
-	actual := NewUpdateStrategyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "updateStrategyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies/updateStrategyValue"
+	actual := NewUpdateStrategyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "updateStrategyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies/updateStrategyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseUpdateStrategyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies/updateStrategyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies/updateStrategyName",
 			Expected: &UpdateStrategyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FleetName:          "fleetValue",
-				UpdateStrategyName: "updateStrategyValue",
+				FleetName:          "fleetName",
+				UpdateStrategyName: "updateStrategyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies/updateStrategyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies/updateStrategyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseUpdateStrategyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/uPdAtEsTrAtEgIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/uPdAtEsTrAtEgIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies/updateStrategyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies/updateStrategyName",
 			Expected: &UpdateStrategyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FleetName:          "fleetValue",
-				UpdateStrategyName: "updateStrategyValue",
+				FleetName:          "fleetName",
+				UpdateStrategyName: "updateStrategyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/updateStrategies/updateStrategyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/updateStrategies/updateStrategyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/uPdAtEsTrAtEgIeS/uPdAtEsTrAtEgYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/uPdAtEsTrAtEgIeS/uPdAtEsTrAtEgYnAmE",
 			Expected: &UpdateStrategyId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				FleetName:          "fLeEtVaLuE",
-				UpdateStrategyName: "uPdAtEsTrAtEgYvAlUe",
+				FleetName:          "fLeEtNaMe",
+				UpdateStrategyName: "uPdAtEsTrAtEgYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/uPdAtEsTrAtEgIeS/uPdAtEsTrAtEgYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/uPdAtEsTrAtEgIeS/uPdAtEsTrAtEgYnAmE/extra",
 			Error: true,
 		},
 	}

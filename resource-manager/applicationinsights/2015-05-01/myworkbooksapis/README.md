@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/myworkbooksapis` Documentation
 
-The `myworkbooksapis` SDK allows for interaction with the Azure Resource Manager Service `applicationinsights` (API Version `2015-05-01`).
+The `myworkbooksapis` SDK allows for interaction with Azure Resource Manager `applicationinsights` (API Version `2015-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "myWorkbookValue")
+id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 payload := myworkbooksapis.MyWorkbook{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "myWorkbookValue")
+id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 read, err := client.MyWorkbooksDelete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "myWorkbookValue")
+id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 read, err := client.MyWorkbooksGet(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "myWorkbookValue")
+id := myworkbooksapis.NewMyWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 payload := myworkbooksapis.MyWorkbook{
 	// ...

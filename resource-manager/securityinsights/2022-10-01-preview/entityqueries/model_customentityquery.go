@@ -4,24 +4,48 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CustomEntityQuery interface {
+	CustomEntityQuery() BaseCustomEntityQueryImpl
 }
 
-// RawCustomEntityQueryImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ CustomEntityQuery = BaseCustomEntityQueryImpl{}
+
+type BaseCustomEntityQueryImpl struct {
+	Etag       *string                `json:"etag,omitempty"`
+	Id         *string                `json:"id,omitempty"`
+	Kind       CustomEntityQueryKind  `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseCustomEntityQueryImpl) CustomEntityQuery() BaseCustomEntityQueryImpl {
+	return s
+}
+
+var _ CustomEntityQuery = RawCustomEntityQueryImpl{}
+
+// RawCustomEntityQueryImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCustomEntityQueryImpl struct {
-	Type   string
-	Values map[string]interface{}
+	customEntityQuery BaseCustomEntityQueryImpl
+	Type              string
+	Values            map[string]interface{}
 }
 
-func unmarshalCustomEntityQueryImplementation(input []byte) (CustomEntityQuery, error) {
+func (s RawCustomEntityQueryImpl) CustomEntityQuery() BaseCustomEntityQueryImpl {
+	return s.customEntityQuery
+}
+
+func UnmarshalCustomEntityQueryImplementation(input []byte) (CustomEntityQuery, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +68,15 @@ func unmarshalCustomEntityQueryImplementation(input []byte) (CustomEntityQuery, 
 		return out, nil
 	}
 
-	out := RawCustomEntityQueryImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCustomEntityQueryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCustomEntityQueryImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCustomEntityQueryImpl{
+		customEntityQuery: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
 
 }

@@ -45,7 +45,6 @@ func (c DeletedServicesClient) Get(ctx context.Context, id DeletedServiceId) (re
 
 	var model DeletedService
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

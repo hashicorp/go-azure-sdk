@@ -15,7 +15,7 @@ type AddonsClient struct {
 }
 
 func NewAddonsClientWithBaseURI(sdkApi sdkEnv.Api) (*AddonsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "addons", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "addons", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AddonsClient: %+v", err)
 	}

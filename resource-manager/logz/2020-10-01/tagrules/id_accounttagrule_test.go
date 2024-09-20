@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccountTagRuleId{}
 
 func TestNewAccountTagRuleID(t *testing.T) {
-	id := NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue", "tagRuleValue")
+	id := NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewAccountTagRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "subAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "subAccountName")
 	}
 
-	if id.TagRuleName != "tagRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "tagRuleValue")
+	if id.TagRuleName != "ruleSetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "ruleSetName")
 	}
 }
 
 func TestFormatAccountTagRuleID(t *testing.T) {
-	actual := NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue", "tagRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules/tagRuleValue"
+	actual := NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules/ruleSetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseAccountTagRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules/tagRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules/ruleSetName",
 			Expected: &AccountTagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				AccountName:       "accountValue",
-				TagRuleName:       "tagRuleValue",
+				MonitorName:       "monitorName",
+				AccountName:       "subAccountName",
+				TagRuleName:       "ruleSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules/tagRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules/ruleSetName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseAccountTagRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE/aCcOuNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE/aCcOuNtS/aCcOuNtVaLuE/tAgRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE/tAgRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules/tagRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules/ruleSetName",
 			Expected: &AccountTagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				AccountName:       "accountValue",
-				TagRuleName:       "tagRuleValue",
+				MonitorName:       "monitorName",
+				AccountName:       "subAccountName",
+				TagRuleName:       "ruleSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorValue/accounts/accountValue/tagRules/tagRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/tagRules/ruleSetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE/aCcOuNtS/aCcOuNtVaLuE/tAgRuLeS/tAgRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE/tAgRuLeS/rUlEsEtNaMe",
 			Expected: &AccountTagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:       "mOnItOrVaLuE",
-				AccountName:       "aCcOuNtVaLuE",
-				TagRuleName:       "tAgRuLeVaLuE",
+				MonitorName:       "mOnItOrNaMe",
+				AccountName:       "sUbAcCoUnTnAmE",
+				TagRuleName:       "rUlEsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrVaLuE/aCcOuNtS/aCcOuNtVaLuE/tAgRuLeS/tAgRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE/tAgRuLeS/rUlEsEtNaMe/extra",
 			Error: true,
 		},
 	}

@@ -46,7 +46,6 @@ func (c VaultUsagesClient) UsagesListByVaults(ctx context.Context, id VaultId) (
 
 	var model VaultUsageList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

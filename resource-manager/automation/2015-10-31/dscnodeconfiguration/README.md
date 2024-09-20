@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dscnodeconfiguration` Documentation
 
-The `dscnodeconfiguration` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2015-10-31`).
+The `dscnodeconfiguration` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2015-10-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeConfigurationValue")
+id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeConfigurationName")
 
 payload := dscnodeconfiguration.DscNodeConfigurationCreateOrUpdateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeConfigurationValue")
+id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeConfigurationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeConfigurationValue")
+id := dscnodeconfiguration.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeConfigurationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dscnodeconfiguration.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue")
+id := dscnodeconfiguration.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName")
 
 // alternatively `client.ListByAutomationAccount(ctx, id, dscnodeconfiguration.DefaultListByAutomationAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAutomationAccountComplete(ctx, id, dscnodeconfiguration.DefaultListByAutomationAccountOperationOptions())

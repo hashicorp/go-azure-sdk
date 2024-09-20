@@ -15,7 +15,7 @@ type PublishedArtifactClient struct {
 }
 
 func NewPublishedArtifactClientWithBaseURI(sdkApi sdkEnv.Api) (*PublishedArtifactClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "publishedartifact", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "publishedartifact", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PublishedArtifactClient: %+v", err)
 	}

@@ -36,6 +36,7 @@ func (o WorkspaceApiVersionSetUpdateOperationOptions) ToHeaders() *client.Header
 
 func (o WorkspaceApiVersionSetUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c ApiVersionSetClient) WorkspaceApiVersionSetUpdate(ctx context.Context, i
 
 	var model ApiVersionSetContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -55,7 +55,7 @@ func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["clientSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'GoogleAdWordsLinkedServiceTypeProperties': %+v", err)
 		}
@@ -63,7 +63,7 @@ func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["developerToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DeveloperToken' for 'GoogleAdWordsLinkedServiceTypeProperties': %+v", err)
 		}
@@ -71,7 +71,7 @@ func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["privateKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrivateKey' for 'GoogleAdWordsLinkedServiceTypeProperties': %+v", err)
 		}
@@ -79,7 +79,7 @@ func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 	}
 
 	if v, ok := temp["refreshToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RefreshToken' for 'GoogleAdWordsLinkedServiceTypeProperties': %+v", err)
 		}

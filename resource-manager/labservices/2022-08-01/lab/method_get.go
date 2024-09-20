@@ -45,7 +45,6 @@ func (c LabClient) Get(ctx context.Context, id LabId) (result GetOperationRespon
 
 	var model Lab
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

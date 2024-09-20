@@ -15,7 +15,7 @@ type ServiceTaskResourceClient struct {
 }
 
 func NewServiceTaskResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceTaskResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servicetaskresource", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servicetaskresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServiceTaskResourceClient: %+v", err)
 	}

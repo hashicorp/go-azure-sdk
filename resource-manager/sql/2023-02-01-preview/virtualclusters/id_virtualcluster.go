@@ -42,7 +42,7 @@ func ParseVirtualClusterID(input string) (*VirtualClusterId, error) {
 	}
 
 	id := VirtualClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVirtualClusterIDInsensitively(input string) (*VirtualClusterId, error)
 	}
 
 	id := VirtualClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id VirtualClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticVirtualClusters", "virtualClusters", "virtualClusters"),
-		resourceids.UserSpecifiedSegment("virtualClusterName", "virtualClusterValue"),
+		resourceids.UserSpecifiedSegment("virtualClusterName", "virtualClusterName"),
 	}
 }
 

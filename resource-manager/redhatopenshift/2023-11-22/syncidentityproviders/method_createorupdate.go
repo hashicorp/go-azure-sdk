@@ -50,7 +50,6 @@ func (c SyncIdentityProvidersClient) CreateOrUpdate(ctx context.Context, id Sync
 
 	var model SyncIdentityProvider
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

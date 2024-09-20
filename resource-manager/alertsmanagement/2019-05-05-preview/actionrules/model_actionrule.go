@@ -38,7 +38,7 @@ func (s *ActionRule) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalActionRulePropertiesImplementation(v)
+		impl, err := UnmarshalActionRulePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ActionRule': %+v", err)
 		}

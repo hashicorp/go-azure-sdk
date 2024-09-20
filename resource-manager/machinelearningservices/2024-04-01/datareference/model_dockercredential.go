@@ -15,6 +15,14 @@ type DockerCredential struct {
 	UserName *string `json:"userName,omitempty"`
 
 	// Fields inherited from DataReferenceCredential
+
+	CredentialType DataReferenceCredentialType `json:"credentialType"`
+}
+
+func (s DockerCredential) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return BaseDataReferenceCredentialImpl{
+		CredentialType: s.CredentialType,
+	}
 }
 
 var _ json.Marshaler = DockerCredential{}
@@ -28,9 +36,10 @@ func (s DockerCredential) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DockerCredential: %+v", err)
 	}
+
 	decoded["credentialType"] = "DockerCredentials"
 
 	encoded, err = json.Marshal(decoded)

@@ -46,7 +46,6 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesListByDatabaseAccoun
 
 	var model NotebookWorkspaceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

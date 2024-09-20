@@ -37,6 +37,7 @@ func (o ListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -84,7 +85,6 @@ func (c DimensionsClient) List(ctx context.Context, id commonids.ScopeId, option
 
 	var model DimensionsListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

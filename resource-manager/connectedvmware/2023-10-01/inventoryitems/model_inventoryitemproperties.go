@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type InventoryItemProperties interface {
+	InventoryItemProperties() BaseInventoryItemPropertiesImpl
 }
 
-// RawInventoryItemPropertiesImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ InventoryItemProperties = BaseInventoryItemPropertiesImpl{}
+
+type BaseInventoryItemPropertiesImpl struct {
+	InventoryType     InventoryType      `json:"inventoryType"`
+	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
+	MoName            *string            `json:"moName,omitempty"`
+	MoRefId           *string            `json:"moRefId,omitempty"`
+	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s BaseInventoryItemPropertiesImpl) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return s
+}
+
+var _ InventoryItemProperties = RawInventoryItemPropertiesImpl{}
+
+// RawInventoryItemPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawInventoryItemPropertiesImpl struct {
-	Type   string
-	Values map[string]interface{}
+	inventoryItemProperties BaseInventoryItemPropertiesImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalInventoryItemPropertiesImplementation(input []byte) (InventoryItemProperties, error) {
+func (s RawInventoryItemPropertiesImpl) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return s.inventoryItemProperties
+}
+
+func UnmarshalInventoryItemPropertiesImplementation(input []byte) (InventoryItemProperties, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -92,10 +113,15 @@ func unmarshalInventoryItemPropertiesImplementation(input []byte) (InventoryItem
 		return out, nil
 	}
 
-	out := RawInventoryItemPropertiesImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseInventoryItemPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseInventoryItemPropertiesImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawInventoryItemPropertiesImpl{
+		inventoryItemProperties: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

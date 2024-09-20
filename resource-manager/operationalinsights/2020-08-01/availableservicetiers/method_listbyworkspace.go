@@ -46,7 +46,6 @@ func (c AvailableServiceTiersClient) ListByWorkspace(ctx context.Context, id Wor
 
 	var model []AvailableServiceTier
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

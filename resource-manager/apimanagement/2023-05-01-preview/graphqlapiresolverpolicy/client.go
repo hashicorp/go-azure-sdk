@@ -15,7 +15,7 @@ type GraphQLApiResolverPolicyClient struct {
 }
 
 func NewGraphQLApiResolverPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphQLApiResolverPolicyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "graphqlapiresolverpolicy", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "graphqlapiresolverpolicy", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GraphQLApiResolverPolicyClient: %+v", err)
 	}

@@ -46,7 +46,6 @@ func (c ProxyOperationsClient) WorkspacesListNotebookKeys(ctx context.Context, i
 
 	var model ListNotebookKeysResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

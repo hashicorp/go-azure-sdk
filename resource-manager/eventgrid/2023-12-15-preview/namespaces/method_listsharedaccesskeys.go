@@ -46,7 +46,6 @@ func (c NamespacesClient) ListSharedAccessKeys(ctx context.Context, id Namespace
 
 	var model NamespaceSharedAccessKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

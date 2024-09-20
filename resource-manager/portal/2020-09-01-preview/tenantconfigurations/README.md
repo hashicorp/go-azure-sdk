@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/tenantconfigurations` Documentation
 
-The `tenantconfigurations` SDK allows for interaction with the Azure Resource Manager Service `portal` (API Version `2020-09-01-preview`).
+The `tenantconfigurations` SDK allows for interaction with Azure Resource Manager `portal` (API Version `2020-09-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := tenantconfigurations.NewTenantConfigurationID("tenantConfigurationValue")
+id := tenantconfigurations.NewTenantConfigurationID("configurationName")
 
 payload := tenantconfigurations.Configuration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantconfigurations.NewTenantConfigurationID("tenantConfigurationValue")
+id := tenantconfigurations.NewTenantConfigurationID("configurationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tenantconfigurations.NewTenantConfigurationID("tenantConfigurationValue")
+id := tenantconfigurations.NewTenantConfigurationID("configurationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

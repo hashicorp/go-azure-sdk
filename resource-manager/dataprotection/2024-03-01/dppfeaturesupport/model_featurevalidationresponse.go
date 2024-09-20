@@ -15,6 +15,14 @@ type FeatureValidationResponse struct {
 	Features    *[]SupportedFeature `json:"features,omitempty"`
 
 	// Fields inherited from FeatureValidationResponseBase
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s FeatureValidationResponse) FeatureValidationResponseBase() BaseFeatureValidationResponseBaseImpl {
+	return BaseFeatureValidationResponseBaseImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = FeatureValidationResponse{}
@@ -28,9 +36,10 @@ func (s FeatureValidationResponse) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FeatureValidationResponse: %+v", err)
 	}
+
 	decoded["objectType"] = "FeatureValidationResponse"
 
 	encoded, err = json.Marshal(decoded)

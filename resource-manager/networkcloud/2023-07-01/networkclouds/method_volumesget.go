@@ -45,7 +45,6 @@ func (c NetworkcloudsClient) VolumesGet(ctx context.Context, id VolumeId) (resul
 
 	var model Volume
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

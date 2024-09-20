@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-03-01/incidententities` Documentation
 
-The `incidententities` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2024-03-01`).
+The `incidententities` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incidententities.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdentifierValue")
+id := incidententities.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentIdentifier")
 
 read, err := client.IncidentsListEntities(ctx, id)
 if err != nil {

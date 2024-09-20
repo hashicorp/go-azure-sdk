@@ -37,7 +37,7 @@ func (s *NetworkManagerEffectiveSecurityAdminRulesListResult) UnmarshalJSON(byte
 
 		output := make([]EffectiveBaseSecurityAdminRule, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalEffectiveBaseSecurityAdminRuleImplementation(val)
+			impl, err := UnmarshalEffectiveBaseSecurityAdminRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Value' for 'NetworkManagerEffectiveSecurityAdminRulesListResult': %+v", i, err)
 			}

@@ -42,7 +42,7 @@ func ParseHostID(input string) (*HostId, error) {
 	}
 
 	id := HostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseHostIDInsensitively(input string) (*HostId, error) {
 	}
 
 	id := HostId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id HostId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere"),
 		resourceids.StaticSegment("staticHosts", "hosts", "hosts"),
-		resourceids.UserSpecifiedSegment("hostName", "hostValue"),
+		resourceids.UserSpecifiedSegment("hostName", "hostName"),
 	}
 }
 

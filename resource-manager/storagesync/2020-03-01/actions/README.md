@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/actions` Documentation
 
-The `actions` SDK allows for interaction with the Azure Resource Manager Service `storagesync` (API Version `2020-03-01`).
+The `actions` SDK allows for interaction with Azure Resource Manager `storagesync` (API Version `2020-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := actions.BackupRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CloudEndpointsPostBackupThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := actions.PostRestoreRequest{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CloudEndpointsPostRestoreThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := actions.BackupRequest{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CloudEndpointsPreBackupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := actions.PreRestoreRequest{
 	// ...
@@ -92,7 +92,7 @@ if err := client.CloudEndpointsPreRestoreThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 payload := actions.TriggerChangeDetectionParameters{
 	// ...
@@ -109,7 +109,7 @@ if err := client.CloudEndpointsTriggerChangeDetectionThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "cloudEndpointValue")
+id := actions.NewCloudEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "cloudEndpointName")
 
 read, err := client.CloudEndpointsrestoreheartbeat(ctx, id)
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := actions.NewRegisteredServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "serverIdValue")
+id := actions.NewRegisteredServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "serverId")
 
 payload := actions.TriggerRolloverRequest{
 	// ...
@@ -142,7 +142,7 @@ if err := client.RegisteredServerstriggerRolloverThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := actions.NewServerEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "syncGroupValue", "serverEndpointValue")
+id := actions.NewServerEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "syncGroupName", "serverEndpointName")
 
 payload := actions.RecallActionParameters{
 	// ...
@@ -159,7 +159,7 @@ if err := client.ServerEndpointsrecallActionThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := actions.NewWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue", "workflowIdValue")
+id := actions.NewWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName", "workflowId")
 
 read, err := client.WorkflowsAbort(ctx, id)
 if err != nil {

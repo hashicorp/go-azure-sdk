@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &OperationId{}
 
 func TestNewOperationID(t *testing.T) {
-	id := NewOperationID("deploymentValue", "operationIdValue")
+	id := NewOperationID("deploymentName", "operationId")
 
-	if id.DeploymentName != "deploymentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentValue")
+	if id.DeploymentName != "deploymentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentName")
 	}
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatOperationID(t *testing.T) {
-	actual := NewOperationID("deploymentValue", "operationIdValue").ID()
-	expected := "/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue"
+	actual := NewOperationID("deploymentName", "operationId").ID()
+	expected := "/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId",
 			Expected: &OperationId{
-				DeploymentName: "deploymentValue",
-				OperationId:    "operationIdValue",
+				DeploymentName: "deploymentName",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId",
 			Expected: &OperationId{
-				DeploymentName: "deploymentValue",
-				OperationId:    "operationIdValue",
+				DeploymentName: "deploymentName",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS/oPeRaTiOnIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS/oPeRaTiOnId",
 			Expected: &OperationId{
-				DeploymentName: "dEpLoYmEnTvAlUe",
-				OperationId:    "oPeRaTiOnIdVaLuE",
+				DeploymentName: "dEpLoYmEnTnAmE",
+				OperationId:    "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

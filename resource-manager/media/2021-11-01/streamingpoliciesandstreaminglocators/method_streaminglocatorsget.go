@@ -45,7 +45,6 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingLocatorsGet(ctx co
 
 	var model StreamingLocator
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

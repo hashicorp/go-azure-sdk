@@ -46,7 +46,6 @@ func (c PolicyClient) PoliciesGetByBillingProfile(ctx context.Context, id Billin
 
 	var model BillingProfilePolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

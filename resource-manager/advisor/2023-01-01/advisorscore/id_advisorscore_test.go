@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AdvisorScoreId{}
 
 func TestNewAdvisorScoreID(t *testing.T) {
-	id := NewAdvisorScoreID("12345678-1234-9876-4563-123456789012", "advisorScoreValue")
+	id := NewAdvisorScoreID("12345678-1234-9876-4563-123456789012", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AdvisorScoreName != "advisorScoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdvisorScoreName'", id.AdvisorScoreName, "advisorScoreValue")
+	if id.AdvisorScoreName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdvisorScoreName'", id.AdvisorScoreName, "name")
 	}
 }
 
 func TestFormatAdvisorScoreID(t *testing.T) {
-	actual := NewAdvisorScoreID("12345678-1234-9876-4563-123456789012", "advisorScoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/advisorScoreValue"
+	actual := NewAdvisorScoreID("12345678-1234-9876-4563-123456789012", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAdvisorScoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/advisorScoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/name",
 			Expected: &AdvisorScoreId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				AdvisorScoreName: "advisorScoreValue",
+				AdvisorScoreName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/advisorScoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/name/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAdvisorScoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/advisorScoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/name",
 			Expected: &AdvisorScoreId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				AdvisorScoreName: "advisorScoreValue",
+				AdvisorScoreName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/advisorScoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/advisorScore/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/aDvIsOrScOrE/aDvIsOrScOrEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/aDvIsOrScOrE/nAmE",
 			Expected: &AdvisorScoreId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				AdvisorScoreName: "aDvIsOrScOrEvAlUe",
+				AdvisorScoreName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/aDvIsOrScOrE/aDvIsOrScOrEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/aDvIsOrScOrE/nAmE/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2022-01-25/guestconfigurationconnectedvmwarevsphereassignmentsreports` Documentation
 
-The `guestconfigurationconnectedvmwarevsphereassignmentsreports` SDK allows for interaction with the Azure Resource Manager Service `guestconfiguration` (API Version `2022-01-25`).
+The `guestconfigurationconnectedvmwarevsphereassignmentsreports` SDK allows for interaction with Azure Resource Manager `guestconfiguration` (API Version `2022-01-25`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewVirtualMachineProviders2GuestConfigurationAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestConfigurationAssignmentValue", "reportIdValue")
+id := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewVirtualMachineProviders2GuestConfigurationAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName", "reportId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewProviderVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewProviderVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName")
 
 read, err := client.List(ctx, id)
 if err != nil {

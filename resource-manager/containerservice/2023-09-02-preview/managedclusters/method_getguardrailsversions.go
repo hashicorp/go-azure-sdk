@@ -45,7 +45,6 @@ func (c ManagedClustersClient) GetGuardrailsVersions(ctx context.Context, id Gua
 
 	var model GuardrailsAvailableVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -62,7 +62,7 @@ func (s *EventSubscriptionProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["deadLetterDestination"]; ok {
-		impl, err := unmarshalDeadLetterDestinationImplementation(v)
+		impl, err := UnmarshalDeadLetterDestinationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DeadLetterDestination' for 'EventSubscriptionProperties': %+v", err)
 		}
@@ -70,7 +70,7 @@ func (s *EventSubscriptionProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["destination"]; ok {
-		impl, err := unmarshalEventSubscriptionDestinationImplementation(v)
+		impl, err := UnmarshalEventSubscriptionDestinationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Destination' for 'EventSubscriptionProperties': %+v", err)
 		}

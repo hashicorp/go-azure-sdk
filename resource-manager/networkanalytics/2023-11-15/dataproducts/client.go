@@ -15,7 +15,7 @@ type DataProductsClient struct {
 }
 
 func NewDataProductsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataProductsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataproducts", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataproducts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataProductsClient: %+v", err)
 	}

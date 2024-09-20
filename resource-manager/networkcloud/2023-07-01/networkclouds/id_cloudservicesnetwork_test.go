@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CloudServicesNetworkId{}
 
 func TestNewCloudServicesNetworkID(t *testing.T) {
-	id := NewCloudServicesNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServicesNetworkValue")
+	id := NewCloudServicesNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServicesNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCloudServicesNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CloudServicesNetworkName != "cloudServicesNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudServicesNetworkName'", id.CloudServicesNetworkName, "cloudServicesNetworkValue")
+	if id.CloudServicesNetworkName != "cloudServicesNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudServicesNetworkName'", id.CloudServicesNetworkName, "cloudServicesNetworkName")
 	}
 }
 
 func TestFormatCloudServicesNetworkID(t *testing.T) {
-	actual := NewCloudServicesNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServicesNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkValue"
+	actual := NewCloudServicesNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServicesNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCloudServicesNetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkName",
 			Expected: &CloudServicesNetworkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				CloudServicesNetworkName: "cloudServicesNetworkValue",
+				CloudServicesNetworkName: "cloudServicesNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCloudServicesNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkName",
 			Expected: &CloudServicesNetworkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				CloudServicesNetworkName: "cloudServicesNetworkValue",
+				CloudServicesNetworkName: "cloudServicesNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/cloudServicesNetworks/cloudServicesNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLoUdSeRvIcEsNeTwOrKs/cLoUdSeRvIcEsNeTwOrKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLoUdSeRvIcEsNeTwOrKs/cLoUdSeRvIcEsNeTwOrKnAmE",
 			Expected: &CloudServicesNetworkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				CloudServicesNetworkName: "cLoUdSeRvIcEsNeTwOrKvAlUe",
+				CloudServicesNetworkName: "cLoUdSeRvIcEsNeTwOrKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLoUdSeRvIcEsNeTwOrKs/cLoUdSeRvIcEsNeTwOrKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLoUdSeRvIcEsNeTwOrKs/cLoUdSeRvIcEsNeTwOrKnAmE/extra",
 			Error: true,
 		},
 	}

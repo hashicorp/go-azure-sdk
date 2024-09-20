@@ -44,7 +44,7 @@ func ParsePatchID(input string) (*PatchId, error) {
 	}
 
 	id := PatchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePatchIDInsensitively(input string) (*PatchId, error) {
 	}
 
 	id := PatchId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PatchId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "containerAppValue"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticPatches", "patches", "patches"),
-		resourceids.UserSpecifiedSegment("patchName", "patchValue"),
+		resourceids.UserSpecifiedSegment("patchName", "patchName"),
 	}
 }
 

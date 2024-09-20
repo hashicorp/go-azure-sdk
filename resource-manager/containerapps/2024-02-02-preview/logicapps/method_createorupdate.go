@@ -50,7 +50,6 @@ func (c LogicAppsClient) CreateOrUpdate(ctx context.Context, id LogicAppId, inpu
 
 	var model LogicApp
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

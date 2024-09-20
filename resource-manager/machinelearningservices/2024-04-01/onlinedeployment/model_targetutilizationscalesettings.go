@@ -17,6 +17,14 @@ type TargetUtilizationScaleSettings struct {
 	TargetUtilizationPercentage *int64  `json:"targetUtilizationPercentage,omitempty"`
 
 	// Fields inherited from OnlineScaleSettings
+
+	ScaleType ScaleType `json:"scaleType"`
+}
+
+func (s TargetUtilizationScaleSettings) OnlineScaleSettings() BaseOnlineScaleSettingsImpl {
+	return BaseOnlineScaleSettingsImpl{
+		ScaleType: s.ScaleType,
+	}
 }
 
 var _ json.Marshaler = TargetUtilizationScaleSettings{}
@@ -30,9 +38,10 @@ func (s TargetUtilizationScaleSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TargetUtilizationScaleSettings: %+v", err)
 	}
+
 	decoded["scaleType"] = "TargetUtilization"
 
 	encoded, err = json.Marshal(decoded)

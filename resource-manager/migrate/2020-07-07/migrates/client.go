@@ -15,7 +15,7 @@ type MigratesClient struct {
 }
 
 func NewMigratesClientWithBaseURI(sdkApi sdkEnv.Api) (*MigratesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "migrates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "migrates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MigratesClient: %+v", err)
 	}

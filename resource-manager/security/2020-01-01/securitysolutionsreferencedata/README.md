@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/securitysolutionsreferencedata` Documentation
 
-The `securitysolutionsreferencedata` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2020-01-01`).
+The `securitysolutionsreferencedata` SDK allows for interaction with Azure Resource Manager `security` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securitysolutionsreferencedata.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := securitysolutionsreferencedata.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
 
 read, err := client.ListByHomeRegion(ctx, id)
 if err != nil {

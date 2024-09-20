@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkspaceConnectionPropertiesV2 interface {
+	WorkspaceConnectionPropertiesV2() BaseWorkspaceConnectionPropertiesV2Impl
 }
 
-// RawWorkspaceConnectionPropertiesV2Impl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ WorkspaceConnectionPropertiesV2 = BaseWorkspaceConnectionPropertiesV2Impl{}
+
+type BaseWorkspaceConnectionPropertiesV2Impl struct {
+	AuthType    ConnectionAuthType  `json:"authType"`
+	Category    *ConnectionCategory `json:"category,omitempty"`
+	Target      *string             `json:"target,omitempty"`
+	Value       *string             `json:"value,omitempty"`
+	ValueFormat *ValueFormat        `json:"valueFormat,omitempty"`
+}
+
+func (s BaseWorkspaceConnectionPropertiesV2Impl) WorkspaceConnectionPropertiesV2() BaseWorkspaceConnectionPropertiesV2Impl {
+	return s
+}
+
+var _ WorkspaceConnectionPropertiesV2 = RawWorkspaceConnectionPropertiesV2Impl{}
+
+// RawWorkspaceConnectionPropertiesV2Impl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawWorkspaceConnectionPropertiesV2Impl struct {
-	Type   string
-	Values map[string]interface{}
+	workspaceConnectionPropertiesV2 BaseWorkspaceConnectionPropertiesV2Impl
+	Type                            string
+	Values                          map[string]interface{}
 }
 
-func unmarshalWorkspaceConnectionPropertiesV2Implementation(input []byte) (WorkspaceConnectionPropertiesV2, error) {
+func (s RawWorkspaceConnectionPropertiesV2Impl) WorkspaceConnectionPropertiesV2() BaseWorkspaceConnectionPropertiesV2Impl {
+	return s.workspaceConnectionPropertiesV2
+}
+
+func UnmarshalWorkspaceConnectionPropertiesV2Implementation(input []byte) (WorkspaceConnectionPropertiesV2, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +97,15 @@ func unmarshalWorkspaceConnectionPropertiesV2Implementation(input []byte) (Works
 		return out, nil
 	}
 
-	out := RawWorkspaceConnectionPropertiesV2Impl{
-		Type:   value,
-		Values: temp,
+	var parent BaseWorkspaceConnectionPropertiesV2Impl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWorkspaceConnectionPropertiesV2Impl: %+v", err)
 	}
-	return out, nil
+
+	return RawWorkspaceConnectionPropertiesV2Impl{
+		workspaceConnectionPropertiesV2: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
 
 }

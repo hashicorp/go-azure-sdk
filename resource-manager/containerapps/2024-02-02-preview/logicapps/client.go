@@ -15,7 +15,7 @@ type LogicAppsClient struct {
 }
 
 func NewLogicAppsClientWithBaseURI(sdkApi sdkEnv.Api) (*LogicAppsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "logicapps", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "logicapps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LogicAppsClient: %+v", err)
 	}

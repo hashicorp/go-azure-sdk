@@ -10,18 +10,40 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProtectionIntent interface {
+	ProtectionIntent() BaseProtectionIntentImpl
 }
 
-// RawProtectionIntentImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ProtectionIntent = BaseProtectionIntentImpl{}
+
+type BaseProtectionIntentImpl struct {
+	BackupManagementType     *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ItemId                   *string                  `json:"itemId,omitempty"`
+	PolicyId                 *string                  `json:"policyId,omitempty"`
+	ProtectionIntentItemType ProtectionIntentItemType `json:"protectionIntentItemType"`
+	ProtectionState          *ProtectionStatus        `json:"protectionState,omitempty"`
+	SourceResourceId         *string                  `json:"sourceResourceId,omitempty"`
+}
+
+func (s BaseProtectionIntentImpl) ProtectionIntent() BaseProtectionIntentImpl {
+	return s
+}
+
+var _ ProtectionIntent = RawProtectionIntentImpl{}
+
+// RawProtectionIntentImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawProtectionIntentImpl struct {
-	Type   string
-	Values map[string]interface{}
+	protectionIntent BaseProtectionIntentImpl
+	Type             string
+	Values           map[string]interface{}
 }
 
-func unmarshalProtectionIntentImplementation(input []byte) (ProtectionIntent, error) {
+func (s RawProtectionIntentImpl) ProtectionIntent() BaseProtectionIntentImpl {
+	return s.protectionIntent
+}
+
+func UnmarshalProtectionIntentImplementation(input []byte) (ProtectionIntent, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -76,10 +98,15 @@ func unmarshalProtectionIntentImplementation(input []byte) (ProtectionIntent, er
 		return out, nil
 	}
 
-	out := RawProtectionIntentImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseProtectionIntentImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseProtectionIntentImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawProtectionIntentImpl{
+		protectionIntent: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
 
 }

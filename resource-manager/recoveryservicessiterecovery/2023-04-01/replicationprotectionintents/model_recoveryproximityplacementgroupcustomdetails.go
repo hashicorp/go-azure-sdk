@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryProximityPlacementGroupCustomDetails interface {
+	RecoveryProximityPlacementGroupCustomDetails() BaseRecoveryProximityPlacementGroupCustomDetailsImpl
 }
 
-// RawRecoveryProximityPlacementGroupCustomDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RecoveryProximityPlacementGroupCustomDetails = BaseRecoveryProximityPlacementGroupCustomDetailsImpl{}
+
+type BaseRecoveryProximityPlacementGroupCustomDetailsImpl struct {
+	ResourceType string `json:"resourceType"`
+}
+
+func (s BaseRecoveryProximityPlacementGroupCustomDetailsImpl) RecoveryProximityPlacementGroupCustomDetails() BaseRecoveryProximityPlacementGroupCustomDetailsImpl {
+	return s
+}
+
+var _ RecoveryProximityPlacementGroupCustomDetails = RawRecoveryProximityPlacementGroupCustomDetailsImpl{}
+
+// RawRecoveryProximityPlacementGroupCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRecoveryProximityPlacementGroupCustomDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	recoveryProximityPlacementGroupCustomDetails BaseRecoveryProximityPlacementGroupCustomDetailsImpl
+	Type                                         string
+	Values                                       map[string]interface{}
 }
 
-func unmarshalRecoveryProximityPlacementGroupCustomDetailsImplementation(input []byte) (RecoveryProximityPlacementGroupCustomDetails, error) {
+func (s RawRecoveryProximityPlacementGroupCustomDetailsImpl) RecoveryProximityPlacementGroupCustomDetails() BaseRecoveryProximityPlacementGroupCustomDetailsImpl {
+	return s.recoveryProximityPlacementGroupCustomDetails
+}
+
+func UnmarshalRecoveryProximityPlacementGroupCustomDetailsImplementation(input []byte) (RecoveryProximityPlacementGroupCustomDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalRecoveryProximityPlacementGroupCustomDetailsImplementation(input [
 		return out, nil
 	}
 
-	out := RawRecoveryProximityPlacementGroupCustomDetailsImpl{
+	var parent BaseRecoveryProximityPlacementGroupCustomDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryProximityPlacementGroupCustomDetailsImpl: %+v", err)
+	}
+
+	return RawRecoveryProximityPlacementGroupCustomDetailsImpl{
+		recoveryProximityPlacementGroupCustomDetails: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

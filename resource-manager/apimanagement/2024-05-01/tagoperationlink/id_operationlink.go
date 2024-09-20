@@ -46,7 +46,7 @@ func ParseOperationLinkID(input string) (*OperationLinkId, error) {
 	}
 
 	id := OperationLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseOperationLinkIDInsensitively(input string) (*OperationLinkId, error) {
 	}
 
 	id := OperationLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id OperationLinkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticTags", "tags", "tags"),
-		resourceids.UserSpecifiedSegment("tagId", "tagIdValue"),
+		resourceids.UserSpecifiedSegment("tagId", "tagId"),
 		resourceids.StaticSegment("staticOperationLinks", "operationLinks", "operationLinks"),
-		resourceids.UserSpecifiedSegment("operationLinkId", "operationLinkIdValue"),
+		resourceids.UserSpecifiedSegment("operationLinkId", "operationLinkId"),
 	}
 }
 

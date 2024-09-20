@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/billings` Documentation
 
-The `billings` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `billings` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billings.NewInvoiceSectionBillingSubscriptionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingSubscriptionValue")
+id := billings.NewInvoiceSectionBillingSubscriptionID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingSubscriptionName")
 
 payload := billings.TransferBillingSubscriptionRequestProperties{
 	// ...
@@ -41,7 +41,7 @@ if err := client.BillingSubscriptionsTransferThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := billings.NewInvoiceSectionBillingSubscriptionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingSubscriptionValue")
+id := billings.NewInvoiceSectionBillingSubscriptionID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingSubscriptionName")
 
 payload := billings.TransferBillingSubscriptionRequestProperties{
 	// ...
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billings.NewInvoiceSectionProductID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "productValue")
+id := billings.NewInvoiceSectionProductID("billingAccountName", "billingProfileName", "invoiceSectionName", "productName")
 
 payload := billings.TransferProductRequestProperties{
 	// ...

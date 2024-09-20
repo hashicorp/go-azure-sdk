@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProviderSpecificRecoveryPointDetails interface {
+	ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl
 }
 
-// RawProviderSpecificRecoveryPointDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ProviderSpecificRecoveryPointDetails = BaseProviderSpecificRecoveryPointDetailsImpl{}
+
+type BaseProviderSpecificRecoveryPointDetailsImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseProviderSpecificRecoveryPointDetailsImpl) ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl {
+	return s
+}
+
+var _ ProviderSpecificRecoveryPointDetails = RawProviderSpecificRecoveryPointDetailsImpl{}
+
+// RawProviderSpecificRecoveryPointDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawProviderSpecificRecoveryPointDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	providerSpecificRecoveryPointDetails BaseProviderSpecificRecoveryPointDetailsImpl
+	Type                                 string
+	Values                               map[string]interface{}
 }
 
-func unmarshalProviderSpecificRecoveryPointDetailsImplementation(input []byte) (ProviderSpecificRecoveryPointDetails, error) {
+func (s RawProviderSpecificRecoveryPointDetailsImpl) ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl {
+	return s.providerSpecificRecoveryPointDetails
+}
+
+func UnmarshalProviderSpecificRecoveryPointDetailsImplementation(input []byte) (ProviderSpecificRecoveryPointDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalProviderSpecificRecoveryPointDetailsImplementation(input []byte) (
 		return out, nil
 	}
 
-	out := RawProviderSpecificRecoveryPointDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseProviderSpecificRecoveryPointDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseProviderSpecificRecoveryPointDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawProviderSpecificRecoveryPointDetailsImpl{
+		providerSpecificRecoveryPointDetails: parent,
+		Type:                                 value,
+		Values:                               temp,
+	}, nil
 
 }

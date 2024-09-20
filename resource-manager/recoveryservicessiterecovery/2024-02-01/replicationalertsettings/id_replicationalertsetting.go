@@ -44,7 +44,7 @@ func ParseReplicationAlertSettingID(input string) (*ReplicationAlertSettingId, e
 	}
 
 	id := ReplicationAlertSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseReplicationAlertSettingIDInsensitively(input string) (*ReplicationAler
 	}
 
 	id := ReplicationAlertSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ReplicationAlertSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationAlertSettings", "replicationAlertSettings", "replicationAlertSettings"),
-		resourceids.UserSpecifiedSegment("replicationAlertSettingName", "replicationAlertSettingValue"),
+		resourceids.UserSpecifiedSegment("replicationAlertSettingName", "alertSettingName"),
 	}
 }
 

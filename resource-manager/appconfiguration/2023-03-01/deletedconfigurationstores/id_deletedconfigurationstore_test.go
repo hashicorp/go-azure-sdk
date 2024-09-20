@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeletedConfigurationStoreId{}
 
 func TestNewDeletedConfigurationStoreID(t *testing.T) {
-	id := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedConfigurationStoreValue")
+	id := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "location", "configStoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.DeletedConfigurationStoreName != "deletedConfigurationStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedConfigurationStoreName'", id.DeletedConfigurationStoreName, "deletedConfigurationStoreValue")
+	if id.DeletedConfigurationStoreName != "configStoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedConfigurationStoreName'", id.DeletedConfigurationStoreName, "configStoreName")
 	}
 }
 
 func TestFormatDeletedConfigurationStoreID(t *testing.T) {
-	actual := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedConfigurationStoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue"
+	actual := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "location", "configStoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores/configStoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDeletedConfigurationStoreID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores/configStoreName",
 			Expected: &DeletedConfigurationStoreId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				LocationName:                  "locationValue",
-				DeletedConfigurationStoreName: "deletedConfigurationStoreValue",
+				LocationName:                  "location",
+				DeletedConfigurationStoreName: "configStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores/configStoreName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDeletedConfigurationStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoN/dElEtEdCoNfIgUrAtIoNsToReS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores/configStoreName",
 			Expected: &DeletedConfigurationStoreId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				LocationName:                  "locationValue",
-				DeletedConfigurationStoreName: "deletedConfigurationStoreValue",
+				LocationName:                  "location",
+				DeletedConfigurationStoreName: "configStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/location/deletedConfigurationStores/configStoreName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/dElEtEdCoNfIgUrAtIoNsToReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoN/dElEtEdCoNfIgUrAtIoNsToReS/cOnFiGsToReNaMe",
 			Expected: &DeletedConfigurationStoreId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				LocationName:                  "lOcAtIoNvAlUe",
-				DeletedConfigurationStoreName: "dElEtEdCoNfIgUrAtIoNsToReVaLuE",
+				LocationName:                  "lOcAtIoN",
+				DeletedConfigurationStoreName: "cOnFiGsToReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/dElEtEdCoNfIgUrAtIoNsToReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoN/dElEtEdCoNfIgUrAtIoNsToReS/cOnFiGsToReNaMe/extra",
 			Error: true,
 		},
 	}

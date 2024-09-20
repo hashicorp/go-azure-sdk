@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PartnerId{}
 
 func TestNewPartnerID(t *testing.T) {
-	id := NewPartnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "partnerValue")
+	id := NewPartnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "partnerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPartnerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.IntegrationAccountName != "integrationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountValue")
+	if id.IntegrationAccountName != "integrationAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountName")
 	}
 
-	if id.PartnerName != "partnerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PartnerName'", id.PartnerName, "partnerValue")
+	if id.PartnerName != "partnerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PartnerName'", id.PartnerName, "partnerName")
 	}
 }
 
 func TestFormatPartnerID(t *testing.T) {
-	actual := NewPartnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "partnerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners/partnerValue"
+	actual := NewPartnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "partnerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners/partnerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePartnerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners/partnerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners/partnerName",
 			Expected: &PartnerId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				IntegrationAccountName: "integrationAccountValue",
-				PartnerName:            "partnerValue",
+				IntegrationAccountName: "integrationAccountName",
+				PartnerName:            "partnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners/partnerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners/partnerName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePartnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/pArTnErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/pArTnErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners/partnerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners/partnerName",
 			Expected: &PartnerId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				IntegrationAccountName: "integrationAccountValue",
-				PartnerName:            "partnerValue",
+				IntegrationAccountName: "integrationAccountName",
+				PartnerName:            "partnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/partners/partnerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/partners/partnerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/pArTnErS/pArTnErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/pArTnErS/pArTnErNaMe",
 			Expected: &PartnerId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTvAlUe",
-				PartnerName:            "pArTnErVaLuE",
+				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTnAmE",
+				PartnerName:            "pArTnErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/pArTnErS/pArTnErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/pArTnErS/pArTnErNaMe/extra",
 			Error: true,
 		},
 	}

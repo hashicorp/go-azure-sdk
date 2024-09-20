@@ -38,7 +38,7 @@ func (s *AzureDatabricksDetltaLakeLinkedServiceTypeProperties) UnmarshalJSON(byt
 	}
 
 	if v, ok := temp["accessToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AccessToken' for 'AzureDatabricksDetltaLakeLinkedServiceTypeProperties': %+v", err)
 		}

@@ -50,7 +50,6 @@ func (c AuthorizationLoginLinksClient) Post(ctx context.Context, id Authorizatio
 
 	var model AuthorizationLoginResponseContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

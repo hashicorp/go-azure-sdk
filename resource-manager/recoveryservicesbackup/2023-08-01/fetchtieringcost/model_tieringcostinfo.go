@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TieringCostInfo interface {
+	TieringCostInfo() BaseTieringCostInfoImpl
 }
 
-// RawTieringCostInfoImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TieringCostInfo = BaseTieringCostInfoImpl{}
+
+type BaseTieringCostInfoImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseTieringCostInfoImpl) TieringCostInfo() BaseTieringCostInfoImpl {
+	return s
+}
+
+var _ TieringCostInfo = RawTieringCostInfoImpl{}
+
+// RawTieringCostInfoImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTieringCostInfoImpl struct {
-	Type   string
-	Values map[string]interface{}
+	tieringCostInfo BaseTieringCostInfoImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalTieringCostInfoImplementation(input []byte) (TieringCostInfo, error) {
+func (s RawTieringCostInfoImpl) TieringCostInfo() BaseTieringCostInfoImpl {
+	return s.tieringCostInfo
+}
+
+func UnmarshalTieringCostInfoImplementation(input []byte) (TieringCostInfo, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalTieringCostInfoImplementation(input []byte) (TieringCostInfo, erro
 		return out, nil
 	}
 
-	out := RawTieringCostInfoImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTieringCostInfoImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTieringCostInfoImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTieringCostInfoImpl{
+		tieringCostInfo: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

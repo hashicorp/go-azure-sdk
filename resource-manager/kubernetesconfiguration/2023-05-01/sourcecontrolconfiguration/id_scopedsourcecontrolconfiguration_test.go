@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedSourceControlConfigurationId{}
 
 func TestNewScopedSourceControlConfigurationID(t *testing.T) {
-	id := NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationValue")
+	id := NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.SourceControlConfigurationName != "sourceControlConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SourceControlConfigurationName'", id.SourceControlConfigurationName, "sourceControlConfigurationValue")
+	if id.SourceControlConfigurationName != "sourceControlConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SourceControlConfigurationName'", id.SourceControlConfigurationName, "sourceControlConfigurationName")
 	}
 }
 
 func TestFormatScopedSourceControlConfigurationID(t *testing.T) {
-	actual := NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationValue"
+	actual := NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedSourceControlConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationName",
 			Expected: &ScopedSourceControlConfigurationId{
 				Scope:                          "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				SourceControlConfigurationName: "sourceControlConfigurationValue",
+				SourceControlConfigurationName: "sourceControlConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedSourceControlConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationName",
 			Expected: &ScopedSourceControlConfigurationId{
 				Scope:                          "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				SourceControlConfigurationName: "sourceControlConfigurationValue",
+				SourceControlConfigurationName: "sourceControlConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/sourceControlConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/sOuRcEcOnTrOlCoNfIgUrAtIoNs/sOuRcEcOnTrOlCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/sOuRcEcOnTrOlCoNfIgUrAtIoNs/sOuRcEcOnTrOlCoNfIgUrAtIoNnAmE",
 			Expected: &ScopedSourceControlConfigurationId{
 				Scope:                          "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				SourceControlConfigurationName: "sOuRcEcOnTrOlCoNfIgUrAtIoNvAlUe",
+				SourceControlConfigurationName: "sOuRcEcOnTrOlCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/sOuRcEcOnTrOlCoNfIgUrAtIoNs/sOuRcEcOnTrOlCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/sOuRcEcOnTrOlCoNfIgUrAtIoNs/sOuRcEcOnTrOlCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

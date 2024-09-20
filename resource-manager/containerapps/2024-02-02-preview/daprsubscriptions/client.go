@@ -15,7 +15,7 @@ type DaprSubscriptionsClient struct {
 }
 
 func NewDaprSubscriptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DaprSubscriptionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "daprsubscriptions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "daprsubscriptions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DaprSubscriptionsClient: %+v", err)
 	}

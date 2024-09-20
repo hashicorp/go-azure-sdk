@@ -45,7 +45,6 @@ func (c CostAllocationRulesClient) Get(ctx context.Context, id CostAllocationRul
 
 	var model CostAllocationRuleDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

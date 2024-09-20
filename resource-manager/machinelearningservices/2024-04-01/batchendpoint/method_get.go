@@ -45,7 +45,6 @@ func (c BatchEndpointClient) Get(ctx context.Context, id BatchEndpointId) (resul
 
 	var model BatchEndpointTrackedResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c DevOpsClient) GitHubReposGet(ctx context.Context, id RepoId) (result Git
 
 	var model GitHubRepository
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

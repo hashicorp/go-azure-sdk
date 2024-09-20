@@ -15,7 +15,7 @@ type PATCHClient struct {
 }
 
 func NewPATCHClientWithBaseURI(sdkApi sdkEnv.Api) (*PATCHClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "patch", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "patch", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PATCHClient: %+v", err)
 	}

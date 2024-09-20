@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BareMetalMachineKeySetId{}
 
 func TestNewBareMetalMachineKeySetID(t *testing.T) {
-	id := NewBareMetalMachineKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "bareMetalMachineKeySetValue")
+	id := NewBareMetalMachineKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "bareMetalMachineKeySetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewBareMetalMachineKeySetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.BareMetalMachineKeySetName != "bareMetalMachineKeySetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BareMetalMachineKeySetName'", id.BareMetalMachineKeySetName, "bareMetalMachineKeySetValue")
+	if id.BareMetalMachineKeySetName != "bareMetalMachineKeySetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BareMetalMachineKeySetName'", id.BareMetalMachineKeySetName, "bareMetalMachineKeySetName")
 	}
 }
 
 func TestFormatBareMetalMachineKeySetID(t *testing.T) {
-	actual := NewBareMetalMachineKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "bareMetalMachineKeySetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets/bareMetalMachineKeySetValue"
+	actual := NewBareMetalMachineKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "bareMetalMachineKeySetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets/bareMetalMachineKeySetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseBareMetalMachineKeySetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets/bareMetalMachineKeySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets/bareMetalMachineKeySetName",
 			Expected: &BareMetalMachineKeySetId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ClusterName:                "clusterValue",
-				BareMetalMachineKeySetName: "bareMetalMachineKeySetValue",
+				ClusterName:                "clusterName",
+				BareMetalMachineKeySetName: "bareMetalMachineKeySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets/bareMetalMachineKeySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets/bareMetalMachineKeySetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseBareMetalMachineKeySetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bArEmEtAlMaChInEkEySeTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bArEmEtAlMaChInEkEySeTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets/bareMetalMachineKeySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets/bareMetalMachineKeySetName",
 			Expected: &BareMetalMachineKeySetId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ClusterName:                "clusterValue",
-				BareMetalMachineKeySetName: "bareMetalMachineKeySetValue",
+				ClusterName:                "clusterName",
+				BareMetalMachineKeySetName: "bareMetalMachineKeySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bareMetalMachineKeySets/bareMetalMachineKeySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bareMetalMachineKeySets/bareMetalMachineKeySetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bArEmEtAlMaChInEkEySeTs/bArEmEtAlMaChInEkEySeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bArEmEtAlMaChInEkEySeTs/bArEmEtAlMaChInEkEySeTnAmE",
 			Expected: &BareMetalMachineKeySetId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:                "cLuStErVaLuE",
-				BareMetalMachineKeySetName: "bArEmEtAlMaChInEkEySeTvAlUe",
+				ClusterName:                "cLuStErNaMe",
+				BareMetalMachineKeySetName: "bArEmEtAlMaChInEkEySeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bArEmEtAlMaChInEkEySeTs/bArEmEtAlMaChInEkEySeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bArEmEtAlMaChInEkEySeTs/bArEmEtAlMaChInEkEySeTnAmE/extra",
 			Error: true,
 		},
 	}

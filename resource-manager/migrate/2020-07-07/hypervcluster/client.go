@@ -15,7 +15,7 @@ type HyperVClusterClient struct {
 }
 
 func NewHyperVClusterClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVClusterClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervcluster", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervcluster", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVClusterClient: %+v", err)
 	}

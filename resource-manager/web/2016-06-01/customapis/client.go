@@ -15,7 +15,7 @@ type CustomAPIsClient struct {
 }
 
 func NewCustomAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "customapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "customapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CustomAPIsClient: %+v", err)
 	}

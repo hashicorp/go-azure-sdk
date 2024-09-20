@@ -44,7 +44,7 @@ func ParseDetectorID(input string) (*DetectorId, error) {
 	}
 
 	id := DetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDetectorIDInsensitively(input string) (*DetectorId, error) {
 	}
 
 	id := DetectorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountValue"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "accountName"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
-		resourceids.UserSpecifiedSegment("detectorId", "detectorIdValue"),
+		resourceids.UserSpecifiedSegment("detectorId", "detectorId"),
 	}
 }
 

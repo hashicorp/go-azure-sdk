@@ -15,7 +15,7 @@ type ApiIssueCommentClient struct {
 }
 
 func NewApiIssueCommentClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiIssueCommentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apiissuecomment", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apiissuecomment", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiIssueCommentClient: %+v", err)
 	}

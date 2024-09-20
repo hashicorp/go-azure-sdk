@@ -15,7 +15,7 @@ type TenantAccessGitClient struct {
 }
 
 func NewTenantAccessGitClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantAccessGitClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tenantaccessgit", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "tenantaccessgit", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TenantAccessGitClient: %+v", err)
 	}

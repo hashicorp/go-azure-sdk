@@ -50,7 +50,6 @@ func (c PoliciesClient) UpdateCustomer(ctx context.Context, id CustomerId, input
 
 	var model CustomerPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

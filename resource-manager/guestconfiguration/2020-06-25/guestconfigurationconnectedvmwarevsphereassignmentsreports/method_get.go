@@ -45,7 +45,6 @@ func (c GuestConfigurationConnectedVMwarevSphereAssignmentsReportsClient) Get(ct
 
 	var model GuestConfigurationAssignmentReport
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

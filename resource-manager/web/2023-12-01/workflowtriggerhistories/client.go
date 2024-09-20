@@ -15,7 +15,7 @@ type WorkflowTriggerHistoriesClient struct {
 }
 
 func NewWorkflowTriggerHistoriesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkflowTriggerHistoriesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workflowtriggerhistories", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workflowtriggerhistories", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkflowTriggerHistoriesClient: %+v", err)
 	}

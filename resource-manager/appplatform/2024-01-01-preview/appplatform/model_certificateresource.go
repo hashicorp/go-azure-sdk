@@ -38,7 +38,7 @@ func (s *CertificateResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalCertificatePropertiesImplementation(v)
+		impl, err := UnmarshalCertificatePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'CertificateResource': %+v", err)
 		}

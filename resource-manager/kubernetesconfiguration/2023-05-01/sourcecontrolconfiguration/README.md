@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/sourcecontrolconfiguration` Documentation
 
-The `sourcecontrolconfiguration` SDK allows for interaction with the Azure Resource Manager Service `kubernetesconfiguration` (API Version `2023-05-01`).
+The `sourcecontrolconfiguration` SDK allows for interaction with Azure Resource Manager `kubernetesconfiguration` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationValue")
+id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationName")
 
 payload := sourcecontrolconfiguration.SourceControlConfiguration{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationValue")
+id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -58,7 +58,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationValue")
+id := sourcecontrolconfiguration.NewScopedSourceControlConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "sourceControlConfigurationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

@@ -50,7 +50,6 @@ func (c RaiPoliciesClient) CreateOrUpdate(ctx context.Context, id RaiPolicyId, i
 
 	var model RaiPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

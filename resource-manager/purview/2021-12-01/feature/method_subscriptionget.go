@@ -50,7 +50,6 @@ func (c FeatureClient) SubscriptionGet(ctx context.Context, id LocationId, input
 
 	var model BatchFeatureStatus
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

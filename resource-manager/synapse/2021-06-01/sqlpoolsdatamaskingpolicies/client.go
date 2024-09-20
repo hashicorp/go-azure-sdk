@@ -15,7 +15,7 @@ type SqlPoolsDataMaskingPoliciesClient struct {
 }
 
 func NewSqlPoolsDataMaskingPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsDataMaskingPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsdatamaskingpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsdatamaskingpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsDataMaskingPoliciesClient: %+v", err)
 	}

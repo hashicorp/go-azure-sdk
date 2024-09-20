@@ -45,7 +45,6 @@ func (c SubAccountClient) Get(ctx context.Context, id AccountId) (result GetOper
 
 	var model LogzMonitorResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

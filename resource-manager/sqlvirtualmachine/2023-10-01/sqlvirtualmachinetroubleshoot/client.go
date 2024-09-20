@@ -15,7 +15,7 @@ type SqlVirtualMachineTroubleshootClient struct {
 }
 
 func NewSqlVirtualMachineTroubleshootClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlVirtualMachineTroubleshootClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlvirtualmachinetroubleshoot", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlvirtualmachinetroubleshoot", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlVirtualMachineTroubleshootClient: %+v", err)
 	}

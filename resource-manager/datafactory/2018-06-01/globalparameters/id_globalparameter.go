@@ -44,7 +44,7 @@ func ParseGlobalParameterID(input string) (*GlobalParameterId, error) {
 	}
 
 	id := GlobalParameterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseGlobalParameterIDInsensitively(input string) (*GlobalParameterId, erro
 	}
 
 	id := GlobalParameterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id GlobalParameterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataFactory", "Microsoft.DataFactory", "Microsoft.DataFactory"),
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
-		resourceids.UserSpecifiedSegment("factoryName", "factoryValue"),
+		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticGlobalParameters", "globalParameters", "globalParameters"),
-		resourceids.UserSpecifiedSegment("globalParameterName", "globalParameterValue"),
+		resourceids.UserSpecifiedSegment("globalParameterName", "globalParameterName"),
 	}
 }
 

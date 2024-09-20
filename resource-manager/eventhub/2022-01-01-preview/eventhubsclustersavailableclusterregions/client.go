@@ -15,7 +15,7 @@ type EventHubsClustersAvailableClusterRegionsClient struct {
 }
 
 func NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI(sdkApi sdkEnv.Api) (*EventHubsClustersAvailableClusterRegionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "eventhubsclustersavailableclusterregions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "eventhubsclustersavailableclusterregions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EventHubsClustersAvailableClusterRegionsClient: %+v", err)
 	}

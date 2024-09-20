@@ -38,7 +38,7 @@ func ParseMetadataID(input string) (*MetadataId, error) {
 	}
 
 	id := MetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseMetadataIDInsensitively(input string) (*MetadataId, error) {
 	}
 
 	id := MetadataId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id MetadataId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAdvisor", "Microsoft.Advisor", "Microsoft.Advisor"),
 		resourceids.StaticSegment("staticMetadata", "metadata", "metadata"),
-		resourceids.UserSpecifiedSegment("metadataName", "metadataValue"),
+		resourceids.UserSpecifiedSegment("metadataName", "name"),
 	}
 }
 

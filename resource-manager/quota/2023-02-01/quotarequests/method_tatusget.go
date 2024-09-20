@@ -45,7 +45,6 @@ func (c QuotaRequestsClient) TatusGet(ctx context.Context, id ScopedQuotaRequest
 
 	var model QuotaRequestDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

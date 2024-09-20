@@ -39,7 +39,7 @@ func (s *UntilActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Activity, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalActivityImplementation(val)
+			impl, err := UnmarshalActivityImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Activities' for 'UntilActivityTypeProperties': %+v", i, err)
 			}

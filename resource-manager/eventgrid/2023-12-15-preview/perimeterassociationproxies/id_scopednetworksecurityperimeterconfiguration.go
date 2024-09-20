@@ -40,7 +40,7 @@ func ParseScopedNetworkSecurityPerimeterConfigurationID(input string) (*ScopedNe
 	}
 
 	id := ScopedNetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedNetworkSecurityPerimeterConfigurationIDInsensitively(input strin
 	}
 
 	id := ScopedNetworkSecurityPerimeterConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -104,7 +104,7 @@ func (id ScopedNetworkSecurityPerimeterConfigurationId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.ScopeSegment("scope", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
 		resourceids.StaticSegment("staticNetworkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations"),
-		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "networkSecurityPerimeterConfigurationValue"),
+		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "perimeterGuidassociationName"),
 	}
 }
 

@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SecurityMLAnalyticsSetting
+	Model        SecurityMLAnalyticsSetting
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c SecurityMLAnalyticsSettingsClient) Get(ctx context.Context, id SecurityM
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalSecurityMLAnalyticsSettingImplementation(respObj)
+	model, err := UnmarshalSecurityMLAnalyticsSettingImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

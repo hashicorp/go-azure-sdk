@@ -45,7 +45,7 @@ func (s *AlertProcessingRuleProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Action, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalActionImplementation(val)
+			impl, err := UnmarshalActionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Actions' for 'AlertProcessingRuleProperties': %+v", i, err)
 			}

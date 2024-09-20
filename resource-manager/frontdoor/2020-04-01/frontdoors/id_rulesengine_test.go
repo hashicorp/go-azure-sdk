@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RulesEngineId{}
 
 func TestNewRulesEngineID(t *testing.T) {
-	id := NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "rulesEngineValue")
+	id := NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorName", "rulesEngineName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRulesEngineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FrontDoorName != "frontDoorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorName'", id.FrontDoorName, "frontDoorValue")
+	if id.FrontDoorName != "frontDoorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorName'", id.FrontDoorName, "frontDoorName")
 	}
 
-	if id.RulesEngineName != "rulesEngineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RulesEngineName'", id.RulesEngineName, "rulesEngineValue")
+	if id.RulesEngineName != "rulesEngineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RulesEngineName'", id.RulesEngineName, "rulesEngineName")
 	}
 }
 
 func TestFormatRulesEngineID(t *testing.T) {
-	actual := NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "rulesEngineValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines/rulesEngineValue"
+	actual := NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorName", "rulesEngineName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines/rulesEngineName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRulesEngineID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines/rulesEngineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines/rulesEngineName",
 			Expected: &RulesEngineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FrontDoorName:     "frontDoorValue",
-				RulesEngineName:   "rulesEngineValue",
+				FrontDoorName:     "frontDoorName",
+				RulesEngineName:   "rulesEngineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines/rulesEngineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines/rulesEngineName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRulesEngineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/rUlEsEnGiNeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/rUlEsEnGiNeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines/rulesEngineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines/rulesEngineName",
 			Expected: &RulesEngineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FrontDoorName:     "frontDoorValue",
-				RulesEngineName:   "rulesEngineValue",
+				FrontDoorName:     "frontDoorName",
+				RulesEngineName:   "rulesEngineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/rulesEngines/rulesEngineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/rulesEngines/rulesEngineName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/rUlEsEnGiNeS/rUlEsEnGiNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/rUlEsEnGiNeS/rUlEsEnGiNeNaMe",
 			Expected: &RulesEngineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FrontDoorName:     "fRoNtDoOrVaLuE",
-				RulesEngineName:   "rUlEsEnGiNeVaLuE",
+				FrontDoorName:     "fRoNtDoOrNaMe",
+				RulesEngineName:   "rUlEsEnGiNeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/rUlEsEnGiNeS/rUlEsEnGiNeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/rUlEsEnGiNeS/rUlEsEnGiNeNaMe/extra",
 			Error: true,
 		},
 	}

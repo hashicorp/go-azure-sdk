@@ -40,7 +40,7 @@ func (s *AzureBlobDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["format"]; ok {
-		impl, err := unmarshalDatasetStorageFormatImplementation(v)
+		impl, err := UnmarshalDatasetStorageFormatImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Format' for 'AzureBlobDatasetTypeProperties': %+v", err)
 		}

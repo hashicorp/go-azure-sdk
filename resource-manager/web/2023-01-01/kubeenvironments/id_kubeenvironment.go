@@ -42,7 +42,7 @@ func ParseKubeEnvironmentID(input string) (*KubeEnvironmentId, error) {
 	}
 
 	id := KubeEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseKubeEnvironmentIDInsensitively(input string) (*KubeEnvironmentId, erro
 	}
 
 	id := KubeEnvironmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id KubeEnvironmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticKubeEnvironments", "kubeEnvironments", "kubeEnvironments"),
-		resourceids.UserSpecifiedSegment("kubeEnvironmentName", "kubeEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("kubeEnvironmentName", "name"),
 	}
 }
 

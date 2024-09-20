@@ -15,7 +15,7 @@ type SubscriptionDiagnosticSettingsClient struct {
 }
 
 func NewSubscriptionDiagnosticSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubscriptionDiagnosticSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "subscriptiondiagnosticsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "subscriptiondiagnosticsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubscriptionDiagnosticSettingsClient: %+v", err)
 	}

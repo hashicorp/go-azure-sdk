@@ -15,7 +15,7 @@ type ReplicationUsagesClient struct {
 }
 
 func NewReplicationUsagesClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationUsagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationusages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationusages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationUsagesClient: %+v", err)
 	}

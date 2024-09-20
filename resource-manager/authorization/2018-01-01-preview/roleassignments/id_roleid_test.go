@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleIdId{}
 
 func TestNewRoleIdID(t *testing.T) {
-	id := NewRoleIdID("roleIdValue")
+	id := NewRoleIdID("roleId")
 
-	if id.RoleId != "roleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleId'", id.RoleId, "roleIdValue")
+	if id.RoleId != "roleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleId'", id.RoleId, "roleId")
 	}
 }
 
 func TestFormatRoleIdID(t *testing.T) {
-	actual := NewRoleIdID("roleIdValue").ID()
-	expected := "/roleIdValue"
+	actual := NewRoleIdID("roleId").ID()
+	expected := "/roleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,14 +40,14 @@ func TestParseRoleIdID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleIdValue",
+			Input: "/roleId",
 			Expected: &RoleIdId{
-				RoleId: "roleIdValue",
+				RoleId: "roleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleIdValue/extra",
+			Input: "/roleId/extra",
 			Error: true,
 		},
 	}
@@ -86,26 +86,26 @@ func TestParseRoleIdIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleIdValue",
+			Input: "/roleId",
 			Expected: &RoleIdId{
-				RoleId: "roleIdValue",
+				RoleId: "roleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleIdValue/extra",
+			Input: "/roleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEiDvAlUe",
+			Input: "/rOlEiD",
 			Expected: &RoleIdId{
-				RoleId: "rOlEiDvAlUe",
+				RoleId: "rOlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEiDvAlUe/extra",
+			Input: "/rOlEiD/extra",
 			Error: true,
 		},
 	}

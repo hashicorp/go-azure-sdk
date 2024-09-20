@@ -45,7 +45,6 @@ func (c DataVersionClient) Get(ctx context.Context, id DataVersionId) (result Ge
 
 	var model DataVersionBaseResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

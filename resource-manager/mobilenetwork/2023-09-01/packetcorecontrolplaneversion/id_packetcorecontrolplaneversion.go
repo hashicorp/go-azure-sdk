@@ -38,7 +38,7 @@ func ParsePacketCoreControlPlaneVersionID(input string) (*PacketCoreControlPlane
 	}
 
 	id := PacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParsePacketCoreControlPlaneVersionIDInsensitively(input string) (*PacketCor
 	}
 
 	id := PacketCoreControlPlaneVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id PacketCoreControlPlaneVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMobileNetwork", "Microsoft.MobileNetwork", "Microsoft.MobileNetwork"),
 		resourceids.StaticSegment("staticPacketCoreControlPlaneVersions", "packetCoreControlPlaneVersions", "packetCoreControlPlaneVersions"),
-		resourceids.UserSpecifiedSegment("packetCoreControlPlaneVersionName", "packetCoreControlPlaneVersionValue"),
+		resourceids.UserSpecifiedSegment("packetCoreControlPlaneVersionName", "versionName"),
 	}
 }
 

@@ -15,6 +15,14 @@ type LinkedServiceReference struct {
 	ReferenceName string                  `json:"referenceName"`
 
 	// Fields inherited from Reference
+
+	Type string `json:"type"`
+}
+
+func (s LinkedServiceReference) Reference() BaseReferenceImpl {
+	return BaseReferenceImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = LinkedServiceReference{}
@@ -28,9 +36,10 @@ func (s LinkedServiceReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LinkedServiceReference: %+v", err)
 	}
+
 	decoded["type"] = "LinkedServiceReference"
 
 	encoded, err = json.Marshal(decoded)

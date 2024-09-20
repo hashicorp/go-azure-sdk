@@ -14,9 +14,20 @@ type WranglingDataFlow struct {
 	TypeProperties *PowerQueryTypeProperties `json:"typeProperties,omitempty"`
 
 	// Fields inherited from DataFlow
+
 	Annotations *[]interface{}  `json:"annotations,omitempty"`
 	Description *string         `json:"description,omitempty"`
 	Folder      *DataFlowFolder `json:"folder,omitempty"`
+	Type        string          `json:"type"`
+}
+
+func (s WranglingDataFlow) DataFlow() BaseDataFlowImpl {
+	return BaseDataFlowImpl{
+		Annotations: s.Annotations,
+		Description: s.Description,
+		Folder:      s.Folder,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = WranglingDataFlow{}
@@ -30,9 +41,10 @@ func (s WranglingDataFlow) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling WranglingDataFlow: %+v", err)
 	}
+
 	decoded["type"] = "WranglingDataFlow"
 
 	encoded, err = json.Marshal(decoded)

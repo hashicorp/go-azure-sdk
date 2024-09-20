@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TagRuleId{}
 
 func TestNewTagRuleID(t *testing.T) {
-	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue")
+	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTagRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.TagRuleName != "tagRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "tagRuleValue")
+	if id.TagRuleName != "ruleSetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "ruleSetName")
 	}
 }
 
 func TestFormatTagRuleID(t *testing.T) {
-	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules/tagRuleValue"
+	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules/ruleSetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTagRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules/tagRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules/ruleSetName",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				TagRuleName:       "tagRuleValue",
+				MonitorName:       "monitorName",
+				TagRuleName:       "ruleSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules/tagRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules/ruleSetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTagRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE/tAgRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe/tAgRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules/tagRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules/ruleSetName",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				TagRuleName:       "tagRuleValue",
+				MonitorName:       "monitorName",
+				TagRuleName:       "ruleSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/tagRules/tagRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/tagRules/ruleSetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/tAgRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe/tAgRuLeS/rUlEsEtNaMe",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:       "mOnItOrVaLuE",
-				TagRuleName:       "tAgRuLeVaLuE",
+				MonitorName:       "mOnItOrNaMe",
+				TagRuleName:       "rUlEsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/tAgRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe/tAgRuLeS/rUlEsEtNaMe/extra",
 			Error: true,
 		},
 	}

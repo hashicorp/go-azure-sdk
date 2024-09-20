@@ -41,6 +41,7 @@ func (o ListByGeoOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByGeoOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -15,7 +15,7 @@ type MaintenanceWindowOptionsClient struct {
 }
 
 func NewMaintenanceWindowOptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MaintenanceWindowOptionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "maintenancewindowoptions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "maintenancewindowoptions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MaintenanceWindowOptionsClient: %+v", err)
 	}

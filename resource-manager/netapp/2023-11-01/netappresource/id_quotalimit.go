@@ -42,7 +42,7 @@ func ParseQuotaLimitID(input string) (*QuotaLimitId, error) {
 	}
 
 	id := QuotaLimitId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseQuotaLimitIDInsensitively(input string) (*QuotaLimitId, error) {
 	}
 
 	id := QuotaLimitId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id QuotaLimitId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetApp", "Microsoft.NetApp", "Microsoft.NetApp"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticQuotaLimits", "quotaLimits", "quotaLimits"),
-		resourceids.UserSpecifiedSegment("quotaLimitName", "quotaLimitValue"),
+		resourceids.UserSpecifiedSegment("quotaLimitName", "quotaLimitName"),
 	}
 }
 

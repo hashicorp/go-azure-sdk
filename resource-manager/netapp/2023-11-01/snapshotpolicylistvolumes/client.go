@@ -15,7 +15,7 @@ type SnapshotPolicyListVolumesClient struct {
 }
 
 func NewSnapshotPolicyListVolumesClientWithBaseURI(sdkApi sdkEnv.Api) (*SnapshotPolicyListVolumesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "snapshotpolicylistvolumes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "snapshotpolicylistvolumes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SnapshotPolicyListVolumesClient: %+v", err)
 	}

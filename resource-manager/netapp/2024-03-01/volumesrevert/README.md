@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2024-03-01/volumesrevert` Documentation
 
-The `volumesrevert` SDK allows for interaction with the Azure Resource Manager Service `netapp` (API Version `2024-03-01`).
+The `volumesrevert` SDK allows for interaction with Azure Resource Manager `netapp` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := volumesrevert.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
+id := volumesrevert.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "poolName", "volumeName")
 
 payload := volumesrevert.VolumeRevert{
 	// ...

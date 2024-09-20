@@ -41,6 +41,7 @@ func (o WorkspaceTagOperationLinkListByProductOperationOptions) ToHeaders() *cli
 
 func (o WorkspaceTagOperationLinkListByProductOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

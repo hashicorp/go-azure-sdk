@@ -22,7 +22,7 @@ func (s *TestMigrateInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalTestMigrateProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalTestMigrateProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'TestMigrateInputProperties': %+v", err)
 		}

@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryPoint interface {
+	RecoveryPoint() BaseRecoveryPointImpl
 }
 
-// RawRecoveryPointImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RecoveryPoint = BaseRecoveryPointImpl{}
+
+type BaseRecoveryPointImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseRecoveryPointImpl) RecoveryPoint() BaseRecoveryPointImpl {
+	return s
+}
+
+var _ RecoveryPoint = RawRecoveryPointImpl{}
+
+// RawRecoveryPointImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRecoveryPointImpl struct {
-	Type   string
-	Values map[string]interface{}
+	recoveryPoint BaseRecoveryPointImpl
+	Type          string
+	Values        map[string]interface{}
 }
 
-func unmarshalRecoveryPointImplementation(input []byte) (RecoveryPoint, error) {
+func (s RawRecoveryPointImpl) RecoveryPoint() BaseRecoveryPointImpl {
+	return s.recoveryPoint
+}
+
+func UnmarshalRecoveryPointImplementation(input []byte) (RecoveryPoint, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -108,10 +125,15 @@ func unmarshalRecoveryPointImplementation(input []byte) (RecoveryPoint, error) {
 		return out, nil
 	}
 
-	out := RawRecoveryPointImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRecoveryPointImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryPointImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRecoveryPointImpl{
+		recoveryPoint: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
 
 }

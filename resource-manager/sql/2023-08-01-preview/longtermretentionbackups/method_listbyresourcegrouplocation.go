@@ -40,6 +40,7 @@ func (o ListByResourceGroupLocationOperationOptions) ToHeaders() *client.Headers
 
 func (o ListByResourceGroupLocationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

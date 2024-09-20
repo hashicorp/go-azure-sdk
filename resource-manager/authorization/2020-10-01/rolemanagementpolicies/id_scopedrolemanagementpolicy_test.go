@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedRoleManagementPolicyId{}
 
 func TestNewScopedRoleManagementPolicyID(t *testing.T) {
-	id := NewScopedRoleManagementPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyValue")
+	id := NewScopedRoleManagementPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RoleManagementPolicyName != "roleManagementPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleManagementPolicyName'", id.RoleManagementPolicyName, "roleManagementPolicyValue")
+	if id.RoleManagementPolicyName != "roleManagementPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleManagementPolicyName'", id.RoleManagementPolicyName, "roleManagementPolicyName")
 	}
 }
 
 func TestFormatScopedRoleManagementPolicyID(t *testing.T) {
-	actual := NewScopedRoleManagementPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyValue"
+	actual := NewScopedRoleManagementPolicyID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedRoleManagementPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyName",
 			Expected: &ScopedRoleManagementPolicyId{
 				Scope:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleManagementPolicyName: "roleManagementPolicyValue",
+				RoleManagementPolicyName: "roleManagementPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedRoleManagementPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyName",
 			Expected: &ScopedRoleManagementPolicyId{
 				Scope:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleManagementPolicyName: "roleManagementPolicyValue",
+				RoleManagementPolicyName: "roleManagementPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicies/roleManagementPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcIeS/rOlEmAnAgEmEnTpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcIeS/rOlEmAnAgEmEnTpOlIcYnAmE",
 			Expected: &ScopedRoleManagementPolicyId{
 				Scope:                    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RoleManagementPolicyName: "rOlEmAnAgEmEnTpOlIcYvAlUe",
+				RoleManagementPolicyName: "rOlEmAnAgEmEnTpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcIeS/rOlEmAnAgEmEnTpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcIeS/rOlEmAnAgEmEnTpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

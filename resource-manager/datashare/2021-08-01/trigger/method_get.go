@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Trigger
+	Model        Trigger
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c TriggerClient) Get(ctx context.Context, id TriggerId) (result GetOperati
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalTriggerImplementation(respObj)
+	model, err := UnmarshalTriggerImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

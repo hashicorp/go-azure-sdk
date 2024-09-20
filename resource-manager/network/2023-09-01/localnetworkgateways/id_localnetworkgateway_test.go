@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LocalNetworkGatewayId{}
 
 func TestNewLocalNetworkGatewayID(t *testing.T) {
-	id := NewLocalNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localNetworkGatewayValue")
+	id := NewLocalNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localNetworkGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLocalNetworkGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocalNetworkGatewayName != "localNetworkGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocalNetworkGatewayName'", id.LocalNetworkGatewayName, "localNetworkGatewayValue")
+	if id.LocalNetworkGatewayName != "localNetworkGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocalNetworkGatewayName'", id.LocalNetworkGatewayName, "localNetworkGatewayName")
 	}
 }
 
 func TestFormatLocalNetworkGatewayID(t *testing.T) {
-	actual := NewLocalNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localNetworkGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayValue"
+	actual := NewLocalNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localNetworkGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLocalNetworkGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayName",
 			Expected: &LocalNetworkGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				LocalNetworkGatewayName: "localNetworkGatewayValue",
+				LocalNetworkGatewayName: "localNetworkGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLocalNetworkGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayName",
 			Expected: &LocalNetworkGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				LocalNetworkGatewayName: "localNetworkGatewayValue",
+				LocalNetworkGatewayName: "localNetworkGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/localNetworkGateways/localNetworkGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOcAlNeTwOrKgAtEwAyS/lOcAlNeTwOrKgAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOcAlNeTwOrKgAtEwAyS/lOcAlNeTwOrKgAtEwAyNaMe",
 			Expected: &LocalNetworkGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				LocalNetworkGatewayName: "lOcAlNeTwOrKgAtEwAyVaLuE",
+				LocalNetworkGatewayName: "lOcAlNeTwOrKgAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOcAlNeTwOrKgAtEwAyS/lOcAlNeTwOrKgAtEwAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOcAlNeTwOrKgAtEwAyS/lOcAlNeTwOrKgAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

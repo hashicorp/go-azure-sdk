@@ -42,7 +42,7 @@ func ParseCommitmentPlanID(input string) (*CommitmentPlanId, error) {
 	}
 
 	id := CommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCommitmentPlanIDInsensitively(input string) (*CommitmentPlanId, error)
 	}
 
 	id := CommitmentPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id CommitmentPlanId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCognitiveServices", "Microsoft.CognitiveServices", "Microsoft.CognitiveServices"),
 		resourceids.StaticSegment("staticCommitmentPlans", "commitmentPlans", "commitmentPlans"),
-		resourceids.UserSpecifiedSegment("commitmentPlanName", "commitmentPlanValue"),
+		resourceids.UserSpecifiedSegment("commitmentPlanName", "commitmentPlanName"),
 	}
 }
 

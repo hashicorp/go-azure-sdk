@@ -15,7 +15,7 @@ type GatewayGenerateTokenClient struct {
 }
 
 func NewGatewayGenerateTokenClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayGenerateTokenClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewaygeneratetoken", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewaygeneratetoken", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayGenerateTokenClient: %+v", err)
 	}

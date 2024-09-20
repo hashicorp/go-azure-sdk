@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &SavingsPlanId{}
 
 func TestNewSavingsPlanID(t *testing.T) {
-	id := NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue")
+	id := NewSavingsPlanID("savingsPlanOrderId", "savingsPlanId")
 
-	if id.SavingsPlanOrderId != "savingsPlanOrderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SavingsPlanOrderId'", id.SavingsPlanOrderId, "savingsPlanOrderIdValue")
+	if id.SavingsPlanOrderId != "savingsPlanOrderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SavingsPlanOrderId'", id.SavingsPlanOrderId, "savingsPlanOrderId")
 	}
 
-	if id.SavingsPlanId != "savingsPlanIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SavingsPlanId'", id.SavingsPlanId, "savingsPlanIdValue")
+	if id.SavingsPlanId != "savingsPlanId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SavingsPlanId'", id.SavingsPlanId, "savingsPlanId")
 	}
 }
 
 func TestFormatSavingsPlanID(t *testing.T) {
-	actual := NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue").ID()
-	expected := "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans/savingsPlanIdValue"
+	actual := NewSavingsPlanID("savingsPlanOrderId", "savingsPlanId").ID()
+	expected := "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans/savingsPlanId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseSavingsPlanID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans/savingsPlanIdValue",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans/savingsPlanId",
 			Expected: &SavingsPlanId{
-				SavingsPlanOrderId: "savingsPlanOrderIdValue",
-				SavingsPlanId:      "savingsPlanIdValue",
+				SavingsPlanOrderId: "savingsPlanOrderId",
+				SavingsPlanId:      "savingsPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans/savingsPlanIdValue/extra",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans/savingsPlanId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseSavingsPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiDvAlUe/sAvInGsPlAnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiD/sAvInGsPlAnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans/savingsPlanIdValue",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans/savingsPlanId",
 			Expected: &SavingsPlanId{
-				SavingsPlanOrderId: "savingsPlanOrderIdValue",
-				SavingsPlanId:      "savingsPlanIdValue",
+				SavingsPlanOrderId: "savingsPlanOrderId",
+				SavingsPlanId:      "savingsPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderIdValue/savingsPlans/savingsPlanIdValue/extra",
+			Input: "/providers/Microsoft.BillingBenefits/savingsPlanOrders/savingsPlanOrderId/savingsPlans/savingsPlanId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiDvAlUe/sAvInGsPlAnS/sAvInGsPlAnIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiD/sAvInGsPlAnS/sAvInGsPlAnId",
 			Expected: &SavingsPlanId{
-				SavingsPlanOrderId: "sAvInGsPlAnOrDeRiDvAlUe",
-				SavingsPlanId:      "sAvInGsPlAnIdVaLuE",
+				SavingsPlanOrderId: "sAvInGsPlAnOrDeRiD",
+				SavingsPlanId:      "sAvInGsPlAnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiDvAlUe/sAvInGsPlAnS/sAvInGsPlAnIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNgBeNeFiTs/sAvInGsPlAnOrDeRs/sAvInGsPlAnOrDeRiD/sAvInGsPlAnS/sAvInGsPlAnId/extra",
 			Error: true,
 		},
 	}

@@ -44,7 +44,7 @@ func ParseBackupJobID(input string) (*BackupJobId, error) {
 	}
 
 	id := BackupJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupJobIDInsensitively(input string) (*BackupJobId, error) {
 	}
 
 	id := BackupJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BackupJobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupJobs", "backupJobs", "backupJobs"),
-		resourceids.UserSpecifiedSegment("backupJobName", "backupJobValue"),
+		resourceids.UserSpecifiedSegment("backupJobName", "jobName"),
 	}
 }
 

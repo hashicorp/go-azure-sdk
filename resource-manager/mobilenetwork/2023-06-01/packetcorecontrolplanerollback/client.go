@@ -15,7 +15,7 @@ type PacketCoreControlPlaneRollbackClient struct {
 }
 
 func NewPacketCoreControlPlaneRollbackClientWithBaseURI(sdkApi sdkEnv.Api) (*PacketCoreControlPlaneRollbackClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "packetcorecontrolplanerollback", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "packetcorecontrolplanerollback", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PacketCoreControlPlaneRollbackClient: %+v", err)
 	}

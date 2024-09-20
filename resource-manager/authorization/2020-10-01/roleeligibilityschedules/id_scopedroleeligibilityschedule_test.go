@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedRoleEligibilityScheduleId{}
 
 func TestNewScopedRoleEligibilityScheduleID(t *testing.T) {
-	id := NewScopedRoleEligibilityScheduleID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleEligibilityScheduleValue")
+	id := NewScopedRoleEligibilityScheduleID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleEligibilityScheduleName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RoleEligibilityScheduleName != "roleEligibilityScheduleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleEligibilityScheduleName'", id.RoleEligibilityScheduleName, "roleEligibilityScheduleValue")
+	if id.RoleEligibilityScheduleName != "roleEligibilityScheduleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleEligibilityScheduleName'", id.RoleEligibilityScheduleName, "roleEligibilityScheduleName")
 	}
 }
 
 func TestFormatScopedRoleEligibilityScheduleID(t *testing.T) {
-	actual := NewScopedRoleEligibilityScheduleID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleEligibilityScheduleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleValue"
+	actual := NewScopedRoleEligibilityScheduleID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleEligibilityScheduleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedRoleEligibilityScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleName",
 			Expected: &ScopedRoleEligibilityScheduleId{
 				Scope:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleEligibilityScheduleName: "roleEligibilityScheduleValue",
+				RoleEligibilityScheduleName: "roleEligibilityScheduleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedRoleEligibilityScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleName",
 			Expected: &ScopedRoleEligibilityScheduleId{
 				Scope:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleEligibilityScheduleName: "roleEligibilityScheduleValue",
+				RoleEligibilityScheduleName: "roleEligibilityScheduleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleEligibilitySchedules/roleEligibilityScheduleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEeLiGiBiLiTyScHeDuLeS/rOlEeLiGiBiLiTyScHeDuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEeLiGiBiLiTyScHeDuLeS/rOlEeLiGiBiLiTyScHeDuLeNaMe",
 			Expected: &ScopedRoleEligibilityScheduleId{
 				Scope:                       "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RoleEligibilityScheduleName: "rOlEeLiGiBiLiTyScHeDuLeVaLuE",
+				RoleEligibilityScheduleName: "rOlEeLiGiBiLiTyScHeDuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEeLiGiBiLiTyScHeDuLeS/rOlEeLiGiBiLiTyScHeDuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEeLiGiBiLiTyScHeDuLeS/rOlEeLiGiBiLiTyScHeDuLeNaMe/extra",
 			Error: true,
 		},
 	}

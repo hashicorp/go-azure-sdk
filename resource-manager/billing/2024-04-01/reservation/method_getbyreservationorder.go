@@ -34,6 +34,7 @@ func (o GetByReservationOrderOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByReservationOrderOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c ReservationClient) GetByReservationOrder(ctx context.Context, id Reserva
 
 	var model Reservation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

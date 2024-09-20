@@ -14,6 +14,14 @@ type JobScheduleAction struct {
 	JobDefinition JobBase `json:"jobDefinition"`
 
 	// Fields inherited from ScheduleActionBase
+
+	ActionType ScheduleActionType `json:"actionType"`
+}
+
+func (s JobScheduleAction) ScheduleActionBase() BaseScheduleActionBaseImpl {
+	return BaseScheduleActionBaseImpl{
+		ActionType: s.ActionType,
+	}
 }
 
 var _ json.Marshaler = JobScheduleAction{}
@@ -27,9 +35,10 @@ func (s JobScheduleAction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobScheduleAction: %+v", err)
 	}
+
 	decoded["actionType"] = "CreateJob"
 
 	encoded, err = json.Marshal(decoded)
@@ -43,6 +52,13 @@ func (s JobScheduleAction) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobScheduleAction{}
 
 func (s *JobScheduleAction) UnmarshalJSON(bytes []byte) error {
+	type alias JobScheduleAction
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into JobScheduleAction: %+v", err)
+	}
+
+	s.ActionType = decoded.ActionType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -50,7 +66,7 @@ func (s *JobScheduleAction) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["jobDefinition"]; ok {
-		impl, err := unmarshalJobBaseImplementation(v)
+		impl, err := UnmarshalJobBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'JobDefinition' for 'JobScheduleAction': %+v", err)
 		}

@@ -20,6 +20,14 @@ type VMwareCbtProtectionContainerMappingDetails struct {
 	TargetLocation                       *string           `json:"targetLocation,omitempty"`
 
 	// Fields inherited from ProtectionContainerMappingProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtProtectionContainerMappingDetails) ProtectionContainerMappingProviderSpecificDetails() BaseProtectionContainerMappingProviderSpecificDetailsImpl {
+	return BaseProtectionContainerMappingProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtProtectionContainerMappingDetails{}
@@ -33,9 +41,10 @@ func (s VMwareCbtProtectionContainerMappingDetails) MarshalJSON() ([]byte, error
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtProtectionContainerMappingDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

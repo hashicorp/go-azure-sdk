@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CustomizedAcceleratorId{}
 
 func TestNewCustomizedAcceleratorID(t *testing.T) {
-	id := NewCustomizedAcceleratorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "applicationAcceleratorValue", "customizedAcceleratorValue")
+	id := NewCustomizedAcceleratorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "applicationAcceleratorName", "customizedAcceleratorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewCustomizedAcceleratorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SpringName != "springValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "springValue")
+	if id.SpringName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "serviceName")
 	}
 
-	if id.ApplicationAcceleratorName != "applicationAcceleratorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationAcceleratorName'", id.ApplicationAcceleratorName, "applicationAcceleratorValue")
+	if id.ApplicationAcceleratorName != "applicationAcceleratorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationAcceleratorName'", id.ApplicationAcceleratorName, "applicationAcceleratorName")
 	}
 
-	if id.CustomizedAcceleratorName != "customizedAcceleratorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomizedAcceleratorName'", id.CustomizedAcceleratorName, "customizedAcceleratorValue")
+	if id.CustomizedAcceleratorName != "customizedAcceleratorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomizedAcceleratorName'", id.CustomizedAcceleratorName, "customizedAcceleratorName")
 	}
 }
 
 func TestFormatCustomizedAcceleratorID(t *testing.T) {
-	actual := NewCustomizedAcceleratorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "applicationAcceleratorValue", "customizedAcceleratorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators/customizedAcceleratorValue"
+	actual := NewCustomizedAcceleratorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "applicationAcceleratorName", "customizedAcceleratorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators/customizedAcceleratorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseCustomizedAcceleratorID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators/customizedAcceleratorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators/customizedAcceleratorName",
 			Expected: &CustomizedAcceleratorId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SpringName:                 "springValue",
-				ApplicationAcceleratorName: "applicationAcceleratorValue",
-				CustomizedAcceleratorName:  "customizedAcceleratorValue",
+				SpringName:                 "serviceName",
+				ApplicationAcceleratorName: "applicationAcceleratorName",
+				CustomizedAcceleratorName:  "customizedAcceleratorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators/customizedAcceleratorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators/customizedAcceleratorName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseCustomizedAcceleratorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnAcCeLeRaToRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnAcCeLeRaToRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRvAlUe/cUsToMiZeDaCcElErAtOrS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRnAmE/cUsToMiZeDaCcElErAtOrS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators/customizedAcceleratorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators/customizedAcceleratorName",
 			Expected: &CustomizedAcceleratorId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SpringName:                 "springValue",
-				ApplicationAcceleratorName: "applicationAcceleratorValue",
-				CustomizedAcceleratorName:  "customizedAcceleratorValue",
+				SpringName:                 "serviceName",
+				ApplicationAcceleratorName: "applicationAcceleratorName",
+				CustomizedAcceleratorName:  "customizedAcceleratorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationAccelerators/applicationAcceleratorValue/customizedAccelerators/customizedAcceleratorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationAccelerators/applicationAcceleratorName/customizedAccelerators/customizedAcceleratorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRvAlUe/cUsToMiZeDaCcElErAtOrS/cUsToMiZeDaCcElErAtOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRnAmE/cUsToMiZeDaCcElErAtOrS/cUsToMiZeDaCcElErAtOrNaMe",
 			Expected: &CustomizedAcceleratorId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				SpringName:                 "sPrInGvAlUe",
-				ApplicationAcceleratorName: "aPpLiCaTiOnAcCeLeRaToRvAlUe",
-				CustomizedAcceleratorName:  "cUsToMiZeDaCcElErAtOrVaLuE",
+				SpringName:                 "sErViCeNaMe",
+				ApplicationAcceleratorName: "aPpLiCaTiOnAcCeLeRaToRnAmE",
+				CustomizedAcceleratorName:  "cUsToMiZeDaCcElErAtOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRvAlUe/cUsToMiZeDaCcElErAtOrS/cUsToMiZeDaCcElErAtOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnAcCeLeRaToRs/aPpLiCaTiOnAcCeLeRaToRnAmE/cUsToMiZeDaCcElErAtOrS/cUsToMiZeDaCcElErAtOrNaMe/extra",
 			Error: true,
 		},
 	}

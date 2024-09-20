@@ -44,7 +44,7 @@ func ParsePolicyRestrictionID(input string) (*PolicyRestrictionId, error) {
 	}
 
 	id := PolicyRestrictionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePolicyRestrictionIDInsensitively(input string) (*PolicyRestrictionId, 
 	}
 
 	id := PolicyRestrictionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PolicyRestrictionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticPolicyRestrictions", "policyRestrictions", "policyRestrictions"),
-		resourceids.UserSpecifiedSegment("policyRestrictionId", "policyRestrictionIdValue"),
+		resourceids.UserSpecifiedSegment("policyRestrictionId", "policyRestrictionId"),
 	}
 }
 

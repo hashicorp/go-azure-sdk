@@ -16,10 +16,22 @@ type ScheduledTrigger struct {
 	Properties ScheduledTriggerProperties `json:"properties"`
 
 	// Fields inherited from Trigger
+
 	Id         *string                `json:"id,omitempty"`
+	Kind       TriggerKind            `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s ScheduledTrigger) Trigger() BaseTriggerImpl {
+	return BaseTriggerImpl{
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ScheduledTrigger{}
@@ -33,9 +45,10 @@ func (s ScheduledTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ScheduledTrigger: %+v", err)
 	}
+
 	decoded["kind"] = "ScheduleBased"
 
 	encoded, err = json.Marshal(decoded)

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KubeEnvironmentId{}
 
 func TestNewKubeEnvironmentID(t *testing.T) {
-	id := NewKubeEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubeEnvironmentValue")
+	id := NewKubeEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewKubeEnvironmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.KubeEnvironmentName != "kubeEnvironmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KubeEnvironmentName'", id.KubeEnvironmentName, "kubeEnvironmentValue")
+	if id.KubeEnvironmentName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'KubeEnvironmentName'", id.KubeEnvironmentName, "name")
 	}
 }
 
 func TestFormatKubeEnvironmentID(t *testing.T) {
-	actual := NewKubeEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubeEnvironmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/kubeEnvironmentValue"
+	actual := NewKubeEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseKubeEnvironmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/kubeEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/name",
 			Expected: &KubeEnvironmentId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				KubeEnvironmentName: "kubeEnvironmentValue",
+				KubeEnvironmentName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/kubeEnvironmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/name/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseKubeEnvironmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/kubeEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/name",
 			Expected: &KubeEnvironmentId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				KubeEnvironmentName: "kubeEnvironmentValue",
+				KubeEnvironmentName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/kubeEnvironmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/kubeEnvironments/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/kUbEeNvIrOnMeNtS/kUbEeNvIrOnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/kUbEeNvIrOnMeNtS/nAmE",
 			Expected: &KubeEnvironmentId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				KubeEnvironmentName: "kUbEeNvIrOnMeNtVaLuE",
+				KubeEnvironmentName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/kUbEeNvIrOnMeNtS/kUbEeNvIrOnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/kUbEeNvIrOnMeNtS/nAmE/extra",
 			Error: true,
 		},
 	}

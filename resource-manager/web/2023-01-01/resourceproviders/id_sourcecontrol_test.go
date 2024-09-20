@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &SourceControlId{}
 
 func TestNewSourceControlID(t *testing.T) {
-	id := NewSourceControlID("sourceControlValue")
+	id := NewSourceControlID("sourceControlType")
 
-	if id.SourceControlName != "sourceControlValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SourceControlName'", id.SourceControlName, "sourceControlValue")
+	if id.SourceControlName != "sourceControlType" {
+		t.Fatalf("Expected %q but got %q for Segment 'SourceControlName'", id.SourceControlName, "sourceControlType")
 	}
 }
 
 func TestFormatSourceControlID(t *testing.T) {
-	actual := NewSourceControlID("sourceControlValue").ID()
-	expected := "/providers/Microsoft.Web/sourceControls/sourceControlValue"
+	actual := NewSourceControlID("sourceControlType").ID()
+	expected := "/providers/Microsoft.Web/sourceControls/sourceControlType"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseSourceControlID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Web/sourceControls/sourceControlValue",
+			Input: "/providers/Microsoft.Web/sourceControls/sourceControlType",
 			Expected: &SourceControlId{
-				SourceControlName: "sourceControlValue",
+				SourceControlName: "sourceControlType",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Web/sourceControls/sourceControlValue/extra",
+			Input: "/providers/Microsoft.Web/sourceControls/sourceControlType/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseSourceControlIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Web/sourceControls/sourceControlValue",
+			Input: "/providers/Microsoft.Web/sourceControls/sourceControlType",
 			Expected: &SourceControlId{
-				SourceControlName: "sourceControlValue",
+				SourceControlName: "sourceControlType",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Web/sourceControls/sourceControlValue/extra",
+			Input: "/providers/Microsoft.Web/sourceControls/sourceControlType/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.wEb/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.wEb/sOuRcEcOnTrOlS/sOuRcEcOnTrOlTyPe",
 			Expected: &SourceControlId{
-				SourceControlName: "sOuRcEcOnTrOlVaLuE",
+				SourceControlName: "sOuRcEcOnTrOlTyPe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.wEb/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.wEb/sOuRcEcOnTrOlS/sOuRcEcOnTrOlTyPe/extra",
 			Error: true,
 		},
 	}

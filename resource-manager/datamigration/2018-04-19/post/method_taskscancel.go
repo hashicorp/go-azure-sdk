@@ -46,7 +46,6 @@ func (c POSTClient) TasksCancel(ctx context.Context, id TaskId) (result TasksCan
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -34,6 +34,7 @@ func (o GetByBillingProfileOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByBillingProfileOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c BillingSubscriptionClient) GetByBillingProfile(ctx context.Context, id B
 
 	var model BillingSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

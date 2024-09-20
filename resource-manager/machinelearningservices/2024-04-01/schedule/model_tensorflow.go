@@ -15,6 +15,14 @@ type TensorFlow struct {
 	WorkerCount          *int64 `json:"workerCount,omitempty"`
 
 	// Fields inherited from DistributionConfiguration
+
+	DistributionType DistributionType `json:"distributionType"`
+}
+
+func (s TensorFlow) DistributionConfiguration() BaseDistributionConfigurationImpl {
+	return BaseDistributionConfigurationImpl{
+		DistributionType: s.DistributionType,
+	}
 }
 
 var _ json.Marshaler = TensorFlow{}
@@ -28,9 +36,10 @@ func (s TensorFlow) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TensorFlow: %+v", err)
 	}
+
 	decoded["distributionType"] = "TensorFlow"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type BigDataPoolsClient struct {
 }
 
 func NewBigDataPoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*BigDataPoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "bigdatapools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "bigdatapools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BigDataPoolsClient: %+v", err)
 	}

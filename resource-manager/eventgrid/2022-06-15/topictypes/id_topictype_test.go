@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &TopicTypeId{}
 
 func TestNewTopicTypeID(t *testing.T) {
-	id := NewTopicTypeID("topicTypeValue")
+	id := NewTopicTypeID("topicTypeName")
 
-	if id.TopicTypeName != "topicTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TopicTypeName'", id.TopicTypeName, "topicTypeValue")
+	if id.TopicTypeName != "topicTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TopicTypeName'", id.TopicTypeName, "topicTypeName")
 	}
 }
 
 func TestFormatTopicTypeID(t *testing.T) {
-	actual := NewTopicTypeID("topicTypeValue").ID()
-	expected := "/providers/Microsoft.EventGrid/topicTypes/topicTypeValue"
+	actual := NewTopicTypeID("topicTypeName").ID()
+	expected := "/providers/Microsoft.EventGrid/topicTypes/topicTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseTopicTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeValue",
+			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeName",
 			Expected: &TopicTypeId{
-				TopicTypeName: "topicTypeValue",
+				TopicTypeName: "topicTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeValue/extra",
+			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseTopicTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeValue",
+			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeName",
 			Expected: &TopicTypeId{
-				TopicTypeName: "topicTypeValue",
+				TopicTypeName: "topicTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeValue/extra",
+			Input: "/providers/Microsoft.EventGrid/topicTypes/topicTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/tOpIcTyPeS/tOpIcTyPeVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/tOpIcTyPeS/tOpIcTyPeNaMe",
 			Expected: &TopicTypeId{
-				TopicTypeName: "tOpIcTyPeVaLuE",
+				TopicTypeName: "tOpIcTyPeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/tOpIcTyPeS/tOpIcTyPeVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.eVeNtGrId/tOpIcTyPeS/tOpIcTyPeNaMe/extra",
 			Error: true,
 		},
 	}

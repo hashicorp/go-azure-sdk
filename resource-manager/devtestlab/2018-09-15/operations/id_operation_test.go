@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &OperationId{}
 
 func TestNewOperationID(t *testing.T) {
-	id := NewOperationID("12345678-1234-9876-4563-123456789012", "locationValue", "operationValue")
+	id := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.OperationName != "operationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationName'", id.OperationName, "operationValue")
+	if id.OperationName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationName'", id.OperationName, "name")
 	}
 }
 
 func TestFormatOperationID(t *testing.T) {
-	actual := NewOperationID("12345678-1234-9876-4563-123456789012", "locationValue", "operationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations/operationValue"
+	actual := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations/operationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				OperationName:  "operationValue",
+				LocationName:   "locationName",
+				OperationName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations/operationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNvAlUe/oPeRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations/operationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				OperationName:  "operationValue",
+				LocationName:   "locationName",
+				OperationName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationValue/operations/operationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNvAlUe/oPeRaTiOnS/oPeRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/nAmE",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				OperationName:  "oPeRaTiOnVaLuE",
+				LocationName:   "lOcAtIoNnAmE",
+				OperationName:  "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNvAlUe/oPeRaTiOnS/oPeRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/nAmE/extra",
 			Error: true,
 		},
 	}

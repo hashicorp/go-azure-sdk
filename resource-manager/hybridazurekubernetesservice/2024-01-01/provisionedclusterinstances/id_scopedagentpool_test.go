@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedAgentPoolId{}
 
 func TestNewScopedAgentPoolID(t *testing.T) {
-	id := NewScopedAgentPoolID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "agentPoolValue")
+	id := NewScopedAgentPoolID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "agentPoolName")
 
 	if id.ConnectedClusterResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ConnectedClusterResourceUri'", id.ConnectedClusterResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.AgentPoolName != "agentPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgentPoolName'", id.AgentPoolName, "agentPoolValue")
+	if id.AgentPoolName != "agentPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgentPoolName'", id.AgentPoolName, "agentPoolName")
 	}
 }
 
 func TestFormatScopedAgentPoolID(t *testing.T) {
-	actual := NewScopedAgentPoolID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "agentPoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolValue"
+	actual := NewScopedAgentPoolID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "agentPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -74,15 +74,15 @@ func TestParseScopedAgentPoolID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolName",
 			Expected: &ScopedAgentPoolId{
 				ConnectedClusterResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AgentPoolName:               "agentPoolValue",
+				AgentPoolName:               "agentPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolName/extra",
 			Error: true,
 		},
 	}
@@ -185,28 +185,28 @@ func TestParseScopedAgentPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolName",
 			Expected: &ScopedAgentPoolId{
 				ConnectedClusterResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AgentPoolName:               "agentPoolValue",
+				AgentPoolName:               "agentPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/agentPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.hYbRiDcOnTaInErSeRvIcE/pRoViSiOnEdClUsTeRiNsTaNcEs/dEfAuLt/aGeNtPoOlS/aGeNtPoOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.hYbRiDcOnTaInErSeRvIcE/pRoViSiOnEdClUsTeRiNsTaNcEs/dEfAuLt/aGeNtPoOlS/aGeNtPoOlNaMe",
 			Expected: &ScopedAgentPoolId{
 				ConnectedClusterResourceUri: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				AgentPoolName:               "aGeNtPoOlVaLuE",
+				AgentPoolName:               "aGeNtPoOlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.hYbRiDcOnTaInErSeRvIcE/pRoViSiOnEdClUsTeRiNsTaNcEs/dEfAuLt/aGeNtPoOlS/aGeNtPoOlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.hYbRiDcOnTaInErSeRvIcE/pRoViSiOnEdClUsTeRiNsTaNcEs/dEfAuLt/aGeNtPoOlS/aGeNtPoOlNaMe/extra",
 			Error: true,
 		},
 	}

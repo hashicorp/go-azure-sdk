@@ -10,18 +10,41 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Activity interface {
+	Activity() BaseActivityImpl
 }
 
-// RawActivityImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Activity = BaseActivityImpl{}
+
+type BaseActivityImpl struct {
+	DependsOn        *[]ActivityDependency     `json:"dependsOn,omitempty"`
+	Description      *string                   `json:"description,omitempty"`
+	Name             string                    `json:"name"`
+	OnInactiveMarkAs *ActivityOnInactiveMarkAs `json:"onInactiveMarkAs,omitempty"`
+	State            *ActivityState            `json:"state,omitempty"`
+	Type             string                    `json:"type"`
+	UserProperties   *[]UserProperty           `json:"userProperties,omitempty"`
+}
+
+func (s BaseActivityImpl) Activity() BaseActivityImpl {
+	return s
+}
+
+var _ Activity = RawActivityImpl{}
+
+// RawActivityImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawActivityImpl struct {
-	Type   string
-	Values map[string]interface{}
+	activity BaseActivityImpl
+	Type     string
+	Values   map[string]interface{}
 }
 
-func unmarshalActivityImplementation(input []byte) (Activity, error) {
+func (s RawActivityImpl) Activity() BaseActivityImpl {
+	return s.activity
+}
+
+func UnmarshalActivityImplementation(input []byte) (Activity, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -364,10 +387,15 @@ func unmarshalActivityImplementation(input []byte) (Activity, error) {
 		return out, nil
 	}
 
-	out := RawActivityImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseActivityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseActivityImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawActivityImpl{
+		activity: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
 
 }

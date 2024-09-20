@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries` Documentation
 
-The `entityqueries` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2022-10-01-preview`).
+The `entityqueries` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2022-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityQueryId")
 
 payload := entityqueries.CustomEntityQuery{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityQueryId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueryTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryTemplateIdValue")
+id := entityqueries.NewEntityQueryTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityQueryTemplateId")
 
 read, err := client.EntityQueryTemplatesGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := entityqueries.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.EntityQueryTemplatesList(ctx, id, entityqueries.DefaultEntityQueryTemplatesListOperationOptions())` can be used to do batched pagination
 items, err := client.EntityQueryTemplatesListComplete(ctx, id, entityqueries.DefaultEntityQueryTemplatesListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityQueryId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := entityqueries.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, entityqueries.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, entityqueries.DefaultListOperationOptions())

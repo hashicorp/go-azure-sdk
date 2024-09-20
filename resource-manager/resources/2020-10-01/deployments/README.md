@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deployments` Documentation
 
-The `deployments` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2020-10-01`).
+The `deployments` SDK allows for interaction with Azure Resource Manager `resources` (API Version `2020-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 read, err := client.Cancel(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 read, err := client.CancelAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 read, err := client.CancelAtScope(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 read, err := client.CancelAtSubscriptionScope(ctx, id)
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 read, err := client.CancelAtTenantScope(ctx, id)
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 read, err := client.CheckExistence(ctx, id)
 if err != nil {
@@ -137,7 +137,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 read, err := client.CheckExistenceAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -153,7 +153,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 read, err := client.CheckExistenceAtScope(ctx, id)
 if err != nil {
@@ -169,7 +169,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 read, err := client.CheckExistenceAtSubscriptionScope(ctx, id)
 if err != nil {
@@ -185,7 +185,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 read, err := client.CheckExistenceAtTenantScope(ctx, id)
 if err != nil {
@@ -201,7 +201,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -218,7 +218,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 payload := deployments.ScopedDeployment{
 	// ...
@@ -235,7 +235,7 @@ if err := client.CreateOrUpdateAtManagementGroupScopeThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -252,7 +252,7 @@ if err := client.CreateOrUpdateAtScopeThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -269,7 +269,7 @@ if err := client.CreateOrUpdateAtSubscriptionScopeThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 payload := deployments.ScopedDeployment{
 	// ...
@@ -286,7 +286,7 @@ if err := client.CreateOrUpdateAtTenantScopeThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -298,7 +298,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 if err := client.DeleteAtManagementGroupScopeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -310,7 +310,7 @@ if err := client.DeleteAtManagementGroupScopeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 if err := client.DeleteAtScopeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -322,7 +322,7 @@ if err := client.DeleteAtScopeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 if err := client.DeleteAtSubscriptionScopeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -334,7 +334,7 @@ if err := client.DeleteAtSubscriptionScopeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 if err := client.DeleteAtTenantScopeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -346,7 +346,7 @@ if err := client.DeleteAtTenantScopeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 read, err := client.ExportTemplate(ctx, id)
 if err != nil {
@@ -362,7 +362,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 read, err := client.ExportTemplateAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -378,7 +378,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 read, err := client.ExportTemplateAtScope(ctx, id)
 if err != nil {
@@ -394,7 +394,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 read, err := client.ExportTemplateAtSubscriptionScope(ctx, id)
 if err != nil {
@@ -410,7 +410,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 read, err := client.ExportTemplateAtTenantScope(ctx, id)
 if err != nil {
@@ -426,7 +426,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -442,7 +442,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 read, err := client.GetAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -458,7 +458,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 read, err := client.GetAtScope(ctx, id)
 if err != nil {
@@ -474,7 +474,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 read, err := client.GetAtSubscriptionScope(ctx, id)
 if err != nil {
@@ -490,7 +490,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 read, err := client.GetAtTenantScope(ctx, id)
 if err != nil {
@@ -506,7 +506,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewManagementGroupID("groupIdValue")
+id := commonids.NewManagementGroupID("groupId")
 
 // alternatively `client.ListAtManagementGroupScope(ctx, id, deployments.DefaultListAtManagementGroupScopeOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtManagementGroupScopeComplete(ctx, id, deployments.DefaultListAtManagementGroupScopeOperationOptions())
@@ -591,7 +591,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -608,7 +608,7 @@ if err := client.ValidateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 payload := deployments.ScopedDeployment{
 	// ...
@@ -625,7 +625,7 @@ if err := client.ValidateAtManagementGroupScopeThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentValue")
+id := deployments.NewScopedDeploymentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -642,7 +642,7 @@ if err := client.ValidateAtScopeThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 payload := deployments.Deployment{
 	// ...
@@ -659,7 +659,7 @@ if err := client.ValidateAtSubscriptionScopeThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 payload := deployments.ScopedDeployment{
 	// ...
@@ -676,7 +676,7 @@ if err := client.ValidateAtTenantScopeThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deployments.NewResourceGroupProviderDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 payload := deployments.DeploymentWhatIf{
 	// ...
@@ -693,7 +693,7 @@ if err := client.WhatIfThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviders2DeploymentID("groupIdValue", "deploymentValue")
+id := deployments.NewProviders2DeploymentID("groupId", "deploymentName")
 
 payload := deployments.ScopedDeploymentWhatIf{
 	// ...
@@ -710,7 +710,7 @@ if err := client.WhatIfAtManagementGroupScopeThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentValue")
+id := deployments.NewProviderDeploymentID("12345678-1234-9876-4563-123456789012", "deploymentName")
 
 payload := deployments.DeploymentWhatIf{
 	// ...
@@ -727,7 +727,7 @@ if err := client.WhatIfAtSubscriptionScopeThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := deployments.NewDeploymentID("deploymentValue")
+id := deployments.NewDeploymentID("deploymentName")
 
 payload := deployments.ScopedDeploymentWhatIf{
 	// ...

@@ -30,7 +30,7 @@ func (s *ReverseReplicationInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalReverseReplicationProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalReverseReplicationProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ReverseReplicationInputProperties': %+v", err)
 		}

@@ -44,7 +44,7 @@ func ParseTopQueryStatisticID(input string) (*TopQueryStatisticId, error) {
 	}
 
 	id := TopQueryStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopQueryStatisticIDInsensitively(input string) (*TopQueryStatisticId, 
 	}
 
 	id := TopQueryStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id TopQueryStatisticId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMariaDB", "Microsoft.DBforMariaDB", "Microsoft.DBforMariaDB"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticTopQueryStatistics", "topQueryStatistics", "topQueryStatistics"),
-		resourceids.UserSpecifiedSegment("queryStatisticId", "queryStatisticIdValue"),
+		resourceids.UserSpecifiedSegment("queryStatisticId", "queryStatisticId"),
 	}
 }
 

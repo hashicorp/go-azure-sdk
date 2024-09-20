@@ -15,7 +15,7 @@ type QueryClient struct {
 }
 
 func NewQueryClientWithBaseURI(sdkApi sdkEnv.Api) (*QueryClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "query", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "query", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QueryClient: %+v", err)
 	}

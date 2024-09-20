@@ -50,7 +50,6 @@ func (c DaprComponentResiliencyPoliciesClient) CreateOrUpdate(ctx context.Contex
 
 	var model DaprComponentResiliencyPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

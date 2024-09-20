@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CapacityReservationGroupId{}
 
 func TestNewCapacityReservationGroupID(t *testing.T) {
-	id := NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupValue")
+	id := NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCapacityReservationGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CapacityReservationGroupName != "capacityReservationGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CapacityReservationGroupName'", id.CapacityReservationGroupName, "capacityReservationGroupValue")
+	if id.CapacityReservationGroupName != "capacityReservationGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CapacityReservationGroupName'", id.CapacityReservationGroupName, "capacityReservationGroupName")
 	}
 }
 
 func TestFormatCapacityReservationGroupID(t *testing.T) {
-	actual := NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupValue"
+	actual := NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCapacityReservationGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupName",
 			Expected: &CapacityReservationGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				CapacityReservationGroupName: "capacityReservationGroupValue",
+				CapacityReservationGroupName: "capacityReservationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCapacityReservationGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupName",
 			Expected: &CapacityReservationGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				CapacityReservationGroupName: "capacityReservationGroupValue",
+				CapacityReservationGroupName: "capacityReservationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/capacityReservationGroups/capacityReservationGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/cApAcItYrEsErVaTiOnGrOuPs/cApAcItYrEsErVaTiOnGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/cApAcItYrEsErVaTiOnGrOuPs/cApAcItYrEsErVaTiOnGrOuPnAmE",
 			Expected: &CapacityReservationGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				CapacityReservationGroupName: "cApAcItYrEsErVaTiOnGrOuPvAlUe",
+				CapacityReservationGroupName: "cApAcItYrEsErVaTiOnGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/cApAcItYrEsErVaTiOnGrOuPs/cApAcItYrEsErVaTiOnGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/cApAcItYrEsErVaTiOnGrOuPs/cApAcItYrEsErVaTiOnGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

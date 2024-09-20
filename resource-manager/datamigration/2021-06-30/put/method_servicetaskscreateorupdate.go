@@ -50,7 +50,6 @@ func (c PUTClient) ServiceTasksCreateOrUpdate(ctx context.Context, id ServiceTas
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

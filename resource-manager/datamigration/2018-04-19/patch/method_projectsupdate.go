@@ -49,7 +49,6 @@ func (c PATCHClient) ProjectsUpdate(ctx context.Context, id ProjectId, input Pro
 
 	var model Project
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

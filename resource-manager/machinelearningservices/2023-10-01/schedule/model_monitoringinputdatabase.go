@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MonitoringInputDataBase interface {
+	MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl
 }
 
-// RawMonitoringInputDataBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ MonitoringInputDataBase = BaseMonitoringInputDataBaseImpl{}
+
+type BaseMonitoringInputDataBaseImpl struct {
+	Columns       *map[string]string      `json:"columns,omitempty"`
+	DataContext   *string                 `json:"dataContext,omitempty"`
+	InputDataType MonitoringInputDataType `json:"inputDataType"`
+	JobInputType  JobInputType            `json:"jobInputType"`
+	Uri           string                  `json:"uri"`
+}
+
+func (s BaseMonitoringInputDataBaseImpl) MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl {
+	return s
+}
+
+var _ MonitoringInputDataBase = RawMonitoringInputDataBaseImpl{}
+
+// RawMonitoringInputDataBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawMonitoringInputDataBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	monitoringInputDataBase BaseMonitoringInputDataBaseImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalMonitoringInputDataBaseImplementation(input []byte) (MonitoringInputDataBase, error) {
+func (s RawMonitoringInputDataBaseImpl) MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl {
+	return s.monitoringInputDataBase
+}
+
+func UnmarshalMonitoringInputDataBaseImplementation(input []byte) (MonitoringInputDataBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +81,15 @@ func unmarshalMonitoringInputDataBaseImplementation(input []byte) (MonitoringInp
 		return out, nil
 	}
 
-	out := RawMonitoringInputDataBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseMonitoringInputDataBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMonitoringInputDataBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawMonitoringInputDataBaseImpl{
+		monitoringInputDataBase: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

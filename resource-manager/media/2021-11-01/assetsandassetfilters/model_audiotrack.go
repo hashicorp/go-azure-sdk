@@ -13,6 +13,14 @@ var _ TrackBase = AudioTrack{}
 type AudioTrack struct {
 
 	// Fields inherited from TrackBase
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s AudioTrack) TrackBase() BaseTrackBaseImpl {
+	return BaseTrackBaseImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = AudioTrack{}
@@ -26,9 +34,10 @@ func (s AudioTrack) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AudioTrack: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.AudioTrack"
 
 	encoded, err = json.Marshal(decoded)

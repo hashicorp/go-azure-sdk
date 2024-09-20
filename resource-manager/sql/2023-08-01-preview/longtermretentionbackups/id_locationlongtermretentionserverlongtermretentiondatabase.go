@@ -46,7 +46,7 @@ func ParseLocationLongTermRetentionServerLongTermRetentionDatabaseID(input strin
 	}
 
 	id := LocationLongTermRetentionServerLongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseLocationLongTermRetentionServerLongTermRetentionDatabaseIDInsensitivel
 	}
 
 	id := LocationLongTermRetentionServerLongTermRetentionDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id LocationLongTermRetentionServerLongTermRetentionDatabaseId) Segments() 
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionServers", "longTermRetentionServers", "longTermRetentionServers"),
-		resourceids.UserSpecifiedSegment("longTermRetentionServerName", "longTermRetentionServerValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionServerName", "longTermRetentionServerName"),
 		resourceids.StaticSegment("staticLongTermRetentionDatabases", "longTermRetentionDatabases", "longTermRetentionDatabases"),
-		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "longTermRetentionDatabaseValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "longTermRetentionDatabaseName"),
 	}
 }
 

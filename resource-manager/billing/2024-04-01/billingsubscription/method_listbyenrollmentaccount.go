@@ -44,6 +44,7 @@ func (o ListByEnrollmentAccountOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByEnrollmentAccountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

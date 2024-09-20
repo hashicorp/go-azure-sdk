@@ -46,6 +46,7 @@ func (o AlertsGetSummaryOperationOptions) ToHeaders() *client.Headers {
 
 func (o AlertsGetSummaryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -119,7 +120,6 @@ func (c AlertsManagementsClient) AlertsGetSummary(ctx context.Context, id common
 
 	var model AlertsSummary
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

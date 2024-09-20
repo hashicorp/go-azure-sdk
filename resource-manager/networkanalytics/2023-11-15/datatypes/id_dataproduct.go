@@ -42,7 +42,7 @@ func ParseDataProductID(input string) (*DataProductId, error) {
 	}
 
 	id := DataProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseDataProductIDInsensitively(input string) (*DataProductId, error) {
 	}
 
 	id := DataProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id DataProductId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkAnalytics", "Microsoft.NetworkAnalytics", "Microsoft.NetworkAnalytics"),
 		resourceids.StaticSegment("staticDataProducts", "dataProducts", "dataProducts"),
-		resourceids.UserSpecifiedSegment("dataProductName", "dataProductValue"),
+		resourceids.UserSpecifiedSegment("dataProductName", "dataProductName"),
 	}
 }
 

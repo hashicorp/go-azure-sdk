@@ -15,7 +15,7 @@ type ExternalSecuritySolutionsClient struct {
 }
 
 func NewExternalSecuritySolutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ExternalSecuritySolutionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "externalsecuritysolutions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "externalsecuritysolutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExternalSecuritySolutionsClient: %+v", err)
 	}

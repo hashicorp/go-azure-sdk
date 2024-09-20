@@ -46,7 +46,7 @@ func ParseBackupProtectionIntentID(input string) (*BackupProtectionIntentId, err
 	}
 
 	id := BackupProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseBackupProtectionIntentIDInsensitively(input string) (*BackupProtection
 	}
 
 	id := BackupProtectionIntentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id BackupProtectionIntentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupFabrics", "backupFabrics", "backupFabrics"),
-		resourceids.UserSpecifiedSegment("backupFabricName", "backupFabricValue"),
+		resourceids.UserSpecifiedSegment("backupFabricName", "fabricName"),
 		resourceids.StaticSegment("staticBackupProtectionIntent", "backupProtectionIntent", "backupProtectionIntent"),
-		resourceids.UserSpecifiedSegment("backupProtectionIntentName", "backupProtectionIntentValue"),
+		resourceids.UserSpecifiedSegment("backupProtectionIntentName", "intentObjectName"),
 	}
 }
 

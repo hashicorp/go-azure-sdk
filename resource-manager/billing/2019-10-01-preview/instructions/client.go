@@ -15,7 +15,7 @@ type InstructionsClient struct {
 }
 
 func NewInstructionsClientWithBaseURI(sdkApi sdkEnv.Api) (*InstructionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "instructions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "instructions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating InstructionsClient: %+v", err)
 	}

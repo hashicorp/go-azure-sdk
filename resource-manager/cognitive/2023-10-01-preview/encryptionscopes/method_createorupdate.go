@@ -50,7 +50,6 @@ func (c EncryptionScopesClient) CreateOrUpdate(ctx context.Context, id Encryptio
 
 	var model EncryptionScope
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

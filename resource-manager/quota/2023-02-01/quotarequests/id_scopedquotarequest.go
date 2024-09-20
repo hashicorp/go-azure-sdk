@@ -40,7 +40,7 @@ func ParseScopedQuotaRequestID(input string) (*ScopedQuotaRequestId, error) {
 	}
 
 	id := ScopedQuotaRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedQuotaRequestIDInsensitively(input string) (*ScopedQuotaRequestId
 	}
 
 	id := ScopedQuotaRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedQuotaRequestId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftQuota", "Microsoft.Quota", "Microsoft.Quota"),
 		resourceids.StaticSegment("staticQuotaRequests", "quotaRequests", "quotaRequests"),
-		resourceids.UserSpecifiedSegment("quotaRequestName", "quotaRequestValue"),
+		resourceids.UserSpecifiedSegment("quotaRequestName", "id"),
 	}
 }
 

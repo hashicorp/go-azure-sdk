@@ -42,7 +42,7 @@ func ParseClusterManagerID(input string) (*ClusterManagerId, error) {
 	}
 
 	id := ClusterManagerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseClusterManagerIDInsensitively(input string) (*ClusterManagerId, error)
 	}
 
 	id := ClusterManagerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id ClusterManagerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticClusterManagers", "clusterManagers", "clusterManagers"),
-		resourceids.UserSpecifiedSegment("clusterManagerName", "clusterManagerValue"),
+		resourceids.UserSpecifiedSegment("clusterManagerName", "clusterManagerName"),
 	}
 }
 

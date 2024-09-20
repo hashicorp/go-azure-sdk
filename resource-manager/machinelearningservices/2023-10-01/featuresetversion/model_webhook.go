@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Webhook interface {
+	Webhook() BaseWebhookImpl
 }
 
-// RawWebhookImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Webhook = BaseWebhookImpl{}
+
+type BaseWebhookImpl struct {
+	EventType   *string     `json:"eventType,omitempty"`
+	WebhookType WebhookType `json:"webhookType"`
+}
+
+func (s BaseWebhookImpl) Webhook() BaseWebhookImpl {
+	return s
+}
+
+var _ Webhook = RawWebhookImpl{}
+
+// RawWebhookImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawWebhookImpl struct {
-	Type   string
-	Values map[string]interface{}
+	webhook BaseWebhookImpl
+	Type    string
+	Values  map[string]interface{}
 }
 
-func unmarshalWebhookImplementation(input []byte) (Webhook, error) {
+func (s RawWebhookImpl) Webhook() BaseWebhookImpl {
+	return s.webhook
+}
+
+func UnmarshalWebhookImplementation(input []byte) (Webhook, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +62,15 @@ func unmarshalWebhookImplementation(input []byte) (Webhook, error) {
 		return out, nil
 	}
 
-	out := RawWebhookImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseWebhookImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWebhookImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawWebhookImpl{
+		webhook: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
 
 }

@@ -45,7 +45,6 @@ func (c AssignmentOperationsClient) Get(ctx context.Context, id ScopedAssignment
 
 	var model AssignmentOperation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

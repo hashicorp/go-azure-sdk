@@ -45,7 +45,6 @@ func (c NetworkSecurityPerimeterClient) GetConfiguration(ctx context.Context, id
 
 	var model NetworkSecurityPerimeterConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

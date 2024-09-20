@@ -42,7 +42,7 @@ func ParseAutoScaleVCoreID(input string) (*AutoScaleVCoreId, error) {
 	}
 
 	id := AutoScaleVCoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseAutoScaleVCoreIDInsensitively(input string) (*AutoScaleVCoreId, error)
 	}
 
 	id := AutoScaleVCoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id AutoScaleVCoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPowerBIDedicated", "Microsoft.PowerBIDedicated", "Microsoft.PowerBIDedicated"),
 		resourceids.StaticSegment("staticAutoScaleVCores", "autoScaleVCores", "autoScaleVCores"),
-		resourceids.UserSpecifiedSegment("autoScaleVCoreName", "autoScaleVCoreValue"),
+		resourceids.UserSpecifiedSegment("autoScaleVCoreName", "vcoreName"),
 	}
 }
 

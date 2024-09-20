@@ -44,7 +44,7 @@ func ParseServerTrustCertificateID(input string) (*ServerTrustCertificateId, err
 	}
 
 	id := ServerTrustCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerTrustCertificateIDInsensitively(input string) (*ServerTrustCerti
 	}
 
 	id := ServerTrustCertificateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ServerTrustCertificateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticServerTrustCertificates", "serverTrustCertificates", "serverTrustCertificates"),
-		resourceids.UserSpecifiedSegment("serverTrustCertificateName", "serverTrustCertificateValue"),
+		resourceids.UserSpecifiedSegment("serverTrustCertificateName", "certificateName"),
 	}
 }
 

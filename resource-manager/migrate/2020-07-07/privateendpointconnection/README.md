@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/privateendpointconnection` Documentation
 
-The `privateendpointconnection` SDK allows for interaction with the Azure Resource Manager Service `migrate` (API Version `2020-07-07`).
+The `privateendpointconnection` SDK allows for interaction with Azure Resource Manager `migrate` (API Version `2020-07-07`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
 
 read, err := client.DeletePrivateEndpointConnection(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
 
 read, err := client.GetPrivateEndpointConnection(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue")
+id := privateendpointconnection.NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.GetPrivateEndpointConnections(ctx, id)` can be used to do batched pagination
 items, err := client.GetPrivateEndpointConnectionsComplete(ctx, id)
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
 
 payload := privateendpointconnection.PrivateEndpointConnection{
 	// ...

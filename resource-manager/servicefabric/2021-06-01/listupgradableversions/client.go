@@ -15,7 +15,7 @@ type ListUpgradableVersionsClient struct {
 }
 
 func NewListUpgradableVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ListUpgradableVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listupgradableversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "listupgradableversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListUpgradableVersionsClient: %+v", err)
 	}

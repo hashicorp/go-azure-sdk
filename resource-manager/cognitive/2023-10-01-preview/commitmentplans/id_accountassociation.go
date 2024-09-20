@@ -44,7 +44,7 @@ func ParseAccountAssociationID(input string) (*AccountAssociationId, error) {
 	}
 
 	id := AccountAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccountAssociationIDInsensitively(input string) (*AccountAssociationId
 	}
 
 	id := AccountAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AccountAssociationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCognitiveServices", "Microsoft.CognitiveServices", "Microsoft.CognitiveServices"),
 		resourceids.StaticSegment("staticCommitmentPlans", "commitmentPlans", "commitmentPlans"),
-		resourceids.UserSpecifiedSegment("commitmentPlanName", "commitmentPlanValue"),
+		resourceids.UserSpecifiedSegment("commitmentPlanName", "commitmentPlanName"),
 		resourceids.StaticSegment("staticAccountAssociations", "accountAssociations", "accountAssociations"),
-		resourceids.UserSpecifiedSegment("accountAssociationName", "accountAssociationValue"),
+		resourceids.UserSpecifiedSegment("accountAssociationName", "commitmentPlanAssociationName"),
 	}
 }
 

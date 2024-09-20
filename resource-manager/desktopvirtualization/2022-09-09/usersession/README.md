@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2022-09-09/usersession` Documentation
 
-The `usersession` SDK allows for interaction with the Azure Resource Manager Service `desktopvirtualization` (API Version `2022-09-09`).
+The `usersession` SDK allows for interaction with Azure Resource Manager `desktopvirtualization` (API Version `2022-09-09`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue", "userSessionIdValue")
+id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName", "userSessionId")
 
 read, err := client.Delete(ctx, id, usersession.DefaultDeleteOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue", "userSessionIdValue")
+id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName", "userSessionId")
 
 read, err := client.Disconnect(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue", "userSessionIdValue")
+id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName", "userSessionId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := usersession.NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue")
+id := usersession.NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName")
 
 // alternatively `client.List(ctx, id, usersession.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, usersession.DefaultListOperationOptions())
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := usersession.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue")
+id := usersession.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName")
 
 // alternatively `client.ListByHostPool(ctx, id, usersession.DefaultListByHostPoolOperationOptions())` can be used to do batched pagination
 items, err := client.ListByHostPoolComplete(ctx, id, usersession.DefaultListByHostPoolOperationOptions())
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue", "userSessionIdValue")
+id := usersession.NewUserSessionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName", "userSessionId")
 
 payload := usersession.SendMessage{
 	// ...

@@ -44,7 +44,7 @@ func ParseDistributedAvailabilityGroupID(input string) (*DistributedAvailability
 	}
 
 	id := DistributedAvailabilityGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDistributedAvailabilityGroupIDInsensitively(input string) (*Distribute
 	}
 
 	id := DistributedAvailabilityGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DistributedAvailabilityGroupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticDistributedAvailabilityGroups", "distributedAvailabilityGroups", "distributedAvailabilityGroups"),
-		resourceids.UserSpecifiedSegment("distributedAvailabilityGroupName", "distributedAvailabilityGroupValue"),
+		resourceids.UserSpecifiedSegment("distributedAvailabilityGroupName", "distributedAvailabilityGroupName"),
 	}
 }
 

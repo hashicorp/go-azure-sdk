@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type JavaComponentProperties interface {
+	JavaComponentProperties() BaseJavaComponentPropertiesImpl
 }
 
-// RawJavaComponentPropertiesImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ JavaComponentProperties = BaseJavaComponentPropertiesImpl{}
+
+type BaseJavaComponentPropertiesImpl struct {
+	ComponentType     JavaComponentType                     `json:"componentType"`
+	Configurations    *[]JavaComponentConfigurationProperty `json:"configurations,omitempty"`
+	ProvisioningState *JavaComponentProvisioningState       `json:"provisioningState,omitempty"`
+	ServiceBinds      *[]JavaComponentServiceBind           `json:"serviceBinds,omitempty"`
+}
+
+func (s BaseJavaComponentPropertiesImpl) JavaComponentProperties() BaseJavaComponentPropertiesImpl {
+	return s
+}
+
+var _ JavaComponentProperties = RawJavaComponentPropertiesImpl{}
+
+// RawJavaComponentPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawJavaComponentPropertiesImpl struct {
-	Type   string
-	Values map[string]interface{}
+	javaComponentProperties BaseJavaComponentPropertiesImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalJavaComponentPropertiesImplementation(input []byte) (JavaComponentProperties, error) {
+func (s RawJavaComponentPropertiesImpl) JavaComponentProperties() BaseJavaComponentPropertiesImpl {
+	return s.javaComponentProperties
+}
+
+func UnmarshalJavaComponentPropertiesImplementation(input []byte) (JavaComponentProperties, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +88,15 @@ func unmarshalJavaComponentPropertiesImplementation(input []byte) (JavaComponent
 		return out, nil
 	}
 
-	out := RawJavaComponentPropertiesImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseJavaComponentPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJavaComponentPropertiesImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawJavaComponentPropertiesImpl{
+		javaComponentProperties: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

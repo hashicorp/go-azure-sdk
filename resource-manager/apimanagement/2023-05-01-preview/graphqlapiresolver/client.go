@@ -15,7 +15,7 @@ type GraphQLApiResolverClient struct {
 }
 
 func NewGraphQLApiResolverClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphQLApiResolverClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "graphqlapiresolver", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "graphqlapiresolver", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GraphQLApiResolverClient: %+v", err)
 	}

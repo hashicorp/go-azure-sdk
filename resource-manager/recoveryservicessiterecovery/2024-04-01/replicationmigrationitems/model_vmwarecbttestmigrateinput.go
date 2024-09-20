@@ -18,6 +18,14 @@ type VMwareCbtTestMigrateInput struct {
 	VMNics             *[]VMwareCbtNicInput            `json:"vmNics,omitempty"`
 
 	// Fields inherited from TestMigrateProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtTestMigrateInput) TestMigrateProviderSpecificInput() BaseTestMigrateProviderSpecificInputImpl {
+	return BaseTestMigrateProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtTestMigrateInput{}
@@ -31,9 +39,10 @@ func (s VMwareCbtTestMigrateInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtTestMigrateInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

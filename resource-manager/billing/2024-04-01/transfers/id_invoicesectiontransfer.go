@@ -44,7 +44,7 @@ func ParseInvoiceSectionTransferID(input string) (*InvoiceSectionTransferId, err
 	}
 
 	id := InvoiceSectionTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInvoiceSectionTransferIDInsensitively(input string) (*InvoiceSectionTr
 	}
 
 	id := InvoiceSectionTransferId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -117,13 +117,13 @@ func (id InvoiceSectionTransferId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
-		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileValue"),
+		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileName"),
 		resourceids.StaticSegment("staticInvoiceSections", "invoiceSections", "invoiceSections"),
-		resourceids.UserSpecifiedSegment("invoiceSectionName", "invoiceSectionValue"),
+		resourceids.UserSpecifiedSegment("invoiceSectionName", "invoiceSectionName"),
 		resourceids.StaticSegment("staticTransfers", "transfers", "transfers"),
-		resourceids.UserSpecifiedSegment("transferName", "transferValue"),
+		resourceids.UserSpecifiedSegment("transferName", "transferName"),
 	}
 }
 

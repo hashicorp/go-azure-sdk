@@ -46,7 +46,7 @@ func ParseLongTermRetentionManagedInstanceBackupID(input string) (*LongTermReten
 	}
 
 	id := LongTermRetentionManagedInstanceBackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseLongTermRetentionManagedInstanceBackupIDInsensitively(input string) (*
 	}
 
 	id := LongTermRetentionManagedInstanceBackupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -125,13 +125,13 @@ func (id LongTermRetentionManagedInstanceBackupId) Segments() []resourceids.Segm
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstances", "longTermRetentionManagedInstances", "longTermRetentionManagedInstances"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "longTermRetentionManagedInstanceValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticLongTermRetentionDatabases", "longTermRetentionDatabases", "longTermRetentionDatabases"),
-		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "longTermRetentionDatabaseValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "databaseName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstanceBackups", "longTermRetentionManagedInstanceBackups", "longTermRetentionManagedInstanceBackups"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceBackupName", "longTermRetentionManagedInstanceBackupValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceBackupName", "backupName"),
 	}
 }
 

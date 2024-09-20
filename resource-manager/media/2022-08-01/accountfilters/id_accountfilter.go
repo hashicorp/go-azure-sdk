@@ -44,7 +44,7 @@ func ParseAccountFilterID(input string) (*AccountFilterId, error) {
 	}
 
 	id := AccountFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccountFilterIDInsensitively(input string) (*AccountFilterId, error) {
 	}
 
 	id := AccountFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AccountFilterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticAccountFilters", "accountFilters", "accountFilters"),
-		resourceids.UserSpecifiedSegment("accountFilterName", "accountFilterValue"),
+		resourceids.UserSpecifiedSegment("accountFilterName", "filterName"),
 	}
 }
 

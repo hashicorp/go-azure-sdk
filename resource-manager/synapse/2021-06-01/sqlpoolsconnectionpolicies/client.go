@@ -15,7 +15,7 @@ type SqlPoolsConnectionPoliciesClient struct {
 }
 
 func NewSqlPoolsConnectionPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsConnectionPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsconnectionpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsconnectionpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsConnectionPoliciesClient: %+v", err)
 	}

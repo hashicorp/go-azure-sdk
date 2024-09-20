@@ -39,6 +39,14 @@ type IaasVMRestoreWithRehydrationRequest struct {
 	Zones                           *zones.Schema                    `json:"zones,omitempty"`
 
 	// Fields inherited from RestoreRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s IaasVMRestoreWithRehydrationRequest) RestoreRequest() BaseRestoreRequestImpl {
+	return BaseRestoreRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = IaasVMRestoreWithRehydrationRequest{}
@@ -52,9 +60,10 @@ func (s IaasVMRestoreWithRehydrationRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IaasVMRestoreWithRehydrationRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "IaasVMRestoreWithRehydrationRequest"
 
 	encoded, err = json.Marshal(decoded)

@@ -14,6 +14,14 @@ type UtcClipTime struct {
 	Time string `json:"time"`
 
 	// Fields inherited from ClipTime
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s UtcClipTime) ClipTime() BaseClipTimeImpl {
+	return BaseClipTimeImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = UtcClipTime{}
@@ -27,9 +35,10 @@ func (s UtcClipTime) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UtcClipTime: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.UtcClipTime"
 
 	encoded, err = json.Marshal(decoded)

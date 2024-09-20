@@ -40,6 +40,7 @@ func (o RegistryDataContainersListOperationOptions) ToHeaders() *client.Headers 
 
 func (o RegistryDataContainersListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

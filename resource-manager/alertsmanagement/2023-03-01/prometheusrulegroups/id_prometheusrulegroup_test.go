@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrometheusRuleGroupId{}
 
 func TestNewPrometheusRuleGroupID(t *testing.T) {
-	id := NewPrometheusRuleGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "prometheusRuleGroupValue")
+	id := NewPrometheusRuleGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPrometheusRuleGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrometheusRuleGroupName != "prometheusRuleGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrometheusRuleGroupName'", id.PrometheusRuleGroupName, "prometheusRuleGroupValue")
+	if id.PrometheusRuleGroupName != "ruleGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrometheusRuleGroupName'", id.PrometheusRuleGroupName, "ruleGroupName")
 	}
 }
 
 func TestFormatPrometheusRuleGroupID(t *testing.T) {
-	actual := NewPrometheusRuleGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "prometheusRuleGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/prometheusRuleGroupValue"
+	actual := NewPrometheusRuleGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/ruleGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePrometheusRuleGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/prometheusRuleGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/ruleGroupName",
 			Expected: &PrometheusRuleGroupId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				PrometheusRuleGroupName: "prometheusRuleGroupValue",
+				PrometheusRuleGroupName: "ruleGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/prometheusRuleGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/ruleGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParsePrometheusRuleGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/prometheusRuleGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/ruleGroupName",
 			Expected: &PrometheusRuleGroupId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				PrometheusRuleGroupName: "prometheusRuleGroupValue",
+				PrometheusRuleGroupName: "ruleGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/prometheusRuleGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/prometheusRuleGroups/ruleGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/pRoMeThEuSrUlEgRoUpS/pRoMeThEuSrUlEgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/pRoMeThEuSrUlEgRoUpS/rUlEgRoUpNaMe",
 			Expected: &PrometheusRuleGroupId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				PrometheusRuleGroupName: "pRoMeThEuSrUlEgRoUpVaLuE",
+				PrometheusRuleGroupName: "rUlEgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/pRoMeThEuSrUlEgRoUpS/pRoMeThEuSrUlEgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/pRoMeThEuSrUlEgRoUpS/rUlEgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

@@ -47,7 +47,6 @@ func (c ManagedDatabaseSecurityAlertPoliciesClient) Get(ctx context.Context, id 
 
 	var model ManagedDatabaseSecurityAlertPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

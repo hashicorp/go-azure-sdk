@@ -15,7 +15,7 @@ type VirtualMachineScaleSetVMRunCommandsClient struct {
 }
 
 func NewVirtualMachineScaleSetVMRunCommandsClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineScaleSetVMRunCommandsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachinescalesetvmruncommands", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachinescalesetvmruncommands", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineScaleSetVMRunCommandsClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateEndpointId{}
 
 func TestNewPrivateEndpointID(t *testing.T) {
-	id := NewPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateEndpointValue")
+	id := NewPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPrivateEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateEndpointName != "privateEndpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointName'", id.PrivateEndpointName, "privateEndpointValue")
+	if id.PrivateEndpointName != "privateEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointName'", id.PrivateEndpointName, "privateEndpointName")
 	}
 }
 
 func TestFormatPrivateEndpointID(t *testing.T) {
-	actual := NewPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateEndpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointValue"
+	actual := NewPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePrivateEndpointID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointName",
 			Expected: &PrivateEndpointId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				PrivateEndpointName: "privateEndpointValue",
+				PrivateEndpointName: "privateEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParsePrivateEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointName",
 			Expected: &PrivateEndpointId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				PrivateEndpointName: "privateEndpointValue",
+				PrivateEndpointName: "privateEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateEndpoints/privateEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeEnDpOiNtS/pRiVaTeEnDpOiNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeEnDpOiNtS/pRiVaTeEnDpOiNtNaMe",
 			Expected: &PrivateEndpointId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateEndpointName: "pRiVaTeEnDpOiNtVaLuE",
+				PrivateEndpointName: "pRiVaTeEnDpOiNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeEnDpOiNtS/pRiVaTeEnDpOiNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeEnDpOiNtS/pRiVaTeEnDpOiNtNaMe/extra",
 			Error: true,
 		},
 	}

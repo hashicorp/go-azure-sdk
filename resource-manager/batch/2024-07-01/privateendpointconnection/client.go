@@ -15,7 +15,7 @@ type PrivateEndpointConnectionClient struct {
 }
 
 func NewPrivateEndpointConnectionClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateEndpointConnectionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "privateendpointconnection", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "privateendpointconnection", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PrivateEndpointConnectionClient: %+v", err)
 	}

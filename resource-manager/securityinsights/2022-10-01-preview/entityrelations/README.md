@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityrelations` Documentation
 
-The `entityrelations` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2022-10-01-preview`).
+The `entityrelations` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2022-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entityrelations.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entityrelations.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 // alternatively `client.EntitiesRelationsList(ctx, id, entityrelations.DefaultEntitiesRelationsListOperationOptions())` can be used to do batched pagination
 items, err := client.EntitiesRelationsListComplete(ctx, id, entityrelations.DefaultEntitiesRelationsListOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entityrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue", "relationValue")
+id := entityrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId", "relationName")
 
 read, err := client.GetRelation(ctx, id)
 if err != nil {

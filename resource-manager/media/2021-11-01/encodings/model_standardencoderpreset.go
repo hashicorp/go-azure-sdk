@@ -16,6 +16,14 @@ type StandardEncoderPreset struct {
 	Formats []Format `json:"formats"`
 
 	// Fields inherited from Preset
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s StandardEncoderPreset) Preset() BasePresetImpl {
+	return BasePresetImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = StandardEncoderPreset{}
@@ -29,9 +37,10 @@ func (s StandardEncoderPreset) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StandardEncoderPreset: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.StandardEncoderPreset"
 
 	encoded, err = json.Marshal(decoded)
@@ -52,6 +61,7 @@ func (s *StandardEncoderPreset) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.Filters = decoded.Filters
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -66,7 +76,7 @@ func (s *StandardEncoderPreset) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Codec, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalCodecImplementation(val)
+			impl, err := UnmarshalCodecImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Codecs' for 'StandardEncoderPreset': %+v", i, err)
 			}
@@ -83,7 +93,7 @@ func (s *StandardEncoderPreset) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Format, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalFormatImplementation(val)
+			impl, err := UnmarshalFormatImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Formats' for 'StandardEncoderPreset': %+v", i, err)
 			}

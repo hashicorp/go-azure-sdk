@@ -45,7 +45,6 @@ func (c DashboardsClient) Get(ctx context.Context, id DashboardId) (result GetOp
 
 	var model Dashboard
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

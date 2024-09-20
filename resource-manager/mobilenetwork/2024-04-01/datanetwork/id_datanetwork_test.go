@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataNetworkId{}
 
 func TestNewDataNetworkID(t *testing.T) {
-	id := NewDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "dataNetworkValue")
+	id := NewDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "dataNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDataNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MobileNetworkName != "mobileNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkValue")
+	if id.MobileNetworkName != "mobileNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileNetworkName'", id.MobileNetworkName, "mobileNetworkName")
 	}
 
-	if id.DataNetworkName != "dataNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataNetworkName'", id.DataNetworkName, "dataNetworkValue")
+	if id.DataNetworkName != "dataNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataNetworkName'", id.DataNetworkName, "dataNetworkName")
 	}
 }
 
 func TestFormatDataNetworkID(t *testing.T) {
-	actual := NewDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue", "dataNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks/dataNetworkValue"
+	actual := NewDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName", "dataNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks/dataNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDataNetworkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks/dataNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks/dataNetworkName",
 			Expected: &DataNetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				DataNetworkName:   "dataNetworkValue",
+				MobileNetworkName: "mobileNetworkName",
+				DataNetworkName:   "dataNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks/dataNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks/dataNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDataNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/dAtAnEtWoRkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/dAtAnEtWoRkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks/dataNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks/dataNetworkName",
 			Expected: &DataNetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MobileNetworkName: "mobileNetworkValue",
-				DataNetworkName:   "dataNetworkValue",
+				MobileNetworkName: "mobileNetworkName",
+				DataNetworkName:   "dataNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkValue/dataNetworks/dataNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/mobileNetworks/mobileNetworkName/dataNetworks/dataNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/dAtAnEtWoRkS/dAtAnEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/dAtAnEtWoRkS/dAtAnEtWoRkNaMe",
 			Expected: &DataNetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MobileNetworkName: "mObIlEnEtWoRkVaLuE",
-				DataNetworkName:   "dAtAnEtWoRkVaLuE",
+				MobileNetworkName: "mObIlEnEtWoRkNaMe",
+				DataNetworkName:   "dAtAnEtWoRkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkVaLuE/dAtAnEtWoRkS/dAtAnEtWoRkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/mObIlEnEtWoRkS/mObIlEnEtWoRkNaMe/dAtAnEtWoRkS/dAtAnEtWoRkNaMe/extra",
 			Error: true,
 		},
 	}

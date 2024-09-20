@@ -15,7 +15,7 @@ type IntelligencePacksClient struct {
 }
 
 func NewIntelligencePacksClientWithBaseURI(sdkApi sdkEnv.Api) (*IntelligencePacksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "intelligencepacks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "intelligencepacks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntelligencePacksClient: %+v", err)
 	}

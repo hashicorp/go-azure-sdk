@@ -13,8 +13,18 @@ var _ EarlyTerminationPolicy = MedianStoppingPolicy{}
 type MedianStoppingPolicy struct {
 
 	// Fields inherited from EarlyTerminationPolicy
-	DelayEvaluation    *int64 `json:"delayEvaluation,omitempty"`
-	EvaluationInterval *int64 `json:"evaluationInterval,omitempty"`
+
+	DelayEvaluation    *int64                     `json:"delayEvaluation,omitempty"`
+	EvaluationInterval *int64                     `json:"evaluationInterval,omitempty"`
+	PolicyType         EarlyTerminationPolicyType `json:"policyType"`
+}
+
+func (s MedianStoppingPolicy) EarlyTerminationPolicy() BaseEarlyTerminationPolicyImpl {
+	return BaseEarlyTerminationPolicyImpl{
+		DelayEvaluation:    s.DelayEvaluation,
+		EvaluationInterval: s.EvaluationInterval,
+		PolicyType:         s.PolicyType,
+	}
 }
 
 var _ json.Marshaler = MedianStoppingPolicy{}
@@ -28,9 +38,10 @@ func (s MedianStoppingPolicy) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MedianStoppingPolicy: %+v", err)
 	}
+
 	decoded["policyType"] = "MedianStopping"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type ManagedInstanceDtcsClient struct {
 }
 
 func NewManagedInstanceDtcsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedInstanceDtcsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedinstancedtcs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedinstancedtcs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstanceDtcsClient: %+v", err)
 	}

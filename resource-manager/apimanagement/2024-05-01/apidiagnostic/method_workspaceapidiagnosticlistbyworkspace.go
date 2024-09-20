@@ -41,6 +41,7 @@ func (o WorkspaceApiDiagnosticListByWorkspaceOperationOptions) ToHeaders() *clie
 
 func (o WorkspaceApiDiagnosticListByWorkspaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

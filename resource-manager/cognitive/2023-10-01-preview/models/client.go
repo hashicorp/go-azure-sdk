@@ -15,7 +15,7 @@ type ModelsClient struct {
 }
 
 func NewModelsClientWithBaseURI(sdkApi sdkEnv.Api) (*ModelsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "models", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "models", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ModelsClient: %+v", err)
 	}

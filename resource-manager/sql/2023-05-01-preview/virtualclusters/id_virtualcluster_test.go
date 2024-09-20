@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualClusterId{}
 
 func TestNewVirtualClusterID(t *testing.T) {
-	id := NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue")
+	id := NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualClusterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualClusterName != "virtualClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualClusterName'", id.VirtualClusterName, "virtualClusterValue")
+	if id.VirtualClusterName != "virtualClusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualClusterName'", id.VirtualClusterName, "virtualClusterName")
 	}
 }
 
 func TestFormatVirtualClusterID(t *testing.T) {
-	actual := NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterValue"
+	actual := NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualClusterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterName",
 			Expected: &VirtualClusterId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualClusterName: "virtualClusterValue",
+				VirtualClusterName: "virtualClusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualClusterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterName",
 			Expected: &VirtualClusterId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualClusterName: "virtualClusterValue",
+				VirtualClusterName: "virtualClusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/virtualClusters/virtualClusterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/vIrTuAlClUsTeRs/vIrTuAlClUsTeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/vIrTuAlClUsTeRs/vIrTuAlClUsTeRnAmE",
 			Expected: &VirtualClusterId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualClusterName: "vIrTuAlClUsTeRvAlUe",
+				VirtualClusterName: "vIrTuAlClUsTeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/vIrTuAlClUsTeRs/vIrTuAlClUsTeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/vIrTuAlClUsTeRs/vIrTuAlClUsTeRnAmE/extra",
 			Error: true,
 		},
 	}

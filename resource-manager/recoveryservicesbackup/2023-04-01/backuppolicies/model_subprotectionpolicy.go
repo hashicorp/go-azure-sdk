@@ -33,7 +33,7 @@ func (s *SubProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["retentionPolicy"]; ok {
-		impl, err := unmarshalRetentionPolicyImplementation(v)
+		impl, err := UnmarshalRetentionPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RetentionPolicy' for 'SubProtectionPolicy': %+v", err)
 		}
@@ -41,7 +41,7 @@ func (s *SubProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["schedulePolicy"]; ok {
-		impl, err := unmarshalSchedulePolicyImplementation(v)
+		impl, err := UnmarshalSchedulePolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SchedulePolicy' for 'SubProtectionPolicy': %+v", err)
 		}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/regulatorycompliance` Documentation
 
-The `regulatorycompliance` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2019-01-01-preview`).
+The `regulatorycompliance` SDK allows for interaction with Azure Resource Manager `security` (API Version `2019-01-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := regulatorycompliance.NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue", "regulatoryComplianceAssessmentValue")
+id := regulatorycompliance.NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName", "regulatoryComplianceAssessmentName")
 
 read, err := client.AssessmentsGet(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := regulatorycompliance.NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue")
+id := regulatorycompliance.NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName")
 
 // alternatively `client.AssessmentsList(ctx, id, regulatorycompliance.DefaultAssessmentsListOperationOptions())` can be used to do batched pagination
 items, err := client.AssessmentsListComplete(ctx, id, regulatorycompliance.DefaultAssessmentsListOperationOptions())
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := regulatorycompliance.NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue")
+id := regulatorycompliance.NewRegulatoryComplianceControlID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName")
 
 read, err := client.ControlsGet(ctx, id)
 if err != nil {
@@ -74,7 +74,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := regulatorycompliance.NewRegulatoryComplianceStandardID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue")
+id := regulatorycompliance.NewRegulatoryComplianceStandardID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName")
 
 // alternatively `client.ControlsList(ctx, id, regulatorycompliance.DefaultControlsListOperationOptions())` can be used to do batched pagination
 items, err := client.ControlsListComplete(ctx, id, regulatorycompliance.DefaultControlsListOperationOptions())
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := regulatorycompliance.NewRegulatoryComplianceStandardID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue")
+id := regulatorycompliance.NewRegulatoryComplianceStandardID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName")
 
 read, err := client.StandardsGet(ctx, id)
 if err != nil {

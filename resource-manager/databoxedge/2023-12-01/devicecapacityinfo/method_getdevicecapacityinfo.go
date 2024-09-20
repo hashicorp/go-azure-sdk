@@ -46,7 +46,6 @@ func (c DeviceCapacityInfoClient) GetDeviceCapacityInfo(ctx context.Context, id 
 
 	var model DeviceCapacityInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

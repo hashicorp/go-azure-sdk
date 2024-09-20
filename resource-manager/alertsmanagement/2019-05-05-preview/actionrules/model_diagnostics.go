@@ -16,6 +16,7 @@ var _ ActionRuleProperties = Diagnostics{}
 type Diagnostics struct {
 
 	// Fields inherited from ActionRuleProperties
+
 	Conditions     *Conditions       `json:"conditions,omitempty"`
 	CreatedAt      *string           `json:"createdAt,omitempty"`
 	CreatedBy      *string           `json:"createdBy,omitempty"`
@@ -24,6 +25,21 @@ type Diagnostics struct {
 	LastModifiedBy *string           `json:"lastModifiedBy,omitempty"`
 	Scope          *Scope            `json:"scope,omitempty"`
 	Status         *ActionRuleStatus `json:"status,omitempty"`
+	Type           ActionRuleType    `json:"type"`
+}
+
+func (s Diagnostics) ActionRuleProperties() BaseActionRulePropertiesImpl {
+	return BaseActionRulePropertiesImpl{
+		Conditions:     s.Conditions,
+		CreatedAt:      s.CreatedAt,
+		CreatedBy:      s.CreatedBy,
+		Description:    s.Description,
+		LastModifiedAt: s.LastModifiedAt,
+		LastModifiedBy: s.LastModifiedBy,
+		Scope:          s.Scope,
+		Status:         s.Status,
+		Type:           s.Type,
+	}
 }
 
 func (o *Diagnostics) GetCreatedAtAsTime() (*time.Time, error) {
@@ -61,9 +77,10 @@ func (s Diagnostics) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Diagnostics: %+v", err)
 	}
+
 	decoded["type"] = "Diagnostics"
 
 	encoded, err = json.Marshal(decoded)

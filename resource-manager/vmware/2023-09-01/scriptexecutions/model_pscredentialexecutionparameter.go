@@ -15,7 +15,16 @@ type PSCredentialExecutionParameter struct {
 	Username *string `json:"username,omitempty"`
 
 	// Fields inherited from ScriptExecutionParameter
-	Name string `json:"name"`
+
+	Name string                       `json:"name"`
+	Type ScriptExecutionParameterType `json:"type"`
+}
+
+func (s PSCredentialExecutionParameter) ScriptExecutionParameter() BaseScriptExecutionParameterImpl {
+	return BaseScriptExecutionParameterImpl{
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = PSCredentialExecutionParameter{}
@@ -29,9 +38,10 @@ func (s PSCredentialExecutionParameter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PSCredentialExecutionParameter: %+v", err)
 	}
+
 	decoded["type"] = "Credential"
 
 	encoded, err = json.Marshal(decoded)

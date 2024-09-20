@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageApplianceId{}
 
 func TestNewStorageApplianceID(t *testing.T) {
-	id := NewStorageApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageApplianceValue")
+	id := NewStorageApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageApplianceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewStorageApplianceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageApplianceName != "storageApplianceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageApplianceName'", id.StorageApplianceName, "storageApplianceValue")
+	if id.StorageApplianceName != "storageApplianceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageApplianceName'", id.StorageApplianceName, "storageApplianceName")
 	}
 }
 
 func TestFormatStorageApplianceID(t *testing.T) {
-	actual := NewStorageApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageApplianceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceValue"
+	actual := NewStorageApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageApplianceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseStorageApplianceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceName",
 			Expected: &StorageApplianceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				StorageApplianceName: "storageApplianceValue",
+				StorageApplianceName: "storageApplianceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseStorageApplianceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceName",
 			Expected: &StorageApplianceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				StorageApplianceName: "storageApplianceValue",
+				StorageApplianceName: "storageApplianceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/storageAppliances/storageApplianceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/sToRaGeApPlIaNcEs/sToRaGeApPlIaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/sToRaGeApPlIaNcEs/sToRaGeApPlIaNcEnAmE",
 			Expected: &StorageApplianceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageApplianceName: "sToRaGeApPlIaNcEvAlUe",
+				StorageApplianceName: "sToRaGeApPlIaNcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/sToRaGeApPlIaNcEs/sToRaGeApPlIaNcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/sToRaGeApPlIaNcEs/sToRaGeApPlIaNcEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c WCFRelaysClient) GetAuthorizationRule(ctx context.Context, id WcfRelayAu
 
 	var model AuthorizationRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

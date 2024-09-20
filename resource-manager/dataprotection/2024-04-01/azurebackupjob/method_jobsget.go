@@ -45,7 +45,6 @@ func (c AzureBackupJobClient) JobsGet(ctx context.Context, id BackupJobId) (resu
 
 	var model AzureBackupJobResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseL2NetworkID(input string) (*L2NetworkId, error) {
 	}
 
 	id := L2NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseL2NetworkIDInsensitively(input string) (*L2NetworkId, error) {
 	}
 
 	id := L2NetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id L2NetworkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticL2Networks", "l2Networks", "l2Networks"),
-		resourceids.UserSpecifiedSegment("l2NetworkName", "l2NetworkValue"),
+		resourceids.UserSpecifiedSegment("l2NetworkName", "l2NetworkName"),
 	}
 }
 

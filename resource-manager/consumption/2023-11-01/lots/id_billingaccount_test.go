@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &BillingAccountId{}
 
 func TestNewBillingAccountID(t *testing.T) {
-	id := NewBillingAccountID("billingAccountIdValue")
+	id := NewBillingAccountID("billingAccountId")
 
-	if id.BillingAccountId != "billingAccountIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountIdValue")
+	if id.BillingAccountId != "billingAccountId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountId")
 	}
 }
 
 func TestFormatBillingAccountID(t *testing.T) {
-	actual := NewBillingAccountID("billingAccountIdValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue"
+	actual := NewBillingAccountID("billingAccountId").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseBillingAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Expected: &BillingAccountId{
-				BillingAccountId: "billingAccountIdValue",
+				BillingAccountId: "billingAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseBillingAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Expected: &BillingAccountId{
-				BillingAccountId: "billingAccountIdValue",
+				BillingAccountId: "billingAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD",
 			Expected: &BillingAccountId{
-				BillingAccountId: "bIlLiNgAcCoUnTiDvAlUe",
+				BillingAccountId: "bIlLiNgAcCoUnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/extra",
 			Error: true,
 		},
 	}

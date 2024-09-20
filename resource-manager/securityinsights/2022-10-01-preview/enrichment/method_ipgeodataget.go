@@ -35,6 +35,7 @@ func (o IPGeodataGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o IPGeodataGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c EnrichmentClient) IPGeodataGet(ctx context.Context, id commonids.Resourc
 
 	var model EnrichmentIPGeodata
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

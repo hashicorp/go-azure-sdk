@@ -46,7 +46,6 @@ func (c ManagedAzResiliencyStatusClient) Get(ctx context.Context, id ManagedClus
 
 	var model ManagedAzResiliencyStatus
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

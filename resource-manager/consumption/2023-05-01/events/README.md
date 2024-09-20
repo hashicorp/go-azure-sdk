@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2023-05-01/events` Documentation
 
-The `events` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2023-05-01`).
+The `events` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := events.NewBillingAccountID("billingAccountIdValue")
+id := events.NewBillingAccountID("billingAccountId")
 
 // alternatively `client.ListByBillingAccount(ctx, id, events.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, events.DefaultListByBillingAccountOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := events.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := events.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 // alternatively `client.ListByBillingProfile(ctx, id, events.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, events.DefaultListByBillingProfileOperationOptions())

@@ -17,7 +17,7 @@ import (
 type GetByScopeOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Setting
+	Model        Setting
 }
 
 // GetByScope ...
@@ -50,11 +50,11 @@ func (c SettingsClient) GetByScope(ctx context.Context, id commonids.ScopeId) (r
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalSettingImplementation(respObj)
+	model, err := UnmarshalSettingImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

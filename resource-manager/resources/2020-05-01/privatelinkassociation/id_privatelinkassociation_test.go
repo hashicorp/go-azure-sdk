@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkAssociationId{}
 
 func TestNewPrivateLinkAssociationID(t *testing.T) {
-	id := NewPrivateLinkAssociationID("groupIdValue", "plaIdValue")
+	id := NewPrivateLinkAssociationID("groupId", "plaId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.PlaId != "plaIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlaId'", id.PlaId, "plaIdValue")
+	if id.PlaId != "plaId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlaId'", id.PlaId, "plaId")
 	}
 }
 
 func TestFormatPrivateLinkAssociationID(t *testing.T) {
-	actual := NewPrivateLinkAssociationID("groupIdValue", "plaIdValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations/plaIdValue"
+	actual := NewPrivateLinkAssociationID("groupId", "plaId").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations/plaId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParsePrivateLinkAssociationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations/plaIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations/plaId",
 			Expected: &PrivateLinkAssociationId{
-				GroupId: "groupIdValue",
-				PlaId:   "plaIdValue",
+				GroupId: "groupId",
+				PlaId:   "plaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations/plaIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations/plaId/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParsePrivateLinkAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations/plaIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations/plaId",
 			Expected: &PrivateLinkAssociationId{
-				GroupId: "groupIdValue",
-				PlaId:   "plaIdValue",
+				GroupId: "groupId",
+				PlaId:   "plaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Authorization/privateLinkAssociations/plaIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Authorization/privateLinkAssociations/plaId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs/pLaIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs/pLaId",
 			Expected: &PrivateLinkAssociationId{
-				GroupId: "gRoUpIdVaLuE",
-				PlaId:   "pLaIdVaLuE",
+				GroupId: "gRoUpId",
+				PlaId:   "pLaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs/pLaIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pRiVaTeLiNkAsSoCiAtIoNs/pLaId/extra",
 			Error: true,
 		},
 	}

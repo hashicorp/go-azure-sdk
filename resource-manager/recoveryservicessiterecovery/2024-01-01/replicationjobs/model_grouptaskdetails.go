@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GroupTaskDetails interface {
+	GroupTaskDetails() BaseGroupTaskDetailsImpl
 }
 
-// RawGroupTaskDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ GroupTaskDetails = BaseGroupTaskDetailsImpl{}
+
+type BaseGroupTaskDetailsImpl struct {
+	ChildTasks   *[]ASRTask `json:"childTasks,omitempty"`
+	InstanceType string     `json:"instanceType"`
+}
+
+func (s BaseGroupTaskDetailsImpl) GroupTaskDetails() BaseGroupTaskDetailsImpl {
+	return s
+}
+
+var _ GroupTaskDetails = RawGroupTaskDetailsImpl{}
+
+// RawGroupTaskDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawGroupTaskDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	groupTaskDetails BaseGroupTaskDetailsImpl
+	Type             string
+	Values           map[string]interface{}
 }
 
-func unmarshalGroupTaskDetailsImplementation(input []byte) (GroupTaskDetails, error) {
+func (s RawGroupTaskDetailsImpl) GroupTaskDetails() BaseGroupTaskDetailsImpl {
+	return s.groupTaskDetails
+}
+
+func UnmarshalGroupTaskDetailsImplementation(input []byte) (GroupTaskDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalGroupTaskDetailsImplementation(input []byte) (GroupTaskDetails, er
 		return out, nil
 	}
 
-	out := RawGroupTaskDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseGroupTaskDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseGroupTaskDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawGroupTaskDetailsImpl{
+		groupTaskDetails: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
 
 }

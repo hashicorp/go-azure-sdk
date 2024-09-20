@@ -15,7 +15,7 @@ type DppFeatureSupportClient struct {
 }
 
 func NewDppFeatureSupportClientWithBaseURI(sdkApi sdkEnv.Api) (*DppFeatureSupportClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dppfeaturesupport", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dppfeaturesupport", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DppFeatureSupportClient: %+v", err)
 	}

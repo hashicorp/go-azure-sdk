@@ -46,7 +46,6 @@ func (c NamedValueClient) WorkspaceNamedValueListValue(ctx context.Context, id W
 
 	var model NamedValueSecretContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -14,7 +14,16 @@ type FacetError struct {
 	Errors []ErrorDetails `json:"errors"`
 
 	// Fields inherited from Facet
+
 	Expression string `json:"expression"`
+	ResultType string `json:"resultType"`
+}
+
+func (s FacetError) Facet() BaseFacetImpl {
+	return BaseFacetImpl{
+		Expression: s.Expression,
+		ResultType: s.ResultType,
+	}
 }
 
 var _ json.Marshaler = FacetError{}
@@ -28,9 +37,10 @@ func (s FacetError) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FacetError: %+v", err)
 	}
+
 	decoded["resultType"] = "FacetError"
 
 	encoded, err = json.Marshal(decoded)

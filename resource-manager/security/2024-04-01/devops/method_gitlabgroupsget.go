@@ -45,7 +45,6 @@ func (c DevOpsClient) GitLabGroupsGet(ctx context.Context, id GitLabGroupId) (re
 
 	var model GitLabGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

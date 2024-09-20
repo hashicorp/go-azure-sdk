@@ -14,6 +14,14 @@ type OfficeIRMCheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s OfficeIRMCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = OfficeIRMCheckRequirements{}
@@ -27,9 +35,10 @@ func (s OfficeIRMCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OfficeIRMCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "OfficeIRM"
 
 	encoded, err = json.Marshal(decoded)

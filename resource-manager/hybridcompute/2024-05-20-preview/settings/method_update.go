@@ -50,7 +50,6 @@ func (c SettingsClient) Update(ctx context.Context, id ScopedSettingId, input Se
 
 	var model Settings
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

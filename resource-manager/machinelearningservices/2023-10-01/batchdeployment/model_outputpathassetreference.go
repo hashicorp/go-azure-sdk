@@ -15,6 +15,14 @@ type OutputPathAssetReference struct {
 	Path  *string `json:"path,omitempty"`
 
 	// Fields inherited from AssetReferenceBase
+
+	ReferenceType ReferenceType `json:"referenceType"`
+}
+
+func (s OutputPathAssetReference) AssetReferenceBase() BaseAssetReferenceBaseImpl {
+	return BaseAssetReferenceBaseImpl{
+		ReferenceType: s.ReferenceType,
+	}
 }
 
 var _ json.Marshaler = OutputPathAssetReference{}
@@ -28,9 +36,10 @@ func (s OutputPathAssetReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OutputPathAssetReference: %+v", err)
 	}
+
 	decoded["referenceType"] = "OutputPath"
 
 	encoded, err = json.Marshal(decoded)

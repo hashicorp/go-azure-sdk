@@ -50,7 +50,6 @@ func (c IncidentsClient) CreateOrUpdate(ctx context.Context, id IncidentId, inpu
 
 	var model Incident
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

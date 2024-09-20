@@ -45,7 +45,6 @@ func (c SettingsClient) Get(ctx context.Context, id ScopedSettingId) (result Get
 
 	var model Settings
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

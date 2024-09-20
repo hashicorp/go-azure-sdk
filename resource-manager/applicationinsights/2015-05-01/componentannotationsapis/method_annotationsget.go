@@ -45,7 +45,6 @@ func (c ComponentAnnotationsAPIsClient) AnnotationsGet(ctx context.Context, id A
 
 	var model []Annotation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

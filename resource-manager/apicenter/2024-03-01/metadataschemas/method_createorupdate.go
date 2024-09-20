@@ -50,7 +50,6 @@ func (c MetadataSchemasClient) CreateOrUpdate(ctx context.Context, id MetadataSc
 
 	var model MetadataSchema
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

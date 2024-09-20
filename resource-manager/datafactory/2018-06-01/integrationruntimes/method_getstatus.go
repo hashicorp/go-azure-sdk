@@ -46,7 +46,6 @@ func (c IntegrationRuntimesClient) GetStatus(ctx context.Context, id Integration
 
 	var model IntegrationRuntimeStatusResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

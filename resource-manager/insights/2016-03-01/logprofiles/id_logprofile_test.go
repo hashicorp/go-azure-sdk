@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &LogProfileId{}
 
 func TestNewLogProfileID(t *testing.T) {
-	id := NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileValue")
+	id := NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LogProfileName != "logProfileValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LogProfileName'", id.LogProfileName, "logProfileValue")
+	if id.LogProfileName != "logProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LogProfileName'", id.LogProfileName, "logProfileName")
 	}
 }
 
 func TestFormatLogProfileID(t *testing.T) {
-	actual := NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileValue"
+	actual := NewLogProfileID("12345678-1234-9876-4563-123456789012", "logProfileName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseLogProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileName",
 			Expected: &LogProfileId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LogProfileName: "logProfileValue",
+				LogProfileName: "logProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseLogProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileName",
 			Expected: &LogProfileId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LogProfileName: "logProfileValue",
+				LogProfileName: "logProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/logProfiles/logProfileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/lOgPrOfIlEs/lOgPrOfIlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/lOgPrOfIlEs/lOgPrOfIlEnAmE",
 			Expected: &LogProfileId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LogProfileName: "lOgPrOfIlEvAlUe",
+				LogProfileName: "lOgPrOfIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/lOgPrOfIlEs/lOgPrOfIlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/lOgPrOfIlEs/lOgPrOfIlEnAmE/extra",
 			Error: true,
 		},
 	}

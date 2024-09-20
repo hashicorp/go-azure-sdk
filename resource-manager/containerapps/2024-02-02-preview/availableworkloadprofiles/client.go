@@ -15,7 +15,7 @@ type AvailableWorkloadProfilesClient struct {
 }
 
 func NewAvailableWorkloadProfilesClientWithBaseURI(sdkApi sdkEnv.Api) (*AvailableWorkloadProfilesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "availableworkloadprofiles", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "availableworkloadprofiles", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AvailableWorkloadProfilesClient: %+v", err)
 	}

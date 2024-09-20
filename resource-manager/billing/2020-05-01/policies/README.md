@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/policies` Documentation
 
-The `policies` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `policies` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := policies.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := policies.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policies.NewCustomerID("billingAccountValue", "customerValue")
+id := policies.NewCustomerID("billingAccountName", "customerName")
 
 read, err := client.GetByCustomer(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policies.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := policies.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := policies.Policy{
 	// ...
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policies.NewCustomerID("billingAccountValue", "customerValue")
+id := policies.NewCustomerID("billingAccountName", "customerName")
 
 payload := policies.CustomerPolicy{
 	// ...

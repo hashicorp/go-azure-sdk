@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/accounts` Documentation
 
-The `accounts` SDK allows for interaction with the Azure Resource Manager Service `datalakeanalytics` (API Version `2016-11-01`).
+The `accounts` SDK allows for interaction with Azure Resource Manager `datalakeanalytics` (API Version `2016-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := accounts.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := accounts.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := accounts.CheckNameAvailabilityParameters{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.CreateDataLakeAnalyticsAccountParameters{
 	// ...
@@ -63,7 +63,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -75,7 +75,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -125,7 +125,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := accounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := accounts.UpdateDataLakeAnalyticsAccountParameters{
 	// ...

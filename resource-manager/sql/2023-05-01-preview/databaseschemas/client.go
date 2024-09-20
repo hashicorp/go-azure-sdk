@@ -15,7 +15,7 @@ type DatabaseSchemasClient struct {
 }
 
 func NewDatabaseSchemasClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseSchemasClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseschemas", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseschemas", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseSchemasClient: %+v", err)
 	}

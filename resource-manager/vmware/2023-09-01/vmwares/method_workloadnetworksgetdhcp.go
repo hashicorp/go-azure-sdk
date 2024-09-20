@@ -45,7 +45,6 @@ func (c VMwaresClient) WorkloadNetworksGetDhcp(ctx context.Context, id DhcpConfi
 
 	var model WorkloadNetworkDhcp
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

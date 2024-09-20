@@ -40,7 +40,7 @@ func ParseDepartmentID(input string) (*DepartmentId, error) {
 	}
 
 	id := DepartmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseDepartmentIDInsensitively(input string) (*DepartmentId, error) {
 	}
 
 	id := DepartmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id DepartmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticDepartments", "departments", "departments"),
-		resourceids.UserSpecifiedSegment("departmentName", "departmentValue"),
+		resourceids.UserSpecifiedSegment("departmentName", "departmentName"),
 	}
 }
 

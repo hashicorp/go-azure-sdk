@@ -45,7 +45,6 @@ func (c ReplicationStorageClassificationsClient) Get(ctx context.Context, id Rep
 
 	var model StorageClassification
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

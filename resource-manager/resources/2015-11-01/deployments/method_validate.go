@@ -50,7 +50,6 @@ func (c DeploymentsClient) Validate(ctx context.Context, id ProviderDeploymentId
 
 	var model DeploymentValidateResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

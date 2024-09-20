@@ -15,7 +15,7 @@ type ElasticVersionsClient struct {
 }
 
 func NewElasticVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ElasticVersionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "elasticversions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "elasticversions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ElasticVersionsClient: %+v", err)
 	}

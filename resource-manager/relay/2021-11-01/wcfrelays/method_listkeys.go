@@ -46,7 +46,6 @@ func (c WCFRelaysClient) ListKeys(ctx context.Context, id WcfRelayAuthorizationR
 
 	var model AccessKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

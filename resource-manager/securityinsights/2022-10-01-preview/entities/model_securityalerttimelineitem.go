@@ -24,6 +24,14 @@ type SecurityAlertTimelineItem struct {
 	TimeGenerated   string           `json:"timeGenerated"`
 
 	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}
+
+func (s SecurityAlertTimelineItem) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return BaseEntityTimelineItemImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = SecurityAlertTimelineItem{}
@@ -37,9 +45,10 @@ func (s SecurityAlertTimelineItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SecurityAlertTimelineItem: %+v", err)
 	}
+
 	decoded["kind"] = "SecurityAlert"
 
 	encoded, err = json.Marshal(decoded)

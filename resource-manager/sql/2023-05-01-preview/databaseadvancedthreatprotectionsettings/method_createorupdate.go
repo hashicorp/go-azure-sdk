@@ -52,7 +52,6 @@ func (c DatabaseAdvancedThreatProtectionSettingsClient) CreateOrUpdate(ctx conte
 
 	var model DatabaseAdvancedThreatProtection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

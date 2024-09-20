@@ -15,7 +15,7 @@ type TopQueryStatisticsClient struct {
 }
 
 func NewTopQueryStatisticsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopQueryStatisticsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topquerystatistics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "topquerystatistics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopQueryStatisticsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type LocationBasedPerformanceTierClient struct {
 }
 
 func NewLocationBasedPerformanceTierClientWithBaseURI(sdkApi sdkEnv.Api) (*LocationBasedPerformanceTierClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "locationbasedperformancetier", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "locationbasedperformancetier", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LocationBasedPerformanceTierClient: %+v", err)
 	}

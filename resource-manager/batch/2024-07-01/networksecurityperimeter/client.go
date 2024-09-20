@@ -15,7 +15,7 @@ type NetworkSecurityPerimeterClient struct {
 }
 
 func NewNetworkSecurityPerimeterClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkSecurityPerimeterClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "networksecurityperimeter", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "networksecurityperimeter", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkSecurityPerimeterClient: %+v", err)
 	}

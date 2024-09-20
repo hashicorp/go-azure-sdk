@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/billingprofiles` Documentation
 
-The `billingprofiles` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `billingprofiles` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingprofiles.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofiles.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := billingprofiles.BillingProfileCreationRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofiles.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofiles.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.Get(ctx, id, billingprofiles.DefaultGetOperationOptions())
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofiles.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofiles.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.GetEligibilityToDetachPaymentMethod(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingprofiles.NewBillingAccountID("billingAccountValue")
+id := billingprofiles.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, billingprofiles.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, billingprofiles.DefaultListByBillingAccountOperationOptions())
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingprofiles.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingprofiles.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := billingprofiles.BillingProfile{
 	// ...

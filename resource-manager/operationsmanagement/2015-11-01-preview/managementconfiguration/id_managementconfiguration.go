@@ -42,7 +42,7 @@ func ParseManagementConfigurationID(input string) (*ManagementConfigurationId, e
 	}
 
 	id := ManagementConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseManagementConfigurationIDInsensitively(input string) (*ManagementConfi
 	}
 
 	id := ManagementConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id ManagementConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationsManagement", "Microsoft.OperationsManagement", "Microsoft.OperationsManagement"),
 		resourceids.StaticSegment("staticManagementConfigurations", "managementConfigurations", "managementConfigurations"),
-		resourceids.UserSpecifiedSegment("managementConfigurationName", "managementConfigurationValue"),
+		resourceids.UserSpecifiedSegment("managementConfigurationName", "managementConfigurationName"),
 	}
 }
 

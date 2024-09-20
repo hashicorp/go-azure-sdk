@@ -14,10 +14,22 @@ type CefExternalSecuritySolution struct {
 	Properties *CefSolutionProperties `json:"properties,omitempty"`
 
 	// Fields inherited from ExternalSecuritySolution
-	Id       *string `json:"id,omitempty"`
-	Location *string `json:"location,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	Type     *string `json:"type,omitempty"`
+
+	Id       *string                       `json:"id,omitempty"`
+	Kind     *ExternalSecuritySolutionKind `json:"kind,omitempty"`
+	Location *string                       `json:"location,omitempty"`
+	Name     *string                       `json:"name,omitempty"`
+	Type     *string                       `json:"type,omitempty"`
+}
+
+func (s CefExternalSecuritySolution) ExternalSecuritySolution() BaseExternalSecuritySolutionImpl {
+	return BaseExternalSecuritySolutionImpl{
+		Id:       s.Id,
+		Kind:     s.Kind,
+		Location: s.Location,
+		Name:     s.Name,
+		Type:     s.Type,
+	}
 }
 
 var _ json.Marshaler = CefExternalSecuritySolution{}
@@ -31,9 +43,10 @@ func (s CefExternalSecuritySolution) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CefExternalSecuritySolution: %+v", err)
 	}
+
 	decoded["kind"] = "CEF"
 
 	encoded, err = json.Marshal(decoded)

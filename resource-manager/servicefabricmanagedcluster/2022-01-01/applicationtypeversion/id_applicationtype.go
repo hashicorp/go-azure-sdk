@@ -44,7 +44,7 @@ func ParseApplicationTypeID(input string) (*ApplicationTypeId, error) {
 	}
 
 	id := ApplicationTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApplicationTypeIDInsensitively(input string) (*ApplicationTypeId, erro
 	}
 
 	id := ApplicationTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ApplicationTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticManagedClusters", "managedClusters", "managedClusters"),
-		resourceids.UserSpecifiedSegment("managedClusterName", "managedClusterValue"),
+		resourceids.UserSpecifiedSegment("managedClusterName", "clusterName"),
 		resourceids.StaticSegment("staticApplicationTypes", "applicationTypes", "applicationTypes"),
-		resourceids.UserSpecifiedSegment("applicationTypeName", "applicationTypeValue"),
+		resourceids.UserSpecifiedSegment("applicationTypeName", "applicationTypeName"),
 	}
 }
 

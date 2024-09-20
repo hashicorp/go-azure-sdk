@@ -46,7 +46,6 @@ func (c DiagnosticSettingsClient) GetDiagnosticRemoteSupportSettings(ctx context
 
 	var model DiagnosticRemoteSupportSettings
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

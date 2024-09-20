@@ -45,7 +45,6 @@ func (c BackupsV2Client) LongRunningBackupsGet(ctx context.Context, id BackupsV2
 
 	var model ServerBackupV2
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

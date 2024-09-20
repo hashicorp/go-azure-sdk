@@ -15,7 +15,7 @@ type ContentProductTemplatesClient struct {
 }
 
 func NewContentProductTemplatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentProductTemplatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "contentproducttemplates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "contentproducttemplates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContentProductTemplatesClient: %+v", err)
 	}

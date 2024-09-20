@@ -49,7 +49,6 @@ func (c InstructionsClient) Put(ctx context.Context, id InstructionId, input Ins
 
 	var model Instruction
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

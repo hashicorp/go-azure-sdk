@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/securitysolutions` Documentation
 
-The `securitysolutions` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2020-01-01`).
+The `securitysolutions` SDK allows for interaction with Azure Resource Manager `security` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := securitysolutions.NewSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "securitySolutionValue")
+id := securitysolutions.NewSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "securitySolutionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

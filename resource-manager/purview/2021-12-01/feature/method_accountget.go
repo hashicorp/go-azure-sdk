@@ -50,7 +50,6 @@ func (c FeatureClient) AccountGet(ctx context.Context, id AccountId, input Batch
 
 	var model BatchFeatureStatus
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

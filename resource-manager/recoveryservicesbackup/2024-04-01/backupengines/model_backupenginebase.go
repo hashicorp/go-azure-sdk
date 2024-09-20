@@ -10,18 +10,47 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackupEngineBase interface {
+	BackupEngineBase() BaseBackupEngineBaseImpl
 }
 
-// RawBackupEngineBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ BackupEngineBase = BaseBackupEngineBaseImpl{}
+
+type BaseBackupEngineBaseImpl struct {
+	AzureBackupAgentVersion            *string                   `json:"azureBackupAgentVersion,omitempty"`
+	BackupEngineId                     *string                   `json:"backupEngineId,omitempty"`
+	BackupEngineState                  *string                   `json:"backupEngineState,omitempty"`
+	BackupEngineType                   BackupEngineType          `json:"backupEngineType"`
+	BackupManagementType               *BackupManagementType     `json:"backupManagementType,omitempty"`
+	CanReRegister                      *bool                     `json:"canReRegister,omitempty"`
+	DpmVersion                         *string                   `json:"dpmVersion,omitempty"`
+	ExtendedInfo                       *BackupEngineExtendedInfo `json:"extendedInfo,omitempty"`
+	FriendlyName                       *string                   `json:"friendlyName,omitempty"`
+	HealthStatus                       *string                   `json:"healthStatus,omitempty"`
+	IsAzureBackupAgentUpgradeAvailable *bool                     `json:"isAzureBackupAgentUpgradeAvailable,omitempty"`
+	IsDpmUpgradeAvailable              *bool                     `json:"isDpmUpgradeAvailable,omitempty"`
+	RegistrationStatus                 *string                   `json:"registrationStatus,omitempty"`
+}
+
+func (s BaseBackupEngineBaseImpl) BackupEngineBase() BaseBackupEngineBaseImpl {
+	return s
+}
+
+var _ BackupEngineBase = RawBackupEngineBaseImpl{}
+
+// RawBackupEngineBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawBackupEngineBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	backupEngineBase BaseBackupEngineBaseImpl
+	Type             string
+	Values           map[string]interface{}
 }
 
-func unmarshalBackupEngineBaseImplementation(input []byte) (BackupEngineBase, error) {
+func (s RawBackupEngineBaseImpl) BackupEngineBase() BaseBackupEngineBaseImpl {
+	return s.backupEngineBase
+}
+
+func UnmarshalBackupEngineBaseImplementation(input []byte) (BackupEngineBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +81,15 @@ func unmarshalBackupEngineBaseImplementation(input []byte) (BackupEngineBase, er
 		return out, nil
 	}
 
-	out := RawBackupEngineBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseBackupEngineBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBackupEngineBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawBackupEngineBaseImpl{
+		backupEngineBase: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
 
 }

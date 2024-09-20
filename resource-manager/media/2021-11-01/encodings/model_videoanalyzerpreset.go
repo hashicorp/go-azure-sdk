@@ -17,6 +17,14 @@ type VideoAnalyzerPreset struct {
 	Mode                *AudioAnalysisMode `json:"mode,omitempty"`
 
 	// Fields inherited from Preset
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s VideoAnalyzerPreset) Preset() BasePresetImpl {
+	return BasePresetImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = VideoAnalyzerPreset{}
@@ -30,9 +38,10 @@ func (s VideoAnalyzerPreset) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VideoAnalyzerPreset: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.VideoAnalyzerPreset"
 
 	encoded, err = json.Marshal(decoded)

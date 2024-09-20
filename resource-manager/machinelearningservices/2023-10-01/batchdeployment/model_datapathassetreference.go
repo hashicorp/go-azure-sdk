@@ -15,6 +15,14 @@ type DataPathAssetReference struct {
 	Path        *string `json:"path,omitempty"`
 
 	// Fields inherited from AssetReferenceBase
+
+	ReferenceType ReferenceType `json:"referenceType"`
+}
+
+func (s DataPathAssetReference) AssetReferenceBase() BaseAssetReferenceBaseImpl {
+	return BaseAssetReferenceBaseImpl{
+		ReferenceType: s.ReferenceType,
+	}
 }
 
 var _ json.Marshaler = DataPathAssetReference{}
@@ -28,9 +36,10 @@ func (s DataPathAssetReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DataPathAssetReference: %+v", err)
 	}
+
 	decoded["referenceType"] = "DataPath"
 
 	encoded, err = json.Marshal(decoded)

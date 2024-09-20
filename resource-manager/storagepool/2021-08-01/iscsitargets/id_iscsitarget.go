@@ -44,7 +44,7 @@ func ParseIscsiTargetID(input string) (*IscsiTargetId, error) {
 	}
 
 	id := IscsiTargetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIscsiTargetIDInsensitively(input string) (*IscsiTargetId, error) {
 	}
 
 	id := IscsiTargetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id IscsiTargetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStoragePool", "Microsoft.StoragePool", "Microsoft.StoragePool"),
 		resourceids.StaticSegment("staticDiskPools", "diskPools", "diskPools"),
-		resourceids.UserSpecifiedSegment("diskPoolName", "diskPoolValue"),
+		resourceids.UserSpecifiedSegment("diskPoolName", "diskPoolName"),
 		resourceids.StaticSegment("staticIscsiTargets", "iscsiTargets", "iscsiTargets"),
-		resourceids.UserSpecifiedSegment("iscsiTargetName", "iscsiTargetValue"),
+		resourceids.UserSpecifiedSegment("iscsiTargetName", "iscsiTargetName"),
 	}
 }
 

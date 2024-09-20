@@ -45,7 +45,6 @@ func (c InstructionsClient) Get(ctx context.Context, id InstructionId) (result G
 
 	var model Instruction
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ImportJobId{}
 
 func TestNewImportJobID(t *testing.T) {
-	id := NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue")
+	id := NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewImportJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AmlFilesystemName != "amlFilesystemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AmlFilesystemName'", id.AmlFilesystemName, "amlFilesystemValue")
+	if id.AmlFilesystemName != "amlFilesystemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AmlFilesystemName'", id.AmlFilesystemName, "amlFilesystemName")
 	}
 
-	if id.ImportJobName != "importJobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImportJobName'", id.ImportJobName, "importJobValue")
+	if id.ImportJobName != "importJobName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImportJobName'", id.ImportJobName, "importJobName")
 	}
 }
 
 func TestFormatImportJobID(t *testing.T) {
-	actual := NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs/importJobValue"
+	actual := NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs/importJobName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseImportJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs/importJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs/importJobName",
 			Expected: &ImportJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AmlFilesystemName: "amlFilesystemValue",
-				ImportJobName:     "importJobValue",
+				AmlFilesystemName: "amlFilesystemName",
+				ImportJobName:     "importJobName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs/importJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs/importJobName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseImportJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE/iMpOrTjObS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe/iMpOrTjObS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs/importJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs/importJobName",
 			Expected: &ImportJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AmlFilesystemName: "amlFilesystemValue",
-				ImportJobName:     "importJobValue",
+				AmlFilesystemName: "amlFilesystemName",
+				ImportJobName:     "importJobName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/importJobs/importJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/importJobs/importJobName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE/iMpOrTjObS/iMpOrTjObVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe/iMpOrTjObS/iMpOrTjObNaMe",
 			Expected: &ImportJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AmlFilesystemName: "aMlFiLeSyStEmVaLuE",
-				ImportJobName:     "iMpOrTjObVaLuE",
+				AmlFilesystemName: "aMlFiLeSyStEmNaMe",
+				ImportJobName:     "iMpOrTjObNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE/iMpOrTjObS/iMpOrTjObVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe/iMpOrTjObS/iMpOrTjObNaMe/extra",
 			Error: true,
 		},
 	}

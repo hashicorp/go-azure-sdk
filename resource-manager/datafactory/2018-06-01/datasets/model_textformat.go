@@ -22,8 +22,18 @@ type TextFormat struct {
 	TreatEmptyAsNull *bool   `json:"treatEmptyAsNull,omitempty"`
 
 	// Fields inherited from DatasetStorageFormat
+
 	Deserializer *string `json:"deserializer,omitempty"`
 	Serializer   *string `json:"serializer,omitempty"`
+	Type         string  `json:"type"`
+}
+
+func (s TextFormat) DatasetStorageFormat() BaseDatasetStorageFormatImpl {
+	return BaseDatasetStorageFormatImpl{
+		Deserializer: s.Deserializer,
+		Serializer:   s.Serializer,
+		Type:         s.Type,
+	}
 }
 
 var _ json.Marshaler = TextFormat{}
@@ -37,9 +47,10 @@ func (s TextFormat) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TextFormat: %+v", err)
 	}
+
 	decoded["type"] = "TextFormat"
 
 	encoded, err = json.Marshal(decoded)

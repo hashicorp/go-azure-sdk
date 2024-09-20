@@ -15,7 +15,7 @@ type ServerAdvancedThreatProtectionSettingsClient struct {
 }
 
 func NewServerAdvancedThreatProtectionSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerAdvancedThreatProtectionSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serveradvancedthreatprotectionsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serveradvancedthreatprotectionsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerAdvancedThreatProtectionSettingsClient: %+v", err)
 	}

@@ -13,6 +13,14 @@ var _ DataConnectorsCheckRequirements = AwsCloudTrailCheckRequirements{}
 type AwsCloudTrailCheckRequirements struct {
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s AwsCloudTrailCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AwsCloudTrailCheckRequirements{}
@@ -26,9 +34,10 @@ func (s AwsCloudTrailCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AwsCloudTrailCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "AmazonWebServicesCloudTrail"
 
 	encoded, err = json.Marshal(decoded)

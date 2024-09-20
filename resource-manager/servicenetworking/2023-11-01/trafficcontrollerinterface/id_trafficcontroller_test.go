@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TrafficControllerId{}
 
 func TestNewTrafficControllerID(t *testing.T) {
-	id := NewTrafficControllerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficControllerValue")
+	id := NewTrafficControllerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficControllerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewTrafficControllerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.TrafficControllerName != "trafficControllerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TrafficControllerName'", id.TrafficControllerName, "trafficControllerValue")
+	if id.TrafficControllerName != "trafficControllerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrafficControllerName'", id.TrafficControllerName, "trafficControllerName")
 	}
 }
 
 func TestFormatTrafficControllerID(t *testing.T) {
-	actual := NewTrafficControllerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficControllerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerValue"
+	actual := NewTrafficControllerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficControllerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseTrafficControllerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerName",
 			Expected: &TrafficControllerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				TrafficControllerName: "trafficControllerValue",
+				TrafficControllerName: "trafficControllerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseTrafficControllerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerName",
 			Expected: &TrafficControllerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				TrafficControllerName: "trafficControllerValue",
+				TrafficControllerName: "trafficControllerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceNetworking/trafficControllers/trafficControllerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeNeTwOrKiNg/tRaFfIcCoNtRoLlErS/tRaFfIcCoNtRoLlErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeNeTwOrKiNg/tRaFfIcCoNtRoLlErS/tRaFfIcCoNtRoLlErNaMe",
 			Expected: &TrafficControllerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				TrafficControllerName: "tRaFfIcCoNtRoLlErVaLuE",
+				TrafficControllerName: "tRaFfIcCoNtRoLlErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeNeTwOrKiNg/tRaFfIcCoNtRoLlErS/tRaFfIcCoNtRoLlErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeNeTwOrKiNg/tRaFfIcCoNtRoLlErS/tRaFfIcCoNtRoLlErNaMe/extra",
 			Error: true,
 		},
 	}

@@ -23,6 +23,14 @@ type AzureWorkloadSQLRestoreWithRehydrateRequest struct {
 	TargetVirtualMachineId           *string                       `json:"targetVirtualMachineId,omitempty"`
 
 	// Fields inherited from RestoreRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureWorkloadSQLRestoreWithRehydrateRequest) RestoreRequest() BaseRestoreRequestImpl {
+	return BaseRestoreRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadSQLRestoreWithRehydrateRequest{}
@@ -36,9 +44,10 @@ func (s AzureWorkloadSQLRestoreWithRehydrateRequest) MarshalJSON() ([]byte, erro
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadSQLRestoreWithRehydrateRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureWorkloadSQLRestoreWithRehydrateRequest"
 
 	encoded, err = json.Marshal(decoded)

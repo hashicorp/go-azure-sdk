@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AssessmentMetadataId{}
 
 func TestNewAssessmentMetadataID(t *testing.T) {
-	id := NewAssessmentMetadataID("assessmentMetadataValue")
+	id := NewAssessmentMetadataID("assessmentMetadataName")
 
-	if id.AssessmentMetadataName != "assessmentMetadataValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssessmentMetadataName'", id.AssessmentMetadataName, "assessmentMetadataValue")
+	if id.AssessmentMetadataName != "assessmentMetadataName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssessmentMetadataName'", id.AssessmentMetadataName, "assessmentMetadataName")
 	}
 }
 
 func TestFormatAssessmentMetadataID(t *testing.T) {
-	actual := NewAssessmentMetadataID("assessmentMetadataValue").ID()
-	expected := "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue"
+	actual := NewAssessmentMetadataID("assessmentMetadataName").ID()
+	expected := "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseAssessmentMetadataID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue",
+			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName",
 			Expected: &AssessmentMetadataId{
-				AssessmentMetadataName: "assessmentMetadataValue",
+				AssessmentMetadataName: "assessmentMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue/extra",
+			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseAssessmentMetadataIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue",
+			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName",
 			Expected: &AssessmentMetadataId{
-				AssessmentMetadataName: "assessmentMetadataValue",
+				AssessmentMetadataName: "assessmentMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataValue/extra",
+			Input: "/providers/Microsoft.Security/assessmentMetadata/assessmentMetadataName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAnAmE",
 			Expected: &AssessmentMetadataId{
-				AssessmentMetadataName: "aSsEsSmEnTmEtAdAtAvAlUe",
+				AssessmentMetadataName: "aSsEsSmEnTmEtAdAtAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.sEcUrItY/aSsEsSmEnTmEtAdAtA/aSsEsSmEnTmEtAdAtAnAmE/extra",
 			Error: true,
 		},
 	}

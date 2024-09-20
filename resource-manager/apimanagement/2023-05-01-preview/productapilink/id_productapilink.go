@@ -46,7 +46,7 @@ func ParseProductApiLinkID(input string) (*ProductApiLinkId, error) {
 	}
 
 	id := ProductApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseProductApiLinkIDInsensitively(input string) (*ProductApiLinkId, error)
 	}
 
 	id := ProductApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id ProductApiLinkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticProducts", "products", "products"),
-		resourceids.UserSpecifiedSegment("productId", "productIdValue"),
+		resourceids.UserSpecifiedSegment("productId", "productId"),
 		resourceids.StaticSegment("staticApiLinks", "apiLinks", "apiLinks"),
-		resourceids.UserSpecifiedSegment("apiLinkId", "apiLinkIdValue"),
+		resourceids.UserSpecifiedSegment("apiLinkId", "apiLinkId"),
 	}
 }
 

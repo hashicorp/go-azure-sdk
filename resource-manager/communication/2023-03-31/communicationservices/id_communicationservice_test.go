@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CommunicationServiceId{}
 
 func TestNewCommunicationServiceID(t *testing.T) {
-	id := NewCommunicationServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationServiceValue")
+	id := NewCommunicationServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCommunicationServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CommunicationServiceName != "communicationServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommunicationServiceName'", id.CommunicationServiceName, "communicationServiceValue")
+	if id.CommunicationServiceName != "communicationServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommunicationServiceName'", id.CommunicationServiceName, "communicationServiceName")
 	}
 }
 
 func TestFormatCommunicationServiceID(t *testing.T) {
-	actual := NewCommunicationServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceValue"
+	actual := NewCommunicationServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "communicationServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCommunicationServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceName",
 			Expected: &CommunicationServiceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				CommunicationServiceName: "communicationServiceValue",
+				CommunicationServiceName: "communicationServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCommunicationServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceName",
 			Expected: &CommunicationServiceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				CommunicationServiceName: "communicationServiceValue",
+				CommunicationServiceName: "communicationServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/communicationServices/communicationServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/cOmMuNiCaTiOnSeRvIcEs/cOmMuNiCaTiOnSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/cOmMuNiCaTiOnSeRvIcEs/cOmMuNiCaTiOnSeRvIcEnAmE",
 			Expected: &CommunicationServiceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				CommunicationServiceName: "cOmMuNiCaTiOnSeRvIcEvAlUe",
+				CommunicationServiceName: "cOmMuNiCaTiOnSeRvIcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/cOmMuNiCaTiOnSeRvIcEs/cOmMuNiCaTiOnSeRvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/cOmMuNiCaTiOnSeRvIcEs/cOmMuNiCaTiOnSeRvIcEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -14,7 +14,16 @@ type FailoverJobDetails struct {
 	ProtectedItemDetails *[]FailoverReplicationProtectedItemDetails `json:"protectedItemDetails,omitempty"`
 
 	// Fields inherited from JobDetails
+
 	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}
+
+func (s FailoverJobDetails) JobDetails() BaseJobDetailsImpl {
+	return BaseJobDetailsImpl{
+		AffectedObjectDetails: s.AffectedObjectDetails,
+		InstanceType:          s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = FailoverJobDetails{}
@@ -28,9 +37,10 @@ func (s FailoverJobDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FailoverJobDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "FailoverJobDetails"
 
 	encoded, err = json.Marshal(decoded)

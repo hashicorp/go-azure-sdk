@@ -45,7 +45,6 @@ func (c AlertsSuppressionRulesClient) Get(ctx context.Context, id AlertsSuppress
 
 	var model AlertsSuppressionRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

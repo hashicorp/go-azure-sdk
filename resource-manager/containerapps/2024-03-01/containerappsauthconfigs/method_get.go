@@ -45,7 +45,6 @@ func (c ContainerAppsAuthConfigsClient) Get(ctx context.Context, id AuthConfigId
 
 	var model AuthConfig
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

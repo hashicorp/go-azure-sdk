@@ -46,7 +46,7 @@ func ParseFeatureStoreEntityVersionID(input string) (*FeatureStoreEntityVersionI
 	}
 
 	id := FeatureStoreEntityVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseFeatureStoreEntityVersionIDInsensitively(input string) (*FeatureStoreE
 	}
 
 	id := FeatureStoreEntityVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id FeatureStoreEntityVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticFeatureStoreEntities", "featureStoreEntities", "featureStoreEntities"),
-		resourceids.UserSpecifiedSegment("featureStoreEntityName", "featureStoreEntityValue"),
+		resourceids.UserSpecifiedSegment("featureStoreEntityName", "name"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "version"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkPeeringId{}
 
 func TestNewVirtualNetworkPeeringID(t *testing.T) {
-	id := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkValue", "virtualNetworkPeeringValue")
+	id := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName", "virtualNetworkPeeringName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkPeeringID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualNetworkName != "virtualNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "virtualNetworkValue")
+	if id.VirtualNetworkName != "virtualNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "virtualNetworkName")
 	}
 
-	if id.VirtualNetworkPeeringName != "virtualNetworkPeeringValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkPeeringName'", id.VirtualNetworkPeeringName, "virtualNetworkPeeringValue")
+	if id.VirtualNetworkPeeringName != "virtualNetworkPeeringName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkPeeringName'", id.VirtualNetworkPeeringName, "virtualNetworkPeeringName")
 	}
 }
 
 func TestFormatVirtualNetworkPeeringID(t *testing.T) {
-	actual := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkValue", "virtualNetworkPeeringValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings/virtualNetworkPeeringValue"
+	actual := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName", "virtualNetworkPeeringName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings/virtualNetworkPeeringName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkPeeringID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings/virtualNetworkPeeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings/virtualNetworkPeeringName",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				VirtualNetworkName:        "virtualNetworkValue",
-				VirtualNetworkPeeringName: "virtualNetworkPeeringValue",
+				VirtualNetworkName:        "virtualNetworkName",
+				VirtualNetworkPeeringName: "virtualNetworkPeeringName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings/virtualNetworkPeeringValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings/virtualNetworkPeeringName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkPeeringIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe/vIrTuAlNeTwOrKpEeRiNgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE/vIrTuAlNeTwOrKpEeRiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings/virtualNetworkPeeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings/virtualNetworkPeeringName",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				VirtualNetworkName:        "virtualNetworkValue",
-				VirtualNetworkPeeringName: "virtualNetworkPeeringValue",
+				VirtualNetworkName:        "virtualNetworkName",
+				VirtualNetworkPeeringName: "virtualNetworkPeeringName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkValue/virtualNetworkPeerings/virtualNetworkPeeringValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/virtualNetworkPeerings/virtualNetworkPeeringName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgNaMe",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualNetworkName:        "vIrTuAlNeTwOrKvAlUe",
-				VirtualNetworkPeeringName: "vIrTuAlNeTwOrKpEeRiNgVaLuE",
+				VirtualNetworkName:        "vIrTuAlNeTwOrKnAmE",
+				VirtualNetworkPeeringName: "vIrTuAlNeTwOrKpEeRiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgNaMe/extra",
 			Error: true,
 		},
 	}

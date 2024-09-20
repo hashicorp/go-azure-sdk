@@ -45,7 +45,6 @@ func (c QuotaInformationClient) QuotaGet(ctx context.Context, id ScopedQuotaId) 
 
 	var model CurrentQuotaLimitBase
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

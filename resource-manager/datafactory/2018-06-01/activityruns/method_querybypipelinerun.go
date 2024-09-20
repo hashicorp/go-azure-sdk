@@ -50,7 +50,6 @@ func (c ActivityrunsClient) QueryByPipelineRun(ctx context.Context, id PipelineR
 
 	var model ActivityRunsQueryResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

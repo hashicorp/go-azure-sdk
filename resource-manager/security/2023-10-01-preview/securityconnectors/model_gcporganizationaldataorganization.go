@@ -17,6 +17,14 @@ type GcpOrganizationalDataOrganization struct {
 	WorkloadIdentityProviderId *string   `json:"workloadIdentityProviderId,omitempty"`
 
 	// Fields inherited from GcpOrganizationalData
+
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s GcpOrganizationalDataOrganization) GcpOrganizationalData() BaseGcpOrganizationalDataImpl {
+	return BaseGcpOrganizationalDataImpl{
+		OrganizationMembershipType: s.OrganizationMembershipType,
+	}
 }
 
 var _ json.Marshaler = GcpOrganizationalDataOrganization{}
@@ -30,9 +38,10 @@ func (s GcpOrganizationalDataOrganization) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GcpOrganizationalDataOrganization: %+v", err)
 	}
+
 	decoded["organizationMembershipType"] = "Organization"
 
 	encoded, err = json.Marshal(decoded)

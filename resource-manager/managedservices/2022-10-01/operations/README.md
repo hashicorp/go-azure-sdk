@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/operations` Documentation
 
-The `operations` SDK allows for interaction with the Azure Resource Manager Service `managedservices` (API Version `2022-10-01`).
+The `operations` SDK allows for interaction with Azure Resource Manager `managedservices` (API Version `2022-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

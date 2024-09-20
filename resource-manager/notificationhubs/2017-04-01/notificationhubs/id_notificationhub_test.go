@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NotificationHubId{}
 
 func TestNewNotificationHubID(t *testing.T) {
-	id := NewNotificationHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "notificationHubValue")
+	id := NewNotificationHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "notificationHubName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNotificationHubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.NotificationHubName != "notificationHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationHubName'", id.NotificationHubName, "notificationHubValue")
+	if id.NotificationHubName != "notificationHubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationHubName'", id.NotificationHubName, "notificationHubName")
 	}
 }
 
 func TestFormatNotificationHubID(t *testing.T) {
-	actual := NewNotificationHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "notificationHubValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs/notificationHubValue"
+	actual := NewNotificationHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "notificationHubName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs/notificationHubName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNotificationHubID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs/notificationHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs/notificationHubName",
 			Expected: &NotificationHubId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				NamespaceName:       "namespaceValue",
-				NotificationHubName: "notificationHubValue",
+				NamespaceName:       "namespaceName",
+				NotificationHubName: "notificationHubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs/notificationHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs/notificationHubName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNotificationHubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeVaLuE/nOtIfIcAtIoNhUbS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeNaMe/nOtIfIcAtIoNhUbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs/notificationHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs/notificationHubName",
 			Expected: &NotificationHubId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				NamespaceName:       "namespaceValue",
-				NotificationHubName: "notificationHubValue",
+				NamespaceName:       "namespaceName",
+				NotificationHubName: "notificationHubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceValue/notificationHubs/notificationHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NotificationHubs/namespaces/namespaceName/notificationHubs/notificationHubName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeVaLuE/nOtIfIcAtIoNhUbS/nOtIfIcAtIoNhUbVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeNaMe/nOtIfIcAtIoNhUbS/nOtIfIcAtIoNhUbNaMe",
 			Expected: &NotificationHubId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:       "nAmEsPaCeVaLuE",
-				NotificationHubName: "nOtIfIcAtIoNhUbVaLuE",
+				NamespaceName:       "nAmEsPaCeNaMe",
+				NotificationHubName: "nOtIfIcAtIoNhUbNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeVaLuE/nOtIfIcAtIoNhUbS/nOtIfIcAtIoNhUbVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nOtIfIcAtIoNhUbS/nAmEsPaCeS/nAmEsPaCeNaMe/nOtIfIcAtIoNhUbS/nOtIfIcAtIoNhUbNaMe/extra",
 			Error: true,
 		},
 	}

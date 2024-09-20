@@ -23,8 +23,18 @@ type AmazonS3CompatibleReadSettings struct {
 	WildcardFolderPath         *string `json:"wildcardFolderPath,omitempty"`
 
 	// Fields inherited from StoreReadSettings
+
 	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
+	Type                     string `json:"type"`
+}
+
+func (s AmazonS3CompatibleReadSettings) StoreReadSettings() BaseStoreReadSettingsImpl {
+	return BaseStoreReadSettingsImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AmazonS3CompatibleReadSettings{}
@@ -38,9 +48,10 @@ func (s AmazonS3CompatibleReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AmazonS3CompatibleReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "AmazonS3CompatibleReadSettings"
 
 	encoded, err = json.Marshal(decoded)

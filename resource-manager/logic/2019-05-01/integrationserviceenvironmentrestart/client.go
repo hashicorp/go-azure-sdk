@@ -15,7 +15,7 @@ type IntegrationServiceEnvironmentRestartClient struct {
 }
 
 func NewIntegrationServiceEnvironmentRestartClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentRestartClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationserviceenvironmentrestart", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationserviceenvironmentrestart", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentRestartClient: %+v", err)
 	}

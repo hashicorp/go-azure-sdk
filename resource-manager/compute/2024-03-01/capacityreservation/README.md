@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/capacityreservation` Documentation
 
-The `capacityreservation` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2024-03-01`).
+The `capacityreservation` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := capacityreservation.NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupValue")
+id := capacityreservation.NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupName")
 
 // alternatively `client.ListByCapacityReservationGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByCapacityReservationGroupComplete(ctx, id)

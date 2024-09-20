@@ -73,7 +73,7 @@ func (c AlertRuleTemplatesClient) List(ctx context.Context, id WorkspaceId) (res
 	temp := make([]AlertRuleTemplate, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalAlertRuleTemplateImplementation(v)
+			val, err := UnmarshalAlertRuleTemplateImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for AlertRuleTemplate (%q): %+v", i, v, err)
 				return result, err

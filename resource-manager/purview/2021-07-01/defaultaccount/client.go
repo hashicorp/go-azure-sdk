@@ -15,7 +15,7 @@ type DefaultAccountClient struct {
 }
 
 func NewDefaultAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*DefaultAccountClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "defaultaccount", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "defaultaccount", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DefaultAccountClient: %+v", err)
 	}

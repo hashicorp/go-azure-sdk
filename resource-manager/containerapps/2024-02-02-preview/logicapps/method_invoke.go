@@ -40,6 +40,7 @@ func (o InvokeOperationOptions) ToHeaders() *client.Headers {
 
 func (o InvokeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c LogicAppsClient) Invoke(ctx context.Context, id LogicAppId, options Invo
 
 	var model interface{}
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

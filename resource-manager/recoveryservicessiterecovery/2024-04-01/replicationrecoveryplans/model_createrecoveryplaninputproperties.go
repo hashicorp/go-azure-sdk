@@ -43,7 +43,7 @@ func (s *CreateRecoveryPlanInputProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]RecoveryPlanProviderSpecificInput, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRecoveryPlanProviderSpecificInputImplementation(val)
+			impl, err := UnmarshalRecoveryPlanProviderSpecificInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ProviderSpecificInput' for 'CreateRecoveryPlanInputProperties': %+v", i, err)
 			}

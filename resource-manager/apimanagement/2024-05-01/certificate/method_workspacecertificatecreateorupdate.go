@@ -36,6 +36,7 @@ func (o WorkspaceCertificateCreateOrUpdateOperationOptions) ToHeaders() *client.
 
 func (o WorkspaceCertificateCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c CertificateClient) WorkspaceCertificateCreateOrUpdate(ctx context.Contex
 
 	var model CertificateContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

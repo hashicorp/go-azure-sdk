@@ -15,7 +15,7 @@ type IssueClient struct {
 }
 
 func NewIssueClientWithBaseURI(sdkApi sdkEnv.Api) (*IssueClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "issue", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "issue", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IssueClient: %+v", err)
 	}

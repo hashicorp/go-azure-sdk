@@ -15,7 +15,7 @@ type SubAccountClient struct {
 }
 
 func NewSubAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*SubAccountClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "subaccount", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "subaccount", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubAccountClient: %+v", err)
 	}

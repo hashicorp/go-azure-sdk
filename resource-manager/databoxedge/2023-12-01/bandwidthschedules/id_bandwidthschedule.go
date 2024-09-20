@@ -44,7 +44,7 @@ func ParseBandwidthScheduleID(input string) (*BandwidthScheduleId, error) {
 	}
 
 	id := BandwidthScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBandwidthScheduleIDInsensitively(input string) (*BandwidthScheduleId, 
 	}
 
 	id := BandwidthScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BandwidthScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceValue"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticBandwidthSchedules", "bandwidthSchedules", "bandwidthSchedules"),
-		resourceids.UserSpecifiedSegment("bandwidthScheduleName", "bandwidthScheduleValue"),
+		resourceids.UserSpecifiedSegment("bandwidthScheduleName", "name"),
 	}
 }
 

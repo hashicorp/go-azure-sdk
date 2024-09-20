@@ -15,7 +15,7 @@ type SIMGroupsClient struct {
 }
 
 func NewSIMGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SIMGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "simgroups", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "simgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SIMGroupsClient: %+v", err)
 	}

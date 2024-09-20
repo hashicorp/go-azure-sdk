@@ -45,7 +45,6 @@ func (c ReportsClient) Get(ctx context.Context, id Providers2ConfigurationProfil
 
 	var model Report
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

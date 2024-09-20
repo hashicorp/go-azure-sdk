@@ -15,7 +15,7 @@ type ShareSubscriptionClient struct {
 }
 
 func NewShareSubscriptionClientWithBaseURI(sdkApi sdkEnv.Api) (*ShareSubscriptionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sharesubscription", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sharesubscription", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ShareSubscriptionClient: %+v", err)
 	}

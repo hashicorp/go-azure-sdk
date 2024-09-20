@@ -42,7 +42,7 @@ func ParseTrunkedNetworkID(input string) (*TrunkedNetworkId, error) {
 	}
 
 	id := TrunkedNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseTrunkedNetworkIDInsensitively(input string) (*TrunkedNetworkId, error)
 	}
 
 	id := TrunkedNetworkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id TrunkedNetworkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticTrunkedNetworks", "trunkedNetworks", "trunkedNetworks"),
-		resourceids.UserSpecifiedSegment("trunkedNetworkName", "trunkedNetworkValue"),
+		resourceids.UserSpecifiedSegment("trunkedNetworkName", "trunkedNetworkName"),
 	}
 }
 

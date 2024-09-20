@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2022-01-10-preview/datastores` Documentation
 
-The `datastores` SDK allows for interaction with the Azure Resource Manager Service `connectedvmware` (API Version `2022-01-10-preview`).
+The `datastores` SDK allows for interaction with Azure Resource Manager `connectedvmware` (API Version `2022-01-10-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
 
 payload := datastores.Datastore{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
 
 if err := client.DeleteThenPoll(ctx, id, datastores.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id, datastores.DefaultDeleteOperationOption
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
 
 payload := datastores.ResourcePatch{
 	// ...

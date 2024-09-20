@@ -46,7 +46,6 @@ func (c SyncAgentsClient) GenerateKey(ctx context.Context, id SyncAgentId) (resu
 
 	var model SyncAgentKeyProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

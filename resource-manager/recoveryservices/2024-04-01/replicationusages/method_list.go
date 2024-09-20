@@ -46,7 +46,6 @@ func (c ReplicationUsagesClient) List(ctx context.Context, id VaultId) (result L
 
 	var model ReplicationUsageList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

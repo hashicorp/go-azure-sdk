@@ -15,7 +15,7 @@ type WorkspaceManagedSqlServerSqlUsagesClient struct {
 }
 
 func NewWorkspaceManagedSqlServerSqlUsagesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerSqlUsagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacemanagedsqlserversqlusages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserversqlusages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerSqlUsagesClient: %+v", err)
 	}

@@ -36,6 +36,7 @@ func (o GetAppServiceCertificateOrderDetectorResponseOperationOptions) ToHeaders
 
 func (o GetAppServiceCertificateOrderDetectorResponseOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c CertificateOrdersDiagnosticsClient) GetAppServiceCertificateOrderDetecto
 
 	var model DetectorResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

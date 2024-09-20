@@ -42,7 +42,7 @@ func ParseLocationDeletedSiteID(input string) (*LocationDeletedSiteId, error) {
 	}
 
 	id := LocationDeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLocationDeletedSiteIDInsensitively(input string) (*LocationDeletedSite
 	}
 
 	id := LocationDeletedSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id LocationDeletedSiteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticDeletedSites", "deletedSites", "deletedSites"),
-		resourceids.UserSpecifiedSegment("deletedSiteId", "deletedSiteIdValue"),
+		resourceids.UserSpecifiedSegment("deletedSiteId", "deletedSiteId"),
 	}
 }
 

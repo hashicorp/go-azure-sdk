@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/perimeterassociationproxies` Documentation
 
-The `perimeterassociationproxies` SDK allows for interaction with the Azure Resource Manager Service `eventgrid` (API Version `2023-12-15-preview`).
+The `perimeterassociationproxies` SDK allows for interaction with Azure Resource Manager `eventgrid` (API Version `2023-12-15-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := perimeterassociationproxies.NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "networkSecurityPerimeterConfigurationValue")
+id := perimeterassociationproxies.NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "perimeterGuidassociationName")
 
 read, err := client.NetworkSecurityPerimeterConfigurationsGet(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := perimeterassociationproxies.NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "networkSecurityPerimeterConfigurationValue")
+id := perimeterassociationproxies.NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "perimeterGuidassociationName")
 
 if err := client.NetworkSecurityPerimeterConfigurationsReconcileThenPoll(ctx, id); err != nil {
 	// handle the error

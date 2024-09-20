@@ -45,7 +45,6 @@ func (c TopicSpacesClient) Get(ctx context.Context, id TopicSpaceId) (result Get
 
 	var model TopicSpace
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

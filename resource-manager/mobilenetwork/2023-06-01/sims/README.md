@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2023-06-01/sims` Documentation
 
-The `sims` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2023-06-01`).
+The `sims` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupName")
 
 payload := sims.SimDeleteList{
 	// ...
@@ -41,7 +41,7 @@ if err := client.BulkDeleteThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupName")
 
 payload := sims.SimUploadList{
 	// ...
@@ -58,7 +58,7 @@ if err := client.BulkUploadThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupName")
 
 payload := sims.EncryptedSimUploadList{
 	// ...
@@ -75,7 +75,7 @@ if err := client.BulkUploadEncryptedThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupName")
 
 // alternatively `client.ListByGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByGroupComplete(ctx, id)

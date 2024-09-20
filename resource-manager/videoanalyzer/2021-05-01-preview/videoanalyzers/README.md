@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videoanalyzers` Documentation
 
-The `videoanalyzers` SDK allows for interaction with the Azure Resource Manager Service `videoanalyzer` (API Version `2021-05-01-preview`).
+The `videoanalyzers` SDK allows for interaction with Azure Resource Manager `videoanalyzer` (API Version `2021-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := videoanalyzers.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := videoanalyzers.CheckNameAvailabilityRequest{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := videoanalyzers.VideoAnalyzer{
 	// ...
@@ -67,7 +67,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.VideoAnalyzersDelete(ctx, id)
 if err != nil {
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.VideoAnalyzersGet(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := videoanalyzers.SyncStorageKeysInput{
 	// ...
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videoanalyzers.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := videoanalyzers.VideoAnalyzerUpdate{
 	// ...

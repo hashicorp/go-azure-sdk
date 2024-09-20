@@ -46,7 +46,7 @@ func ParseRecoveryPointID(input string) (*RecoveryPointId, error) {
 	}
 
 	id := RecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRecoveryPointIDInsensitively(input string) (*RecoveryPointId, error) {
 	}
 
 	id := RecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id RecoveryPointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataProtection", "Microsoft.DataProtection", "Microsoft.DataProtection"),
 		resourceids.StaticSegment("staticBackupVaults", "backupVaults", "backupVaults"),
-		resourceids.UserSpecifiedSegment("backupVaultName", "backupVaultValue"),
+		resourceids.UserSpecifiedSegment("backupVaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupInstances", "backupInstances", "backupInstances"),
-		resourceids.UserSpecifiedSegment("backupInstanceName", "backupInstanceValue"),
+		resourceids.UserSpecifiedSegment("backupInstanceName", "backupInstanceName"),
 		resourceids.StaticSegment("staticRecoveryPoints", "recoveryPoints", "recoveryPoints"),
-		resourceids.UserSpecifiedSegment("recoveryPointId", "recoveryPointIdValue"),
+		resourceids.UserSpecifiedSegment("recoveryPointId", "recoveryPointId"),
 	}
 }
 

@@ -40,7 +40,7 @@ func (s *SubRequest) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["limit"]; ok {
-		impl, err := unmarshalLimitJsonObjectImplementation(v)
+		impl, err := UnmarshalLimitJsonObjectImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Limit' for 'SubRequest': %+v", err)
 		}

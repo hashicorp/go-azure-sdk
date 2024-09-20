@@ -45,7 +45,6 @@ func (c VideoAnalyzersClient) VideoAnalyzersGet(ctx context.Context, id VideoAna
 
 	var model VideoAnalyzer
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

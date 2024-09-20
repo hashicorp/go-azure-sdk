@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeploymentStackId{}
 
 func TestNewDeploymentStackID(t *testing.T) {
-	id := NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+	id := NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.DeploymentStackName != "deploymentStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentStackName'", id.DeploymentStackName, "deploymentStackValue")
+	if id.DeploymentStackName != "deploymentStackName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentStackName'", id.DeploymentStackName, "deploymentStackName")
 	}
 }
 
 func TestFormatDeploymentStackID(t *testing.T) {
-	actual := NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackValue"
+	actual := NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseDeploymentStackID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackName",
 			Expected: &DeploymentStackId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				DeploymentStackName: "deploymentStackValue",
+				DeploymentStackName: "deploymentStackName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseDeploymentStackIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackName",
 			Expected: &DeploymentStackId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				DeploymentStackName: "deploymentStackValue",
+				DeploymentStackName: "deploymentStackName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Resources/deploymentStacks/deploymentStackName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsTaCkS/dEpLoYmEnTsTaCkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsTaCkS/dEpLoYmEnTsTaCkNaMe",
 			Expected: &DeploymentStackId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				DeploymentStackName: "dEpLoYmEnTsTaCkVaLuE",
+				DeploymentStackName: "dEpLoYmEnTsTaCkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsTaCkS/dEpLoYmEnTsTaCkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsTaCkS/dEpLoYmEnTsTaCkNaMe/extra",
 			Error: true,
 		},
 	}

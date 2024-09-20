@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/emailregistration` Documentation
 
-The `emailregistration` SDK allows for interaction with the Azure Resource Manager Service `datashare` (API Version `2021-08-01`).
+The `emailregistration` SDK allows for interaction with Azure Resource Manager `datashare` (API Version `2021-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := emailregistration.NewLocationID("locationValue")
+id := emailregistration.NewLocationID("location")
 
 payload := emailregistration.EmailRegistration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := emailregistration.NewLocationID("locationValue")
+id := emailregistration.NewLocationID("location")
 
 read, err := client.RegisterEmail(ctx, id)
 if err != nil {

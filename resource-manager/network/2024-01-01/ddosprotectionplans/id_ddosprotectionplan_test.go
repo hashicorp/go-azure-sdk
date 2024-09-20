@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DdosProtectionPlanId{}
 
 func TestNewDdosProtectionPlanID(t *testing.T) {
-	id := NewDdosProtectionPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosProtectionPlanValue")
+	id := NewDdosProtectionPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosProtectionPlanName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDdosProtectionPlanID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DdosProtectionPlanName != "ddosProtectionPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DdosProtectionPlanName'", id.DdosProtectionPlanName, "ddosProtectionPlanValue")
+	if id.DdosProtectionPlanName != "ddosProtectionPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DdosProtectionPlanName'", id.DdosProtectionPlanName, "ddosProtectionPlanName")
 	}
 }
 
 func TestFormatDdosProtectionPlanID(t *testing.T) {
-	actual := NewDdosProtectionPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosProtectionPlanValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanValue"
+	actual := NewDdosProtectionPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosProtectionPlanName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDdosProtectionPlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanName",
 			Expected: &DdosProtectionPlanId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				DdosProtectionPlanName: "ddosProtectionPlanValue",
+				DdosProtectionPlanName: "ddosProtectionPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDdosProtectionPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanName",
 			Expected: &DdosProtectionPlanId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				DdosProtectionPlanName: "ddosProtectionPlanValue",
+				DdosProtectionPlanName: "ddosProtectionPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosProtectionPlans/ddosProtectionPlanName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoSpRoTeCtIoNpLaNs/dDoSpRoTeCtIoNpLaNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoSpRoTeCtIoNpLaNs/dDoSpRoTeCtIoNpLaNnAmE",
 			Expected: &DdosProtectionPlanId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				DdosProtectionPlanName: "dDoSpRoTeCtIoNpLaNvAlUe",
+				DdosProtectionPlanName: "dDoSpRoTeCtIoNpLaNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoSpRoTeCtIoNpLaNs/dDoSpRoTeCtIoNpLaNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoSpRoTeCtIoNpLaNs/dDoSpRoTeCtIoNpLaNnAmE/extra",
 			Error: true,
 		},
 	}

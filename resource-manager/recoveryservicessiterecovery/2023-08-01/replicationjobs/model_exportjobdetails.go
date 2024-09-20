@@ -15,7 +15,16 @@ type ExportJobDetails struct {
 	SasToken *string `json:"sasToken,omitempty"`
 
 	// Fields inherited from JobDetails
+
 	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}
+
+func (s ExportJobDetails) JobDetails() BaseJobDetailsImpl {
+	return BaseJobDetailsImpl{
+		AffectedObjectDetails: s.AffectedObjectDetails,
+		InstanceType:          s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ExportJobDetails{}
@@ -29,9 +38,10 @@ func (s ExportJobDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExportJobDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ExportJobDetails"
 
 	encoded, err = json.Marshal(decoded)

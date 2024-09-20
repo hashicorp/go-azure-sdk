@@ -40,7 +40,7 @@ func ParseRecommendationID(input string) (*RecommendationId, error) {
 	}
 
 	id := RecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseRecommendationIDInsensitively(input string) (*RecommendationId, error)
 	}
 
 	id := RecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id RecommendationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticRecommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationName", "recommendationValue"),
+		resourceids.UserSpecifiedSegment("recommendationName", "name"),
 	}
 }
 

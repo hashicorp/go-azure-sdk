@@ -16,11 +16,24 @@ type ThreatIntelligenceIndicatorModel struct {
 	Properties *ThreatIntelligenceIndicatorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from ThreatIntelligenceInformation
-	Etag       *string                `json:"etag,omitempty"`
-	Id         *string                `json:"id,omitempty"`
-	Name       *string                `json:"name,omitempty"`
-	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
-	Type       *string                `json:"type,omitempty"`
+
+	Etag       *string                             `json:"etag,omitempty"`
+	Id         *string                             `json:"id,omitempty"`
+	Kind       ThreatIntelligenceResourceInnerKind `json:"kind"`
+	Name       *string                             `json:"name,omitempty"`
+	SystemData *systemdata.SystemData              `json:"systemData,omitempty"`
+	Type       *string                             `json:"type,omitempty"`
+}
+
+func (s ThreatIntelligenceIndicatorModel) ThreatIntelligenceInformation() BaseThreatIntelligenceInformationImpl {
+	return BaseThreatIntelligenceInformationImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = ThreatIntelligenceIndicatorModel{}
@@ -34,9 +47,10 @@ func (s ThreatIntelligenceIndicatorModel) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ThreatIntelligenceIndicatorModel: %+v", err)
 	}
+
 	decoded["kind"] = "indicator"
 
 	encoded, err = json.Marshal(decoded)

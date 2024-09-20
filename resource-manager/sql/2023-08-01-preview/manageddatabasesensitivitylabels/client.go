@@ -15,7 +15,7 @@ type ManagedDatabaseSensitivityLabelsClient struct {
 }
 
 func NewManagedDatabaseSensitivityLabelsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseSensitivityLabelsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasesensitivitylabels", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasesensitivitylabels", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseSensitivityLabelsClient: %+v", err)
 	}

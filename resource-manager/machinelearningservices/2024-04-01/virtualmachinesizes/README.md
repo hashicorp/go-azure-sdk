@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/virtualmachinesizes` Documentation
 
-The `virtualmachinesizes` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2024-04-01`).
+The `virtualmachinesizes` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachinesizes.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := virtualmachinesizes.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.List(ctx, id)
 if err != nil {

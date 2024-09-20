@@ -15,7 +15,7 @@ type EnvironmentDefinitionsClient struct {
 }
 
 func NewEnvironmentDefinitionsClientWithBaseURI(sdkApi sdkEnv.Api) (*EnvironmentDefinitionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "environmentdefinitions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "environmentdefinitions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EnvironmentDefinitionsClient: %+v", err)
 	}

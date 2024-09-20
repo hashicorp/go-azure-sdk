@@ -15,7 +15,7 @@ type EndpointCertificatesClient struct {
 }
 
 func NewEndpointCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*EndpointCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "endpointcertificates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "endpointcertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EndpointCertificatesClient: %+v", err)
 	}

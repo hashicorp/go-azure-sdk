@@ -15,7 +15,7 @@ type DataVersionClient struct {
 }
 
 func NewDataVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*DataVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataVersionClient: %+v", err)
 	}

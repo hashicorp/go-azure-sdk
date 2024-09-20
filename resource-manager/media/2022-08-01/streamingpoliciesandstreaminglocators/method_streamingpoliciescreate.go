@@ -49,7 +49,6 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesCreate(ctx
 
 	var model StreamingPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

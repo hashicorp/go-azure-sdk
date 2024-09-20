@@ -45,7 +45,6 @@ func (c DocumentationResourceClient) Get(ctx context.Context, id DocumentationId
 
 	var model DocumentationContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

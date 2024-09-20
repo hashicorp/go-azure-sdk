@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ReservationOrderId{}
 
 func TestNewReservationOrderID(t *testing.T) {
-	id := NewReservationOrderID("billingAccountValue", "reservationOrderIdValue")
+	id := NewReservationOrderID("billingAccountName", "reservationOrderId")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.ReservationOrderId != "reservationOrderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReservationOrderId'", id.ReservationOrderId, "reservationOrderIdValue")
+	if id.ReservationOrderId != "reservationOrderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReservationOrderId'", id.ReservationOrderId, "reservationOrderId")
 	}
 }
 
 func TestFormatReservationOrderID(t *testing.T) {
-	actual := NewReservationOrderID("billingAccountValue", "reservationOrderIdValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders/reservationOrderIdValue"
+	actual := NewReservationOrderID("billingAccountName", "reservationOrderId").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders/reservationOrderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseReservationOrderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders/reservationOrderIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders/reservationOrderId",
 			Expected: &ReservationOrderId{
-				BillingAccountName: "billingAccountValue",
-				ReservationOrderId: "reservationOrderIdValue",
+				BillingAccountName: "billingAccountName",
+				ReservationOrderId: "reservationOrderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders/reservationOrderIdValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders/reservationOrderId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseReservationOrderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/rEsErVaTiOnOrDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/rEsErVaTiOnOrDeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders/reservationOrderIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders/reservationOrderId",
 			Expected: &ReservationOrderId{
-				BillingAccountName: "billingAccountValue",
-				ReservationOrderId: "reservationOrderIdValue",
+				BillingAccountName: "billingAccountName",
+				ReservationOrderId: "reservationOrderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/reservationOrders/reservationOrderIdValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/reservationOrders/reservationOrderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiD",
 			Expected: &ReservationOrderId{
-				BillingAccountName: "bIlLiNgAcCoUnTvAlUe",
-				ReservationOrderId: "rEsErVaTiOnOrDeRiDvAlUe",
+				BillingAccountName: "bIlLiNgAcCoUnTnAmE",
+				ReservationOrderId: "rEsErVaTiOnOrDeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiDvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiD/extra",
 			Error: true,
 		},
 	}

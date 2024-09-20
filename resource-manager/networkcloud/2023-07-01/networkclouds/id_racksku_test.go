@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RackSkuId{}
 
 func TestNewRackSkuID(t *testing.T) {
-	id := NewRackSkuID("12345678-1234-9876-4563-123456789012", "rackSkuValue")
+	id := NewRackSkuID("12345678-1234-9876-4563-123456789012", "rackSkuName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.RackSkuName != "rackSkuValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RackSkuName'", id.RackSkuName, "rackSkuValue")
+	if id.RackSkuName != "rackSkuName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RackSkuName'", id.RackSkuName, "rackSkuName")
 	}
 }
 
 func TestFormatRackSkuID(t *testing.T) {
-	actual := NewRackSkuID("12345678-1234-9876-4563-123456789012", "rackSkuValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuValue"
+	actual := NewRackSkuID("12345678-1234-9876-4563-123456789012", "rackSkuName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseRackSkuID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName",
 			Expected: &RackSkuId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				RackSkuName:    "rackSkuValue",
+				RackSkuName:    "rackSkuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseRackSkuIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName",
 			Expected: &RackSkuId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				RackSkuName:    "rackSkuValue",
+				RackSkuName:    "rackSkuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/rAcKsKuS/rAcKsKuVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/rAcKsKuS/rAcKsKuNaMe",
 			Expected: &RackSkuId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				RackSkuName:    "rAcKsKuVaLuE",
+				RackSkuName:    "rAcKsKuNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/rAcKsKuS/rAcKsKuVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/rAcKsKuS/rAcKsKuNaMe/extra",
 			Error: true,
 		},
 	}

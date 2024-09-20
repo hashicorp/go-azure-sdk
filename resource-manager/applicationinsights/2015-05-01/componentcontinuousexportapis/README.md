@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentcontinuousexportapis` Documentation
 
-The `componentcontinuousexportapis` SDK allows for interaction with the Azure Resource Manager Service `applicationinsights` (API Version `2015-05-01`).
+The `componentcontinuousexportapis` SDK allows for interaction with Azure Resource Manager `applicationinsights` (API Version `2015-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue")
+id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 payload := componentcontinuousexportapis.ApplicationInsightsComponentExportRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "exportIdValue")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
 
 read, err := client.ExportConfigurationsDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "exportIdValue")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
 
 read, err := client.ExportConfigurationsGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue")
+id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 read, err := client.ExportConfigurationsList(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "exportIdValue")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
 
 payload := componentcontinuousexportapis.ApplicationInsightsComponentExportRequest{
 	// ...

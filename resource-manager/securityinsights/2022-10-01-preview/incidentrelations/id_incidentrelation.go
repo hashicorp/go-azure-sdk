@@ -46,7 +46,7 @@ func ParseIncidentRelationID(input string) (*IncidentRelationId, error) {
 	}
 
 	id := IncidentRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseIncidentRelationIDInsensitively(input string) (*IncidentRelationId, er
 	}
 
 	id := IncidentRelationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id IncidentRelationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationalInsights", "Microsoft.OperationalInsights", "Microsoft.OperationalInsights"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticIncidents", "incidents", "incidents"),
-		resourceids.UserSpecifiedSegment("incidentId", "incidentIdValue"),
+		resourceids.UserSpecifiedSegment("incidentId", "incidentId"),
 		resourceids.StaticSegment("staticRelations", "relations", "relations"),
-		resourceids.UserSpecifiedSegment("relationName", "relationValue"),
+		resourceids.UserSpecifiedSegment("relationName", "relationName"),
 	}
 }
 

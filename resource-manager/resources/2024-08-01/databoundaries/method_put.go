@@ -50,7 +50,6 @@ func (c DataBoundariesClient) Put(ctx context.Context, input DataBoundaryDefinit
 
 	var model DataBoundaryDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

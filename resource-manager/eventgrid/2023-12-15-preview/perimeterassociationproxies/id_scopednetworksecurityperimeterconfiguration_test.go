@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedNetworkSecurityPerimeterConfigurationId{}
 
 func TestNewScopedNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	id := NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "networkSecurityPerimeterConfigurationValue")
+	id := NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "perimeterGuidassociationName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.NetworkSecurityPerimeterConfigurationName != "networkSecurityPerimeterConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "networkSecurityPerimeterConfigurationValue")
+	if id.NetworkSecurityPerimeterConfigurationName != "perimeterGuidassociationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "perimeterGuidassociationName")
 	}
 }
 
 func TestFormatScopedNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	actual := NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "networkSecurityPerimeterConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue"
+	actual := NewScopedNetworkSecurityPerimeterConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "perimeterGuidassociationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/perimeterGuidassociationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,15 +54,15 @@ func TestParseScopedNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/perimeterGuidassociationName",
 			Expected: &ScopedNetworkSecurityPerimeterConfigurationId{
 				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				NetworkSecurityPerimeterConfigurationName: "perimeterGuidassociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/perimeterGuidassociationName/extra",
 			Error: true,
 		},
 	}
@@ -125,28 +125,28 @@ func TestParseScopedNetworkSecurityPerimeterConfigurationIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/perimeterGuidassociationName",
 			Expected: &ScopedNetworkSecurityPerimeterConfigurationId{
 				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				NetworkSecurityPerimeterConfigurationName: "perimeterGuidassociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/networkSecurityPerimeterConfigurations/perimeterGuidassociationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/pErImEtErGuIdAsSoCiAtIoNnAmE",
 			Expected: &ScopedNetworkSecurityPerimeterConfigurationId{
 				Scope: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				NetworkSecurityPerimeterConfigurationName: "nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+				NetworkSecurityPerimeterConfigurationName: "pErImEtErGuIdAsSoCiAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/pErImEtErGuIdAsSoCiAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

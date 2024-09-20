@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VpnSiteLinkId{}
 
 func TestNewVpnSiteLinkID(t *testing.T) {
-	id := NewVpnSiteLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnSiteValue", "vpnSiteLinkValue")
+	id := NewVpnSiteLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnSiteName", "vpnSiteLinkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVpnSiteLinkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VpnSiteName != "vpnSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VpnSiteName'", id.VpnSiteName, "vpnSiteValue")
+	if id.VpnSiteName != "vpnSiteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VpnSiteName'", id.VpnSiteName, "vpnSiteName")
 	}
 
-	if id.VpnSiteLinkName != "vpnSiteLinkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VpnSiteLinkName'", id.VpnSiteLinkName, "vpnSiteLinkValue")
+	if id.VpnSiteLinkName != "vpnSiteLinkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VpnSiteLinkName'", id.VpnSiteLinkName, "vpnSiteLinkName")
 	}
 }
 
 func TestFormatVpnSiteLinkID(t *testing.T) {
-	actual := NewVpnSiteLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnSiteValue", "vpnSiteLinkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks/vpnSiteLinkValue"
+	actual := NewVpnSiteLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnSiteName", "vpnSiteLinkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks/vpnSiteLinkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVpnSiteLinkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks/vpnSiteLinkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks/vpnSiteLinkName",
 			Expected: &VpnSiteLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VpnSiteName:       "vpnSiteValue",
-				VpnSiteLinkName:   "vpnSiteLinkValue",
+				VpnSiteName:       "vpnSiteName",
+				VpnSiteLinkName:   "vpnSiteLinkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks/vpnSiteLinkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks/vpnSiteLinkName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVpnSiteLinkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeVaLuE/vPnSiTeLiNkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeNaMe/vPnSiTeLiNkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks/vpnSiteLinkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks/vpnSiteLinkName",
 			Expected: &VpnSiteLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VpnSiteName:       "vpnSiteValue",
-				VpnSiteLinkName:   "vpnSiteLinkValue",
+				VpnSiteName:       "vpnSiteName",
+				VpnSiteLinkName:   "vpnSiteLinkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteValue/vpnSiteLinks/vpnSiteLinkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnSites/vpnSiteName/vpnSiteLinks/vpnSiteLinkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeVaLuE/vPnSiTeLiNkS/vPnSiTeLiNkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeNaMe/vPnSiTeLiNkS/vPnSiTeLiNkNaMe",
 			Expected: &VpnSiteLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VpnSiteName:       "vPnSiTeVaLuE",
-				VpnSiteLinkName:   "vPnSiTeLiNkVaLuE",
+				VpnSiteName:       "vPnSiTeNaMe",
+				VpnSiteLinkName:   "vPnSiTeLiNkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeVaLuE/vPnSiTeLiNkS/vPnSiTeLiNkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSiTeS/vPnSiTeNaMe/vPnSiTeLiNkS/vPnSiTeLiNkNaMe/extra",
 			Error: true,
 		},
 	}

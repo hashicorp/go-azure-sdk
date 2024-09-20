@@ -44,7 +44,7 @@ func (s *TaskPropertiesUpdateParameters) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["step"]; ok {
-		impl, err := unmarshalTaskStepUpdateParametersImplementation(v)
+		impl, err := UnmarshalTaskStepUpdateParametersImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Step' for 'TaskPropertiesUpdateParameters': %+v", err)
 		}

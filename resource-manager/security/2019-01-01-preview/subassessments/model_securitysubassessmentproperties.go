@@ -61,7 +61,7 @@ func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["additionalData"]; ok {
-		impl, err := unmarshalAdditionalDataImplementation(v)
+		impl, err := UnmarshalAdditionalDataImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AdditionalData' for 'SecuritySubAssessmentProperties': %+v", err)
 		}

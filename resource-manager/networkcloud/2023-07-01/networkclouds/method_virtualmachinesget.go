@@ -45,7 +45,6 @@ func (c NetworkcloudsClient) VirtualMachinesGet(ctx context.Context, id VirtualM
 
 	var model VirtualMachine
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

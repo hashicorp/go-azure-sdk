@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/runbookdraft` Documentation
 
-The `runbookdraft` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2015-10-31`).
+The `runbookdraft` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2015-10-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
+id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "runbookName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
+id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "runbookName")
 
 read, err := client.GetContent(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
+id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "runbookName")
 
 if err := client.PublishThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -68,7 +68,7 @@ if err := client.PublishThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
+id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "runbookName")
 var payload []byte
 
 if err := client.ReplaceContentThenPoll(ctx, id, payload); err != nil {
@@ -81,7 +81,7 @@ if err := client.ReplaceContentThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
+id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "runbookName")
 
 read, err := client.UndoEdit(ctx, id)
 if err != nil {

@@ -50,7 +50,6 @@ func (c BillingPermissionClient) CheckAccessByBillingProfile(ctx context.Context
 
 	var model []CheckAccessResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

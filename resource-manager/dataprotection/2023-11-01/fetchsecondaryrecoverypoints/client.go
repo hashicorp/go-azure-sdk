@@ -15,7 +15,7 @@ type FetchSecondaryRecoveryPointsClient struct {
 }
 
 func NewFetchSecondaryRecoveryPointsClientWithBaseURI(sdkApi sdkEnv.Api) (*FetchSecondaryRecoveryPointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "fetchsecondaryrecoverypoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "fetchsecondaryrecoverypoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FetchSecondaryRecoveryPointsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type HcxEnterpriseSitesClient struct {
 }
 
 func NewHcxEnterpriseSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*HcxEnterpriseSitesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hcxenterprisesites", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hcxenterprisesites", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HcxEnterpriseSitesClient: %+v", err)
 	}

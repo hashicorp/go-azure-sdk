@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentannotationsapis` Documentation
 
-The `componentannotationsapis` SDK allows for interaction with the Azure Resource Manager Service `applicationinsights` (API Version `2015-05-01`).
+The `componentannotationsapis` SDK allows for interaction with Azure Resource Manager `applicationinsights` (API Version `2015-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := componentannotationsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue")
+id := componentannotationsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 payload := componentannotationsapis.Annotation{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentannotationsapis.NewAnnotationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "annotationIdValue")
+id := componentannotationsapis.NewAnnotationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "annotationId")
 
 read, err := client.AnnotationsDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentannotationsapis.NewAnnotationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "annotationIdValue")
+id := componentannotationsapis.NewAnnotationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "annotationId")
 
 read, err := client.AnnotationsGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentannotationsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue")
+id := componentannotationsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 read, err := client.AnnotationsList(ctx, id, componentannotationsapis.DefaultAnnotationsListOperationOptions())
 if err != nil {

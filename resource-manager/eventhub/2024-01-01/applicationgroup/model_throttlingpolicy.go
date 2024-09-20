@@ -15,7 +15,16 @@ type ThrottlingPolicy struct {
 	RateLimitThreshold int64    `json:"rateLimitThreshold"`
 
 	// Fields inherited from ApplicationGroupPolicy
-	Name string `json:"name"`
+
+	Name string                     `json:"name"`
+	Type ApplicationGroupPolicyType `json:"type"`
+}
+
+func (s ThrottlingPolicy) ApplicationGroupPolicy() BaseApplicationGroupPolicyImpl {
+	return BaseApplicationGroupPolicyImpl{
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ThrottlingPolicy{}
@@ -29,9 +38,10 @@ func (s ThrottlingPolicy) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ThrottlingPolicy: %+v", err)
 	}
+
 	decoded["type"] = "ThrottlingPolicy"
 
 	encoded, err = json.Marshal(decoded)

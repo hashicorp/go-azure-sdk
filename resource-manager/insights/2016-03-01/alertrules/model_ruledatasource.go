@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RuleDataSource interface {
+	RuleDataSource() BaseRuleDataSourceImpl
 }
 
-// RawRuleDataSourceImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RuleDataSource = BaseRuleDataSourceImpl{}
+
+type BaseRuleDataSourceImpl struct {
+	LegacyResourceId *string `json:"legacyResourceId,omitempty"`
+	MetricNamespace  *string `json:"metricNamespace,omitempty"`
+	OdataType        string  `json:"odata.type"`
+	ResourceLocation *string `json:"resourceLocation,omitempty"`
+	ResourceUri      *string `json:"resourceUri,omitempty"`
+}
+
+func (s BaseRuleDataSourceImpl) RuleDataSource() BaseRuleDataSourceImpl {
+	return s
+}
+
+var _ RuleDataSource = RawRuleDataSourceImpl{}
+
+// RawRuleDataSourceImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRuleDataSourceImpl struct {
-	Type   string
-	Values map[string]interface{}
+	ruleDataSource BaseRuleDataSourceImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalRuleDataSourceImplementation(input []byte) (RuleDataSource, error) {
+func (s RawRuleDataSourceImpl) RuleDataSource() BaseRuleDataSourceImpl {
+	return s.ruleDataSource
+}
+
+func UnmarshalRuleDataSourceImplementation(input []byte) (RuleDataSource, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +73,15 @@ func unmarshalRuleDataSourceImplementation(input []byte) (RuleDataSource, error)
 		return out, nil
 	}
 
-	out := RawRuleDataSourceImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRuleDataSourceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRuleDataSourceImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRuleDataSourceImpl{
+		ruleDataSource: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

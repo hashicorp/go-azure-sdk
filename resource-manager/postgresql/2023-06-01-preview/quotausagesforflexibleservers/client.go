@@ -15,7 +15,7 @@ type QuotaUsagesForFlexibleServersClient struct {
 }
 
 func NewQuotaUsagesForFlexibleServersClientWithBaseURI(sdkApi sdkEnv.Api) (*QuotaUsagesForFlexibleServersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "quotausagesforflexibleservers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "quotausagesforflexibleservers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QuotaUsagesForFlexibleServersClient: %+v", err)
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2023-07-01/volumesrelocation` Documentation
 
-The `volumesrelocation` SDK allows for interaction with the Azure Resource Manager Service `netapp` (API Version `2023-07-01`).
+The `volumesrelocation` SDK allows for interaction with Azure Resource Manager `netapp` (API Version `2023-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "poolName", "volumeName")
 
 if err := client.VolumesFinalizeRelocationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.VolumesFinalizeRelocationThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "poolName", "volumeName")
 
 payload := volumesrelocation.RelocateVolumeRequest{
 	// ...
@@ -53,7 +53,7 @@ if err := client.VolumesRelocateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "poolName", "volumeName")
 
 if err := client.VolumesRevertRelocationThenPoll(ctx, id); err != nil {
 	// handle the error

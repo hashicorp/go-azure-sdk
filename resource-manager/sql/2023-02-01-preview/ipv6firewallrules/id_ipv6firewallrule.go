@@ -44,7 +44,7 @@ func ParseIPv6FirewallRuleID(input string) (*IPv6FirewallRuleId, error) {
 	}
 
 	id := IPv6FirewallRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIPv6FirewallRuleIDInsensitively(input string) (*IPv6FirewallRuleId, er
 	}
 
 	id := IPv6FirewallRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id IPv6FirewallRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticIpv6FirewallRules", "ipv6FirewallRules", "ipv6FirewallRules"),
-		resourceids.UserSpecifiedSegment("ipv6FirewallRuleName", "ipv6FirewallRuleValue"),
+		resourceids.UserSpecifiedSegment("ipv6FirewallRuleName", "firewallRuleName"),
 	}
 }
 

@@ -45,7 +45,6 @@ func (c ContentTypeClient) Get(ctx context.Context, id ContentTypeId) (result Ge
 
 	var model ContentTypeContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

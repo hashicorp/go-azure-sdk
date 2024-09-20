@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-02-01-preview/manageddatabasecolumns` Documentation
 
-The `manageddatabasecolumns` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-02-01-preview`).
+The `manageddatabasecolumns` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-02-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := manageddatabasecolumns.NewTableColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue", "columnValue")
+id := manageddatabasecolumns.NewTableColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "databaseName", "schemaName", "tableName", "columnName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := commonids.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "databaseName")
 
 // alternatively `client.ListByDatabase(ctx, id, manageddatabasecolumns.DefaultListByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id, manageddatabasecolumns.DefaultListByDatabaseOperationOptions())
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasecolumns.NewSchemaTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue")
+id := manageddatabasecolumns.NewSchemaTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "databaseName", "schemaName", "tableName")
 
 // alternatively `client.ListByTable(ctx, id, manageddatabasecolumns.DefaultListByTableOperationOptions())` can be used to do batched pagination
 items, err := client.ListByTableComplete(ctx, id, manageddatabasecolumns.DefaultListByTableOperationOptions())

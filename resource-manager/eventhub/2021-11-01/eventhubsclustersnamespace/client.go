@@ -15,7 +15,7 @@ type EventHubsClustersNamespaceClient struct {
 }
 
 func NewEventHubsClustersNamespaceClientWithBaseURI(sdkApi sdkEnv.Api) (*EventHubsClustersNamespaceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "eventhubsclustersnamespace", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "eventhubsclustersnamespace", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EventHubsClustersNamespaceClient: %+v", err)
 	}

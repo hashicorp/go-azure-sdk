@@ -15,7 +15,7 @@ type ContainerAppsSourceControlsClient struct {
 }
 
 func NewContainerAppsSourceControlsClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerAppsSourceControlsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "containerappssourcecontrols", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "containerappssourcecontrols", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContainerAppsSourceControlsClient: %+v", err)
 	}

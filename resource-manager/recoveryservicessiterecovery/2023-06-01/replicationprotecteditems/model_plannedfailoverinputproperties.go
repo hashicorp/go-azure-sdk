@@ -30,7 +30,7 @@ func (s *PlannedFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalPlannedFailoverProviderSpecificFailoverInputImplementation(v)
+		impl, err := UnmarshalPlannedFailoverProviderSpecificFailoverInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'PlannedFailoverInputProperties': %+v", err)
 		}

@@ -45,7 +45,6 @@ func (c GETClient) ServicesGet(ctx context.Context, id ServiceId) (result Servic
 
 	var model DataMigrationService
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

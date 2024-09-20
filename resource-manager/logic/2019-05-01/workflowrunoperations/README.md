@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunoperations` Documentation
 
-The `workflowrunoperations` SDK allows for interaction with the Azure Resource Manager Service `logic` (API Version `2019-05-01`).
+The `workflowrunoperations` SDK allows for interaction with Azure Resource Manager `logic` (API Version `2019-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflowrunoperations.NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "runValue", "operationIdValue")
+id := workflowrunoperations.NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "runName", "operationId")
 
 read, err := client.Get(ctx, id)
 if err != nil {

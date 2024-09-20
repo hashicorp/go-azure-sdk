@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ContainerGroupId{}
 
 func TestNewContainerGroupID(t *testing.T) {
-	id := NewContainerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerGroupValue")
+	id := NewContainerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewContainerGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ContainerGroupName != "containerGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerGroupName'", id.ContainerGroupName, "containerGroupValue")
+	if id.ContainerGroupName != "containerGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerGroupName'", id.ContainerGroupName, "containerGroupName")
 	}
 }
 
 func TestFormatContainerGroupID(t *testing.T) {
-	actual := NewContainerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupValue"
+	actual := NewContainerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseContainerGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupName",
 			Expected: &ContainerGroupId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ContainerGroupName: "containerGroupValue",
+				ContainerGroupName: "containerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseContainerGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupName",
 			Expected: &ContainerGroupId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ContainerGroupName: "containerGroupValue",
+				ContainerGroupName: "containerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerInstance/containerGroups/containerGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErInStAnCe/cOnTaInErGrOuPs/cOnTaInErGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErInStAnCe/cOnTaInErGrOuPs/cOnTaInErGrOuPnAmE",
 			Expected: &ContainerGroupId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ContainerGroupName: "cOnTaInErGrOuPvAlUe",
+				ContainerGroupName: "cOnTaInErGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErInStAnCe/cOnTaInErGrOuPs/cOnTaInErGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErInStAnCe/cOnTaInErGrOuPs/cOnTaInErGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

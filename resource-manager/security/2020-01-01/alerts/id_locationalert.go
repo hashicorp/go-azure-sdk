@@ -44,7 +44,7 @@ func ParseLocationAlertID(input string) (*LocationAlertId, error) {
 	}
 
 	id := LocationAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLocationAlertIDInsensitively(input string) (*LocationAlertId, error) {
 	}
 
 	id := LocationAlertId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id LocationAlertId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
 		resourceids.StaticSegment("staticAlerts", "alerts", "alerts"),
-		resourceids.UserSpecifiedSegment("alertName", "alertValue"),
+		resourceids.UserSpecifiedSegment("alertName", "alertName"),
 	}
 }
 

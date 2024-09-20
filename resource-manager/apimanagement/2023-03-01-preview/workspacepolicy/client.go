@@ -15,7 +15,7 @@ type WorkspacePolicyClient struct {
 }
 
 func NewWorkspacePolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspacePolicyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacepolicy", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacepolicy", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspacePolicyClient: %+v", err)
 	}

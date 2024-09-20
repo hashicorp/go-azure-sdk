@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2022-01-01-preview/applicationgroup` Documentation
 
-The `applicationgroup` SDK allows for interaction with the Azure Resource Manager Service `eventhub` (API Version `2022-01-01-preview`).
+The `applicationgroup` SDK allows for interaction with Azure Resource Manager `eventhub` (API Version `2022-01-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "applicationGroupValue")
+id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "applicationGroupName")
 
 payload := applicationgroup.ApplicationGroup{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "applicationGroupValue")
+id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "applicationGroupName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "applicationGroupValue")
+id := applicationgroup.NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "applicationGroupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationgroup.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+id := applicationgroup.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
 
 // alternatively `client.ListByNamespace(ctx, id)` can be used to do batched pagination
 items, err := client.ListByNamespaceComplete(ctx, id)

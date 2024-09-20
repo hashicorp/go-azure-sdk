@@ -36,6 +36,7 @@ func (o CheckResourceCreationFeasibilityOperationOptions) ToHeaders() *client.He
 
 func (o CheckResourceCreationFeasibilityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

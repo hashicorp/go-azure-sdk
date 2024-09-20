@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DependencyReference interface {
+	DependencyReference() BaseDependencyReferenceImpl
 }
 
-// RawDependencyReferenceImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DependencyReference = BaseDependencyReferenceImpl{}
+
+type BaseDependencyReferenceImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseDependencyReferenceImpl) DependencyReference() BaseDependencyReferenceImpl {
+	return s
+}
+
+var _ DependencyReference = RawDependencyReferenceImpl{}
+
+// RawDependencyReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDependencyReferenceImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dependencyReference BaseDependencyReferenceImpl
+	Type                string
+	Values              map[string]interface{}
 }
 
-func unmarshalDependencyReferenceImplementation(input []byte) (DependencyReference, error) {
+func (s RawDependencyReferenceImpl) DependencyReference() BaseDependencyReferenceImpl {
+	return s.dependencyReference
+}
+
+func UnmarshalDependencyReferenceImplementation(input []byte) (DependencyReference, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalDependencyReferenceImplementation(input []byte) (DependencyReferen
 		return out, nil
 	}
 
-	out := RawDependencyReferenceImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDependencyReferenceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDependencyReferenceImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDependencyReferenceImpl{
+		dependencyReference: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
 
 }

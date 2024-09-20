@@ -46,7 +46,6 @@ func (c BillingProfilesClient) GetEligibilityToDetachPaymentMethod(ctx context.C
 
 	var model DetachPaymentMethodEligibilityResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

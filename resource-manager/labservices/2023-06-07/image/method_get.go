@@ -45,7 +45,6 @@ func (c ImageClient) Get(ctx context.Context, id ImageId) (result GetOperationRe
 
 	var model Image
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

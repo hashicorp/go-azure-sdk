@@ -30,7 +30,7 @@ func (s *DeadLetterWithResourceIdentity) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["deadLetterDestination"]; ok {
-		impl, err := unmarshalDeadLetterDestinationImplementation(v)
+		impl, err := UnmarshalDeadLetterDestinationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DeadLetterDestination' for 'DeadLetterWithResourceIdentity': %+v", err)
 		}

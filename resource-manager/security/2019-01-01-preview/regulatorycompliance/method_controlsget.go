@@ -45,7 +45,6 @@ func (c RegulatoryComplianceClient) ControlsGet(ctx context.Context, id Regulato
 
 	var model RegulatoryComplianceControl
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

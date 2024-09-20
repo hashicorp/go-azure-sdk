@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos` Documentation
 
-The `videos` SDK allows for interaction with the Azure Resource Manager Service `videoanalyzer` (API Version `2021-05-01-preview`).
+The `videos` SDK allows for interaction with Azure Resource Manager `videoanalyzer` (API Version `2021-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "accessPolicyName")
 
 payload := videos.AccessPolicyEntity{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "accessPolicyName")
 
 read, err := client.AccessPoliciesDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "accessPolicyName")
 
 read, err := client.AccessPoliciesGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videos.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.AccessPoliciesList(ctx, id, videos.DefaultAccessPoliciesListOperationOptions())` can be used to do batched pagination
 items, err := client.AccessPoliciesListComplete(ctx, id, videos.DefaultAccessPoliciesListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "accessPolicyName")
 
 payload := videos.AccessPolicyEntity{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 payload := videos.VideoEntity{
 	// ...
@@ -136,7 +136,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 read, err := client.VideosDelete(ctx, id)
 if err != nil {
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 read, err := client.VideosGet(ctx, id)
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue")
+id := videos.NewVideoAnalyzerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.VideosList(ctx, id, videos.DefaultVideosListOperationOptions())` can be used to do batched pagination
 items, err := client.VideosListComplete(ctx, id, videos.DefaultVideosListOperationOptions())
@@ -185,7 +185,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 read, err := client.VideosListStreamingToken(ctx, id)
 if err != nil {
@@ -201,7 +201,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+id := videos.NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 payload := videos.VideoEntity{
 	// ...

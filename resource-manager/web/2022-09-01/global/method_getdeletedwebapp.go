@@ -45,7 +45,6 @@ func (c GlobalClient) GetDeletedWebApp(ctx context.Context, id DeletedSiteId) (r
 
 	var model DeletedSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseStorageApplianceID(input string) (*StorageApplianceId, error) {
 	}
 
 	id := StorageApplianceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseStorageApplianceIDInsensitively(input string) (*StorageApplianceId, er
 	}
 
 	id := StorageApplianceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id StorageApplianceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticStorageAppliances", "storageAppliances", "storageAppliances"),
-		resourceids.UserSpecifiedSegment("storageApplianceName", "storageApplianceValue"),
+		resourceids.UserSpecifiedSegment("storageApplianceName", "storageApplianceName"),
 	}
 }
 

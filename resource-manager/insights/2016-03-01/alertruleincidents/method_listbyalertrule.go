@@ -46,7 +46,6 @@ func (c AlertRuleIncidentsClient) ListByAlertRule(ctx context.Context, id AlertR
 
 	var model IncidentListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

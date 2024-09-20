@@ -45,7 +45,6 @@ func (c ServerlessEndpointClient) Get(ctx context.Context, id ServerlessEndpoint
 
 	var model ServerlessEndpointTrackedResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

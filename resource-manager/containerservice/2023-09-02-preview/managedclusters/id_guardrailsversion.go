@@ -42,7 +42,7 @@ func ParseGuardrailsVersionID(input string) (*GuardrailsVersionId, error) {
 	}
 
 	id := GuardrailsVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseGuardrailsVersionIDInsensitively(input string) (*GuardrailsVersionId, 
 	}
 
 	id := GuardrailsVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id GuardrailsVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftContainerService", "Microsoft.ContainerService", "Microsoft.ContainerService"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticGuardrailsVersions", "guardrailsVersions", "guardrailsVersions"),
-		resourceids.UserSpecifiedSegment("guardrailsVersionName", "guardrailsVersionValue"),
+		resourceids.UserSpecifiedSegment("guardrailsVersionName", "version"),
 	}
 }
 

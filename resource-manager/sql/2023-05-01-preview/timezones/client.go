@@ -15,7 +15,7 @@ type TimeZonesClient struct {
 }
 
 func NewTimeZonesClientWithBaseURI(sdkApi sdkEnv.Api) (*TimeZonesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "timezones", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "timezones", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TimeZonesClient: %+v", err)
 	}

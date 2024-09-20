@@ -40,6 +40,7 @@ func (o GetAvailableStacksOnPremOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetAvailableStacksOnPremOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

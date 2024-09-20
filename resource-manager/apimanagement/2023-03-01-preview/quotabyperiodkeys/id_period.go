@@ -46,7 +46,7 @@ func ParsePeriodID(input string) (*PeriodId, error) {
 	}
 
 	id := PeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePeriodIDInsensitively(input string) (*PeriodId, error) {
 	}
 
 	id := PeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id PeriodId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticQuotas", "quotas", "quotas"),
-		resourceids.UserSpecifiedSegment("quotaCounterKey", "quotaCounterKeyValue"),
+		resourceids.UserSpecifiedSegment("quotaCounterKey", "quotaCounterKey"),
 		resourceids.StaticSegment("staticPeriods", "periods", "periods"),
-		resourceids.UserSpecifiedSegment("quotaPeriodKey", "quotaPeriodKeyValue"),
+		resourceids.UserSpecifiedSegment("quotaPeriodKey", "quotaPeriodKey"),
 	}
 }
 

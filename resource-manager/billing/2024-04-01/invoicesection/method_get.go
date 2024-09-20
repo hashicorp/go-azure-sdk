@@ -45,7 +45,6 @@ func (c InvoiceSectionClient) Get(ctx context.Context, id InvoiceSectionId) (res
 
 	var model InvoiceSection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DdosCustomPolicyId{}
 
 func TestNewDdosCustomPolicyID(t *testing.T) {
-	id := NewDdosCustomPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosCustomPolicyValue")
+	id := NewDdosCustomPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosCustomPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDdosCustomPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DdosCustomPolicyName != "ddosCustomPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DdosCustomPolicyName'", id.DdosCustomPolicyName, "ddosCustomPolicyValue")
+	if id.DdosCustomPolicyName != "ddosCustomPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DdosCustomPolicyName'", id.DdosCustomPolicyName, "ddosCustomPolicyName")
 	}
 }
 
 func TestFormatDdosCustomPolicyID(t *testing.T) {
-	actual := NewDdosCustomPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosCustomPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyValue"
+	actual := NewDdosCustomPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ddosCustomPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDdosCustomPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyName",
 			Expected: &DdosCustomPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DdosCustomPolicyName: "ddosCustomPolicyValue",
+				DdosCustomPolicyName: "ddosCustomPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDdosCustomPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyName",
 			Expected: &DdosCustomPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DdosCustomPolicyName: "ddosCustomPolicyValue",
+				DdosCustomPolicyName: "ddosCustomPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/ddosCustomPolicies/ddosCustomPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoScUsToMpOlIcIeS/dDoScUsToMpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoScUsToMpOlIcIeS/dDoScUsToMpOlIcYnAmE",
 			Expected: &DdosCustomPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				DdosCustomPolicyName: "dDoScUsToMpOlIcYvAlUe",
+				DdosCustomPolicyName: "dDoScUsToMpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoScUsToMpOlIcIeS/dDoScUsToMpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dDoScUsToMpOlIcIeS/dDoScUsToMpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

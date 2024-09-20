@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeletedServiceId{}
 
 func TestNewDeletedServiceID(t *testing.T) {
-	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue")
+	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "location", "serviceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.DeletedServiceName != "deletedServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedServiceName'", id.DeletedServiceName, "deletedServiceValue")
+	if id.DeletedServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedServiceName'", id.DeletedServiceName, "serviceName")
 	}
 }
 
 func TestFormatDeletedServiceID(t *testing.T) {
-	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue"
+	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "location", "serviceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices/serviceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDeletedServiceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices/serviceName",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "locationValue",
-				DeletedServiceName: "deletedServiceValue",
+				LocationName:       "location",
+				DeletedServiceName: "serviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices/serviceName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDeletedServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoN/dElEtEdSeRvIcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices/serviceName",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "locationValue",
-				DeletedServiceName: "deletedServiceValue",
+				LocationName:       "location",
+				DeletedServiceName: "serviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/location/deletedServices/serviceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoN/dElEtEdSeRvIcEs/sErViCeNaMe",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "lOcAtIoNvAlUe",
-				DeletedServiceName: "dElEtEdSeRvIcEvAlUe",
+				LocationName:       "lOcAtIoN",
+				DeletedServiceName: "sErViCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoN/dElEtEdSeRvIcEs/sErViCeNaMe/extra",
 			Error: true,
 		},
 	}

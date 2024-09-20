@@ -22,6 +22,14 @@ type CreateOrUpdateDryrunParameters struct {
 	VNetSolution          *VNetSolution          `json:"vNetSolution,omitempty"`
 
 	// Fields inherited from DryrunParameters
+
+	ActionName DryrunActionName `json:"actionName"`
+}
+
+func (s CreateOrUpdateDryrunParameters) DryrunParameters() BaseDryrunParametersImpl {
+	return BaseDryrunParametersImpl{
+		ActionName: s.ActionName,
+	}
 }
 
 var _ json.Marshaler = CreateOrUpdateDryrunParameters{}
@@ -35,9 +43,10 @@ func (s CreateOrUpdateDryrunParameters) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CreateOrUpdateDryrunParameters: %+v", err)
 	}
+
 	decoded["actionName"] = "createOrUpdate"
 
 	encoded, err = json.Marshal(decoded)
@@ -57,6 +66,7 @@ func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into CreateOrUpdateDryrunParameters: %+v", err)
 	}
 
+	s.ActionName = decoded.ActionName
 	s.ClientType = decoded.ClientType
 	s.ConfigurationInfo = decoded.ConfigurationInfo
 	s.ProvisioningState = decoded.ProvisioningState
@@ -71,7 +81,7 @@ func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["authInfo"]; ok {
-		impl, err := unmarshalAuthInfoBaseImplementation(v)
+		impl, err := UnmarshalAuthInfoBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AuthInfo' for 'CreateOrUpdateDryrunParameters': %+v", err)
 		}
@@ -79,7 +89,7 @@ func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["targetService"]; ok {
-		impl, err := unmarshalTargetServiceBaseImplementation(v)
+		impl, err := UnmarshalTargetServiceBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetService' for 'CreateOrUpdateDryrunParameters': %+v", err)
 		}

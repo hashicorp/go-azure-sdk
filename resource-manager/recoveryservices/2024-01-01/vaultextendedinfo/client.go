@@ -15,7 +15,7 @@ type VaultExtendedInfoClient struct {
 }
 
 func NewVaultExtendedInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*VaultExtendedInfoClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vaultextendedinfo", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vaultextendedinfo", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VaultExtendedInfoClient: %+v", err)
 	}

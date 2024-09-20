@@ -45,7 +45,6 @@ func (c ProductApiLinkClient) WorkspaceProductApiLinkGet(ctx context.Context, id
 
 	var model ProductApiLinkContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

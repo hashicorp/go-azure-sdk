@@ -15,7 +15,7 @@ type DotNetComponentsClient struct {
 }
 
 func NewDotNetComponentsClientWithBaseURI(sdkApi sdkEnv.Api) (*DotNetComponentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dotnetcomponents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dotnetcomponents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DotNetComponentsClient: %+v", err)
 	}

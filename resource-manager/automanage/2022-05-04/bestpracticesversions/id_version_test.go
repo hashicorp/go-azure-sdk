@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &VersionId{}
 
 func TestNewVersionID(t *testing.T) {
-	id := NewVersionID("bestPracticeValue", "versionValue")
+	id := NewVersionID("bestPracticeName", "versionName")
 
-	if id.BestPracticeName != "bestPracticeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BestPracticeName'", id.BestPracticeName, "bestPracticeValue")
+	if id.BestPracticeName != "bestPracticeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BestPracticeName'", id.BestPracticeName, "bestPracticeName")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 }
 
 func TestFormatVersionID(t *testing.T) {
-	actual := NewVersionID("bestPracticeValue", "versionValue").ID()
-	expected := "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions/versionValue"
+	actual := NewVersionID("bestPracticeName", "versionName").ID()
+	expected := "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions/versionValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions/versionName",
 			Expected: &VersionId{
-				BestPracticeName: "bestPracticeValue",
-				VersionName:      "versionValue",
+				BestPracticeName: "bestPracticeName",
+				VersionName:      "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions/versionValue/extra",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe/vErSiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions/versionValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions/versionName",
 			Expected: &VersionId{
-				BestPracticeName: "bestPracticeValue",
-				VersionName:      "versionValue",
+				BestPracticeName: "bestPracticeName",
+				VersionName:      "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/versions/versionValue/extra",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/versions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe/vErSiOnS/vErSiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE/vErSiOnS/vErSiOnNaMe",
 			Expected: &VersionId{
-				BestPracticeName: "bEsTpRaCtIcEvAlUe",
-				VersionName:      "vErSiOnVaLuE",
+				BestPracticeName: "bEsTpRaCtIcEnAmE",
+				VersionName:      "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE/vErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

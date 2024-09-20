@@ -45,7 +45,6 @@ func (c OnlineDeploymentClient) Get(ctx context.Context, id OnlineEndpointDeploy
 
 	var model OnlineDeploymentTrackedResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

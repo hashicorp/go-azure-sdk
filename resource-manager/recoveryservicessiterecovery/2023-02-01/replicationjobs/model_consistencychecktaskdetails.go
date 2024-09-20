@@ -14,6 +14,14 @@ type ConsistencyCheckTaskDetails struct {
 	VMDetails *[]InconsistentVMDetails `json:"vmDetails,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s ConsistencyCheckTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ConsistencyCheckTaskDetails{}
@@ -27,9 +35,10 @@ func (s ConsistencyCheckTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ConsistencyCheckTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ConsistencyCheckTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

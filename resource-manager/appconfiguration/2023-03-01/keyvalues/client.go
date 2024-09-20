@@ -15,7 +15,7 @@ type KeyValuesClient struct {
 }
 
 func NewKeyValuesClientWithBaseURI(sdkApi sdkEnv.Api) (*KeyValuesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "keyvalues", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "keyvalues", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KeyValuesClient: %+v", err)
 	}

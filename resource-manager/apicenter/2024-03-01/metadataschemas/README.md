@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-01/metadataschemas` Documentation
 
-The `metadataschemas` SDK allows for interaction with the Azure Resource Manager Service `apicenter` (API Version `2024-03-01`).
+The `metadataschemas` SDK allows for interaction with Azure Resource Manager `apicenter` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue")
+id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName")
 
 payload := metadataschemas.MetadataSchema{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue")
+id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue")
+id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue")
+id := metadataschemas.NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName")
 
 read, err := client.Head(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := metadataschemas.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := metadataschemas.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.List(ctx, id, metadataschemas.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, metadataschemas.DefaultListOperationOptions())

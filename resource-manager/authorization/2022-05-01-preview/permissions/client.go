@@ -15,7 +15,7 @@ type PermissionsClient struct {
 }
 
 func NewPermissionsClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "permissions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "permissions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PermissionsClient: %+v", err)
 	}

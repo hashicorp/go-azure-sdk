@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/containerappsrevisionreplicas` Documentation
 
-The `containerappsrevisionreplicas` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2023-05-01`).
+The `containerappsrevisionreplicas` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisionreplicas.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "revisionValue", "replicaValue")
+id := containerappsrevisionreplicas.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName", "replicaName")
 
 read, err := client.GetReplica(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisionreplicas.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "revisionValue")
+id := containerappsrevisionreplicas.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.ListReplicas(ctx, id)
 if err != nil {

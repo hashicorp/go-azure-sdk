@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-05-01-preview/virtualclusters` Documentation
 
-The `virtualclusters` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-05-01-preview`).
+The `virtualclusters` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue")
+id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -37,7 +37,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue")
+id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -87,7 +87,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue")
+id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName")
 
 payload := virtualclusters.VirtualClusterUpdate{
 	// ...
@@ -104,7 +104,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterValue")
+id := virtualclusters.NewVirtualClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualClusterName")
 
 if err := client.UpdateDnsServersThenPoll(ctx, id); err != nil {
 	// handle the error

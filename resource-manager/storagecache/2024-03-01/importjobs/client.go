@@ -15,7 +15,7 @@ type ImportJobsClient struct {
 }
 
 func NewImportJobsClientWithBaseURI(sdkApi sdkEnv.Api) (*ImportJobsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "importjobs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "importjobs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ImportJobsClient: %+v", err)
 	}

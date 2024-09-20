@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/billingroleassignments` Documentation
 
-The `billingroleassignments` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `billingroleassignments` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingRoleAssignmentID("billingAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewBillingRoleAssignmentID("billingAccountName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByBillingAccount(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingProfileBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewBillingProfileBillingRoleAssignmentID("billingAccountName", "billingProfileName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByBillingProfile(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewInvoiceSectionBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewInvoiceSectionBillingRoleAssignmentID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleAssignmentName")
 
 read, err := client.DeleteByInvoiceSection(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingRoleAssignmentID("billingAccountValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewBillingRoleAssignmentID("billingAccountName", "billingRoleAssignmentName")
 
 read, err := client.GetByBillingAccount(ctx, id)
 if err != nil {
@@ -88,7 +88,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingProfileBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewBillingProfileBillingRoleAssignmentID("billingAccountName", "billingProfileName", "billingRoleAssignmentName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewInvoiceSectionBillingRoleAssignmentID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "billingRoleAssignmentValue")
+id := billingroleassignments.NewInvoiceSectionBillingRoleAssignmentID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleAssignmentName")
 
 read, err := client.GetByInvoiceSection(ctx, id)
 if err != nil {
@@ -120,7 +120,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingAccountID("billingAccountValue")
+id := billingroleassignments.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id)
@@ -137,7 +137,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingroleassignments.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id)
@@ -154,7 +154,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingroleassignments.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingroleassignments.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ListByInvoiceSection(ctx, id)` can be used to do batched pagination
 items, err := client.ListByInvoiceSectionComplete(ctx, id)

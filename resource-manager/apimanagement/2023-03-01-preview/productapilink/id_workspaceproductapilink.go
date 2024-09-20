@@ -48,7 +48,7 @@ func ParseWorkspaceProductApiLinkID(input string) (*WorkspaceProductApiLinkId, e
 	}
 
 	id := WorkspaceProductApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseWorkspaceProductApiLinkIDInsensitively(input string) (*WorkspaceProduc
 	}
 
 	id := WorkspaceProductApiLinkId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id WorkspaceProductApiLinkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceId", "workspaceIdValue"),
+		resourceids.UserSpecifiedSegment("workspaceId", "workspaceId"),
 		resourceids.StaticSegment("staticProducts", "products", "products"),
-		resourceids.UserSpecifiedSegment("productId", "productIdValue"),
+		resourceids.UserSpecifiedSegment("productId", "productId"),
 		resourceids.StaticSegment("staticApiLinks", "apiLinks", "apiLinks"),
-		resourceids.UserSpecifiedSegment("apiLinkId", "apiLinkIdValue"),
+		resourceids.UserSpecifiedSegment("apiLinkId", "apiLinkId"),
 	}
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2024-04-01/vaultextendedinfo` Documentation
 
-The `vaultextendedinfo` SDK allows for interaction with the Azure Resource Manager Service `recoveryservices` (API Version `2024-04-01`).
+The `vaultextendedinfo` SDK allows for interaction with Azure Resource Manager `recoveryservices` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 payload := vaultextendedinfo.VaultExtendedInfoResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := vaultextendedinfo.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 payload := vaultextendedinfo.VaultExtendedInfoResource{
 	// ...

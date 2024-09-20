@@ -45,7 +45,6 @@ func (c ReplicationProtectionIntentsClient) Get(ctx context.Context, id Replicat
 
 	var model ReplicationProtectionIntent
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

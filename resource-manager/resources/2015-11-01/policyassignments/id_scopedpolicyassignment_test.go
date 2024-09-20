@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedPolicyAssignmentId{}
 
 func TestNewScopedPolicyAssignmentID(t *testing.T) {
-	id := NewScopedPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "policyAssignmentValue")
+	id := NewScopedPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "policyAssignmentName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.PolicyAssignmentName != "policyAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyAssignmentName'", id.PolicyAssignmentName, "policyAssignmentValue")
+	if id.PolicyAssignmentName != "policyAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyAssignmentName'", id.PolicyAssignmentName, "policyAssignmentName")
 	}
 }
 
 func TestFormatScopedPolicyAssignmentID(t *testing.T) {
-	actual := NewScopedPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "policyAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentValue"
+	actual := NewScopedPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "policyAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedPolicyAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentName",
 			Expected: &ScopedPolicyAssignmentId{
 				Scope:                "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				PolicyAssignmentName: "policyAssignmentValue",
+				PolicyAssignmentName: "policyAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedPolicyAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentName",
 			Expected: &ScopedPolicyAssignmentId{
 				Scope:                "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				PolicyAssignmentName: "policyAssignmentValue",
+				PolicyAssignmentName: "policyAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/policyAssignments/policyAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYaSsIgNmEnTs/pOlIcYaSsIgNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYaSsIgNmEnTs/pOlIcYaSsIgNmEnTnAmE",
 			Expected: &ScopedPolicyAssignmentId{
 				Scope:                "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				PolicyAssignmentName: "pOlIcYaSsIgNmEnTvAlUe",
+				PolicyAssignmentName: "pOlIcYaSsIgNmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYaSsIgNmEnTs/pOlIcYaSsIgNmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYaSsIgNmEnTs/pOlIcYaSsIgNmEnTnAmE/extra",
 			Error: true,
 		},
 	}

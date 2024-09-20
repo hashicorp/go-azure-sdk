@@ -38,7 +38,7 @@ func ParseOsTypeID(input string) (*OsTypeId, error) {
 	}
 
 	id := OsTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseOsTypeIDInsensitively(input string) (*OsTypeId, error) {
 	}
 
 	id := OsTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id OsTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticOsType", "osType", "osType"),
-		resourceids.UserSpecifiedSegment("osTypeName", "osTypeValue"),
+		resourceids.UserSpecifiedSegment("osTypeName", "osType"),
 	}
 }
 

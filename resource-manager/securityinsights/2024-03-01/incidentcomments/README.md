@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-03-01/incidentcomments` Documentation
 
-The `incidentcomments` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2024-03-01`).
+The `incidentcomments` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "incidentCommentIdValue")
+id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "incidentCommentId")
 
 payload := incidentcomments.IncidentComment{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "incidentCommentIdValue")
+id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "incidentCommentId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "incidentCommentIdValue")
+id := incidentcomments.NewCommentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentId", "incidentCommentId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentcomments.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdentifierValue")
+id := incidentcomments.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "incidentIdentifier")
 
 // alternatively `client.List(ctx, id, incidentcomments.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, incidentcomments.DefaultListOperationOptions())

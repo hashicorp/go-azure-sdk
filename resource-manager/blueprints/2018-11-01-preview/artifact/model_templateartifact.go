@@ -14,9 +14,20 @@ type TemplateArtifact struct {
 	Properties TemplateArtifactProperties `json:"properties"`
 
 	// Fields inherited from Artifact
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string      `json:"id,omitempty"`
+	Kind ArtifactKind `json:"kind"`
+	Name *string      `json:"name,omitempty"`
+	Type *string      `json:"type,omitempty"`
+}
+
+func (s TemplateArtifact) Artifact() BaseArtifactImpl {
+	return BaseArtifactImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TemplateArtifact{}
@@ -30,9 +41,10 @@ func (s TemplateArtifact) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TemplateArtifact: %+v", err)
 	}
+
 	decoded["kind"] = "template"
 
 	encoded, err = json.Marshal(decoded)

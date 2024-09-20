@@ -49,7 +49,6 @@ func (c TaskResourceClient) TasksUpdate(ctx context.Context, id TaskId, input Pr
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

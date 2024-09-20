@@ -46,7 +46,6 @@ func (c SubscriptionsClient) ListQuotas(ctx context.Context, id LocationId) (res
 
 	var model SubscriptionQuotasListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

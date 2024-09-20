@@ -46,7 +46,6 @@ func (c NetworkingClient) PrivateLinksList(ctx context.Context, id IotAppId) (re
 
 	var model PrivateLinkResourceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -16,6 +16,14 @@ type AzureWorkloadBackupRequest struct {
 	RecoveryPointExpiryTimeInUTC *string     `json:"recoveryPointExpiryTimeInUTC,omitempty"`
 
 	// Fields inherited from BackupRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureWorkloadBackupRequest) BackupRequest() BaseBackupRequestImpl {
+	return BaseBackupRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadBackupRequest{}
@@ -29,9 +37,10 @@ func (s AzureWorkloadBackupRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadBackupRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureWorkloadBackupRequest"
 
 	encoded, err = json.Marshal(decoded)

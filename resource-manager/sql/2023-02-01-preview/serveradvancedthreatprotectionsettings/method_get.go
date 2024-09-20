@@ -47,7 +47,6 @@ func (c ServerAdvancedThreatProtectionSettingsClient) Get(ctx context.Context, i
 
 	var model ServerAdvancedThreatProtection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

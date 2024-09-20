@@ -22,7 +22,7 @@ func (s *CreatePolicyInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificInput"]; ok {
-		impl, err := unmarshalPolicyProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalPolicyProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificInput' for 'CreatePolicyInputProperties': %+v", err)
 		}

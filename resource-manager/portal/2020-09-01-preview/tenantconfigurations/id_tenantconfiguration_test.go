@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &TenantConfigurationId{}
 
 func TestNewTenantConfigurationID(t *testing.T) {
-	id := NewTenantConfigurationID("tenantConfigurationValue")
+	id := NewTenantConfigurationID("configurationName")
 
-	if id.TenantConfigurationName != "tenantConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TenantConfigurationName'", id.TenantConfigurationName, "tenantConfigurationValue")
+	if id.TenantConfigurationName != "configurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TenantConfigurationName'", id.TenantConfigurationName, "configurationName")
 	}
 }
 
 func TestFormatTenantConfigurationID(t *testing.T) {
-	actual := NewTenantConfigurationID("tenantConfigurationValue").ID()
-	expected := "/providers/Microsoft.Portal/tenantConfigurations/tenantConfigurationValue"
+	actual := NewTenantConfigurationID("configurationName").ID()
+	expected := "/providers/Microsoft.Portal/tenantConfigurations/configurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseTenantConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Portal/tenantConfigurations/tenantConfigurationValue",
+			Input: "/providers/Microsoft.Portal/tenantConfigurations/configurationName",
 			Expected: &TenantConfigurationId{
-				TenantConfigurationName: "tenantConfigurationValue",
+				TenantConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Portal/tenantConfigurations/tenantConfigurationValue/extra",
+			Input: "/providers/Microsoft.Portal/tenantConfigurations/configurationName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseTenantConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Portal/tenantConfigurations/tenantConfigurationValue",
+			Input: "/providers/Microsoft.Portal/tenantConfigurations/configurationName",
 			Expected: &TenantConfigurationId{
-				TenantConfigurationName: "tenantConfigurationValue",
+				TenantConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Portal/tenantConfigurations/tenantConfigurationValue/extra",
+			Input: "/providers/Microsoft.Portal/tenantConfigurations/configurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.pOrTaL/tEnAnTcOnFiGuRaTiOnS/tEnAnTcOnFiGuRaTiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.pOrTaL/tEnAnTcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
 			Expected: &TenantConfigurationId{
-				TenantConfigurationName: "tEnAnTcOnFiGuRaTiOnVaLuE",
+				TenantConfigurationName: "cOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.pOrTaL/tEnAnTcOnFiGuRaTiOnS/tEnAnTcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.pOrTaL/tEnAnTcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

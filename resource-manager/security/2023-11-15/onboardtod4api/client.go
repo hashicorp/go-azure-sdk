@@ -15,7 +15,7 @@ type OnboardToD4APIClient struct {
 }
 
 func NewOnboardToD4APIClientWithBaseURI(sdkApi sdkEnv.Api) (*OnboardToD4APIClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "onboardtod4api", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "onboardtod4api", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OnboardToD4APIClient: %+v", err)
 	}

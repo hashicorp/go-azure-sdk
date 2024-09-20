@@ -15,7 +15,7 @@ type DaprComponentResiliencyPoliciesClient struct {
 }
 
 func NewDaprComponentResiliencyPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*DaprComponentResiliencyPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "daprcomponentresiliencypolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "daprcomponentresiliencypolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DaprComponentResiliencyPoliciesClient: %+v", err)
 	}

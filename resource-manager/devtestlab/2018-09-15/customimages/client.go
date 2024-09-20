@@ -15,7 +15,7 @@ type CustomImagesClient struct {
 }
 
 func NewCustomImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomImagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "customimages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "customimages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CustomImagesClient: %+v", err)
 	}

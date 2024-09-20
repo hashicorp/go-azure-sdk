@@ -18,6 +18,14 @@ type InMageRcmFailbackEventDetails struct {
 	VirtualMachineName   *string `json:"vmName,omitempty"`
 
 	// Fields inherited from EventProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageRcmFailbackEventDetails) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return BaseEventProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageRcmFailbackEventDetails{}
@@ -31,9 +39,10 @@ func (s InMageRcmFailbackEventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageRcmFailbackEventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageRcmFailback"
 
 	encoded, err = json.Marshal(decoded)

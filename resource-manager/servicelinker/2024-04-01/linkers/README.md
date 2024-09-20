@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/linkers` Documentation
 
-The `linkers` SDK allows for interaction with the Azure Resource Manager Service `servicelinker` (API Version `2024-04-01`).
+The `linkers` SDK allows for interaction with Azure Resource Manager `servicelinker` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue")
+id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName")
 
 payload := linkers.DryrunResource{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateDryrunThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue")
+id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName")
 
 read, err := client.DeleteDryrun(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 payload := linkers.ConfigurationInfo{
 	// ...
@@ -79,7 +79,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue")
+id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName")
 
 read, err := client.GetDryrun(ctx, id)
 if err != nil {
@@ -95,7 +95,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 if err := client.LinkerDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -107,7 +107,7 @@ if err := client.LinkerDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 read, err := client.LinkerListConfigurations(ctx, id)
 if err != nil {
@@ -123,7 +123,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 payload := linkers.LinkerPatch{
 	// ...
@@ -140,7 +140,7 @@ if err := client.LinkerUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+id := linkers.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 if err := client.LinkerValidateThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -186,7 +186,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue")
+id := linkers.NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName")
 
 payload := linkers.DryrunPatch{
 	// ...

@@ -45,7 +45,6 @@ func (c AddonsClient) Get(ctx context.Context, id AddonId) (result GetOperationR
 
 	var model Addon
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

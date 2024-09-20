@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TrustedIdProviderId{}
 
 func TestNewTrustedIdProviderID(t *testing.T) {
-	id := NewTrustedIdProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "trustedIdProviderValue")
+	id := NewTrustedIdProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "trustedIdProviderName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTrustedIdProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.TrustedIdProviderName != "trustedIdProviderValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TrustedIdProviderName'", id.TrustedIdProviderName, "trustedIdProviderValue")
+	if id.TrustedIdProviderName != "trustedIdProviderName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrustedIdProviderName'", id.TrustedIdProviderName, "trustedIdProviderName")
 	}
 }
 
 func TestFormatTrustedIdProviderID(t *testing.T) {
-	actual := NewTrustedIdProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "trustedIdProviderValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders/trustedIdProviderValue"
+	actual := NewTrustedIdProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "trustedIdProviderName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders/trustedIdProviderName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTrustedIdProviderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders/trustedIdProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders/trustedIdProviderName",
 			Expected: &TrustedIdProviderId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
-				TrustedIdProviderName: "trustedIdProviderValue",
+				AccountName:           "accountName",
+				TrustedIdProviderName: "trustedIdProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders/trustedIdProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders/trustedIdProviderName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTrustedIdProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/tRuStEdIdPrOvIdErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/tRuStEdIdPrOvIdErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders/trustedIdProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders/trustedIdProviderName",
 			Expected: &TrustedIdProviderId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
-				TrustedIdProviderName: "trustedIdProviderValue",
+				AccountName:           "accountName",
+				TrustedIdProviderName: "trustedIdProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountValue/trustedIdProviders/trustedIdProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeStore/accounts/accountName/trustedIdProviders/trustedIdProviderName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/tRuStEdIdPrOvIdErS/tRuStEdIdPrOvIdErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/tRuStEdIdPrOvIdErS/tRuStEdIdPrOvIdErNaMe",
 			Expected: &TrustedIdProviderId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:           "aCcOuNtVaLuE",
-				TrustedIdProviderName: "tRuStEdIdPrOvIdErVaLuE",
+				AccountName:           "aCcOuNtNaMe",
+				TrustedIdProviderName: "tRuStEdIdPrOvIdErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtVaLuE/tRuStEdIdPrOvIdErS/tRuStEdIdPrOvIdErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEsToRe/aCcOuNtS/aCcOuNtNaMe/tRuStEdIdPrOvIdErS/tRuStEdIdPrOvIdErNaMe/extra",
 			Error: true,
 		},
 	}

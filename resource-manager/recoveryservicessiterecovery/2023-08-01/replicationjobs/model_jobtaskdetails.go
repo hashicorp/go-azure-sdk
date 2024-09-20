@@ -14,6 +14,14 @@ type JobTaskDetails struct {
 	JobTask *JobEntity `json:"jobTask,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s JobTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = JobTaskDetails{}
@@ -27,9 +35,10 @@ func (s JobTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling JobTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "JobTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

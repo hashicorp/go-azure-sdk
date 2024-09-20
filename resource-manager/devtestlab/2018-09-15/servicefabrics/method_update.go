@@ -49,7 +49,6 @@ func (c ServiceFabricsClient) Update(ctx context.Context, id ServiceFabricId, in
 
 	var model ServiceFabric
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type GroupIdListForLDAPUserClient struct {
 }
 
 func NewGroupIdListForLDAPUserClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupIdListForLDAPUserClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "groupidlistforldapuser", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "groupidlistforldapuser", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GroupIdListForLDAPUserClient: %+v", err)
 	}

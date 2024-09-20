@@ -49,7 +49,6 @@ func (c BillingAccountClient) AddressValidate(ctx context.Context, input Address
 
 	var model AddressValidationResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

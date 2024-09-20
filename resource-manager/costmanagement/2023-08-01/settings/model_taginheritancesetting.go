@@ -14,9 +14,20 @@ type TagInheritanceSetting struct {
 	Properties *TagInheritanceProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Setting
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string      `json:"id,omitempty"`
+	Kind SettingsKind `json:"kind"`
+	Name *string      `json:"name,omitempty"`
+	Type *string      `json:"type,omitempty"`
+}
+
+func (s TagInheritanceSetting) Setting() BaseSettingImpl {
+	return BaseSettingImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TagInheritanceSetting{}
@@ -30,9 +41,10 @@ func (s TagInheritanceSetting) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TagInheritanceSetting: %+v", err)
 	}
+
 	decoded["kind"] = "taginheritance"
 
 	encoded, err = json.Marshal(decoded)

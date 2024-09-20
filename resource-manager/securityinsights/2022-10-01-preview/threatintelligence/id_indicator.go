@@ -44,7 +44,7 @@ func ParseIndicatorID(input string) (*IndicatorId, error) {
 	}
 
 	id := IndicatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIndicatorIDInsensitively(input string) (*IndicatorId, error) {
 	}
 
 	id := IndicatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,13 +121,13 @@ func (id IndicatorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationalInsights", "Microsoft.OperationalInsights", "Microsoft.OperationalInsights"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticThreatIntelligence", "threatIntelligence", "threatIntelligence"),
 		resourceids.StaticSegment("staticMain", "main", "main"),
 		resourceids.StaticSegment("staticIndicators", "indicators", "indicators"),
-		resourceids.UserSpecifiedSegment("indicatorName", "indicatorValue"),
+		resourceids.UserSpecifiedSegment("indicatorName", "name"),
 	}
 }
 

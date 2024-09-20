@@ -41,7 +41,7 @@ func (s *AzureFunctionEventSubscriptionDestinationProperties) UnmarshalJSON(byte
 
 		output := make([]DeliveryAttributeMapping, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalDeliveryAttributeMappingImplementation(val)
+			impl, err := UnmarshalDeliveryAttributeMappingImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'DeliveryAttributeMappings' for 'AzureFunctionEventSubscriptionDestinationProperties': %+v", i, err)
 			}

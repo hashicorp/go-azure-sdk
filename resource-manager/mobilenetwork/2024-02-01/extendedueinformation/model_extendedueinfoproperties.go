@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ExtendedUeInfoProperties interface {
+	ExtendedUeInfoProperties() BaseExtendedUeInfoPropertiesImpl
 }
 
-// RawExtendedUeInfoPropertiesImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ExtendedUeInfoProperties = BaseExtendedUeInfoPropertiesImpl{}
+
+type BaseExtendedUeInfoPropertiesImpl struct {
+	LastReadAt *string `json:"lastReadAt,omitempty"`
+	RatType    RatType `json:"ratType"`
+}
+
+func (s BaseExtendedUeInfoPropertiesImpl) ExtendedUeInfoProperties() BaseExtendedUeInfoPropertiesImpl {
+	return s
+}
+
+var _ ExtendedUeInfoProperties = RawExtendedUeInfoPropertiesImpl{}
+
+// RawExtendedUeInfoPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawExtendedUeInfoPropertiesImpl struct {
-	Type   string
-	Values map[string]interface{}
+	extendedUeInfoProperties BaseExtendedUeInfoPropertiesImpl
+	Type                     string
+	Values                   map[string]interface{}
 }
 
-func unmarshalExtendedUeInfoPropertiesImplementation(input []byte) (ExtendedUeInfoProperties, error) {
+func (s RawExtendedUeInfoPropertiesImpl) ExtendedUeInfoProperties() BaseExtendedUeInfoPropertiesImpl {
+	return s.extendedUeInfoProperties
+}
+
+func UnmarshalExtendedUeInfoPropertiesImplementation(input []byte) (ExtendedUeInfoProperties, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalExtendedUeInfoPropertiesImplementation(input []byte) (ExtendedUeIn
 		return out, nil
 	}
 
-	out := RawExtendedUeInfoPropertiesImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseExtendedUeInfoPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseExtendedUeInfoPropertiesImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawExtendedUeInfoPropertiesImpl{
+		extendedUeInfoProperties: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
 
 }

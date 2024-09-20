@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/integrationruntime` Documentation
 
-The `integrationruntime` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `integrationruntime` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.AuthKeysList(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 payload := integrationruntime.IntegrationRuntimeRegenerateKeyParameters{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.ConnectionInfosGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 payload := integrationruntime.IntegrationRuntimeResource{
 	// ...
@@ -94,7 +94,7 @@ if err := client.CreateThenPoll(ctx, id, payload, integrationruntime.DefaultCrea
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.CredentialsSync(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -122,7 +122,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.DisableInteractiveQueryThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -134,7 +134,7 @@ if err := client.DisableInteractiveQueryThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.EnableInteractiveQueryThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -146,7 +146,7 @@ if err := client.EnableInteractiveQueryThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.Get(ctx, id, integrationruntime.DefaultGetOperationOptions())
 if err != nil {
@@ -162,7 +162,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := integrationruntime.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.ListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.ListByWorkspaceComplete(ctx, id)
@@ -179,7 +179,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.MonitoringDataList(ctx, id)
 if err != nil {
@@ -195,7 +195,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue", "nodeValue")
+id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName", "nodeName")
 
 read, err := client.NodeIPAddressGet(ctx, id)
 if err != nil {
@@ -211,7 +211,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue", "nodeValue")
+id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName", "nodeName")
 
 read, err := client.NodesDelete(ctx, id)
 if err != nil {
@@ -227,7 +227,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue", "nodeValue")
+id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName", "nodeName")
 
 read, err := client.NodesGet(ctx, id)
 if err != nil {
@@ -243,7 +243,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue", "nodeValue")
+id := integrationruntime.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName", "nodeName")
 
 payload := integrationruntime.UpdateIntegrationRuntimeNodeRequest{
 	// ...
@@ -264,7 +264,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 payload := integrationruntime.GetSsisObjectMetadataRequest{
 	// ...
@@ -286,7 +286,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.ObjectMetadataRefreshThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -298,7 +298,7 @@ if err := client.ObjectMetadataRefreshThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -310,7 +310,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.StatusGet(ctx, id)
 if err != nil {
@@ -326,7 +326,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -338,7 +338,7 @@ if err := client.StopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 payload := integrationruntime.UpdateIntegrationRuntimeRequest{
 	// ...
@@ -359,7 +359,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntime.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.Upgrade(ctx, id)
 if err != nil {

@@ -44,7 +44,7 @@ func ParseLtrBackupOperationID(input string) (*LtrBackupOperationId, error) {
 	}
 
 	id := LtrBackupOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLtrBackupOperationIDInsensitively(input string) (*LtrBackupOperationId
 	}
 
 	id := LtrBackupOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id LtrBackupOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerValue"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "serverName"),
 		resourceids.StaticSegment("staticLtrBackupOperations", "ltrBackupOperations", "ltrBackupOperations"),
-		resourceids.UserSpecifiedSegment("ltrBackupOperationName", "ltrBackupOperationValue"),
+		resourceids.UserSpecifiedSegment("ltrBackupOperationName", "backupName"),
 	}
 }
 

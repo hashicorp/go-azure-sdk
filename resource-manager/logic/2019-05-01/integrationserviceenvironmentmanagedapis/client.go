@@ -15,7 +15,7 @@ type IntegrationServiceEnvironmentManagedApisClient struct {
 }
 
 func NewIntegrationServiceEnvironmentManagedApisClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentManagedApisClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationserviceenvironmentmanagedapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationserviceenvironmentmanagedapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentManagedApisClient: %+v", err)
 	}

@@ -51,7 +51,7 @@ func (s *CommonDataServiceForAppsLinkedServiceTypeProperties) UnmarshalJSON(byte
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'CommonDataServiceForAppsLinkedServiceTypeProperties': %+v", err)
 		}
@@ -59,7 +59,7 @@ func (s *CommonDataServiceForAppsLinkedServiceTypeProperties) UnmarshalJSON(byte
 	}
 
 	if v, ok := temp["servicePrincipalCredential"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalCredential' for 'CommonDataServiceForAppsLinkedServiceTypeProperties': %+v", err)
 		}

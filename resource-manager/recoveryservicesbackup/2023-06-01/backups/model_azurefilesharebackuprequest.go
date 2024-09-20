@@ -14,6 +14,14 @@ type AzureFileShareBackupRequest struct {
 	RecoveryPointExpiryTimeInUTC *string `json:"recoveryPointExpiryTimeInUTC,omitempty"`
 
 	// Fields inherited from BackupRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureFileShareBackupRequest) BackupRequest() BaseBackupRequestImpl {
+	return BaseBackupRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureFileShareBackupRequest{}
@@ -27,9 +35,10 @@ func (s AzureFileShareBackupRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureFileShareBackupRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureFileShareBackupRequest"
 
 	encoded, err = json.Marshal(decoded)

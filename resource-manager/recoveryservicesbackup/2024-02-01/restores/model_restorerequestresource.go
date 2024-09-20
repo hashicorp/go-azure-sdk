@@ -40,7 +40,7 @@ func (s *RestoreRequestResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalRestoreRequestImplementation(v)
+		impl, err := UnmarshalRestoreRequestImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'RestoreRequestResource': %+v", err)
 		}

@@ -14,7 +14,16 @@ type StringBeginsWithFilter struct {
 	Values *[]string `json:"values,omitempty"`
 
 	// Fields inherited from Filter
-	Key *string `json:"key,omitempty"`
+
+	Key          *string            `json:"key,omitempty"`
+	OperatorType FilterOperatorType `json:"operatorType"`
+}
+
+func (s StringBeginsWithFilter) Filter() BaseFilterImpl {
+	return BaseFilterImpl{
+		Key:          s.Key,
+		OperatorType: s.OperatorType,
+	}
 }
 
 var _ json.Marshaler = StringBeginsWithFilter{}
@@ -28,9 +37,10 @@ func (s StringBeginsWithFilter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling StringBeginsWithFilter: %+v", err)
 	}
+
 	decoded["operatorType"] = "StringBeginsWith"
 
 	encoded, err = json.Marshal(decoded)

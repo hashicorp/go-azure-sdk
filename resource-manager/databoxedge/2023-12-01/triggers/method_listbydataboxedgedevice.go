@@ -40,6 +40,7 @@ func (o ListByDataBoxEdgeDeviceOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByDataBoxEdgeDeviceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -101,7 +102,7 @@ func (c TriggersClient) ListByDataBoxEdgeDevice(ctx context.Context, id DataBoxE
 	temp := make([]Trigger, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalTriggerImplementation(v)
+			val, err := UnmarshalTriggerImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for Trigger (%q): %+v", i, v, err)
 				return result, err

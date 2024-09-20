@@ -12,10 +12,17 @@ var _ GroupTaskDetails = RecoveryPlanShutdownGroupTaskDetails{}
 
 type RecoveryPlanShutdownGroupTaskDetails struct {
 
-	// Fields inherited from RecoveryPlanGroupTaskDetails
-	GroupId     *string `json:"groupId,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	RpGroupType *string `json:"rpGroupType,omitempty"`
+	// Fields inherited from GroupTaskDetails
+
+	ChildTasks   *[]ASRTask `json:"childTasks,omitempty"`
+	InstanceType string     `json:"instanceType"`
+}
+
+func (s RecoveryPlanShutdownGroupTaskDetails) GroupTaskDetails() BaseGroupTaskDetailsImpl {
+	return BaseGroupTaskDetailsImpl{
+		ChildTasks:   s.ChildTasks,
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = RecoveryPlanShutdownGroupTaskDetails{}
@@ -29,9 +36,10 @@ func (s RecoveryPlanShutdownGroupTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling RecoveryPlanShutdownGroupTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "RecoveryPlanShutdownGroupTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

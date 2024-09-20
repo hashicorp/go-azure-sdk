@@ -50,7 +50,6 @@ func (c DeploymentInfoClient) ExternalUserCreateOrUpdate(ctx context.Context, id
 
 	var model ExternalUserCreationResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

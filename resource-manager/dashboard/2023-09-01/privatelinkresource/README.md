@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2023-09-01/privatelinkresource` Documentation
 
-The `privatelinkresource` SDK allows for interaction with the Azure Resource Manager Service `dashboard` (API Version `2023-09-01`).
+The `privatelinkresource` SDK allows for interaction with Azure Resource Manager `dashboard` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue", "privateLinkResourceValue")
+id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "privateLinkResourceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue")
+id := privatelinkresource.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

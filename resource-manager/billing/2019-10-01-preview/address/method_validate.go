@@ -49,7 +49,6 @@ func (c AddressClient) Validate(ctx context.Context, input AddressDetails) (resu
 
 	var model ValidateAddressResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

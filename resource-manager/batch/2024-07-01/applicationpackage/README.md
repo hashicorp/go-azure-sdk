@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/applicationpackage` Documentation
 
-The `applicationpackage` SDK allows for interaction with the Azure Resource Manager Service `batch` (API Version `2024-07-01`).
+The `applicationpackage` SDK allows for interaction with Azure Resource Manager `batch` (API Version `2024-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName")
 
 payload := applicationpackage.ActivateApplicationPackageParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName")
 
 payload := applicationpackage.ApplicationPackage{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue")
+id := applicationpackage.NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName")
 
 // alternatively `client.List(ctx, id, applicationpackage.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, applicationpackage.DefaultListOperationOptions())

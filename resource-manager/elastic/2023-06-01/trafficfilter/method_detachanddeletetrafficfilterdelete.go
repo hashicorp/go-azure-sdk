@@ -33,6 +33,7 @@ func (o DetachAndDeleteTrafficFilterDeleteOperationOptions) ToHeaders() *client.
 
 func (o DetachAndDeleteTrafficFilterDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

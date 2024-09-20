@@ -45,7 +45,6 @@ func (c MasterSitesClient) GetSite(ctx context.Context, id MasterSiteId) (result
 
 	var model MasterSite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

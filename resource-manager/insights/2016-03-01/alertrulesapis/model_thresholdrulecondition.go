@@ -17,7 +17,16 @@ type ThresholdRuleCondition struct {
 	WindowSize      *string                  `json:"windowSize,omitempty"`
 
 	// Fields inherited from RuleCondition
+
 	DataSource RuleDataSource `json:"dataSource"`
+	OdataType  string         `json:"odata.type"`
+}
+
+func (s ThresholdRuleCondition) RuleCondition() BaseRuleConditionImpl {
+	return BaseRuleConditionImpl{
+		DataSource: s.DataSource,
+		OdataType:  s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ThresholdRuleCondition{}
@@ -31,9 +40,10 @@ func (s ThresholdRuleCondition) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ThresholdRuleCondition: %+v", err)
 	}
+
 	decoded["odata.type"] = "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition"
 
 	encoded, err = json.Marshal(decoded)
@@ -53,6 +63,7 @@ func (s *ThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into ThresholdRuleCondition: %+v", err)
 	}
 
+	s.OdataType = decoded.OdataType
 	s.Operator = decoded.Operator
 	s.Threshold = decoded.Threshold
 	s.TimeAggregation = decoded.TimeAggregation
@@ -64,7 +75,7 @@ func (s *ThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["dataSource"]; ok {
-		impl, err := unmarshalRuleDataSourceImplementation(v)
+		impl, err := UnmarshalRuleDataSourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DataSource' for 'ThresholdRuleCondition': %+v", err)
 		}

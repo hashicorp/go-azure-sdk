@@ -14,6 +14,14 @@ type ComponentSetup struct {
 	TypeProperties LicensedComponentSetupTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from CustomSetupBase
+
+	Type string `json:"type"`
+}
+
+func (s ComponentSetup) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return BaseCustomSetupBaseImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ComponentSetup{}
@@ -27,9 +35,10 @@ func (s ComponentSetup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ComponentSetup: %+v", err)
 	}
+
 	decoded["type"] = "ComponentSetup"
 
 	encoded, err = json.Marshal(decoded)

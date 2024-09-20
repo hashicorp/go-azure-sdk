@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/keys` Documentation
 
-The `keys` SDK allows for interaction with the Azure Resource Manager Service `keyvault` (API Version `2023-07-01`).
+The `keys` SDK allows for interaction with Azure Resource Manager `keyvault` (API Version `2023-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "keyName")
 
 payload := keys.KeyCreateParameters{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "keyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewKeyVaultKeyVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue", "versionValue")
+id := commonids.NewKeyVaultKeyVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "keyName", "versionName")
 
 read, err := client.GetVersion(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewKeyVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := commonids.NewKeyVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := commonids.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "keyName")
 
 // alternatively `client.ListVersions(ctx, id)` can be used to do batched pagination
 items, err := client.ListVersionsComplete(ctx, id)

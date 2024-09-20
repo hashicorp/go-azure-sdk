@@ -15,7 +15,7 @@ type BackupAndExportClient struct {
 }
 
 func NewBackupAndExportClientWithBaseURI(sdkApi sdkEnv.Api) (*BackupAndExportClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "backupandexport", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "backupandexport", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BackupAndExportClient: %+v", err)
 	}

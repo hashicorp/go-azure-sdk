@@ -37,7 +37,7 @@ func (s *AmazonS3LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["secretAccessKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecretAccessKey' for 'AmazonS3LinkedServiceTypeProperties': %+v", err)
 		}
@@ -45,7 +45,7 @@ func (s *AmazonS3LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["sessionToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SessionToken' for 'AmazonS3LinkedServiceTypeProperties': %+v", err)
 		}

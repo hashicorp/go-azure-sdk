@@ -4,24 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Role interface {
+	Role() BaseRoleImpl
 }
 
-// RawRoleImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Role = BaseRoleImpl{}
+
+type BaseRoleImpl struct {
+	Id         *string                `json:"id,omitempty"`
+	Kind       RoleTypes              `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseRoleImpl) Role() BaseRoleImpl {
+	return s
+}
+
+var _ Role = RawRoleImpl{}
+
+// RawRoleImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRoleImpl struct {
+	role   BaseRoleImpl
 	Type   string
 	Values map[string]interface{}
 }
 
-func unmarshalRoleImplementation(input []byte) (Role, error) {
+func (s RawRoleImpl) Role() BaseRoleImpl {
+	return s.role
+}
+
+func UnmarshalRoleImplementation(input []byte) (Role, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +91,15 @@ func unmarshalRoleImplementation(input []byte) (Role, error) {
 		return out, nil
 	}
 
-	out := RawRoleImpl{
+	var parent BaseRoleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRoleImpl: %+v", err)
+	}
+
+	return RawRoleImpl{
+		role:   parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

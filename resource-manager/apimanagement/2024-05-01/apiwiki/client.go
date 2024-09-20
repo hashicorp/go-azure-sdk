@@ -15,7 +15,7 @@ type ApiWikiClient struct {
 }
 
 func NewApiWikiClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiWikiClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apiwiki", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apiwiki", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiWikiClient: %+v", err)
 	}

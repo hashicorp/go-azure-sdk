@@ -39,6 +39,7 @@ func (o DeleteAtResourceGroupOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAtResourceGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

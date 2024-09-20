@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2022-04-01/provideroperationsmetadata` Documentation
 
-The `provideroperationsmetadata` SDK allows for interaction with the Azure Resource Manager Service `authorization` (API Version `2022-04-01`).
+The `provideroperationsmetadata` SDK allows for interaction with Azure Resource Manager `authorization` (API Version `2022-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := provideroperationsmetadata.NewProviderOperationID("providerOperationValue")
+id := provideroperationsmetadata.NewProviderOperationID("resourceProviderNamespace")
 
 read, err := client.Get(ctx, id, provideroperationsmetadata.DefaultGetOperationOptions())
 if err != nil {

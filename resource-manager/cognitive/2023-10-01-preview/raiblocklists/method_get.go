@@ -45,7 +45,6 @@ func (c RaiBlocklistsClient) Get(ctx context.Context, id RaiBlocklistId) (result
 
 	var model RaiBlocklist
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

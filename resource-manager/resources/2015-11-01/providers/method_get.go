@@ -45,7 +45,6 @@ func (c ProvidersClient) Get(ctx context.Context, id ProviderId) (result GetOper
 
 	var model Provider
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

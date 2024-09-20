@@ -44,7 +44,7 @@ func ParseAzureDevOpsOrgID(input string) (*AzureDevOpsOrgId, error) {
 	}
 
 	id := AzureDevOpsOrgId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAzureDevOpsOrgIDInsensitively(input string) (*AzureDevOpsOrgId, error)
 	}
 
 	id := AzureDevOpsOrgId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id AzureDevOpsOrgId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticSecurityConnectors", "securityConnectors", "securityConnectors"),
-		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorValue"),
+		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorName"),
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticAzureDevOpsOrgs", "azureDevOpsOrgs", "azureDevOpsOrgs"),
-		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "azureDevOpsOrgValue"),
+		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "orgName"),
 	}
 }
 

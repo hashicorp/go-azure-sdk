@@ -43,7 +43,7 @@ func (s *AutomationProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]AutomationAction, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalAutomationActionImplementation(val)
+			impl, err := UnmarshalAutomationActionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Actions' for 'AutomationProperties': %+v", i, err)
 			}

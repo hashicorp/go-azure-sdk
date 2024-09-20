@@ -15,7 +15,7 @@ type CustomOperationClient struct {
 }
 
 func NewCustomOperationClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomOperationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "customoperation", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "customoperation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CustomOperationClient: %+v", err)
 	}

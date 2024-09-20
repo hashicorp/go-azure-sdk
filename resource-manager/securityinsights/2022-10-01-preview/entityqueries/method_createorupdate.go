@@ -15,7 +15,7 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *EntityQuery
+	Model        EntityQuery
 }
 
 // CreateOrUpdate ...
@@ -53,11 +53,11 @@ func (c EntityQueriesClient) CreateOrUpdate(ctx context.Context, id EntityQueryI
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalEntityQueryImplementation(respObj)
+	model, err := UnmarshalEntityQueryImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

@@ -42,7 +42,7 @@ func ParseProviderDeploymentStackID(input string) (*ProviderDeploymentStackId, e
 	}
 
 	id := ProviderDeploymentStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseProviderDeploymentStackIDInsensitively(input string) (*ProviderDeploym
 	}
 
 	id := ProviderDeploymentStackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id ProviderDeploymentStackId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResources", "Microsoft.Resources", "Microsoft.Resources"),
 		resourceids.StaticSegment("staticDeploymentStacks", "deploymentStacks", "deploymentStacks"),
-		resourceids.UserSpecifiedSegment("deploymentStackName", "deploymentStackValue"),
+		resourceids.UserSpecifiedSegment("deploymentStackName", "deploymentStackName"),
 	}
 }
 

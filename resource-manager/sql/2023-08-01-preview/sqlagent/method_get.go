@@ -47,7 +47,6 @@ func (c SqlAgentClient) Get(ctx context.Context, id commonids.SqlManagedInstance
 
 	var model SqlAgentConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

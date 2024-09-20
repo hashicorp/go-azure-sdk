@@ -13,6 +13,14 @@ var _ ServicePlacementPolicy = ServicePlacementNonPartiallyPlaceServicePolicy{}
 type ServicePlacementNonPartiallyPlaceServicePolicy struct {
 
 	// Fields inherited from ServicePlacementPolicy
+
+	Type ServicePlacementPolicyType `json:"type"`
+}
+
+func (s ServicePlacementNonPartiallyPlaceServicePolicy) ServicePlacementPolicy() BaseServicePlacementPolicyImpl {
+	return BaseServicePlacementPolicyImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = ServicePlacementNonPartiallyPlaceServicePolicy{}
@@ -26,9 +34,10 @@ func (s ServicePlacementNonPartiallyPlaceServicePolicy) MarshalJSON() ([]byte, e
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ServicePlacementNonPartiallyPlaceServicePolicy: %+v", err)
 	}
+
 	decoded["type"] = "NonPartiallyPlaceService"
 
 	encoded, err = json.Marshal(decoded)

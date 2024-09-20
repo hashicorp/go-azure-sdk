@@ -40,6 +40,7 @@ func (o StorageTaskAssignmentInstancesReportListOperationOptions) ToHeaders() *c
 
 func (o StorageTaskAssignmentInstancesReportListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -51,7 +51,6 @@ func (c CheckScopedNameAvailabilityClient) Execute(ctx context.Context, id commo
 
 	var model CheckNameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

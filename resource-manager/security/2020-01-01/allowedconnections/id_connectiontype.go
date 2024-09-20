@@ -44,7 +44,7 @@ func ParseConnectionTypeID(input string) (*ConnectionTypeId, error) {
 	}
 
 	id := ConnectionTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConnectionTypeIDInsensitively(input string) (*ConnectionTypeId, error)
 	}
 
 	id := ConnectionTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -129,7 +129,7 @@ func (id ConnectionTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
 		resourceids.StaticSegment("staticAllowedConnections", "allowedConnections", "allowedConnections"),
 		resourceids.ConstantSegment("connectionType", PossibleValuesForConnectionType(), "External"),
 	}

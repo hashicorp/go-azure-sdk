@@ -44,7 +44,7 @@ func ParseAgentPoolID(input string) (*AgentPoolId, error) {
 	}
 
 	id := AgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAgentPoolIDInsensitively(input string) (*AgentPoolId, error) {
 	}
 
 	id := AgentPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AgentPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticKubernetesClusters", "kubernetesClusters", "kubernetesClusters"),
-		resourceids.UserSpecifiedSegment("kubernetesClusterName", "kubernetesClusterValue"),
+		resourceids.UserSpecifiedSegment("kubernetesClusterName", "kubernetesClusterName"),
 		resourceids.StaticSegment("staticAgentPools", "agentPools", "agentPools"),
-		resourceids.UserSpecifiedSegment("agentPoolName", "agentPoolValue"),
+		resourceids.UserSpecifiedSegment("agentPoolName", "agentPoolName"),
 	}
 }
 

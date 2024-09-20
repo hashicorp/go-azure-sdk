@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers` Documentation
 
-The `triggers` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `triggers` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 payload := triggers.TriggerResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 read, err := client.GetEventSubscriptionStatus(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := triggers.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 // alternatively `client.ListByFactory(ctx, id)` can be used to do batched pagination
 items, err := client.ListByFactoryComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := triggers.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 payload := triggers.TriggerFilterParameters{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -127,7 +127,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -139,7 +139,7 @@ if err := client.StopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 if err := client.SubscribeToEventsThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -151,7 +151,7 @@ if err := client.SubscribeToEventsThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := triggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 if err := client.UnsubscribeFromEventsThenPoll(ctx, id); err != nil {
 	// handle the error

@@ -46,7 +46,6 @@ func (c TaskResourceClient) TasksCancel(ctx context.Context, id TaskId) (result 
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

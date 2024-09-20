@@ -45,7 +45,6 @@ func (c RestorePointsClient) Get(ctx context.Context, id RestorePointId) (result
 
 	var model RestorePoint
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

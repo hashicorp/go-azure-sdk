@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/deletedservices` Documentation
 
-The `deletedservices` SDK allows for interaction with the Azure Resource Manager Service `apicenter` (API Version `2024-03-15-preview`).
+The `deletedservices` SDK allows for interaction with Azure Resource Manager `apicenter` (API Version `2024-03-15-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deletedservices.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceValue")
+id := deletedservices.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deletedservices.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceValue")
+id := deletedservices.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

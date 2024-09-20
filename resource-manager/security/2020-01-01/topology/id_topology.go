@@ -44,7 +44,7 @@ func ParseTopologyID(input string) (*TopologyId, error) {
 	}
 
 	id := TopologyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopologyIDInsensitively(input string) (*TopologyId, error) {
 	}
 
 	id := TopologyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id TopologyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
 		resourceids.StaticSegment("staticTopologies", "topologies", "topologies"),
-		resourceids.UserSpecifiedSegment("topologyName", "topologyValue"),
+		resourceids.UserSpecifiedSegment("topologyName", "topologyResourceName"),
 	}
 }
 

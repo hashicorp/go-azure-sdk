@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transfers` Documentation
 
-The `transfers` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `transfers` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := transfers.NewInvoiceSectionTransferID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "transferValue")
+id := transfers.NewInvoiceSectionTransferID("billingAccountName", "billingProfileName", "invoiceSectionName", "transferName")
 
 read, err := client.Cancel(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewInvoiceSectionTransferID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "transferValue")
+id := transfers.NewInvoiceSectionTransferID("billingAccountName", "billingProfileName", "invoiceSectionName", "transferName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewInvoiceSectionTransferID("billingAccountValue", "billingProfileValue", "invoiceSectionValue", "transferValue")
+id := transfers.NewInvoiceSectionTransferID("billingAccountName", "billingProfileName", "invoiceSectionName", "transferName")
 
 payload := transfers.InitiateTransferRequest{
 	// ...
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := transfers.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewCustomerTransferID("billingAccountValue", "billingProfileValue", "customerValue", "transferValue")
+id := transfers.NewCustomerTransferID("billingAccountName", "billingProfileName", "customerName", "transferName")
 
 read, err := client.PartnerTransfersCancel(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewCustomerTransferID("billingAccountValue", "billingProfileValue", "customerValue", "transferValue")
+id := transfers.NewCustomerTransferID("billingAccountName", "billingProfileName", "customerName", "transferName")
 
 read, err := client.PartnerTransfersGet(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewCustomerTransferID("billingAccountValue", "billingProfileValue", "customerValue", "transferValue")
+id := transfers.NewCustomerTransferID("billingAccountName", "billingProfileName", "customerName", "transferName")
 
 payload := transfers.PartnerInitiateTransferRequest{
 	// ...
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := transfers.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := transfers.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 // alternatively `client.PartnerTransfersList(ctx, id)` can be used to do batched pagination
 items, err := client.PartnerTransfersListComplete(ctx, id)

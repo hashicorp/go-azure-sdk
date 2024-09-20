@@ -15,7 +15,7 @@ type IncidentCommentsClient struct {
 }
 
 func NewIncidentCommentsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentCommentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "incidentcomments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "incidentcomments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IncidentCommentsClient: %+v", err)
 	}

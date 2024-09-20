@@ -49,7 +49,6 @@ func (c AutoScaleVCoresClient) Update(ctx context.Context, id AutoScaleVCoreId, 
 
 	var model AutoScaleVCore
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

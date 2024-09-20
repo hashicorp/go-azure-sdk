@@ -49,7 +49,6 @@ func (c NotificationChannelsClient) Update(ctx context.Context, id NotificationC
 
 	var model NotificationChannel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

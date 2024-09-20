@@ -15,7 +15,7 @@ type DatabaseRecommendedActionsClient struct {
 }
 
 func NewDatabaseRecommendedActionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseRecommendedActionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaserecommendedactions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaserecommendedactions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseRecommendedActionsClient: %+v", err)
 	}

@@ -40,7 +40,7 @@ func ParseLogProfileID(input string) (*LogProfileId, error) {
 	}
 
 	id := LogProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseLogProfileIDInsensitively(input string) (*LogProfileId, error) {
 	}
 
 	id := LogProfileId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id LogProfileId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticLogProfiles", "logProfiles", "logProfiles"),
-		resourceids.UserSpecifiedSegment("logProfileName", "logProfileValue"),
+		resourceids.UserSpecifiedSegment("logProfileName", "logProfileName"),
 	}
 }
 

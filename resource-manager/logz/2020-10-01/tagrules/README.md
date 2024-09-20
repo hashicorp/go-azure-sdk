@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/logz/2020-10-01/tagrules` Documentation
 
-The `tagrules` SDK allows for interaction with the Azure Resource Manager Service `logz` (API Version `2020-10-01`).
+The `tagrules` SDK allows for interaction with Azure Resource Manager `logz` (API Version `2020-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
 
 payload := tagrules.MonitoringTagRules{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := tagrules.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue", "tagRuleValue")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
 
 payload := tagrules.MonitoringTagRules{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue", "tagRuleValue")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
 
 read, err := client.SubAccountTagRulesDelete(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue", "tagRuleValue")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
 
 read, err := client.SubAccountTagRulesGet(ctx, id)
 if err != nil {
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := tagrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 // alternatively `client.SubAccountTagRulesList(ctx, id)` can be used to do batched pagination
 items, err := client.SubAccountTagRulesListComplete(ctx, id)

@@ -48,7 +48,6 @@ func (c CreditsClient) Get(ctx context.Context, id commonids.ScopeId) (result Ge
 
 	var model CreditSummary
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

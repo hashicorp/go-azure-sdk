@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &RestorableDatabaseAccountId{}
 
 func TestNewRestorableDatabaseAccountID(t *testing.T) {
-	id := NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "instanceIdValue")
+	id := NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.InstanceId != "instanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InstanceId'", id.InstanceId, "instanceIdValue")
+	if id.InstanceId != "instanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InstanceId'", id.InstanceId, "instanceId")
 	}
 }
 
 func TestFormatRestorableDatabaseAccountID(t *testing.T) {
-	actual := NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "instanceIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue"
+	actual := NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts/instanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseRestorableDatabaseAccountID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts/instanceId",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				InstanceId:     "instanceIdValue",
+				LocationName:   "location",
+				InstanceId:     "instanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts/instanceId/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseRestorableDatabaseAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoNvAlUe/rEsToRaBlEdAtAbAsEaCcOuNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoN/rEsToRaBlEdAtAbAsEaCcOuNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts/instanceId",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				InstanceId:     "instanceIdValue",
+				LocationName:   "location",
+				InstanceId:     "instanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/location/restorableDatabaseAccounts/instanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoNvAlUe/rEsToRaBlEdAtAbAsEaCcOuNtS/iNsTaNcEiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoN/rEsToRaBlEdAtAbAsEaCcOuNtS/iNsTaNcEiD",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				InstanceId:     "iNsTaNcEiDvAlUe",
+				LocationName:   "lOcAtIoN",
+				InstanceId:     "iNsTaNcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoNvAlUe/rEsToRaBlEdAtAbAsEaCcOuNtS/iNsTaNcEiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoN/rEsToRaBlEdAtAbAsEaCcOuNtS/iNsTaNcEiD/extra",
 			Error: true,
 		},
 	}

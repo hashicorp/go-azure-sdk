@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/jobstream` Documentation
 
-The `jobstream` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2015-10-31`).
+The `jobstream` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2015-10-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobstream.NewStreamID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue", "jobStreamIdValue")
+id := jobstream.NewStreamID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId", "jobStreamId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobstream.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := jobstream.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 // alternatively `client.ListByJob(ctx, id, jobstream.DefaultListByJobOperationOptions())` can be used to do batched pagination
 items, err := client.ListByJobComplete(ctx, id, jobstream.DefaultListByJobOperationOptions())

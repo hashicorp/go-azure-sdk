@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/secrets` Documentation
 
-The `secrets` SDK allows for interaction with the Azure Resource Manager Service `redhatopenshift` (API Version `2023-09-04`).
+The `secrets` SDK allows for interaction with Azure Resource Manager `redhatopenshift` (API Version `2023-09-04`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
 
 payload := secrets.Secret{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewOpenShiftClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterValue")
+id := secrets.NewOpenShiftClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
 
 payload := secrets.SecretUpdate{
 	// ...

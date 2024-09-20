@@ -15,7 +15,7 @@ type FeaturestoreEntityContainerClient struct {
 }
 
 func NewFeaturestoreEntityContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*FeaturestoreEntityContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "featurestoreentitycontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "featurestoreentitycontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FeaturestoreEntityContainerClient: %+v", err)
 	}

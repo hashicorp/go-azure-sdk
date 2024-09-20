@@ -20,6 +20,14 @@ type ContentKeyPolicyTokenRestriction struct {
 	RestrictionTokenType           ContentKeyPolicyRestrictionTokenType   `json:"restrictionTokenType"`
 
 	// Fields inherited from ContentKeyPolicyRestriction
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyTokenRestriction) ContentKeyPolicyRestriction() BaseContentKeyPolicyRestrictionImpl {
+	return BaseContentKeyPolicyRestrictionImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyTokenRestriction{}
@@ -33,9 +41,10 @@ func (s ContentKeyPolicyTokenRestriction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyTokenRestriction: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyTokenRestriction"
 
 	encoded, err = json.Marshal(decoded)
@@ -57,6 +66,7 @@ func (s *ContentKeyPolicyTokenRestriction) UnmarshalJSON(bytes []byte) error {
 
 	s.Audience = decoded.Audience
 	s.Issuer = decoded.Issuer
+	s.OdataType = decoded.OdataType
 	s.OpenIdConnectDiscoveryDocument = decoded.OpenIdConnectDiscoveryDocument
 	s.RequiredClaims = decoded.RequiredClaims
 	s.RestrictionTokenType = decoded.RestrictionTokenType
@@ -74,7 +84,7 @@ func (s *ContentKeyPolicyTokenRestriction) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]ContentKeyPolicyRestrictionTokenKey, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalContentKeyPolicyRestrictionTokenKeyImplementation(val)
+			impl, err := UnmarshalContentKeyPolicyRestrictionTokenKeyImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'AlternateVerificationKeys' for 'ContentKeyPolicyTokenRestriction': %+v", i, err)
 			}
@@ -84,7 +94,7 @@ func (s *ContentKeyPolicyTokenRestriction) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["primaryVerificationKey"]; ok {
-		impl, err := unmarshalContentKeyPolicyRestrictionTokenKeyImplementation(v)
+		impl, err := UnmarshalContentKeyPolicyRestrictionTokenKeyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrimaryVerificationKey' for 'ContentKeyPolicyTokenRestriction': %+v", err)
 		}

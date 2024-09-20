@@ -45,7 +45,6 @@ func (c SignalRClient) ReplicaSharedPrivateLinkResourcesGet(ctx context.Context,
 
 	var model SharedPrivateLinkResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -35,6 +35,7 @@ func (o DomainWhoisGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o DomainWhoisGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c EnrichmentClient) DomainWhoisGet(ctx context.Context, id commonids.Resou
 
 	var model EnrichmentDomainWhois
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

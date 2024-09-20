@@ -30,7 +30,7 @@ func (s *AssetTrackProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["track"]; ok {
-		impl, err := unmarshalTrackBaseImplementation(v)
+		impl, err := UnmarshalTrackBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Track' for 'AssetTrackProperties': %+v", err)
 		}

@@ -15,7 +15,7 @@ type DeletedWorkspacesClient struct {
 }
 
 func NewDeletedWorkspacesClientWithBaseURI(sdkApi sdkEnv.Api) (*DeletedWorkspacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "deletedworkspaces", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "deletedworkspaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedWorkspacesClient: %+v", err)
 	}

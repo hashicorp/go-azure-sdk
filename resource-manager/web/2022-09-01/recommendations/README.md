@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/recommendations` Documentation
 
-The `recommendations` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2022-09-01`).
+The `recommendations` SDK allows for interaction with Azure Resource Manager `web` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName")
 
 read, err := client.DisableAllForHostingEnvironment(ctx, id, recommendations.DefaultDisableAllForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.DisableAllForWebApp(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue", "recommendationValue")
+id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name")
 
 read, err := client.DisableRecommendationForHostingEnvironment(ctx, id, recommendations.DefaultDisableRecommendationForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "recommendationValue")
+id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name")
 
 read, err := client.DisableRecommendationForSite(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewRecommendationID("12345678-1234-9876-4563-123456789012", "recommendationValue")
+id := recommendations.NewRecommendationID("12345678-1234-9876-4563-123456789012", "name")
 
 read, err := client.DisableRecommendationForSubscription(ctx, id)
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue", "recommendationValue")
+id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name")
 
 read, err := client.GetRuleDetailsByHostingEnvironment(ctx, id, recommendations.DefaultGetRuleDetailsByHostingEnvironmentOperationOptions())
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "recommendationValue")
+id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name")
 
 read, err := client.GetRuleDetailsByWebApp(ctx, id, recommendations.DefaultGetRuleDetailsByWebAppOperationOptions())
 if err != nil {
@@ -154,7 +154,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName")
 
 // alternatively `client.ListHistoryForHostingEnvironment(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())
@@ -171,7 +171,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.ListHistoryForWebApp(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForWebAppComplete(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())
@@ -188,7 +188,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName")
 
 // alternatively `client.ListRecommendedRulesForHostingEnvironment(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())
@@ -205,7 +205,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.ListRecommendedRulesForWebApp(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForWebAppComplete(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())
@@ -238,7 +238,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := commonids.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName")
 
 read, err := client.ResetAllFiltersForHostingEnvironment(ctx, id, recommendations.DefaultResetAllFiltersForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -254,7 +254,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.ResetAllFiltersForWebApp(ctx, id)
 if err != nil {

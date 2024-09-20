@@ -15,7 +15,7 @@ type DscCompilationJobClient struct {
 }
 
 func NewDscCompilationJobClientWithBaseURI(sdkApi sdkEnv.Api) (*DscCompilationJobClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dsccompilationjob", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dsccompilationjob", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DscCompilationJobClient: %+v", err)
 	}

@@ -36,6 +36,7 @@ func (o ByExternalCloudProviderTypeOperationOptions) ToHeaders() *client.Headers
 
 func (o ByExternalCloudProviderTypeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id Ex
 
 	var model DimensionsListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

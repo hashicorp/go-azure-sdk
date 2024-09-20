@@ -44,7 +44,7 @@ func ParseMsixPackageID(input string) (*MsixPackageId, error) {
 	}
 
 	id := MsixPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMsixPackageIDInsensitively(input string) (*MsixPackageId, error) {
 	}
 
 	id := MsixPackageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MsixPackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDesktopVirtualization", "Microsoft.DesktopVirtualization", "Microsoft.DesktopVirtualization"),
 		resourceids.StaticSegment("staticHostPools", "hostPools", "hostPools"),
-		resourceids.UserSpecifiedSegment("hostPoolName", "hostPoolValue"),
+		resourceids.UserSpecifiedSegment("hostPoolName", "hostPoolName"),
 		resourceids.StaticSegment("staticMsixPackages", "msixPackages", "msixPackages"),
-		resourceids.UserSpecifiedSegment("msixPackageName", "msixPackageValue"),
+		resourceids.UserSpecifiedSegment("msixPackageName", "msixPackageFullName"),
 	}
 }
 

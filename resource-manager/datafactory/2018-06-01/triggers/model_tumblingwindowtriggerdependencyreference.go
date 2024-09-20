@@ -16,6 +16,14 @@ type TumblingWindowTriggerDependencyReference struct {
 	Size             *string          `json:"size,omitempty"`
 
 	// Fields inherited from DependencyReference
+
+	Type string `json:"type"`
+}
+
+func (s TumblingWindowTriggerDependencyReference) DependencyReference() BaseDependencyReferenceImpl {
+	return BaseDependencyReferenceImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TumblingWindowTriggerDependencyReference{}
@@ -29,9 +37,10 @@ func (s TumblingWindowTriggerDependencyReference) MarshalJSON() ([]byte, error) 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TumblingWindowTriggerDependencyReference: %+v", err)
 	}
+
 	decoded["type"] = "TumblingWindowTriggerDependencyReference"
 
 	encoded, err = json.Marshal(decoded)

@@ -45,7 +45,6 @@ func (c DeploymentOperationsClient) GetAtSubscriptionScope(ctx context.Context, 
 
 	var model DeploymentOperation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/domains` Documentation
 
-The `domains` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2023-12-01`).
+The `domains` SDK allows for interaction with Azure Resource Manager `web` (API Version `2023-12-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 payload := domains.Domain{
 	// ...
@@ -63,7 +63,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "domainOwnershipIdentifierValue")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
 
 payload := domains.DomainOwnershipIdentifier{
 	// ...
@@ -84,7 +84,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 read, err := client.Delete(ctx, id, domains.DefaultDeleteOperationOptions())
 if err != nil {
@@ -100,7 +100,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "domainOwnershipIdentifierValue")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
 
 read, err := client.DeleteOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -116,7 +116,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -148,7 +148,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "domainOwnershipIdentifierValue")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
 
 read, err := client.GetOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -198,7 +198,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 // alternatively `client.ListOwnershipIdentifiers(ctx, id)` can be used to do batched pagination
 items, err := client.ListOwnershipIdentifiersComplete(ctx, id)
@@ -237,7 +237,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 read, err := client.Renew(ctx, id)
 if err != nil {
@@ -253,7 +253,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 read, err := client.TransferOut(ctx, id)
 if err != nil {
@@ -269,7 +269,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := domains.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 payload := domains.DomainPatchResource{
 	// ...
@@ -290,7 +290,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "domainOwnershipIdentifierValue")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
 
 payload := domains.DomainOwnershipIdentifier{
 	// ...

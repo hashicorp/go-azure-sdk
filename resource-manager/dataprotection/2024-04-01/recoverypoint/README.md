@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/recoverypoint` Documentation
 
-The `recoverypoint` SDK allows for interaction with the Azure Resource Manager Service `dataprotection` (API Version `2024-04-01`).
+The `recoverypoint` SDK allows for interaction with Azure Resource Manager `dataprotection` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recoverypoint.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupInstanceValue", "recoveryPointIdValue")
+id := recoverypoint.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupInstanceName", "recoveryPointId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recoverypoint.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupInstanceValue")
+id := recoverypoint.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupInstanceName")
 
 // alternatively `client.List(ctx, id, recoverypoint.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, recoverypoint.DefaultListOperationOptions())

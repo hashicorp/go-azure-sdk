@@ -15,7 +15,7 @@ type TenantConfigurationSyncStateClient struct {
 }
 
 func NewTenantConfigurationSyncStateClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantConfigurationSyncStateClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tenantconfigurationsyncstate", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "tenantconfigurationsyncstate", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TenantConfigurationSyncStateClient: %+v", err)
 	}

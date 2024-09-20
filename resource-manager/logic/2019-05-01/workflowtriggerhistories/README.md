@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggerhistories` Documentation
 
-The `workflowtriggerhistories` SDK allows for interaction with the Azure Resource Manager Service `logic` (API Version `2019-05-01`).
+The `workflowtriggerhistories` SDK allows for interaction with Azure Resource Manager `logic` (API Version `2019-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "triggerValue", "historyValue")
+id := workflowtriggerhistories.NewHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "triggerName", "historyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "triggerValue")
+id := workflowtriggerhistories.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "triggerName")
 
 // alternatively `client.List(ctx, id, workflowtriggerhistories.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, workflowtriggerhistories.DefaultListOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "triggerValue", "historyValue")
+id := workflowtriggerhistories.NewHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "triggerName", "historyName")
 
 read, err := client.Resubmit(ctx, id)
 if err != nil {

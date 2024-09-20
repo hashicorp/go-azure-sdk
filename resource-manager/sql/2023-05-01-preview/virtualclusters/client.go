@@ -15,7 +15,7 @@ type VirtualClustersClient struct {
 }
 
 func NewVirtualClustersClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualClustersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualclusters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualclusters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualClustersClient: %+v", err)
 	}

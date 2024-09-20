@@ -50,7 +50,6 @@ func (c LocationsClient) CheckTrialAvailability(ctx context.Context, id Location
 
 	var model Trial
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

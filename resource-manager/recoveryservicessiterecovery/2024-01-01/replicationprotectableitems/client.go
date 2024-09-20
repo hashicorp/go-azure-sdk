@@ -15,7 +15,7 @@ type ReplicationProtectableItemsClient struct {
 }
 
 func NewReplicationProtectableItemsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationProtectableItemsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationprotectableitems", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationprotectableitems", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationProtectableItemsClient: %+v", err)
 	}

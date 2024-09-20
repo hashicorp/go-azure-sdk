@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LedgerId{}
 
 func TestNewLedgerID(t *testing.T) {
-	id := NewLedgerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ledgerValue")
+	id := NewLedgerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ledgerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLedgerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LedgerName != "ledgerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LedgerName'", id.LedgerName, "ledgerValue")
+	if id.LedgerName != "ledgerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LedgerName'", id.LedgerName, "ledgerName")
 	}
 }
 
 func TestFormatLedgerID(t *testing.T) {
-	actual := NewLedgerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ledgerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerValue"
+	actual := NewLedgerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ledgerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLedgerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerName",
 			Expected: &LedgerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LedgerName:        "ledgerValue",
+				LedgerName:        "ledgerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLedgerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerName",
 			Expected: &LedgerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LedgerName:        "ledgerValue",
+				LedgerName:        "ledgerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConfidentialLedger/ledgers/ledgerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnFiDeNtIaLlEdGeR/lEdGeRs/lEdGeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnFiDeNtIaLlEdGeR/lEdGeRs/lEdGeRnAmE",
 			Expected: &LedgerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LedgerName:        "lEdGeRvAlUe",
+				LedgerName:        "lEdGeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnFiDeNtIaLlEdGeR/lEdGeRs/lEdGeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnFiDeNtIaLlEdGeR/lEdGeRs/lEdGeRnAmE/extra",
 			Error: true,
 		},
 	}

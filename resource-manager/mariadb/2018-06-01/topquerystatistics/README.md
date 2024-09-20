@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/topquerystatistics` Documentation
 
-The `topquerystatistics` SDK allows for interaction with the Azure Resource Manager Service `mariadb` (API Version `2018-06-01`).
+The `topquerystatistics` SDK allows for interaction with Azure Resource Manager `mariadb` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := topquerystatistics.NewTopQueryStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "queryStatisticIdValue")
+id := topquerystatistics.NewTopQueryStatisticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "queryStatisticId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := topquerystatistics.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := topquerystatistics.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 payload := topquerystatistics.TopQueryStatisticsInput{
 	// ...

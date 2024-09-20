@@ -35,6 +35,7 @@ func (o ContentItemDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o ContentItemDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

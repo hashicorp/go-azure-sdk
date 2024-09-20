@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedAlertId{}
 
 func TestNewScopedAlertID(t *testing.T) {
-	id := NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertIdValue")
+	id := NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertId")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.AlertId != "alertIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertId'", id.AlertId, "alertIdValue")
+	if id.AlertId != "alertId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AlertId'", id.AlertId, "alertId")
 	}
 }
 
 func TestFormatScopedAlertID(t *testing.T) {
-	actual := NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertIdValue"
+	actual := NewScopedAlertID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "alertId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedAlertID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertId",
 			Expected: &ScopedAlertId{
 				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AlertId: "alertIdValue",
+				AlertId: "alertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertId/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedAlertIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertId",
 			Expected: &ScopedAlertId{
 				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AlertId: "alertIdValue",
+				AlertId: "alertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/alerts/alertId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/aLeRtS/aLeRtIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/aLeRtS/aLeRtId",
 			Expected: &ScopedAlertId{
 				Scope:   "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				AlertId: "aLeRtIdVaLuE",
+				AlertId: "aLeRtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/aLeRtS/aLeRtIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/aLeRtS/aLeRtId/extra",
 			Error: true,
 		},
 	}
